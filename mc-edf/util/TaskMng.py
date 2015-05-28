@@ -3,33 +3,32 @@ Created on 2013. 2. 12.
 
 @author: cpslab
 '''
-from types import InstanceType
-class gl:
+class ts:
     tasks=[]
     lo_tasks=[]
 class Task:
-    def __init__(self, t,cl):
+    def __init__(self, t,c):
         self.t=t
-        self.cl=cl
+        self.c=c
 class mcTask:
-    def __init__(self, t,cl,ch,chi):
+    def __init__(self, t,c,ch,chi):
         self.t=t
-        self.cl=cl
+        self.c=c
         self.ch=ch
         self.chi=chi
 
 
 def insert(tsk):
     if isinstance(tsk,Task):
-        gl.tasks.append(tsk)
+        ts.tasks.append(tsk)
         return
     if tsk.chi=='H':
-        gl.tasks.append(tsk)
+        ts.tasks.append(tsk)
     else:
-        gl.lo_tasks.append(tsk)
+        ts.lo_tasks.append(tsk)
 
 def size():
-    return len(gl.tasks)    
+    return len(ts.tasks)    
 
 def l_size():
-    return len(gl.lo_tasks)    
+    return len(ts.lo_tasks)    
