@@ -44,10 +44,6 @@ def simul():
     print js.jobs
 
 
-def simul_for():
-    for t in range(12):
-        loop(t)
-    print js.jobs
 
 def main():
     init()
@@ -61,3 +57,11 @@ def test():
 
 if __name__ == "__main__":
     main()
+
+'''
+backup
+'''
+def simul_for():
+    for t in range(12):
+        loop(t)
+    print js.jobs
