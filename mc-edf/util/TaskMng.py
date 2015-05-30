@@ -17,6 +17,10 @@ class mcTask:
         self.ch=ch
         self.chi=chi
 
+def init(tlist):
+    for tsk in tlist:
+        tsk1=Task(tsk[0],tsk[1])
+        insert(tsk1)
 
 def insert(tsk):
     if isinstance(tsk,Task):
