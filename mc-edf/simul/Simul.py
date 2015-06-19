@@ -38,6 +38,7 @@ def run():
         loop(t)
         nt=ujob.next_t(t)
         dur=nt-t 
+#         print dur
         ujob.progress(t,dur)
         t=nt
     print js.jobs

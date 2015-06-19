@@ -12,6 +12,9 @@ class js:
     jobs=[]
     rels=[]
 
+def clear():
+    js.jobs=[]
+    js.rels=[]
 def insert(id,et,dl):
 #     js.jobs.append([id,et,dl])
     heappush(js.jobs,[dl,id,et])
@@ -41,7 +44,7 @@ def progress(t,dur):
             dur-=cur_job[2]
             t+=cur_job[2]
             cur_job[2]=0
-#             heappop(js.jobs)
+            heappop(js.jobs)
             if len(js.jobs)==0:
                 break
             cur_job=js.jobs[0]
