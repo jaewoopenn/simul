@@ -41,6 +41,7 @@ def log_prog(t,cur_job):
     print "at time:",t,"job exec id:",cur_job[1],"rem.exec:",cur_job[2]
 
 def progress(t,dur):
+    Log.prnln("---t:"+str(t)+",dur:"+str(dur)+"---")
     Log.prnln(js.jobs)
     while True:
         cur_job=js.jobs[0]
@@ -57,4 +58,6 @@ def progress(t,dur):
             cur_job[2]-=dur
             break
     Log.prnln(js.jobs)
-#     exit()
+
+def checkDl(t):
+    pass

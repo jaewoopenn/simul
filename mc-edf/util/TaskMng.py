@@ -26,6 +26,9 @@ def insert(tsk):
     if isinstance(tsk,Task):
         ts.tasks.append(tsk)
         return
+    if not isinstance(tsk,mcTask):
+        print "error"
+        return
     if tsk.chi=='H':
         ts.tasks.append(tsk)
     else:

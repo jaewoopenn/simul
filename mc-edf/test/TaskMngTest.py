@@ -3,14 +3,21 @@ Created on 2015. 6. 19.
 
 @author: Jaewoo Lee
 '''
+import util.TaskMng as utsk
+
 class gl:
     num=3
-    case=-1 # -1: all, #: test case number
-
+#     case=-1 # -1: all, #: test case number
+    case=1
 def test1():
-    return 0
+    tl=[[4,1],[3,1]]
+    utsk.init(tl)
+    return utsk.size()
 def test2():
-    return 0
+    tl=[[4,1],[3,1]]
+    utsk.init(tl)
+    utsk.insert([5,1])
+    return utsk.size()
 def test3():
     return 0
 def test4():
@@ -41,8 +48,8 @@ fmap={
       9:test10
 }
 ans={
-     0:0,
-     1:0,
+     0:2,
+     1:3,
      2:0,
      3:0,
      4:0,

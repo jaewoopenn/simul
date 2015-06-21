@@ -7,7 +7,8 @@ import util.JobMng as ujob
 import util.UtilLog as ulog
 class gl:
     num=5
-    case=-1
+#     case=-1
+    case=5
 def test1():
     ujob.clear()
     ujob.insert(0, 3, 4)
@@ -50,7 +51,17 @@ def test5():
     return ujob.size()
 
 def test6():
-    return 0
+    ujob.clear()
+    ujob.insert(0, 2, 3)
+    ujob.insert(1, 2, 3)
+    ujob.insert(2, 3, 4)
+    t=0
+    dur=3
+    t=ujob.progress(t, dur)
+    dur=1
+    t=ujob.progress(t, dur)
+    return ujob.size()
+
 def test7():
     return 0
 def test8():
