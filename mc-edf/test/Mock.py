@@ -3,52 +3,20 @@ Created on 2015. 6. 19.
 
 @author: Jaewoo Lee
 '''
-import util.JobMng as ujob
-import util.UtilLog as ulog
 class gl:
-    num=5
-    case=-1
+    num=3
+    case=-1 # -1: all, #: test case number
+
 def test1():
-    ujob.clear()
-    ujob.insert(0, 3, 4)
-    ujob.insert(1, 2, 3)
-    if ujob.size()!=2:
-        return -1
-    ujob.insert(1, 5, 7)
-    return ujob.size()
-
-# next t "test"
+    return 0
 def test2():
-    ujob.clear()
-    ujob.insert(0, 3, 4)
-    ujob.insert(1, 2, 3)
-    t=ujob.next_t(0)
-    if t!=3:
-        return -1
-    return ujob.next_t(t)
-
-# first next
+    return 0
 def test3():
-    ujob.clear()
-    ujob.insert(0, 3, 4)
-    ujob.insert(1, 2, 3)
-    ujob.progress(0, 3)
-    return ujob.size()
-
+    return 0
 def test4():
-    ujob.clear()
-    ujob.insert(0, 4, 6)
-    ujob.insert(1, 4, 5)
-    ujob.progress(0, 3)
-    return ujob.size()
-
+    return 0
 def test5():
-    ujob.clear()
-    ujob.insert(0, 4, 8)
-    ujob.insert(1, 4, 5)
-    ujob.progress(0, 4)
-    return ujob.size()
-
+    return 0
 def test6():
     return 0
 def test7():
@@ -73,11 +41,11 @@ fmap={
       9:test10
 }
 ans={
-     0:3,
-     1:4,
-     2:1,
-     3:2,
-     4:1,
+     0:0,
+     1:0,
+     2:0,
+     3:0,
+     4:0,
      5:0,
      6:0,
      7:0,
@@ -94,7 +62,6 @@ def runAll():
             print "OK"
     print "end"    
 def runOne(i):
-    ulog.set_l(1)
     print "test",i,
     ret=fmap[i]()
     if ret!=ans[i]:
@@ -106,6 +73,7 @@ def main():
         runAll()
     else:
         runOne(gl.case)
+
 if __name__ == '__main__':
     main()
 

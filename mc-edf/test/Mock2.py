@@ -3,52 +3,20 @@ Created on 2015. 6. 19.
 
 @author: Jaewoo Lee
 '''
-import util.JobMng as ujob
-import util.UtilLog as ulog
 class gl:
-    num=5
-    case=-1
+    num=13
+    case=-1 # -1: all, #: test case number
+
 def test1():
-    ujob.clear()
-    ujob.insert(0, 3, 4)
-    ujob.insert(1, 2, 3)
-    if ujob.size()!=2:
-        return -1
-    ujob.insert(1, 5, 7)
-    return ujob.size()
-
-# next t "test"
+    return 0
 def test2():
-    ujob.clear()
-    ujob.insert(0, 3, 4)
-    ujob.insert(1, 2, 3)
-    t=ujob.next_t(0)
-    if t!=3:
-        return -1
-    return ujob.next_t(t)
-
-# first next
+    return 0
 def test3():
-    ujob.clear()
-    ujob.insert(0, 3, 4)
-    ujob.insert(1, 2, 3)
-    ujob.progress(0, 3)
-    return ujob.size()
-
+    return 0
 def test4():
-    ujob.clear()
-    ujob.insert(0, 4, 6)
-    ujob.insert(1, 4, 5)
-    ujob.progress(0, 3)
-    return ujob.size()
-
+    return 0
 def test5():
-    ujob.clear()
-    ujob.insert(0, 4, 8)
-    ujob.insert(1, 4, 5)
-    ujob.progress(0, 4)
-    return ujob.size()
-
+    return 0
 def test6():
     return 0
 def test7():
@@ -58,6 +26,26 @@ def test8():
 def test9():
     return 0
 def test10():
+    return 0
+def test11():
+    return 0
+def test12():
+    return 0
+def test13():
+    return 0
+def test14():
+    return 0
+def test15():
+    return 0
+def test16():
+    return 0
+def test17():
+    return 0
+def test18():
+    return 0
+def test19():
+    return 0
+def test20():
     return 0
 
 fmap={
@@ -70,19 +58,39 @@ fmap={
       6:test7,
       7:test8,
       8:test9,
-      9:test10
+      9:test10,
+      10:test11,
+      11:test12,
+      12:test13,
+      13:test14,
+      14:test15,
+      15:test16,
+      16:test17,
+      17:test18,
+      18:test19,
+      19:test20
 }
 ans={
-     0:3,
-     1:4,
-     2:1,
-     3:2,
-     4:1,
+     0:0,
+     1:0,
+     2:0,
+     3:0,
+     4:0,
      5:0,
      6:0,
      7:0,
      8:0,
-     9:0
+     9:0,
+     10:0,
+     11:0,
+     12:0,
+     13:0,
+     14:0,
+     15:0,
+     16:0,
+     17:0,
+     18:0,
+     19:0
 }
 def runAll():
     for i in range(gl.num):
@@ -94,7 +102,6 @@ def runAll():
             print "OK"
     print "end"    
 def runOne(i):
-    ulog.set_l(1)
     print "test",i,
     ret=fmap[i]()
     if ret!=ans[i]:
@@ -106,6 +113,7 @@ def main():
         runAll()
     else:
         runOne(gl.case)
+
 if __name__ == '__main__':
     main()
 

@@ -14,3 +14,7 @@ def prnln(s):
     if gl.debug==0:
         return
     print s
+def set_l(lv):
+    gl.debug=lv
+def get_l():
+    return gl.debug

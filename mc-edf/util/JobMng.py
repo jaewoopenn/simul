@@ -35,30 +35,26 @@ def next_t(t):
 #         return js.jobs[0][0]
 #     else:
 #         return t+1
+def log_prog(t,cur_job):
+    if not Log.get_l():
+        return
+    print "at time:",t,"job exec id:",cur_job[1],"rem.exec:",cur_job[2]
 
 def progress(t,dur):
     Log.prnln(js.jobs)
-    cur_job=js.jobs[0]
     while True:
-        if dur>cur_job[2]:
-            Log.prn("at time:",t)
-            Log.prn("job exec id:",cur_job[1])
-            Log.prn(" exec:",cur_job[2])
+        cur_job=js.jobs[0]
+        log_prog(t,cur_job)
+        if dur>=cur_job[2]: # dur > exec
+            Log.prnln("case 1")
             dur-=cur_job[2]
             t+=cur_job[2]
-            cur_job[2]=0
             heappop(js.jobs)
-            if len(js.jobs)==0:
+            if len(js.jobs)==0 or dur==0:
                 break
-            cur_job=js.jobs[0]
         else:
-#             print "dur2",dur
-            Log.prn("at time:",t)
-            Log.prn("job exec id:",cur_job[1])
-            Log.prn(" exec:",cur_job[2])
+            Log.prnln("case 2")
             cur_job[2]-=dur
-            if cur_job[2]==0:
-                heappop(js.jobs)
             break
-#     print js.jobs
+    Log.prnln(js.jobs)
 #     exit()
