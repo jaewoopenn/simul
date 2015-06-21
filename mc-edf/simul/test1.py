@@ -7,7 +7,7 @@ import Simul
 '''
 Task info
 '''
-
+import simul.Simul
 def getTasks():
     task_list=[[4,1],[3,1]]
 #     task_list=[[4,1],[3,2]]

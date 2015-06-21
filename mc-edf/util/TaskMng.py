@@ -5,37 +5,19 @@ Created on 2013. 2. 12.
 '''
 class ts:
     tasks=[]
-    lo_tasks=[]
-class Task:
-    def __init__(self, t,c):
-        self.t=t
-        self.c=c
-class mcTask:
-    def __init__(self, t,c,ch,chi):
-        self.t=t
-        self.c=c
-        self.ch=ch
-        self.chi=chi
 
+def clear():
+    ts.tasks=[]
 def init(tlist):
     for tsk in tlist:
-        tsk1=Task(tsk[0],tsk[1])
+        tsk1=(tsk[0],tsk[1])
         insert(tsk1)
 
 def insert(tsk):
-    if isinstance(tsk,Task):
-        ts.tasks.append(tsk)
-        return
-    if not isinstance(tsk,mcTask):
-        print "error"
-        return
-    if tsk.chi=='H':
-        ts.tasks.append(tsk)
-    else:
-        ts.lo_tasks.append(tsk)
+    ts.tasks.append(tsk)
 
 def size():
     return len(ts.tasks)    
 
-def l_size():
-    return len(ts.lo_tasks)    
+def get(i):
+    return ts.tasks[i]

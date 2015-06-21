@@ -5,9 +5,6 @@ Created on 2015. 5. 30.
 '''
 import util.TaskMng as utsk
 import util.JobMng as ujob
-from util.TaskMng import ts
-from util.TaskMng import Task
-from util.JobMng import js
 class lc:
     plst=[]
     plen=0
@@ -44,17 +41,3 @@ def run():
     print js.jobs
 
     
-'''
-backup
-
-def simul_backup():
-    for t in range(12):
-        loop(t)
-    print js.jobs
-
-def init_backup():
-    tsk=Task(4,2)
-    utsk.insert(tsk)
-    tsk=Task(3,2)
-    utsk.insert(tsk)
-'''
