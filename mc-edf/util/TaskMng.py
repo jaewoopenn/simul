@@ -3,21 +3,18 @@ Created on 2013. 2. 12.
 
 @author: cpslab
 '''
-class ts:
+import numpy as np
+class gl:
     tasks=[]
 
 def clear():
-    ts.tasks=[]
+    gl.tasks=[]
 def init(tlist):
-    for tsk in tlist:
-        tsk1=(tsk[0],tsk[1])
-        insert(tsk1)
-
-def insert(tsk):
-    ts.tasks.append(tsk)
+    gl.tasks=np.array(tlist)
 
 def size():
-    return len(ts.tasks)    
+#     print gl.tasks
+    return len(gl.tasks)    
 
 def get(i):
-    return ts.tasks[i]
+    return gl.tasks[i]

@@ -56,8 +56,20 @@ def progress(t,dur):
         else:
             Log.prnln("case 2")
             cur_job[2]-=dur
+            t+=dur
             break
     Log.prnln(js.jobs)
-
+    return t
 def checkDl(t):
-    pass
+    Log.prnln("-check dl--t:"+str(t))
+    if len(js.jobs)==0:
+        return 0
+    idx=0
+    while True:
+        cur_job=js.jobs[idx]
+        if cur_job[0]<=t and cur_job[2]>0:
+            return 1
+        if cur_job[0]>t:
+            return 0
+        idx+=0
+    return 0

@@ -6,32 +6,23 @@ Created on 2015. 6. 19.
 import util.TaskMng as utsk
 
 class gl:
-    num=4
+    num=2
     case=-1 # -1: all, #: test case number
-#     case=3
+#     case=1
 def test1(): # init
     utsk.clear()
     tl=[[4,1],[3,1]]
     utsk.init(tl)
     return utsk.size()
-def test2(): # init add
+def test2(): 
     utsk.clear()
     tl=[[4,1],[3,1]]
     utsk.init(tl)
-    utsk.insert([5,1])
-    return utsk.size()
+    return utsk.get(0)[0] == 4 and utsk.get(1)[0] == 3
 def test3(): # init clear add
-    utsk.clear()
-    tl=[[4,1],[3,1]]
-    utsk.init(tl)
-    utsk.clear()
-    utsk.insert([5,1])
-    return utsk.size()
+    return 0
 def test4():
-    utsk.clear()
-    tl=[[4,1],[3,1]]
-    utsk.init(tl)
-    return (utsk.get(0) == (4,1)) and (utsk.get(1) == (3,1))
+    return 0
 def test5():
     return 0
 def test6():
@@ -59,9 +50,9 @@ fmap={
 }
 ans={
      0:2,
-     1:3,
-     2:1,
-     3:1,
+     1:1,
+     2:0,
+     3:0,
      4:0,
      5:0,
      6:0,

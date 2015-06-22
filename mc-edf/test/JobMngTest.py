@@ -6,9 +6,9 @@ Created on 2015. 6. 19.
 import util.JobMng as ujob
 import util.UtilLog as ulog
 class gl:
-    num=5
-#     case=-1
-    case=5
+    num=9
+    case=-1
+#     case=8
 def test1():
     ujob.clear()
     ujob.insert(0, 3, 4)
@@ -53,19 +53,33 @@ def test5():
 def test6():
     ujob.clear()
     ujob.insert(0, 2, 3)
-    ujob.insert(1, 2, 3)
-    ujob.insert(2, 3, 4)
+    ujob.insert(1, 1, 3)
     t=0
     dur=3
     t=ujob.progress(t, dur)
-    dur=1
-    t=ujob.progress(t, dur)
-    return ujob.size()
+    return ujob.checkDl(t)
 
 def test7():
-    return 0
+    ujob.clear()
+    ujob.insert(0, 2, 3)
+    ujob.insert(1, 2, 3)
+    t=0
+    dur=3
+    t=ujob.progress(t, dur)
+    return ujob.checkDl(t)
 def test8():
-    return 0
+    ujob.clear()
+    ujob.insert(0, 2, 3)
+    ujob.insert(1, 1, 3)
+    ujob.insert(1, 1, 4)
+    t=0
+    dur=3
+    t=ujob.progress(t, dur)
+    if ujob.checkDl(t):
+        return 1
+    dur=1
+    t=ujob.progress(t, dur)
+    return ujob.checkDl(t)
 def test9():
     return 0
 def test10():
@@ -90,7 +104,7 @@ ans={
      3:2,
      4:1,
      5:0,
-     6:0,
+     6:1,
      7:0,
      8:0,
      9:0
