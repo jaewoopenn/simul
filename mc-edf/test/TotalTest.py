@@ -1,9 +1,10 @@
 '''
 Created on 2015. 6. 19.
 
-@author: ÃÖ¿ø¿µ
 '''
-from test import JobMngTest
+import test.JobMngTest as J1
+import test.TaskMngTest as J2
 
 if __name__ == '__main__':
-    JobMngTest.main()
+    J1.main()
+    J2.main()
