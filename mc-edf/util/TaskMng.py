@@ -18,3 +18,9 @@ def size():
 
 def get(i):
     return gl.tasks[i]
+def getPeriods():
+    plst=[]
+    for tsk in gl.tasks:
+        plst.append(tsk[0])
+    return plst
+    

@@ -3,27 +3,22 @@ Created on 2015. 6. 19.
 
 @author: Jaewoo Lee
 '''
-import util.TaskMng as utsk
+import simul.Simul as sim
 
 class gl:
-    num=3
+    num=1
     case=-1 # -1: all, #: test case number
-#     case=1
-def test1(): # init
-    utsk.clear()
-    tl=[[4,1],[3,1]]
-    utsk.init(tl)
-    return utsk.size()
-def test2(): 
-    utsk.clear()
-    tl=[[4,1],[3,1]]
-    utsk.init(tl)
-    return utsk.get(0)[0] == 4 and utsk.get(1)[0] == 3
-def test3(): # init clear add
-    utsk.clear()
-    tl=[[4,1],[3,1],[10,1],[5,1],[16,1]]
-    utsk.init(tl)
-    return utsk.size()
+
+def test1():
+    sim.clear()
+    tl=[[5,1],[3,1]]
+    sim.prepare(tl)
+    sim.run()
+    return 0
+def test2():
+    return 0
+def test3():
+    return 0
 def test4():
     return 0
 def test5():
@@ -52,9 +47,9 @@ fmap={
       9:test10
 }
 ans={
-     0:2,
-     1:1,
-     2:5,
+     0:0,
+     1:0,
+     2:0,
      3:0,
      4:0,
      5:0,

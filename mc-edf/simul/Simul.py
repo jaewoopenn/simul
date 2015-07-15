@@ -9,26 +9,39 @@ class lc:
     plst=[]
     plen=0
 
+def clear():
+    plst=[]
+    plen=0
 
+'''
+
+'''
 def prepare(task_list):
     utsk.init(task_list)
-
-    for tsk in ts.tasks:
-        lc.plst.append(tsk.t)
+    lc.plst=utsk.getPeriods()
     lc.plen=len(lc.plst)
     print "Periods:",lc.plst
 
+'''
+
+'''
 def rel(t):
     for idx in range(lc.plen):
         if t % lc.plst[idx] ==0:
-            tsk=ts.tasks[idx]
+            tsk=utsk.get(idx)
 #             print "rel",idx,tsk.c,t+tsk.t
-            ujob.insert(idx,tsk.c,t+tsk.t)
+            ujob.insert(idx,tsk[1],t+tsk[0])
     
+'''
+
+'''
 def loop(t):
     print "t:",t
     rel(t)
 
+'''
+
+'''
 def run():
     t=0
     while t<12:
@@ -38,6 +51,6 @@ def run():
 #         print dur
         ujob.progress(t,dur)
         t=nt
-    print js.jobs
+    ujob.prn()
 
     
