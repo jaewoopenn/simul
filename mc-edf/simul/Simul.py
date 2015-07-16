@@ -52,6 +52,6 @@ def run():
 #         print dur
         ujob.progress(t,dur)
         t=nt
-    ujob.prn()
+#     ujob.prn()
 
     

@@ -8,7 +8,7 @@ import util.UtilLog as ulog
 
 class gl:
     num=1
-    case=1 # -1: all, #: test case number
+    case=2 # -1: all, #: test case number
 
 def test1():
     sim.clear()
@@ -23,6 +23,10 @@ def test2():
     sim.run()
     return 0
 def test3():
+    sim.clear()
+    tl=[[4,2],[3,2]]
+    sim.prepare(tl)
+    sim.run()
     return 0
 def test4():
     return 0
