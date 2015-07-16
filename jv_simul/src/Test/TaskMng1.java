@@ -1,21 +1,37 @@
 package Test;
 import Test.TEngine;
+import Util.Log;
+import Simul.TaskMng;
 public class TaskMng1 {
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=3;
 	public static int total=10;
-	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
+	public static int gret[]={2,3,2,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		return 0;
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,1);
+		return tm.size();
 	}
 	public int test2()
 	{
-		return 0;
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,1);
+		tm.addTask(5,1);
+		return tm.size();
 	}
 	public  int test3()
 	{
-		return 0;
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,1);
+		tm.toArray();
+		int[] pt=tm.getPeriods();
+		for(int p:pt)
+			Log.prn(1, p);
+		return pt.length;
 	}
 	public  int test4()
 	{

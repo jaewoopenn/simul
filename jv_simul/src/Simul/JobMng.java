@@ -14,7 +14,12 @@ public class JobMng {
 	public void insert(Job job) {
 		jobs.add(job);
 	}
-	public boolean progress(int cur_t,int dur){
+
+	public void insertJob(int tid,int dl,int et) {
+		Job j=new Job(tid,dl,et);
+		jobs.add(j);
+	}
+public boolean progress(int cur_t,int dur){
 		while(dur>0)
 		{
 			Job j=getCur();

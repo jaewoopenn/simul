@@ -1,35 +1,33 @@
 package Test;
-import java.util.Vector;
 
 import Test.TEngine;
-import Simul.Task;
 import Simul.Platform;
+import Simul.TaskMng;
 
 public class Platform1 {
+//	public static int idx=-1;
 	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
 		Platform p=new Platform();
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,1);
 		
-		Vector<Task> tasks=new Vector<Task>();
-		tasks.add(new Task(0,3,1));
-		tasks.add(new Task(1,4,1));
-		
-		p.init(tasks);
+		p.init(tm);
 		p.simul(12);
 		return 0;
 	}
 	public int test2()
 	{
 		Platform p=new Platform();
+		TaskMng tm=new TaskMng();
+		tm.addTask(2,1);
+		tm.addTask(3,2);
 		
-		Vector<Task> tasks=new Vector<Task>();
-		tasks.add(new Task(0,2,1));
-		tasks.add(new Task(1,3,2));
-		
-		p.init(tasks);
+		p.init(tm);
 		p.simul(7);
 		return 0;
 	}

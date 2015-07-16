@@ -7,9 +7,9 @@ public class Job implements Comparable{
 	public int dl;
 	public int exec;
 
-	public Job(int tid,int period, int exec) {
+	public Job(int tid,int dl, int exec) {
 		this.tid=tid;
-		this.dl = period;
+		this.dl = dl;
 		this.exec = exec;
 	}
 	@Override
