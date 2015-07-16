@@ -5,4 +5,9 @@ public class Log {
 	{
 		System.out.println(s);
 	}
+
+	public static void prnc(Object s) {
+		System.out.print(s);
+		
+	}
 }

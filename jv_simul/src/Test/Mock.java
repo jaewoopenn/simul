@@ -3,41 +3,63 @@ import java.lang.reflect.Method;
 
 import Util.Log;
 public class Mock {
-	public static int ret[]={0,1,0};
+	public static int total=10;
+	public static int ret[]={0,0,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		System.out.println("hihi");
 		return 0;
 	}
 	public int test2()
 	{
-//		System.out.println("hihi");
 		return 0;
 	}
 	public  int test3()
 	{
-//		System.out.println("hihi");
-		return 1;
+		return 0;
 	}
-	public void run()
+	public  int test4()
 	{
-		if(test1()!=ret[0]) Log.prn("Error 1");
-		if(test2()!=ret[1]) Log.prn("Error 2");
-		if(test3()!=ret[2]) Log.prn("Error 3");
-		Log.prn("End");
+		return 0;
+	}
+	public  int test5()
+	{
+		return 0;
+	}
+	public  int test6()
+	{
+		return 0;
+	}
+	public  int test7()
+	{
+		return 0;
+	}
+	public  int test8()
+	{
+		return 0;
+	}
+	public  int test9()
+	{
+		return 0;
+	}
+	public  int test10()
+	{
+		return 0;
 	}
 	public static void main(String[] args) throws Exception {
-		Mock mock=new Mock();
 		Class c = Mock.class;
-		for(int i=0;i<3;i++)
+		Mock mock=new Mock();
+		int[] aret=Mock.ret;
+		int sz=Mock.total;
+		for(int i=0;i<sz;i++)
 		{
 			Method meth = c.getMethod("test"+(i+1));
 			int ret=(int)meth.invoke(mock);
-			Log.prn(ret);
-			if(ret==Mock.ret[i])
-				Log.prn("OK");
+//			Log.prn(ret);
+			Log.prnc("Test "+(i+1));
+			if(ret==aret[i])
+				Log.prn(" OK");
 			else
-				Log.prn("Err");
+				Log.prn(" Err "+ret+" "+Mock.ret[i]);
 		}
 //		mock.run();
 	}
