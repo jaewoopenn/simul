@@ -1,13 +1,19 @@
 package Test;
-import java.lang.reflect.Method;
+import java.util.Vector;
+
 import Test.TEngine;
-import Util.Log;
-public class Mock {
+import Simul.Task;
+
+public class Task1 {
 	public static int total=10;
-	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
+	public static int gret[]={2,0,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		return 0;
+		Vector<Task> tasks=new Vector<Task>();
+		
+		tasks.add(new Task(0,3,1));
+		tasks.add(new Task(1,4,1));
+		return tasks.size();
 	}
 	public int test2()
 	{
@@ -46,10 +52,10 @@ public class Mock {
 		return 0;
 	}
 	public static void main(String[] args) throws Exception {
-		Class c = Mock.class;
-		Mock m=new Mock();
-		int[] aret=Mock.gret;
-		int sz=Mock.total;
+		Class c = Task1.class;
+		Task1 m=new Task1();
+		int[] aret=Task1.gret;
+		int sz=Task1.total;
 //		TEngine.run(m,c,aret,sz);
 		TEngine.runOnce(m,c,aret,1,1);
 	}

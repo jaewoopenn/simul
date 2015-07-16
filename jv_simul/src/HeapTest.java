@@ -12,9 +12,9 @@ public class HeapTest {
 		int sz=pq.size();
 		for(int i=0;i<sz;i++)
 		{
-			Log.prn(pq.poll());
+			Log.prn(0,pq.poll());
 		}
-		Log.prn("hihi");
+		Log.prn(0,"hihi");
 	}
 
 }

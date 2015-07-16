@@ -1,13 +1,19 @@
 package Util;
 
 public class Log {
-	public static void prn(Object s)
+	private static int g_lv=9;
+	public static void set_lv(int lv){
+		g_lv=lv;
+	}
+	public static void prn(int lv,Object s)
 	{
-		System.out.println(s);
+		if(g_lv<=lv)
+			System.out.println(s);
 	}
 
-	public static void prnc(Object s) {
-		System.out.print(s);
+	public static void prnc(int lv,Object s) {
+		if(g_lv<=lv)
+			System.out.print(s);
 		
 	}
 }
