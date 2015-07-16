@@ -44,11 +44,11 @@ public class Platform {
 	private void relCheck(){
 		for(int i=0;i<tasks_size;i++){
 			if (cur_t%plst[i]==0){
-				Log.prn(2,"rel "+i);
+//				Log.prn(2,"rel "+i);
 				Task tsk=getTask(i);
 //				Log.prn(2, "p:"+tsk.period+" e:"+tsk.exec);
 				Job j=new Job(tsk.tid,cur_t+tsk.period,tsk.exec);
-				j.prn();
+//				j.prn();
 				jm.insert(j);
 			}
 				

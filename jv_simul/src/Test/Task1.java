@@ -5,6 +5,7 @@ import Test.TEngine;
 import Simul.Task;
 
 public class Task1 {
+	public static int idx=-1;
 	public static int total=10;
 	public static int gret[]={2,0,0,0,0,0,0,0,0,0};
 	public int test1()
@@ -56,8 +57,10 @@ public class Task1 {
 		Task1 m=new Task1();
 		int[] aret=Task1.gret;
 		int sz=Task1.total;
-//		TEngine.run(m,c,aret,sz);
-		TEngine.runOnce(m,c,aret,1,1);
+		if(idx==-1)
+			TEngine.run(m,c,aret,sz);
+		else
+			TEngine.runOnce(m,c,aret,idx,1);
 	}
 
 }

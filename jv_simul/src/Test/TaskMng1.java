@@ -1,7 +1,8 @@
 package Test;
 import Test.TEngine;
-public class Mock {
-	public static int idx=-1;
+public class TaskMng1 {
+//	public static int idx=-1;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
 	public int test1()
@@ -45,10 +46,10 @@ public class Mock {
 		return 0;
 	}
 	public static void main(String[] args) throws Exception {
-		Class c = Mock.class;
-		Mock m=new Mock();
-		int[] aret=Mock.gret;
-		int sz=Mock.total;
+		Class c = TaskMng1.class;
+		TaskMng1 m=new TaskMng1();
+		int[] aret=TaskMng1.gret;
+		int sz=TaskMng1.total;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else

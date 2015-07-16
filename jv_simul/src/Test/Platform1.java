@@ -6,6 +6,7 @@ import Simul.Task;
 import Simul.Platform;
 
 public class Platform1 {
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
 	public int test1()
@@ -22,6 +23,14 @@ public class Platform1 {
 	}
 	public int test2()
 	{
+		Platform p=new Platform();
+		
+		Vector<Task> tasks=new Vector<Task>();
+		tasks.add(new Task(0,2,1));
+		tasks.add(new Task(1,3,2));
+		
+		p.init(tasks);
+		p.simul(7);
 		return 0;
 	}
 	public  int test3()
@@ -61,8 +70,10 @@ public class Platform1 {
 		Platform1 m=new Platform1();
 		int[] aret=Platform1.gret;
 		int sz=Platform1.total;
-//		TEngine.run(m,c,aret,sz);
-		TEngine.runOnce(m,c,aret,1,1);
+		if(idx==-1)
+			TEngine.run(m,c,aret,sz);
+		else
+			TEngine.runOnce(m,c,aret,idx,1);
 	}
 
 }

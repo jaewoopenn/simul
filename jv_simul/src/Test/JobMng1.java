@@ -6,8 +6,9 @@ import Simul.JobMng;
 import Simul.Job;
 
 public class JobMng1 {
+	public static int idx=8;
 	public static int total=10;
-	public static int gret[]={1,2,2,1,0,0,1,0,0,0};
+	public static int gret[]={1,2,2,1,0,0,1,1,0,0};
 
 	public JobMng ts1()
 	{
@@ -101,7 +102,13 @@ public class JobMng1 {
 	}
 	public  int test8()
 	{
-		return 0;
+		JobMng jm=new JobMng();
+		jm.insert(new Job(0,3,2));
+		jm.insert(new Job(1,4,1));
+		if(jm.progress(2,3))
+			return 0;
+		else
+			return 1;
 	}
 	public  int test9()
 	{
@@ -116,8 +123,10 @@ public class JobMng1 {
 		JobMng1 m=new JobMng1();
 		int[] aret=JobMng1.gret;
 		int sz=JobMng1.total;
-		TEngine.run(m,c,aret,sz);
-//		TEngine.runOnce(m,c,aret,7,1);
+		if(idx==-1)
+			TEngine.run(m,c,aret,sz);
+		else
+			TEngine.runOnce(m,c,aret,idx,1);
 	}
 
 }

@@ -20,17 +20,19 @@ public class JobMng {
 			Job j=getCur();
 			if(j==null)
 			{
-				Log.prn(1," dur:"+dur+" empty");
+//				Log.prn(1,"cur_t:"+cur_t+" dur:"+dur+" empty");
 				break;
 			}
 			if(dur>=j.exec) {
-				Log.prn(1," dur:"+j.exec+" tid:"+j.tid+" exec_type:1");
+				Log.prn(1,"cur_t:"+cur_t+" dur:"+j.exec+" tid:"+j.tid+" exec_type:1");
 				dur-=j.exec;
-				j.exec=0;
-				if(cur_t+dur>j.dl)
+				if(cur_t+j.exec>j.dl){
+					Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
 					return false;
+				}
+				j.exec=0;
 			} else {  // dur <j.exec
-				Log.prn(1," dur:"+dur+" tid:"+j.tid+" exec_type:2");
+				Log.prn(1,"cur_t:"+cur_t+" dur:"+dur+" tid:"+j.tid+" exec_type:2");
 				j.exec-=dur;
 				dur=0;
 				insert(j);
