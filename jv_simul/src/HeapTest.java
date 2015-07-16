@@ -1,5 +1,5 @@
 import java.util.PriorityQueue;
-
+import Util.Log;
 public class HeapTest {
 
 	public static void main(String[] args) {
@@ -12,9 +12,9 @@ public class HeapTest {
 		int sz=pq.size();
 		for(int i=0;i<sz;i++)
 		{
-			System.out.println(pq.poll());
+			Log.prn(pq.poll());
 		}
-		System.out.println("hihi");
+		Log.prn("hihi");
 	}
 
 }
