@@ -1,17 +1,17 @@
 package Test;
 import java.lang.reflect.Method;
-
+import Test.TEngine;
 import Util.Log;
 public class Mock {
-	public static int total=10;
-	public static int ret[]={0,0,0,0,0,0,0,0,0,0};
+	public static int total=3;
+	public static int gret[]={0,0,1,0,0,0,0,0,0,0};
 	public int test1()
 	{
 		return 0;
 	}
 	public int test2()
 	{
-		return 0;
+		return 1;
 	}
 	public  int test3()
 	{
@@ -48,20 +48,9 @@ public class Mock {
 	public static void main(String[] args) throws Exception {
 		Class c = Mock.class;
 		Mock mock=new Mock();
-		int[] aret=Mock.ret;
+		int[] aret=Mock.gret;
 		int sz=Mock.total;
-		for(int i=0;i<sz;i++)
-		{
-			Method meth = c.getMethod("test"+(i+1));
-			int ret=(int)meth.invoke(mock);
-//			Log.prn(ret);
-			Log.prnc("Test "+(i+1));
-			if(ret==aret[i])
-				Log.prn(" OK");
-			else
-				Log.prn(" Err "+ret+" "+Mock.ret[i]);
-		}
-//		mock.run();
+		TEngine.run(mock,c,aret,sz);
 	}
 
 }

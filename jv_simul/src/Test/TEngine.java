@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 import Util.Log;
 
-public class TestEngine {
+public class TEngine {
 	public static void run(Object mock,Class c,int[] aret, int sz) throws Exception 
 	{
 		for(int i=0;i<sz;i++)
@@ -16,14 +16,14 @@ public class TestEngine {
 			if(ret==aret[i])
 				Log.prn(" OK");
 			else
-				Log.prn(" Err "+ret+" "+Mock.ret[i]);
+				Log.prn(" Err "+ret+" "+aret[i]);
 		}
 		
 	}
 	public static void main(String[] args) throws Exception {
 		Class c = Mock.class;
 		Mock mock=new Mock();
-		int[] aret=Mock.ret;
+		int[] aret=Mock.gret;
 		int sz=Mock.total;
 		run(mock,c,aret,sz);
 	}
