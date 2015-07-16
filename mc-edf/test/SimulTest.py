@@ -4,18 +4,23 @@ Created on 2015. 6. 19.
 @author: Jaewoo Lee
 '''
 import simul.Simul as sim
+import util.UtilLog as ulog
 
 class gl:
     num=1
-    case=-1 # -1: all, #: test case number
+    case=1 # -1: all, #: test case number
 
 def test1():
     sim.clear()
-    tl=[[5,1],[3,1]]
+    tl=[[4,1],[3,1]]
     sim.prepare(tl)
     sim.run()
     return 0
 def test2():
+    sim.clear()
+    tl=[[4,2],[3,1]]
+    sim.prepare(tl)
+    sim.run()
     return 0
 def test3():
     return 0
@@ -68,6 +73,7 @@ def runAll():
             print "OK"
     print "end"    
 def runOne(i):
+    ulog.set_l(1)
     print "test",i,
     ret=fmap[i]()
     if ret!=ans[i]:

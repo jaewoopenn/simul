@@ -5,6 +5,7 @@ Created on 2015. 5. 30.
 '''
 import util.TaskMng as utsk
 import util.JobMng as ujob
+import util.UtilLog as ulog
 class lc:
     plst=[]
     plen=0
@@ -20,7 +21,7 @@ def prepare(task_list):
     utsk.init(task_list)
     lc.plst=utsk.getPeriods()
     lc.plen=len(lc.plst)
-    print "Periods:",lc.plst
+    ulog.prn("Periods:",lc.plst)
 
 '''
 
@@ -36,7 +37,7 @@ def rel(t):
 
 '''
 def loop(t):
-    print "t:",t
+    ulog.prn("t:",t)
     rel(t)
 
 '''

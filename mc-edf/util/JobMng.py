@@ -4,7 +4,7 @@ Created on 2013. 2. 12.
 @author: cpslab
 '''
 from _heapq import heappush,heappop
-import UtilLog as Log
+import UtilLog as ulog
 '''
 deadline, id, exec.time
 '''
@@ -36,32 +36,32 @@ def next_t(t):
 #     else:
 #         return t+1
 def log_prog(t,cur_job):
-    if not Log.get_l():
+    if not ulog.get_l():
         return
     print "at time:",t,"job exec id:",cur_job[1],"rem.exec:",cur_job[2]
 
 def progress(t,dur):
-    Log.prnln("---t:"+str(t)+",dur:"+str(dur)+"---")
-    Log.prnln(js.jobs)
+    ulog.prnln("---t:"+str(t)+",dur:"+str(dur)+"---")
+    ulog.prnln(js.jobs)
     while True:
         cur_job=js.jobs[0]
         log_prog(t,cur_job)
         if dur>=cur_job[2]: # dur > exec
-            Log.prnln("case 1")
+            ulog.prnln("case 1")
             dur-=cur_job[2]
             t+=cur_job[2]
             heappop(js.jobs)
             if len(js.jobs)==0 or dur==0:
                 break
         else:
-            Log.prnln("case 2")
+            ulog.prnln("case 2")
             cur_job[2]-=dur
             t+=dur
             break
-    Log.prnln(js.jobs)
+    ulog.prnln(js.jobs)
     return t
 def checkDl(t):
-    Log.prnln("-check dl--t:"+str(t))
+    ulog.prnln("-check dl--t:"+str(t))
     if len(js.jobs)==0:
         return 0
     idx=0
@@ -74,4 +74,4 @@ def checkDl(t):
         idx+=0
     return 0
 def prn():
-    print js.jobs
+    ulog.prnln(js.jobs)

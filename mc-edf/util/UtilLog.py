@@ -8,7 +8,12 @@ class gl:
 def prn(s,v):
     if gl.debug==0:
         return
-    print s,v,
+    print s,v
+
+def prnc(s,v):
+    if gl.debug==0:
+        return
+    print s,v
 
 def prnln(s):
     if gl.debug==0:
