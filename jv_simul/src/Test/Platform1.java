@@ -8,7 +8,7 @@ public class Platform1 {
 	public static int idx=-1;
 //	public static int idx=5;
 	public static int total=10;
-	public static int gret[]={0,0,1,0,0,0,0,0,0,0};
+	public static int gret[]={1,0,1,0,0,0,0,0,0,0};
 	public int test1()
 	{
 		Platform p=new Platform();
@@ -17,8 +17,8 @@ public class Platform1 {
 		tm.addTask(4,1);
 		
 		p.init(tm);
-		p.simul(12);
-		return 0;
+		
+		return p.simul(12);
 	}
 	public int test2()
 	{
@@ -29,7 +29,7 @@ public class Platform1 {
 		
 		p.init(tm);
 		p.simul(7);
-		return 0;
+		return p.simul(12);
 	}
 	public  int test3()
 	{
