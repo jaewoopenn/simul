@@ -6,10 +6,10 @@ import Simul.JobMng;
 import Simul.Job;
 
 public class JobMng1 {
-	public static int idx=-1;
-//	public static int idx=8;
+//	public static int idx=-1;
+	public static int idx=8;
 	public static int total=10;
-	public static int gret[]={1,2,2,1,0,0,1,1,0,0};
+	public static int gret[]={1,2,2,1,0,0,1,0,0,0};
 
 	public JobMng ts1()
 	{
@@ -107,9 +107,9 @@ public class JobMng1 {
 		jm.insertJob(0,3,2);
 		jm.insertJob(1,4,1);
 		if(jm.progress(2,3))
-			return 0;
-		else
 			return 1;
+		else
+			return 0;
 	}
 	public  int test9()
 	{

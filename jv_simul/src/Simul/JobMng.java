@@ -66,7 +66,7 @@ public boolean progress(int cur_t,int dur){
 		Vector<Job> v=new Vector();
 		for(int i=0;i<sz;i++){
 			Job j=getCur();
-			Log.prn(1,j.dl+","+j.exec);
+			Log.prn(1," dl:"+j.dl+", exec:"+j.exec);
 			v.add(j);
 		}
 		for(Job j:v){

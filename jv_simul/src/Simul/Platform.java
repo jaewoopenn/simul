@@ -18,14 +18,20 @@ public class Platform {
 		jm=new JobMng();
 		cur_t=0;
 	}
-	public void simul(int et){
+	public int simul(int et){
+		boolean bSuc;
 		while(cur_t<et){
 //			Log.prn(2,"t:"+cur_t);
 			relCheck();
-			jm.progress(cur_t,1);
+			bSuc=jm.progress(cur_t,1);
+			if(!bSuc) return 0;
 			cur_t++;
 		}
+		Log.prnc(2, "Left Job:");
 		jm.prn();
+		if(jm.size()!=0)
+			return 0;
+		return 1;
 	}
 
 	
