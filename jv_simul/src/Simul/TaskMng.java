@@ -3,20 +3,27 @@ package Simul;
 import java.util.Vector;
 
 public class TaskMng {
+	private boolean bAdd;
 	private Vector<Task> taskV;
 	private Task[] tasks;
 	private int size;
 	public TaskMng() {
 		taskV=new Vector<Task>();
 		size=0;
+		bAdd=true;
 	}
 
 	public void addTask(int p, int e) {
+		if(!bAdd) {
+			System.out.println("Err:task set is finalized");
+			return;
+		}
 		taskV.add(new Task(size,p,e));
 		size++;
 	}
-	public void toArray()
+	public void finalize()
 	{
+		bAdd=false;
 		tasks=new Task[size];
 		taskV.toArray(tasks);
 	}

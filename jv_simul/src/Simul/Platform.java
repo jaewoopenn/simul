@@ -12,8 +12,9 @@ public class Platform {
 	
 	public void init(TaskMng mng) {
 		tm=mng;
-		tm.toArray();
+		tm.finalize();
 		plst=tm.getPeriods();
+		
 		jm=new JobMng();
 		cur_t=0;
 	}
