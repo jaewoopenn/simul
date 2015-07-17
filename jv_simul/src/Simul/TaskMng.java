@@ -71,4 +71,11 @@ public class TaskMng {
 		
 	}
 
+	public void setTasks(Vector<Task> all) {
+		g_taskV=all;
+		g_size=all.size();
+		finalize();
+	}
+
+
 }

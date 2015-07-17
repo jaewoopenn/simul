@@ -1,27 +1,53 @@
 package Test;
+import Simul.Task;
+import Simul.TaskGen;
 import Simul.TaskMng;
 import Test.TEngine;
 
 public class TaskGen1 {
-	public static int idx=-1;
+//	public static int idx=-1;
+	public static int idx=3;
 	public static int total=1;
-	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
+	public static int gret[]={1,1,1,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(5,1);
-		tm.addTask(7,1);
-		tm.finalize();		
-		return 0;
+		TaskGen tg=new TaskGen();
+		tg.setPeriod(20,50);
+		tg.setTUtil(0.02,0.3);
+		for(int i=0;i<1000;i++){
+			Task t=tg.genTask();
+			if (!tg.chkTask(t)) return 0;
+		}
+		return 1;
 	}
 	public int test2()
 	{
-		return 0;
+		TaskGen tg=new TaskGen();
+		tg.setUtil(0.8);
+		tg.setPeriod(20,50);
+		tg.setTUtil(0.001,0.1);
+		tg.generate();
+		tg.prn();
+		return tg.check();
 	}
 	public  int test3()
 	{
-		return 0;
+		TaskGen tg=new TaskGen();
+		tg.setUtil(0.8);
+		tg.setPeriod(20,50);
+		tg.setTUtil(0.001,0.1);
+		tg.generate();
+//		tg.prn();
+		int tg_size=tg.size();
+		TaskMng tm=new TaskMng();
+		tm.setTasks(tg.getAll());
+//		tm.prn();
+		int tm_size=tm.size();
+		if(tg_size!=tm_size){
+			System.out.println("tg:"+tg_size+", tm:"+tm_size);
+			return 0;
+		}
+		return 1;
 	}
 	public  int test4()
 	{

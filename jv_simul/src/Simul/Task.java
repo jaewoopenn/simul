@@ -10,4 +10,8 @@ public class Task {
 		this.period = period;
 		this.exec = exec;
 	}
+
+	public void prn() {
+		System.out.println("tid:"+tid+" p:"+period+" e:"+exec);
+	}
 }
