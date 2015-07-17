@@ -4,9 +4,9 @@ import Util.Log;
 import Simul.TaskMng;
 public class TaskMng1 {
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=5;
 	public static int total=10;
-	public static int gret[]={2,3,2,2,0,0,0,0,0,0};
+	public static int gret[]={2,3,2,2,67,0,0,0,0,0};
 	public int test1()
 	{
 		TaskMng tm=new TaskMng();
@@ -44,7 +44,13 @@ public class TaskMng1 {
 	}
 	public  int test5()
 	{
-		return 0;
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(5,1);
+		tm.addTask(7,1);
+		tm.finalize();
+		tm.prn();
+		return (int)(tm.getUtil()*100);
 	}
 	public  int test6()
 	{
