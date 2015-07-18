@@ -73,4 +73,13 @@ public boolean progress(int cur_t,int dur){
 			insert(j);
 		}
 	}
+	public int endCheck(int et) {
+		for(Job j:jobs){
+			if(j.dl<=et){
+				return 0;
+			}
+		}
+		return 1;
+	}
+
 }

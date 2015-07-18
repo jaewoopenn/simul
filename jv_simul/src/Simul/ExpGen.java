@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import Util.Log;
+
 public class ExpGen {
 	private final String[] g_predefined={"util","p_ub","p_lb","tu_lb","tu_ub","num","subfix"};
 	private TaskGen tg;
@@ -48,7 +50,7 @@ public class ExpGen {
 		System.out.println("field is not defined");
 		return null;
 	}
-	private int readInt(String f){
+	public int readInt(String f){
 		return Integer.valueOf(readPar(f)).intValue();
 	}
 	private double readDbl(String f){
@@ -67,14 +69,23 @@ public class ExpGen {
 		}
 		
 	}
-	public void load() {
-		TaskGen tg=new TaskGen();
+	public int load() {
 		int num=readInt("num");
+		int sum=0;
 		for(int i=0;i<num;i++){
+			TaskGen tg=new TaskGen();
 			String fn=readPar("subfix").trim()+"/taskset"+i;
 			tg.loadFile(fn);
 			tg.prn();
+			TaskMng tm=new TaskMng();
+			tm.setTasks(tg.getAll());
+			Platform p=new Platform();
+			p.init(tm);
+			int ret=p.simul(20);
+			sum+=ret;
+			Log.prn(2, "task "+i+" ret:"+ret);
 		}
+		return sum;
 		
 	}
 

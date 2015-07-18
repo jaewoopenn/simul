@@ -1,4 +1,5 @@
 package Test;
+import Simul.Platform;
 import Simul.Task;
 import Simul.TaskGen;
 import Simul.TaskMng;
@@ -6,9 +7,9 @@ import Test.TEngine;
 
 public class TaskGen1 {
 //	public static int idx=-1;
-	public static int idx=5;
+	public static int idx=7;
 	public static int total=1;
-	public static int gret[]={1,1,1,0,1,0,0,0,0,0};
+	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
 	{
 		TaskGen tg=new TaskGen();
@@ -78,11 +79,23 @@ public class TaskGen1 {
 	}
 	public  int test6()
 	{
-		return 0;
+		TaskGen tg=new TaskGen();
+		tg.loadFile("test2.txt");
+		TaskMng tm=new TaskMng();
+		tm.setTasks(tg.getAll());
+		Platform p=new Platform();
+		p.init(tm);
+		return p.simul(20);
 	}
 	public  int test7()
 	{
-		return 0;
+		TaskGen tg=new TaskGen();
+		tg.loadFile("t1/taskset2");
+		TaskMng tm=new TaskMng();
+		tm.setTasks(tg.getAll());
+		Platform p=new Platform();
+		p.init(tm);
+		return p.simul(20);
 	}
 	public  int test8()
 	{

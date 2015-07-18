@@ -6,7 +6,7 @@ public class ExpGen1 {
 //	public static int idx=-1;
 	public static int idx=5;
 	public static int total=10;
-	public static int gret[]={0,0,7,0,0,0,0,0,0,0};
+	public static int gret[]={0,0,7,0,1,0,0,0,0,0};
 	public int test1()
 	{
 		ExpGen eg=new ExpGen();
@@ -41,7 +41,10 @@ public class ExpGen1 {
 	{
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
-		eg.load();
+		int total=eg.readInt("num");
+		int sum=eg.load();
+		if(total==sum)
+			return 1;
 		return 0;
 	}
 	public  int test6()
@@ -72,7 +75,7 @@ public class ExpGen1 {
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,2);
 	}
 
 }

@@ -5,10 +5,10 @@ import Simul.Platform;
 import Simul.TaskMng;
 
 public class Platform1 {
-	public static int idx=-1;
-//	public static int idx=5;
+//	public static int idx=-1;
+	public static int idx=6;
 	public static int total=10;
-	public static int gret[]={1,0,1,0,0,0,0,0,0,0};
+	public static int gret[]={1,0,1,0,0,1,0,0,0,0};
 	public int test1()
 	{
 		Platform p=new Platform();
@@ -63,7 +63,13 @@ public class Platform1 {
 	}
 	public  int test6()
 	{
-		return 0;
+		Platform p=new Platform();
+		TaskMng tm=new TaskMng();
+		tm.addTask(10,5);
+		tm.addTask(12,6);
+		
+		p.init(tm);
+		return p.simul(8);
 	}
 	public  int test7()
 	{
