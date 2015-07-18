@@ -1,5 +1,10 @@
 package Simul;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Vector;
 
@@ -54,17 +59,20 @@ public class TaskGen {
 		
 	}
 	public void generate() {
+		int tid=0;
 		while(getUtil()<=g_util){
-			Task t=genTask();
+			Task t=genTask(tid);
 			g_tasks.add(t);
+			tid++;
 		}
 		g_tasks.remove(g_tasks.size()-1);
 	}
-	public Task genTask(){
+	
+	public Task genTask(int tid){
 		int p=g_rand.nextInt(g_p_ub-g_p_lb)+g_p_lb;
 		double tu=g_rand.nextDouble()*(g_tu_ub-g_tu_lb)+g_tu_ub;
 		int e=(int)(tu*p);
-		return new Task(0,p,e);
+		return new Task(tid,p,e);
 	}
 
 
@@ -103,6 +111,46 @@ public class TaskGen {
 
 	public int size() {
 		return g_tasks.size();
+	}
+
+
+	public void writeFile(String file) {
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("/Users/jaewoo/data/"+file);
+			for(Task t:g_tasks)
+			{
+				writer.println(t.tid+","+t.period+","+t.exec);
+			}
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	public void loadFile(String f) {
+	    File file = new File("/Users/jaewoo/data/"+f);
+	    FileReader fr;
+		try {
+			fr = new FileReader(file);
+		    BufferedReader br = new BufferedReader(fr);
+		    String line;
+		    while((line = br.readLine()) != null){
+	            String[] words=line.split(",");
+	            int tid=Integer.valueOf(words[0]).intValue();
+	            int p=Integer.valueOf(words[1]).intValue();
+	            int e=Integer.valueOf(words[2]).intValue();
+				g_tasks.add(new Task(tid,p,e));
+		    }
+		    br.close();
+		    fr.close();		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

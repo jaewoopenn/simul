@@ -1,7 +1,8 @@
 package Test;
 import Test.TEngine;
 public class Mock {
-	public static int idx=-1;
+//	public static int idx=-1;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
 	public int test1()
