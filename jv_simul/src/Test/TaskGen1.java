@@ -6,9 +6,9 @@ import Simul.TaskMng;
 import Test.TEngine;
 
 public class TaskGen1 {
-//	public static int idx=-1;
-	public static int idx=7;
-	public static int total=1;
+	public static int idx=-1;
+//	public static int idx=5;
+	public static int total=10;
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
 	{
@@ -24,7 +24,7 @@ public class TaskGen1 {
 	public int test2()
 	{
 		TaskGen tg=new TaskGen();
-		tg.setUtil(0.8);
+		tg.setUtil(0.5,0.8);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
 		tg.generate();
@@ -34,7 +34,7 @@ public class TaskGen1 {
 	public  int test3()
 	{
 		TaskGen tg=new TaskGen();
-		tg.setUtil(0.8);
+		tg.setUtil(0.5,0.8);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
 		tg.generate();
@@ -53,7 +53,7 @@ public class TaskGen1 {
 	public  int test4()
 	{
 		TaskGen tg=new TaskGen();
-		tg.setUtil(0.8);
+		tg.setUtil(0.5,0.8);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
 		tg.generate();
@@ -65,7 +65,7 @@ public class TaskGen1 {
 	{
 		TaskGen tg=new TaskGen();
 		tg.loadFile("test2.txt");
-//		tg.prn();
+		tg.prn();
 		int tg_size=tg.size();
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
