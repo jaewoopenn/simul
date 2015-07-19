@@ -13,13 +13,13 @@ import Util.Log;
 public class TaskGen {
 	private Random g_rand;
 	private Vector<Task> g_tasks;
-	private double g_util;
+	private double g_u_ub;
+	private double g_u_lb;
 	private double g_tu_ub;
 	private double g_tu_lb;
 	private int g_p_ub;
 	private int g_p_lb;
 	public TaskGen() {
-		g_tasks=new Vector<Task>();
 		g_rand=new Random();
 	}
 
@@ -33,11 +33,12 @@ public class TaskGen {
 	}
 
 
-	public void setUtil(double d) {
-		if(d>1){
+	public void setUtil(double l, double u) {
+		if(l>u || u>1){
 			System.out.println("Error setUtil");
 		}
-		g_util=d;
+		g_u_lb=l;
+		g_u_ub=u;
 	}
 
 
@@ -59,13 +60,22 @@ public class TaskGen {
 		
 	}
 	public void generate() {
+		while(true){
+			g_tasks=new Vector<Task>();
+			gen();
+			if(check()==1) break;
+		}
+	}
+	private void gen()
+	{
 		int tid=0;
-		while(getUtil()<=g_util){
+		while(getUtil()<=g_u_ub){
 			Task t=genTask(tid);
 			g_tasks.add(t);
 			tid++;
 		}
 		g_tasks.remove(g_tasks.size()-1);
+		
 	}
 	
 	public Task genTask(int tid){
@@ -88,9 +98,9 @@ public class TaskGen {
 
 
 	public int check() {
-		if(getUtil()>g_util)
-			return 0;
-		return 1;
+		if(getUtil()<=g_u_ub&&getUtil()>=g_u_lb)
+			return 1;
+		return 0;
 	}
 
 
@@ -132,9 +142,9 @@ public class TaskGen {
 
 	public void loadFile(String f) {
 	    File file = new File("/Users/jaewoo/data/"+f);
-	    FileReader fr;
+		g_tasks=new Vector<Task>();
 		try {
-			fr = new FileReader(file);
+			FileReader fr = new FileReader(file);
 		    BufferedReader br = new BufferedReader(fr);
 		    String line;
 		    while((line = br.readLine()) != null){
@@ -145,9 +155,8 @@ public class TaskGen {
 				g_tasks.add(new Task(tid,p,e));
 		    }
 		    br.close();
-		    fr.close();		
+		    fr.close();	
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
