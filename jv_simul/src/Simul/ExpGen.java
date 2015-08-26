@@ -25,6 +25,9 @@ public class ExpGen {
 		    String line;
 		    while((line = br.readLine()) != null){
 	            String[] words=line.split(":");
+	            if(words.length<2) 
+	            	continue;
+	            
 	            if(!setParam(words[0],words[1])) {
 	            	System.out.println("Err: loading field is not defined");
 	            	return 0;

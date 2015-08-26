@@ -33,7 +33,7 @@ public class ExpGen1 {
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
 		String s=eg.readPar("u_lb");
-//		System.out.println(s);
+		System.out.println(s);
 		return (int)(Double.valueOf(s).doubleValue()*10);
 	}
 	public  int test5()
