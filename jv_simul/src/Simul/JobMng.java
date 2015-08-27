@@ -7,7 +7,7 @@ import Util.Log;
 
 public class JobMng {
 	PriorityQueue<Job> jobs;
-	
+	int g_task_num=0;
 	public JobMng() {
 		jobs=new PriorityQueue<Job>();
 	}
@@ -19,17 +19,20 @@ public class JobMng {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
-public boolean progress(int cur_t,int dur){
+	public boolean progress(int cur_t,int dur){
 		while(dur>0)
 		{
 			Job j=getCur();
 			if(j==null)
 			{
-//				Log.prn(1,"cur_t:"+cur_t+" dur:"+dur+" empty");
+				prnJob(cur_t,null,0);
 				break;
 			}
+			int out_dur=0;
+			int out_type=0;
 			if(dur>=j.exec) {
-				Log.prn(1,"cur_t:"+cur_t+" dur:"+j.exec+" tid:"+j.tid+" exec_type:1");
+				out_dur=j.exec;
+				out_type=1;
 				dur-=j.exec;
 				if(cur_t+j.exec>j.dl){
 					Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
@@ -37,15 +40,37 @@ public boolean progress(int cur_t,int dur){
 				}
 				j.exec=0;
 			} else {  // dur <j.exec
-				Log.prn(1,"cur_t:"+cur_t+" dur:"+dur+" tid:"+j.tid+" exec_type:2");
+				out_dur=dur;
+				out_type=2;
 				j.exec-=dur;
 				dur=0;
 				insert(j);
 			}
+			prnJob(cur_t,j,out_type);
+//			Log.prn(1,"cur:"+cur_t+" dur:"+out_dur+" tid:"+j.tid+" exec_type:"+out_type);
 				
 		}
 		return true;
 		
+	}
+	public void prnJob(int cur_t,Job j,int out_type)
+	{
+		Log.prnc(1, "cur:"+cur_t+" ");
+		if (j==null){
+			for (int i=0;i<g_task_num;i++)
+				Log.prnc(1, "-");
+		} else{
+			if (j.tid+1>g_task_num)
+				g_task_num=j.tid+1;
+			for (int i=0;i<g_task_num;i++)
+			{
+				if(i==j.tid)
+					Log.prnc(1, "+");
+				else
+					Log.prnc(1, "-");
+			}
+		}
+		Log.prn(1, "  \t exec_type:"+out_type);
 	}
 	public Job getCur(){
 		if(jobs.size()!=0)
