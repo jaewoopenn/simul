@@ -34,7 +34,8 @@ public class TaskGen {
 
 
 	public void setUtil(double l, double u) {
-		if(l>u || u>1){
+//		if(l>u || u>1){
+		if(l>u ){
 			System.out.println("Error setUtil");
 		}
 		g_u_lb=l;
@@ -104,12 +105,12 @@ public class TaskGen {
 	}
 
 
-	public void prn() {
+	public void prn(int lv) {
 		for(Task t:g_tasks)
 		{
 			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.exec);
 		}
-		Log.prn(1, "util:"+getUtil());
+		Log.prn(lv, "util:"+getUtil());
 		
 	}
 

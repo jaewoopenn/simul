@@ -7,7 +7,7 @@ public class ExpGen1 {
 //	public static int idx=-1;
 	public static int idx=6;
 	public static int total=10;
-	public static int gret[]={0,1,0,6,0,1,0,0,0,0};
+	public static int gret[]={0,1,0,6,0,0,0,0,0,0};
 	public int test1()
 	{
 		ExpGen eg=new ExpGen();
@@ -48,8 +48,8 @@ public class ExpGen1 {
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
 		int total=eg.readInt("num");
-		int sum=eg.load();
-//		Log.prn(2, "num:"+sum);
+		int sum=eg.load(50000);
+		Log.prn(2, "num:"+sum);
 		if(total==sum)
 			return 1;
 		return 0;

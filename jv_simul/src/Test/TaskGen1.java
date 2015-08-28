@@ -28,7 +28,7 @@ public class TaskGen1 {
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
 		tg.generate();
-		tg.prn();
+		tg.prn(1);
 		return tg.check();
 	}
 	public  int test3()
@@ -38,7 +38,7 @@ public class TaskGen1 {
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
 		tg.generate();
-		tg.prn();
+		tg.prn(1);
 		int tg_size=tg.size();
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
@@ -65,7 +65,7 @@ public class TaskGen1 {
 	{
 		TaskGen tg=new TaskGen();
 		tg.loadFile("test2.txt");
-		tg.prn();
+		tg.prn(1);
 		int tg_size=tg.size();
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());

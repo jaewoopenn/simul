@@ -15,7 +15,7 @@ public class Platform1 {
 		TaskGen tg=new TaskGen();
 		String fn="test/taskset1";
 		tg.loadFile(fn);
-		tg.prn();
+		tg.prn(1);
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
 		Platform p=new Platform();

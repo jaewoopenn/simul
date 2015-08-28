@@ -80,21 +80,27 @@ public class ExpGen {
 		}
 		
 	}
-	public int load() {
+	public int load(int dur) {
 		int num=readInt("num");
 		int sum=0;
+		
 		for(int i=0;i<num;i++){
 			TaskGen tg=new TaskGen();
 			String fn=readPar("subfix").trim()+"/taskset"+i;
 			tg.loadFile(fn);
-			tg.prn();
+			double util=tg.getUtil();
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			Platform p=new Platform();
 			p.init(tm);
-			int ret=p.simul(20);
+			int ret=p.simul(dur);
 			sum+=ret;
-			Log.prn(2, "task "+i+" ret:"+ret);
+			System.out.format("task %d util: %.3f ret: %d\n" ,i,util,ret);
+			if(util>1 && ret==1)
+				System.out.println("util>1 but sch");
+			if(util<=1 && ret==0)
+				System.out.println("util<=1 but not sch");
+//			Log.prn(2, "task "+i+" util:"+util+" ret:"+ret);
 		}
 		return sum;
 		
