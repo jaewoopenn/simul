@@ -23,16 +23,16 @@ public class JobMng {
 		while(dur>0)
 		{
 			Job j=getCur();
-			String out_type="idle";
+			int out_type=0;
 			if(j==null)
 			{
-				prnJob(cur_t,null,out_type);
+				prnJob(null,out_type);
 				break;
 			}
 			int out_dur=0;
 			if(dur>=j.exec) {
 				out_dur=j.exec;
-				out_type="compl";
+				out_type=1;
 				dur-=j.exec;
 				if(cur_t+j.exec>j.dl){
 					Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
@@ -41,20 +41,20 @@ public class JobMng {
 				j.exec=0;
 			} else {  // dur <j.exec
 				out_dur=dur;
-				out_type="continue";
+				out_type=2;
 				j.exec-=dur;
 				dur=0;
 				insert(j);
 			}
-			prnJob(cur_t,j,out_type);
+			prnJob(j,out_type);
 //			Log.prn(1,"cur:"+cur_t+" dur:"+out_dur+" tid:"+j.tid+" exec_type:"+out_type);
 		}
 		return true;
 		
 	}
-	public void prnJob(int cur_t,Job j,String out_type)
+	public void prnJob(Job j,int out_type)
 	{
-		Log.prnc(1, "cur:"+cur_t+" ");
+//		Log.prnc(1, "cur:"+cur_t+" ");
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
 				Log.prnc(1, "-");
@@ -63,13 +63,18 @@ public class JobMng {
 				g_task_num=j.tid+1;
 			for (int i=0;i<g_task_num;i++)
 			{
-				if(i==j.tid)
-					Log.prnc(1, "+");
-				else
+				if(i==j.tid){
+					if(out_type==1)
+						Log.prnc(1, "+");
+					else
+						Log.prnc(1, "|");
+				} else {
 					Log.prnc(1, "-");
+				}
 			}
 		}
-		Log.prn(1, "  \t exec_type:"+out_type);
+		Log.prn(1, " ");
+//		Log.prn(1, "  \t exec_type:"+out_type);
 	}
 	public Job getCur(){
 		if(jobs.size()!=0)

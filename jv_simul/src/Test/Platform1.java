@@ -7,7 +7,7 @@ import Simul.TaskMng;
 
 public class Platform1 {
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=3;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1()

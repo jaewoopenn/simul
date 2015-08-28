@@ -16,4 +16,10 @@ public class Log {
 			System.out.print(s);
 		
 	}
+	public static void form(int lv,String s,int v) {
+		if(g_lv<=lv)
+			System.out.format(s,v);
+		
+	}
+
 }

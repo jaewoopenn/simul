@@ -21,7 +21,7 @@ public class Platform {
 	public int simul(int et){
 		boolean bSuc;
 		while(cur_t<et){
-//			Log.prn(2,"t:"+cur_t);
+			Log.prnc(1,"t:"+cur_t+" rel:");
 			relCheck();
 			bSuc=jm.progress(cur_t,1);
 			if(!bSuc) return 0;
@@ -34,15 +34,19 @@ public class Platform {
 
 	
 	private void relCheck(){
+		
 		for(int i=0;i<tm.size();i++){
 			if (cur_t%plst[i]==0){
 //				Log.prn(2,"rel "+i);
 				Task tsk=tm.getTask(i);
 //				Log.prn(2, "p:"+tsk.period+" e:"+tsk.exec);
 				jm.insertJob(tsk.tid,cur_t+tsk.period,tsk.exec);
+				Log.prnc(1,"+");
+			} else {
+				Log.prnc(1,"-");
 			}
-				
 		}
+		Log.prnc(1, " exe:");
 	}
 
 //	private int computeLCM() {
