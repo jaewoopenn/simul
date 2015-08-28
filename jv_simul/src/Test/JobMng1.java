@@ -52,43 +52,43 @@ public class JobMng1 {
 	public int test1()
 	{
 		JobMng jm=ts1();
-		jm.progress(0,1);
+		jm.progress(0);
 		return jm.size();
 	}
 	public int test2()
 	{
 		JobMng jm=ts2();
-		jm.progress(0,1);
+		jm.progress(0);
 		return jm.size();
 	}
 	public  int test3()
 	{
 		JobMng jm=ts3();
-		jm.progress(0,2);
+		jm.progress(0);
 //		jm.prn();
 		return jm.size();
 	}
 	public  int test4()
 	{
 		JobMng jm=ts3();
-		jm.progress(0,3);
+		jm.progress(0);
 //		jm.prn();
 		return jm.size();
 	}
 	public  int test5()
 	{
 		JobMng jm=ts1();
-		jm.progress(0,3);
+		jm.progress(0);
 		return 0;
 	}
 	public  int test6()
 	{
 		JobMng jm=ts4();
-		jm.progress(0,3);
+		jm.progress(0);
 		jm.insertJob(0,6,1);
-		jm.progress(0,1);
+		jm.progress(0);
 		jm.insertJob(1,8,2);
-		jm.progress(0,2);
+		jm.progress(0);
 		jm.insertJob(0,9,1);
 		jm.prn();
 		return 0;
@@ -96,9 +96,9 @@ public class JobMng1 {
 	public  int test7()
 	{
 		JobMng jm=ts5();
-		jm.progress(0,3);
+		jm.progress(0);
 		jm.insertJob(0,6,1);
-		jm.progress(0,2);
+		jm.progress(0);
 		return jm.size();
 	}
 	public  int test8()
@@ -106,7 +106,7 @@ public class JobMng1 {
 		JobMng jm=new JobMng();
 		jm.insertJob(0,3,2);
 		jm.insertJob(1,4,1);
-		if(jm.progress(2,3))
+		if(jm.progress(2))
 			return 1;
 		else
 			return 0;

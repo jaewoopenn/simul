@@ -19,36 +19,29 @@ public class JobMng {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
-	public boolean progress(int cur_t,int dur){
-		while(dur>0)
+	public boolean progress(int cur_t){
+		Job j=getCur();
+		int out_type=0;
+		if(j==null)
 		{
-			Job j=getCur();
-			int out_type=0;
-			if(j==null)
-			{
-				prnJob(null,out_type);
-				break;
-			}
-			int out_dur=0;
-			if(dur>=j.exec) {
-				out_dur=j.exec;
-				out_type=1;
-				dur-=j.exec;
-				if(cur_t+j.exec>j.dl){
-					Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
-					return false;
-				}
-				j.exec=0;
-			} else {  // dur <j.exec
-				out_dur=dur;
-				out_type=2;
-				j.exec-=dur;
-				dur=0;
-				insert(j);
-			}
-			prnJob(j,out_type);
-//			Log.prn(1,"cur:"+cur_t+" dur:"+out_dur+" tid:"+j.tid+" exec_type:"+out_type);
+			prnJob(null,out_type);
+			return true;
 		}
+		int out_dur=0;
+		if(j.exec<=1) {
+			out_type=1;
+			if(cur_t+j.exec>j.dl){
+				Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
+				return false;
+			}
+			j.exec=0;
+		} else {  // j.exec>1
+			out_type=2;
+			j.exec-=1;
+			insert(j);
+		}
+		prnJob(j,out_type);
+//			Log.prn(1,"cur:"+cur_t+" dur:"+out_dur+" tid:"+j.tid+" exec_type:"+out_type);
 		return true;
 		
 	}

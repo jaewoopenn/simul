@@ -23,7 +23,7 @@ public class Platform {
 		while(cur_t<et){
 			Log.prnc(1,"t:"+cur_t+" rel:");
 			relCheck();
-			bSuc=jm.progress(cur_t,1);
+			bSuc=jm.progress(cur_t);
 			if(!bSuc) return 0;
 			cur_t++;
 		}
