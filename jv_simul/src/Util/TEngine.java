@@ -1,8 +1,6 @@
-package Test;
+package Util;
 
 import java.lang.reflect.Method;
-
-import Util.Log;
 
 public class TEngine {
 	public static void run(Object m,Class c,int[] aret, int sz) throws Exception 
@@ -14,7 +12,9 @@ public class TEngine {
 //			Log.prn(ret);
 			Log.prnc(9,"Test "+(i+1));
 			int sret=aret[i];
-			if(ret==sret)
+			if(sret==-1)
+				Log.prn(9, " Not used");
+			else if(ret==sret)
 				Log.prn(9," OK");
 			else
 				Log.prn(9," Err "+ret+" "+sret);
@@ -28,7 +28,9 @@ public class TEngine {
 //			Log.prn(ret);
 		Log.prnc(9,"Test "+idx);
 		int sret=aret[idx-1];
-		if(ret==sret)
+		if(sret==-1)
+			Log.prn(9, " Not used");
+		else if(ret==sret)
 			Log.prn(9," OK");
 		else
 			Log.prn(9," Err "+ret+" "+sret);

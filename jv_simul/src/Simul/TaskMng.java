@@ -22,7 +22,7 @@ public class TaskMng {
 			System.out.println("Err:task set is finalized");
 			return;
 		}
-		g_taskV.add(new Task(g_size,p,e));
+		g_taskV.add(new Task(g_size,p,e,e));
 		g_size++;
 	}
 	public void finalize()
@@ -33,7 +33,7 @@ public class TaskMng {
 		for(int i=0;i<g_size;i++)
 		{
 			Task t=g_tasks[i];
-			g_util+=(double)(t.exec)/t.period;
+			g_util+=(double)(t.c_l)/t.period;
 		}
 	}
 	public int size() {
@@ -65,7 +65,7 @@ public class TaskMng {
 		for(int i=0;i<g_size;i++)
 		{
 			Task t=g_tasks[i];
-			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.exec);
+			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l);
 		}
 		Log.prn(1, "util:"+g_util);
 		

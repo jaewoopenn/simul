@@ -40,7 +40,7 @@ public class Platform {
 //				Log.prn(2,"rel "+i);
 				Task tsk=tm.getTask(i);
 //				Log.prn(2, "p:"+tsk.period+" e:"+tsk.exec);
-				jm.insertJob(tsk.tid,cur_t+tsk.period,tsk.exec);
+				jm.insertJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
 				Log.prnc(1,"+");
 			} else {
 				Log.prnc(1,"-");

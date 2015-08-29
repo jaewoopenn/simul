@@ -3,7 +3,7 @@ import Simul.Platform;
 import Simul.Task;
 import Simul.TaskGen;
 import Simul.TaskMng;
-import Test.TEngine;
+import Util.TEngine;
 
 public class TaskGen1 {
 	public static int idx=-1;

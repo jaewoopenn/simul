@@ -27,7 +27,7 @@ public class TaskGen {
 	public double getUtil(){
 		double util=0;
 		for(Task t:g_tasks){
-			util+=(double)(t.exec)/t.period;
+			util+=(double)(t.c_l)/t.period;
 		}
 		return util;
 	}
@@ -83,7 +83,7 @@ public class TaskGen {
 		int p=g_rand.nextInt(g_p_ub-g_p_lb)+g_p_lb;
 		double tu=g_rand.nextDouble()*(g_tu_ub-g_tu_lb)+g_tu_ub;
 		int e=(int)(tu*p);
-		return new Task(tid,p,e);
+		return new Task(tid,p,e,e);
 	}
 
 
@@ -91,7 +91,7 @@ public class TaskGen {
 		int p=t.period;
 		if(p>=g_p_ub && p<g_p_lb)
 			return false;
-		double tu=(double)(t.exec)/t.period;
+		double tu=(double)(t.c_l)/t.period;
 		if(tu>=g_p_ub && tu<g_p_lb)
 			return false;
 		return true;
@@ -108,7 +108,7 @@ public class TaskGen {
 	public void prn(int lv) {
 		for(Task t:g_tasks)
 		{
-			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.exec);
+			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l);
 		}
 		Log.prn(lv, "util:"+getUtil());
 		
@@ -131,7 +131,7 @@ public class TaskGen {
 			writer = new PrintWriter("/Users/jaewoo/data/"+file);
 			for(Task t:g_tasks)
 			{
-				writer.println(t.tid+","+t.period+","+t.exec);
+				writer.println(t.tid+","+t.period+","+t.c_l);
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -153,7 +153,7 @@ public class TaskGen {
 	            int tid=Integer.valueOf(words[0]).intValue();
 	            int p=Integer.valueOf(words[1]).intValue();
 	            int e=Integer.valueOf(words[2]).intValue();
-				g_tasks.add(new Task(tid,p,e));
+				g_tasks.add(new Task(tid,p,e,e));
 		    }
 		    br.close();
 		    fr.close();	

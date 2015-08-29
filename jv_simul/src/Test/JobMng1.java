@@ -1,15 +1,14 @@
 package Test;
 
-import Test.TEngine;
-
+import Util.TEngine;
 import Simul.JobMng;
 import Simul.Job;
 
 public class JobMng1 {
-//	public static int idx=-1;
-	public static int idx=8;
+	public static int idx=-1;
+//	public static int idx=8;
 	public static int total=10;
-	public static int gret[]={1,2,2,1,0,0,1,0,0,0};
+	public static int gret[]={1,2,2,1,0,0,1,-1,-1,-1};
 
 	public JobMng ts1()
 	{
@@ -72,6 +71,8 @@ public class JobMng1 {
 	{
 		JobMng jm=ts3();
 		jm.progress(0);
+		jm.progress(1);
+		jm.progress(2);
 //		jm.prn();
 		return jm.size();
 	}
@@ -86,9 +87,9 @@ public class JobMng1 {
 		JobMng jm=ts4();
 		jm.progress(0);
 		jm.insertJob(0,6,1);
-		jm.progress(0);
+		jm.progress(1);
 		jm.insertJob(1,8,2);
-		jm.progress(0);
+		jm.progress(2);
 		jm.insertJob(0,9,1);
 		jm.prn();
 		return 0;
@@ -97,27 +98,24 @@ public class JobMng1 {
 	{
 		JobMng jm=ts5();
 		jm.progress(0);
+		jm.progress(1);
+		jm.progress(2);
 		jm.insertJob(0,6,1);
-		jm.progress(0);
+		jm.progress(3);
+		jm.progress(4);
 		return jm.size();
 	}
 	public  int test8()
 	{
-		JobMng jm=new JobMng();
-		jm.insertJob(0,3,2);
-		jm.insertJob(1,4,1);
-		if(jm.progress(2))
-			return 1;
-		else
-			return 0;
+		return -1;
 	}
 	public  int test9()
 	{
-		return 0;
+		return -1;
 	}
 	public  int test10()
 	{
-		return 0;
+		return -1;
 	}
 	public static void main(String[] args) throws Exception {
 		Class c = JobMng1.class;
