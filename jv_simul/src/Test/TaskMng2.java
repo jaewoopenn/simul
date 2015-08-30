@@ -3,15 +3,15 @@ import Util.Log;
 import Util.TEngine;
 import Simul.TaskMng;
 public class TaskMng2 {
-	public static int idx=-1;
-//	public static int idx=1;
+//	public static int idx=-1;
+	public static int idx=1;
 	public static int total=10;
-	public static int gret[]={1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={2,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1()
 	{
 		TaskMng tm=new TaskMng();
 		tm.addTask(3,1);
-		tm.addTask(4,1);
+		tm.addHiTask(4,1,2);
 		return tm.size();
 	}
 	public int test2()

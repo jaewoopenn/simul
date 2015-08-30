@@ -15,12 +15,12 @@ public class Task {
 		this.is_HI=false;
 	}
 
-	public Task(int tid,int period, int c_l, int c_h,boolean is_HI) {
+	public Task(int tid,int period, int c_l, int c_h) {
 		this.tid=tid;
 		this.period = period;
 		this.c_l = c_l;
 		this.c_h = c_h;
-		this.is_HI=false;
+		this.is_HI=true;
 	}
 
 

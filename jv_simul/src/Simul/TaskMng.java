@@ -28,6 +28,14 @@ public class TaskMng {
 		g_taskV.add(new Task(g_size,p,e));
 		g_size++;
 	}
+	public void addHiTask(int p, int c_l, int c_h) {
+		if(!g_bAdd) {
+			System.out.println("Err:task set is finalized");
+			return;
+		}
+		g_taskV.add(new Task(g_size,p,c_l,c_h));
+		g_size++;
+	}
 	public void finalize()
 	{
 		g_util=0;
