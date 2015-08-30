@@ -83,7 +83,7 @@ public class TaskGen {
 		int p=g_rand.nextInt(g_p_ub-g_p_lb)+g_p_lb;
 		double tu=g_rand.nextDouble()*(g_tu_ub-g_tu_lb)+g_tu_ub;
 		int e=(int)(tu*p);
-		return new Task(tid,p,e,e);
+		return new Task(tid,p,e);
 	}
 
 
@@ -153,7 +153,7 @@ public class TaskGen {
 	            int tid=Integer.valueOf(words[0]).intValue();
 	            int p=Integer.valueOf(words[1]).intValue();
 	            int e=Integer.valueOf(words[2]).intValue();
-				g_tasks.add(new Task(tid,p,e,e));
+				g_tasks.add(new Task(tid,p,e));
 		    }
 		    br.close();
 		    fr.close();	

@@ -1,9 +1,9 @@
 package Util;
 public class Mock {
-//	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=-1;
+//	public static int idx=1;
 	public static int total=10;
-	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1()
 	{
 		return 0;

@@ -12,8 +12,8 @@ public class Task1 {
 	{
 		Vector<Task> tasks=new Vector<Task>();
 		
-		tasks.add(new Task(0,3,1,1));
-		tasks.add(new Task(1,4,1,1));
+		tasks.add(new Task(0,3,1));
+		tasks.add(new Task(1,4,1));
 		return tasks.size();
 	}
 	public int test2()

@@ -10,23 +10,27 @@ public class TaskMng {
 	private Task[] g_tasks;
 	private int g_size;
 	private double g_util;
+	private double x;
 	public TaskMng() {
 		g_taskV=new Vector<Task>();
 		g_size=0;
 		g_util=0;
 		g_bAdd=true;
 	}
-
+	public void setX(int x){
+		this.x=x;
+	}
 	public void addTask(int p, int e) {
 		if(!g_bAdd) {
 			System.out.println("Err:task set is finalized");
 			return;
 		}
-		g_taskV.add(new Task(g_size,p,e,e));
+		g_taskV.add(new Task(g_size,p,e));
 		g_size++;
 	}
 	public void finalize()
 	{
+		g_util=0;
 		g_bAdd=false;
 		g_tasks=new Task[g_size];
 		g_taskV.toArray(g_tasks);
