@@ -7,6 +7,7 @@ import Simul.Job;
 
 public class Job1 {
 	public static int idx=-1;
+//	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={2,3,1,4,0,0,0,0,0,0};
 	public int test1()

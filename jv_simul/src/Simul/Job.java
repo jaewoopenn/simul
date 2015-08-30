@@ -6,20 +6,28 @@ public class Job implements Comparable{
 	public int tid;
 	public int dl;
 	public double vd;
-	public boolean isHI;
 	public int exec;
+	public int add_exec;
+	public boolean isHI;
 
 	public Job(int tid,int dl, int exec) {
 		this.tid=tid;
 		this.dl = dl;
+		this.vd = dl;
 		this.exec = exec;
+		this.add_exec=0;
 		this.isHI=false;
 	}
 	
 	@Override
 	public int compareTo(Object o) {
-		int o_dl = ((Job)o).dl;  
-		return dl - o_dl; 
+		double o_vd = ((Job)o).vd;  
+		if (vd>o_vd)
+			return 1;
+		else if (vd==o_vd)
+			return 0;
+		else
+			return -1;
 	}
 	
 	public void prn() {
