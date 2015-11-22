@@ -8,17 +8,17 @@ public class ExpGen1 {
 	public static int idx=6;
 	public static int total=10;
 	public static int gret[]={0,1,0,6,0,0,0,0,0,0};
-	public int test1()
+	public int test1() // error config
 	{
 		ExpGen eg=new ExpGen();
 		return eg.readConfig("config/err_cfg1.txt");
 	}
-	public int test2()
+	public int test2() // normal config
 	{
 		ExpGen eg=new ExpGen();
 		return eg.readConfig("config/cfg1.txt");
 	}
-	public int test3()
+	public int test3() // print config
 	{
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
@@ -28,7 +28,7 @@ public class ExpGen1 {
 		System.out.println(s);
 		return 1;
 	}
-	public  int test4()
+	public  int test4() // get config
 	{
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
@@ -36,14 +36,14 @@ public class ExpGen1 {
 		System.out.println(s);
 		return (int)(Double.valueOf(s).doubleValue()*10);
 	}
-	public  int test5()
+	public  int test5() // gen task set
 	{
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
 		eg.gen();
 		return 0;
 	}
-	public  int test6()
+	public  int test6() // test config
 	{
 		ExpGen eg=new ExpGen();
 		eg.readConfig("config/cfg1.txt");
