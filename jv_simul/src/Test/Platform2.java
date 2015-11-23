@@ -15,18 +15,21 @@ public class Platform2 {
 	public int test1()
 	{
 		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
-		tm.finalize();
-		double u=tm.getUtil();
-		Log.prn(1, "U:"+u);
-//		return 1;
-		return post(tm,7);
+		//-------------
+		int dur=12;
+		tm.addTask(3,2);
+		tm.addTask(4,2);
+		return post(tm,dur);
 	}
 
 	public int test2()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		//-------------
+		int dur=12;
+		tm.addTask(3,2);
+		tm.addTask(4,2);
+		return post(tm,dur);
 	}
 
 	public int test3()
@@ -68,6 +71,9 @@ public class Platform2 {
 		return -1;
 	}
 	public int post(TaskMng tm,int dur){
+		tm.finalize();
+		double u=tm.getUtil();
+		Log.prn(1, "U:"+u);
 		Platform p=new Platform();
 		p.init(tm);
 		tm.prn();
