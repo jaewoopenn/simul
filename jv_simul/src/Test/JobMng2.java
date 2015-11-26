@@ -5,10 +5,10 @@ import Simul.JobMng;
 import Simul.Job;
 
 public class JobMng2 {
-	public static int idx=-1;
-//	public static int idx=8;
+//	public static int idx=-1;
+	public static int idx=2;
 	public static int total=10;
-	public static int gret[]={1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={0,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 	public JobMng ts1()
 	{
@@ -23,12 +23,28 @@ public class JobMng2 {
 	public int test1()
 	{
 		JobMng jm=ts1();
-		jm.progress(0);
+		Job j;
+		j=jm.pollCur();
+		j=jm.pollCur();
+		j=jm.pollCur();
+		if (j!=null)
+			System.out.println(j.dl);
+		else
+			System.out.println(j);
 		return jm.size();
 	}
 	public int test2()
 	{
-		return -1;
+		JobMng jm=ts1();
+		Job j;
+		j=jm.pollCur();
+		j=jm.pollCur();
+		j=jm.getCur();
+		if (j!=null)
+			System.out.println(j.dl);
+		else
+			System.out.println(j);
+		return jm.size();
 	}
 	public  int test3()
 	{

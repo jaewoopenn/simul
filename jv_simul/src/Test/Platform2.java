@@ -8,17 +8,18 @@ import Simul.TaskMng;
 
 public class Platform2 {
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=6;
 	public static int total=10;
-	public static int gret[]={1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={0,0,0,0,0, 1,-1,-1,-1,-1};
 
 	public int test1()
 	{
 		TaskMng tm=new TaskMng();
 		//-------------
-		int dur=12;
-		tm.addTask(3,2);
-		tm.addTask(4,2);
+		int dur=6;
+		tm.addTask(5,3);
+		tm.addTask(5,3);
+		//-------------
 		return post(tm,dur);
 	}
 
@@ -29,27 +30,55 @@ public class Platform2 {
 		int dur=12;
 		tm.addTask(3,2);
 		tm.addTask(4,2);
+		//-------------
 		return post(tm,dur);
 	}
 
 	public int test3()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		//-------------
+		int dur=5;
+		tm.addTask(4,3);
+		tm.addTask(4,2);
+		//-------------
+		return post(tm,dur);
 	}
 
 	public  int test4()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		//-------------
+		int dur=21;
+		tm.addTask(5,3);
+		tm.addTask(4,2);
+		//-------------
+		return post(tm,dur);
 	}
 
 	public  int test5()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		//-------------
+		int dur=13;
+		tm.addTask(6,1);
+		tm.addTask(4,1);
+		tm.addTask(3,2);
+		//-------------
+		return post(tm,dur);
 	}
 	
 	public  int test6()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		//-------------
+		int dur=61;
+		tm.addTask(6,2);
+		tm.addTask(5,2);
+		tm.addTask(8,1);
+		tm.addTask(15,2);
+		//-------------
+		return post(tm,dur);
 	}
 	
 	public  int test7()

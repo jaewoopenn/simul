@@ -6,9 +6,10 @@ import Util.TEngine;
 import Simul.Job;
 
 public class Job2 {
-	public static int idx=-1;
+//	public static int idx=-1;
+	public static int idx=1;
 	public static int total=10;
-	public static int gret[]={1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={2,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1()
 	{
 		Vector<Job> jobs=new Vector<Job>();

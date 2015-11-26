@@ -21,6 +21,8 @@ public class Platform {
 	public int simul(int et){
 		boolean bSuc;
 		while(cur_t<et){
+			bSuc=jm.dlCheck(cur_t);
+			if(!bSuc) return 0;
 			Log.prnc(1,"t:"+cur_t+" rel:");
 			relCheck();
 			bSuc=jm.progress(cur_t);

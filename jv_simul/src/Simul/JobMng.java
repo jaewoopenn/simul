@@ -19,6 +19,15 @@ public class JobMng {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
+	public boolean dlCheck(int cur_t){
+		Job j=getCur();
+		if(j==null) return true;
+		if(cur_t>=j.dl){
+			Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
+			return false;
+		}
+		return true;
+	}
 	public boolean progress(int cur_t){
 		Job j=getCur();
 		int out_type=0;
@@ -30,15 +39,11 @@ public class JobMng {
 		int out_dur=0;
 		if(j.exec<=1) {
 			out_type=1;
-			if(cur_t+j.exec>j.dl){
-				Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
-				return false;
-			}
 			j.exec=0;
+			pollCur();
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;
-			insert(j);
 		}
 		prnJob(j,out_type);
 //			Log.prn(1,"cur:"+cur_t+" dur:"+out_dur+" tid:"+j.tid+" exec_type:"+out_type);
@@ -70,10 +75,10 @@ public class JobMng {
 //		Log.prn(1, "  \t exec_type:"+out_type);
 	}
 	public Job getCur(){
-		if(jobs.size()!=0)
-			return jobs.poll();
-		else 
-			return null;
+		return jobs.peek();
+	}
+	public Job pollCur(){
+		return jobs.poll();
 	}
 	public int size(){
 		return jobs.size();
