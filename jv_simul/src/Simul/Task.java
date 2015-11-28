@@ -5,6 +5,7 @@ public class Task {
 	public int period;
 	public int c_l;
 	public int c_h;
+	public double vd;
 	public boolean is_HI;
 
 	public Task(int tid,int period, int c_l) {
@@ -23,7 +24,9 @@ public class Task {
 		this.is_HI=true;
 	}
 
-
+	public void setVD(double vd){
+		this.vd=vd;
+	}
 	public void prn() {
 		System.out.println("tid:"+tid+" p:"+period+" e:"+c_l);
 	}

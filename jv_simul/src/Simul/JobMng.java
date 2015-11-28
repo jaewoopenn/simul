@@ -92,8 +92,8 @@ public class JobMng {
 		}
 		Vector<Job> v=new Vector();
 		for(int i=0;i<sz;i++){
-			Job j=getCur();
-			Log.prn(1," dl:"+j.dl+", exec:"+j.exec);
+			Job j=pollCur();
+			Log.prn(1,"tid:"+j.tid+" dl:"+j.dl+", exec:"+j.exec);
 			v.add(j);
 		}
 		for(Job j:v){

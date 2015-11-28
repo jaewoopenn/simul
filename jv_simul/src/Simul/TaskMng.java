@@ -17,9 +17,8 @@ public class TaskMng {
 		g_util=0;
 		g_bAdd=true;
 	}
-	public void setX(int x){
-		this.x=x;
-	}
+	
+	
 	public void addTask(int p, int e) {
 		if(!g_bAdd) {
 			System.out.println("Err:task set is finalized");
@@ -28,6 +27,7 @@ public class TaskMng {
 		g_taskV.add(new Task(g_size,p,e));
 		g_size++;
 	}
+	
 	public void addHiTask(int p, int c_l, int c_h) {
 		if(!g_bAdd) {
 			System.out.println("Err:task set is finalized");
@@ -36,6 +36,7 @@ public class TaskMng {
 		g_taskV.add(new Task(g_size,p,c_l,c_h));
 		g_size++;
 	}
+	
 	public void finalize()
 	{
 		g_util=0;
@@ -48,13 +49,23 @@ public class TaskMng {
 			g_util+=(double)(t.c_l)/t.period;
 		}
 	}
+	
 	public int size() {
 		return g_size;
+	}
+
+	// get set
+	public void setX(int x){
+		this.x=x;
+	}
+	public void setVD(int i, double vd){
+		g_tasks[i].vd=vd;
 	}
 
 	public int getPt(int i) {
 		return g_tasks[i].period;
 	}
+	
 	public double getUtil(){
 		return g_util;
 	}

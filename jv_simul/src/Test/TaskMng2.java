@@ -1,12 +1,15 @@
 package Test;
+// MC task
+// VD
+
 import Util.Log;
 import Util.TEngine;
 import Simul.TaskMng;
 public class TaskMng2 {
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int total=10;
-	public static int gret[]={2,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={2,2,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1()
 	{
 		TaskMng tm=new TaskMng();
@@ -16,7 +19,10 @@ public class TaskMng2 {
 	}
 	public int test2()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,1);
+		return tm.size();
 	}
 	public  int test3()
 	{

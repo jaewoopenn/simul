@@ -29,7 +29,7 @@ public class Platform {
 			if(!bSuc) return 0;
 			cur_t++;
 		}
-		Log.prnc(1, "Left Job:");
+		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
 		jm.prn();
 		return jm.endCheck(et);
 	}
