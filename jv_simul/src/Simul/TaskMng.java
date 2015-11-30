@@ -37,7 +37,7 @@ public class TaskMng {
 		g_size++;
 	}
 	
-	public void finalize()
+	public void freezeTasks()
 	{
 		g_util=0;
 		g_bAdd=false;
@@ -88,7 +88,7 @@ public class TaskMng {
 		for(int i=0;i<g_size;i++)
 		{
 			Task t=g_tasks[i];
-			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l);
+			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l+" vd:"+t.vd);
 		}
 		Log.prn(1, "util:"+g_util);
 		

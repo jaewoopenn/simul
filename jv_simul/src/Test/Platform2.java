@@ -142,7 +142,7 @@ public class Platform2 {
 		return post(tm,dur);
 	}
 	public int post(TaskMng tm,int dur){
-		tm.finalize();
+		tm.freezeTasks();
 		double u=tm.getUtil();
 		Log.prn(1, "U:"+u);
 		Platform p=new Platform();

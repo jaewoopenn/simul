@@ -12,7 +12,7 @@ public class Platform {
 	
 	public void init(TaskMng mng) {
 		tm=mng;
-		tm.finalize();
+		tm.freezeTasks();
 		plst=tm.getPeriods();
 		
 		jm=new JobMng();

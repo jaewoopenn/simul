@@ -4,12 +4,23 @@ package Test;
 
 import Util.Log;
 import Util.TEngine;
+import Simul.JobMng;
 import Simul.TaskMng;
 public class TaskMng2 {
 //	public static int idx=-1;
 	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={2,2,-1,-1,-1, -1,-1,-1,-1,-1};
+	
+	public TaskMng ts1()
+	{
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,1);
+		tm.freezeTasks();
+		return tm;
+	}
+	
 	public int test1()
 	{
 		TaskMng tm=new TaskMng();
@@ -17,11 +28,12 @@ public class TaskMng2 {
 		tm.addHiTask(4,1,2);
 		return tm.size();
 	}
-	public int test2()
+	public int test2() // VD add
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
+		TaskMng tm=ts1();
+		tm.setVD(0,2.2);
+		tm.setVD(1,3.4);
+		tm.prn();
 		return tm.size();
 	}
 	public  int test3()

@@ -27,7 +27,7 @@ public class TaskMng1 {
 		TaskMng tm=new TaskMng();
 		tm.addTask(3,1);
 		tm.addTask(4,1);
-		tm.finalize();
+		tm.freezeTasks();
 		int[] pt=tm.getPeriods();
 		for(int p:pt)
 			Log.prn(1, p);
@@ -38,7 +38,7 @@ public class TaskMng1 {
 		TaskMng tm=new TaskMng();
 		tm.addTask(3,1);
 		tm.addTask(4,1);
-		tm.finalize();
+		tm.freezeTasks();
 		tm.addTask(5,1);
 		return tm.size();
 	}
@@ -48,7 +48,7 @@ public class TaskMng1 {
 		tm.addTask(3,1);
 		tm.addTask(5,1);
 		tm.addTask(7,1);
-		tm.finalize();
+		tm.freezeTasks();
 		tm.prn();
 		return (int)(tm.getUtil()*100);
 	}
