@@ -33,7 +33,7 @@ public class TEngine {
 		else if(ret==sret)
 			Log.prn(9," OK");
 		else
-			Log.prn(9," Err "+ret+" "+sret);
+			Log.prn(9," Err, result:"+ret+" expected:"+sret);
 		
 	}
 	public static void main(String[] args) throws Exception {

@@ -8,33 +8,47 @@ import Simul.TaskMng;
 
 public class Analysis1 {
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=3;
 	public static int total=10;
-	public static int gret[]={0,1,1,0,1,1,0,0,0,0};
+	public static int gret[]={1,0,1,0,1,1,0,0,0,0};
 
-	public int test1()
+	public int test1() // less 1
 	{
 		TaskMng tm=new TaskMng();
 		tm.addTask(2,1);
 		tm.addTask(3,1);
-		Analysis a=new Analysis();
-		a.init(tm);
-		return 0;
+		tm.freezeTasks();
+		return Analysis.analEDF(tm);
 	}
 
-	public int test2()
+	public int test2() // over 1
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		tm.addTask(2,1);
+		tm.addTask(3,1);
+		tm.addTask(4,1);
+		tm.freezeTasks();
+		return Analysis.analEDF(tm);
 	}
 
-	public int test3()
+	public int test3() // exact 1
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		tm.addTask(2,1);
+		tm.addTask(4,1);
+		tm.addTask(8,1);
+		tm.addTask(16,2);
+		tm.freezeTasks();
+		return Analysis.analEDF(tm);
 	}
 
-	public  int test4()
+	public  int test4() // MC task
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		tm.addTask(4,1);
+		tm.addHiTask(6,1,5);
+		tm.freezeTasks();
+		return Analysis.analEDF_VD(tm);
 	}
 
 	public  int test5()
