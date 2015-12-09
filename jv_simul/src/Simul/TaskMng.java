@@ -10,11 +10,13 @@ public class TaskMng {
 	private Task[] g_tasks;
 	private int g_size;
 	private double g_util;
+	private double g_lo_util;
+	private double g_hi_util_l;
+	private double g_hi_util_h;
 	private double x;
 	public TaskMng() {
 		g_taskV=new Vector<Task>();
 		g_size=0;
-		g_util=0;
 		g_bAdd=true;
 	}
 	
@@ -40,6 +42,9 @@ public class TaskMng {
 	public void freezeTasks()
 	{
 		g_util=0;
+		g_lo_util=0;
+		g_hi_util_l=0;
+		g_hi_util_h=0;
 		g_bAdd=false;
 		g_tasks=new Task[g_size];
 		g_taskV.toArray(g_tasks);
@@ -47,6 +52,7 @@ public class TaskMng {
 		{
 			Task t=g_tasks[i];
 			g_util+=(double)(t.c_l)/t.period;
+			
 		}
 	}
 	
@@ -66,9 +72,6 @@ public class TaskMng {
 		return g_tasks[i].period;
 	}
 	
-	public double getUtil(){
-		return g_util;
-	}
 	public int[] getPeriods() {
 		int[] plst=new int[g_size];
 		for(int i=0;i<g_size;i++)
@@ -100,20 +103,19 @@ public class TaskMng {
 	}
 
 
-
+	public double getUtil(){
+		return g_util;
+	}
 
 	public double getLoUtil() {
-		// TODO Auto-generated method stub
-		return 0;
+		return g_lo_util;
 	}
 
 	public double getHiUtil_l() {
-		// TODO Auto-generated method stub
-		return 0;
+		return g_hi_util_l;
 	}
 	public double getHiUtil_h() {
-		// TODO Auto-generated method stub
-		return 0;
+		return g_hi_util_h;
 	}
 
 }
