@@ -100,10 +100,20 @@ public class TaskMng {
 	}
 
 
-	public double getLOUtil() {
+
+
+	public double getLoUtil() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	public double getHiUtil_l() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public double getHiUtil_h() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

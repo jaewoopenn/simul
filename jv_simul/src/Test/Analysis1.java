@@ -8,7 +8,7 @@ import Simul.TaskMng;
 
 public class Analysis1 {
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=4;
 	public static int total=10;
 	public static int gret[]={1,0,1,0,1,1,0,0,0,0};
 

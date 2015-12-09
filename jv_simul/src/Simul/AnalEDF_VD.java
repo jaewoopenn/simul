@@ -9,14 +9,14 @@ public class AnalEDF_VD extends Anal {
 
 	@Override
 	public void prepare() {
-		lu=tm.getLOUtil();
-		Log.prn(1, "util:"+lu);
+		lu=tm.getLoUtil();
+		hu_l=tm.getHiUtil_l();
+		hu_h=tm.getHiUtil_h();
+		Log.prn(1, "util:"+lu+","+hu_l+","+hu_h);
 	}
 	
 	@Override
 	public boolean isScheduable() {
-		if(lu<=1)
-			return true;
 		return false;
 	}
 
