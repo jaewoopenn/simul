@@ -10,7 +10,7 @@ public class Analysis1 {
 //	public static int idx=-1;
 	public static int idx=4;
 	public static int total=10;
-	public static int gret[]={1,0,1,0,1,1,0,0,0,0};
+	public static int gret[]={1,0,1,1,1,1,0,0,0,0};
 
 	public int test1() // less 1
 	{
@@ -45,7 +45,7 @@ public class Analysis1 {
 	public  int test4() // MC task
 	{
 		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
+		tm.addTask(4,2);
 		tm.addHiTask(6,1,5);
 		tm.freezeTasks();
 		return Analysis.analEDF_VD(tm);
