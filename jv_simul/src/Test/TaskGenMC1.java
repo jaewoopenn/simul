@@ -6,9 +6,9 @@ import Simul.TaskMng;
 import Util.Log;
 import Util.TEngine;
 
-public class TaskGen1 {
-	public static int idx=-1;
-//	public static int idx=5;
+public class TaskGenMC1 {
+//	public static int idx=-1;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
@@ -16,9 +16,10 @@ public class TaskGen1 {
 		TaskGen tg=new TaskGen();
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.02,0.3);
-		for(int i=0;i<1000;i++){
-			Task t=tg.genTask(i);
-			//Log.prn(1, "tid:"+t.tid+",p:"+t.period+",e:"+t.c_l);
+		tg.setRatioLH(0.2,0.8);
+		for(int i=0;i<10;i++){
+			Task t=tg.genMCTask(i);
+			Log.prn(1, "tid:"+t.tid+",p:"+t.period+",l:"+t.c_l+",h:"+t.c_h);
 			if (!tg.chkTask(t)) return 0;
 		}
 		return 1;
@@ -112,10 +113,10 @@ public class TaskGen1 {
 		return 0;
 	}
 	public static void main(String[] args) throws Exception {
-		Class c = TaskGen1.class;
-		TaskGen1 m=new TaskGen1();
-		int[] aret=TaskGen1.gret;
-		int sz=TaskGen1.total;
+		Class c = TaskGenMC1.class;
+		TaskGenMC1 m=new TaskGenMC1();
+		int[] aret=TaskGenMC1.gret;
+		int sz=TaskGenMC1.total;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
