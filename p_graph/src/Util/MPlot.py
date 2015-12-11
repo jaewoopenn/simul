@@ -9,6 +9,7 @@ import matplotlib
 def plot(x,v):
     plt.plot(x,v)
     
+def ylim(l,u):
+    plt.ylim(l,u)
 def show():
-    plt.ylim(0,5)
     plt.show()
