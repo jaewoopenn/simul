@@ -8,31 +8,34 @@ import Util.TEngine;
 
 public class TaskGenMC1 {
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
 	{
 		TaskGen tg=new TaskGen();
-		tg.setPeriod(20,50);
+		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.5);
 		tg.setRatioLH(0.2,0.9);
 		for(int i=0;i<10;i++){
 			Task t=tg.genMCTask(i);
-			Log.prn(1, "tid:"+t.tid+",p:"+t.period+",l:"+t.c_l+",h:"+t.c_h);
-			if (!tg.chkMCTask(t)) return 0;
+			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h);
 		}
 		return 1;
 	}
 	public int test2()
 	{
 		TaskGen tg=new TaskGen();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
-		tg.generate();
-		tg.prn(1);
-		return tg.check();
+		tg.setPeriod(50,300);
+		tg.setTUtil(0.02,0.5);
+		tg.setRatioLH(0.2,0.9);
+		Task t=tg.genMCTask(0);
+		Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h);
+		t=tg.genTask(1);
+		Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h);
+		
+		return 1;
+
 	}
 	public  int test3()
 	{

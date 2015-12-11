@@ -61,7 +61,7 @@ public class TaskGenParam {
 
 	public Task genTask(int tid){
 		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_ub;
+		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
 		int e=(int)(tu*p);
 		return new Task(tid,p,e);
 	}

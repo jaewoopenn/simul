@@ -54,25 +54,20 @@ public class TaskGen {
 	
 	public Task genTask(int tid){
 		Task tsk=g_param.genTask(tid);
-		if(g_param.chkTask(tsk))
-			return tsk;
-		return null;
+		if(!g_param.chkTask(tsk))
+			return null;
+		return tsk;
 	}
 
 	public Task genMCTask(int tid){
 		Task tsk=g_param.genMCTask(tid);
+		if(!g_param.chkTask(tsk))
+			return null;
+		if(!g_param.chkMCTask(tsk))
+			return null;
 		return tsk;
 	}
 
-	public boolean chkTask(Task t) {
-		return g_param.chkTask(t);
-	}
-	
-	public boolean chkMCTask(Task t) {
-		if(!g_param.chkTask(t))
-			return false;
-		return g_param.chkMCTask(t);
-	}
 
 	public void prn(int lv) {
 		for(Task t:g_tasks)
