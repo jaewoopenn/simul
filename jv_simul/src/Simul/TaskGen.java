@@ -1,11 +1,5 @@
 package Simul;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.util.Random;
 import java.util.Vector;
 
 import Util.Log;
@@ -13,17 +7,19 @@ import Util.Log;
 public class TaskGen {
 	private TaskGenParam g_param;
 	private Vector<Task> g_tasks;
-	private boolean isMC=false;
+	private boolean g_isMC=false;
 	
 	public TaskGen() {
 		g_param=new TaskGenParam();
 	}
 
-	public void switch_to_MC() {
-		isMC=true;
+	public void setFlagMC(boolean b) {
+		g_isMC=b;
 	}
 
 	public double getUtil(){
+		if(g_isMC) 
+			return getMCUtil();
 		double util=0;
 		for(Task t:g_tasks){
 			util+=(double)(t.c_h)/t.period;
@@ -31,20 +27,38 @@ public class TaskGen {
 		return util;
 	}
 
+	private double getMCUtil(){
+		double loutil=0;
+		double hiutil=0;
+		for(Task t:g_tasks){
+			loutil+=(double)(t.c_l)/t.period;
+		}
+		for(Task t:g_tasks){
+			if(t.is_HI)
+				hiutil+=(double)(t.c_h)/t.period;
+		}
+		return Math.max(loutil, hiutil);
+	}
+
 
 	
 	public void generate() {
 		while(true){
 			g_tasks=new Vector<Task>();
-			gen();
+			gen(g_isMC);
 			if(g_param.check(getUtil())==1) break;
 		}
 	}
-	private void gen()
+	private void gen(boolean isMC)
 	{
 		int tid=0;
+		Task t;
 		while(getUtil()<=g_param.u_ub){
-			Task t=genTask(tid);
+			if(isMC)
+				 t=genMCTask(tid);
+			else
+				 t=genTask(tid);
+				
 			g_tasks.add(t);
 			tid++;
 		}
@@ -72,9 +86,15 @@ public class TaskGen {
 	public void prn(int lv) {
 		for(Task t:g_tasks)
 		{
-			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l);
+			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
+					", h:"+t.c_h+", Xi:"+t.is_HI);
 		}
-		Log.prn(lv, "util:"+getUtil());
+		if(g_isMC){
+			Log.prn(lv, "MC util:"+getUtil());
+			
+		} else {
+			Log.prn(lv, "util:"+getUtil());
+		}
 		
 	}
 
@@ -112,6 +132,9 @@ public class TaskGen {
 		g_param.setPeriod(l, u);
 	}
 
+	public void setProbHI(double p){
+		g_param.prob_HI=p;
+	}
 
 	public int check(){
 		return g_param.check(getUtil());

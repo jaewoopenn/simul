@@ -63,7 +63,9 @@ public class TaskMng {
 			
 		}
 	}
-	
+	public boolean isFinal(){
+		return !g_bAdd;
+	}
 	public int size() {
 		return g_size;
 	}

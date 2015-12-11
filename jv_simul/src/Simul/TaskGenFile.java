@@ -16,7 +16,9 @@ public class TaskGenFile {
 			writer = new PrintWriter("/Users/jaewoo/data/"+file);
 			for(Task t:g_tasks)
 			{
-				writer.println(t.tid+","+t.period+","+t.c_l);
+				int isHI=t.is_HI?1:0;
+				String txt=t.tid+","+t.period+","+t.c_l+","+t.c_h+","+isHI;
+				writer.println(txt);
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -37,8 +39,13 @@ public class TaskGenFile {
 	            String[] words=line.split(",");
 	            int tid=Integer.valueOf(words[0]).intValue();
 	            int p=Integer.valueOf(words[1]).intValue();
-	            int e=Integer.valueOf(words[2]).intValue();
-				g_tasks.add(new Task(tid,p,e));
+	            int l=Integer.valueOf(words[2]).intValue();
+	            int h=Integer.valueOf(words[3]).intValue();
+	            int isHI=Integer.valueOf(words[4]).intValue();
+	            if(isHI==1)
+	            	g_tasks.add(new Task(tid,p,l,h));
+	            else
+	            	g_tasks.add(new Task(tid,p,l));
 		    }
 		    br.close();
 		    fr.close();	

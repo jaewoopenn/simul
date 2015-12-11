@@ -1,4 +1,5 @@
 package Test;
+import Simul.Analysis;
 import Simul.Platform;
 import Simul.Task;
 import Simul.TaskGen;
@@ -8,63 +9,62 @@ import Util.TEngine;
 
 public class TaskGenMC1 {
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=6;
 	public static int total=10;
-	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
+	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
+	public TaskGen getTG1(){
+		TaskGen tg=new TaskGen();
+		tg.setFlagMC(true);
+		tg.setPeriod(50,300);
+		tg.setTUtil(0.02,0.3);
+		tg.setRatioLH(0.2,0.9);
+		tg.setUtil(0.5,0.99);
+		tg.setProbHI(0.5);
+		return tg;
+	}
+	public TaskGen getTG2(){
+		TaskGen tg=new TaskGen();
+		tg.setFlagMC(true);
+		tg.setPeriod(50,300);
+		tg.setTUtil(0.02,0.3);
+		tg.setRatioLH(0.7,0.9);
+		tg.setUtil(0.95,0.99);
+		tg.setProbHI(0.5);
+		return tg;
+	}
+
 	public int test1()
 	{
-		TaskGen tg=new TaskGen();
-		tg.setPeriod(50,300);
-		tg.setTUtil(0.02,0.5);
-		tg.setRatioLH(0.2,0.9);
-		for(int i=0;i<10;i++){
+		TaskGen tg=getTG1();
+		for(int i=0;i<5;i++){
 			Task t=tg.genMCTask(i);
-			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h);
+			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h+", Xi:"+t.is_HI);
 		}
 		return 1;
 	}
 	public int test2()
 	{
-		TaskGen tg=new TaskGen();
-		tg.setPeriod(50,300);
-		tg.setTUtil(0.02,0.5);
-		tg.setRatioLH(0.2,0.9);
-		Task t=tg.genMCTask(0);
-		Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h);
-		t=tg.genTask(1);
-		Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h);
-		
-		return 1;
+		TaskGen tg=getTG1();
+		tg.generate();
+		tg.prn(1);
+		return tg.check();
 
 	}
 	public  int test3()
 	{
-		TaskGen tg=new TaskGen();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGen tg=getTG2();
 		tg.generate();
-		tg.prn(1);
-		int tg_size=tg.size();
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
-//		tm.prn();
-		int tm_size=tm.size();
-		if(tg_size!=tm_size){
-			System.out.println("tg:"+tg_size+", tm:"+tm_size);
-			return 0;
-		}
-		return 1;
+		tm.freezeTasks();
+		return Analysis.analEDF_VD(tm);
 	}
 	public  int test4()
 	{
-		TaskGen tg=new TaskGen();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGen tg=getTG2();
 		tg.generate();
 		tg.writeFile("test2.txt");
-		return 0;
+		return 1;
 		
 	}
 	public  int test5()
@@ -72,36 +72,26 @@ public class TaskGenMC1 {
 		TaskGen tg=new TaskGen();
 		tg.loadFile("test2.txt");
 		tg.prn(1);
-		int tg_size=tg.size();
-		TaskMng tm=new TaskMng();
-		tm.setTasks(tg.getAll());
-		tm.prn();
-		int tm_size=tm.size();
-		if(tg_size!=tm_size){
-			System.out.println("tg:"+tg_size+", tm:"+tm_size);
-			return 0;
-		}
 		return 1;
 	}
 	public  int test6()
 	{
-		TaskGen tg=new TaskGen();
-		tg.loadFile("test2.txt");
-		TaskMng tm=new TaskMng();
-		tm.setTasks(tg.getAll());
-		Platform p=new Platform();
-		p.init(tm);
-		return p.simul(20);
+		TaskGen tg=getTG2();
+		int id=0;
+		while(true){
+			tg.generate();
+			TaskMng tm=new TaskMng();
+			tm.setTasks(tg.getAll());
+			tm.freezeTasks();
+			if(Analysis.analEDF_VD(tm)==0) break;
+			id++;
+			if (id==1000) break;
+		}
+		return 1;
 	}
 	public  int test7()
 	{
-		TaskGen tg=new TaskGen();
-		tg.loadFile("t1/taskset2");
-		TaskMng tm=new TaskMng();
-		tm.setTasks(tg.getAll());
-		Platform p=new Platform();
-		p.init(tm);
-		return p.simul(20);
+		return 1;
 	}
 	public  int test8()
 	{

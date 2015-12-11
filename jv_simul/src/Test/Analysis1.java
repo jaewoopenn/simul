@@ -8,7 +8,7 @@ import Simul.TaskMng;
 
 public class Analysis1 {
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=5;
 	public static int total=10;
 	public static int gret[]={1,0,1,1,1,1,0,0,0,0};
 
@@ -53,7 +53,11 @@ public class Analysis1 {
 
 	public  int test5()
 	{
-		return -1;
+		TaskMng tm=new TaskMng();
+		tm.addTask(13,7);
+		tm.addHiTask(12,4,8);
+		tm.freezeTasks();
+		return Analysis.analEDF_VD(tm);
 	}
 	
 	public  int test6()

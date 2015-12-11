@@ -13,7 +13,8 @@ public class AnalEDF_VD extends Anal {
 		lotasks_loutil=tm.getLoUtil();
 		hitasks_loutil=tm.getHiUtil_l();
 		hitasks_hiutil=tm.getHiUtil_h();
-		glo_x=(1-hitasks_hiutil)/lotasks_loutil;
+		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
+		glo_x=Math.min(1, cal_x);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
 	}
