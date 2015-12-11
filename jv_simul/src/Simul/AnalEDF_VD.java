@@ -15,16 +15,16 @@ public class AnalEDF_VD extends Anal {
 		hitasks_hiutil=tm.getHiUtil_h();
 		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
 		glo_x=Math.min(1, cal_x);
-		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
-		Log.prn(1, "x:"+glo_x);
+		//Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
+		//Log.prn(1, "x:"+glo_x);
 	}
 	
 	@Override
 	public boolean isScheduable() {
 		double dtm=lotasks_loutil+hitasks_loutil/glo_x;
-		Log.prn(1,"det:"+dtm);
+		//Log.prn(1,"det:"+dtm);
 		if (dtm <=1) {
-			Log.prn(1, "Sch OK");
+			//Log.prn(1, "Sch OK");
 			return true;
 		}
 		return false;

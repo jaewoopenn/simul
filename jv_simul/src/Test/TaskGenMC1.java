@@ -1,6 +1,5 @@
 package Test;
 import Simul.Analysis;
-import Simul.Platform;
 import Simul.Task;
 import Simul.TaskGen;
 import Simul.TaskMng;
@@ -18,7 +17,7 @@ public class TaskGenMC1 {
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.2,0.9);
-		tg.setUtil(0.5,0.99);
+		tg.setUtil(0.90,0.99);
 		tg.setProbHI(0.5);
 		return tg;
 	}
@@ -28,7 +27,7 @@ public class TaskGenMC1 {
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.7,0.9);
-		tg.setUtil(0.95,0.99);
+		tg.setUtil(0.95,1.00);
 		tg.setProbHI(0.5);
 		return tg;
 	}
@@ -62,31 +61,29 @@ public class TaskGenMC1 {
 	public  int test4()
 	{
 		TaskGen tg=getTG2();
-		tg.generate();
-		tg.writeFile("test2.txt");
+		int id=0;
+		while(true){
+			tg.generate();
+			double u=tg.getUtil();
+			TaskMng tm=new TaskMng();
+			tm.setTasks(tg.getAll());
+			tm.freezeTasks();
+			if(Analysis.analEDF_VD(tm)==1) 
+				Log.prn(1, "id:"+id+" util:"+u+" Y");
+			else
+				Log.prn(1, "id:"+id+" util:"+u+" N");
+			id++;
+			if (id==10) break;
+		}
 		return 1;
 		
 	}
 	public  int test5()
 	{
-		TaskGen tg=new TaskGen();
-		tg.loadFile("test2.txt");
-		tg.prn(1);
 		return 1;
 	}
 	public  int test6()
 	{
-		TaskGen tg=getTG2();
-		int id=0;
-		while(true){
-			tg.generate();
-			TaskMng tm=new TaskMng();
-			tm.setTasks(tg.getAll());
-			tm.freezeTasks();
-			if(Analysis.analEDF_VD(tm)==0) break;
-			id++;
-			if (id==1000) break;
-		}
 		return 1;
 	}
 	public  int test7()
