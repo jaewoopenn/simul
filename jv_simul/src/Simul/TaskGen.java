@@ -53,14 +53,26 @@ public class TaskGen {
 	}
 	
 	public Task genTask(int tid){
-		return g_param.genTask(tid);
+		Task tsk=g_param.genTask(tid);
+		if(g_param.chkTask(tsk))
+			return tsk;
+		return null;
 	}
 
 	public Task genMCTask(int tid){
-		return g_param.genTask(tid);
+		Task tsk=g_param.genMCTask(tid);
+		return tsk;
 	}
 
-
+	public boolean chkTask(Task t) {
+		return g_param.chkTask(t);
+	}
+	
+	public boolean chkMCTask(Task t) {
+		if(!g_param.chkTask(t))
+			return false;
+		return g_param.chkMCTask(t);
+	}
 
 	public void prn(int lv) {
 		for(Task t:g_tasks)
@@ -105,9 +117,6 @@ public class TaskGen {
 		g_param.setPeriod(l, u);
 	}
 
-	public boolean chkTask(Task t) {
-		return g_param.chkTask(t);
-	}
 
 	public int check(){
 		return g_param.check(getUtil());

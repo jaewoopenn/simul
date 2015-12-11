@@ -15,12 +15,12 @@ public class TaskGenMC1 {
 	{
 		TaskGen tg=new TaskGen();
 		tg.setPeriod(20,50);
-		tg.setTUtil(0.02,0.3);
-		tg.setRatioLH(0.2,0.8);
+		tg.setTUtil(0.02,0.5);
+		tg.setRatioLH(0.2,0.9);
 		for(int i=0;i<10;i++){
 			Task t=tg.genMCTask(i);
 			Log.prn(1, "tid:"+t.tid+",p:"+t.period+",l:"+t.c_l+",h:"+t.c_h);
-			if (!tg.chkTask(t)) return 0;
+			if (!tg.chkMCTask(t)) return 0;
 		}
 		return 1;
 	}

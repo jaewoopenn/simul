@@ -2,6 +2,8 @@ package Simul;
 
 import java.util.Random;
 
+import Util.Log;
+
 
 
 public class TaskGenParam {
@@ -63,24 +65,42 @@ public class TaskGenParam {
 		int e=(int)(tu*p);
 		return new Task(tid,p,e);
 	}
-	
+
+	public Task genMCTask(int tid){
+		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
+		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
+		double ratio=g_rand.nextDouble()*(ratio_ub-ratio_lb)+ratio_lb;
+		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
+		int h=(int)(tu*p);
+		int l=(int)(h*ratio);
+		return new Task(tid,p,l,h);
+	}
+
 	
 	public boolean chkTask(Task t) {
 		int p=t.period;
 		if(p>=p_ub && p<p_lb)
 			return false;
-		double tu=(double)(t.c_l)/t.period;
+		double tu=(double)(t.c_h)/t.period;
 		if(tu>=p_ub && tu<p_lb)
 			return false;
 		return true;
 	}
 
+	public boolean chkMCTask(Task t) {
+		double ratio=(double)(t.c_l)/t.c_h;
+		if(ratio>=ratio_ub && ratio<ratio_lb)
+			return false;
+		return true;
+	}
 
 	public int check(double util) {
 		if(util<=u_ub&&util>=u_lb)
 			return 1;
 		return 0;
 	}
+
+
 
 	
 
