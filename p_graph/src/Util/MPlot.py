@@ -8,6 +8,9 @@ import matplotlib
 
 def plot(x,v):
     plt.plot(x,v)
+
+def xlim(l,u):
+    plt.xlim(l,u)
     
 def ylim(l,u):
     plt.ylim(l,u)
