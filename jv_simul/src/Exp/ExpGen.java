@@ -1,4 +1,4 @@
-package Simul;
+package Exp;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import Simul.TaskGen;
+import Simul.TaskMng;
 import Util.Log;
 
 public class ExpGen {
@@ -30,6 +32,7 @@ public class ExpGen {
 	            
 	            if(!setParam(words[0],words[1])) {
 	            	System.out.println("Err: loading field is not defined");
+	            	br.close();
 	            	return 0;
 	            }
 		    }

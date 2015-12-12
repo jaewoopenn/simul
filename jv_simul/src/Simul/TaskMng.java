@@ -116,6 +116,9 @@ public class TaskMng {
 	public double getUtil(){
 		return g_util;
 	}
+	public double getMCUtil(){
+		return Math.max(g_lo_util+g_hi_util_l, g_hi_util_h);
+	}
 
 	public double getLoUtil() {
 		return g_lo_util;

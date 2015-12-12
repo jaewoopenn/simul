@@ -1,7 +1,9 @@
-package Simul;
+package Exp;
 
 import java.util.Vector;
 
+import Simul.Task;
+import Simul.TaskMng;
 import Util.Log;
 
 public class Platform {

@@ -1,7 +1,7 @@
-package Test;
+package TestExp;
 
 import Util.TEngine;
-import Simul.Platform;
+import Exp.Platform;
 import Simul.TaskGen;
 import Simul.TaskMng;
 

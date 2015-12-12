@@ -1,7 +1,7 @@
-package Test;
+package TestExp;
 import Util.Log;
 import Util.TEngine;
-import Simul.ExpGen;
+import Exp.ExpGen;
 
 public class ExpGen1 {
 //	public static int idx=-1;

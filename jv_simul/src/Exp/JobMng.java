@@ -1,4 +1,4 @@
-package Simul;
+package Exp;
 
 import java.util.PriorityQueue;
 import java.util.Vector;
@@ -90,7 +90,7 @@ public class JobMng {
 			Log.prn(1,"empty");
 			return;
 		}
-		Vector<Job> v=new Vector();
+		Vector<Job> v=new Vector<Job>();
 		for(int i=0;i<sz;i++){
 			Job j=pollCur();
 			Log.prn(1,"tid:"+j.tid+" dl:"+j.dl+", exec:"+j.exec);

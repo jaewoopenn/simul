@@ -9,8 +9,9 @@ import Util.TEngine;
 // Simulation
 
 public class TaskGenMC2 {
+	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
@@ -77,7 +78,7 @@ public class TaskGenMC2 {
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

@@ -1,8 +1,8 @@
-package Test;
+package TestExp;
 
 import Util.TEngine;
-import Simul.JobMng;
-import Simul.Job;
+import Exp.Job;
+import Exp.JobMng;
 
 public class JobMng1 {
 	public static int idx=-1;

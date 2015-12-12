@@ -4,9 +4,10 @@ package Test;
 
 import Util.Log;
 import Util.TEngine;
-import Simul.JobMng;
+import Exp.JobMng;
 import Simul.TaskMng;
 public class TaskMng2 {
+	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=2;
 	public static int total=10;
@@ -68,6 +69,7 @@ public class TaskMng2 {
 	{
 		return -1;
 	}
+	
 	public static void main(String[] args) throws Exception {
 		Class c = TaskMng2.class;
 		TaskMng2 m=new TaskMng2();
@@ -76,7 +78,6 @@ public class TaskMng2 {
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
-
 }

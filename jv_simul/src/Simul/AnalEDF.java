@@ -7,7 +7,7 @@ public class AnalEDF extends Anal {
 	@Override
 	public void prepare() {
 		u=tm.getUtil();
-		Log.prn(1, "util:"+u);
+		//Log.prn(1, "util:"+u);
 	}
 	
 	@Override

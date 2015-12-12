@@ -101,8 +101,9 @@ public class TaskGenParam {
 	}
 
 	public int check(double util) {
-		if(util<=u_ub&&util>=u_lb)
+		if(util<=u_ub&&util>=u_lb){
 			return 1;
+		}
 		return 0;
 	}
 

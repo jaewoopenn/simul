@@ -36,13 +36,5 @@ public class TEngine {
 			Log.prn(9," Err, result:"+ret+" expected:"+sret);
 		
 	}
-	public static void main(String[] args) throws Exception {
-		Class c = Mock.class;
-		Mock mock=new Mock();
-		int[] aret=Mock.gret;
-		int sz=Mock.total;
-//		run(mock,c,aret,sz);
-		runOnce(mock,c,aret,1,1);
-	}
 
 }

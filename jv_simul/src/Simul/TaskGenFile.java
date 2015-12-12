@@ -7,24 +7,20 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Vector;
 
+import Util.FUtil;
+
 
 
 public class TaskGenFile {
 	public static void writeFile(String file,Vector<Task> g_tasks) {
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter("/Users/jaewoo/data/"+file);
-			for(Task t:g_tasks)
-			{
-				int isHI=t.is_HI?1:0;
-				String txt=t.tid+","+t.period+","+t.c_l+","+t.c_h+","+isHI;
-				writer.println(txt);
-			}
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		FUtil fu=new FUtil(file);
+		for(Task t:g_tasks)
+		{
+			int isHI=t.is_HI?1:0;
+			String txt=t.tid+","+t.period+","+t.c_l+","+t.c_h+","+isHI;
+			fu.print(txt);
 		}
-		
+		fu.end();
 	}
 
 

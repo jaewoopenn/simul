@@ -1,5 +1,5 @@
 package Test;
-import Simul.Platform;
+import Exp.Platform;
 import Simul.Task;
 import Simul.TaskGen;
 import Simul.TaskMng;
@@ -7,6 +7,7 @@ import Util.Log;
 import Util.TEngine;
 
 public class TaskGen1 {
+	public static int log_level=1;
 	public static int idx=-1;
 //	public static int idx=5;
 	public static int total=10;
@@ -118,7 +119,7 @@ public class TaskGen1 {
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }
