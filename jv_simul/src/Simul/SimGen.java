@@ -37,16 +37,16 @@ public class SimGen {
 	public int size(){
 		return g_cfg.readInt("num");
 	}
-	public int load() {
+	public int load(int anal) {
 		int num=g_cfg.readInt("num");
 		int sum=0;
 		
 		for(int i=0;i<num;i++){
-			sum+=load(i);
+			sum+=load(i,anal);
 		}
 		return sum;	
 	}
-	public int load(int i){
+	public int load(int i,int anal){
 		TaskGen tg=new TaskGen();
 		tg.setFlagMC(true);
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
@@ -63,8 +63,10 @@ public class SimGen {
 		tm.freezeTasks();
 		double util=tm.getMCUtil();
 		//System.out.format("task set %d MC util: %.3f\n" ,i,util);
-		
-		return Analysis.analEDF_VD(tm);
+		if(anal==1)
+			return Analysis.analEDF_VD(tm);
+		else
+			return Analysis.analEDF(tm);
 	}
 
 }

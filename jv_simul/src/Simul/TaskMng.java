@@ -51,11 +51,11 @@ public class TaskMng {
 		for(int i=0;i<g_size;i++)
 		{
 			Task t=g_tasks[i];
-			double tu=(double)(t.c_l)/t.period;
+			double tu=(double)(t.c_h)/t.period;
 			g_util+=tu;
 			if(t.is_HI){
-				g_hi_util_l+=tu;
-				g_hi_util_h+=(double)(t.c_h)/t.period;;
+				g_hi_util_l+=(double)(t.c_l)/t.period;
+				g_hi_util_h+=tu;
 			} else {
 				g_lo_util+=tu;
 				

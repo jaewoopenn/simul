@@ -28,7 +28,7 @@ public class SimGen1 {
 			return 0;
 		SimGen eg=new SimGen(cfg);
 		int tot=eg.size();
-		int sum=eg.load();
+		int sum=eg.load(1);
 		Log.prn(2, "suc:"+sum+"/"+tot);
 		if(total==sum)
 			return 1;
@@ -40,7 +40,7 @@ public class SimGen1 {
 		if (cfg.readFile("config/cfg1.txt")==0)
 			return 0;
 		SimGen eg=new SimGen(cfg);
-		int ret=eg.load(99);
+		int ret=eg.load(99,1);
 		Log.prn(2, "ret:"+ret);
 		return ret;
 	}
@@ -69,14 +69,14 @@ public class SimGen1 {
 	public  int test6() // 
 	{
 		ConfigGen cfg;
-		FUtil fu=new FUtil("rs/sim1.txt");
+		FUtil fu=new FUtil("rs/sim2.txt");
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen();
 			if (cfg.readFile("cfg/cfg_"+i+".txt")==0)
 				return 0;
 			SimGen eg=new SimGen(cfg);
 			int tot=eg.size();
-			int sum=eg.load();
+			int sum=eg.load(0);
 			double suc=sum*1.0/tot;
 			Log.prn(2, "util:"+(i*10+10)+"%, suc:"+suc);
 			fu.print(suc+"");
