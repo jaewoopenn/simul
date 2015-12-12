@@ -13,5 +13,6 @@ if __name__ == '__main__':
     plt.plot(x,v1)
     plt.plot(x,v2)
     plt.ylim(0,5)
+    print "hihi"
     plt.show()
     
