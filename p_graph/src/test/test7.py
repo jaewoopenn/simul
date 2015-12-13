@@ -8,7 +8,6 @@ from numpy.core.multiarray import empty
 class gl:
     x=[55,60,65,70,75,80,85,90,95,100]
     vv=[]
-    pass
 
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
