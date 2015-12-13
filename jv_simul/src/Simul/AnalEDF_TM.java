@@ -2,7 +2,7 @@ package Simul;
 
 import Util.Log;
 
-public class AnalEDF_VD extends Anal {
+public class AnalEDF_TM extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
@@ -21,8 +21,15 @@ public class AnalEDF_VD extends Anal {
 	
 	@Override
 	public boolean isScheduable() {
-		if (hitasks_hiutil>1) return false;
-		double dtm=lotasks_loutil+hitasks_loutil/glo_x;
+		double dtm=lotasks_loutil;
+		for(int i=0;i<tm.size();i++){
+			Task t=tm.getTask(i);
+			if (!t.is_HI)
+				continue;
+			double add=t.c_l*1.0/t.period/glo_x;
+			double h_util=t.c_h*1.0/t.period;
+			dtm+=Math.min(add,h_util);
+		}
 		Log.prn(1,"det:"+dtm);
 		if (dtm <=1) {
 			//Log.prn(1, "Sch OK");

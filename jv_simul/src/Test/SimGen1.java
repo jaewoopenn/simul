@@ -72,7 +72,8 @@ public class SimGen1 {
 	}
 	public  int test7()
 	{
-		for(int i=0;i<2;i++)
+//		test5();
+		for(int i=0;i<3;i++)
 		{
 			anal(i);
 		}

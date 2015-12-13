@@ -24,7 +24,7 @@ def iter(n):
         gl.vv.append(v)
 
 def main():
-    iter(2)
+    iter(3)
     for v in gl.vv:
         mp.plot(gl.x,v)
     mp.xlim(55,100)

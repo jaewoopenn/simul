@@ -20,6 +20,12 @@ public class Analysis {
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
 	}
+	public static int analEDF_TM(TaskMng mng) {
+		AnalEDF_TM a=new AnalEDF_TM();
+		a.init(mng);
+		a.prepare();
+		return MUtil.btoi(a.isScheduable());
+	}
 
 
 

@@ -6,30 +6,31 @@ import Simul.Analysis;
 import Simul.TaskGen;
 import Simul.TaskMng;
 
-public class Analysis1 {
+public class Analysis2 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={1,0,1,1,1,1,0,0,0,0};
 
-	public int test1() // less 1
+	public int test1() // EDF-VD
 	{
 		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
+		tm.addTask(8,3);
+		tm.addHiTask(12,2,8);
+		tm.addHiTask(40,4,5);
 		tm.freezeTasks();
-		return Analysis.analEDF(tm);
+		return Analysis.analEDF_VD(tm); // det:0.855
 	}
 
-	public int test2() // over 1
+	public int test2() // EDF-TM det:0.802
 	{
 		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
-		tm.addTask(4,1);
+		tm.addTask(8,3);
+		tm.addHiTask(12,2,8);
+		tm.addHiTask(40,4,5);
 		tm.freezeTasks();
-		return Analysis.analEDF(tm);
+		return Analysis.analEDF_TM(tm);
 	}
 
 	public int test3() // exact 1
@@ -63,12 +64,7 @@ public class Analysis1 {
 	
 	public  int test6()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
-		tm.addHiTask(6,1,5);
-		tm.addHiTask(40,10,11);
-		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return -1;
 	}
 	
 	public  int test7()
@@ -91,10 +87,10 @@ public class Analysis1 {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Class c = Analysis1.class;
-		Analysis1 m=new Analysis1();
-		int[] aret=Analysis1.gret;
-		int sz=Analysis1.total;
+		Class c = Analysis2.class;
+		Analysis2 m=new Analysis2();
+		int[] aret=Analysis2.gret;
+		int sz=Analysis2.total;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else

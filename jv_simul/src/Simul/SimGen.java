@@ -65,6 +65,8 @@ public class SimGen {
 		//System.out.format("task set %d MC util: %.3f\n" ,i,util);
 		if(anal==1)
 			return Analysis.analEDF_VD(tm);
+		else if(anal==2)
+			return Analysis.analEDF_TM(tm);
 		else
 			return Analysis.analEDF(tm);
 	}
