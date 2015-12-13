@@ -8,7 +8,7 @@ import Simul.SimGen;
 public class SimGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=7;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
@@ -68,25 +68,34 @@ public class SimGen1 {
 	}
 	public  int test6() // 
 	{
+		return anal(1);
+	}
+	public  int test7()
+	{
+		for(int i=0;i<2;i++)
+		{
+			anal(i);
+		}
+		return 0;
+	}
+	public int anal(int no)
+	{
 		ConfigGen cfg;
-		FUtil fu=new FUtil("rs/sim2.txt");
+		FUtil fu=new FUtil("rs/sim"+no+".txt");
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen();
 			if (cfg.readFile("cfg/cfg_"+i+".txt")==0)
 				return 0;
 			SimGen eg=new SimGen(cfg);
 			int tot=eg.size();
-			int sum=eg.load(0);
+			int sum=eg.load(no);
 			double suc=sum*1.0/tot;
 			Log.prn(2, "util:"+(i*10+10)+"%, suc:"+suc);
 			fu.print(suc+"");
 		}
 		fu.end();
 		return 1;
-	}
-	public  int test7()
-	{
-		return 0;
+		
 	}
 	public  int test8()
 	{

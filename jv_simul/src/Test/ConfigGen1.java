@@ -6,7 +6,7 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=5;
+	public static int idx=6;
 	public static int total=10;
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
@@ -48,10 +48,11 @@ public class ConfigGen1 {
 	{
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "util");
+		eg.setParam("num","100");
 		for(int i=0;i<10;i++){
-			eg.setParam("u_lb", (i*10+5)*1.0/100+"");
-			eg.setParam("u_ub", (i*10+10)*1.0/100+"");
-			eg.setParam("mod", (i*10+10)+"");
+			eg.setParam("u_lb", (i*5+50)*1.0/100+"");
+			eg.setParam("u_ub", (i*5+55)*1.0/100+"");
+			eg.setParam("mod", (i*5+55)+"");
 			eg.write("cfg/cfg_"+i+".txt");
 		}
 		return 1;
@@ -76,11 +77,11 @@ public class ConfigGen1 {
 		ConfigGen eg=new ConfigGen();
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
-		eg.setParam("p_lb","20");
-		eg.setParam("p_ub","300");
+		eg.setParam("p_lb","300");
+		eg.setParam("p_ub","5000");
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
-		eg.setParam("r_lb","0.2");
+		eg.setParam("r_lb","0.01");
 		eg.setParam("r_ub","1.0");
 		eg.setParam("prob_hi","0.5");
 		eg.setParam("num","10");
