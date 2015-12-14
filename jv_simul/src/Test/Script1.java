@@ -19,6 +19,7 @@ public class Script1 {
 	{
 		Script s=new Script();
 		s.load("scr/test.txt");
+		s.exec();
 		return 1;
 	}
 	public int test3() 

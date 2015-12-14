@@ -62,5 +62,8 @@ public class FUtil {
 		}
 		
 	}
+	public Vector<String> getVec() {
+		return g_v;
+	}
 
 }

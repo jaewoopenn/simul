@@ -6,7 +6,7 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=7;
 	public static int total=10;
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
@@ -48,7 +48,7 @@ public class ConfigGen1 {
 	{
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "util");
-		eg.setParam("num","300");
+		eg.setParam("num","10");
 		for(int i=0;i<10;i++){
 			eg.setParam("u_lb", (i*5+50)*1.0/100+"");
 			eg.setParam("u_ub", (i*5+55)*1.0/100+"");
@@ -59,6 +59,10 @@ public class ConfigGen1 {
 	}
 	public  int test7()
 	{
+		ConfigGen eg=getCfg();
+		eg.setParam("subfix", "util");
+		eg.setParam("num","10");
+		eg.genRange(50,5,10);
 		return 0;
 	}
 	public  int test8()
