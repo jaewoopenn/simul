@@ -22,19 +22,11 @@ public class TaskMng {
 	
 	
 	public void addTask(int p, int e) {
-		if(!g_bAdd) {
-			System.out.println("Err:task set is finalized");
-			return;
-		}
 		g_taskV.add(new Task(g_size,p,e));
 		g_size++;
 	}
 	
 	public void addHiTask(int p, int c_l, int c_h) {
-		if(!g_bAdd) {
-			System.out.println("Err:task set is finalized");
-			return;
-		}
 		g_taskV.add(new Task(g_size,p,c_l,c_h));
 		g_size++;
 	}
@@ -75,14 +67,26 @@ public class TaskMng {
 		this.x=x;
 	}
 	public void setVD(int i, double vd){
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return;
+		}
 		g_tasks[i].vd=vd;
 	}
 
 	public int getPt(int i) {
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return -1;
+		}
 		return g_tasks[i].period;
 	}
 	
 	public int[] getPeriods() {
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return null;
+		}
 		int[] plst=new int[g_size];
 		for(int i=0;i<g_size;i++)
 		{
@@ -93,11 +97,15 @@ public class TaskMng {
 	}
 
 	public Task getTask(int i) {
+
 		return g_tasks[i];
 	}
 
 	public void prn() {
-		
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return;
+		}
 		for(int i=0;i<g_size;i++)
 		{
 			Task t=g_tasks[i];
@@ -114,9 +122,17 @@ public class TaskMng {
 
 
 	public double getUtil(){
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return -1;
+		}
 		return g_util;
 	}
 	public double getMCUtil(){
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return -1;
+		}
 		return Math.max(g_lo_util+g_hi_util_l, g_hi_util_h);
 	}
 

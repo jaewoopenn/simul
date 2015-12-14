@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Vector;
 
 import Exp.Platform;
 import Util.FUtil;
@@ -20,30 +21,19 @@ public class ConfigGen {
 		param=new HashMap<String,String>();
 	}
 	public int readFile(String f) {
-	    File file = new File("/Users/jaewoo/data/"+f);
-	    FileReader fr;
-
-		try {
-			fr = new FileReader(file);
-		    BufferedReader br = new BufferedReader(fr);
-		    String line;
-		    while((line = br.readLine()) != null){
-	            String[] words=line.split(":");
-	            if(words.length<2) 
-	            	continue;
-	            
-	            if(!setParam(words[0],words[1])) {
-	            	System.out.println("Err: loading field ("+words[0]+") is not defined");
-	    		    br.close();
-	            	return 0;
-	            }
-		    }
-		    br.close();
-		    fr.close();		
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 0;
+	    Vector<Task> g_tasks=new Vector<Task>();
+	    FUtil fu=new FUtil(f);
+	    fu.load();
+	    for(int i=0;i<fu.size();i++){
+	    	String line=fu.get(i);
+            String[] words=line.split(":");
+            if(words.length<2) 
+            	continue;
+            
+            if(!setParam(words[0],words[1])) {
+            	System.out.println("Err: loading field ("+words[0]+") is not defined");
+            	return 0;
+            }
 		}
 		for (String s:g_predefined){
 			if(readPar(s)==null){

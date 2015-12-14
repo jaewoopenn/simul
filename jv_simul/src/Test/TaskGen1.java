@@ -8,8 +8,8 @@ import Util.TEngine;
 
 public class TaskGen1 {
 	public static int log_level=1;
-	public static int idx=-1;
-//	public static int idx=5;
+//	public static int idx=-1;
+	public static int idx=5;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
@@ -71,6 +71,7 @@ public class TaskGen1 {
 		int tg_size=tg.size();
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
+		tm.freezeTasks();
 		tm.prn();
 		int tm_size=tm.size();
 		if(tg_size!=tm_size){

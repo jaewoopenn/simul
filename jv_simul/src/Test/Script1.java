@@ -1,33 +1,23 @@
 package Test;
 
-import Util.FUtil;
-import Util.Log;
+import Simul.Script;
 import Util.TEngine;
 
-public class FUtil1 {
+public class Script1 {
 	public static int log_level=1;
-//	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=-1;
+//	public static int idx=1;
 	public static int total=10;
-	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
-		FUtil fu=new FUtil("test.txt");
-		fu.print("hihi");
-		fu.print("hihi!!");
-		fu.print("hihi!11s!");
-		fu.end();
-		
-		return 1;
+		Script s=new Script();
+		s.load("scr/test.txt");
+		return 0;
 	}
 	public int test2() 
 	{
-		FUtil fu=new FUtil("test.txt");
-		fu.load();
-		int no=fu.size();
-		for(int i=0;i<no;i++)
-			Log.prn(1, fu.get(i));
-		return 1;
+		return 0;
 	}
 	public int test3() 
 	{
@@ -62,10 +52,10 @@ public class FUtil1 {
 		return 0;
 	}
 	public static void main(String[] args) throws Exception {
-		Class c = FUtil1.class;
-		FUtil1 m=new FUtil1();
-		int[] aret=FUtil1.gret;
-		int sz=FUtil1.total;
+		Class c = Script1.class;
+		Script1 m=new Script1();
+		int[] aret=Script1.gret;
+		int sz=Script1.total;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
