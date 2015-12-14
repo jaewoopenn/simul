@@ -5,19 +5,21 @@ import Util.TEngine;
 
 public class Script1 {
 	public static int log_level=1;
-	public static int idx=-1;
-//	public static int idx=1;
+//	public static int idx=-1;
+	public static int idx=2;
 	public static int total=10;
-	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
 		Script s=new Script();
-		s.load("scr/test.txt");
-		return 0;
+		s.test();
+		return 1;
 	}
 	public int test2() 
 	{
-		return 0;
+		Script s=new Script();
+		s.load("scr/test.txt");
+		return 1;
 	}
 	public int test3() 
 	{

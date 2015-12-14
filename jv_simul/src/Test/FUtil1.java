@@ -16,7 +16,7 @@ public class FUtil1 {
 		fu.print("hihi");
 		fu.print("hihi!!");
 		fu.print("hihi!11s!");
-		fu.end();
+		fu.save();
 		
 		return 1;
 	}

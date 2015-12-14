@@ -11,7 +11,14 @@ public class Script {
 	}
 	public void load(String fn) {
 		FUtil fu=new FUtil(fn);
-		
+		fu.load();
+		fu.prn();
+	}
+	public void test() {
+		FUtil fu=new FUtil("scr/test.txt");
+		fu.print("load ad.c");
+		fu.print("run 100");
+		fu.save();
 	}
 
 

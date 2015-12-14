@@ -20,7 +20,7 @@ public class TaskGenFile {
 			String txt=t.tid+","+t.period+","+t.c_l+","+t.c_h+","+isHI;
 			fu.print(txt);
 		}
-		fu.end();
+		fu.save();
 	}
 
 

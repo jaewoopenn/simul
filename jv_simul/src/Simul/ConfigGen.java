@@ -80,7 +80,7 @@ public class ConfigGen {
 			String txt=s+":"+v;
 			fu.print(txt);
 		}
-		fu.end();
+		fu.save();
 		
 	}
 

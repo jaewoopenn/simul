@@ -94,7 +94,7 @@ public class SimGen1 {
 			Log.prn(2, "util:"+(i*10+10)+"%, suc:"+suc);
 			fu.print(suc+"");
 		}
-		fu.end();
+		fu.save();
 		return 1;
 		
 	}

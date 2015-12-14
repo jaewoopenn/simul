@@ -25,7 +25,7 @@ public class FUtil {
 	public void print(String txt){
 		g_v.add(txt);
 	}
-	public void end()
+	public void save()
 	{
 		PrintWriter writer;
 		try {
@@ -55,6 +55,12 @@ public class FUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void prn() {
+		for(String s:g_v){
+			Log.prn(1, s);
+		}
+		
 	}
 
 }
