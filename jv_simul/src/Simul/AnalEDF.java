@@ -17,6 +17,25 @@ public class AnalEDF extends Anal {
 		return false;
 	}
 
+	public int getResp() {
+		double old=0;
+		double v=0;
+		while(true)
+		{
+			v=0;
+			for(int i=0;i<tm.size();i++){
+				Task t=tm.getTask(i);
+				v+=Math.ceil((old+1)/t.period)*t.c_h;
+//				Log.prn(1, "v,"+i+":"+v);
+			}
+//			Log.prn(1, "v:"+v);
+			if(v==old) break;
+			if(v>g_limit) break;
+			old=v;
+		}
+		return (int)v;
+	}
+
 
 
 

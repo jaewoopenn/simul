@@ -8,7 +8,7 @@ import Simul.SimGen;
 public class SimGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=7;
+	public static int idx=8;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
@@ -100,6 +100,15 @@ public class SimGen1 {
 	}
 	public  int test8()
 	{
+		ConfigGen cfg=new ConfigGen();
+		if (cfg.readFile("config/cfg1.txt")==0)
+			return 0;
+		SimGen eg=new SimGen(cfg);
+		eg.load2(5);
+//		for(int i=3;i<6;i++){
+//			Log.prn(2, "i---:"+i);
+//			eg.load2(i);
+//		}
 		return 0;
 	}
 	public  int test9()
