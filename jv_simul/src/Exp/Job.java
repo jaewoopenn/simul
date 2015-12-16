@@ -18,7 +18,16 @@ public class Job implements Comparable{
 		this.add_exec=0;
 		this.isHI=false;
 	}
-	
+
+	public Job(int tid,int dl, int exec,int add) {
+		this.tid=tid;
+		this.dl = dl;
+		this.vd = dl;
+		this.exec = exec;
+		this.add_exec=add;
+		this.isHI=true;
+	}
+
 	@Override
 	public int compareTo(Object o) {
 		double o_vd = ((Job)o).vd;  

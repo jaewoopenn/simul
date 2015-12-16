@@ -11,6 +11,7 @@ public class Task {
 	public Task(int tid,int period, int c_l) {
 		this.tid=tid;
 		this.period = period;
+		this.vd = period;
 		this.c_l = c_l;
 		this.c_h = c_l;
 		this.is_HI=false;
@@ -19,6 +20,7 @@ public class Task {
 	public Task(int tid,int period, int c_l, int c_h) {
 		this.tid=tid;
 		this.period = period;
+		this.vd = period;
 		this.c_l = c_l;
 		this.c_h = c_h;
 		this.is_HI=true;

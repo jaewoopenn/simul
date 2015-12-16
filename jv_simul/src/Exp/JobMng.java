@@ -19,6 +19,10 @@ public class JobMng {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
+	public void insertJob(int tid, int dl, int et, int add) {
+		Job j=new Job(tid,dl,et,add);
+		jobs.add(j);
+	}
 	public boolean dlCheck(int cur_t){
 		Job j=getCur();
 		if(j==null) return true;
@@ -90,14 +94,8 @@ public class JobMng {
 			Log.prn(1,"empty");
 			return;
 		}
-		Vector<Job> v=new Vector<Job>();
-		for(int i=0;i<sz;i++){
-			Job j=pollCur();
+		for(Job j:jobs){
 			Log.prn(1,"tid:"+j.tid+" dl:"+j.dl+", exec:"+j.exec);
-			v.add(j);
-		}
-		for(Job j:v){
-			insert(j);
 		}
 	}
 	public int endCheck(int et) {
@@ -107,6 +105,13 @@ public class JobMng {
 			}
 		}
 		return 1;
+	}
+	public void modeswitch() {
+		for(Job j:jobs){
+			j.exec=j.exec+j.add_exec;
+			j.add_exec=0;
+		}
+		
 	}
 
 }
