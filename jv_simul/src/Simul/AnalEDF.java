@@ -17,6 +17,7 @@ public class AnalEDF extends Anal {
 		return false;
 	}
 
+	@Override
 	public int getResp() {
 		double old=0;
 		double v=0;
@@ -34,6 +35,11 @@ public class AnalEDF extends Anal {
 			old=v;
 		}
 		return (int)v;
+	}
+
+	@Override
+	public double getDropRate(double prob_hi) {
+		return 0;
 	}
 
 

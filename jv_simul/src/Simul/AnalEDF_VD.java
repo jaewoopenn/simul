@@ -15,8 +15,8 @@ public class AnalEDF_VD extends Anal {
 		hitasks_hiutil=tm.getHiUtil_h();
 		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
 		glo_x=Math.min(1, cal_x);
-//		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
-//		Log.prn(1, "x:"+glo_x);
+		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
+		Log.prn(1, "x:"+glo_x);
 	}
 	
 	@Override
@@ -31,6 +31,7 @@ public class AnalEDF_VD extends Anal {
 		return false;
 	}
 
+	@Override
 	public int getResp() {
 		double old=0;
 		double v=0;
@@ -52,6 +53,13 @@ public class AnalEDF_VD extends Anal {
 	}
 
 
+	@Override
+	public double getDropRate(double prob_hi) {
+		int size=tm.hi_size();
+		double v=1-Math.pow(1-prob_hi,size);
+		//Log.prn(1, v+" "+Math.pow(1-prob_hi,size)+" "+size);
+		return v;
+	}
 
 
 }

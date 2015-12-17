@@ -1,6 +1,7 @@
 package Simul;
 
 import Util.Log;
+import Util.MUtil;
 
 public class AnalEDF_TM extends Anal {
 	private double lotasks_loutil;
@@ -38,6 +39,7 @@ public class AnalEDF_TM extends Anal {
 		return false;
 	}
 
+	@Override
 	public int getResp() {
 		int maxV=0;
 		for(int i=0;i<tm.size();i++){
@@ -45,6 +47,41 @@ public class AnalEDF_TM extends Anal {
 			maxV=Math.max(maxV,t.period);
 		}
 		return maxV;
+	}
+
+	@Override
+	public double getDropRate(double prob_hi) {
+		int hi_size=tm.hi_size();
+		int lim=(int)Math.pow(2,hi_size);
+		for(int i=0;i<lim;i++){
+			double u=0;
+			for(int j=0;j<hi_size;j++){
+				int v=(i&(1<<j))>>j;
+				Task t=tm.getHiTask(j);
+				if (v==0){
+					u+=t.c_l*1.0/t.period/glo_x;
+					Log.prnc(1, "- ");
+				} else {
+					u+=t.c_h*1.0/t.period;
+					Log.prnc(1, "+ ");
+				}
+			}
+			double ul=0;
+			double ud=0;
+			for(int j=0;j<tm.size();j++){
+				Task t=tm.getTask(j);
+				if(t.is_HI) 
+					continue;
+				double add=t.c_l*1.0/t.period;
+				if (ul+add<=1-u+MUtil.err)
+					ul+=add;
+				else
+					ud+=add;
+			}
+			Log.prn(1, u+" "+ul+" "+ud);
+		}
+		
+		return 0;
 	}
 
 
