@@ -13,7 +13,7 @@ public class TaskMng {
 	private double g_lo_util;
 	private double g_hi_util_l;
 	private double g_hi_util_h;
-	private double x;
+	private double g_x=1;
 	public TaskMng() {
 		g_taskV=new Vector<Task>();
 		g_size=0;
@@ -40,9 +40,10 @@ public class TaskMng {
 		g_bAdd=false;
 		g_tasks=new Task[g_size];
 		g_taskV.toArray(g_tasks);
-		for(int i=0;i<g_size;i++)
+		for(Task t:g_tasks)
 		{
-			Task t=g_tasks[i];
+			if (t.is_HI)
+				t.setVD(t.period*g_x);
 			double tu=(double)(t.c_h)/t.period;
 			g_util+=tu;
 			if(t.is_HI){
@@ -63,8 +64,9 @@ public class TaskMng {
 	}
 
 	// get set
-	public void setX(int x){
-		this.x=x;
+	public void setX(double x){
+		this.g_x=x;
+//		Log.prn(1, "x:"+x);
 	}
 	public void setVD(int i, double vd){
 		if(g_bAdd) {

@@ -19,8 +19,8 @@ public class JobMng {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
-	public void insertJob(int tid, int dl, int et, int add) {
-		Job j=new Job(tid,dl,et,add);
+	public void insertJob(int tid,double vd, int dl, int et, int add) {
+		Job j=new Job(tid,vd,dl,et,add);
 		jobs.add(j);
 	}
 	public boolean dlCheck(int cur_t){

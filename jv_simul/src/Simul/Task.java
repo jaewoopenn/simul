@@ -27,6 +27,7 @@ public class Task {
 	}
 
 	public void setVD(double vd){
+//		System.out.println("tid:"+tid+" vd:"+vd);
 		this.vd=vd;
 	}
 	public void prn() {

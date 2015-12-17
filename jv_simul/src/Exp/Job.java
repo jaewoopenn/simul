@@ -4,25 +4,25 @@ import Util.Log;
 
 public class Job implements Comparable{
 	public int tid;
-	public int dl;
 	public double vd;
+	public int dl;
 	public int exec;
 	public int add_exec;
 	public boolean isHI;
 
 	public Job(int tid,int dl, int exec) {
 		this.tid=tid;
-		this.dl = dl;
 		this.vd = dl;
+		this.dl = dl;
 		this.exec = exec;
 		this.add_exec=0;
 		this.isHI=false;
 	}
 
-	public Job(int tid,int dl, int exec,int add) {
+	public Job(int tid,double vd, int dl, int exec,int add) {
 		this.tid=tid;
+		this.vd = vd;
 		this.dl = dl;
-		this.vd = dl;
 		this.exec = exec;
 		this.add_exec=add;
 		this.isHI=true;

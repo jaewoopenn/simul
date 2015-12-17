@@ -6,7 +6,7 @@ import Exp.Platform;
 
 public class Platform3 {
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=5;
 	public static int total=10;
 	public static int gret[]={0,0,0,0,0, 1,0,1,1,1};
 	
@@ -33,17 +33,28 @@ public class Platform3 {
 		p.addHiTask(6,1,5);
 		p.addTask(4,2);
 		p.setMS(2);
+		p.setX(0.5);
 		return 	p.post(12);
 	}
 
-	public  int test4()
+	public  int test4() // hi-mode
 	{
-		return 0;
+		Platform p=new Platform();
+		p.addHiTask(6,1,5);
+		p.addTask(4,2);
+		p.setMS(0);
+		p.setX(0.5);
+		return 	p.post(12);
 	}
 
-	public  int test5()
+	public  int test5() // lo-mode
 	{
-		return 0;
+		Platform p=new Platform();
+		p.addHiTask(6,1,5);
+		p.addTask(4,2);
+//		p.setMS(0);
+		p.setX(0.5);
+		return 	p.post(12);
 	}
 	
 	public  int test6()

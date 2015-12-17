@@ -12,7 +12,7 @@ public class Platform {
 	int cur_t;
 	int[] plst;
 	int g_mode=0;
-	int g_ms;
+	int g_ms=-1;
 	public Platform(){
 		tm=new TaskMng();
 		
@@ -46,7 +46,7 @@ public class Platform {
 		while(cur_t<et){
 			bSuc=jm.dlCheck(cur_t);
 			if(!bSuc) return 0;
-			if(g_mode==0&&cur_t>=g_ms){
+			if(g_ms!=-1&&g_mode==0&&cur_t>=g_ms){
 				Log.prn(1,"mode-switch");
 				g_mode=1;
 				jm.modeswitch();
@@ -75,9 +75,9 @@ public class Platform {
 //			Log.prn(2, "p:"+tsk.period+" e:"+tsk.exec);
 			if(g_mode==0){
 				if(tsk.is_HI){
-					jm.insertJob(tsk.tid,cur_t+(int)tsk.vd,tsk.c_l, tsk.c_h-tsk.c_l);
+					jm.insertJob(tsk.tid,cur_t+tsk.vd,cur_t+tsk.period,tsk.c_l, tsk.c_h-tsk.c_l);
 				} else {
-					jm.insertJob(tsk.tid,cur_t+(int)tsk.vd,tsk.c_l);
+					jm.insertJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
 				}
 				Log.prnc(1,"+");
 			} else {
@@ -94,6 +94,10 @@ public class Platform {
 	}
 	public void setMS(int t) {
 		g_ms=t;
+	}
+	public void setX(double x) {
+		tm.setX(x);
+		
 	}
 
 
