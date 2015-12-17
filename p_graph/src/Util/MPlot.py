@@ -16,3 +16,5 @@ def ylim(l,u):
     plt.ylim(l,u)
 def show():
     plt.show()
+def log():
+    plt.yscale('log')

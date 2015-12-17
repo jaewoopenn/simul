@@ -31,20 +31,22 @@ public class Analysis {
 		a.init(mng);
 		return a.getResp();
 	}
-	public static int getDrop_EDF_VD(TaskMng mng,double prob_hi) {
+	public static double getDrop_EDF_VD(TaskMng mng,double prob_hi) {
 		if(checkErr(mng)) return -1;
 		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(mng);
-		Log.prn(1, "drop:"+a.getDropRate(prob_hi));
-		return 1;
+		double drop=a.getDropRate(prob_hi);
+		Log.prn(1, "prob_hi:"+prob_hi+" drop:"+drop);
+		return drop;
 	}
-	public static int getDrop_EDF_TM(TaskMng mng,double prob_hi) {
+	public static double getDrop_EDF_TM(TaskMng mng,double prob_hi) {
 		if(checkErr(mng)) return -1;
 		AnalEDF_TM a=new AnalEDF_TM();
 		a.init(mng);
 		a.prepare();
-		Log.prn(1, "drop:"+a.getDropRate(prob_hi));
-		return 1;
+		double drop=a.getDropRate(prob_hi);
+		Log.prn(1, "prob_hi:"+prob_hi+" drop:"+drop);
+		return drop;
 	}
 
 	

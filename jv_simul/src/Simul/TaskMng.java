@@ -12,6 +12,7 @@ public class TaskMng {
 	private Task[] g_hi_tasks;
 	private int g_size=0;
 	private int g_hi_size=0;
+	private int g_lo_size=0;
 	private double g_util;
 	private double g_lo_util;
 	private double g_hi_util_l;
@@ -26,26 +27,37 @@ public class TaskMng {
 	
 	public void addTask(int p, int e) {
 		g_taskV.add(new Task(g_size,p,e));
-		g_size++;
 	}
 	
 	public void addHiTask(int p, int c_l, int c_h) {
 		Task t=new Task(g_size,p,c_l,c_h);
 		g_taskV.add(t);
 		g_hi_taskV.add(t);
-		g_size++;
-		g_hi_size++;
+	}
+	public void setTasks(Vector<Task> all) {
+		g_taskV=all;
+		g_hi_taskV=new Vector<Task>();
+		for(Task t:all){
+			if(t.is_HI)
+				g_hi_taskV.add(t);
+		}
 	}
 	
 	public void freezeTasks()
 	{
+		if(!g_bAdd){
+			Log.prnc(1, "already freezed");
+		}
 		g_util=0;
 		g_lo_util=0;
 		g_hi_util_l=0;
 		g_hi_util_h=0;
+		g_lo_size=0;		
 		g_bAdd=false;
+		g_size=g_taskV.size();
 		g_tasks=new Task[g_size];
 		g_taskV.toArray(g_tasks);
+		g_hi_size=g_hi_taskV.size();
 		g_hi_tasks=new Task[g_hi_size];
 		g_hi_taskV.toArray(g_hi_tasks);
 		for(Task t:g_tasks)
@@ -59,7 +71,7 @@ public class TaskMng {
 				g_hi_util_h+=tu;
 			} else {
 				g_lo_util+=tu;
-				
+				g_lo_size++;
 			}
 			
 		}
@@ -72,6 +84,9 @@ public class TaskMng {
 	}
 	public int hi_size() {
 		return g_hi_size;
+	}
+	public int lo_size() {
+		return g_lo_size;
 	}
 
 	// get set
@@ -131,10 +146,6 @@ public class TaskMng {
 		
 	}
 
-	public void setTasks(Vector<Task> all) {
-		g_taskV=all;
-		g_size=all.size();
-	}
 
 
 	public double getUtil(){
@@ -162,6 +173,8 @@ public class TaskMng {
 	public double getHiUtil_h() {
 		return g_hi_util_h;
 	}
+
+
 
 
 

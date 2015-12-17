@@ -49,39 +49,60 @@ public class AnalEDF_TM extends Anal {
 		return maxV;
 	}
 
+	private int getNum(double u){
+		double ul=0;
+		double ud=0;
+		int num=0;
+		for(int j=0;j<tm.size();j++){
+			Task t=tm.getTask(j);
+			if(t.is_HI) 
+				continue;
+			double add=t.c_l*1.0/t.period;
+			if (ul+add<=1-u+MUtil.err) {
+				ul+=add;
+			} else {
+				ud+=add;
+				num++;
+			}
+		}
+		return num;
+		
+	}
+	
+	private double getHUtil(int i,double prob_hi){
+		int hi_size=tm.hi_size();
+		double u=0;
+		double prob=1;
+		for(int j=0;j<hi_size;j++){
+			int v=(i&(1<<j))>>j;
+			Task t=tm.getHiTask(j);
+			if (v==0){
+				u+=t.c_l*1.0/t.period/glo_x;
+				Log.prnc(1, "- ");
+				prob=prob*(1-prob_hi);
+			} else {
+				u+=t.c_h*1.0/t.period;
+				Log.prnc(1, "+ ");
+				prob=prob*(prob_hi);
+			}
+		}
+		int num=getNum(u);
+//		if(num>=1) 	num=tm.lo_size();    // test for EDF-VD
+		double sum_prob=num*prob;
+		Log.prn(1, u+" "+num+" "+prob+" "+sum_prob);
+		return sum_prob;
+	}
+	
 	@Override
 	public double getDropRate(double prob_hi) {
 		int hi_size=tm.hi_size();
 		int lim=(int)Math.pow(2,hi_size);
+		double sum_prob=0;
 		for(int i=0;i<lim;i++){
-			double u=0;
-			for(int j=0;j<hi_size;j++){
-				int v=(i&(1<<j))>>j;
-				Task t=tm.getHiTask(j);
-				if (v==0){
-					u+=t.c_l*1.0/t.period/glo_x;
-					Log.prnc(1, "- ");
-				} else {
-					u+=t.c_h*1.0/t.period;
-					Log.prnc(1, "+ ");
-				}
-			}
-			double ul=0;
-			double ud=0;
-			for(int j=0;j<tm.size();j++){
-				Task t=tm.getTask(j);
-				if(t.is_HI) 
-					continue;
-				double add=t.c_l*1.0/t.period;
-				if (ul+add<=1-u+MUtil.err)
-					ul+=add;
-				else
-					ud+=add;
-			}
-			Log.prn(1, u+" "+ul+" "+ud);
+			sum_prob+=getHUtil(i,prob_hi);
 		}
-		
-		return 0;
+		int num=tm.lo_size();
+		return sum_prob/num;
 	}
 
 

@@ -42,7 +42,8 @@ public class SimGen {
 		int sum=0;
 		
 		for(int i=0;i<num;i++){
-			sum+=load(i,anal);
+			TaskMng tm=load_one(i);
+			sum+=process(tm,anal);
 		}
 		return sum;	
 	}
@@ -51,13 +52,28 @@ public class SimGen {
 		int v=0;
 		
 		for(int i=0;i<num;i++){
-			v=load(i,anal);
-			//Log.prn(2, "v:"+v);
+			TaskMng tm=load_one(i);
+			v=process(tm,anal);
+			Log.prn(2, "v:"+v);
 		}
 		return 0;	
 	}
+	
+	public double load3(int anal) {
+		int num=g_cfg.readInt("num");
+		double v=0;
+		
+		for(int i=0;i<num;i++){
+			TaskMng tm=load_one(i);
+			v+=process2(tm,anal);
+			Log.prn(1, "v:"+v);
+		}
+		return v/num;	
+	}
 
-	public int load(int i,int anal){
+	
+	
+	public TaskMng load_one(int i){
 		TaskGen tg=new TaskGen();
 		tg.setFlagMC(true);
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
@@ -67,13 +83,18 @@ public class SimGen {
 		tg.loadFile(fn);
 		if(tg.check()==0){
 			Log.prn(1, "err "+i);
-			return 0;
+			return null;
 		}
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
 		tm.freezeTasks();
+		return tm;
+	}
+	
+	public int process(TaskMng tm, int anal) {
 		double util=tm.getMCUtil();
-		//System.out.format("task set %d MC util: %.3f\n" ,i,util);
+//		System.out.format("task set %d MC util: %.3f\n" ,i,util);
+		double v;
 		switch(anal)
 		{
 		case 0:
@@ -88,11 +109,23 @@ public class SimGen {
 			return Analysis.getRespEDF_VD(tm);
 		case 5:
 			return Analysis.getRespEDF_TM(tm);
-
+		default:
+			Log.prn(2,"anal ID check");
+		}
+		return -1;
+	}
+	public double process2(TaskMng tm, int anal) {
+		switch(anal)
+		{
+		case 6:
+			return Analysis.getDrop_EDF_VD(tm,0.05);
+		case 7:
+			return Analysis.getDrop_EDF_TM(tm,0.05);
 		default:
 			Log.prn(2,"anal ID check");
 		}
 		return -1;
 	}
 
+	
 }
