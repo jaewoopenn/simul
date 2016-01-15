@@ -104,8 +104,4 @@ public class AnalEDF_TM extends Anal {
 		int num=tm.lo_size();
 		return sum_prob/num;
 	}
-
-
-
-
 }
