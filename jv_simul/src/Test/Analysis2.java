@@ -104,7 +104,8 @@ public class Analysis2 {
 	{
 		return 0;
 	}
-
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Analysis2.class;
 		Analysis2 m=new Analysis2();

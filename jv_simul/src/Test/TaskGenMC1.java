@@ -103,6 +103,8 @@ public class TaskGenMC1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = TaskGenMC1.class;
 		TaskGenMC1 m=new TaskGenMC1();

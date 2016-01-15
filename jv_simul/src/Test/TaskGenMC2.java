@@ -70,6 +70,8 @@ public class TaskGenMC2 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = TaskGenMC2.class;
 		TaskGenMC2 m=new TaskGenMC2();

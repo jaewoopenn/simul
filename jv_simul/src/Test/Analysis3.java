@@ -77,6 +77,7 @@ public class Analysis3 {
 		return 0;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Analysis3.class;
 		Analysis3 m=new Analysis3();

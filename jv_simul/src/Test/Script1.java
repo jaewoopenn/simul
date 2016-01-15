@@ -54,6 +54,8 @@ public class Script1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Script1.class;
 		Script1 m=new Script1();
