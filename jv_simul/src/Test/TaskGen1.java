@@ -112,6 +112,8 @@ public class TaskGen1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = TaskGen1.class;
 		TaskGen1 m=new TaskGen1();

@@ -56,6 +56,8 @@ public class Task1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Task1.class;
 		Task1 m=new Task1();

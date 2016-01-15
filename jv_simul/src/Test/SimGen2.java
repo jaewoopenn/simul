@@ -115,6 +115,8 @@ public class SimGen2 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = SimGen2.class;
 		SimGen2 m=new SimGen2();

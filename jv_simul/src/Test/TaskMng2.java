@@ -70,6 +70,7 @@ public class TaskMng2 {
 		return -1;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = TaskMng2.class;
 		TaskMng2 m=new TaskMng2();
