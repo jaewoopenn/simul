@@ -1,10 +1,7 @@
 package Test;
 
-import Util.Log;
 import Util.TEngine;
-import Exp.Platform;
 import Simul.Analysis;
-import Simul.TaskGen;
 import Simul.TaskMng;
 
 public class Analysis3 {

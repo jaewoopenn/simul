@@ -70,6 +70,8 @@ public class ExpGen1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = ExpGen1.class;
 		ExpGen1 m=new ExpGen1();

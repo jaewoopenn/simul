@@ -74,6 +74,8 @@ public class Job1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Job1.class;
 		Job1 m=new Job1();

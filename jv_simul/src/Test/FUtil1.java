@@ -61,6 +61,8 @@ public class FUtil1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = FUtil1.class;
 		FUtil1 m=new FUtil1();

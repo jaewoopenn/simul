@@ -2,9 +2,7 @@ package Test;
 // MC task
 // VD
 
-import Util.Log;
 import Util.TEngine;
-import Exp.JobMng;
 import Simul.TaskMng;
 public class TaskMng2 {
 	public static int log_level=1;

@@ -78,6 +78,8 @@ public class JobMng2 {
 	{
 		return -1;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = JobMng2.class;
 		JobMng2 m=new JobMng2();

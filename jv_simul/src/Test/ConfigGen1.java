@@ -95,6 +95,8 @@ public class ConfigGen1 {
 		return eg;
 
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = ConfigGen1.class;
 		ConfigGen1 m=new ConfigGen1();

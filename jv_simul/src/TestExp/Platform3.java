@@ -81,6 +81,7 @@ public class Platform3 {
 		return 0;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Platform3.class;
 		Platform3 m=new Platform3();

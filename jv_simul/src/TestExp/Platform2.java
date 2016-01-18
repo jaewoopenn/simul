@@ -154,6 +154,7 @@ public class Platform2 {
 		
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Platform2.class;
 		Platform2 m=new Platform2();

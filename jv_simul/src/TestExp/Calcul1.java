@@ -66,6 +66,8 @@ public class Calcul1 {
 	{
 		return 0;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Calcul1.class;
 		Calcul1 m=new Calcul1();

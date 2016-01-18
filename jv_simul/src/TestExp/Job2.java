@@ -54,6 +54,8 @@ public class Job2 {
 	{
 		return -1;
 	}
+
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = Job2.class;
 		Job2 m=new Job2();
