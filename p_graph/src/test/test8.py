@@ -26,7 +26,7 @@ def main():
     iter(6,8)
     for v in gl.vv:
         mp.plot(gl.x,v)
-    mp.xlim(30,100)
+    mp.xlim(50,100)
     mp.log()
 #     mp.ylim(0, 1.1)
     print "hihi"
