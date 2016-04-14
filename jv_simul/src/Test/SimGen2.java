@@ -9,7 +9,7 @@ import Simul.TaskMng;
 public class SimGen2 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=5;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen

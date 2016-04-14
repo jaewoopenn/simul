@@ -11,7 +11,7 @@ public class Analysis3 {
 	public static int total=10;
 	public static int gret[]={1,0,1,1,1,1,0,0,0,0};
 
-	public int test1() // EDF-VD
+	public TaskMng getTask1()
 	{
 		TaskMng tm=new TaskMng();
 		tm.addTask(4,1);
@@ -19,18 +19,18 @@ public class Analysis3 {
 		tm.addHiTask(12,1,5);
 		tm.addHiTask(12,1,5);
 		tm.freezeTasks();
+		return tm;
+	}
+	public int test1() // EDF-VD
+	{
+		TaskMng tm=getTask1();
 		double dr=Analysis.getDrop_EDF_VD(tm, 0.05);
 		return 1;
 	}
 
 	public int test2() // EDF-TM det:0.802
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
-		tm.addTask(4,1);
-		tm.addHiTask(12,1,5);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
+		TaskMng tm=getTask1();
 		double dr=Analysis.getDrop_EDF_TM(tm, 0.05); 
 		return 1;
 	}

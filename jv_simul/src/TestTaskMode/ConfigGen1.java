@@ -1,4 +1,4 @@
-package Test;
+package TestTaskMode;
 import Util.Log;
 import Util.TEngine;
 import Simul.ConfigGen;
@@ -6,49 +6,14 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=1;
 	public static int total=10;
-	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
+	public static int gret[]={1,0,0,0,0, 0,0,0,0,0};
 	public int test1() // error config
 	{
-		ConfigGen eg=new ConfigGen();
-		return eg.readFile("config/err_cfg1.txt");
-	}
-	public int test2() // normal config
-	{
-		ConfigGen eg=new ConfigGen();
-
-		return eg.readFile("config/err_cfg2.txt");
-	}
-	public int test3() // print config
-	{
-		ConfigGen eg=new ConfigGen();
-		eg.readFile("config/cfg1.txt");
-		String s=eg.readPar("util_err");
-		if(s==null) 
-			return 0;
-		System.out.println(s);
-		return 1;
-	}
-	public  int test4() // get config
-	{
-		ConfigGen eg=new ConfigGen();
-		eg.readFile("config/cfg1.txt");
-		String s=eg.readPar("u_lb");
-		System.out.println(s);
-		return (int)(Double.valueOf(s).doubleValue()*10);
-	}
-	public  int test5() // write config
-	{
 		ConfigGen eg=getCfg();
-		eg.write("config/cfg1_copy.txt");
-		return 1;
-	}
-	public  int test6() // test config
-	{
-		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "drop");
-		eg.setParam("num","500");
+		eg.setParam("subfix", "tm");
+		eg.setParam("num","10");
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
@@ -56,16 +21,32 @@ public class ConfigGen1 {
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			eg.write("cfg/cfgd_"+i+".txt");
+			eg.write("tm/cfg_"+i+".txt");
 		}
 		return 1;
 	}
+	public int test2() 
+	{
+		return 0;
+	}
+	public int test3() // print config
+	{
+		return 0;
+	}
+	public  int test4() // get config
+	{
+		return 0;
+	}
+	public  int test5() // write config
+	{
+		return 0;
+	}
+	public  int test6() // test config
+	{
+		return 0;
+	}
 	public  int test7()
 	{
-		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "util");
-		eg.setParam("num","10");
-		eg.genRange(50,5,10);
 		return 0;
 	}
 	public  int test8()

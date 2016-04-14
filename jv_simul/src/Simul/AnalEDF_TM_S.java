@@ -3,7 +3,7 @@ package Simul;
 import Util.Log;
 import Util.MUtil;
 
-public class AnalEDF_TM extends Anal {
+public class AnalEDF_TM_S extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
@@ -14,14 +14,15 @@ public class AnalEDF_TM extends Anal {
 		lotasks_loutil=tm.getLoUtil();
 		hitasks_loutil=tm.getHiUtil_l();
 		hitasks_hiutil=tm.getHiUtil_h();
-		glo_x=hitasks_loutil/(1-lotasks_loutil);
+		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
+		glo_x=Math.min(1,cal_x);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
 	}
 	
 	@Override
 	public boolean isScheduable() {
-		double dtm=glo_x*lotasks_loutil;
+		double dtm=lotasks_loutil;
 		for(int i=0;i<tm.size();i++){
 			Task t=tm.getTask(i);
 			if (!t.is_HI)
@@ -29,7 +30,7 @@ public class AnalEDF_TM extends Anal {
 			double v_util=t.c_l*1.0/t.period/glo_x;
 			double h_util=t.c_h*1.0/t.period;
 //			Log.prn(1,"v h:"+v_util+","+h_util);
-			dtm+=Math.max(v_util,h_util);
+			dtm+=Math.min(v_util,h_util);
 		}
 		Log.prn(1,"det:"+dtm);
 		if (dtm <=1) {

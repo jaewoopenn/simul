@@ -37,6 +37,7 @@ public class FUtil {
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			System.exit(1);
 		}
 		
 	}
@@ -54,6 +55,7 @@ public class FUtil {
 		    fr.close();	
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 	public void prn() {

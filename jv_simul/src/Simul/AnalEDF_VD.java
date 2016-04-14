@@ -13,8 +13,7 @@ public class AnalEDF_VD extends Anal {
 		lotasks_loutil=tm.getLoUtil();
 		hitasks_loutil=tm.getHiUtil_l();
 		hitasks_hiutil=tm.getHiUtil_h();
-		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
-		glo_x=Math.min(1, cal_x);
+		glo_x=hitasks_loutil/(1-lotasks_loutil);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
 	}
@@ -22,7 +21,7 @@ public class AnalEDF_VD extends Anal {
 	@Override
 	public boolean isScheduable() {
 		if (hitasks_hiutil>1) return false;
-		double dtm=lotasks_loutil+hitasks_loutil/glo_x;
+		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
 		Log.prn(1,"det:"+dtm);
 		if (dtm <=1) {
 			//Log.prn(1, "Sch OK");
