@@ -15,7 +15,7 @@ public class ConfigGen1 {
 		eg.setParam("subfix", "tm");
 		eg.setParam("num","10");
 		int base=50;
-		for(int i=0;i<10;i++){
+		for(int i=0;i<9;i++){
 			int lb=i*5+base;
 			Log.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
