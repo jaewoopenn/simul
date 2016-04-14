@@ -145,16 +145,25 @@ public class TaskMng {
 			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l+" vd:"+t.vd);
 		}
 		Log.prn(1, "util:"+g_util);
+	}
+	public void prnHI() {
+		if(g_bAdd) {
+			Log.prn(1, "tasks are not finalized");
+			return;
+		}
+		for(int i=0;i<g_hi_size;i++)
+		{
+			Task t=g_hi_tasks[i];
+			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l+" vd:"+t.vd);
+		}
+		Log.prn(1, "util:"+g_util);
 		
 	}
+	
 	public void sort(){
-//		Arrays.sort(g_hi_tasks);
 		Arrays.sort(g_hi_tasks,new TaskComparator());
-//		Collections.sort((List<Task>)g_hi_taskV);
-//		g_hi_taskV.sort( new TaskComparator());
-//		Collections.sort(g_hi_taskV,new TaskComparator());
-		Task t=g_hi_tasks[0];
-		t.prn();
+//		Task t=g_hi_tasks[0];
+//		t.prn();
 	}
 
 

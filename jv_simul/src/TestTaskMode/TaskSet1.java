@@ -45,7 +45,7 @@ public class TaskSet1 {
 		TaskMng tm=getTask2();
 		tm.freezeTasks();
 		tm.sort();
-		tm.prn();
+		tm.prnHI();
 		return 1;
 	}
 	
