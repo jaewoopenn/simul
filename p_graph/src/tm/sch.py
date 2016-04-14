@@ -5,8 +5,10 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    x=[30,35,40,45,50,55,60,65,70,75]
+    x=[55,60,65,70,75,80,85,90,95,100]
     vv=[]
+    line=['k:', 'm-.', 'b--', 'r-']
+    lab=['EDF','EDF-VD','EDF-TM','EDF-TM-S']
 
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
@@ -23,12 +25,15 @@ def iter(s,t):
         gl.vv.append(v)
 
 def main():
-    iter(0,3)
+    iter(0,4)
+    no=0
     for v in gl.vv:
-        mp.plot(gl.x,v)
+        mp.plot2(gl.x,v,gl.line[no],gl.lab[no])
+        no+=1
     mp.xlim(50,100)
-    mp.log()
+#     mp.log()
 #     mp.ylim(0, 1.1)
+    mp.legend()
     print "hihi"
     mp.show()
 

@@ -63,7 +63,6 @@ public class TaskGen {
 			tid++;
 		}
 		g_tasks.remove(g_tasks.size()-1);
-		
 	}
 	
 	public Task genTask(int tid){

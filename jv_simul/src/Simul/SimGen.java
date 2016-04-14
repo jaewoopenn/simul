@@ -16,21 +16,29 @@ public class SimGen {
 		tg=new TaskGen();
 		g_cfg=cfg;
 	}
-	public void gen() {
-		TaskGen tg=new TaskGen();
+	public int prepare(){
+		tg=new TaskGen();
 		tg.setFlagMC(true);
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		tg.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tg.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
 		tg.setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
 		tg.setProbHI(g_cfg.readDbl("prob_hi"));
-		int num=g_cfg.readInt("num");
+		return g_cfg.readInt("num");
+	}
+	public void genSet(int i)
+	{
+		tg.generate();
+		String subfix=g_cfg.readPar("subfix").trim();
+		String mod=g_cfg.readPar("mod").trim();
+		String fn=subfix+"/taskset_"+mod+"_"+i;
+		tg.writeFile(fn);
+	}
+	public void gen() {
+		int num=prepare();
 		for(int i=0;i<num;i++){
-			tg.generate();
-			String subfix=g_cfg.readPar("subfix").trim();
-			String mod=g_cfg.readPar("mod").trim();
-			String fn=subfix+"/taskset_"+mod+"_"+i;
-			tg.writeFile(fn);
+//			Log.prn(2, i+"");
+			genSet(i);
 		}
 		
 	}
@@ -104,11 +112,14 @@ public class SimGen {
 		case 2:
 			return Analysis.analEDF_TM(tm);
 		case 3:
-			return Analysis.getRespEDF(tm);
-		case 4:
-			return Analysis.getRespEDF_VD(tm);
-		case 5:
-			return Analysis.getRespEDF_TM(tm);
+			return Analysis.analEDF_TM_S(tm);
+
+//		case 3:
+//			return Analysis.getRespEDF(tm);
+//		case 4:
+//			return Analysis.getRespEDF_VD(tm);
+//		case 5:
+//			return Analysis.getRespEDF_TM(tm);
 		default:
 			Log.prn(2,"anal ID check");
 		}

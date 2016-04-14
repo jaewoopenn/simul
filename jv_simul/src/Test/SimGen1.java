@@ -98,7 +98,6 @@ public class SimGen1 {
 		}
 		fu.save();
 		return 1;
-		
 	}
 	public  int test8()
 	{

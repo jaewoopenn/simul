@@ -9,7 +9,7 @@ import Simul.TaskMng;
 public class TaskSetGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
 	public int test1() // gen
@@ -17,9 +17,10 @@ public class TaskSetGen1 {
 		ConfigGen cfg;
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen();
-			if (cfg.readFile("tm/cfg_"+i+".txt")==0)
+			if (cfg.readFile("tm/cfg/cfg_"+i+".txt")==0)
 				return 0;
 			SimGen eg=new SimGen(cfg);
+//			Log.prn(2, i*5+50+"---");
 			eg.gen();
 			
 		}
@@ -28,13 +29,32 @@ public class TaskSetGen1 {
 	}
 	public int test2() // load
 	{
-		for(int i=6;i<8;i++)
+		for(int i=0;i<4;i++)
 		{
 			anal(i);
 		}
 		return 0;
 	}
 	public int anal(int no)
+	{
+		ConfigGen cfg;
+		FUtil fu=new FUtil("tm/rs/sim"+no+".txt");
+		for(int i=0;i<10;i++){
+			cfg=new ConfigGen();
+			if (cfg.readFile("tm/cfg/cfg_"+i+".txt")==0)
+				return 0;
+			SimGen eg=new SimGen(cfg);
+			int tot=eg.size();
+			int sum=eg.load(no);
+			double suc=sum*1.0/tot;
+			Log.prn(2, "util:"+(i*5+50)+"%, suc:"+suc);
+			fu.print(suc+"");
+		}
+		fu.save();
+		return 1;
+	}
+	
+	public int anal2(int no)
 	{
 		ConfigGen cfg;
 		FUtil fu=new FUtil("rs/simd"+no+".txt");
