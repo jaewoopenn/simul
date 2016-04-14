@@ -69,6 +69,7 @@ public class AnalEDF_TM extends Anal {
 		
 	}
 	
+	// no ratio / nl 
 	private double getHUtil(int i,double prob_hi){
 		int hi_size=tm.hi_size();
 		double u=0;

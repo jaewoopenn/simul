@@ -1,5 +1,7 @@
 package Simul;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Vector;
 
 import Util.Log;
@@ -145,7 +147,15 @@ public class TaskMng {
 		Log.prn(1, "util:"+g_util);
 		
 	}
-
+	public void sort(){
+//		Arrays.sort(g_hi_tasks);
+		Arrays.sort(g_hi_tasks,new TaskComparator());
+//		Collections.sort((List<Task>)g_hi_taskV);
+//		g_hi_taskV.sort( new TaskComparator());
+//		Collections.sort(g_hi_taskV,new TaskComparator());
+		Task t=g_hi_tasks[0];
+		t.prn();
+	}
 
 
 	public double getUtil(){

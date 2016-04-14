@@ -52,6 +52,7 @@ public class AnalEDF_VD extends Anal {
 	}
 
 
+	// no ratio / nl 
 	@Override
 	public double getDropRate(double prob_hi) {
 		int size=tm.hi_size();
