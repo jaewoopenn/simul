@@ -9,9 +9,9 @@ import Simul.TaskMng;
 public class TaskSetGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
 	public static int total=10;
-	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
+	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1() // gen
 	{
 		ConfigGen cfg;
@@ -29,13 +29,47 @@ public class TaskSetGen1 {
 	}
 	public int test2() // load
 	{
-		for(int i=0;i<4;i++)
+		for(int i=6;i<8;i++)
 		{
 			anal(i);
 		}
 		return 0;
 	}
 	public int anal(int no)
+	{
+		ConfigGen cfg;
+//		FUtil fu=new FUtil("tm/rs/drop_70_"+no+".txt");
+		for(int i=0;i<10;i++){
+			cfg=new ConfigGen();
+			if (cfg.readFile("tm/cfg/cfg_"+i+".txt")==0)
+				return 0;
+			SimGen eg=new SimGen(cfg);
+			double avg=eg.load3(no);
+			Log.prn(2, "util:"+(i*5+30)+"%, avg:"+avg);
+//			fu.print(avg+"");
+		}
+//		fu.save();
+		return 1;
+	}	
+	public int test3() // load one
+	{
+		ConfigGen cfg;
+		cfg=new ConfigGen();
+		if (cfg.readFile("tm/cfg/drop_70.txt")==0)
+			return 0;
+		SimGen eg=new SimGen(cfg);
+		eg.gen();
+		return 1;
+	}
+	public  int test4() // pick 1
+	{
+		for(int i=0;i<4;i++)
+		{
+			anal_drop(i);
+		}
+		return 0;
+	}
+	public int anal_drop(int no)
 	{
 		ConfigGen cfg;
 		FUtil fu=new FUtil("tm/rs/sim"+no+".txt");
@@ -53,35 +87,19 @@ public class TaskSetGen1 {
 		fu.save();
 		return 1;
 	}
-	
-	public int anal2(int no)
-	{
-		ConfigGen cfg;
-		FUtil fu=new FUtil("rs/simd"+no+".txt");
-		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("cfg/cfgd_"+i+".txt")==0)
-				return 0;
-			SimGen eg=new SimGen(cfg);
-			double avg=eg.load3(no);
-			Log.prn(2, "util:"+(i*5+30)+"%, avg:"+avg);
-			fu.print(avg+"");
-		}
-		fu.save();
-		return 1;
-		
-	}
-	public int test3() // load one
-	{
-		return 0;
-	}
-	public  int test4() // pick 1
-	{
-		return 0;
-	}
 	public  int test5() //
 	{
-		return 0;
+		ConfigGen cfg;
+		cfg=new ConfigGen();
+		if (cfg.readFile("tm/cfg/cfg_0.txt")==0)
+			return 0;
+		SimGen eg=new SimGen(cfg);
+//			Log.prn(2, i*5+50+"---");
+		TaskMng tm=eg.genOne();
+		int edf=eg.process(tm, 0);
+		int edf_tm=eg.process(tm, 2);
+		Log.prn(2, edf+" "+edf_tm);
+		return 1;
 	}
 	public  int test6() // 
 	{
