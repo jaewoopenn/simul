@@ -42,6 +42,13 @@ public class SimGen {
 		}
 		
 	}
+	public TaskMng genOne(){
+		tg.generate();
+		TaskMng tm=new TaskMng();
+		tm.setTasks(tg.getAll());
+		tm.freezeTasks();
+		return tm;	
+	}
 	public int size(){
 		return g_cfg.readInt("num");
 	}
@@ -131,7 +138,7 @@ public class SimGen {
 		case 6:
 			return Analysis.getDrop_EDF_VD(tm,0.05);
 		case 7:
-			return Analysis.getDrop_EDF_TM(tm,0.05);
+			return Analysis.getDrop_EDF_TM_S(tm,0.05);
 		default:
 			Log.prn(2,"anal ID check");
 		}
