@@ -50,40 +50,24 @@ public class AnalEDF_TM_S extends Anal {
 		return maxV;
 	}
 
-	private int getNum(double u){
-		double ul=0;
-		double ud=0;
-		int num=0;
-		for(int j=0;j<tm.size();j++){
-			Task t=tm.getTask(j);
-			if(t.is_HI) 
-				continue;
-			double add=t.c_l*1.0/t.period;
-			if (ul+add<=1-u+MUtil.err) {
-				ul+=add;
-			} else {
-				ud+=add;
-				num++;
-			}
-		}
-		return num;
-		
-	}
-	private int maxDrop(int k){
-		return 1;
-	}
 	
 	@Override
 	public double getDropRate(double p) {
 		int hi_size=tm.hi_size();
-		double sum_drop=0;
+		double exp_drop_sum=0;
 		int drop=0;
+		double exp_drop=0;
 		for(int i=0;i<=hi_size;i++){
 			drop=MUtil.combi(hi_size, i)*maxDrop(i);
-			Log.prn(1, i+" "+drop);
-			sum_drop+=drop;
+			exp_drop=Math.pow(p, i)*Math.pow(1-p, hi_size-i)*drop;
+			Log.prn(1, i+" "+drop+" "+exp_drop);
+			exp_drop_sum+=exp_drop;
 		}
 		int num=tm.lo_size();
-		return sum_drop/num;
+		return exp_drop_sum/num;
+	}
+	private int maxDrop(int k){
+		
+		return 1;
 	}
 }
