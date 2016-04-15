@@ -9,9 +9,9 @@ import Simul.TaskMng;
 public class TaskSetGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=5;
 	public static int total=10;
-	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
+	public static int gret[]={1,1,1,0,1, 0,0,0,0,0};
 	public int test1() // gen
 	{
 		ConfigGen cfg;
@@ -63,7 +63,7 @@ public class TaskSetGen1 {
 	}
 	public  int test4() // pick 1
 	{
-		for(int i=0;i<4;i++)
+		for(int i=6;i<8;i++)
 		{
 			anal_drop(i);
 		}
@@ -79,9 +79,8 @@ public class TaskSetGen1 {
 				return 0;
 			SimGen eg=new SimGen(cfg);
 			int tot=eg.size();
-			int sum=eg.load(no);
-			double suc=sum*1.0/tot;
-			Log.prn(2, "util:"+(i*5+50)+"%, suc:"+suc);
+			double avg=eg.load3(no);
+			Log.prn(2, "util:"+(i*5+30)+"%, avg:"+avg);
 			fu.print(suc+"");
 		}
 		fu.save();
@@ -95,10 +94,17 @@ public class TaskSetGen1 {
 			return 0;
 		SimGen eg=new SimGen(cfg);
 //			Log.prn(2, i*5+50+"---");
-		TaskMng tm=eg.genOne();
-		int edf=eg.process(tm, 0);
-		int edf_tm=eg.process(tm, 2);
-		Log.prn(2, edf+" "+edf_tm);
+		eg.prepare();
+		for (int i=0;i<1000;i++){
+			TaskMng tm=eg.genOne();
+			int edf=eg.process(tm, 0);
+			int edf_tm=eg.process(tm, 2);
+			Log.prn(2, i+" "+edf+" "+edf_tm);
+			if(edf_tm==0){
+				tm.prn();
+				break;
+			}
+		}
 		return 1;
 	}
 	public  int test6() // 

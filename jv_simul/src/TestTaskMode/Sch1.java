@@ -8,7 +8,7 @@ import Simul.TaskMng;
 public class Sch1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=6;
+	public static int idx=7;
 	public static int total=10;
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
@@ -71,10 +71,39 @@ public class Sch1 {
 		TaskMng tm=getTask2();
 		return Analysis.analEDF_TM_S(tm);
 	}
-	
-	public  int test7()
+
+	public TaskMng getTask3() // t1 hutil 0.45
 	{
-		return 0;
+		TaskMng tm=new TaskMng();
+		tm.addHiTask(90,5,8);
+		tm.addHiTask(175,1,6);
+		tm.addHiTask(205,14,15);
+		tm.addHiTask(172,2,12);
+		tm.addHiTask(150,7,10);
+		tm.addHiTask(128,2,8);
+		tm.addHiTask(94,1,8);
+		tm.addHiTask(64,1,4);
+		tm.addTask(71,2);
+		tm.freezeTasks();
+		return tm;
+	}
+	public TaskMng getTask4() // t1 hutil 0.45
+	{
+		TaskMng tm=new TaskMng();
+		tm.addHiTask(10,2,3);
+		tm.addHiTask(10,1,5);
+		tm.addTask(10,1);
+		tm.freezeTasks();
+		return tm;
+	}	
+	public  int test7() // EDF sch/ EDF-TM not sch
+	{
+		TaskMng tm=getTask4();
+		tm.prn();
+		int edf=Analysis.analEDF(tm);
+		int edf_tm=Analysis.analEDF_TM(tm);
+		Log.prn(2, "rs "+edf+" "+edf_tm);
+		return 1;
 	}
 	
 	public  int test8()
