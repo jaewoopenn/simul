@@ -10,7 +10,7 @@ public class Drop1 {
 //	public static int idx=-1;
 	public static int idx=2;
 	public static int total=10;
-	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
+	public static int gret[]={1,1,1,1,0, 0,0,0,0,0};
 
 	public TaskMng getTask1()
 	{
@@ -21,6 +21,7 @@ public class Drop1 {
 		tm.addTask(100,12);
 		tm.addTask(100,10);
 		tm.freezeTasks();
+		tm.sort();
 		return tm;
 	}
 	
@@ -28,7 +29,7 @@ public class Drop1 {
 	{
 		TaskMng tm=getTask1();
 		double d=Analysis.getDrop_EDF_VD(tm, 0.05);
-		Log.prn(1, d+"");
+//		Log.prn(1, d+"");
 		return 1;
 	}
 
@@ -37,18 +38,57 @@ public class Drop1 {
 		TaskMng tm=getTask1();
 		
 		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
-		Log.prn(1, d+"");
+//		Log.prn(1, d+"");
 		return 1;
 	}
 
+	public TaskMng getTask2()
+	{
+		TaskMng tm=new TaskMng();
+		tm.addHiTask(20,1,4);
+		tm.addHiTask(20,1,5);
+		tm.addHiTask(10,2,3);
+		tm.addTask(100,18);
+		tm.addTask(100,12);
+		tm.addTask(100,10);
+		tm.freezeTasks();
+		tm.sort();
+		return tm;
+	}
 	
 	public int test3() // EDF-TM det:0.95
 	{
-		return 0;
+		TaskMng tm=getTask2();
+		
+		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
+		return 1;
 	}
+	public TaskMng getTask3()
+	{
+		TaskMng tm=new TaskMng();
+		tm.addHiTask(40,1,3);
+		tm.addHiTask(40,1,5);
+		tm.addHiTask(40,1,5);
+		tm.addHiTask(40,1,5);
+		tm.addHiTask(10,2,3);
+		tm.addTask(100,2);
+		tm.addTask(100,2);
+		tm.addTask(100,1);
+		tm.addTask(100,5);
+		tm.addTask(100,10);
+		tm.addTask(100,10);
+		tm.addTask(100,10);
+		tm.freezeTasks();
+		tm.sort();
+		return tm;
+	}
+	
 	public  int test4() // EDF-VD det:0.95
 	{
-		return 0;
+		TaskMng tm=getTask3();
+		
+		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
+		return 1;
 	}
 
 	public  int test5() // EDF-TM det:1.05

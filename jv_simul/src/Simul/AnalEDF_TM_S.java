@@ -68,17 +68,39 @@ public class AnalEDF_TM_S extends Anal {
 		double exp_drop=0;
 		int nf=hi_size-n_skip;
 		for(int i=0;i<=nf;i++){
-			drop=MUtil.combi(nf, i)*maxDrop(i,nf);
-			exp_drop=Math.pow(p, i)*Math.pow(1-p, nf-i)*drop;
-			Log.prn(1, i+" "+drop+" "+exp_drop);
+			drop=MUtil.combi(nf, i)*maxDrop(i);
+			exp_drop=Math.pow(1-p, i)*Math.pow(p, nf-i)*drop;
+//			Log.prn(1, i+" "+drop+" "+exp_drop);
 			exp_drop_sum+=exp_drop;
 		}
 		int num=tm.lo_size();
 		return exp_drop_sum/num;
 	}
-	private int maxDrop(int k,int nf){
+	private int maxDrop(int k){
+		double req_util=getReq(k);
+		double lo_util=lotasks_loutil;
+		int drop=0;
+		for(int i=0;i<tm.size();i++){
+			Task t=tm.getTask(i);
+			if (t.is_HI)
+				continue;
+			if(req_util+lo_util>1){
+				drop++;
+				lo_util-=(1-glo_x)*t.c_l/t.period;
+			}
+			else
+				break;
+			
+		}
+//		Log.prn(1, "__ "+k+" "+drop+" "+req_util+" "+lo_util);
+		
+		return drop;
+	}
+	private double getReq(int k){
+		int nf=tm.hi_size()-n_skip;
 		double req_util=0;
 		int cur=0;
+		
 		for(int i=0;i<tm.hi_size();i++){
 			Task t=tm.getHiTask(i);
 			double v_util=t.c_l*1.0/t.period/glo_x;
@@ -91,11 +113,11 @@ public class AnalEDF_TM_S extends Anal {
 					cur++;
 				} else {
 					req_util+=v_util;
-					
 				}
 			}
 		}
-		Log.prn(1, "__ "+k+" "+req_util);
-		return 1;
+		
+		
+		return req_util;
 	}
 }
