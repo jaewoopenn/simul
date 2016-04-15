@@ -6,9 +6,9 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
 	public static int total=10;
-	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
+	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1() // error config
 	{
 		ConfigGen eg=getCfg();
@@ -30,15 +30,22 @@ public class ConfigGen1 {
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "tm/drop");
 		eg.setParam("num","1000");
-		eg.setParam("u_lb", "70");
-		eg.setParam("u_ub", "75");
+		eg.setParam("u_lb", "0.7");
+		eg.setParam("u_ub", "0.75");
 		eg.setParam("mod", "70");
 		eg.write("tm/cfg/drop_70.txt");
 		return 1;
 	}
 	public int test3() // print config
 	{
-		return 0;
+		ConfigGen eg=getCfg();
+		eg.setParam("subfix", "tm/drop");
+		eg.setParam("num","1000");
+		eg.setParam("u_lb", "0.9");
+		eg.setParam("u_ub", "0.95");
+		eg.setParam("mod", "90");
+		eg.write("tm/cfg/drop_90.txt");
+		return 1;
 	}
 	public  int test4() // get config
 	{

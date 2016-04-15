@@ -11,6 +11,12 @@ def legend():
     plt.legend(loc='lower left',prop=font)
 #    plt.legend(loc='upper left',prop=font)
 
+def legend2():
+    font= matplotlib.font_manager.FontProperties(weight="normal") 
+    plt.legend(loc='lower right',prop=font)
+def legend3():
+    font= matplotlib.font_manager.FontProperties(weight="normal") 
+    plt.legend(loc='upper left',prop=font)
 def plot(x,v):
     plt.plot(x,v)
 

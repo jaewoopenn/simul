@@ -23,5 +23,6 @@ public class Log {
 	}
 	public static void err(String s){
 		System.out.println("ERR:"+s);
+		System.exit(1);
 	}
 }

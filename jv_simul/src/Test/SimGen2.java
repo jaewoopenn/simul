@@ -44,7 +44,7 @@ public class SimGen2 {
 //		eg.load(6);
 		for(int i=6;i<8;i++){
 			Log.prn(2, "i---:"+i);
-			double v=eg.load3(i);
+			double v=eg.load3(i,0.05);
 			Log.prn(2, "avg:"+v);
 		}
 		return 0;
@@ -57,7 +57,7 @@ public class SimGen2 {
 			return 0;
 		SimGen eg=new SimGen(cfg);
 		TaskMng tm=eg.load_one(8);
-		double v=eg.process2(tm,7);
+		double v=eg.process2(tm,7,0.05);
 		Log.prn(2, "avg:"+v);
 		return 0;
 	}
@@ -91,7 +91,7 @@ public class SimGen2 {
 			if (cfg.readFile("cfg/cfgd_"+i+".txt")==0)
 				return 0;
 			SimGen eg=new SimGen(cfg);
-			double avg=eg.load3(no);
+			double avg=eg.load3(no,0.05);
 			Log.prn(2, "util:"+(i*5+30)+"%, avg:"+avg);
 			fu.print(avg+"");
 		}
