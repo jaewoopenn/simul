@@ -154,7 +154,7 @@ public class TaskMng {
 		for(int i=0;i<g_hi_size;i++)
 		{
 			Task t=g_hi_tasks[i];
-			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l+" vd:"+t.vd);
+			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l+" hi_e:"+t.c_h);
 		}
 		Log.prn(1, "util:"+g_util);
 		
@@ -162,6 +162,7 @@ public class TaskMng {
 	
 	public void sort(){
 		Arrays.sort(g_hi_tasks,new TaskComparator());
+		Arrays.sort(g_tasks,new TaskComparatorLo());
 //		Task t=g_hi_tasks[0];
 //		t.prn();
 	}

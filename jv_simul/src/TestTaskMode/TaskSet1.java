@@ -6,9 +6,9 @@ import Simul.TaskMng;
 public class TaskSet1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
 	public static int total=10;
-	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
+	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public TaskMng getTask1()
 	{
 		TaskMng tm=new TaskMng();
@@ -32,11 +32,11 @@ public class TaskSet1 {
 	public TaskMng getTask2()
 	{
 		TaskMng tm=new TaskMng();
-		tm.addHiTask(10,3,3);
-		tm.addHiTask(10,2,2);
-		tm.addHiTask(10,4,4);
-		tm.addHiTask(10,6,6);
-		tm.addHiTask(10,5,5);
+		tm.addHiTask(10,5,3);
+		tm.addHiTask(10,4,2);
+		tm.addHiTask(10,2,4);
+		tm.addHiTask(10,3,6);
+		tm.addHiTask(10,1,5);
 		return tm;
 	}
 	
@@ -48,11 +48,27 @@ public class TaskSet1 {
 		tm.prnHI();
 		return 1;
 	}
-	
-	public int test3() // load one
+	public TaskMng getTask3()
 	{
-		return 0;
+		TaskMng tm=new TaskMng();
+		tm.addHiTask(10,3,4);
+		tm.addHiTask(10,3,6);
+		tm.addHiTask(10,1,5);
+		tm.addTask(10,5);
+		tm.addTask(10,6);
+		return tm;
 	}
+	
+	public int test3() // load
+	{
+		TaskMng tm=getTask3();
+		tm.freezeTasks();
+		tm.sort();
+		tm.prnHI();
+		tm.prn();
+		return 1;
+	}
+	
 	public  int test4() // pick 1
 	{
 		return 0;
