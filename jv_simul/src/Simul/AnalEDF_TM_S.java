@@ -8,6 +8,7 @@ public class AnalEDF_TM_S extends Anal {
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
+	private int n_skip;
 
 	@Override
 	public void prepare() {
@@ -16,17 +17,25 @@ public class AnalEDF_TM_S extends Anal {
 		hitasks_hiutil=tm.getHiUtil_h();
 		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
 		glo_x=Math.min(1,cal_x);
+		n_skip=0;
+		for(int i=0;i<tm.hi_size();i++){
+			Task t=tm.getHiTask(i);
+			double v_util=t.c_l*1.0/t.period/glo_x;
+			double h_util=t.c_h*1.0/t.period;
+//			Log.prn(1, v_util+","+h_util);
+			if(v_util>=h_util)
+				n_skip++;
+		}
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
+		Log.prn(1, "n_skip:"+n_skip);
 	}
 	
 	@Override
 	public boolean isScheduable() {
 		double dtm=lotasks_loutil;
-		for(int i=0;i<tm.size();i++){
-			Task t=tm.getTask(i);
-			if (!t.is_HI)
-				continue;
+		for(int i=0;i<tm.hi_size();i++){
+			Task t=tm.getHiTask(i);
 			double v_util=t.c_l*1.0/t.period/glo_x;
 			double h_util=t.c_h*1.0/t.period;
 //			Log.prn(1,"v h:"+v_util+","+h_util);
@@ -57,17 +66,36 @@ public class AnalEDF_TM_S extends Anal {
 		double exp_drop_sum=0;
 		int drop=0;
 		double exp_drop=0;
-		for(int i=0;i<=hi_size;i++){
-			drop=MUtil.combi(hi_size, i)*maxDrop(i);
-			exp_drop=Math.pow(p, i)*Math.pow(1-p, hi_size-i)*drop;
+		int nf=hi_size-n_skip;
+		for(int i=0;i<=nf;i++){
+			drop=MUtil.combi(nf, i)*maxDrop(i,nf);
+			exp_drop=Math.pow(p, i)*Math.pow(1-p, nf-i)*drop;
 			Log.prn(1, i+" "+drop+" "+exp_drop);
 			exp_drop_sum+=exp_drop;
 		}
 		int num=tm.lo_size();
 		return exp_drop_sum/num;
 	}
-	private int maxDrop(int k){
-		
+	private int maxDrop(int k,int nf){
+		double req_util=0;
+		int cur=0;
+		for(int i=0;i<tm.hi_size();i++){
+			Task t=tm.getHiTask(i);
+			double v_util=t.c_l*1.0/t.period/glo_x;
+			double h_util=t.c_h*1.0/t.period;
+			if(v_util>=h_util)
+				req_util+=h_util;
+			else {
+				if (cur<nf-k) {
+					req_util+=h_util;
+					cur++;
+				} else {
+					req_util+=v_util;
+					
+				}
+			}
+		}
+		Log.prn(1, "__ "+k+" "+req_util);
 		return 1;
 	}
 }
