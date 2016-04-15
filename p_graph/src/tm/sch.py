@@ -32,7 +32,7 @@ def main():
         no+=1
     mp.xlim(50,100)
 #     mp.log()
-#     mp.ylim(0, 1.1)
+    mp.ylim(0, 1.02)
     mp.legend()
     print "hihi"
     mp.show()
