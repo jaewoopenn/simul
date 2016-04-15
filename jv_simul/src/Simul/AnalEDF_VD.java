@@ -54,9 +54,9 @@ public class AnalEDF_VD extends Anal {
 
 	// no ratio / nl 
 	@Override
-	public double getDropRate(double prob_hi) {
+	public double getDropRate(double p) {
 		int size=tm.hi_size();
-		double v=1-Math.pow(1-prob_hi,size);
+		double v=1-Math.pow(1-p,size);
 		//Log.prn(1, v+" "+Math.pow(1-prob_hi,size)+" "+size);
 		return v;
 	}

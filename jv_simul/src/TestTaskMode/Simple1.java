@@ -1,21 +1,33 @@
 package TestTaskMode;
 import Util.Log;
 import Util.TEngine;
+import Util.MUtil;
 
 public class Simple1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int total=10;
-	public static int gret[]={1,0,0,0,0, 0,0,0,0,0};
+	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
 	public int test1() // error config
 	{
-		Log.prn(1, "hihi");
+		int ret=MUtil.facto(5);
+		Log.prn(1, "rs:"+ret);
 		return 1;
 	}
 	public int test2() 
 	{
-		return 0;
+		int ret=MUtil.combi(5, 3);
+		Log.prn(1, "rs:"+ret);
+		ret=MUtil.combi(5, 2);
+		Log.prn(1, "rs:"+ret);
+		ret=MUtil.combi(4, 2);
+		Log.prn(1, "rs:"+ret);
+		ret=MUtil.combi(6, 2);
+		Log.prn(1, "rs:"+ret);
+		ret=MUtil.combi(6, 4);
+		Log.prn(1, "rs:"+ret);
+		return 1;
 	}
 	public int test3() 
 	{

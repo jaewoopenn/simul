@@ -21,5 +21,7 @@ public class Log {
 			System.out.format(s,v);
 		
 	}
-
+	public static void err(String s){
+		System.out.println("ERR:"+s);
+	}
 }

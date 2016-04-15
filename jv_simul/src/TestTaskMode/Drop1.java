@@ -35,7 +35,7 @@ public class Drop1 {
 	public int test2() // EDF-VD det:0.85
 	{
 		TaskMng tm=getTask1();
-		double d=Analysis.getDrop_EDF_TM(tm, 0.05);
+		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
 		Log.prn(1, d+"");
 		return 1;
 	}

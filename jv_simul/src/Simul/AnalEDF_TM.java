@@ -95,13 +95,17 @@ public class AnalEDF_TM extends Anal {
 	}
 	
 	@Override
-	public double getDropRate(double prob_hi) {
+	public double getDropRate(double p) {
 		int hi_size=tm.hi_size();
-		int lim=(int)Math.pow(2,hi_size);
 		double sum_prob=0;
-		for(int i=0;i<lim;i++){
-			sum_prob+=getHUtil(i,prob_hi);
+		for(int i=0;i<=hi_size;i++){
+			sum_prob+=1;
+			Log.prn(1, i+" "+sum_prob);
 		}
+//		int lim=(int)Math.pow(2,hi_size);
+//		for(int i=0;i<lim;i++){
+//			sum_prob+=getHUtil(i,prob_hi);
+//		}
 		int num=tm.lo_size();
 		return sum_prob/num;
 	}

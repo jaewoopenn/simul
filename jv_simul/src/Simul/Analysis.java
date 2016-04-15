@@ -48,8 +48,13 @@ public class Analysis {
 		return drop;
 	}
 	public static double getDrop_EDF_TM(TaskMng mng,double prob_hi) {
+		Log.err("Deprecated:getDrop_EDF_TM");
+		return -1;
+	}
+
+	public static double getDrop_EDF_TM_S(TaskMng mng,double prob_hi) {
 		if(checkErr(mng)) return -1;
-		AnalEDF_TM a=new AnalEDF_TM();
+		AnalEDF_TM_S a=new AnalEDF_TM_S();
 		a.init(mng);
 		a.prepare();
 		double drop=a.getDropRate(prob_hi);
