@@ -10,7 +10,7 @@ class gl:
     x=[]
     vv=[]
     line=['b--', 'r-']
-    lab=['EDF-TM','EDF-TM-S']
+    lab=['EDF-VD','EDF-TM-S']
     is_Log=1
     
 def load(fn):
@@ -44,7 +44,6 @@ def main():
     else:
         mp.ylim(-0.01,1.02)
         mp.legend3()
-    print "hihi"
     mp.show()
 
 if __name__ == '__main__':
