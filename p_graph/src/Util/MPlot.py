@@ -32,3 +32,4 @@ def show():
     plt.show()
 def log():
     plt.yscale('log')
+    plt.xscale('log')    

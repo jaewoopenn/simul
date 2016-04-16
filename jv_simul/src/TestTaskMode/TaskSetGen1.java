@@ -11,7 +11,7 @@ public class TaskSetGen1 {
 //	public static int idx=-1;
 	public static int idx=7;
 	public static int total=10;
-	public static int gret[]={1,1,1,0,1, 0,0,0,0,0};
+	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
 		ConfigGen cfg;
@@ -81,7 +81,7 @@ public class TaskSetGen1 {
 			return 0;
 		SimGen eg=new SimGen(cfg);
 		for(int i=0;i<10;i++){
-			double p=0.01+0.02*i;
+			double p=0.1/Math.pow(2, i);
 			double avg=eg.load3(no,p);
 			Log.prn(2, no+" p:"+p+" avg:"+avg);
 			fu.print(avg+"");
