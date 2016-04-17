@@ -11,7 +11,7 @@ class gl:
     vv=[]
     line=['b--', 'r-']
     lab=['EDF-VD','EDF-TM-S']
-    is_Log=1
+    is_Log=0
     
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
@@ -23,8 +23,8 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="tm/rs/drop_70_"+str(i)+".txt"
-#         fn="tm/rs/drop_90_"+str(i)+".txt"
+#         fn="tm/rs/drop_70_"+str(i)+".txt"
+        fn="tm/rs/drop_90_"+str(i)+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -40,9 +40,12 @@ def main():
 #     mp.xlim(50,100)
     if gl.is_Log:
         mp.log()
+        mp.xlim(0,0.10)
+#         mp.ylim(-0.01,0.65)
         mp.legend2()
     else:
-        mp.ylim(-0.01,1.02)
+        mp.xlim(0,0.10)
+        mp.ylim(-0.01,0.65)
         mp.legend3()
     mp.show()
 
