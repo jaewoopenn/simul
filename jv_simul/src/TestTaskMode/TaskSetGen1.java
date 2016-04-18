@@ -9,7 +9,7 @@ import Simul.TaskMng;
 public class TaskSetGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=7;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen

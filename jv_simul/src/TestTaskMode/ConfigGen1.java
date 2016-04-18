@@ -6,7 +6,7 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1() // error config
