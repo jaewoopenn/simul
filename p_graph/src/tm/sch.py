@@ -35,6 +35,8 @@ def main():
 #     mp.log()
     mp.ylim(0, 1.02)
     mp.legend()
+    mp.xlabel("Utilization Bound")
+    mp.ylabel("Acceptance Ratio")
     print "hihi"
     mp.show()
 

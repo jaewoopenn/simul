@@ -11,7 +11,7 @@ class gl:
     vv=[]
     line=['b--', 'r-']
     lab=['EDF-VD','EDF-TM-S']
-    is_Log=0
+    is_Log=1
     
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
@@ -47,6 +47,8 @@ def main():
         mp.xlim(0,0.10)
         mp.ylim(-0.01,0.65)
         mp.legend3()
+    mp.xlabel("The probability to exceed LO-WCET")
+    mp.ylabel("Acceptance Ratio")
     mp.show()
 
 if __name__ == '__main__':
