@@ -29,7 +29,7 @@ public class TaskSetGen1 {
 	}
 	public int test2() // load
 	{
-		for(int i=0;i<4;i++)
+		for(int i=0;i<5;i++)
 		{
 			anal(i);
 		}

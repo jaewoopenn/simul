@@ -27,19 +27,19 @@ public class Sch1 {
 	public int test1() // EDF
 	{
 		TaskMng tm=getTask1();
-		return Analysis.analEDF(tm); // det:1.05
+		return Analysis.anal_EDF(tm); // det:1.05
 	}
 
 	public int test2() // EDF-VD det:0.85
 	{
 		TaskMng tm=getTask1();
-		return Analysis.analEDF_VD(tm); 
+		return Analysis.anal_EDF_VD(tm); 
 	}
 
 	public int test3() // EDF-TM det:0.95
 	{
 		TaskMng tm=getTask1();
-		return Analysis.analEDF_TM(tm);
+		return Analysis.anal_EDF_TM(tm);
 	}
 	
 	public TaskMng getTask2() // t1 hutil 0.45
@@ -57,19 +57,19 @@ public class Sch1 {
 	public  int test4() // EDF-VD det:0.95
 	{
 		TaskMng tm=getTask2();
-		return Analysis.analEDF_VD(tm); // det:0.855
+		return Analysis.anal_EDF_VD(tm); // det:0.855
 	}
 
 	public  int test5() // EDF-TM det:1.05
 	{
 		TaskMng tm=getTask2();
-		return Analysis.analEDF_TM(tm);
+		return Analysis.anal_EDF_TM(tm);
 	}
 	
 	public  int test6() // EDF-TM det:0.86
 	{
 		TaskMng tm=getTask2();
-		return Analysis.analEDF_TM_S(tm);
+		return Analysis.anal_EDF_TM_S(tm);
 	}
 
 	public TaskMng getTask3() // t1 hutil 0.45
@@ -100,8 +100,8 @@ public class Sch1 {
 	{
 		TaskMng tm=getTask4();
 		tm.prn();
-		int edf=Analysis.analEDF(tm);
-		int edf_tm=Analysis.analEDF_TM(tm);
+		int edf=Analysis.anal_EDF(tm);
+		int edf_tm=Analysis.anal_EDF_TM(tm);
 		Log.prn(2, "rs "+edf+" "+edf_tm);
 		return 1;
 	}

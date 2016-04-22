@@ -21,7 +21,7 @@ public class Greedy1 {
 		tm.addHiTask(12,2,8);
 		tm.addHiTask(40,4,5);
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm); // det:0.855
+		return Analysis.anal_EDF_VD(tm); // det:0.855
 	}
 
 	public int test2() 

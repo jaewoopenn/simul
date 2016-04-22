@@ -17,7 +17,7 @@ public class Analysis1 {
 		tm.addTask(2,1);
 		tm.addTask(3,1);
 		tm.freezeTasks();
-		return Analysis.analEDF(tm);
+		return Analysis.anal_EDF(tm);
 	}
 
 	public int test2() // over 1
@@ -27,7 +27,7 @@ public class Analysis1 {
 		tm.addTask(3,1);
 		tm.addTask(4,1);
 		tm.freezeTasks();
-		return Analysis.analEDF(tm);
+		return Analysis.anal_EDF(tm);
 	}
 
 	public int test3() // exact 1
@@ -38,7 +38,7 @@ public class Analysis1 {
 		tm.addTask(8,1);
 		tm.addTask(16,2);
 		tm.freezeTasks();
-		return Analysis.analEDF(tm);
+		return Analysis.anal_EDF(tm);
 	}
 
 	public  int test4() // MC task
@@ -47,7 +47,7 @@ public class Analysis1 {
 		tm.addTask(4,2);
 		tm.addHiTask(6,1,5);
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return Analysis.anal_EDF_VD(tm);
 	}
 
 	public  int test5()
@@ -56,7 +56,7 @@ public class Analysis1 {
 		tm.addTask(13,7);
 		tm.addHiTask(12,4,8);
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return Analysis.anal_EDF_VD(tm);
 	}
 	
 	public  int test6()
@@ -66,7 +66,7 @@ public class Analysis1 {
 		tm.addHiTask(6,1,5);
 		tm.addHiTask(40,10,11);
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return Analysis.anal_EDF_VD(tm);
 	}
 	
 	public  int test7()

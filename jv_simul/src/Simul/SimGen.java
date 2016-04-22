@@ -33,7 +33,7 @@ public class SimGen {
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			tm.freezeTasks();
-			int rs=Analysis.analEDF_VD(tm);
+			int rs=Analysis.anal_EDF_VD(tm);
 			if(rs==0)
 				return 0;
 		}
@@ -140,13 +140,15 @@ public class SimGen {
 		switch(anal)
 		{
 		case 0:
-			return Analysis.analEDF(tm);
+			return Analysis.anal_EDF(tm);
 		case 1:
-			return Analysis.analEDF_VD(tm);
+			return Analysis.anal_EDF_VD(tm);
 		case 2:
-			return Analysis.analEDF_TM(tm);
+			return Analysis.anal_EDF_TM(tm);
 		case 3:
-			return Analysis.analEDF_TM_S(tm);
+			return Analysis.anal_ICG(tm);
+		case 4:
+			return Analysis.anal_EDF_TM_S(tm);
 
 //		case 3:
 //			return Analysis.getRespEDF(tm);

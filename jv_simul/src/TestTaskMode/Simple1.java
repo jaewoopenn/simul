@@ -6,7 +6,7 @@ import Util.MUtil;
 public class Simple1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
 	public static int total=10;
 	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
 	public int test1() // error config
@@ -31,6 +31,7 @@ public class Simple1 {
 	}
 	public int test3() 
 	{
+		Log.prn(1, "hihi");
 		return 0;
 	}
 	public  int test4() 

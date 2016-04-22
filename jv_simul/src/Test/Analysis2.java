@@ -25,13 +25,13 @@ public class Analysis2 {
 	public int test1() // EDF-VD
 	{
 		TaskMng tm=getTask1();
-		return Analysis.analEDF_VD(tm); // det:0.855
+		return Analysis.anal_EDF_VD(tm); // det:0.855
 	}
 
 	public int test2() // EDF-TM det:0.802
 	{
 		TaskMng tm=getTask1();
-		return Analysis.analEDF_TM(tm);
+		return Analysis.anal_EDF_TM(tm);
 	}
 
 	public TaskMng getTask2()
@@ -48,7 +48,7 @@ public class Analysis2 {
 	public int test3() // exact 1
 	{
 		TaskMng tm=getTask2();
-		return Analysis.analEDF(tm);
+		return Analysis.anal_EDF(tm);
 	}
 
 	public  int test4() // MC task
@@ -57,7 +57,7 @@ public class Analysis2 {
 		tm.addTask(4,2);
 		tm.addHiTask(6,1,5);
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return Analysis.anal_EDF_VD(tm);
 	}
 
 	public  int test5()
@@ -66,7 +66,7 @@ public class Analysis2 {
 		tm.addTask(13,7);
 		tm.addHiTask(12,4,8);
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return Analysis.anal_EDF_VD(tm);
 	}
 	
 	public  int test6()

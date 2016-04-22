@@ -7,8 +7,9 @@ import Util.MPlot as mp;
 class gl:
     x=[0.55,0.60,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.0]
     vv=[]
-    line=['k:',  'b--', 'm-.','r-']
-    lab=['EDF','EDF-VD','EDF-TM','EDF-TM-S']
+    line=['g:','k:',  'b--', 'm-.','r-']
+    marker=['o','v','D','^','s']
+    lab=['EDF','EDF-VD','EDF-TM','ICG','EDF-TM-S']
 
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
@@ -25,10 +26,10 @@ def iter(s,t):
         gl.vv.append(v)
 
 def main():
-    iter(0,4)
+    iter(0,5)
     no=0
     for v in gl.vv:
-        mp.plot2(gl.x,v,gl.line[no],gl.lab[no])
+        mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(0.55,1.0)
 #     mp.log()

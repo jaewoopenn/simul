@@ -4,28 +4,36 @@ import Util.Log;
 import Util.MUtil;
 
 public class Analysis {
-	public static int analEDF(TaskMng mng) {
+	public static int anal_EDF(TaskMng mng) {
 		if(checkErr(mng)) return -1;
 		AnalEDF a=new AnalEDF();
 		a.init(mng);
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
 	}
-	public static int analEDF_VD(TaskMng mng) {
+	public static int anal_ICG(TaskMng mng) {
+		if(checkErr(mng)) return -1;
+		AnalICG a=new AnalICG();
+		a.init(mng);
+		a.prepare();
+		return MUtil.btoi(a.isScheduable());
+	}
+
+	public static int anal_EDF_VD(TaskMng mng) {
 		if(checkErr(mng)) return -1;
 		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(mng);
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
 	}
-	public static int analEDF_TM(TaskMng mng) {
+	public static int anal_EDF_TM(TaskMng mng) {
 		if(checkErr(mng)) return -1;
 		AnalEDF_TM a=new AnalEDF_TM();
 		a.init(mng);
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
 	}
-	public static int analEDF_TM_S(TaskMng mng) {
+	public static int anal_EDF_TM_S(TaskMng mng) {
 		if(checkErr(mng)) return -1;
 		AnalEDF_TM_S a=new AnalEDF_TM_S();
 		a.init(mng);

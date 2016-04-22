@@ -21,7 +21,9 @@ def plot(x,v):
     plt.plot(x,v)
 
 def plot2(x,v,l,la):
-    plt.plot(x,v, l,drawstyle='default',label=la )
+    plt.plot(x,v, l, drawstyle='default',label=la )
+def plot3(x,v,l,la,ma):
+    plt.plot(x,v, l,marker=ma, drawstyle='default',label=la )
 
 def xlim(l,u):
     plt.xlim(l,u)

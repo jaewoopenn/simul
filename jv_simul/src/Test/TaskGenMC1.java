@@ -57,7 +57,7 @@ public class TaskGenMC1 {
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
 		tm.freezeTasks();
-		return Analysis.analEDF_VD(tm);
+		return Analysis.anal_EDF_VD(tm);
 	}
 	public  int test4()
 	{
@@ -69,7 +69,7 @@ public class TaskGenMC1 {
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			tm.freezeTasks();
-			if(Analysis.analEDF_VD(tm)==1) 
+			if(Analysis.anal_EDF_VD(tm)==1) 
 				Log.prn(1, "id:"+id+" util:"+u+" Y");
 			else
 				Log.prn(1, "id:"+id+" util:"+u+" N");
