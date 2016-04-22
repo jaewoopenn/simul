@@ -65,7 +65,9 @@ public class Analysis {
 		AnalEDF_TM_S a=new AnalEDF_TM_S();
 		a.init(mng);
 		a.prepare();
-		double drop=a.getDropRate(prob_hi);
+		double drop=0;
+		if(a.getX()!=1)
+			drop=a.getDropRate(prob_hi);
 		Log.prn(1, "prob_hi:"+prob_hi+" drop:"+drop);
 		return drop;
 	}

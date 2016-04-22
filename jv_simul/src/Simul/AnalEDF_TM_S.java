@@ -120,4 +120,8 @@ public class AnalEDF_TM_S extends Anal {
 		
 		return req_util;
 	}
+
+	public double getX() {
+		return glo_x;
+	}
 }
