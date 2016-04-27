@@ -19,12 +19,13 @@ def load(fn):
     for line in i_f:
         val=line.strip()
         v.append(float(val))
+    print v
     return v
 
 def iter(s,t):
     for i in range(s,t):
-        fn="tm/rs/drop_80_"+str(i)+".txt"
-#         fn="tm/rs/drop_90_"+str(i)+".txt"
+#         fn="tm/rs/drop_80_"+str(i)+".txt"
+        fn="tm/rs/drop_90_"+str(i)+".txt"
         v=load(fn)
         gl.vv.append(v)
 
