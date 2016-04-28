@@ -24,8 +24,8 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-#         fn="tm/rs/drop_80_"+str(i)+".txt"
-        fn="tm/rs/drop_90_"+str(i)+".txt"
+        fn="tm/rs/drop_80_"+str(i)+".txt"
+#         fn="tm/rs/drop_90_"+str(i)+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -49,7 +49,7 @@ def main():
         mp.ylim(-0.01,0.65)
         mp.legend3()
     mp.xlabel("The probability to exceed LO-WCET")
-    mp.ylabel("Acceptance Ratio")
+    mp.ylabel("The EDR of LO-tasks")
     mp.show()
 
 if __name__ == '__main__':
