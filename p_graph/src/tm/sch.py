@@ -7,10 +7,10 @@ import Util.MPlot as mp;
 class gl:
     x=[0.55,0.60,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.0]
     vv=[]
-    line=['g:','k:',  'b--', 'm-.','r-']
+    line=['r-','b--','m-.','g:','k:']
     marker=['o','v','D','^','s']
-    lab=['EDF','EDF-VD','EDF-TM','ICG','EDF-TM-S']
-
+    lab=['EDF-ADAMS','EDF-VD','EDF-AA','EDF','ICG',]
+    data=[4,1,2,0,3]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
     v=[]
@@ -21,7 +21,7 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="tm/rs/sim"+str(i)+".txt"
+        fn="tm/rs/sim"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 

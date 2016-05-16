@@ -10,7 +10,7 @@ class gl:
     x=[]
     vv=[]
     line=['b--', 'r-']
-    lab=['EDF-VD','EDF-TM-S']
+    lab=['EDF-VD','EDF-ADAMS']
     is_Log=1
     
 def load(fn):
@@ -48,8 +48,8 @@ def main():
         mp.xlim(0,0.10)
         mp.ylim(-0.01,0.65)
         mp.legend3()
-    mp.xlabel("The probability to exceed LO-WCET")
-    mp.ylabel("The EDR of LO-tasks")
+    mp.xlabel("The probability to show HI-behavior")
+    mp.ylabel("Expected Drop Ratio")
     mp.show()
 
 if __name__ == '__main__':
