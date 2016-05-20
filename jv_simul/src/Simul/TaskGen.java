@@ -17,17 +17,8 @@ public class TaskGen {
 		g_isMC=b;
 	}
 
-	public double getUtil(){
-		if(g_isMC) 
-			return getMCUtil();
-		double util=0;
-		for(Task t:g_tasks){
-			util+=(double)(t.c_h)/t.period;
-		}
-		return util;
-	}
 
-	private double getMCUtil(){
+	public double getMCUtil(){
 		double loutil=0;
 		double hiutil=0;
 		for(Task t:g_tasks){
@@ -45,20 +36,31 @@ public class TaskGen {
 	public void generate() {
 		while(true){
 			g_tasks=new Vector<Task>();
-			gen(g_isMC);
-			if(g_param.check(getUtil())==1) break;
+			genMC();
+			if(g_param.check(getMCUtil())==1) break;
 		}
 	}
-	private void gen(boolean isMC)
+//	private int checkUtil()
+//	{
+//		double loutil=0;
+//		double hiutil=0;
+//		for(Task t:g_tasks){
+//			loutil+=(double)(t.c_l)/t.period;
+//		}
+//		if(loutil==0) return 0;
+//		for(Task t:g_tasks){
+//			if(t.is_HI)
+//				hiutil+=(double)(t.c_h)/t.period;
+//		}
+//		if(hiutil==0) return 0;
+//		return 1;
+//	}
+	private void genMC()
 	{
 		int tid=0;
 		Task t;
-		while(getUtil()<=g_param.u_ub){
-			if(isMC)
-				 t=genMCTask(tid);
-			else
-				 t=genTask(tid);
-				
+		while(getMCUtil()<=g_param.u_ub){
+			t=genMCTask(tid);
 			g_tasks.add(t);
 			tid++;
 		}
@@ -88,13 +90,8 @@ public class TaskGen {
 			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
 					", h:"+t.c_h+", Xi:"+t.is_HI);
 		}
-		if(g_isMC){
-			Log.prn(lv, "MC util:"+getUtil());
+		Log.prn(lv, "MC util:"+getMCUtil());
 			
-		} else {
-			Log.prn(lv, "util:"+getUtil());
-		}
-		
 	}
 
 
@@ -136,6 +133,6 @@ public class TaskGen {
 	}
 
 	public int check(){
-		return g_param.check(getUtil());
+		return g_param.check(getMCUtil());
 	}
 }

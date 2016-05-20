@@ -8,7 +8,7 @@ import Simul.TaskMng;
 public class Drop1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=4;
 	public static int total=10;
 	public static int gret[]={1,1,1,1,0, 0,0,0,0,0};
 
@@ -37,7 +37,7 @@ public class Drop1 {
 	{
 		TaskMng tm=getTask1();
 		
-		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
+		double d=Analysis.getDrop_EDF_TM_E(tm, 0.05);
 //		Log.prn(1, d+"");
 		return 1;
 	}
@@ -87,7 +87,7 @@ public class Drop1 {
 	{
 		TaskMng tm=getTask3();
 		
-		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
+		double d=Analysis.getDrop_EDF_TM_E(tm, 0.05);
 		return 1;
 	}
 

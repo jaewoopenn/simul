@@ -3,7 +3,7 @@ package Simul;
 import Util.Log;
 import Util.MUtil;
 
-public class AnalEDF_TM_S extends Anal {
+public class AnalEDF_TM_E extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
@@ -15,8 +15,8 @@ public class AnalEDF_TM_S extends Anal {
 		lotasks_loutil=tm.getLoUtil();
 		hitasks_loutil=tm.getHiUtil_l();
 		hitasks_hiutil=tm.getHiUtil_h();
-		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
-		glo_x=Math.min(1,cal_x);
+		glo_x=hitasks_loutil/(1-lotasks_loutil);
+		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		n_skip=0;
 		for(int i=0;i<tm.hi_size();i++){
 			Task t=tm.getHiTask(i);
@@ -37,9 +37,10 @@ public class AnalEDF_TM_S extends Anal {
 		for(int i=0;i<tm.hi_size();i++){
 			Task t=tm.getHiTask(i);
 			double v_util=t.c_l*1.0/t.period/glo_x;
-			double h_util=t.c_h*1.0/t.period;
+//			double h_util=t.c_h*1.0/t.period;
 //			Log.prn(1,"v h:"+v_util+","+h_util);
-			dtm+=Math.min(v_util,h_util);
+//			dtm+=Math.min(v_util,h_util);
+			dtm+=v_util;
 		}
 		Log.prn(1,"det:"+dtm);
 		if (dtm <=1) {
@@ -54,10 +55,11 @@ public class AnalEDF_TM_S extends Anal {
 		return -1;
 	}
 
-
 	
 	@Override
 	public double getDropRate(double p) {
+		if(lotasks_loutil==0) 
+			return 0; 
 		int hi_size=tm.hi_size();
 		double exp_drop_sum=0;
 		int drop=0;
@@ -92,7 +94,8 @@ public class AnalEDF_TM_S extends Anal {
 		
 		return drop;
 	}
-	private double getReq(int k){
+	
+	private double getReq(int k){ // Required utilization for k HI-behavior 
 		int nf=tm.hi_size()-n_skip;
 		double req_util=0;
 		int cur=0;

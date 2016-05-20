@@ -10,8 +10,9 @@ class gl:
     x=[]
     vv=[]
     line=['b--', 'r-']
-    lab=['EDF-VD','EDF-ADAMS']
-    is_Log=1
+    lab=['EDF-VD','EDF-AA-E']
+#     is_Log=1
+    is_Log=0
     
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")

@@ -29,6 +29,7 @@ public class ConfigGen1 {
 	{
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "tm/drop");
+//		eg.setParam("num","100");
 		eg.setParam("num","5000");
 		eg.setParam("u_lb", "0.8");
 		eg.setParam("u_ub", "0.85");

@@ -31,7 +31,7 @@ public class Analysis3 {
 	public int test2() // EDF-TM det:0.802
 	{
 		TaskMng tm=getTask1();
-		double dr=Analysis.getDrop_EDF_TM(tm, 0.05); 
+		double dr=Analysis.getDrop_EDF_TM_E(tm, 0.05); 
 		return 1;
 	}
 

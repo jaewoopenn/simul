@@ -65,7 +65,7 @@ public class TaskGenMC1 {
 		int id=0;
 		while(true){
 			tg.generate();
-			double u=tg.getUtil();
+			double u=tg.getMCUtil();
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			tm.freezeTasks();

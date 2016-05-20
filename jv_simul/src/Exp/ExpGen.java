@@ -91,7 +91,7 @@ public class ExpGen {
 			TaskGen tg=new TaskGen();
 			String fn=readPar("subfix").trim()+"/taskset"+i;
 			tg.loadFile(fn);
-			double util=tg.getUtil();
+			double util=tg.getMCUtil();
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			Platform p=new Platform();

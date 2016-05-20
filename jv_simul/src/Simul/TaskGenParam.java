@@ -31,6 +31,7 @@ public class TaskGenParam {
 		}
 		u_lb=l;
 		u_ub=u;
+//		Log.prn(2, u_lb+" "+u_ub);
 	}
 
 
@@ -101,9 +102,11 @@ public class TaskGenParam {
 	}
 
 	public int check(double util) {
+//		Log.prn(2," "+util+" "+u_ub+" "+u_lb);
 		if(util<=u_ub&&util>=u_lb){
 			return 1;
 		}
+//		Log.prn(2,"f");
 		return 0;
 	}
 

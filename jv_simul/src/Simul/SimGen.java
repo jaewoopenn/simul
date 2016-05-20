@@ -29,6 +29,7 @@ public class SimGen {
 	public int genSet(int i,boolean b)
 	{
 		tg.generate();
+//		Log.prn(2, "util:"+tg.getMCUtil());
 		if(b){
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
@@ -105,7 +106,6 @@ public class SimGen {
 //			if(rs==0){
 //				Log.err("err");
 //			}
-//			tm.prn();
 			v+=process2(tm,anal,p);
 			Log.prn(1, "v:"+v);
 		}
@@ -123,7 +123,8 @@ public class SimGen {
 		String fn=subfix+"/taskset_"+mod+"_"+i;
 		tg.loadFile(fn);
 		if(tg.check()==0){
-			Log.prn(1, "err "+i);
+			Log.prn(2, "err "+i);
+			tg.prn(2);
 			return null;
 		}
 		TaskMng tm=new TaskMng();
@@ -167,7 +168,7 @@ public class SimGen {
 		case 6:
 			return Analysis.getDrop_EDF_VD(tm,p);
 		case 7:
-			return Analysis.getDrop_EDF_TM_S(tm,p);
+			return Analysis.getDrop_EDF_TM_E(tm,p);
 		default:
 			Log.prn(2,"anal ID check");
 		}

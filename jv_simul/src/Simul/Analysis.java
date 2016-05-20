@@ -55,9 +55,16 @@ public class Analysis {
 		Log.prn(1, "prob_hi:"+prob_hi+" drop:"+drop);
 		return drop;
 	}
-	public static double getDrop_EDF_TM(TaskMng mng,double prob_hi) {
-		Log.err("Deprecated:getDrop_EDF_TM");
-		return -1;
+	public static double getDrop_EDF_TM_E(TaskMng mng,double prob_hi) {
+		if(checkErr(mng)) return -1;
+		AnalEDF_TM_E a=new AnalEDF_TM_E();
+		a.init(mng);
+		a.prepare();
+		double drop=0;
+		if(a.getX()!=1)
+			drop=a.getDropRate(prob_hi);
+		Log.prn(1, "prob_hi:"+prob_hi+" drop:"+drop);
+		return drop;
 	}
 
 	public static double getDrop_EDF_TM_S(TaskMng mng,double prob_hi) {

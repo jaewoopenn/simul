@@ -9,8 +9,10 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:']
     marker=['o','v','D','^','s']
-    lab=['EDF-ADAMS','EDF-VD','EDF-AA','EDF','ICG',]
-    data=[4,1,2,0,3]
+    lab=['EDF-AA-E (EDF-VD)','EDF-AA','EDF','ICG',]
+    data=[1,2,0,3]
+#     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
+#     data=[4,1,2,0,3]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
     v=[]
@@ -26,7 +28,7 @@ def iter(s,t):
         gl.vv.append(v)
 
 def main():
-    iter(0,5)
+    iter(0,4)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
