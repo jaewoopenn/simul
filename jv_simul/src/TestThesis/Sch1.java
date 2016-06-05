@@ -29,8 +29,8 @@ public class Sch1 {
 		TaskMng tm=getTask1();
 		Compo a=new Compo();
 		a.init(tm);
-		a.prepare(0.5);
-//		a.process();
+		a.prepare(gamma);
+		a.process();
 		return -1;
 	}
 

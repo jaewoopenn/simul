@@ -24,7 +24,12 @@ public class Compo  {
 		Log.prn(1, "x:"+glo_x);
 	}
 	public void process(){
-		double beta=Math.max(lotasks_loutil+hitasks_loutil/glo_x,glo_x*lotasks_loutil+hitasks_hiutil);
+		double lo_det=lotasks_loutil+hitasks_loutil/glo_x;
+		double hi_det=glo_x*lotasks_loutil+hitasks_hiutil;
+		Log.prn(1, "lo_det:"+lo_det);
+		Log.prn(1, "hi_det:"+hi_det);
+		double beta=Math.max(lo_det,hi_det);
+		Log.prn(1, "beta:"+beta);
 	}
 	public boolean isScheduable() {
 		double dtm=lotasks_loutil;
