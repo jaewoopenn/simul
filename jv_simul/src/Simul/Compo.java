@@ -5,7 +5,6 @@ import Util.Log;
 
 public class Compo  {
 	TaskMng tm;
-	private double gamma;
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
@@ -14,12 +13,13 @@ public class Compo  {
 	public void init(TaskMng mng) {
 		tm=mng;
 	}
-	public void prepare(double g) {
-		gamma=g;
+	public void compute_X() {
 		lotasks_loutil=tm.getLoUtil();
 		hitasks_loutil=tm.getHiUtil_l();
 		hitasks_hiutil=tm.getHiUtil_h();
-		glo_x=hitasks_loutil/(1-lotasks_loutil);
+//		glo_x=hitasks_loutil/(1-lotasks_loutil);
+		glo_x=Math.min(1,  (1-hitasks_hiutil)/lotasks_loutil);
+
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
 	}
@@ -28,8 +28,6 @@ public class Compo  {
 		double hi_det=glo_x*lotasks_loutil+hitasks_hiutil;
 		Log.prn(1, "lo_det:"+lo_det);
 		Log.prn(1, "hi_det:"+hi_det);
-		double beta=Math.max(lo_det,hi_det);
-		Log.prn(1, "beta:"+beta);
 	}
 	public boolean isScheduable() {
 		double dtm=lotasks_loutil;

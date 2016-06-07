@@ -25,11 +25,10 @@ public class Sch1 {
 	
 	public int test1() // EDF
 	{
-		double gamma=0.5;
 		TaskMng tm=getTask1();
 		Compo a=new Compo();
 		a.init(tm);
-		a.prepare(gamma);
+		a.compute_X();
 		a.process();
 		return -1;
 	}
