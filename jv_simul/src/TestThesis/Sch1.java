@@ -4,7 +4,7 @@ import Util.Log;
 import Util.TEngine;
 import Simul.AnalEDF_VD;
 import Simul.Analysis;
-import Simul.Compo;
+import Simul.CompAnal;
 import Simul.TaskMng;
 
 public class Sch1 {
@@ -35,7 +35,7 @@ public class Sch1 {
 	public int test1() // EDF
 	{
 		TaskMng tm=getTask1();
-		Compo a=new Compo();
+		CompAnal a=new CompAnal();
 		a.init(tm);
 		a.compute_X();
 		return -1;
@@ -44,7 +44,7 @@ public class Sch1 {
 	public int test2() 
 	{
 		TaskMng tm=getTask2();
-		Compo a=new Compo();
+		CompAnal a=new CompAnal();
 		a.init(tm);
 		a.set_X(0.5);
 		a.help();
