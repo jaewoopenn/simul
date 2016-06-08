@@ -66,81 +66,35 @@ public class TaskSetGen1 {
 	}
 	public  int test4() // pick 1
 	{
-//		anal_drop(7,"80");
-		for(int i=6;i<8;i++)
-		{
-			anal_drop(i,"80");
-		}
-		return 0;
+		return -1;
 	}
 	public int anal_drop(int no,String str)
 	{
-		ConfigGen cfg;
-		FUtil fu=new FUtil("tm/rs/drop_"+str+"_"+no+".txt");
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/drop_"+str+".txt")==0)
-			return 0;
-		SimGen eg=new SimGen(cfg);
-		for(int i=0;i<10;i++){
-			double p=0.1/Math.pow(2, i);
-			double avg=eg.load3(no,p);
-			Log.prn(2, no+" p:"+p+" avg:"+avg);
-			fu.print(avg+"");
-		}
-		fu.save();
-		return 1;
+		return -1;
 	}	
 	public  int test5() //
 	{
-		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/cfg_0.txt")==0)
-			return 0;
-		SimGen eg=new SimGen(cfg);
-//			Log.prn(2, i*5+50+"---");
-		eg.prepare();
-		for (int i=0;i<1000;i++){
-			TaskMng tm=eg.genOne();
-			int edf=eg.process(tm, 0);
-			int edf_tm=eg.process(tm, 2);
-			Log.prn(2, i+" "+edf+" "+edf_tm);
-			if(edf_tm==0){
-				tm.prn();
-				break;
-			}
-		}
-		return 1;
+		return -1;
 	}
 	public  int test6() // 
 	{
-		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/drop_90.txt")==0)
-			return 0;
-		SimGen eg=new SimGen(cfg);
-		eg.gen2();
-		return 1;
+		return -1;
 	}
 	public  int test7()
 	{
-//		anal_drop(6);
-		for(int i=6;i<8;i++)
-		{
-			anal_drop(i,"90");
-		}
-		return 0;
+		return -1;
 	}
 	public  int test8()
 	{
-		return 0;
+		return -1;
 	}
 	public  int test9()
 	{
-		return 0;
+		return -1;
 	}
 	public  int test10()
 	{
-		return 0;
+		return -1;
 	}
 	
 	@SuppressWarnings("rawtypes")
