@@ -9,11 +9,11 @@ import Simul.TaskMng;
 public class CompAnal1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=4;
 	public static int total=10;
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
-	public TaskMng getComp1()
+	public CompMng getComp1()
 	{
 		CompMng cm=new CompMng();
 		TaskMng tm=new TaskMng();
@@ -27,36 +27,72 @@ public class CompAnal1 {
 		tm.freezeTasks();
 		cm.addComp(tm);
 		
-		return CompMng;
+		return cm;
 	}
 
 
 	public int test1() 
 	{
-		CompMng tm=getComp1();
+		CompMng cm=getComp1();
 		CompAnal a=new CompAnal();
-		a.init(tm);
+		a.init(cm);
 		a.compute_X();
+		a.comp_interface_help(0);
 		return -1;
+	}
+
+	public CompMng getComp2()
+	{
+		CompMng cm=new CompMng();
+		TaskMng tm=new TaskMng();
+		tm.addTask(8,1);
+		tm.addHiTask(12,1,5);
+		tm.freezeTasks();
+		cm.addComp(tm);
+		tm=new TaskMng();
+		tm.addTask(9,1);
+		tm.addHiTask(12,1,5);
+		tm.freezeTasks();
+		cm.addComp(tm);
+		
+		return cm;
 	}
 
 	public int test2() 
 	{
-		TaskMng tm=getTask2();
+		CompMng cm=getComp2();
 		CompAnal a=new CompAnal();
-		a.init(tm);
-		a.set_X(0.5);
-		a.help();
+		a.init(cm);
+		a.compute_X();
+		a.set_alpha(0.4);
+		a.comp_interface_help(0);
+		a.comp_interface_help(1);
 		return -1;
 	}
 
 	public int test3() 
 	{
+		CompMng cm=getComp2();
+		CompAnal a=new CompAnal();
+		a.init(cm);
+		a.compute_X();
+		a.set_alpha(0.4);
+		double ht_lu=a.comp_interface_ht_lu(0);
+		Log.prn(1, "new ht_lu:"+ht_lu);
+		ht_lu=a.comp_interface_ht_lu(1);
+		Log.prn(1, "new ht_lu:"+ht_lu);
 		return -1;
 	}
 	
 	public  int test4() 
 	{
+		CompMng cm=getComp2();
+		CompAnal a=new CompAnal();
+		a.init(cm);
+		a.compute_X();
+		a.set_alpha(0.4);
+		TaskMng tm=a.getInterfaces();
+		tm.prn();
 		return -1;
 	}
 

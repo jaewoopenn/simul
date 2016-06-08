@@ -8,7 +8,7 @@ import Simul.TaskMng;
 public class CompAnalTemp1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
@@ -30,7 +30,7 @@ public class CompAnalTemp1 {
 		return tm;
 	}
 
-	public int test1() // EDF
+	public int test1()
 	{
 		TaskMng tm=getTask1();
 		CompAnalTemp a=new CompAnalTemp();
@@ -44,7 +44,7 @@ public class CompAnalTemp1 {
 		TaskMng tm=getTask2();
 		CompAnalTemp a=new CompAnalTemp();
 		a.init(tm);
-		a.set_X(0.5);
+		a.set_X(0.6666);
 		a.help();
 		return -1;
 	}

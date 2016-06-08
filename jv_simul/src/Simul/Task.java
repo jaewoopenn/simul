@@ -3,12 +3,12 @@ package Simul;
 public class Task {
 	public int tid;
 	public int period;
-	public int c_l;
-	public int c_h;
+	public double c_l;
+	public double c_h;
 	public double vd;
 	public boolean is_HI;
 
-	public Task(int tid,int period, int c_l) {
+	public Task(int tid,int period, double c_l) {
 		this.tid=tid;
 		this.period = period;
 		this.vd = period;
@@ -17,7 +17,7 @@ public class Task {
 		this.is_HI=false;
 	}
 
-	public Task(int tid,int period, int c_l, int c_h) {
+	public Task(int tid,int period, double c_l, double c_h) {
 		this.tid=tid;
 		this.period = period;
 		this.vd = period;

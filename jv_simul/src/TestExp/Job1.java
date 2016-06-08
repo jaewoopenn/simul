@@ -26,7 +26,7 @@ public class Job1 {
 		Job j=pq.poll();
 		return j.dl;
 	}
-	public  int test3()
+	public  double test3()
 	{
 		PriorityQueue<Job> pq=new PriorityQueue<Job>();
 		pq.add(new Job(0,4,1));

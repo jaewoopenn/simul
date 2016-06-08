@@ -15,11 +15,11 @@ public class JobMng {
 		jobs.add(job);
 	}
 
-	public void insertJob(int tid,int dl,int et) {
+	public void insertJob(int tid,int dl,double et) {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
-	public void insertJob(int tid,double vd, int dl, int et, int add) {
+	public void insertJob(int tid,double vd, int dl, double et, double add) {
 		Job j=new Job(tid,vd,dl,et,add);
 		jobs.add(j);
 	}

@@ -27,11 +27,11 @@ public class TaskMng {
 	}
 	
 	
-	public void addTask(int p, int e) {
+	public void addTask(int p, double e) {
 		g_taskV.add(new Task(g_size,p,e));
 	}
 	
-	public void addHiTask(int p, int c_l, int c_h) {
+	public void addHiTask(int p, double c_l, double c_h) {
 		Task t=new Task(g_size,p,c_l,c_h);
 		g_taskV.add(t);
 		g_hi_taskV.add(t);

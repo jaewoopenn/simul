@@ -6,11 +6,11 @@ public class Job implements Comparable{
 	public int tid;
 	public double vd;
 	public int dl;
-	public int exec;
-	public int add_exec;
+	public double exec;
+	public double add_exec;
 	public boolean isHI;
 
-	public Job(int tid,int dl, int exec) {
+	public Job(int tid,int dl, double exec) {
 		this.tid=tid;
 		this.vd = dl;
 		this.dl = dl;
@@ -19,7 +19,7 @@ public class Job implements Comparable{
 		this.isHI=false;
 	}
 
-	public Job(int tid,double vd, int dl, int exec,int add) {
+	public Job(int tid,double vd, int dl, double exec,double add) {
 		this.tid=tid;
 		this.vd = vd;
 		this.dl = dl;

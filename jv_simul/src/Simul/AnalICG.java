@@ -52,10 +52,10 @@ public class AnalICG extends Anal {
 		return true;
 	}
 	private boolean chk(Task t, Task[] ts) {
-		int res=t.c_h;
+		double res=t.c_h;
 		
-		int old_res=0;
-		int exec=0;
+		double old_res=0;
+		double exec=0;
 		while(true){
 			old_res=res;
 			res=t.c_h;
