@@ -17,12 +17,17 @@ public class CompAnal1 {
 	{
 		CompMng cm=new CompMng();
 		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
-		tm.addHiTask(6,1,5);
+		tm.addTask(8,1);
+		tm.addHiTask(12,1,5);
+		tm.freezeTasks();
+		cm.addComp(tm);
+		tm=new TaskMng();
+		tm.addTask(8,1);
+		tm.addHiTask(12,1,5);
 		tm.freezeTasks();
 		cm.addComp(tm);
 		
-		return tm;
+		return CompMng;
 	}
 
 

@@ -3,7 +3,7 @@ package Simul;
 
 import Util.Log;
 
-public class CompAnal  {
+public class CompAnalTemp  {
 	TaskMng tm;
 	private double lotasks_loutil;
 	private double hitasks_loutil;
