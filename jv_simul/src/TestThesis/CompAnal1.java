@@ -2,6 +2,7 @@ package TestThesis;
 
 import Util.Log;
 import Util.TEngine;
+import Simul.Analysis;
 import Simul.CompAnal;
 import Simul.CompMng;
 import Simul.TaskMng;
@@ -90,10 +91,12 @@ public class CompAnal1 {
 		CompAnal a=new CompAnal();
 		a.init(cm);
 		a.compute_X();
+//		a.set_alpha(0.0);
 		a.set_alpha(0.4);
+//		a.set_alpha(1.0);
 		TaskMng tm=a.getInterfaces();
-		tm.prn();
-		return -1;
+//		tm.prn();
+		return Analysis.anal_EDF_VD(tm); 
 	}
 
 	public  int test5()
