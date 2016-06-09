@@ -18,7 +18,6 @@ public class SimCompGen {
 	}
 	public int prepare(){
 		tg=new TaskGen();
-		tg.setFlagMC(true);
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		tg.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tg.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));

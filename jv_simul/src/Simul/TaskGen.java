@@ -7,15 +7,11 @@ import Util.Log;
 public class TaskGen {
 	private TaskGenParam g_param;
 	private Vector<Task> g_tasks;
-	private boolean g_isMC=false;
 	
 	public TaskGen() {
 		g_param=new TaskGenParam();
 	}
 
-	public void setFlagMC(boolean b) {
-		g_isMC=b;
-	}
 
 
 	public double getMCUtil(){
@@ -23,8 +19,6 @@ public class TaskGen {
 		double hiutil=0;
 		for(Task t:g_tasks){
 			loutil+=(double)(t.c_l)/t.period;
-		}
-		for(Task t:g_tasks){
 			if(t.is_HI)
 				hiutil+=(double)(t.c_h)/t.period;
 		}
@@ -36,45 +30,27 @@ public class TaskGen {
 	public void generate() {
 		while(true){
 			g_tasks=new Vector<Task>();
-			genMC();
+			genTaskSet();
 			if(g_param.check(getMCUtil())==1) break;
 		}
 	}
-//	private int checkUtil()
-//	{
-//		double loutil=0;
-//		double hiutil=0;
-//		for(Task t:g_tasks){
-//			loutil+=(double)(t.c_l)/t.period;
-//		}
-//		if(loutil==0) return 0;
-//		for(Task t:g_tasks){
-//			if(t.is_HI)
-//				hiutil+=(double)(t.c_h)/t.period;
-//		}
-//		if(hiutil==0) return 0;
-//		return 1;
-//	}
-	private void genMC()
+	public void assignComp(){
+		
+	}
+	private void genTaskSet()
 	{
 		int tid=0;
 		Task t;
 		while(getMCUtil()<=g_param.u_ub){
-			t=genMCTask(tid);
+			t=genTask(tid);
 			g_tasks.add(t);
 			tid++;
 		}
 		g_tasks.remove(g_tasks.size()-1);
 	}
 	
-//	public Task genTask(int tid){
-//		Task tsk=g_param.genTask(tid);
-//		if(!g_param.chkTask(tsk))
-//			return null;
-//		return tsk;
-//	}
 
-	public Task genMCTask(int tid){
+	public Task genTask(int tid){
 		Task tsk=g_param.genMCTask(tid);
 		if(!g_param.chkTask(tsk))
 			return null;
@@ -104,13 +80,11 @@ public class TaskGen {
 		return g_tasks.size();
 	}
 
-	public void writeFile(String file) {
-		TaskGenFile.writeFile(file, g_tasks);
+	public int check(){
+		return g_param.check(getMCUtil());
 	}
-	
-	public void loadFile(String f) {
-		g_tasks=TaskGenFile.loadFile(f);
-	}
+
+	// setting 
 
 	public void setUtil(double l, double u) {
 		g_param.setUtil(l, u);
@@ -132,7 +106,21 @@ public class TaskGen {
 		g_param.prob_HI=p;
 	}
 
-	public int check(){
-		return g_param.check(getMCUtil());
+	
+	// file
+	public void writeFile(String file) {
+		TaskGenFile.writeFile(file, g_tasks);
 	}
+	
+	public void loadFile(String f) {
+		g_tasks=TaskGenFile.loadFile(f);
+	}
+	public void writeFile2(String file) {
+		TaskGenFile.writeFile2(file, g_tasks);
+	}
+	
+	public void loadFile2(String f) {
+		g_tasks=TaskGenFile.loadFile2(f);
+	}
+	
 }

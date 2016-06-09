@@ -14,7 +14,6 @@ public class TaskGenMC1 {
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
 		TaskGen tg=new TaskGen();
-		tg.setFlagMC(true);
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.2,0.9);
@@ -24,7 +23,6 @@ public class TaskGenMC1 {
 	}
 	public TaskGen getTG2(){
 		TaskGen tg=new TaskGen();
-		tg.setFlagMC(true);
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.7,0.9);
@@ -37,7 +35,7 @@ public class TaskGenMC1 {
 	{
 		TaskGen tg=getTG1();
 		for(int i=0;i<5;i++){
-			Task t=tg.genMCTask(i);
+			Task t=tg.genTask(i);
 			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+", h:"+t.c_h+", Xi:"+t.is_HI);
 		}
 		return 1;

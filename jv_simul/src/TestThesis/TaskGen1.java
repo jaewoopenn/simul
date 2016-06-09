@@ -1,10 +1,12 @@
-package Test;
+package TestThesis;
+import Simul.Analysis;
+import Simul.Task;
 import Simul.TaskGen;
+import Simul.TaskMng;
+import Util.Log;
 import Util.TEngine;
 
-// Simulation
-
-public class TaskGenMC2 {
+public class TaskGen1 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=1;
@@ -15,7 +17,16 @@ public class TaskGenMC2 {
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.2,0.9);
-		tg.setUtil(0.90,0.99);
+		tg.setUtil(0.80,0.90);
+		tg.setProbHI(0.5);
+		return tg;
+	}
+	public TaskGen getTG2(){
+		TaskGen tg=new TaskGen();
+		tg.setPeriod(50,300);
+		tg.setTUtil(0.02,0.3);
+		tg.setRatioLH(0.7,0.9);
+		tg.setUtil(0.95,1.00);
 		tg.setProbHI(0.5);
 		return tg;
 	}
@@ -24,20 +35,39 @@ public class TaskGenMC2 {
 	{
 		TaskGen tg=getTG1();
 		tg.generate();
-		tg.writeFile("test2.txt");
-		return 1;
+		tg.prn(1);
+		return tg.check();
 	}
 	public int test2()
 	{
 		return 1;
-
 	}
 	public  int test3()
 	{
-		return 1;
+		TaskGen tg=getTG2();
+		tg.generate();
+		TaskMng tm=new TaskMng();
+		tm.setTasks(tg.getAll());
+		tm.freezeTasks();
+		return Analysis.anal_EDF_VD(tm);
 	}
 	public  int test4()
 	{
+		TaskGen tg=getTG2();
+		int id=0;
+		while(true){
+			tg.generate();
+			double u=tg.getMCUtil();
+			TaskMng tm=new TaskMng();
+			tm.setTasks(tg.getAll());
+			tm.freezeTasks();
+			if(Analysis.anal_EDF_VD(tm)==1) 
+				Log.prn(1, "id:"+id+" util:"+u+" Y");
+			else
+				Log.prn(1, "id:"+id+" util:"+u+" N");
+			id++;
+			if (id==10) break;
+		}
 		return 1;
 		
 	}
@@ -68,10 +98,10 @@ public class TaskGenMC2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = TaskGenMC2.class;
-		TaskGenMC2 m=new TaskGenMC2();
-		int[] aret=TaskGenMC2.gret;
-		int sz=TaskGenMC2.total;
+		Class c = TaskGen1.class;
+		TaskGen1 m=new TaskGen1();
+		int[] aret=TaskGen1.gret;
+		int sz=TaskGen1.total;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else

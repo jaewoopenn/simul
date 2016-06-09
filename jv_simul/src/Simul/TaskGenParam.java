@@ -24,7 +24,10 @@ public class TaskGenParam {
 		
 	}
 
-
+	public int getComp(int max)
+	{
+		return g_rand.nextInt(max);
+	}
 	public void setUtil(double l, double u) {
 		if(l>u ){
 			System.out.println("Error setUtil");

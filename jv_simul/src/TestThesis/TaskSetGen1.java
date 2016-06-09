@@ -3,6 +3,7 @@ import Util.FUtil;
 import Util.Log;
 import Util.TEngine;
 import Simul.ConfigGen;
+import Simul.SimCompGen;
 import Simul.SimGen;
 import Simul.TaskMng;
 
@@ -19,7 +20,7 @@ public class TaskSetGen1 {
 		cfg=new ConfigGen();
 		if (cfg.readFile("com/cfg/cfg_5.txt")==0)
 			return 0;
-		SimGen eg=new SimGen(cfg);
+		SimCompGen eg=new SimCompGen(cfg);
 		eg.gen();
 			
 		return 1;
