@@ -83,6 +83,21 @@ public class TaskGenParam {
 		return new Task(tid,p,l,h);
 	}
 
+	public Task genMCTask2(int tid){
+		double getProb=g_rand.nextDouble();
+		if (getProb>prob_HI) 
+			return genTask(tid);
+		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
+		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
+		double ratio=g_rand.nextDouble()*(ratio_ub-ratio_lb)+ratio_lb;
+		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
+		int h=(int)(tu*p);
+		int l=(int)(h*ratio);
+		if(l==0) l=1;
+		if(h==0) h=1;
+		return new Task(tid,p,l,h);
+	}
+	
 	
 	public boolean chkTask(Task t) {
 		int p=t.period;

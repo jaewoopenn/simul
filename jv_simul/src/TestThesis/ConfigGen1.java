@@ -6,14 +6,15 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
-	public int test1() // error config
+	public int test1()
 	{
 		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "tm/task");
-		eg.setParam("num","1000");
+		eg.setParam("subfix", "com/task");
+//		eg.setParam("num","1000");
+		eg.setParam("num","10");
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
@@ -21,31 +22,31 @@ public class ConfigGen1 {
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			eg.write("tm/cfg/cfg_"+i+".txt");
+			eg.write("com/cfg/cfg_"+i+".txt");
 		}
 		return 1;
 	}
 	public int test2() 
 	{
 		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "tm/drop");
+		eg.setParam("subfix", "com/drop");
 //		eg.setParam("num","100");
 		eg.setParam("num","5000");
 		eg.setParam("u_lb", "0.8");
 		eg.setParam("u_ub", "0.85");
 		eg.setParam("mod", "80");
-		eg.write("tm/cfg/drop_80.txt");
+		eg.write("com/cfg/drop_80.txt");
 		return 1;
 	}
 	public int test3() // print config
 	{
 		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "tm/drop");
+		eg.setParam("subfix", "com/drop");
 		eg.setParam("num","5000");
 		eg.setParam("u_lb", "0.9");
 		eg.setParam("u_ub", "0.95");
 		eg.setParam("mod", "90");
-		eg.write("tm/cfg/drop_90.txt");
+		eg.write("com/cfg/drop_90.txt");
 		return 1;
 	}
 	public  int test4() // get config

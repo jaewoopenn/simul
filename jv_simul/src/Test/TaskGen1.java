@@ -18,7 +18,7 @@ public class TaskGen1 {
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.02,0.3);
 		for(int i=0;i<1000;i++){
-			Task t=tg.genTask(i);
+//			Task t=tg.genTask(i);
 			//Log.prn(1, "tid:"+t.tid+",p:"+t.period+",e:"+t.c_l);
 		}
 		return 1;

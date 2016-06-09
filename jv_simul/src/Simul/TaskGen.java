@@ -67,12 +67,12 @@ public class TaskGen {
 		g_tasks.remove(g_tasks.size()-1);
 	}
 	
-	public Task genTask(int tid){
-		Task tsk=g_param.genTask(tid);
-		if(!g_param.chkTask(tsk))
-			return null;
-		return tsk;
-	}
+//	public Task genTask(int tid){
+//		Task tsk=g_param.genTask(tid);
+//		if(!g_param.chkTask(tsk))
+//			return null;
+//		return tsk;
+//	}
 
 	public Task genMCTask(int tid){
 		Task tsk=g_param.genMCTask(tid);
