@@ -11,13 +11,29 @@ public class CompMng {
 	public CompMng() {
 		g_comp=new Vector<TaskMng>();
 	}
+	public void load(TaskMng tm) {
+		for(int i=0;i<3;i++){
+			addComp(new TaskMng());
+		}
+		
+		for(int i=0;i<tm.size();i++){
+			Task tsk=tm.getTask(i);
+			TaskMng com=getComp(tsk.cid);
+			com.addTask(tsk);
+//			Log.prn(2, i+","+tsk.cid);
+		}
+		for(int i=0;i<3;i++){
+			TaskMng com=getComp(i);
+			com.freezeTasks();
+		}
+//		prn();
+	}
 	
 	
 	public void addComp(TaskMng tm) {
-		g_comp.add(tm);
+		g_comp.addElement(tm);
 	}
 	public TaskMng getComp(int i) {
-		// TODO Auto-generated method stub
 		return g_comp.elementAt(i);
 	}
 	
@@ -49,6 +65,15 @@ public class CompMng {
 	}
 
 
+
+	public void prn(){
+		int no=1;
+		for(TaskMng tm:g_comp){
+			Log.prn(2, "comp "+no);
+			tm.prn();
+			no++;
+		}
+	}
 
 
 

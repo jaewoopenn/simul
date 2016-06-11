@@ -11,14 +11,14 @@ public class TaskSetGen1 {
 	public static int log_level=2;
 //	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=3;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
-	public int test1() // gen
+	public int test1() // gen 1
 	{
 		ConfigGen cfg;
 		cfg=new ConfigGen();
-		if (cfg.readFile("com/cfg/cfg_5.txt")==0)
+		if (cfg.readFile("com/cfg/cfg_6.txt")==0)
 			return 0;
 		SimCompGen eg=new SimCompGen(cfg);
 		eg.gen();
@@ -26,7 +26,7 @@ public class TaskSetGen1 {
 		return 1;
 
 	}
-	public int test2() // load
+	public int test2() // gen set
 	{
 		ConfigGen cfg;
 		for(int i=0;i<10;i++){
@@ -40,7 +40,25 @@ public class TaskSetGen1 {
 		}
 		return 1;
 	}		
-	public int test3() // load
+	public int test3() // load one
+	{
+		ConfigGen cfg;
+		cfg=new ConfigGen();
+		if (cfg.readFile("com/cfg/cfg_6.txt")==0)
+			return 0;
+		SimCompGen eg=new SimCompGen(cfg);
+		int tot=eg.size();
+		for(int i=0;i<=10;i++){
+			double alpha=i*1.0/10;
+			int sum=eg.load(alpha);
+			double suc=sum*1.0/tot;
+			Log.prnc(2, "alpha:"+alpha);
+			Log.prn(2, " suc:"+suc);
+			
+		}
+		return 1;
+	}
+	public int test4() // load
 	{
 		for(int i=0;i<5;i++)
 		{
@@ -48,6 +66,7 @@ public class TaskSetGen1 {
 		}
 		return 0;
 	}
+
 	public int anal(int no)
 	{
 		ConfigGen cfg;
@@ -66,7 +85,7 @@ public class TaskSetGen1 {
 		fu.save();
 		return 1;
 	}
-	public int test4() // load one
+	public int test5() // load one
 	{
 		ConfigGen cfg;
 		cfg=new ConfigGen();
@@ -75,14 +94,6 @@ public class TaskSetGen1 {
 		SimGen eg=new SimGen(cfg);
 		eg.gen2();
 		return 1;
-	}
-	public int anal_drop(int no,String str)
-	{
-		return -1;
-	}	
-	public  int test5() //
-	{
-		return -1;
 	}
 	public  int test6() // 
 	{

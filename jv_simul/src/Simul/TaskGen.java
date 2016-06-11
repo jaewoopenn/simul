@@ -12,30 +12,12 @@ public class TaskGen {
 		g_param=new TaskGenParam();
 	}
 
-
-
-	public double getMCUtil(){
-		double loutil=0;
-		double hiutil=0;
-		for(Task t:g_tasks){
-			loutil+=(double)(t.c_l)/t.period;
-			if(t.is_HI)
-				hiutil+=(double)(t.c_h)/t.period;
-		}
-		return Math.max(loutil, hiutil);
-	}
-
-
-	
 	public void generate() {
 		while(true){
 			g_tasks=new Vector<Task>();
 			genTaskSet();
 			if(g_param.check(getMCUtil())==1) break;
 		}
-	}
-	public void assignComp(){
-		
 	}
 	private void genTaskSet()
 	{
@@ -59,10 +41,21 @@ public class TaskGen {
 		return tsk;
 	}
 
+	public void assignComp(){
+		int max=3;
+		for(Task t:g_tasks) {
+			t.setCom(g_param.getComp(max));
+		}
+		
+	}
 
+	public int check(){
+		return g_param.check(getMCUtil());
+	}
+	
+	// getting
 	public void prn(int lv) {
-		for(Task t:g_tasks)
-		{
+		for(Task t:g_tasks) {
 			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
 					", h:"+t.c_h+", Xi:"+t.is_HI);
 		}
@@ -70,6 +63,26 @@ public class TaskGen {
 			
 	}
 
+	public void prn2(int lv) {
+		for(Task t:g_tasks) {
+			Log.prn(lv, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
+					", h:"+t.c_h+", Xi:"+t.is_HI+", com:"+t.cid);
+		}
+		Log.prn(lv, "MC util:"+getMCUtil());
+			
+	}
+
+	
+	public double getMCUtil(){
+		double loutil=0;
+		double hiutil=0;
+		for(Task t:g_tasks){
+			loutil+=(double)(t.c_l)/t.period;
+			if(t.is_HI)
+				hiutil+=(double)(t.c_h)/t.period;
+		}
+		return Math.max(loutil, hiutil);
+	}
 
 	public Vector<Task> getAll() {
 		return g_tasks;
@@ -79,13 +92,8 @@ public class TaskGen {
 	public int size() {
 		return g_tasks.size();
 	}
-
-	public int check(){
-		return g_param.check(getMCUtil());
-	}
-
+	
 	// setting 
-
 	public void setUtil(double l, double u) {
 		g_param.setUtil(l, u);
 	}

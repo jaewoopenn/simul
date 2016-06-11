@@ -26,6 +26,9 @@ public class TaskMng {
 		g_bAdd=true;
 	}
 	
+	public void addTask(Task t) {
+		g_taskV.add(t);
+	}
 	
 	public void addTask(int p, double e) {
 		g_taskV.add(new Task(g_size,p,e));

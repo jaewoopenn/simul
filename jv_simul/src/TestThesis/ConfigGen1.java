@@ -13,8 +13,8 @@ public class ConfigGen1 {
 	{
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "com/task");
-//		eg.setParam("num","1000");
-		eg.setParam("num","10");
+		eg.setParam("num","1000");
+//		eg.setParam("num","2");
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;

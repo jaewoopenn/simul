@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import Exp.Platform;
 import Util.Log;
+import Util.MUtil;
 
 public class SimCompGen {
 	private TaskGen tg;
@@ -32,7 +33,9 @@ public class SimCompGen {
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+i;
-		tg.writeFile(fn);
+		tg.assignComp();
+//		tg.prn2(2);
+		tg.writeFile2(fn);
 		return 1;
 	}
 	public void gen() {
@@ -43,7 +46,51 @@ public class SimCompGen {
 		}
 		
 	}
+	public int load(double alpha) {
+		int num=g_cfg.readInt("num");
+		int sum=0;
+		
+		for(int i=0;i<num;i++){
+			TaskMng tm=load_one(i);
+//			Log.prn(2, tm.size());
+			sum+=analComp(tm,alpha);
+		}
+		return sum;	
+	}
+	public int analComp(TaskMng tm,double alpha) {
+		CompMng cm=new CompMng();
+		cm.load(tm);
+		CompAnal a=new CompAnal();
+		a.init(cm);
+		a.compute_X();
+//		a.set_alpha(0.0);
+		a.set_alpha(alpha);
+//		a.set_alpha(1.0);
+		TaskMng ifc=a.getInterfaces();
+//		tm.prn();
+		return Analysis.anal_EDF_VD(ifc); 
+	}
 	
+	public TaskMng load_one(int i){
+		TaskGen tg=new TaskGen();
+		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		String subfix=g_cfg.readPar("subfix").trim();
+		String mod=g_cfg.readPar("mod").trim();
+		String fn=subfix+"/taskset_"+mod+"_"+i;
+		tg.loadFile2(fn);
+		if(tg.check()==0){
+			Log.prn(2, "err "+i);
+			tg.prn(2);
+			return null;
+		}
+		TaskMng tm=new TaskMng();
+		tm.setTasks(tg.getAll());
+		tm.freezeTasks();
+		tm.sort();
+		return tm;
+	}
+
+	// getting
 	public int size(){
 		return g_cfg.readInt("num");
 	}
