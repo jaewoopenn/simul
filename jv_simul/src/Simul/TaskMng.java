@@ -20,6 +20,8 @@ public class TaskMng {
 	private double g_hi_util_l;
 	private double g_hi_util_h;
 	private double g_x=1;
+//	private Task g_hi_ifc;
+//	private Task g_lo_ifc;
 	public TaskMng() {
 		g_taskV=new Vector<Task>();
 		g_hi_taskV=new Vector<Task>();
@@ -95,6 +97,17 @@ public class TaskMng {
 	}
 
 	// get set
+//	public void setInterface(Task hi,Task lo){
+//		g_hi_ifc=hi;
+//		g_lo_ifc=lo;
+//	}
+//	public Task get_hi_ifc() {
+//		return g_hi_ifc;
+//	}
+//	public Task get_lo_ifc() {
+//		return g_lo_ifc;
+//	}
+	
 	public void setX(double x){
 		this.g_x=x;
 //		Log.prn(1, "x:"+x);
