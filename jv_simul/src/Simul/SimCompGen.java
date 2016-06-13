@@ -6,9 +6,13 @@ import Util.Log;
 public class SimCompGen {
 	private TaskGen tg;
 	private ConfigGen g_cfg;
+	private int g_max_com=0;
 	public SimCompGen(ConfigGen cfg) {
 		tg=new TaskGen();
 		g_cfg=cfg;
+	}
+	public void setMaxCom(int c){
+		g_max_com=c;
 	}
 	public int prepare(){
 		tg=new TaskGen();
@@ -26,7 +30,7 @@ public class SimCompGen {
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+i;
-		tg.assignComp();
+		tg.assignComp(g_max_com);
 //		tg.prn2(2);
 		tg.writeFile2(fn);
 		return 1;

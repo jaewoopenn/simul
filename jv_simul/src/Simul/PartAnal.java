@@ -31,11 +31,11 @@ public class PartAnal  {
 //			Log.prn(2, "hi_util:"+hu);
 			Log.prn(2, " max_util:"+max_u);
 		}
-		for(int i=0;i<g_num_cpu;i++){
-			Log.prnc(2, "cpu "+i);
-			CompMng core=g_pm.getCPU(i);
-			Log.prn(2, " util:"+core.get_ht_HU());
-		}
+//		for(int i=0;i<g_num_cpu;i++){
+//			Log.prnc(2, "cpu "+i);
+//			CompMng core=g_pm.getCPU(i);
+//			Log.prn(2, " util:"+core.get_ht_HU());
+//		}
 		for(int i=0;i<g_cm.getSize();i++){
 			TaskMng tm=g_cm.getComp(i);
 			for(int j=0;j<g_num_cpu;j++){
@@ -45,8 +45,7 @@ public class PartAnal  {
 				CompAnal a=new CompAnal();
 				a.init(tempCore);
 				a.compute_X();
-//				a.set_alpha(0.0);
-				a.set_alpha(0.4);
+				a.set_alpha(0.3);
 //				a.set_alpha(1.0);
 				TaskMng c_tm=a.getInterfaces();
 //				tm.prn();
@@ -59,7 +58,10 @@ public class PartAnal  {
 		for(int i=0;i<g_num_cpu;i++){
 			Log.prnc(2, "cpu "+i);
 			CompMng core=g_pm.getCPU(i);
-			Log.prn(2, " util:"+core.get_ht_HU());
+//			core.prn();
+			core.computeUtils();
+			Log.prn(2, " util:"+core.get_max_util());
+			core.prn2();
 		}
 	}
 	

@@ -7,14 +7,17 @@ import Util.Log;
 
 public class CompMng {
 	private Vector<TaskMng> g_comp;
+	private double g_lt_LU;
+	private double g_ht_LU;
+	private double g_ht_HU;
 	public CompMng() {
 		g_comp=new Vector<TaskMng>();
 	}
 	public CompMng(CompMng core) {
-		// TODO Auto-generated constructor stub
 		g_comp=core.cloneCore();
 	}
 
+	@SuppressWarnings("unchecked")
 	private Vector<TaskMng> cloneCore() {
 		return (Vector<TaskMng>)g_comp.clone();
 	}
@@ -44,27 +47,33 @@ public class CompMng {
 	public TaskMng getComp(int i) {
 		return g_comp.elementAt(i);
 	}
-	
-	public double get_lt_LU(){
+	public void computeUtils(){
 		double u=0;
 		for(TaskMng tm:g_comp){
 			u+=tm.getLoUtil();
 		}
-		return u;
-	}
-	public double get_ht_LU(){
-		double u=0;
+		g_lt_LU=u;
+
+		u=0;
 		for(TaskMng tm:g_comp){
 			u+=tm.getHiUtil_l();
 		}
-		return u;
-	}
-	public double get_ht_HU(){
-		double u=0;
+		g_ht_LU=u;
+
+		u=0;
 		for(TaskMng tm:g_comp){
 			u+=tm.getHiUtil_h();
 		}
-		return u;
+		g_ht_HU=u;
+	}
+	public double get_lt_LU(){
+		return g_lt_LU;
+	}
+	public double get_ht_LU(){
+		return g_ht_LU;
+	}
+	public double get_ht_HU(){
+		return g_ht_LU;
 	}
 
 
@@ -82,9 +91,20 @@ public class CompMng {
 			no++;
 		}
 	}
+	public void prn2(){
+		
+		for(TaskMng tm:g_comp){
+			Log.prnc(2, "comp "+tm.get_ID());
+			Log.prnc(2, " lo "+(tm.getLoUtil()+tm.getHiUtil_l()));
+			Log.prn(2, " hi "+tm.getHiUtil_h());
+		}
+	}
 	public void sort() {
 		Collections.sort(g_comp,new CompComparator());
 		
+	}
+	public double get_max_util() {
+		return Math.max(g_lt_LU+g_ht_LU, g_ht_HU);
 	}
 
 

@@ -7,23 +7,23 @@ import Simul.SimCompGen;
 import Simul.SimGen;
 import Simul.TaskMng;
 
-//com
+// mp
 
-public class TaskSetGen1 {
+public class TaskSetGen2 {
 	public static int log_level=2;
 //	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
 		ConfigGen cfg;
 		cfg=new ConfigGen();
-		if (cfg.readFile("com/cfg/cfg_6.txt")==0)
+		if (cfg.readFile("com/cfg/mp_2.txt")==0)
 			return 0;
 		SimCompGen eg=new SimCompGen(cfg);
-		eg.setMaxCom(3);
+		eg.setMaxCom(6);
 		eg.gen();
 			
 		return 1;
@@ -121,10 +121,10 @@ public class TaskSetGen1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = TaskSetGen1.class;
-		TaskSetGen1 m=new TaskSetGen1();
-		int[] aret=TaskSetGen1.gret;
-		int sz=TaskSetGen1.total;
+		Class c = TaskSetGen2.class;
+		TaskSetGen2 m=new TaskSetGen2();
+		int[] aret=TaskSetGen2.gret;
+		int sz=TaskSetGen2.total;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else

@@ -13,6 +13,7 @@ public class CompAnal  {
 
 	public void init(CompMng mng) {
 		cm=mng;
+		cm.computeUtils();
 		g_lt_LU=cm.get_lt_LU();
 		g_ht_LU=cm.get_ht_LU();
 		g_ht_HU=cm.get_ht_HU();

@@ -41,8 +41,7 @@ public class TaskGen {
 		return tsk;
 	}
 
-	public void assignComp(){
-		int max=3;
+	public void assignComp(int max){
 		for(Task t:g_tasks) {
 			t.setCom(g_param.getComp(max));
 		}

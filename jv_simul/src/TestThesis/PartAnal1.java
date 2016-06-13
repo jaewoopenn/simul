@@ -45,6 +45,14 @@ public class PartAnal1 {
 		tm.addHiTask(14,1,3);
 		tm.freezeTasks();
 		cm.addComp(tm);
+		tm=new TaskMng();
+
+		tm=new TaskMng();
+		tm.set_ID(4);
+		tm.addTask(6,1);
+		tm.addHiTask(10,1,3);
+		tm.freezeTasks();
+		cm.addComp(tm);
 		
 		cm.sort();
 		return cm;
