@@ -1,5 +1,6 @@
 package Simul;
 
+import java.util.Collections;
 import java.util.Vector;
 
 import Util.Log;
@@ -9,6 +10,15 @@ public class CompMng {
 	public CompMng() {
 		g_comp=new Vector<TaskMng>();
 	}
+	public CompMng(CompMng core) {
+		// TODO Auto-generated constructor stub
+		g_comp=core.cloneCore();
+	}
+
+	private Vector<TaskMng> cloneCore() {
+		return (Vector<TaskMng>)g_comp.clone();
+	}
+	
 	public void load(TaskMng tm) {
 		for(int i=0;i<3;i++){
 			addComp(new TaskMng());
@@ -71,6 +81,10 @@ public class CompMng {
 			tm.prn();
 			no++;
 		}
+	}
+	public void sort() {
+		Collections.sort(g_comp,new CompComparator());
+		
 	}
 
 

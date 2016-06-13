@@ -7,6 +7,7 @@ import java.util.Vector;
 import Util.Log;
 
 public class TaskMng {
+	private int g_ID;
 	private boolean g_bAdd;
 	private Vector<Task> g_taskV;
 	private Vector<Task> g_hi_taskV;
@@ -209,6 +210,20 @@ public class TaskMng {
 	}
 	public double getHiUtil_h() {
 		return g_hi_util_h;
+	}
+
+	public double getCompUtil() {
+		double lu=getLoUtil()+getHiUtil_l();
+		double hu=getHiUtil_h();
+		return Math.max(lu,hu);
+	}
+
+	public int get_ID() {
+		return g_ID;
+	}
+
+	public void set_ID(int g_ID) {
+		this.g_ID = g_ID;
 	}
 
 
