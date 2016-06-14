@@ -3,11 +3,12 @@ package Simul;
 import java.util.Random;
 
 import Util.Log;
+import Util.RUtil;
 
 
 
 public class CompGenParam {
-	private Random g_rand;
+	private RUtil g_rand=new RUtil();
 	
 	private double u_ub;
 	private double u_lb;
@@ -16,9 +17,6 @@ public class CompGenParam {
 	private int p_ub;
 	private int p_lb;
 	
-	public CompGenParam(){
-		g_rand=new Random();
-	}
 
 	public void setUtil(double l, double u) {
 		if(l>u ){
@@ -42,10 +40,8 @@ public class CompGenParam {
 
 
 	public Comp genComp(int tid) {
-		double tu=;
-		u=getNext
-		// TODO Auto-generated method stub
-		return null;
+		double tu=g_rand.getDbl(u_lb, u_ub);
+		return new Comp(tid,tu,tu,tu);
 	}
 
 

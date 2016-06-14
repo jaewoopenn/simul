@@ -2,7 +2,6 @@ package Simul;
 
 import java.util.Vector;
 
-import TestThesis.Comp;
 import Util.Log;
 
 public class CompGen {
@@ -14,22 +13,22 @@ public class CompGen {
 	}
 
 	public void generate() {
-		while(true){
-			g_tasks=new Vector<Task>();
-			genTaskSet();
-			if(g_param.check(getMCUtil())==1) break;
-		}
+//		while(true){
+//			g_tasks=new Vector<Task>();
+//			genTaskSet();
+//			if(g_param.check(getMCUtil())==1) break;
+//		}
 	}
 	private void genTaskSet()
 	{
-		int tid=0;
-		Task t;
-		while(getMCUtil()<=g_param.u_ub){
-			t=genTask(tid);
-			g_tasks.add(t);
-			tid++;
-		}
-		g_tasks.remove(g_tasks.size()-1);
+//		int tid=0;
+//		Task t;
+//		while(getMCUtil()<=g_param.getU_b){
+//			t=genTask(tid);
+//			g_tasks.add(t);
+//			tid++;
+//		}
+//		g_tasks.remove(g_tasks.size()-1);
 	}
 	
 
@@ -41,9 +40,9 @@ public class CompGen {
 	
 
 
-	public int check(){
-		return g_param.check(getMCUtil());
-	}
+//	public int check(){
+//		return g_param.check(getMCUtil());
+//	}
 	
 	// getting
 	public void prn(int lv) {
