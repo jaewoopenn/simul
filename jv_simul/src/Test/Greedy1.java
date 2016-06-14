@@ -2,10 +2,10 @@ package Test;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.TaskGen;
+import Basic.TaskMng;
 import Exp.Platform;
 import Simul.Analysis;
-import Simul.TaskGen;
-import Simul.TaskMng;
 
 public class Greedy1 {
 	public static int log_level=1;

@@ -1,6 +1,7 @@
 package Simul;
 
 
+import Basic.TaskMng;
 import Util.Log;
 
 public class CompAnalTemp  {

@@ -2,7 +2,7 @@ package TestThesis;
 
 import Util.Log;
 import Util.TEngine;
-import Simul.Comp;
+import Basic.Comp;
 import Simul.CompMng;
 import Simul.PartAnal;
 

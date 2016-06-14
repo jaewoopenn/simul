@@ -1,5 +1,6 @@
 package Simul;
 
+import Basic.Task;
 import Util.Log;
 
 public class AnalEDF extends Anal {

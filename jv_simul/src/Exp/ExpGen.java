@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import Simul.TaskGen;
-import Simul.TaskMng;
+import Basic.TaskGen;
+import Basic.TaskMng;
 import Util.Log;
 
 public class ExpGen {

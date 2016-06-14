@@ -1,4 +1,4 @@
-package Simul;
+package Basic;
 
 public class Task {
 	public int tid;

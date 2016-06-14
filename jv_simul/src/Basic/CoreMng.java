@@ -1,7 +1,8 @@
-package Simul;
+package Basic;
 
 import java.util.Vector;
 
+import Simul.CompMng;
 import Util.Log;
 
 public class CoreMng {

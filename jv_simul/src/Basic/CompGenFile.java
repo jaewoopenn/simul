@@ -1,4 +1,4 @@
-package Simul;
+package Basic;
 
 import java.util.Vector;
 
@@ -6,7 +6,7 @@ import Util.FUtil;
 
 
 
-public class TaskGenFile {
+public class CompGenFile {
 	public static void writeFile(String file,Vector<Task> g_tasks) {
 		FUtil fu=new FUtil(file);
 		for(Task t:g_tasks)

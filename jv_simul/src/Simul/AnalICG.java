@@ -2,6 +2,7 @@ package Simul;
 
 import java.util.Vector;
 
+import Basic.Task;
 import Util.Log;
 
 public class AnalICG extends Anal {

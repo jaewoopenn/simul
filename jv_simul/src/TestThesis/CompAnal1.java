@@ -2,11 +2,11 @@ package TestThesis;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.Comp;
+import Basic.TaskMng;
 import Simul.Analysis;
-import Simul.Comp;
 import Simul.CompAnal;
 import Simul.CompMng;
-import Simul.TaskMng;
 
 public class CompAnal1 {
 	public static int log_level=1;

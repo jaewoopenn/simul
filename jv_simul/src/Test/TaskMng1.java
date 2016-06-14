@@ -1,7 +1,7 @@
 package Test;
 import Util.Log;
 import Util.TEngine;
-import Simul.TaskMng;
+import Basic.TaskMng;
 public class TaskMng1 {
 	public static int log_level=1;
 //	public static int idx=-1;

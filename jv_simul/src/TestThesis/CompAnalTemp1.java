@@ -2,8 +2,8 @@ package TestThesis;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.TaskMng;
 import Simul.CompAnalTemp;
-import Simul.TaskMng;
 
 public class CompAnalTemp1 {
 	public static int log_level=1;

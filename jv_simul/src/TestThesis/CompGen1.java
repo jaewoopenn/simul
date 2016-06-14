@@ -1,11 +1,11 @@
 package TestThesis;
+import Basic.Comp;
+import Basic.CompGen;
+import Basic.CompGenParam;
+import Basic.Task;
+import Basic.TaskGen;
+import Basic.TaskMng;
 import Exp.Platform;
-import Simul.Comp;
-import Simul.CompGen;
-import Simul.CompGenParam;
-import Simul.Task;
-import Simul.TaskGen;
-import Simul.TaskMng;
 import Util.Log;
 import Util.TEngine;
 

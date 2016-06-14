@@ -1,6 +1,9 @@
 package Simul;
 
 
+import Basic.Comp;
+import Basic.CoreMng;
+import Basic.TaskMng;
 import Util.Log;
 
 public class PartAnal  {

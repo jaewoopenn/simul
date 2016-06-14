@@ -1,5 +1,7 @@
 package Simul;
 
+import Basic.TaskMng;
+
 public abstract class Anal {
 	TaskMng tm;
 	int g_limit=10000;

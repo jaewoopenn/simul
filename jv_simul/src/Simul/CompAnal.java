@@ -1,6 +1,8 @@
 package Simul;
 
 
+import Basic.Comp;
+import Basic.TaskMng;
 import Util.Log;
 
 public class CompAnal  {

@@ -3,6 +3,10 @@ package Simul;
 import java.util.Collections;
 import java.util.Vector;
 
+import Basic.Comp;
+import Basic.CompComparator;
+import Basic.Task;
+import Basic.TaskMng;
 import Util.Log;
 
 public class CompMng {

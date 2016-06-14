@@ -1,6 +1,8 @@
 package Simul;
 
 
+import Basic.TaskGen;
+import Basic.TaskMng;
 import Util.Log;
 
 public class SimCompGen {

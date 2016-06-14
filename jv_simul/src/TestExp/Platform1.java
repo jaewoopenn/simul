@@ -1,9 +1,9 @@
 package TestExp;
 
 import Util.TEngine;
+import Basic.TaskGen;
+import Basic.TaskMng;
 import Exp.Platform;
-import Simul.TaskGen;
-import Simul.TaskMng;
 
 public class Platform1 {
 //	public static int idx=-1;

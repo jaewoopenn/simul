@@ -1,7 +1,7 @@
 package TestTaskMode;
 import Util.Log;
 import Util.TEngine;
-import Simul.TaskMng;
+import Basic.TaskMng;
 
 public class TaskSet1 {
 	public static int log_level=1;
