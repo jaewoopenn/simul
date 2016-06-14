@@ -17,8 +17,8 @@ public class CompGen1 {
 	public int test1()
 	{
 		CompGenParam p=new CompGenParam();
-		p.setPeriod(20,50);
-		p.setTUtil(0.02,0.3);
+//		p.setPeriod(20,50);
+//		p.setTUtil(0.02,0.3);
 		CompGen tg=new CompGen(p);
 		int max_num=2;
 		for(int i=0;i<max_num;i++){

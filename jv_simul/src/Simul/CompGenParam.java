@@ -11,8 +11,6 @@ public class CompGenParam {
 	
 	public double u_ub;
 	public double u_lb;
-	public double tu_ub;
-	public double tu_lb;
 	public double ratio_lb;
 	public double ratio_ub;
 	public int p_ub;
@@ -21,7 +19,6 @@ public class CompGenParam {
 	
 	public CompGenParam(){
 		g_rand=new Random();
-		
 	}
 
 	public int getComp(int max)
@@ -38,13 +35,6 @@ public class CompGenParam {
 	}
 
 
-	public void setTUtil(double l, double u) {
-		if(l>u){
-			System.out.println("Error setTUtil");
-		}
-		tu_ub=u;
-		tu_lb=l;
-	}
 	public void setRatioLH(double l, double u) {
 		if(l>u){
 			System.out.println("Error setRatioLH");
@@ -64,43 +54,6 @@ public class CompGenParam {
 		
 	}
 
-	public Task genTask(int tid){
-		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
-		int e=(int)(tu*p);
-		return new Task(tid,p,e);
-	}
-
-	public Task genMCTask(int tid){
-		double getProb=g_rand.nextDouble();
-		if (getProb>prob_HI) 
-			return genTask(tid);
-		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
-		double ratio=g_rand.nextDouble()*(ratio_ub-ratio_lb)+ratio_lb;
-		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
-		int h=(int)(tu*p);
-		int l=(int)(h*ratio);
-		if(l==0) l=1;
-		if(h==0) h=1;
-		return new Task(tid,p,l,h);
-	}
-
-	public Task genMCTask2(int tid){
-		double getProb=g_rand.nextDouble();
-		if (getProb>prob_HI) 
-			return genTask(tid);
-		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
-		double ratio=g_rand.nextDouble()*(ratio_ub-ratio_lb)+ratio_lb;
-		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
-		int h=(int)(tu*p);
-		int l=(int)(h*ratio);
-		if(l==0) l=1;
-		if(h==0) h=1;
-		return new Task(tid,p,l,h);
-	}
-	
 	
 	public boolean chkTask(Task t) {
 		int p=t.period;
@@ -126,6 +79,11 @@ public class CompGenParam {
 		}
 //		Log.prn(2,"f");
 		return 0;
+	}
+
+	public Task genComp(int tid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

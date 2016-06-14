@@ -33,7 +33,7 @@ public class CompGen {
 	
 
 	public Task genTask(int tid){
-		Task tsk=g_param.genMCTask(tid);
+		Task tsk=g_param.genComp(tid);
 		if(!g_param.chkTask(tsk))
 			return null;
 		if(!g_param.chkMCTask(tsk))
@@ -41,12 +41,6 @@ public class CompGen {
 		return tsk;
 	}
 
-	public void assignComp(int max){
-		for(Task t:g_tasks) {
-			t.setCom(g_param.getComp(max));
-		}
-		
-	}
 
 	public int check(){
 		return g_param.check(getMCUtil());

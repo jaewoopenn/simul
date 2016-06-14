@@ -6,63 +6,69 @@ import java.util.Vector;
 import Util.Log;
 
 public class CompMng {
-	private Vector<TaskMng> g_comp;
+	private Vector<Comp> g_comp;
 	private double g_lt_LU;
 	private double g_ht_LU;
 	private double g_ht_HU;
 	public CompMng() {
-		g_comp=new Vector<TaskMng>();
+		g_comp=new Vector<Comp>();
 	}
 	public CompMng(CompMng core) {
 		g_comp=core.cloneCore();
 	}
 
 	@SuppressWarnings("unchecked")
-	private Vector<TaskMng> cloneCore() {
-		return (Vector<TaskMng>)g_comp.clone();
+	private Vector<Comp> cloneCore() {
+		return (Vector<Comp>)g_comp.clone();
 	}
 	
 	public void load(TaskMng tm) {
-		for(int i=0;i<3;i++){
-			addComp(new TaskMng());
+		Vector<TaskMng> tms=new Vector<TaskMng>();
+		int max_com=3;
+		for(int i=0;i<max_com;i++){
+			tms.addElement(new TaskMng());
 		}
 		
 		for(int i=0;i<tm.size();i++){
 			Task tsk=tm.getTask(i);
-			TaskMng com=getComp(tsk.cid);
+			TaskMng com=tms.elementAt(tsk.cid);
 			com.addTask(tsk);
 //			Log.prn(2, i+","+tsk.cid);
 		}
-		for(int i=0;i<3;i++){
-			TaskMng com=getComp(i);
+		for(int i=0;i<max_com;i++){
+			TaskMng com=tms.elementAt(i);
 			com.freezeTasks();
+			addComp(com);
 		}
 //		prn();
 	}
 	
 	
 	public void addComp(TaskMng tm) {
-		g_comp.addElement(tm);
+		Comp c=new Comp(tm.get_ID(),tm.getLoUtil(),
+				tm.getHiUtil_l(),tm.getHiUtil_h());
+		
+		g_comp.addElement(c);
 	}
-	public TaskMng getComp(int i) {
+	public Comp getComp(int i) {
 		return g_comp.elementAt(i);
 	}
 	public void computeUtils(){
 		double u=0;
-		for(TaskMng tm:g_comp){
-			u+=tm.getLoUtil();
+		for(Comp c:g_comp){
+			u+=c.get_lt_lu();
 		}
 		g_lt_LU=u;
 
 		u=0;
-		for(TaskMng tm:g_comp){
-			u+=tm.getHiUtil_l();
+		for(Comp c:g_comp){
+			u+=c.get_ht_lu();
 		}
 		g_ht_LU=u;
 
 		u=0;
-		for(TaskMng tm:g_comp){
-			u+=tm.getHiUtil_h();
+		for(Comp c:g_comp){
+			u+=c.get_ht_lu();
 		}
 		g_ht_HU=u;
 	}
