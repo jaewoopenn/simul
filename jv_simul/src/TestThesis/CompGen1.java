@@ -12,14 +12,15 @@ import Util.TEngine;
 public class CompGen1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
 	{
 		CompGenParam p=new CompGenParam();
-//		p.setPeriod(20,50);
 		p.set_lt_lu(0.02,0.3);
+		p.set_ht_lu(0.02,0.3);
+		p.set_ratio(1, 4);
 		CompGen tg=new CompGen(p);
 		int max_num=2;
 		for(int i=0;i<max_num;i++){
@@ -30,10 +31,12 @@ public class CompGen1 {
 	}
 	public int test2()
 	{
-		TaskGen tg=new TaskGen();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		CompGenParam p=new CompGenParam();
+		p.set_lt_lu(0.02,0.3);
+		p.set_ht_lu(0.02,0.3);
+		p.set_ratio(1, 4);
+		p.set_util(0.80, 0.85);
+		CompGen tg=new CompGen(p);
 		tg.generate();
 		tg.prn(1);
 		return tg.check();

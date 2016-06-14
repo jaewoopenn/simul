@@ -6,29 +6,29 @@ import Util.Log;
 
 public class CompGen {
 	private CompGenParam g_param;
-	private Vector<Task> g_tasks;
+	private Vector<Comp> g_comps;
 	
 	public CompGen(CompGenParam param) {
 		g_param=param;
 	}
 
 	public void generate() {
-//		while(true){
-//			g_tasks=new Vector<Task>();
-//			genTaskSet();
-//			if(g_param.check(getMCUtil())==1) break;
-//		}
+		while(true){
+			g_comps=new Vector<Comp>();
+			genSys();
+			if(check()==1) break;
+		}
 	}
-	private void genTaskSet()
+	private void genSys()
 	{
-//		int tid=0;
-//		Task t;
-//		while(getMCUtil()<=g_param.getU_b){
-//			t=genTask(tid);
-//			g_tasks.add(t);
-//			tid++;
-//		}
-//		g_tasks.remove(g_tasks.size()-1);
+		int tid=0;
+		Comp t;
+		while(getMCUtil()<=g_param.get_util_u()){
+			t=genComp(tid);
+			g_comps.addElement(t);
+			tid++;
+		}
+		g_comps.remove(g_comps.size()-1);
 	}
 	
 
@@ -40,58 +40,49 @@ public class CompGen {
 	
 
 
-//	public int check(){
-//		return g_param.check(getMCUtil());
-//	}
+	public int check(){
+		return g_param.check(getMCUtil());
+	}
 	
 	// getting
 	public void prn(int lv) {
-		for(Task t:g_tasks) {
-			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
-					", h:"+t.c_h+", Xi:"+t.is_HI);
+		for(Comp c:g_comps) {
+			c.prn(lv);
 		}
 		Log.prn(lv, "MC util:"+getMCUtil());
 			
 	}
 
-	public void prn2(int lv) {
-		for(Task t:g_tasks) {
-			Log.prn(lv, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
-					", h:"+t.c_h+", Xi:"+t.is_HI+", com:"+t.cid);
-		}
-		Log.prn(lv, "MC util:"+getMCUtil());
-			
-	}
 
 	
 	public double getMCUtil(){
 		double loutil=0;
 		double hiutil=0;
-		for(Task t:g_tasks){
-			loutil+=(double)(t.c_l)/t.period;
-			if(t.is_HI)
-				hiutil+=(double)(t.c_h)/t.period;
+		for(Comp c:g_comps){
+			loutil+=c.get_lt_lu();
+			loutil+=c.get_ht_lu();
+			hiutil+=c.get_ht_lu();
 		}
 		return Math.max(loutil, hiutil);
 	}
 
-	public Vector<Task> getAll() {
-		return g_tasks;
-	}
+//	public Vector<Comp> getAll() {
+//		return g_comps;
+//	}
 
 
 	public int size() {
-		return g_tasks.size();
+		return g_comps.size();
 	}
 	
 	
 	// file
 	public void writeFile(String file) {
-		CompGenFile.writeFile(file, g_tasks);
+//		CompGenFile.writeFile(file, g_comps);
 	}
 	
 	public void loadFile(String f) {
-		g_tasks=CompGenFile.loadFile(f);
+//		g_comps=CompGenFile.loadFile(f);
 	}
 
 	
