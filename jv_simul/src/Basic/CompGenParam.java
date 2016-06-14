@@ -10,25 +10,33 @@ import Util.RUtil;
 public class CompGenParam {
 	private RUtil g_rand=new RUtil();
 	
-	private double u_ub;
-	private double u_lb;
+	private double lt_lu_u;
+	private double lt_lu_l;
+	private double ht_lu_u;
+	private double ht_lu_l;
 	private double ratio_lb;
 	private double ratio_ub;
-	private int p_ub;
-	private int p_lb;
 	
 
-	public void setUtil(double l, double u) {
+	public void set_lt_lu(double l, double u) {
 		if(l>u ){
 			System.out.println("Error setUtil");
 		}
-		u_lb=l;
-		u_ub=u;
+		lt_lu_l=l;
+		lt_lu_u=u;
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
+	public void set_ht_lu(double l, double u) {
+		if(l>u ){
+			System.out.println("Error setUtil");
+		}
+		ht_lu_l=l;
+		ht_lu_u=u;
+//		Log.prn(2, u_lb+" "+u_ub);
+	}
 
-	public void setRatioLH(double l, double u) {
+	public void set_ratio(double l, double u) {
 		if(l>u){
 			System.out.println("Error setRatioLH");
 		}
@@ -40,7 +48,9 @@ public class CompGenParam {
 
 
 	public Comp genComp(int tid) {
-		double tu=g_rand.getDbl(u_lb, u_ub);
+		double lt_lu=g_rand.getDbl(lt_lu_l, lt_lu_u);
+		double ht_lu=g_rand.getDbl(ht_lu_l, ht_lu_u);
+		double ratio=g_rand.getDbl(ratio_lb, ratio_ub);
 		return new Comp(tid,tu,tu,tu);
 	}
 

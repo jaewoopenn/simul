@@ -17,9 +17,13 @@ public class Comp {
 
 	public void prn(int lv) {
 		Log.prnc(lv,"cid:"+cid);
-		Log.prnc(lv," lt_lu:"+g_lt_lu);
-		Log.prnc(lv," ht_lu:"+g_ht_lu);
-		Log.prn(lv," ht_hu:"+g_ht_hu);
+		Log.prnc(lv," lt_lu:");
+		Log.prnDbl(lv,  g_lt_lu);
+		Log.prnc(lv," ht_lu:");
+		Log.prnDbl(lv,  g_ht_lu);
+		Log.prnc(lv," ht_hu:");
+		Log.prnDbl(lv,  g_ht_hu);
+		Log.prn_nl(lv);
 	}
 	
 	public double getCompUtil() {

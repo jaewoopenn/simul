@@ -19,7 +19,7 @@ public class CompGen1 {
 	{
 		CompGenParam p=new CompGenParam();
 //		p.setPeriod(20,50);
-		p.setUtil(0.02,0.3);
+		p.set_lt_lu(0.02,0.3);
 		CompGen tg=new CompGen(p);
 		int max_num=2;
 		for(int i=0;i<max_num;i++){

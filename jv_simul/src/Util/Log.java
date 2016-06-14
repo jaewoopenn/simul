@@ -25,4 +25,11 @@ public class Log {
 		System.out.println("ERR:"+s);
 		System.exit(1);
 	}
+	public static void prnDbl(int lv,double f){
+		if(g_lv<=lv)
+			System.out.printf("%.3f", f);		
+	}
+	public static void prn_nl(int lv) {
+		prn(lv,"");
+	}
 }
