@@ -1,5 +1,6 @@
 package TestThesis;
 import Exp.Platform;
+import Simul.Comp;
 import Simul.CompGen;
 import Simul.CompGenParam;
 import Simul.Task;
@@ -22,8 +23,8 @@ public class CompGen1 {
 		CompGen tg=new CompGen(p);
 		int max_num=2;
 		for(int i=0;i<max_num;i++){
-			Task t=tg.genTask(i);
-			Log.prn(1, "tid:"+t.tid+",p:"+t.period+",e:"+t.c_l);
+			Comp c=tg.genComp(i);
+			c.prn(1);
 		}
 		return 1;
 	}

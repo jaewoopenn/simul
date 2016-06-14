@@ -2,6 +2,7 @@ package Simul;
 
 import java.util.Vector;
 
+import TestThesis.Comp;
 import Util.Log;
 
 public class CompGen {
@@ -32,14 +33,12 @@ public class CompGen {
 	}
 	
 
-	public Task genTask(int tid){
-		Task tsk=g_param.genComp(tid);
-		if(!g_param.chkTask(tsk))
-			return null;
-		if(!g_param.chkMCTask(tsk))
-			return null;
+	public Comp genComp(int tid) {
+		Comp tsk=g_param.genComp(tid);
+		// TODO Auto-generated method stub
 		return tsk;
 	}
+	
 
 
 	public int check(){
@@ -95,5 +94,6 @@ public class CompGen {
 	public void loadFile(String f) {
 		g_tasks=CompGenFile.loadFile(f);
 	}
+
 	
 }

@@ -212,11 +212,6 @@ public class TaskMng {
 		return g_hi_util_h;
 	}
 
-	public double getCompUtil() {
-		double lu=getLoUtil()+getHiUtil_l();
-		double hu=getHiUtil_h();
-		return Math.max(lu,hu);
-	}
 
 	public int get_ID() {
 		return g_ID;

@@ -1,13 +1,13 @@
 package Simul;
 
-import java.util.Random;
 
 import Util.Log;
+import Util.RUtil;
 
 
 
 public class TaskGenParam {
-	private Random g_rand;
+	private RUtil g_rand;
 	
 	public double u_ub;
 	public double u_lb;
@@ -20,13 +20,13 @@ public class TaskGenParam {
 	public double prob_HI;
 	
 	public TaskGenParam(){
-		g_rand=new Random();
+		g_rand=new RUtil();
 		
 	}
 
 	public int getComp(int max)
 	{
-		return g_rand.nextInt(max);
+		return g_rand.getInt(max);
 	}
 	public void setUtil(double l, double u) {
 		if(l>u ){
@@ -65,19 +65,19 @@ public class TaskGenParam {
 	}
 
 	public Task genTask(int tid){
-		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
+		int p=g_rand.getInt(p_lb,p_ub);
+		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		int e=(int)(tu*p);
 		return new Task(tid,p,e);
 	}
 
 	public Task genMCTask(int tid){
-		double getProb=g_rand.nextDouble();
+		double getProb=g_rand.getDbl();
 		if (getProb>prob_HI) 
 			return genTask(tid);
-		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
-		double ratio=g_rand.nextDouble()*(ratio_ub-ratio_lb)+ratio_lb;
+		int p=g_rand.getInt(p_lb, p_ub);
+		double tu=g_rand.getDbl(tu_lb,tu_ub);
+		double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
 		int h=(int)(tu*p);
 		int l=(int)(h*ratio);
@@ -87,12 +87,12 @@ public class TaskGenParam {
 	}
 
 	public Task genMCTask2(int tid){
-		double getProb=g_rand.nextDouble();
+		double getProb=g_rand.getDbl();
 		if (getProb>prob_HI) 
 			return genTask(tid);
-		int p=g_rand.nextInt(p_ub-p_lb)+p_lb;
-		double tu=g_rand.nextDouble()*(tu_ub-tu_lb)+tu_lb;
-		double ratio=g_rand.nextDouble()*(ratio_ub-ratio_lb)+ratio_lb;
+		int p=g_rand.getInt(p_lb, p_ub);
+		double tu=g_rand.getDbl(tu_lb,tu_ub);
+		double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
 		int h=(int)(tu*p);
 		int l=(int)(h*ratio);

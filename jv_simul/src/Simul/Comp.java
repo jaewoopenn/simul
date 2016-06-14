@@ -21,6 +21,12 @@ public class Comp {
 		Log.prnc(lv," ht_lu:"+g_ht_lu);
 		Log.prnc(lv," ht_hu:"+g_ht_hu);
 	}
+	
+	public double getCompUtil() {
+		double lu=g_lt_lu+g_ht_lu;
+		double hu=g_ht_hu;
+		return Math.max(lu,hu);
+	}
 
 	public double get_lt_lu() {
 		return g_lt_lu;

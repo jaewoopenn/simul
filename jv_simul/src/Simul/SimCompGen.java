@@ -57,8 +57,7 @@ public class SimCompGen {
 	public int analComp(TaskMng tm,double alpha) {
 		CompMng cm=new CompMng();
 		cm.load(tm);
-		CompAnal a=new CompAnal();
-		a.init(cm);
+		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 //		a.set_alpha(0.0);
 		a.set_alpha(alpha);

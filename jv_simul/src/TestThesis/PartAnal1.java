@@ -2,10 +2,9 @@ package TestThesis;
 
 import Util.Log;
 import Util.TEngine;
-import Simul.Analysis;
+import Simul.Comp;
 import Simul.CompMng;
 import Simul.PartAnal;
-import Simul.TaskMng;
 
 public class PartAnal1 {
 	public static int log_level=2;
@@ -18,43 +17,12 @@ public class PartAnal1 {
 	{
 		CompMng cm=new CompMng();
 
-		TaskMng tm=new TaskMng();
-		tm.set_ID(0);
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,4);
-		tm.freezeTasks();
-		cm.addComp(tm);
-
-		tm=new TaskMng();
-		tm.set_ID(1);
-		tm.addTask(9,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
-
-		tm=new TaskMng();
-		tm.set_ID(2);
-		tm.addTask(6,1);
-		tm.addHiTask(13,1,2);
-		tm.freezeTasks();
-		cm.addComp(tm);
-
-		tm=new TaskMng();
-		tm.set_ID(3);
-		tm.addTask(9,1);
-		tm.addHiTask(14,1,3);
-		tm.freezeTasks();
-		cm.addComp(tm);
-		tm=new TaskMng();
-
-		tm=new TaskMng();
-		tm.set_ID(4);
-		tm.addTask(6,1);
-		tm.addHiTask(10,1,3);
-		tm.freezeTasks();
-		cm.addComp(tm);
+		cm.addComp(new Comp(0, 1.0/8, 1.0/12, 4.0/12));
+		cm.addComp(new Comp(1, 1.0/9, 1.0/12, 5.0/12));
+		cm.addComp(new Comp(2, 1.0/6, 1.0/13, 2.0/13));
+		cm.addComp(new Comp(3, 1.0/9, 1.0/14, 3.0/14));
+		cm.addComp(new Comp(4, 1.0/6, 1.0/10, 3.0/10));
 		
-		cm.sort();
 		return cm;
 	}
 
@@ -62,6 +30,7 @@ public class PartAnal1 {
 	public int test1() 
 	{
 		CompMng cm=getComp1();
+		cm.sort();
 		PartAnal a=new PartAnal();
 		a.init(cm,2);
 		a.part_help();

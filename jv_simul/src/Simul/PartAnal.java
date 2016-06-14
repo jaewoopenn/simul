@@ -1,8 +1,6 @@
 package Simul;
 
 
-import java.util.Vector;
-
 import Util.Log;
 
 public class PartAnal  {
@@ -23,27 +21,21 @@ public class PartAnal  {
 	public void part_help()
 	{
 		for(int i=0;i<g_cm.getSize();i++){
-			TaskMng tm=g_cm.getComp(i);
+			Comp tm=g_cm.getComp(i);
 			double max_u=tm.getCompUtil();
 					
-			Log.prnc(2, "comp "+tm.get_ID());
+			Log.prnc(2, "comp "+tm.get_id());
 //			Log.prn(2, "lo_util:"+lu);
 //			Log.prn(2, "hi_util:"+hu);
 			Log.prn(2, " max_util:"+max_u);
 		}
-//		for(int i=0;i<g_num_cpu;i++){
-//			Log.prnc(2, "cpu "+i);
-//			CompMng core=g_pm.getCPU(i);
-//			Log.prn(2, " util:"+core.get_ht_HU());
-//		}
 		for(int i=0;i<g_cm.getSize();i++){
-			TaskMng tm=g_cm.getComp(i);
+			Comp tm=g_cm.getComp(i);
 			for(int j=0;j<g_num_cpu;j++){
 				CompMng core=g_pm.getCPU(j);
 				CompMng tempCore=new CompMng(core);
 				tempCore.addComp(tm);
-				CompAnal a=new CompAnal();
-				a.init(tempCore);
+				CompAnal a=new CompAnal(tempCore);
 				a.compute_X();
 				a.set_alpha(0.3);
 //				a.set_alpha(1.0);

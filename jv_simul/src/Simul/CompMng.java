@@ -48,7 +48,11 @@ public class CompMng {
 		Comp c=new Comp(tm.get_ID(),tm.getLoUtil(),
 				tm.getHiUtil_l(),tm.getHiUtil_h());
 		
+		addComp(c);
+	}
+	public void addComp(Comp c) {
 		g_comp.addElement(c);
+		
 	}
 	public Comp getComp(int i) {
 		return g_comp.elementAt(i);
@@ -68,7 +72,7 @@ public class CompMng {
 
 		u=0;
 		for(Comp c:g_comp){
-			u+=c.get_ht_lu();
+			u+=c.get_ht_hu();
 		}
 		g_ht_HU=u;
 	}
@@ -79,7 +83,7 @@ public class CompMng {
 		return g_ht_LU;
 	}
 	public double get_ht_HU(){
-		return g_ht_LU;
+		return g_ht_HU;
 	}
 
 
@@ -89,20 +93,12 @@ public class CompMng {
 
 
 
-	public void prn(){
-		int no=1;
-		for(TaskMng tm:g_comp){
-			Log.prn(2, "comp "+no);
-			tm.prn();
-			no++;
-		}
-	}
 	public void prn2(){
 		
-		for(TaskMng tm:g_comp){
-			Log.prnc(2, "comp "+tm.get_ID());
-			Log.prnc(2, " lo "+(tm.getLoUtil()+tm.getHiUtil_l()));
-			Log.prn(2, " hi "+tm.getHiUtil_h());
+		for(Comp tm:g_comp){
+			Log.prnc(2, "comp "+tm.get_id());
+			Log.prnc(2, " lo "+(tm.get_lt_lu()+tm.get_ht_lu()));
+			Log.prn(2, " hi "+tm.get_ht_hu());
 		}
 	}
 	public void sort() {

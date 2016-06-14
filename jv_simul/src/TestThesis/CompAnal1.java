@@ -3,6 +3,7 @@ package TestThesis;
 import Util.Log;
 import Util.TEngine;
 import Simul.Analysis;
+import Simul.Comp;
 import Simul.CompAnal;
 import Simul.CompMng;
 import Simul.TaskMng;
@@ -10,7 +11,7 @@ import Simul.TaskMng;
 public class CompAnal1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
@@ -35,8 +36,7 @@ public class CompAnal1 {
 	public int test1() 
 	{
 		CompMng cm=getComp1();
-		CompAnal a=new CompAnal();
-		a.init(cm);
+		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.comp_interface_help(0);
 		return -1;
@@ -62,8 +62,7 @@ public class CompAnal1 {
 	public int test2() 
 	{
 		CompMng cm=getComp2();
-		CompAnal a=new CompAnal();
-		a.init(cm);
+		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.set_alpha(0.4);
 		a.comp_interface_help(0);
@@ -74,13 +73,12 @@ public class CompAnal1 {
 	public int test3() 
 	{
 		CompMng cm=getComp2();
-		CompAnal a=new CompAnal();
-		a.init(cm);
+		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.set_alpha(0.4);
-		double ht_lu=a.comp_interface_ht_lu(0);
+		double ht_lu=a.comp_interface_hi(0);
 		Log.prn(1, "new ht_lu:"+ht_lu);
-		ht_lu=a.comp_interface_ht_lu(1);
+		ht_lu=a.comp_interface_hi(1);
 		Log.prn(1, "new ht_lu:"+ht_lu);
 		return -1;
 	}
@@ -88,8 +86,7 @@ public class CompAnal1 {
 	public  int test4() 
 	{
 		CompMng cm=getComp2();
-		CompAnal a=new CompAnal();
-		a.init(cm);
+		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 //		a.set_alpha(0.0);
 		a.set_alpha(0.4);
@@ -98,11 +95,29 @@ public class CompAnal1 {
 //		tm.prn();
 		return Analysis.anal_EDF_VD(tm); 
 	}
-
-	public  int test5()
+	public CompMng getComp3()
 	{
-		return -1;
+		CompMng cm=new CompMng();
+		Comp c=new Comp(0,1.0/8,1.0/12,5.0/12);
+		cm.addComp(c);
+		c=new Comp(0,1.0/8,1.0/12,5.0/12);
+		cm.addComp(c);
+		
+		return cm;
 	}
+	
+	public  int test5() 
+	{
+		CompMng cm=getComp3();
+		CompAnal a=new CompAnal(cm);
+		a.compute_X();
+//		a.set_alpha(0.0);
+//		a.set_alpha(0.4);
+		a.set_alpha(1.0);
+		TaskMng tm=a.getInterfaces();
+		return Analysis.anal_EDF_VD(tm); 
+	}
+
 	
 	public  int test6() 
 	{

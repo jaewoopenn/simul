@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 
 
-public class CompComparator implements Comparator<TaskMng>{
+public class CompComparator implements Comparator<Comp>{
 	public int compare(Comp a, Comp b) {
 //		System.out.println(a.getCompUtil());
 //		int det=(a.getCompUtil() > b.getCompUtil()) ?1:-1;
