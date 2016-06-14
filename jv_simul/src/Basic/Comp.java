@@ -19,7 +19,7 @@ public class Comp {
 		Log.prnc(lv,"cid:"+cid);
 		Log.prnc(lv," lt_lu:"+g_lt_lu);
 		Log.prnc(lv," ht_lu:"+g_ht_lu);
-		Log.prnc(lv," ht_hu:"+g_ht_hu);
+		Log.prn(lv," ht_hu:"+g_ht_hu);
 	}
 	
 	public double getCompUtil() {
