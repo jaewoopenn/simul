@@ -10,7 +10,6 @@ public abstract class Anal {
 	}
 	public abstract void prepare();
 	public abstract boolean isScheduable();
-	public abstract int getResp();
 	public abstract double getDropRate(double p);
 
 }

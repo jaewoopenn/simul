@@ -2,7 +2,6 @@ package TestThesis;
 import Basic.Comp;
 import Basic.CompGen;
 import Basic.CompGenParam;
-import Basic.Task;
 import Basic.TaskGen;
 import Basic.TaskMng;
 import Exp.Platform;

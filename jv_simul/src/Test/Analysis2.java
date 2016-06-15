@@ -71,29 +71,11 @@ public class Analysis2 {
 	
 	public  int test6()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,2);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-		int v= Analysis.getRespEDF(tm);
-		Log.prn(1, "res:"+v);
 		return 0;
 	}
 	
 	public  int test7()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(12,1);
-		tm.addHiTask(3,1,2);
-		tm.addHiTask(4,1,1);
-		tm.freezeTasks();
-		int v;
-		v= Analysis.getRespEDF(tm);
-		Log.prn(1, "EDF res:"+v);
-		v= Analysis.getRespEDF_VD(tm);
-		Log.prn(1, "VD res:"+v);
-		v= Analysis.getRespEDF_TM(tm);
-		Log.prn(1, "TM res:"+v);
 		return 0;
 	}
 	

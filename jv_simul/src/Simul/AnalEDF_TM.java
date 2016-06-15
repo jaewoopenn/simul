@@ -40,15 +40,6 @@ public class AnalEDF_TM extends Anal {
 		return false;
 	}
 
-	@Override
-	public int getResp() {
-		int maxV=0;
-		for(int i=0;i<tm.size();i++){
-			Task t=tm.getTask(i);
-			maxV=Math.max(maxV,t.period);
-		}
-		return maxV;
-	}
 
 	private int getNum(double u){
 		double ul=0;

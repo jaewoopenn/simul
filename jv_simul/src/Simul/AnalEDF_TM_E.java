@@ -51,10 +51,7 @@ public class AnalEDF_TM_E extends Anal {
 		return false;
 	}
 
-	@Override
-	public int getResp() {
-		return -1;
-	}
+
 
 	
 	@Override

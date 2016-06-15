@@ -103,8 +103,10 @@ public class CompMng {
 		
 		for(Comp tm:g_comp){
 			Log.prnc(2, "comp "+tm.get_id());
-			Log.prnc(2, " lo "+(tm.get_lt_lu()+tm.get_ht_lu()));
-			Log.prn(2, " hi "+tm.get_ht_hu());
+			Log.prnc(2, " lo ");
+			Log.prnDblc(2,tm.get_lt_lu()+tm.get_ht_lu());
+			Log.prnc(2, " hi ");
+			Log.prnDbl(2,tm.get_ht_hu());
 		}
 	}
 	public void sortMC() {

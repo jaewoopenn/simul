@@ -41,13 +41,14 @@ public class Analysis {
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
 	}
-	
-	public static int getRespEDF(TaskMng mng) {
+	public static double getScore_EDF_VD(TaskMng mng) {
 		if(checkErr(mng)) return -1;
-		AnalEDF a=new AnalEDF();
+		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(mng);
-		return a.getResp();
+		a.prepare();
+		return a.getScore();
 	}
+	
 	public static double getDrop_EDF_VD(TaskMng mng,double prob_hi) {
 		if(checkErr(mng)) return -1;
 		AnalEDF_VD a=new AnalEDF_VD();
@@ -81,26 +82,7 @@ public class Analysis {
 	}
 
 	
-	public static int getRespEDF_VD(TaskMng mng) {
-		if(checkErr(mng)) return -1;
-		AnalEDF_VD a=new AnalEDF_VD();
-		a.init(mng);
-		return a.getResp();
-	}
-	public static int getRespEDF_TM(TaskMng mng) {
-		if(checkErr(mng)) return -1;
-		AnalEDF_VD a=new AnalEDF_VD();
-		a.init(mng);
-		int VD_v= a.getResp();
-		
-		AnalEDF_TM b=new AnalEDF_TM();
-		b.init(mng);
-		int TM_v=b.getResp();
-		Log.prn(2, "v:"+VD_v+","+TM_v);
 
-		return Math.min(VD_v, TM_v);
-	}
-	
 	public static boolean checkErr(TaskMng mng){
 		if(!mng.isFinal()) {
 			Log.prn(1,"task set is not finalized");

@@ -26,7 +26,8 @@ public class PartAnal  {
 		for(int i=0;i<g_cm.getSize();i++){
 			Comp tm=g_cm.getComp(i);
 			Log.prnc(2, "comp "+tm.get_id());
-			Log.prn(2, " max_util:"+tm.getCompUtil());
+			Log.prnc(2, " max_util:");
+			Log.prnDbl(2,tm.getCompUtil());
 		}
 		
 		partitionFF();
@@ -37,7 +38,8 @@ public class PartAnal  {
 			CompMng core=g_pm.getCPU(i);
 //			core.prn();
 			core.computeUtils();
-			Log.prn(2, " util:"+core.get_max_util());
+			Log.prnc(2, " util:");
+			Log.prnDbl(2, core.get_max_util());
 			core.prn2();
 		}
 	}
@@ -48,8 +50,8 @@ public class PartAnal  {
 			Comp tm=g_cm.getComp(i);
 			for(int j=0;j<g_num_cpu;j++){
 				CompMng core=g_pm.getCPU(j);
-				boolean b=checkAdd(core,tm);
-				if (b) {
+				double score=checkAdd(core,tm);
+				if (score<1) {
 					core.addComp(tm);
 					break;
 				}
@@ -58,7 +60,7 @@ public class PartAnal  {
 	}
 
 
-	private boolean checkAdd(CompMng core, Comp tm) {
+	private double checkAdd(CompMng core, Comp tm) {
 		CompMng tempCore=new CompMng(core);
 		tempCore.addComp(tm);
 		CompAnal a=new CompAnal(tempCore);
@@ -67,7 +69,8 @@ public class PartAnal  {
 //		a.set_alpha(1.0);
 		TaskMng c_tm=a.getInterfaces();
 //		tm.prn();
-		return Analysis.anal_EDF_VD(c_tm)==1;
+		
+		return Analysis.getScore_EDF_VD(c_tm);
 	}
 	
 

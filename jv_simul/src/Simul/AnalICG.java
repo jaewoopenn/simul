@@ -20,10 +20,7 @@ public class AnalICG extends Anal {
 		return findOPA();
 	}
 
-	@Override
-	public int getResp() {
-		return 0;
-	}
+
 
 	@Override
 	public double getDropRate(double prob_hi) {
