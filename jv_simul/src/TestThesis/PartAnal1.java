@@ -32,8 +32,7 @@ public class PartAnal1 {
 	{
 		CompMng cm=getComp1();
 		cm.sortMC();
-		PartAnal a=new PartAnal();
-		a.init(cm,2);
+		PartAnal a=new PartAnal(cm,2);
 		a.part_help();
 		return -1;
 	}
@@ -59,8 +58,7 @@ public class PartAnal1 {
 //		cm.sortMC();
 		cm.sortHI();
 //		cm.sortLO();
-		PartAnal a=new PartAnal();
-		a.init(cm,2);
+		PartAnal a=new PartAnal(cm,2);
 		a.part_help();
 		return -1;
 	}
@@ -70,9 +68,10 @@ public class PartAnal1 {
 		// TODO partition 
 		CompMng cm=getComp2();
 		cm.sortMC();
-		PartAnal a=new PartAnal();
-		a.init(cm,2);
-		a.part_help();
+		PartAnal a=new PartAnal(cm,2);
+		a.help1();
+		a.partitionWF();
+		a.help2();
 		return -1;
 	}
 	

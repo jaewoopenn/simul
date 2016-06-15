@@ -11,7 +11,7 @@ public class PartAnal  {
 	private CoreMng g_pm;
 	private int g_num_cpu;
 
-	public void init(CompMng mng,int cpus) {
+	public PartAnal(CompMng mng, int cpus) {
 		g_cm=mng;
 		g_num_cpu=cpus;
 		g_pm=new CoreMng();
@@ -20,18 +20,22 @@ public class PartAnal  {
 		}
 	}
 
+
+
 	
 	public void part_help()
 	{
-		for(int i=0;i<g_cm.getSize();i++){
-			Comp tm=g_cm.getComp(i);
-			Log.prnc(2, "comp "+tm.get_id());
-			Log.prnc(2, " max_util:");
-			Log.prnDbl(2,tm.getCompUtil());
-		}
+		help1();
 		
 		partitionFF();
+//		partitionWF();
+		
+		help2();
 
+	}
+
+
+	public void help2() {
 		Log.prn(2, "after part");
 		for(int i=0;i<g_num_cpu;i++){
 			Log.prnc(2, "cpu "+i);
@@ -45,11 +49,24 @@ public class PartAnal  {
 	}
 
 
-	private void partitionFF() {
+	public void help1() {
 		for(int i=0;i<g_cm.getSize();i++){
 			Comp tm=g_cm.getComp(i);
+			Log.prnc(2, "comp "+tm.get_id());
+			Log.prnc(2, " max_util:");
+			Log.prnDbl(2,tm.getCompUtil());
+		}
+		
+	}
+
+
+	public void partitionFF() {
+		for(int i=0;i<g_cm.getSize();i++){
+			Comp tm=g_cm.getComp(i);
+
 			for(int j=0;j<g_num_cpu;j++){
 				CompMng core=g_pm.getCPU(j);
+			
 				double score=checkAdd(core,tm);
 				if (score<1) {
 					core.addComp(tm);
@@ -57,6 +74,34 @@ public class PartAnal  {
 				}
 			}
 		}
+	}
+	public boolean partitionWF() {
+		int pID;
+		double pScore;
+		for(int i=0;i<g_cm.getSize();i++){
+			pID=-1;
+			pScore=2;
+			Comp tm=g_cm.getComp(i);
+
+			for(int j=0;j<g_num_cpu;j++){
+				CompMng core=g_pm.getCPU(j);
+			
+				double score=checkAdd(core,tm);
+				if (score<pScore){
+					pID=j;
+					pScore=score;
+				}
+			}
+			if (pScore<=1) {
+				CompMng core=g_pm.getCPU(pID);
+				core.addComp(tm);
+			}
+			else{
+				return false;
+			}
+
+		}
+		return true;
 	}
 
 

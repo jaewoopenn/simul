@@ -14,11 +14,11 @@ import Exp.Platform;
 import Util.FUtil;
 import Util.Log;
 
-public class ConfigGen {
-	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"};
+public class ConfigCompGen {
+	private final String[] g_predefined={"u_lb","u_ub","lt_lu_lb","lt_lu_ub",
+			"ht_lu_lb","ht_lu_ub","r_lb","r_ub","num","subfix","mod"};
 	private HashMap<String,String> param;
-	public ConfigGen() {
+	public ConfigCompGen() {
 		param=new HashMap<String,String>();
 	}
 	public int readFile(String f) {
@@ -81,15 +81,6 @@ public class ConfigGen {
 			fu.print(txt);
 		}
 		fu.save();
-		
-	}
-	public void genRange(int start, int step, int size) {
-		for(int i=0;i<size;i++){
-			setParam("u_lb", (i*step+start)*1.0/100+"");
-			setParam("u_ub", (i*step+start+5)*1.0/100+"");
-			setParam("mod", (i*step+start+5)+"");
-			write("cfg/cfg_"+i+".txt");
-		}
 		
 	}
 
