@@ -10,7 +10,7 @@ class gl:
     x=[]
     vv=[]
     line=['b--', 'r-']
-    lab=['EDF-VD','EDF-AA-E']
+    lab=['EDF-VD','EDF-ADAM-S']
 #     is_Log=1
     is_Log=0
     
@@ -25,8 +25,8 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="tm/rs/drop_80_"+str(i)+".txt"
-#         fn="tm/rs/drop_90_"+str(i)+".txt"
+#         fn="tm/rs/drop_80_"+str(i)+".txt"
+        fn="tm/rs/drop_90_"+str(i)+".txt"
         v=load(fn)
         gl.vv.append(v)
 
