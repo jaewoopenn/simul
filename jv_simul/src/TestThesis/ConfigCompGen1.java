@@ -29,8 +29,8 @@ public class ConfigCompGen1 {
 	}
 	public int test2() 
 	{
-		ConfigCompGen eg=new ConfigCompGen();
-		eg.readFile("com/cfg/mp_1.txt");
+		ConfigCompGen eg=new ConfigCompGen("com/cfg/mp_1.txt");
+		eg.readFile();
 		String s=eg.readPar("u_ub");
 		System.out.println(s);
 		return 1;
@@ -68,7 +68,7 @@ public class ConfigCompGen1 {
 		return 0;
 	}
 	public ConfigCompGen getCfg()	{
-		ConfigCompGen eg=new ConfigCompGen();
+		ConfigCompGen eg=new ConfigCompGen("");
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
 		eg.setParam("lt_lu_lb","0.02");

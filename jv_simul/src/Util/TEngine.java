@@ -3,6 +3,7 @@ package Util;
 import java.lang.reflect.Method;
 
 public class TEngine {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void run(Object m,Class c,int[] aret, int sz) throws Exception 
 	{
 		for(int i=0;i<sz;i++)

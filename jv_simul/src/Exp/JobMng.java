@@ -1,7 +1,6 @@
 package Exp;
 
 import java.util.PriorityQueue;
-import java.util.Vector;
 
 import Util.Log;
 

@@ -2,9 +2,7 @@ package Test;
 
 import Util.Log;
 import Util.TEngine;
-import Basic.TaskGen;
 import Basic.TaskMng;
-import Exp.Platform;
 import Simul.Analysis;
 
 public class Greedy1 {

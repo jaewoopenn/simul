@@ -1,6 +1,5 @@
 package Basic;
 
-import java.util.Random;
 
 import Util.Log;
 import Util.RUtil;

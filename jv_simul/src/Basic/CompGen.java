@@ -2,6 +2,7 @@ package Basic;
 
 import java.util.Vector;
 
+import Simul.CompMng;
 import Util.Log;
 
 public class CompGen {
@@ -79,6 +80,14 @@ public class CompGen {
 	
 	public void loadFile(String f) {
 		g_comps=CompGenFile.loadFile(f);
+	}
+
+	public CompMng getCM() {
+		CompMng cm=new CompMng();
+		for(Comp c:g_comps){
+			cm.addComp(c);
+		}
+		return cm;
 	}
 
 	

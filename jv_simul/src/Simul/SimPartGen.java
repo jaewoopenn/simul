@@ -47,24 +47,25 @@ public class SimPartGen {
 		int sum=0;
 		
 		for(int i=0;i<num;i++){
-			TaskMng tm=load_one(i);
+			CompMng cm=load_one(i);
 //			Log.prn(2, tm.size());
-			sum+=analComp(tm,alpha);
+			sum+=analComp(cm,alpha);
 		}
 		return sum;	
 	}
-	public int analComp(TaskMng tm,double alpha) {
-		CompMng cm=new CompMng();
-		cm.load(tm);
-		CompAnal a=new CompAnal(cm);
-		a.compute_X();
-		a.set_alpha(alpha);
-		TaskMng ifc=a.getInterfaces();
-//		tm.prn();
-		return Analysis.anal_EDF_VD(ifc); 
+	public int analComp(CompMng cm,double alpha) {
+//		CompMng cm=new CompMng();
+//		cm.load(tm);
+//		CompAnal a=new CompAnal(cm);
+//		a.compute_X();
+//		a.set_alpha(alpha);
+//		TaskMng ifc=a.getInterfaces();
+////		tm.prn();
+//		return Analysis.anal_EDF_VD(ifc);
+		return -1;
 	}
 	
-	public TaskMng load_one(int i){
+	public CompMng load_one(int i){
 		CompGenParam p=new CompGenParam();
 		CompGen tg=new CompGen(p);
 		String subfix=g_cfg.readPar("subfix").trim();
@@ -76,9 +77,7 @@ public class SimPartGen {
 			tg.prn(2);
 			return null;
 		}
-		CompMng cm=new CompMng();
-		cm.setTasks(tg.getAll());
-		cm.sort();
+		CompMng cm=tg.getCM();
 		return cm;
 	}
 

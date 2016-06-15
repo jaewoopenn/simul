@@ -1,18 +1,9 @@
 package Simul;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Vector;
 
-import Basic.Task;
-import Exp.Platform;
 import Util.FUtil;
-import Util.Log;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
