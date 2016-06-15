@@ -3,9 +3,11 @@ import Util.FUtil;
 import Util.Log;
 import Util.TEngine;
 import Basic.TaskMng;
+import Simul.ConfigCompGen;
 import Simul.ConfigGen;
 import Simul.SimCompGen;
 import Simul.SimGen;
+import Simul.SimPartGen;
 
 // mp
 
@@ -18,12 +20,10 @@ public class TaskSetGen2 {
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
-		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("com/cfg/mp_2.txt")==0)
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_1.txt");
+		if (cfg.readFile()==0)
 			return 0;
-		SimCompGen eg=new SimCompGen(cfg);
-		eg.setMaxCom(6);
+		SimPartGen eg=new SimPartGen(cfg);
 		eg.gen();
 			
 		return 1;
@@ -31,19 +31,28 @@ public class TaskSetGen2 {
 	}
 	public int test2() // gen set
 	{
-		ConfigGen cfg;
-		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("com/cfg/cfg_"+i+".txt")==0)
-				return 0;
-			SimGen eg=new SimGen(cfg);
-//			Log.prn(2, i*5+50+"---");
-			eg.gen();
-			
-		}
+//		ConfigGen cfg;
+//		for(int i=0;i<10;i++){
+//			cfg=new ConfigGen();
+//			if (cfg.readFile("com/cfg/cfg_"+i+".txt")==0)
+//				return 0;
+//			SimGen eg=new SimGen(cfg);
+////			Log.prn(2, i*5+50+"---");
+//			eg.gen();
+//			
+//		}
 		return 1;
 	}		
 	public int test3() // load one
+	{
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_1.txt");
+		if (cfg.readFile()==0)
+			return 0;
+		SimPartGen eg=new SimPartGen(cfg);
+		eg.load_one(0);
+		return 1;
+	}
+	public int test4() // load one
 	{
 		ConfigGen cfg;
 		cfg=new ConfigGen();
@@ -61,7 +70,7 @@ public class TaskSetGen2 {
 		}
 		return 1;
 	}
-	public int test4() // load
+	public int test5() // load
 	{
 		for(int i=0;i<5;i++)
 		{
@@ -88,7 +97,7 @@ public class TaskSetGen2 {
 		fu.save();
 		return 1;
 	}
-	public int test5() // load one
+	public int test6() // load one
 	{
 		ConfigGen cfg;
 		cfg=new ConfigGen();
@@ -97,10 +106,6 @@ public class TaskSetGen2 {
 		SimGen eg=new SimGen(cfg);
 		eg.gen2();
 		return 1;
-	}
-	public  int test6() // 
-	{
-		return -1;
 	}
 	public  int test7()
 	{

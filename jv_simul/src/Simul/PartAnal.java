@@ -27,8 +27,8 @@ public class PartAnal  {
 	{
 		help1();
 		
-		partitionFF();
-//		partitionWF();
+		partitionFF(0.3);
+//		partitionWF(0.3);
 		
 		help2();
 
@@ -60,14 +60,14 @@ public class PartAnal  {
 	}
 
 
-	public void partitionFF() {
+	public void partitionFF(double alpha) {
 		for(int i=0;i<g_cm.getSize();i++){
 			Comp tm=g_cm.getComp(i);
 
 			for(int j=0;j<g_num_cpu;j++){
 				CompMng core=g_pm.getCPU(j);
 			
-				double score=checkAdd(core,tm);
+				double score=getScore(core,tm,alpha);
 				if (score<1) {
 					core.addComp(tm);
 					break;
@@ -75,7 +75,7 @@ public class PartAnal  {
 			}
 		}
 	}
-	public boolean partitionWF() {
+	public boolean partitionWF(double alpha) {
 		int pID;
 		double pScore;
 		for(int i=0;i<g_cm.getSize();i++){
@@ -86,7 +86,7 @@ public class PartAnal  {
 			for(int j=0;j<g_num_cpu;j++){
 				CompMng core=g_pm.getCPU(j);
 			
-				double score=checkAdd(core,tm);
+				double score=getScore(core,tm,alpha);
 				if (score<pScore){
 					pID=j;
 					pScore=score;
@@ -105,13 +105,12 @@ public class PartAnal  {
 	}
 
 
-	private double checkAdd(CompMng core, Comp tm) {
+	private double getScore(CompMng core, Comp tm,double alpha) {
 		CompMng tempCore=new CompMng(core);
 		tempCore.addComp(tm);
 		CompAnal a=new CompAnal(tempCore);
 		a.compute_X();
-		a.set_alpha(0.3);
-//		a.set_alpha(1.0);
+		a.set_alpha(alpha);
 		TaskMng c_tm=a.getInterfaces();
 //		tm.prn();
 		

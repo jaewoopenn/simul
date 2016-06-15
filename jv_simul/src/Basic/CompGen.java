@@ -65,9 +65,6 @@ public class CompGen {
 		return Math.max(loutil, hiutil);
 	}
 
-//	public Vector<Comp> getAll() {
-//		return g_comps;
-//	}
 
 
 	public int size() {
@@ -77,11 +74,11 @@ public class CompGen {
 	
 	// file
 	public void writeFile(String file) {
-//		CompGenFile.writeFile(file, g_comps);
+		CompGenFile.writeFile(file, g_comps);
 	}
 	
 	public void loadFile(String f) {
-//		g_comps=CompGenFile.loadFile(f);
+		g_comps=CompGenFile.loadFile(f);
 	}
 
 	

@@ -15,15 +15,26 @@ public class Comp {
 		this.g_ht_hu = ht_hu;
 	}
 
+	public Comp(String line) {
+        String[] words=line.split(",");
+        int cid=Integer.valueOf(words[0]).intValue();
+        double lt_lu=Double.valueOf(words[1]).doubleValue();
+        double ht_lu=Double.valueOf(words[2]).doubleValue();
+        double ht_hu=Double.valueOf(words[3]).doubleValue();
+		this.cid=cid;
+		this.g_lt_lu = lt_lu;
+		this.g_ht_lu = ht_lu;
+		this.g_ht_hu = ht_hu;
+	}
+
 	public void prn(int lv) {
 		Log.prnc(lv,"cid:"+cid);
 		Log.prnc(lv," lt_lu:");
-		Log.prnDbl(lv,  g_lt_lu);
+		Log.prnDblc(lv,  g_lt_lu);
 		Log.prnc(lv," ht_lu:");
-		Log.prnDbl(lv,  g_ht_lu);
+		Log.prnDblc(lv,  g_ht_lu);
 		Log.prnc(lv," ht_hu:");
 		Log.prnDbl(lv,  g_ht_hu);
-		Log.prn_nl(lv);
 	}
 	
 	public double getCompUtil() {
@@ -50,6 +61,11 @@ public class Comp {
 
 	public double get_lu() {
 		return g_lt_lu+g_ht_lu;
+	}
+
+	public String getString() {
+		String txt=cid+","+g_lt_lu+","+g_ht_lu+","+g_ht_hu;
+		return txt;
 	}
 }
 

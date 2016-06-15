@@ -98,6 +98,12 @@ public class CompMng {
 	}
 
 
+	public void prn(){
+		for(Comp c:g_comp){
+			c.prn(1);
+		}
+	}
+	
 
 	public void prn2(){
 		

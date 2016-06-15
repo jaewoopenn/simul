@@ -70,7 +70,7 @@ public class PartAnal1 {
 		cm.sortMC();
 		PartAnal a=new PartAnal(cm,2);
 		a.help1();
-		a.partitionWF();
+		a.partitionWF(0.3);
 		a.help2();
 		return -1;
 	}

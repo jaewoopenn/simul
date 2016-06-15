@@ -1,28 +1,21 @@
 package Simul;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Vector;
 
-import Basic.Task;
-import Exp.Platform;
 import Util.FUtil;
-import Util.Log;
 
 public class ConfigCompGen {
 	private final String[] g_predefined={"u_lb","u_ub","lt_lu_lb","lt_lu_ub",
 			"ht_lu_lb","ht_lu_ub","r_lb","r_ub","num","subfix","mod"};
 	private HashMap<String,String> param;
-	public ConfigCompGen() {
+	private String g_fn;
+	public ConfigCompGen(String string) {
 		param=new HashMap<String,String>();
+		g_fn=string;
 	}
-	public int readFile(String f) {
-	    FUtil fu=new FUtil(f);
+	public int readFile() {
+	    FUtil fu=new FUtil(g_fn);
 	    fu.load();
 	    for(int i=0;i<fu.size();i++){
 	    	String line=fu.get(i);
