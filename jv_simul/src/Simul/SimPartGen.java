@@ -9,6 +9,8 @@ import Util.Log;
 
 public class SimPartGen {
 	private CompGen tg;
+	private double g_alpha=0;
+	private int g_method=0;
 	private ConfigCompGen g_cfg;
 	public SimPartGen(ConfigCompGen cfg) {
 		g_cfg=cfg;
@@ -42,48 +44,65 @@ public class SimPartGen {
 		}
 		
 	}
-	public int load(double alpha) {
+	public int load() {
 		int num=g_cfg.readInt("num");
 		int sum=0;
 		
 		for(int i=0;i<num;i++){
-			CompMng cm=load_one(i);
-//			Log.prn(2, tm.size());
-			sum+=analComp(cm,alpha);
+			boolean b=load_one(i);
+			if (b)
+				sum++;
 		}
 		return sum;	
 	}
-	public int analComp(CompMng cm,double alpha) {
-//		CompMng cm=new CompMng();
-//		cm.load(tm);
-//		CompAnal a=new CompAnal(cm);
-//		a.compute_X();
-//		a.set_alpha(alpha);
-//		TaskMng ifc=a.getInterfaces();
-////		tm.prn();
-//		return Analysis.anal_EDF_VD(ifc);
-		return -1;
+	public boolean analPart(CompMng cm) {
+		if(g_method==1) {
+			cm.sortHI();
+			PartAnal a=new PartAnal(cm,2);
+			boolean b=a.partitionFF(g_alpha);
+			return b;
+		}
+		else if(g_method==2) {
+			cm.sortLO();
+			PartAnal a=new PartAnal(cm,2);
+			boolean b=a.partitionFF(g_alpha);
+			return b;
+		}
+		else if(g_method==3) {
+			cm.sortMC();
+			PartAnal a=new PartAnal(cm,2);
+			boolean b=a.partitionFF(g_alpha);
+			return b;
+		}
+		else{
+			cm.sortMC();
+			PartAnal a=new PartAnal(cm,2);
+			boolean b=a.partitionWF(g_alpha);
+			return b;
+		}
+		
 	}
 	
-	public CompMng load_one(int i){
+	public boolean load_one(int i){
 		CompGenParam p=new CompGenParam();
 		CompGen tg=new CompGen(p);
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+i;
 		tg.loadFile(fn);
-		if(tg.check()==0){
-			Log.prn(2, "err "+i);
-			tg.prn(2);
-			return null;
-		}
 		CompMng cm=tg.getCM();
-		return cm;
+		return analPart(cm);
 	}
 
 	// getting
 	public int size(){
 		return g_cfg.readInt("num");
+	}
+	public void set_alpha(double alpha) {
+		g_alpha = alpha;
+	}
+	public void set_method(int m) {
+		this.g_method = m;
 	}
 
 	

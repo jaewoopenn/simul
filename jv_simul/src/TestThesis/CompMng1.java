@@ -30,7 +30,7 @@ public class CompMng1 {
 		tm.addHiTask(12,1,5);
 		tm.freezeTasks();
 		cm.addComp(tm);
-		cm.prn();
+		cm.prn(2);
 		return -1;
 	}
 

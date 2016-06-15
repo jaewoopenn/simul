@@ -98,9 +98,10 @@ public class CompMng {
 	}
 
 
-	public void prn(){
+	public void prn(int lv){
+		Log.prn(lv, "tot:"+g_comp.size());
 		for(Comp c:g_comp){
-			c.prn(1);
+			c.prn(lv);
 		}
 	}
 	

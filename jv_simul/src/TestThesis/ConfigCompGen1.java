@@ -15,13 +15,15 @@ public class ConfigCompGen1 {
 		ConfigCompGen eg=getCfg();
 		eg.setParam("subfix", "com/mp");
 //		eg.setParam("num","1000");
-		eg.setParam("num","2");
+		eg.setParam("num","10");
+//		eg.setParam("num","2");
 		int base=50;
+		int num_cpu=2;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
 			Log.prn(2, lb+"");
-			eg.setParam("u_lb", (lb)*1.0/100+"");
-			eg.setParam("u_ub", (lb+5)*1.0/100+"");
+			eg.setParam("u_lb", num_cpu*(lb)*1.0/100+"");
+			eg.setParam("u_ub", num_cpu*(lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
 			eg.write("com/cfg/mp_"+i+".txt");
 		}

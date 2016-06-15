@@ -65,7 +65,6 @@ public class PartAnal1 {
 
 	public int test3() 
 	{
-		// TODO partition 
 		CompMng cm=getComp2();
 		cm.sortMC();
 		PartAnal a=new PartAnal(cm,2);

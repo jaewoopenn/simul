@@ -85,7 +85,9 @@ public class CompGen {
 	public CompMng getCM() {
 		CompMng cm=new CompMng();
 		for(Comp c:g_comps){
+//			c.prn(2);
 			cm.addComp(c);
+			
 		}
 		return cm;
 	}

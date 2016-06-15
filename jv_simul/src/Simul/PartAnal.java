@@ -60,20 +60,23 @@ public class PartAnal  {
 	}
 
 
-	public void partitionFF(double alpha) {
+	public boolean partitionFF(double alpha) {
 		for(int i=0;i<g_cm.getSize();i++){
 			Comp tm=g_cm.getComp(i);
-
+			double score=0;
 			for(int j=0;j<g_num_cpu;j++){
 				CompMng core=g_pm.getCPU(j);
 			
-				double score=getScore(core,tm,alpha);
+				score=getScore(core,tm,alpha);
 				if (score<1) {
 					core.addComp(tm);
 					break;
 				}
 			}
+			if(score>1) 
+				return false;
 		}
+		return true;
 	}
 	public boolean partitionWF(double alpha) {
 		int pID;

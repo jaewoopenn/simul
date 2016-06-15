@@ -14,7 +14,7 @@ public class ConfigCompGen {
 		param=new HashMap<String,String>();
 		g_fn=string;
 	}
-	public int readFile() {
+	public void readFile() {
 	    FUtil fu=new FUtil(g_fn);
 	    fu.load();
 	    for(int i=0;i<fu.size();i++){
@@ -25,17 +25,16 @@ public class ConfigCompGen {
             
             if(!setParam(words[0],words[1])) {
             	System.out.println("Err: loading field ("+words[0]+") is not defined");
-            	return 0;
+            	System.exit(0);
             }
 		}
 		for (String s:g_predefined){
 			if(readPar(s)==null){
 				System.out.println("Err: required field ("+s+") is not defined");
-            	return 0;
+            	System.exit(0);
 			}
 		}
 //			Log.prn(1, s+":"+readPar(s));
-		return 1;
 	}
 	public boolean setParam(String field, String val){
 		if(Arrays.asList(g_predefined).contains(field)){

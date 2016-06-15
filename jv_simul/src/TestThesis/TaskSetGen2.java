@@ -2,6 +2,7 @@ package TestThesis;
 import Util.FUtil;
 import Util.Log;
 import Util.TEngine;
+import Simul.CompMng;
 import Simul.ConfigCompGen;
 import Simul.ConfigGen;
 import Simul.SimCompGen;
@@ -14,14 +15,14 @@ public class TaskSetGen2 {
 	public static int log_level=2;
 //	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=1;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
-		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_1.txt");
-		if (cfg.readFile()==0)
-			return 0;
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_3.txt");
+		cfg.readFile();
 		SimPartGen eg=new SimPartGen(cfg);
 		eg.gen();
 			
@@ -30,46 +31,49 @@ public class TaskSetGen2 {
 	}
 	public int test2() // gen set
 	{
-//		ConfigGen cfg;
-//		for(int i=0;i<10;i++){
-//			cfg=new ConfigGen();
-//			if (cfg.readFile("com/cfg/cfg_"+i+".txt")==0)
-//				return 0;
-//			SimGen eg=new SimGen(cfg);
-////			Log.prn(2, i*5+50+"---");
-//			eg.gen();
-//			
-//		}
+		ConfigCompGen cfg;
+		for(int i=0;i<10;i++){
+			cfg=new ConfigCompGen("com/cfg/mp_"+i+".txt");
+			cfg.readFile();
+			SimPartGen eg=new SimPartGen(cfg);
+//			Log.prn(2, i*5+50+"---");
+			eg.gen();
+			
+		}
 		return 1;
 	}		
 	public int test3() // load one
 	{
-		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_1.txt");
-		if (cfg.readFile()==0)
-			return 0;
+		double alpha=0.7803;
+		int method=1;
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_3.txt");
+		cfg.readFile();
 		SimPartGen eg=new SimPartGen(cfg);
-		eg.load_one(0);
+		eg.set_alpha(alpha);
+		eg.set_method(method);
+		Log.prn(2, method+" "+alpha);
+		boolean b=eg.load_one(3);
+		if(b)
+			Log.prn(2, "OK");
+		else
+			Log.prn(2, "Not");
+
 		return 1;
 	}
-	public int test4() // load one
+	public int test4() // load comp set
 	{
-		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("com/cfg/cfg_6.txt")==0)
-			return 0;
-		SimCompGen eg=new SimCompGen(cfg);
+		double alpha=0.5;
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_3.txt");
+		cfg.readFile();
+		SimPartGen eg=new SimPartGen(cfg);
+		eg.set_alpha(alpha);
 		int tot=eg.size();
-		for(int i=0;i<=10;i++){
-			double alpha=i*1.0/10;
-			int sum=eg.load(alpha);
-			double suc=sum*1.0/tot;
-			Log.prnc(2, "alpha:"+alpha);
-			Log.prn(2, " suc:"+suc);
-			
-		}
+		int sum=eg.load();
+		double suc=sum*1.0/tot;
+		Log.prn(2, " suc:"+suc);
 		return 1;
 	}
-	public int test5() // load
+	public int test5() // load various policies
 	{
 		for(int i=0;i<5;i++)
 		{
