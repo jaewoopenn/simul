@@ -3,9 +3,6 @@ package Simul;
 
 import Basic.CompGen;
 import Basic.CompGenParam;
-import Basic.TaskGen;
-import Basic.TaskMng;
-import Util.Log;
 
 public class SimPartGen {
 	private CompGen tg;

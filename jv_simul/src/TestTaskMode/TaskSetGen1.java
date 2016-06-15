@@ -17,9 +17,8 @@ public class TaskSetGen1 {
 	{
 		ConfigGen cfg;
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("tm/cfg/cfg_"+i+".txt")==0)
-				return 0;
+			cfg=new ConfigGen("tm/cfg/cfg_"+i+".txt");
+			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 //			Log.prn(2, i*5+50+"---");
 			eg.gen();
@@ -41,9 +40,8 @@ public class TaskSetGen1 {
 		ConfigGen cfg;
 		FUtil fu=new FUtil("tm/rs/sim"+no+".txt");
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("tm/cfg/cfg_"+i+".txt")==0)
-				return 0;
+			cfg=new ConfigGen("tm/cfg/cfg_"+i+".txt");
+			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 			int tot=eg.size();
 			int sum=eg.load(no);
@@ -57,9 +55,8 @@ public class TaskSetGen1 {
 	public int test3() // load one
 	{
 		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/drop_80.txt")==0)
-			return 0;
+		cfg=new ConfigGen("tm/cfg/drop_80.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		eg.gen2();
 		return 1;
@@ -77,9 +74,8 @@ public class TaskSetGen1 {
 	{
 		ConfigGen cfg;
 		FUtil fu=new FUtil("tm/rs/drop_"+str+"_"+no+".txt");
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/drop_"+str+".txt")==0)
-			return 0;
+		cfg=new ConfigGen("tm/cfg/drop_"+str+".txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		for(int i=0;i<10;i++){
 			double p=0.1/Math.pow(2, i);
@@ -93,9 +89,8 @@ public class TaskSetGen1 {
 	public  int test5() //
 	{
 		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/cfg_0.txt")==0)
-			return 0;
+		cfg=new ConfigGen("tm/cfg/cfg_0.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 //			Log.prn(2, i*5+50+"---");
 		eg.prepare();
@@ -114,9 +109,8 @@ public class TaskSetGen1 {
 	public  int test6() // 
 	{
 		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/drop_90.txt")==0)
-			return 0;
+		cfg=new ConfigGen("tm/cfg/drop_90.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		eg.gen2();
 		return 1;

@@ -6,14 +6,15 @@ import Simul.ConfigGen;
 public class ConfigGen1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1()
 	{
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "com/task");
-		eg.setParam("num","1000");
+//		eg.setParam("num","1000");
+		eg.setParam("num","100");
 //		eg.setParam("num","2");
 		int base=50;
 		for(int i=0;i<10;i++){

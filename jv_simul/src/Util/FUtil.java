@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Vector;
 
-import Basic.Task;
 
 public class FUtil {
 	private String g_fn;

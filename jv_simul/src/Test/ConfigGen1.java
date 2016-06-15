@@ -11,19 +11,20 @@ public class ConfigGen1 {
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
-		ConfigGen eg=new ConfigGen();
-		return eg.readFile("config/err_cfg1.txt");
+		ConfigGen eg=new ConfigGen("config/err_cfg1.txt");
+		eg.readFile();
+		return 0;
 	}
 	public int test2() // normal config
 	{
-		ConfigGen eg=new ConfigGen();
-
-		return eg.readFile("config/err_cfg2.txt");
+		ConfigGen eg=new ConfigGen("config/err_cfg2.txt");
+		eg.readFile();
+		return 0;
 	}
 	public int test3() // print config
 	{
-		ConfigGen eg=new ConfigGen();
-		eg.readFile("config/cfg1.txt");
+		ConfigGen eg=new ConfigGen("config/cfg1.txt");
+		eg.readFile();
 		String s=eg.readPar("util_err");
 		if(s==null) 
 			return 0;
@@ -32,8 +33,8 @@ public class ConfigGen1 {
 	}
 	public  int test4() // get config
 	{
-		ConfigGen eg=new ConfigGen();
-		eg.readFile("config/cfg1.txt");
+		ConfigGen eg=new ConfigGen("config/cfg1.txt");
+		eg.readFile();
 		String s=eg.readPar("u_lb");
 		System.out.println(s);
 		return (int)(Double.valueOf(s).doubleValue()*10);
@@ -81,7 +82,7 @@ public class ConfigGen1 {
 		return 0;
 	}
 	public ConfigGen getCfg()	{
-		ConfigGen eg=new ConfigGen();
+		ConfigGen eg=new ConfigGen("");
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
 		eg.setParam("p_lb","50");

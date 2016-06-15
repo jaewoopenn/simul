@@ -87,9 +87,8 @@ public class TaskSetGen2 {
 		ConfigGen cfg;
 		FUtil fu=new FUtil("tm/rs/sim"+no+".txt");
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("tm/cfg/cfg_"+i+".txt")==0)
-				return 0;
+			cfg=new ConfigGen("tm/cfg/cfg_"+i+".txt");
+			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 			int tot=eg.size();
 			int sum=eg.load(no);
@@ -103,9 +102,8 @@ public class TaskSetGen2 {
 	public int test6() // load one
 	{
 		ConfigGen cfg;
-		cfg=new ConfigGen();
-		if (cfg.readFile("tm/cfg/drop_80.txt")==0)
-			return 0;
+		cfg=new ConfigGen("tm/cfg/drop_80.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		eg.gen2();
 		return 1;

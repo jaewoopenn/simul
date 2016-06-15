@@ -9,6 +9,7 @@ public class SimCompGen {
 	private TaskGen tg;
 	private ConfigGen g_cfg;
 	private int g_max_com=0;
+	private double g_alpha;
 	public SimCompGen(ConfigGen cfg) {
 		tg=new TaskGen();
 		g_cfg=cfg;
@@ -45,31 +46,26 @@ public class SimCompGen {
 		}
 		
 	}
-	public int load(double alpha) {
+	public int load() {
 		int num=g_cfg.readInt("num");
 		int sum=0;
 		
 		for(int i=0;i<num;i++){
-			TaskMng tm=load_one(i);
-//			Log.prn(2, tm.size());
-			sum+=analComp(tm,alpha);
+			sum+=load_one(i);
 		}
 		return sum;	
 	}
-	public int analComp(TaskMng tm,double alpha) {
+	public int analComp(TaskMng tm) {
 		CompMng cm=new CompMng();
 		cm.load(tm);
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
-//		a.set_alpha(0.0);
-		a.set_alpha(alpha);
-//		a.set_alpha(1.0);
+		a.set_alpha(g_alpha);
 		TaskMng ifc=a.getInterfaces();
-//		tm.prn();
 		return Analysis.anal_EDF_VD(ifc); 
 	}
 	
-	public TaskMng load_one(int i){
+	public int load_one(int i){
 		TaskGen tg=new TaskGen();
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		String subfix=g_cfg.readPar("subfix").trim();
@@ -79,18 +75,27 @@ public class SimCompGen {
 		if(tg.check()==0){
 			Log.prn(2, "err "+i);
 			tg.prn(2);
-			return null;
+			System.exit(1);
 		}
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
 		tm.freezeTasks();
 		tm.sort();
-		return tm;
+		CompMng cm=new CompMng();
+		cm.load(tm);
+		CompAnal a=new CompAnal(cm);
+		a.compute_X();
+		a.set_alpha(g_alpha);
+		TaskMng ifc=a.getInterfaces();
+		return Analysis.anal_EDF_VD(ifc); 
 	}
 
 	// getting
 	public int size(){
 		return g_cfg.readInt("num");
+	}
+	public void set_alpha(double a) {
+		this.g_alpha = a;
 	}
 
 	

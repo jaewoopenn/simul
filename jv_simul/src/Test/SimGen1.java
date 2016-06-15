@@ -14,9 +14,8 @@ public class SimGen1 {
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		ConfigGen cfg=new ConfigGen();
-		if (cfg.readFile("config/cfg1.txt")==0)
-			return 0;
+		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		eg.gen();
 		return 1;
@@ -24,9 +23,8 @@ public class SimGen1 {
 	}
 	public int test2() // load
 	{
-		ConfigGen cfg=new ConfigGen();
-		if (cfg.readFile("config/cfg1.txt")==0)
-			return 0;
+		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		int tot=eg.size();
 		int sum=eg.load(1);
@@ -37,9 +35,8 @@ public class SimGen1 {
 	}
 	public int test3() // load one
 	{
-		ConfigGen cfg=new ConfigGen();
-		if (cfg.readFile("config/cfg1.txt")==0)
-			return 0;
+		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		TaskMng tm=eg.load_one(99);
 		int ret=eg.process(tm,1);
@@ -48,9 +45,8 @@ public class SimGen1 {
 	}
 	public  int test4() // load copy\
 	{
-		ConfigGen cfg=new ConfigGen();
-		if (cfg.readFile("config/cfg1_copy.txt")==0)
-			return 0;
+		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
+		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
 		eg.gen();
 		return 1;
@@ -59,9 +55,8 @@ public class SimGen1 {
 	{
 		ConfigGen cfg;
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("cfg/cfg_"+i+".txt")==0)
-				return 0;
+			cfg=new ConfigGen("cfg/cfg_"+i+".txt");
+			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 			eg.gen();
 			
@@ -86,9 +81,8 @@ public class SimGen1 {
 		ConfigGen cfg;
 		FUtil fu=new FUtil("rs/sim"+no+".txt");
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen();
-			if (cfg.readFile("cfg/cfg_"+i+".txt")==0)
-				return 0;
+			cfg=new ConfigGen("cfg/cfg_"+i+".txt");
+			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 			int tot=eg.size();
 			int sum=eg.load(no);
