@@ -34,7 +34,6 @@ public class CompGen {
 
 	public Comp genComp(int tid) {
 		Comp tsk=g_param.genComp(tid);
-		// TODO Auto-generated method stub
 		return tsk;
 	}
 	

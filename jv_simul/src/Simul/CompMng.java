@@ -5,6 +5,8 @@ import java.util.Vector;
 
 import Basic.Comp;
 import Basic.CompComparator;
+import Basic.CompComparatorHI;
+import Basic.CompComparatorLO;
 import Basic.Task;
 import Basic.TaskMng;
 import Util.Log;
@@ -105,10 +107,16 @@ public class CompMng {
 			Log.prn(2, " hi "+tm.get_ht_hu());
 		}
 	}
-	public void sort() {
+	public void sortMC() {
 		Collections.sort(g_comp,new CompComparator());
-		
 	}
+	public void sortHI() {
+		Collections.sort(g_comp,new CompComparatorHI());
+	}
+	public void sortLO() {
+		Collections.sort(g_comp,new CompComparatorLO());
+	}
+	
 	public double get_max_util() {
 		return Math.max(g_lt_LU+g_ht_LU, g_ht_HU);
 	}

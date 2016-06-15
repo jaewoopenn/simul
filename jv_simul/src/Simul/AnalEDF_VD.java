@@ -21,16 +21,18 @@ public class AnalEDF_VD extends Anal {
 	
 	@Override
 	public boolean isScheduable() {
-		if (hitasks_hiutil>1) return false;
-		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
-		Log.prn(1,"det:"+dtm);
-		if (dtm <=1) {
-			//Log.prn(1, "Sch OK");
+		if (getScore()<=1) 
 			return true;
-		}
 		return false;
 	}
 
+	public double getScore() {
+		if (hitasks_hiutil>1) return 2;
+		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
+		Log.prn(1,"det:"+dtm);
+		return dtm;
+	}
+	
 	@Override
 	public int getResp() {
 		double old=0;

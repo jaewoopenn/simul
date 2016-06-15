@@ -47,5 +47,9 @@ public class Comp {
 	public int get_id() {
 		return cid;
 	}
+
+	public double get_lu() {
+		return g_lt_lu+g_ht_lu;
+	}
 }
 

@@ -19,7 +19,6 @@ public class CompAnal  {
 		g_lt_LU=cm.get_lt_LU();
 		g_ht_LU=cm.get_ht_LU();
 		g_ht_HU=cm.get_ht_HU();
-		// TODO Auto-generated constructor stub
 	}
 	public void compute_X() {
 //		glo_x=hitasks_loutil/(1-lotasks_loutil);
