@@ -9,10 +9,11 @@ class gl:
     vv=[]
     line=['r-','b--','g-.','k:']
 #     marker=['o','v','D','^','s']
-    lab=['sortMC_WF','sortMC_FF','sortHI_FF','sortLO_FF']
+    lab=['sortMC_FF','sortMC_WF','sortHI_FF','sortLO_FF']
     data=[0,1,2,3]
 #     cpus=2
-    cpus=4
+#     cpus=4
+    cpus=8
 #     data=[4,1,2,0,3]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")

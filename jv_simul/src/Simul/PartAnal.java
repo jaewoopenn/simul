@@ -70,7 +70,7 @@ public class PartAnal  {
 				score=getScore(core,tm,alpha);
 //				Log.prn(2, "FF"+score);
 //				Log.prnDbl(2, score);
-				if (score<1) {
+				if (score<=1) {
 					core.addComp(tm);
 					break;
 				}

@@ -61,13 +61,13 @@ public class SimPartGen {
 		if(g_method==0) {
 			cm.sortMC();
 			PartAnal a=new PartAnal(cm,g_cpus);
-			boolean b=a.partitionWF(g_alpha);
+			boolean b=a.partitionFF(g_alpha);
 			return b;
 		}
 		else if(g_method==1) {
 			cm.sortMC();
 			PartAnal a=new PartAnal(cm,g_cpus);
-			boolean b=a.partitionFF(g_alpha);
+			boolean b=a.partitionWF(g_alpha);
 			return b;
 		}
 		else if(g_method==2) {
@@ -79,10 +79,18 @@ public class SimPartGen {
 		else if(g_method==3) {
 			cm.sortLO();
 			PartAnal a=new PartAnal(cm,g_cpus);
-			boolean b=a.partitionFF(g_alpha);
+			boolean b=a.partitionWF(g_alpha);
 			return b;
 		}
 		else if(g_method==4) {
+			cm.sortMC();
+			PartAnal a=new PartAnal(cm,g_cpus);
+			a.help1();
+			boolean b=a.partitionFF(g_alpha);
+			a.help2();
+			return b;
+		}
+		else if(g_method==5) {
 			cm.sortMC();
 			PartAnal a=new PartAnal(cm,g_cpus);
 			a.help1();

@@ -27,8 +27,15 @@ public class AnalEDF_VD extends Anal {
 
 	public double getScore() {
 		if (hitasks_hiutil>1) return 2;
+		if (lotasks_loutil>1) return 2;
+		
 		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
-		Log.prn(1,"det:"+dtm);
+//		Log.prnc(2," x:");
+//		Log.prnDblc(2, glo_x);
+//		Log.prnc(2," lt_lu:");
+//		Log.prnDblc(2, lotasks_loutil);
+//		Log.prnc(2," ht_lu:");
+//		Log.prnDbl(2, hitasks_hiutil);
 		return dtm;
 	}
 	
