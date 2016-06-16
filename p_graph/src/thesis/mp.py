@@ -12,8 +12,8 @@ class gl:
     lab=['sortMC_FF','sortMC_WF','sortHI_FF','sortLO_FF']
     data=[0,1,2,3]
 #     cpus=2
-    cpus=4
-#     cpus=8
+#     cpus=4
+    cpus=8
 #     data=[4,1,2,0,3]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
@@ -30,7 +30,7 @@ def iter(s,t):
         gl.vv.append(v)
 
 def main():
-    iter(0,4)
+    iter(0,3)
     no=0
     for v in gl.vv:
         mp.plot2(gl.x,v,gl.line[no],gl.lab[no])

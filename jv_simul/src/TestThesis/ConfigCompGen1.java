@@ -79,8 +79,8 @@ public class ConfigCompGen1 {
 		eg.setParam("u_ub","1.0");
 		eg.setParam("lt_lu_lb","0.02");
 		eg.setParam("lt_lu_ub","0.2");
-		eg.setParam("ht_lu_lb","0.01");
-		eg.setParam("ht_lu_ub","0.1");
+		eg.setParam("ht_lu_lb","0.02");
+		eg.setParam("ht_lu_ub","0.2");
 		eg.setParam("r_lb","1.0");
 		eg.setParam("r_ub","4.0");
 		eg.setParam("num","10");

@@ -13,9 +13,9 @@ public class TaskSetGen2 {
 	public static int log_level=2;
 //	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+//	public static int idx=2;
 //	public static int idx=3;
-//	public static int idx=5;
+	public static int idx=5;
 //	public static int cpus=2;
 //	public static int cpus=4;
 	public static int cpus=8;
@@ -24,7 +24,7 @@ public class TaskSetGen2 {
 
 	
 	public static int total=10;
-	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
+	public static int gret[]={1,1,1,0,0, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
 		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_2_3.txt");
@@ -38,6 +38,7 @@ public class TaskSetGen2 {
 	public int test2() // gen set
 	{
 		ConfigCompGen cfg;
+		Log.prn(2, "cpu:"+cpus);
 		for(int i=0;i<10;i++){
 			cfg=new ConfigCompGen("com/cfg/mp_"+cpus+"_"+i+".txt");
 			cfg.readFile();
@@ -80,6 +81,7 @@ public class TaskSetGen2 {
 	}
 	public int test5() // load various policies
 	{
+		Log.prn(2, "cpu:"+cpus);
 		for(int i=0;i<4;i++)
 		{
 			Log.prn(2, "method--"+i);
