@@ -79,7 +79,7 @@ public class SimPartGen {
 		else if(g_method==3) {
 			cm.sortLO();
 			PartAnal a=new PartAnal(cm,g_cpus);
-			boolean b=a.partitionWF(g_alpha);
+			boolean b=a.partitionFF(g_alpha);
 			return b;
 		}
 		else if(g_method==4) {

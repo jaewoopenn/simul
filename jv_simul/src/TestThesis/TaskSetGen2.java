@@ -13,8 +13,9 @@ public class TaskSetGen2 {
 	public static int log_level=2;
 //	public static int log_level=1;
 //	public static int idx=-1;
-//	public static int idx=2;
-	public static int idx=5;
+	public static int idx=2;
+//	public static int idx=3;
+//	public static int idx=5;
 //	public static int cpus=2;
 //	public static int cpus=4;
 	public static int cpus=8;
@@ -51,7 +52,7 @@ public class TaskSetGen2 {
 	{
 		int method=4;
 		int no=300;
-		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_2_9.txt");
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_8_2.txt");
 		cfg.readFile();
 		SimPartGen eg=new SimPartGen(cfg);
 		eg.set_alpha(alpha);
@@ -79,7 +80,7 @@ public class TaskSetGen2 {
 	}
 	public int test5() // load various policies
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<4;i++)
 		{
 			Log.prn(2, "method--"+i);
 			anal(cpus,i);

@@ -77,8 +77,8 @@ public class ConfigCompGen1 {
 		ConfigCompGen eg=new ConfigCompGen("");
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
-		eg.setParam("lt_lu_lb","0.01");
-		eg.setParam("lt_lu_ub","0.4");
+		eg.setParam("lt_lu_lb","0.02");
+		eg.setParam("lt_lu_ub","0.2");
 		eg.setParam("ht_lu_lb","0.01");
 		eg.setParam("ht_lu_ub","0.1");
 		eg.setParam("r_lb","1.0");
