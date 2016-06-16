@@ -17,8 +17,8 @@ public class CompGen1 {
 	public int test1()
 	{
 		CompGenParam p=new CompGenParam();
-		p.set_lt_lu(0.02,0.3);
-		p.set_ht_lu(0.02,0.3);
+		p.set_tu(0.02,0.3);
+		p.set_ht_lt(0.0,1.0);
 		p.set_ratio(1, 4);
 		CompGen tg=new CompGen(p);
 		int max_num=2;
@@ -31,8 +31,8 @@ public class CompGen1 {
 	public int test2()
 	{
 		CompGenParam p=new CompGenParam();
-		p.set_lt_lu(0.02,0.3);
-		p.set_ht_lu(0.02,0.3);
+		p.set_tu(0.02,0.3);
+		p.set_ht_lt(0.0,1.0);
 		p.set_ratio(1, 4);
 		p.set_util(0.80, 0.85);
 		CompGen tg=new CompGen(p);

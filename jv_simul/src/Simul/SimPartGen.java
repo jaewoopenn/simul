@@ -17,8 +17,8 @@ public class SimPartGen {
 	}
 	public int prepare(){
 		CompGenParam p=new CompGenParam();
-		p.set_lt_lu(g_cfg.readDbl("lt_lu_lb"),g_cfg.readDbl("lt_lu_ub"));
-		p.set_ht_lu(g_cfg.readDbl("ht_lu_lb"),g_cfg.readDbl("ht_lu_ub"));
+		p.set_tu(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
+		p.set_ht_lt(g_cfg.readDbl("ht_lt_lb"),g_cfg.readDbl("ht_lt_ub"));
 		p.set_ratio(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
 		p.set_util(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		p.set_cpus(g_cpus);
@@ -61,13 +61,13 @@ public class SimPartGen {
 		if(g_method==0) {
 			cm.sortMC();
 			PartAnal a=new PartAnal(cm,g_cpus);
-			boolean b=a.partitionFF(g_alpha);
+			boolean b=a.partitionWF(g_alpha);
 			return b;
 		}
 		else if(g_method==1) {
 			cm.sortMC();
 			PartAnal a=new PartAnal(cm,g_cpus);
-			boolean b=a.partitionWF(g_alpha);
+			boolean b=a.partitionFF(g_alpha);
 			return b;
 		}
 		else if(g_method==2) {

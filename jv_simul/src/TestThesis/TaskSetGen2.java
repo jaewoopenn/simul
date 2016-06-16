@@ -82,7 +82,7 @@ public class TaskSetGen2 {
 	public int test5() // load various policies
 	{
 		Log.prn(2, "cpu:"+cpus);
-		for(int i=0;i<4;i++)
+		for(int i=0;i<3;i++)
 		{
 			Log.prn(2, "method--"+i);
 			anal(cpus,i);

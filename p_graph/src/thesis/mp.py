@@ -9,7 +9,7 @@ class gl:
     vv=[]
     line=['r-','b--','g-.','k:']
 #     marker=['o','v','D','^','s']
-    lab=['sortMC_FF','sortMC_WF','sortHI_FF','sortLO_FF']
+    lab=['sortMC_WF','sortMC_FF','sortHI_FF','sortLO_FF']
     data=[0,1,2,3]
 #     cpus=2
 #     cpus=4

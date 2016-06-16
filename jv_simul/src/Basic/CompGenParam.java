@@ -12,10 +12,10 @@ public class CompGenParam {
 	private int cpus=1;
 	private double util_u;
 	private double util_l;
-	private double lt_lu_u;
-	private double lt_lu_l;
-	private double ht_lu_u;
-	private double ht_lu_l;
+	private double tu_u;
+	private double tu_l;
+	private double ht_lt_u;
+	private double ht_lt_l;
 	private double ratio_lb;
 	private double ratio_ub;
 	
@@ -32,21 +32,21 @@ public class CompGenParam {
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
-	public void set_lt_lu(double l, double u) {
+	public void set_tu(double l, double u) {
 		if(l>u ){
 			System.out.println("Error set_lt_lu");
 		}
-		lt_lu_l=l;
-		lt_lu_u=u;
+		tu_l=l;
+		tu_u=u;
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
-	public void set_ht_lu(double l, double u) {
+	public void set_ht_lt(double l, double u) {
 		if(l>u ){
 			System.out.println("Error set_ht_lu");
 		}
-		ht_lu_l=l;
-		ht_lu_u=u;
+		ht_lt_l=l;
+		ht_lt_u=u;
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
@@ -62,10 +62,13 @@ public class CompGenParam {
 
 
 	public Comp genComp(int tid) {
-		double lt_lu=g_rand.getDbl(lt_lu_l, lt_lu_u);
-		double ht_lu=g_rand.getDbl(ht_lu_l, ht_lu_u);
+		double tu=g_rand.getDbl(tu_l, tu_u);
+		double ht_lt=g_rand.getDbl(ht_lt_l, ht_lt_u);
 		double ratio=g_rand.getDbl(ratio_lb, ratio_ub);
-		return new Comp(tid,lt_lu,ht_lu,ht_lu*ratio);
+		double lt_lu=tu*ht_lt;
+		double ht_lu=tu*(1-ht_lt);
+		double ht_hu=ht_lu*ratio;
+		return new Comp(tid,lt_lu,ht_lu,ht_hu);
 	}
 
 	public int check(double util) {

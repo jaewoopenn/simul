@@ -8,18 +8,19 @@ public class ConfigCompGen1 {
 	public static int log_level=2;
 //	public static int idx=-1;
 	public static int idx=1;
-//	public static int cpus=2;
+	public static int cpus=2;
 //	public static int cpus=4;
-	public static int cpus=8;
+//	public static int cpus=8;
 	
 	public static int total=10;
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1()
 	{
+		Log.prn(2, "cpu:"+cpus);
 		ConfigCompGen eg=getCfg();
 		eg.setParam("subfix", "com/mp");
 		eg.setParam("num","1000");
-//		eg.setParam("num","400");
+//		eg.setParam("num","100");
 		eg.setParam("cpus",cpus+"");
 //		eg.setParam("num","2");
 		int base=50;
@@ -77,10 +78,10 @@ public class ConfigCompGen1 {
 		ConfigCompGen eg=new ConfigCompGen("");
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
-		eg.setParam("lt_lu_lb","0.02");
-		eg.setParam("lt_lu_ub","0.2");
-		eg.setParam("ht_lu_lb","0.02");
-		eg.setParam("ht_lu_ub","0.2");
+		eg.setParam("tu_lb","0.02");
+		eg.setParam("tu_ub","0.2");
+		eg.setParam("ht_lt_lb","0.0");
+		eg.setParam("ht_lt_ub","1.0");
 		eg.setParam("r_lb","1.0");
 		eg.setParam("r_ub","4.0");
 		eg.setParam("num","10");
