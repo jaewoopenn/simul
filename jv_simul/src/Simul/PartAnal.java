@@ -52,10 +52,10 @@ public class PartAnal  {
 	public void help1() {
 		for(int i=0;i<g_cm.getSize();i++){
 			Comp tm=g_cm.getComp(i);
-			Log.prnc(2, "comp "+tm.get_id());
-			Log.prnc(2, " max_util:");
-			Log.prnDbl(2,tm.getCompUtil());
+			tm.prn(2);
 		}
+		g_cm.computeUtils();
+		Log.prn(2, "max_util:"+g_cm.get_max_util());
 		
 	}
 
@@ -68,16 +68,50 @@ public class PartAnal  {
 				CompMng core=g_pm.getCPU(j);
 			
 				score=getScore(core,tm,alpha);
+//				Log.prn(2, "FF"+score);
+//				Log.prnDbl(2, score);
 				if (score<1) {
 					core.addComp(tm);
 					break;
 				}
 			}
-			if(score>1) 
+			if(score>1) {
+				Log.prn(1, "total "+g_cm.getSize() +" no "+i);
+				Log.prnDbl(1, score);
 				return false;
+			}
 		}
 		return true;
 	}
+	public boolean partitionBF(double alpha) {
+		int pID;
+		double pScore;
+		for(int i=0;i<g_cm.getSize();i++){
+			pID=-1;
+			pScore=-1;
+			Comp tm=g_cm.getComp(i);
+
+			for(int j=0;j<g_num_cpu;j++){
+				CompMng core=g_pm.getCPU(j);
+			
+				double score=getScore(core,tm,alpha);
+				if (score>pScore && score<=1){
+					pID=j;
+					pScore=score;
+				}
+			}
+			if (pScore<=1 && pScore>=0) {
+				CompMng core=g_pm.getCPU(pID);
+				core.addComp(tm);
+			}
+			else{
+				return false;
+			}
+
+		}
+		return true;
+	}
+
 	public boolean partitionWF(double alpha) {
 		int pID;
 		double pScore;
@@ -100,6 +134,8 @@ public class PartAnal  {
 				core.addComp(tm);
 			}
 			else{
+				Log.prn(1, "total "+g_cm.getSize() +" no "+i);
+				Log.prnDbl(1, pScore);
 				return false;
 			}
 

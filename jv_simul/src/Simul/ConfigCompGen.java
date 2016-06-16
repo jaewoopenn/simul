@@ -7,7 +7,7 @@ import Util.FUtil;
 
 public class ConfigCompGen {
 	private final String[] g_predefined={"u_lb","u_ub","lt_lu_lb","lt_lu_ub",
-			"ht_lu_lb","ht_lu_ub","r_lb","r_ub","num","subfix","mod"};
+			"ht_lu_lb","ht_lu_ub","r_lb","r_ub","num","subfix","mod","cpus"};
 	private HashMap<String,String> param;
 	private String g_fn;
 	public ConfigCompGen(String string) {

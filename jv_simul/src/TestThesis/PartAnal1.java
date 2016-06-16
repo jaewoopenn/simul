@@ -69,7 +69,9 @@ public class PartAnal1 {
 		cm.sortMC();
 		PartAnal a=new PartAnal(cm,2);
 		a.help1();
-		a.partitionWF(0.3);
+		boolean b=a.partitionBF(0.0);
+		if(!b)
+			Log.prn(2, "Not");
 		a.help2();
 		return -1;
 	}

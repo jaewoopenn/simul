@@ -12,26 +12,27 @@ public class ConfigCompGen1 {
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1()
 	{
+		int cpus=4;
 		ConfigCompGen eg=getCfg();
 		eg.setParam("subfix", "com/mp");
 //		eg.setParam("num","1000");
-		eg.setParam("num","10");
+		eg.setParam("num","200");
+		eg.setParam("cpus",cpus+"");
 //		eg.setParam("num","2");
 		int base=50;
-		int num_cpu=2;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
 			Log.prn(2, lb+"");
-			eg.setParam("u_lb", num_cpu*(lb)*1.0/100+"");
-			eg.setParam("u_ub", num_cpu*(lb+5)*1.0/100+"");
+			eg.setParam("u_lb", (lb)*1.0/100+"");
+			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			eg.write("com/cfg/mp_"+i+".txt");
+			eg.write("com/cfg/mp_"+cpus+"_"+i+".txt");
 		}
 		return 1;
 	}
 	public int test2() 
 	{
-		ConfigCompGen eg=new ConfigCompGen("com/cfg/mp_1.txt");
+		ConfigCompGen eg=new ConfigCompGen("com/cfg/mp_2_1.txt");
 		eg.readFile();
 		String s=eg.readPar("u_ub");
 		System.out.println(s);
@@ -73,10 +74,10 @@ public class ConfigCompGen1 {
 		ConfigCompGen eg=new ConfigCompGen("");
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
-		eg.setParam("lt_lu_lb","0.02");
-		eg.setParam("lt_lu_ub","0.2");
-		eg.setParam("ht_lu_lb","0.02");
-		eg.setParam("ht_lu_ub","0.2");
+		eg.setParam("lt_lu_lb","0.01");
+		eg.setParam("lt_lu_ub","0.1");
+		eg.setParam("ht_lu_lb","0.005");
+		eg.setParam("ht_lu_ub","0.05");
 		eg.setParam("r_lb","1.0");
 		eg.setParam("r_ub","4.0");
 		eg.setParam("num","10");

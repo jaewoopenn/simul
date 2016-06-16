@@ -8,9 +8,12 @@ public class SimPartGen {
 	private CompGen tg;
 	private double g_alpha=0;
 	private int g_method=0;
+	private int g_cpus=0;
 	private ConfigCompGen g_cfg;
 	public SimPartGen(ConfigCompGen cfg) {
 		g_cfg=cfg;
+		g_cpus=g_cfg.readInt("cpus");
+
 	}
 	public int prepare(){
 		CompGenParam p=new CompGenParam();
@@ -18,6 +21,7 @@ public class SimPartGen {
 		p.set_ht_lu(g_cfg.readDbl("ht_lu_lb"),g_cfg.readDbl("ht_lu_ub"));
 		p.set_ratio(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
 		p.set_util(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		p.set_cpus(g_cpus);
 		tg=new CompGen(p);
 		
 		return g_cfg.readInt("num");
@@ -28,7 +32,8 @@ public class SimPartGen {
 //		Log.prn(2, "util:"+tg.getMCUtil());
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
-		String fn=subfix+"/taskset_"+mod+"_"+i;
+		String cpus=g_cfg.readPar("cpus").trim();
+		String fn=subfix+"/taskset_"+mod+"_"+cpus+"_"+i;
 //		tg.prn2(2);
 		tg.writeFile(fn);
 		return 1;
@@ -53,28 +58,42 @@ public class SimPartGen {
 		return sum;	
 	}
 	public boolean analPart(CompMng cm) {
-		if(g_method==1) {
-			cm.sortHI();
-			PartAnal a=new PartAnal(cm,2);
+		if(g_method==0) {
+			cm.sortMC();
+			PartAnal a=new PartAnal(cm,g_cpus);
+			boolean b=a.partitionWF(g_alpha);
+			return b;
+		}
+		else if(g_method==1) {
+			cm.sortMC();
+			PartAnal a=new PartAnal(cm,g_cpus);
 			boolean b=a.partitionFF(g_alpha);
 			return b;
 		}
 		else if(g_method==2) {
-			cm.sortLO();
-			PartAnal a=new PartAnal(cm,2);
+			cm.sortHI();
+			PartAnal a=new PartAnal(cm,g_cpus);
 			boolean b=a.partitionFF(g_alpha);
 			return b;
 		}
 		else if(g_method==3) {
-			cm.sortMC();
-			PartAnal a=new PartAnal(cm,2);
+			cm.sortLO();
+			PartAnal a=new PartAnal(cm,g_cpus);
 			boolean b=a.partitionFF(g_alpha);
+			return b;
+		}
+		else if(g_method==4) {
+			cm.sortMC();
+			PartAnal a=new PartAnal(cm,g_cpus);
+			a.help1();
+			boolean b=a.partitionWF(g_alpha);
+			a.help2();
 			return b;
 		}
 		else{
 			cm.sortMC();
-			PartAnal a=new PartAnal(cm,2);
-			boolean b=a.partitionWF(g_alpha);
+			PartAnal a=new PartAnal(cm,g_cpus);
+			boolean b=a.partitionBF(g_alpha);
 			return b;
 		}
 		
@@ -85,7 +104,8 @@ public class SimPartGen {
 		CompGen tg=new CompGen(p);
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
-		String fn=subfix+"/taskset_"+mod+"_"+i;
+		String cpus=g_cfg.readPar("cpus").trim();
+		String fn=subfix+"/taskset_"+mod+"_"+cpus+"_"+i;
 		tg.loadFile(fn);
 		CompMng cm=tg.getCM();
 		return analPart(cm);
@@ -101,6 +121,9 @@ public class SimPartGen {
 	public void set_method(int m) {
 		this.g_method = m;
 	}
+//	public void set_cpus(int cpus) {
+//		this.g_cpus = cpus;
+//	}
 
 	
 	

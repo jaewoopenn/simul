@@ -2,10 +2,8 @@ package TestThesis;
 import Util.FUtil;
 import Util.Log;
 import Util.TEngine;
-import Simul.CompMng;
 import Simul.ConfigCompGen;
 import Simul.ConfigGen;
-import Simul.SimCompGen;
 import Simul.SimGen;
 import Simul.SimPartGen;
 
@@ -15,13 +13,19 @@ public class TaskSetGen2 {
 	public static int log_level=2;
 //	public static int log_level=1;
 //	public static int idx=-1;
-//	public static int idx=1;
-	public static int idx=2;
+//	public static int idx=2;
+	public static int idx=5;
+//	public static int cpus=2;
+	public static int cpus=4;
+	public static double alpha=0.0;
+	
+
+	
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
-		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_3.txt");
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_2_3.txt");
 		cfg.readFile();
 		SimPartGen eg=new SimPartGen(cfg);
 		eg.gen();
@@ -33,10 +37,10 @@ public class TaskSetGen2 {
 	{
 		ConfigCompGen cfg;
 		for(int i=0;i<10;i++){
-			cfg=new ConfigCompGen("com/cfg/mp_"+i+".txt");
+			cfg=new ConfigCompGen("com/cfg/mp_"+cpus+"_"+i+".txt");
 			cfg.readFile();
 			SimPartGen eg=new SimPartGen(cfg);
-//			Log.prn(2, i*5+50+"---");
+			Log.prn(2, i*5+50+"---");
 			eg.gen();
 			
 		}
@@ -44,15 +48,14 @@ public class TaskSetGen2 {
 	}		
 	public int test3() // load one
 	{
-		double alpha=0.7803;
-		int method=1;
-		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_3.txt");
+		int method=4;
+		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_4_5.txt");
 		cfg.readFile();
 		SimPartGen eg=new SimPartGen(cfg);
 		eg.set_alpha(alpha);
 		eg.set_method(method);
 		Log.prn(2, method+" "+alpha);
-		boolean b=eg.load_one(3);
+		boolean b=eg.load_one(15);
 		if(b)
 			Log.prn(2, "OK");
 		else
@@ -62,7 +65,6 @@ public class TaskSetGen2 {
 	}
 	public int test4() // load comp set
 	{
-		double alpha=0.5;
 		ConfigCompGen cfg=new ConfigCompGen("com/cfg/mp_3.txt");
 		cfg.readFile();
 		SimPartGen eg=new SimPartGen(cfg);
@@ -75,25 +77,28 @@ public class TaskSetGen2 {
 	}
 	public int test5() // load various policies
 	{
-		for(int i=0;i<5;i++)
+		for(int i=0;i<4;i++)
 		{
-			anal(i);
+			Log.prn(2, "method--"+i);
+			anal(cpus,i);
 		}
 		return 0;
 	}
 
-	public int anal(int no)
+	public int anal(int cpus,int no)
 	{
-		ConfigGen cfg;
-		FUtil fu=new FUtil("tm/rs/sim"+no+".txt");
+		ConfigCompGen cfg;
+		FUtil fu=new FUtil("com/rs/mp_"+cpus+"_"+no+".txt");
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen("tm/cfg/cfg_"+i+".txt");
+			cfg=new ConfigCompGen("com/cfg/mp_"+cpus+"_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimPartGen eg=new SimPartGen(cfg);
+			eg.set_alpha(alpha);
+			eg.set_method(no);
 			int tot=eg.size();
-			int sum=eg.load(no);
+			int sum=eg.load();
 			double suc=sum*1.0/tot;
-			Log.prn(2, "util:"+(i*5+30)+"%, suc:"+suc);
+			Log.prn(2, "util:"+(i*5+50)+"%, suc:"+suc);
 			fu.print(suc+"");
 		}
 		fu.save();

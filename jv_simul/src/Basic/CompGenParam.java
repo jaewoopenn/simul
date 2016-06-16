@@ -9,6 +9,7 @@ import Util.RUtil;
 public class CompGenParam {
 	private RUtil g_rand=new RUtil();
 	
+	private int cpus=1;
 	private double util_u;
 	private double util_l;
 	private double lt_lu_u;
@@ -18,6 +19,9 @@ public class CompGenParam {
 	private double ratio_lb;
 	private double ratio_ub;
 	
+	public void set_cpus(int n) {
+		cpus=n;
+	}
 
 	public void set_util(double l, double u) {
 		if(l>u ){
@@ -65,7 +69,7 @@ public class CompGenParam {
 	}
 
 	public int check(double util) {
-		if(util<=util_u&&util>=util_l){
+		if(util<=cpus*util_u&&util>=cpus*util_l){
 			return 1;
 		}
 //		Log.prn(2,"f");
@@ -73,7 +77,7 @@ public class CompGenParam {
 	}
 
 	public double get_util_u() {
-		return util_u;
+		return cpus*util_u;
 	}
 
 

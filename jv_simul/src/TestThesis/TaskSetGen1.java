@@ -15,7 +15,7 @@ public class TaskSetGen1 {
 //	public static int log_level=1;
 //	public static int idx=-1;
 //	public static int idx=1;
-	public static int idx=4;
+	public static int idx=5;
 	public static int total=10;
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen 1
@@ -36,8 +36,10 @@ public class TaskSetGen1 {
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen("com/cfg/cfg_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
-//			Log.prn(2, i*5+50+"---");
+			SimCompGen eg=new SimCompGen(cfg);
+			eg.setMaxCom(3);
+			
+			Log.prn(2, i*5+50+"---");
 			eg.gen();
 			
 		}
@@ -73,13 +75,12 @@ public class TaskSetGen1 {
 			double suc=sum*1.0/tot;
 			Log.prnc(2, "alpha:"+alpha);
 			Log.prn(2, " suc:"+suc);
-			
 		}
 		return 1;
 	}
 	public int test5() // load
 	{
-		for(int i=0;i<5;i++)
+		for(int i=0;i<4;i++)
 		{
 			anal(i);
 		}
@@ -88,16 +89,18 @@ public class TaskSetGen1 {
 
 	public int anal(int no)
 	{
+		double[] alphas={0,0.333,0.666,1};
 		ConfigGen cfg;
-		FUtil fu=new FUtil("tm/rs/sim"+no+".txt");
+		FUtil fu=new FUtil("com/rs/sim"+no+".txt");
 		for(int i=0;i<10;i++){
-			cfg=new ConfigGen("tm/cfg/cfg_"+i+".txt");
+			cfg=new ConfigGen("com/cfg/cfg_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimCompGen eg=new SimCompGen(cfg);
 			int tot=eg.size();
-			int sum=eg.load(no);
+			eg.set_alpha(alphas[no]);
+			int sum=eg.load();
 			double suc=sum*1.0/tot;
-			Log.prn(2, "util:"+(i*5+30)+"%, suc:"+suc);
+			Log.prn(2, "util:"+(i*5+50)+"%, suc:"+suc);
 			fu.print(suc+"");
 		}
 		fu.save();
