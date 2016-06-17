@@ -9,7 +9,7 @@ class gl:
     vv=[]
     line=['r-','b--','g-.','k:']
 #     marker=['o','v','D','^','s']
-    lab=['alpha=0.00','alpha=0.333','alpha=0.666','alpha=1.00',]
+    lab=[r'$\alpha$=0.00 (EDF-ADAM-S)',r'$\alpha$=0.333',r'$\alpha$=0.666',r'$\alpha$=1.00 (Strong Isolation)',]
     data=[0,1,2,3]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
