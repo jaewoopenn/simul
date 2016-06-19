@@ -9,11 +9,11 @@ class gl:
     vv=[]
     line=['r-','b--','g-.','k:']
 #     marker=['o','v','D','^','s']
-    lab=['sortMC_WF','sortMC_FF','sortHI_FF','sortLO_FF']
+    lab=['SortMC_WF','SortMC_FF','SortHI_FF','SortLO_FF']
     data=[0,1,2,3]
-#     cpus=2
+    cpus=2
 #     cpus=4
-    cpus=8
+#     cpus=8
 #     data=[4,1,2,0,3]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
@@ -40,7 +40,7 @@ def main():
 #     mp.log()
     mp.ylim(0, 1.02)
     mp.legend()
-    mp.xlabel("Utilization Bound")
+    mp.xlabel("Normalized Utilization Bound")
     mp.ylabel("Acceptance Ratio")
     print "hihi"
     mp.show()
