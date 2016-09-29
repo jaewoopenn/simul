@@ -75,14 +75,14 @@ public class Platform {
 //			Log.prn(2, "p:"+tsk.period+" e:"+tsk.exec);
 			if(g_mode==0){
 				if(tsk.is_HI){
-					jm.insertJob(tsk.tid,cur_t+tsk.vd,cur_t+tsk.period,tsk.c_l, tsk.c_h-tsk.c_l);
+					jm.addJob(tsk.tid,cur_t+tsk.vd,cur_t+tsk.period,tsk.c_l, tsk.c_h-tsk.c_l);
 				} else {
-					jm.insertJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
+					jm.addJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
 				}
 				Log.prnc(1,"+");
 			} else {
 				if(tsk.is_HI){
-					jm.insertJob(tsk.tid,cur_t+tsk.period,tsk.c_h);
+					jm.addJob(tsk.tid,cur_t+tsk.period,tsk.c_h);
 					Log.prnc(1,"+");
 				} else {
 					Log.prnc(1,"-");

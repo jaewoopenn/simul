@@ -10,15 +10,15 @@ public class JobMng {
 	public JobMng() {
 		jobs=new PriorityQueue<Job>();
 	}
-	public void insert(Job job) {
+	public void add(Job job) {
 		jobs.add(job);
 	}
 
-	public void insertJob(int tid,int dl,double et) {
+	public void addJob(int tid,int dl,double et) {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
-	public void insertJob(int tid,double vd, int dl, double et, double add) {
+	public void addJob(int tid,double vd, int dl, double et, double add) {
 		Job j=new Job(tid,vd,dl,et,add);
 		jobs.add(j);
 	}

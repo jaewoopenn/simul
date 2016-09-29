@@ -13,8 +13,8 @@ public class JobMng2 {
 	public JobMng ts1()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,4,1);
+		jm.addJob(0,3,1);
+		jm.addJob(1,4,1);
 		return jm;
 	}
 
