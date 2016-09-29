@@ -32,20 +32,18 @@ public class JobMng {
 		return true;
 	}
 	public boolean progress(int cur_t){
-		Job j=getCur();
-		int out_type=0;
-		if(j==null)
-		{
+		Job j=getCur(); 
+		int out_type=0; // idle
+		if(j==null)	{
 			prnJob(null,out_type);
 			return true;
 		}
-		int out_dur=0;
 		if(j.exec<=1) {
-			out_type=1;
+			out_type=1; // complete
 			j.exec=0;
 			pollCur();
 		} else {  // j.exec>1
-			out_type=2;
+			out_type=2; // rem
 			j.exec-=1;
 		}
 		prnJob(j,out_type);
@@ -59,19 +57,20 @@ public class JobMng {
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
 				Log.prnc(1, "-");
-		} else{
-			if (j.tid+1>g_task_num)
-				g_task_num=j.tid+1;
-			for (int i=0;i<g_task_num;i++)
-			{
-				if(i==j.tid){
-					if(out_type==1)
-						Log.prnc(1, "+");
-					else
-						Log.prnc(1, "|");
-				} else {
-					Log.prnc(1, "-");
-				}
+			Log.prn(1, " ");
+			return;
+		} 
+		if (j.tid+1>g_task_num)
+			g_task_num=j.tid+1;
+		for (int i=0;i<g_task_num;i++)
+		{
+			if(i==j.tid){
+				if(out_type==1)
+					Log.prnc(1, "+");
+				else
+					Log.prnc(1, "|");
+			} else {
+				Log.prnc(1, "-");
 			}
 		}
 		Log.prn(1, " ");

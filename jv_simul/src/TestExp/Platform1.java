@@ -7,21 +7,18 @@ import Exp.Platform;
 
 public class Platform1 {
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=1;
 	public static int gret[]={1,1,1,0,1,1,0,0,0,0};
 
 	public int test1()
 	{
 		TaskGen tg=new TaskGen();
-		String fn="test/taskset1";
+		String fn="exp/ts2";
 		tg.loadFile(fn);
-		tg.prn(1);
+//		tg.prn(1);
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
-		Platform p=new Platform();
-		p.init(tm);
-		int ret=p.simul(20);
-		return ret;
+		return post(tm,20);
 	}
 
 	public int test2()
