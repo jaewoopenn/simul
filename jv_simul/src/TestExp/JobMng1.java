@@ -123,9 +123,8 @@ public class JobMng1 {
 		Class c = JobMng1.class;
 		JobMng1 m=new JobMng1();
 		int[] aret=JobMng1.gret;
-		int sz=JobMng1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,1);
 	}

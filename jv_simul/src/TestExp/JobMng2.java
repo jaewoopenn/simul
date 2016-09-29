@@ -84,7 +84,7 @@ public class JobMng2 {
 		Class c = JobMng2.class;
 		JobMng2 m=new JobMng2();
 		int[] aret=JobMng2.gret;
-		int sz=JobMng2.total;
+		int sz=10;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
