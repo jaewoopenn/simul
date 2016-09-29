@@ -58,7 +58,6 @@ public class JobMng {
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
 				Log.prnc(1, "-");
-			Log.prn(1, " ");
 			return;
 		} 
 		if (j.tid+1>g_task_num)
@@ -74,7 +73,7 @@ public class JobMng {
 				Log.prnc(1, "-");
 			}
 		}
-		Log.prn(1, " ");
+//		Log.prn(1, " ");
 //		Log.prn(1, "  \t exec_type:"+out_type);
 	}
 	public Job getCur(){

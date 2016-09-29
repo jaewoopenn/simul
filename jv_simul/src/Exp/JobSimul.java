@@ -42,9 +42,8 @@ public class JobSimul {
 		return jm.endCheck(cur_t);
 		
 	}
-	private int work(int cur_t){
+	public int work(int cur_t){
 		if(!jm.dlCheck(cur_t)) return 0;
-		Log.prnc(1,"t:"+cur_t+" ");
 		if(!progress(cur_t)) return 0;
 		return 1;
 		
