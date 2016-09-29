@@ -8,7 +8,7 @@ import Exp.TaskSimul;
 
 public class TaskSimul1 {
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int gret[]={2,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 	public TaskMng ts1()	{
