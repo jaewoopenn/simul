@@ -8,7 +8,6 @@ public class Calcul2 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=1;
-	public static int total=10;
 	public static int gret[]={1,1,1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
@@ -82,9 +81,8 @@ public class Calcul2 {
 		Class c = Calcul2.class;
 		Calcul2 m=new Calcul2();
 		int[] aret=Calcul2.gret;
-		int sz=Calcul2.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

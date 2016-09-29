@@ -10,15 +10,15 @@ public class JobMng {
 	public JobMng() {
 		jobs=new PriorityQueue<Job>();
 	}
-	public void insert(Job job) {
+	public void add(Job job) {
 		jobs.add(job);
 	}
 
-	public void insertJob(int tid,int dl,double et) {
+	public void addJob(int tid,int dl,double et) {
 		Job j=new Job(tid,dl,et);
 		jobs.add(j);
 	}
-	public void insertJob(int tid,double vd, int dl, double et, double add) {
+	public void addJob(int tid,double vd, int dl, double et, double add) {
 		Job j=new Job(tid,vd,dl,et,add);
 		jobs.add(j);
 	}
@@ -32,20 +32,19 @@ public class JobMng {
 		return true;
 	}
 	public boolean progress(int cur_t){
-		Job j=getCur();
-		int out_type=0;
-		if(j==null)
-		{
+		int out_type=0; // idle
+		Job j=getCur(); 
+		if(j==null)	{
 			prnJob(null,out_type);
 			return true;
 		}
-		int out_dur=0;
+		
 		if(j.exec<=1) {
-			out_type=1;
+			out_type=1; // complete
 			j.exec=0;
-			pollCur();
+			removeCur();
 		} else {  // j.exec>1
-			out_type=2;
+			out_type=2; // rem
 			j.exec-=1;
 		}
 		prnJob(j,out_type);
@@ -59,28 +58,28 @@ public class JobMng {
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
 				Log.prnc(1, "-");
-		} else{
-			if (j.tid+1>g_task_num)
-				g_task_num=j.tid+1;
-			for (int i=0;i<g_task_num;i++)
-			{
-				if(i==j.tid){
-					if(out_type==1)
-						Log.prnc(1, "+");
-					else
-						Log.prnc(1, "|");
-				} else {
-					Log.prnc(1, "-");
-				}
+			return;
+		} 
+		if (j.tid+1>g_task_num)
+			g_task_num=j.tid+1;
+		for (int i=0;i<g_task_num;i++)
+		{
+			if(i==j.tid){
+				if(out_type==1)
+					Log.prnc(1, "+");
+				else
+					Log.prnc(1, "|");
+			} else {
+				Log.prnc(1, "-");
 			}
 		}
-		Log.prn(1, " ");
+//		Log.prn(1, " ");
 //		Log.prn(1, "  \t exec_type:"+out_type);
 	}
 	public Job getCur(){
 		return jobs.peek();
 	}
-	public Job pollCur(){
+	public Job removeCur(){
 		return jobs.poll();
 	}
 	public int size(){
@@ -100,10 +99,10 @@ public class JobMng {
 	public int endCheck(int et) {
 		for(Job j:jobs){
 			if(j.dl<=et){
-				return 0;
+				return 0; // dl miss
 			}
 		}
-		return 1;
+		return 1; // OK 
 	}
 	public void modeswitch() {
 		for(Job j:jobs){

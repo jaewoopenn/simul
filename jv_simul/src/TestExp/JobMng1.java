@@ -13,37 +13,37 @@ public class JobMng1 {
 	public JobMng ts1()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,4,1);
+		jm.addJob(0,3,1);
+		jm.addJob(1,4,1);
 		return jm;
 	}
 	public JobMng ts2()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,2);
-		jm.insertJob(1,4,1);
+		jm.addJob(0,3,2);
+		jm.addJob(1,4,1);
 		return jm;
 	}
 	public JobMng ts3()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,4,2);
-		jm.insertJob(2,5,1);
+		jm.addJob(0,3,1);
+		jm.addJob(1,4,2);
+		jm.addJob(2,5,1);
 		return jm;
 	}
 	public JobMng ts4()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,4,2);
+		jm.addJob(0,3,1);
+		jm.addJob(1,4,2);
 		return jm;
 	}
 	public JobMng ts5()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,6,4);
+		jm.addJob(0,3,1);
+		jm.addJob(1,6,4);
 		return jm;
 	}
 
@@ -86,11 +86,11 @@ public class JobMng1 {
 	{
 		JobMng jm=ts4();
 		jm.progress(0);
-		jm.insertJob(0,6,1);
+		jm.addJob(0,6,1);
 		jm.progress(1);
-		jm.insertJob(1,8,2);
+		jm.addJob(1,8,2);
 		jm.progress(2);
-		jm.insertJob(0,9,1);
+		jm.addJob(0,9,1);
 		jm.prn();
 		return 0;
 	}
@@ -100,7 +100,7 @@ public class JobMng1 {
 		jm.progress(0);
 		jm.progress(1);
 		jm.progress(2);
-		jm.insertJob(0,6,1);
+		jm.addJob(0,6,1);
 		jm.progress(3);
 		jm.progress(4);
 		return jm.size();
@@ -123,9 +123,8 @@ public class JobMng1 {
 		Class c = JobMng1.class;
 		JobMng1 m=new JobMng1();
 		int[] aret=JobMng1.gret;
-		int sz=JobMng1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,1);
 	}

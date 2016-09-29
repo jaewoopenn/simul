@@ -5,8 +5,7 @@ import Exp.ExpGen;
 
 public class ExpGen1 {
 //	public static int idx=-1;
-	public static int idx=6;
-	public static int total=10;
+	public static int idx=2;
 	public static int gret[]={0,1,0,6,0,0,0,0,0,0};
 	public int test1() // error config
 	{
@@ -76,9 +75,8 @@ public class ExpGen1 {
 		Class c = ExpGen1.class;
 		ExpGen1 m=new ExpGen1();
 		int[] aret=ExpGen1.gret;
-		int sz=ExpGen1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,2);
 	}

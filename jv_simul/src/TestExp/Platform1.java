@@ -7,22 +7,18 @@ import Exp.Platform;
 
 public class Platform1 {
 //	public static int idx=-1;
-	public static int idx=3;
-	public static int total=10;
+	public static int idx=1;
 	public static int gret[]={1,1,1,0,1,1,0,0,0,0};
 
 	public int test1()
 	{
 		TaskGen tg=new TaskGen();
-		String fn="test/taskset1";
+		String fn="exp/ts2";
 		tg.loadFile(fn);
-		tg.prn(1);
+//		tg.prn(1);
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
-		Platform p=new Platform();
-		p.init(tm);
-		int ret=p.simul(20);
-		return ret;
+		return post(tm,20);
 	}
 
 	public int test2()
@@ -100,9 +96,8 @@ public class Platform1 {
 		Class c = Platform1.class;
 		Platform1 m=new Platform1();
 		int[] aret=Platform1.gret;
-		int sz=Platform1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,1);
 	}

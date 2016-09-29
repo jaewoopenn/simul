@@ -8,7 +8,6 @@ import Exp.Job;
 public class Job1 {
 	public static int idx=-1;
 //	public static int idx=1;
-	public static int total=10;
 	public static int gret[]={2,3,1,4,0,0,0,0,0,0};
 	public int test1()
 	{
@@ -80,9 +79,8 @@ public class Job1 {
 		Class c = Job1.class;
 		Job1 m=new Job1();
 		int[] aret=Job1.gret;
-		int sz=Job1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,1);
 	}

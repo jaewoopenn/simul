@@ -8,7 +8,6 @@ import Exp.Platform;
 public class Platform2 {
 //	public static int idx=-1;
 	public static int idx=10;
-	public static int total=10;
 	public static int gret[]={0,0,0,0,0, 1,0,1,1,1};
 
 	public int test1()
@@ -158,7 +157,7 @@ public class Platform2 {
 		Class c = Platform2.class;
 		Platform2 m=new Platform2();
 		int[] aret=Platform2.gret;
-		int sz=Platform2.total;
+		int sz=10;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else

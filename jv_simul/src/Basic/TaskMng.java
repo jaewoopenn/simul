@@ -33,11 +33,13 @@ public class TaskMng {
 	}
 	
 	public void addTask(int p, double e) {
-		g_taskV.add(new Task(g_size,p,e));
+		int tid=g_taskV.size();
+		g_taskV.add(new Task(tid,p,e));
 	}
 	
 	public void addHiTask(int p, double c_l, double c_h) {
-		Task t=new Task(g_size,p,c_l,c_h);
+		int tid=g_taskV.size();
+		Task t=new Task(tid,p,c_l,c_h);
 		g_taskV.add(t);
 		g_hi_taskV.add(t);
 	}

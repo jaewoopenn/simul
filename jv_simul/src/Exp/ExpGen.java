@@ -11,13 +11,16 @@ import Basic.TaskMng;
 import Util.Log;
 
 public class ExpGen {
-	private final String[] g_predefined={"u_lb","u_ub","p_ub","p_lb","tu_lb","tu_ub","num","subfix"};
+	private final String[] g_predefined={"u_lb","u_ub","p_ub","p_lb",
+			"tu_lb","tu_ub","num","subfix"};
 	private TaskGen tg;
 	private HashMap<String,String> param;
+
 	public ExpGen() {
 		tg=new TaskGen();
 		param=new HashMap<String,String>();
 	}
+
 	public int readConfig(String f) {
 	    File file = new File("/Users/jaewoo/data/"+f);
 	    FileReader fr;
@@ -32,6 +35,7 @@ public class ExpGen {
 	            
 	            if(!setParam(words[0],words[1])) {
 	            	System.out.println("Err: loading field is not defined");
+	            	System.out.println(words[0]+","+words[1]);
 	            	br.close();
 	            	return 0;
 	            }

@@ -13,8 +13,8 @@ public class JobMng2 {
 	public JobMng ts1()
 	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,4,1);
+		jm.addJob(0,3,1);
+		jm.addJob(1,4,1);
 		return jm;
 	}
 
@@ -24,9 +24,9 @@ public class JobMng2 {
 	{
 		JobMng jm=ts1();
 		Job j;
-		j=jm.pollCur();
-		j=jm.pollCur();
-		j=jm.pollCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
 		if (j!=null)
 			System.out.println(j.dl);
 		else
@@ -37,8 +37,8 @@ public class JobMng2 {
 	{
 		JobMng jm=ts1();
 		Job j;
-		j=jm.pollCur();
-		j=jm.pollCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
 		j=jm.getCur();
 		if (j!=null)
 			System.out.println(j.dl);
@@ -84,7 +84,7 @@ public class JobMng2 {
 		Class c = JobMng2.class;
 		JobMng2 m=new JobMng2();
 		int[] aret=JobMng2.gret;
-		int sz=JobMng2.total;
+		int sz=10;
 		if(idx==-1)
 			TEngine.run(m,c,aret,sz);
 		else
