@@ -44,7 +44,7 @@ public class JobSimul {
 		if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
-			jm.pollCur();
+			jm.removeCur();
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;

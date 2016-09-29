@@ -41,7 +41,7 @@ public class JobMng {
 		if(j.exec<=1) {
 			out_type=1; // complete
 			j.exec=0;
-			pollCur();
+			removeCur();
 		} else {  // j.exec>1
 			out_type=2; // rem
 			j.exec-=1;
@@ -79,7 +79,7 @@ public class JobMng {
 	public Job getCur(){
 		return jobs.peek();
 	}
-	public Job pollCur(){
+	public Job removeCur(){
 		return jobs.poll();
 	}
 	public int size(){

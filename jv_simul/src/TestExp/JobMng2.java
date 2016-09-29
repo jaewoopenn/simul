@@ -24,9 +24,9 @@ public class JobMng2 {
 	{
 		JobMng jm=ts1();
 		Job j;
-		j=jm.pollCur();
-		j=jm.pollCur();
-		j=jm.pollCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
 		if (j!=null)
 			System.out.println(j.dl);
 		else
@@ -37,8 +37,8 @@ public class JobMng2 {
 	{
 		JobMng jm=ts1();
 		Job j;
-		j=jm.pollCur();
-		j=jm.pollCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
 		j=jm.getCur();
 		if (j!=null)
 			System.out.println(j.dl);
