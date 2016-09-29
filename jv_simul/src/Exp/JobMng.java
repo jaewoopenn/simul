@@ -99,10 +99,10 @@ public class JobMng {
 	public int endCheck(int et) {
 		for(Job j:jobs){
 			if(j.dl<=et){
-				return 0;
+				return 0; // dl miss
 			}
 		}
-		return 1;
+		return 1; // OK 
 	}
 	public void modeswitch() {
 		for(Job j:jobs){

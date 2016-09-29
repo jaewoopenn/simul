@@ -28,6 +28,20 @@ public class JobSimul {
 		return jm.endCheck(et);
 	}
 
+	public int simulDur(int st, int et){
+		int cur_t=st;
+		while(cur_t<et){
+			if (work(cur_t)==0) return 0;
+			cur_t++;
+		}
+		return 1;
+	}
+	public int simulEnd(int cur_t){
+		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
+		jm.prn();
+		return jm.endCheck(cur_t);
+		
+	}
 	private int work(int cur_t){
 		if(!jm.dlCheck(cur_t)) return 0;
 		Log.prnc(1,"t:"+cur_t+" ");
