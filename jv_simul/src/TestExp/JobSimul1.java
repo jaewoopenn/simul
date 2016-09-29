@@ -6,28 +6,28 @@ import Exp.JobSimul;
 
 public class JobSimul1 {
 //	public static int idx=-1;
-	public static int idx=1;
-	public static int gret[]={2,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int idx=2;
+	public static int gret[]={2,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 	public JobMng ts1()	{
 		JobMng jm=new JobMng();
-		jm.insertJob(0,3,1);
-		jm.insertJob(1,4,1);
+		jm.addJob(0,3,1);
+		jm.addJob(1,4,1);
 		return jm;
 	}
 	
 	public JobMng ts2()	{
 		JobMng jm=new JobMng();
-		jm.insertJob(1,3,1);
-		jm.insertJob(0,4,2);
+		jm.addJob(1,3,1);
+		jm.addJob(0,4,2);
 		return jm;
 	}
 
 	public JobMng ts3()	{
 		JobMng jm=new JobMng();
-		jm.insertJob(1,3,1);
-		jm.insertJob(2,4,2);
-		jm.insertJob(0,5,1);
+		jm.addJob(1,3,1);
+		jm.addJob(2,4,2);
+		jm.addJob(0,5,1);
 		return jm;
 	}
 
@@ -37,7 +37,12 @@ public class JobSimul1 {
 		return -1;
 	}
 	public int test2() {
-		return -1;
+		JobSimul js=new JobSimul();
+		js.addJob(1,3,1);
+		js.addJob(2,4,2);
+		js.addJob(0,5,1);
+		js.simul(6);
+		return 0;
 	}
 	
 	public  int test3()	{
