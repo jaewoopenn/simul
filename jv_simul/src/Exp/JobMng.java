@@ -32,12 +32,13 @@ public class JobMng {
 		return true;
 	}
 	public boolean progress(int cur_t){
-		Job j=getCur(); 
 		int out_type=0; // idle
+		Job j=getCur(); 
 		if(j==null)	{
 			prnJob(null,out_type);
 			return true;
 		}
+		
 		if(j.exec<=1) {
 			out_type=1; // complete
 			j.exec=0;
