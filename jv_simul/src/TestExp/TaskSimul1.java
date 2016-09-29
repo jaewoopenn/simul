@@ -8,7 +8,7 @@ import Exp.TaskSimul;
 
 public class TaskSimul1 {
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int gret[]={1,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 	public TaskMng ts1()	{
@@ -20,15 +20,25 @@ public class TaskSimul1 {
 		return tm;
 	}
 	
+	public TaskMng ts2()	{
+		TaskMng tm=new TaskMng();
+		tm.addTask(3,1);
+		tm.addTask(4,3);
+		tm.freezeTasks();
+		return tm;
+	}
 
 	public int test1()	{
 		TaskSimul ts=new TaskSimul(ts1());
 		ts.init();
-		ts.simulDur(0, 5);
-		return ts.simulEnd(5);
+		ts.simulDur(0, 20);
+		return ts.simulEnd(20);
 	}
 	public int test2() {
-		return -1;
+		TaskSimul ts=new TaskSimul(ts2());
+		ts.init();
+		ts.simulDur(0, 20);
+		return ts.simulEnd(20);
 	}
 	
 	public  int test3()	{
