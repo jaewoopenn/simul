@@ -4,6 +4,7 @@ import Util.Log;
 import Util.TEngine;
 import Basic.TaskMng;
 import Simul.ConfigGen;
+import Simul.SimAnal;
 import Simul.SimGen;
 
 public class TaskSetGen1 {
@@ -42,7 +43,7 @@ public class TaskSetGen1 {
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen("tm/cfg/cfg_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimAnal eg=new SimAnal(cfg);
 			int tot=eg.size();
 			int sum=eg.load(no);
 			double suc=sum*1.0/tot;
@@ -76,7 +77,7 @@ public class TaskSetGen1 {
 		FUtil fu=new FUtil("tm/rs/drop_"+str+"_"+no+".txt");
 		cfg=new ConfigGen("tm/cfg/drop_"+str+".txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimAnal eg=new SimAnal(cfg);
 		for(int i=0;i<10;i++){
 			double p=0.1/Math.pow(2, i);
 			double avg=eg.load3(no,p);
@@ -92,12 +93,13 @@ public class TaskSetGen1 {
 		cfg=new ConfigGen("tm/cfg/cfg_0.txt");
 		cfg.readFile();
 		SimGen eg=new SimGen(cfg);
+		SimAnal ea=new SimAnal(cfg);
 //			Log.prn(2, i*5+50+"---");
 		eg.prepare();
 		for (int i=0;i<1000;i++){
 			TaskMng tm=eg.genOne();
-			int edf=eg.process(tm, 0);
-			int edf_tm=eg.process(tm, 2);
+			int edf=ea.process(tm, 0);
+			int edf_tm=ea.process(tm, 2);
 			Log.prn(2, i+" "+edf+" "+edf_tm);
 			if(edf_tm==0){
 				tm.prn();

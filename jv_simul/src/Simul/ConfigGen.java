@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import Util.FUtil;
+import Util.Log;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
@@ -39,6 +40,15 @@ public class ConfigGen {
 		}
 //			Log.prn(1, s+":"+readPar(s));
 	}
+	public String get_fn(int i){
+		String subfix=readPar("subfix").trim();
+		String mod=readPar("mod").trim();
+		String fn=subfix+"/taskset_"+mod+"_"+i;
+		return fn;
+		
+	}
+	
+	
 	public boolean setParam(String field, String val){
 		if(Arrays.asList(g_predefined).contains(field)){
 			param.put(field, val);
@@ -85,6 +95,25 @@ public class ConfigGen {
 			setParam("mod", (i*step+start+5)+"");
 			write("cfg/cfg_"+i+".txt");
 		}
+	}
+	public void prn(int lv) {
+		Log.prn(lv,readPar("u_ub")+"--");
+	}
+	public static ConfigGen getCfg()	{
+		ConfigGen eg=new ConfigGen("");
+		eg.setParam("u_lb","0.95");
+		eg.setParam("u_ub","1.0");
+		eg.setParam("p_lb","50");
+		eg.setParam("p_ub","300");
+		eg.setParam("tu_lb","0.02");
+		eg.setParam("tu_ub","0.1");
+		eg.setParam("r_lb","0.25");
+		eg.setParam("r_ub","1.0");
+		eg.setParam("prob_hi","0.5");
+		eg.setParam("num","10");
+		eg.setParam("subfix","exp");
+		eg.setParam("mod","t");
+		return eg;
 	}
 
 }

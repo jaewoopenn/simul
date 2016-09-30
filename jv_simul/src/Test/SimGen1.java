@@ -4,6 +4,7 @@ import Util.Log;
 import Util.TEngine;
 import Basic.TaskMng;
 import Simul.ConfigGen;
+import Simul.SimAnal;
 import Simul.SimGen;
 
 public class SimGen1 {
@@ -25,7 +26,7 @@ public class SimGen1 {
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimAnal eg=new SimAnal(cfg);
 		int tot=eg.size();
 		int sum=eg.load(1);
 		Log.prn(2, "suc:"+sum+"/"+tot);
@@ -37,7 +38,7 @@ public class SimGen1 {
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimAnal eg=new SimAnal(cfg);
 		TaskMng tm=eg.load_one(99);
 		int ret=eg.process(tm,1);
 		Log.prn(2, "ret:"+ret);
@@ -83,7 +84,7 @@ public class SimGen1 {
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen("cfg/cfg_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimAnal eg=new SimAnal(cfg);
 			int tot=eg.size();
 			int sum=eg.load(no);
 			double suc=sum*1.0/tot;

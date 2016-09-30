@@ -44,6 +44,11 @@ public class TaskSimul {
 	public int simulEnd(int t) {
 		return g_js.simulEnd(t);
 	}
+	public int exec(int et) {
+		init();
+		simulDur(0, et);
+		return simulEnd(et);
+	}
 	
 	
 }

@@ -6,17 +6,20 @@ import Simul.ConfigGen;
 public class ConfigWrite1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=1;
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
-	public int test1() // error config
+	public int test1() 
 	{
 		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "exp");
-		eg.setParam("num","1");
-		eg.write("exp/cfg/cfg.txt");
+		eg.setParam("subfix", "exp/ts");
+		eg.setParam("num","10");
+		eg.setParam("u_lb", "0.45");
+		eg.setParam("u_ub", "0.50");
+		eg.setParam("mod", "50");
+		eg.write("exp/cfg/cfg_50.txt");
 		return 0;
 	}
-	public int test2() // normal config
+	public int test2() 
 	{
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "drop");
@@ -91,7 +94,6 @@ public class ConfigWrite1 {
 		eg.setParam("subfix","exp");
 		eg.setParam("mod","t");
 		return eg;
-
 	}
 	
 	@SuppressWarnings("rawtypes")

@@ -6,16 +6,16 @@ import Basic.TaskMng;
 import Util.Log;
 
 public class JobSimul {
-	JobMng jm;
+	JobMng g_jm;
 	public JobSimul(){
-		jm=new JobMng();
+		g_jm=new JobMng();
 	}
 	public JobSimul(JobMng m){
-		jm=m;
+		g_jm=m;
 	}
 	
 	public void addJob(int id, int dl, double et ){
-		jm.addJob(id,dl,et);
+		g_jm.addJob(id,dl,et);
 	}
 	public int simul(int et){
 		int cur_t=0;
@@ -24,8 +24,8 @@ public class JobSimul {
 			cur_t++;
 		}
 		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
-		jm.prn();
-		return jm.endCheck(et);
+		g_jm.prn();
+		return g_jm.endCheck(et);
 	}
 
 	public int simulDur(int st, int et){
@@ -38,33 +38,33 @@ public class JobSimul {
 	}
 	public int simulEnd(int cur_t){
 		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
-		jm.prn();
-		return jm.endCheck(cur_t);
+		g_jm.prn();
+		return g_jm.endCheck(cur_t);
 		
 	}
 	public int work(int cur_t){
-		if(!jm.dlCheck(cur_t)) return 0;
+		if(!g_jm.dlCheck(cur_t)) return 0;
 		if(!progress(cur_t)) return 0;
 		return 1;
 		
 	}
 	public boolean progress(int cur_t){
-		Job j=jm.getCur();
+		Job j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)
 		{
-			jm.prnJob(null,out_type);
+			g_jm.prnJob(null,out_type);
 			return true;
 		}
 		if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
-			jm.removeCur();
+			g_jm.removeCur();
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;
 		}
-		jm.prnJob(j,out_type);
+		g_jm.prnJob(j,out_type);
 		return true;
 		
 	}

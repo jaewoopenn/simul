@@ -65,6 +65,7 @@ public class TaskGenParam {
 	}
 
 	public Task genTask(int tid, boolean isMC){
+//		Log.prn(2, p_lb+" "+p_ub);
 		int p=g_rand.getInt(p_lb,p_ub);
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		double getProb=g_rand.getDbl();

@@ -4,6 +4,7 @@ import Util.Log;
 import Util.TEngine;
 import Basic.TaskMng;
 import Simul.ConfigGen;
+import Simul.SimAnal;
 import Simul.SimGen;
 
 public class SimGen2 {
@@ -25,7 +26,7 @@ public class SimGen2 {
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimAnal eg=new SimAnal(cfg);
 		eg.load2(5);
 //		for(int i=3;i<6;i++){
 //			Log.prn(2, "i---:"+i);
@@ -37,7 +38,7 @@ public class SimGen2 {
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimAnal eg=new SimAnal(cfg);
 //		eg.load(6);
 		for(int i=6;i<8;i++){
 			Log.prn(2, "i---:"+i);
@@ -51,7 +52,7 @@ public class SimGen2 {
 		Log.set_lv(1);
 		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimAnal eg=new SimAnal(cfg);
 		TaskMng tm=eg.load_one(8);
 		double v=eg.process2(tm,7,0.05);
 		Log.prn(2, "avg:"+v);
@@ -84,7 +85,7 @@ public class SimGen2 {
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen("cfg/cfgd_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimAnal eg=new SimAnal(cfg);
 			double avg=eg.load3(no,0.05);
 			Log.prn(2, "util:"+(i*5+30)+"%, avg:"+avg);
 			fu.print(avg+"");
