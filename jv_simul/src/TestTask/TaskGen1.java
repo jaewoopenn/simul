@@ -47,7 +47,7 @@ public class TaskGen1 {
 	}
 	public  int test4()
 	{
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.setUtil(0.5,0.8);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
@@ -58,7 +58,7 @@ public class TaskGen1 {
 	}
 	public  int test5()
 	{
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("test2.txt");
 		tg.prn(1);
 		int tg_size=tg.size();
@@ -75,7 +75,7 @@ public class TaskGen1 {
 	}
 	public  int test6()
 	{
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("test2.txt");
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());
@@ -85,7 +85,7 @@ public class TaskGen1 {
 	}
 	public  int test7()
 	{
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("t1/taskset2");
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());

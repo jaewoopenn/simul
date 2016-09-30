@@ -2,6 +2,7 @@ package Simul;
 
 
 import Basic.TaskGen;
+import Basic.TaskGenMC;
 import Basic.TaskMng;
 import Util.Log;
 
@@ -11,14 +12,14 @@ public class SimCompGen {
 	private int g_max_com=0;
 	private double g_alpha;
 	public SimCompGen(ConfigGen cfg) {
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		g_cfg=cfg;
 	}
 	public void setMaxCom(int c){
 		g_max_com=c;
 	}
 	public int prepare(){
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		tg.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tg.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
@@ -66,7 +67,7 @@ public class SimCompGen {
 	}
 	
 	public int load_one(int i){
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();

@@ -1,6 +1,7 @@
 package TestTask;
 import Basic.Task;
 import Basic.TaskGen;
+import Basic.TaskGenMC;
 import Basic.TaskMng;
 import Simul.Analysis;
 import Util.Log;
@@ -13,7 +14,7 @@ public class TaskGenMC1 {
 	public static int total=10;
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.2,0.9);
@@ -22,7 +23,7 @@ public class TaskGenMC1 {
 		return tg;
 	}
 	public TaskGen getTG2(){
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.7,0.9);
@@ -63,7 +64,7 @@ public class TaskGenMC1 {
 		int id=0;
 		while(true){
 			tg.generate();
-			double u=tg.getMCUtil();
+			double u=tg.getUtil();
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			tm.freezeTasks();

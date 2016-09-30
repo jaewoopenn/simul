@@ -100,7 +100,7 @@ public class CompGen1 {
 	}
 	public  int test7()
 	{
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("t1/taskset2");
 		TaskMng tm=new TaskMng();
 		tm.setTasks(tg.getAll());

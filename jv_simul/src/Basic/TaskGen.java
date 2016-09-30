@@ -46,7 +46,7 @@ public class TaskGen {
 	}
 
 	public int check(){
-		return g_param.check(getMCUtil());
+		return g_param.check(getUtil());
 	}
 	
 	// getting

@@ -2,6 +2,7 @@ package TestExp;
 
 import Util.TEngine;
 import Basic.TaskGen;
+import Basic.TaskGenMC;
 import Basic.TaskMng;
 import Exp.Platform;
 
@@ -12,7 +13,7 @@ public class Platform1 {
 
 	public int test1()
 	{
-		TaskGen tg=new TaskGen(true);
+		TaskGenMC tg=new TaskGenMC();
 		String fn="exp/ts2";
 		tg.loadFile(fn);
 //		tg.prn(1);
