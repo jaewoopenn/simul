@@ -1,4 +1,4 @@
-package Test;
+
 
 import Util.TEngine;
 
@@ -6,7 +6,6 @@ public class Mock1 {
 	public static int log_level=1;
 	public static int idx=-1;
 //	public static int idx=1;
-	public static int total=10;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
@@ -54,9 +53,8 @@ public class Mock1 {
 		Class c = Mock1.class;
 		Mock1 m=new Mock1();
 		int[] aret=Mock1.gret;
-		int sz=Mock1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

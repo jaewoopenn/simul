@@ -85,7 +85,6 @@ public class ConfigGen {
 			setParam("mod", (i*step+start+5)+"");
 			write("cfg/cfg_"+i+".txt");
 		}
-		
 	}
 
 }
