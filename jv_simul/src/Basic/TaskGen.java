@@ -129,5 +129,13 @@ public class TaskGen {
 	public void loadFile2(String f) {
 		g_tasks=TaskGenFile.loadFile2(f);
 	}
+
+	public TaskMng loadFileTM(String f) {
+		loadFile(f);
+		TaskMng tm=new TaskMng();
+		tm.setTasks(getAll());
+		tm.freezeTasks();
+		return tm;
+	}
 	
 }

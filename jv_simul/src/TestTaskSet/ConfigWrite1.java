@@ -6,7 +6,7 @@ import Simul.ConfigGen;
 public class ConfigWrite1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=4;
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
@@ -42,6 +42,14 @@ public class ConfigWrite1 {
 	}
 	public  int test4() // get config
 	{
+		int lb=40;
+		ConfigGen eg=getCfg();
+		eg.setParam("subfix", "exp/ts");
+		eg.setParam("num","1");
+		eg.setParam("u_lb", (lb)*1.0/100+"");
+		eg.setParam("u_ub", (lb+5)*1.0/100+"");
+		eg.setParam("mod", (lb+5)+"");
+		eg.write("exp/cfg/cfg.txt");
 		return 0;
 	}
 	public  int test5() // write config

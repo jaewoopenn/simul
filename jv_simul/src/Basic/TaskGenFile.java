@@ -12,7 +12,8 @@ public class TaskGenFile {
 		for(Task t:g_tasks)
 		{
 			int isHI=t.is_HI?1:0;
-			String txt=t.tid+","+t.period+","+t.c_l+","+t.c_h+","+isHI;
+			String txt=t.tid+","+t.period+",";
+			txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 			fu.print(txt);
 		}
 		fu.save();
