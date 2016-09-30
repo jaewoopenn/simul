@@ -64,40 +64,23 @@ public class TaskGenParam {
 		
 	}
 
-	public Task genTask(int tid){
+	public Task genTask(int tid, boolean isMC){
 		int p=g_rand.getInt(p_lb,p_ub);
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
-		int e=(int)(tu*p);
-		return new Task(tid,p,e);
+		double getProb=g_rand.getDbl();
+		if (getProb>prob_HI ||!isMC) {
+			int e=(int)(tu*p);
+			return new Task(tid,p,e);
+		}
+		else {
+			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
+			int h=(int)(tu*p);
+			int l=(int)(h*ratio);
+			return new Task(tid,p,l,h);
+		}
 	}
 
-	public Task genMCTask(int tid){
-		double getProb=g_rand.getDbl();
-		if (getProb>prob_HI) 
-			return genTask(tid);
-		int p=g_rand.getInt(p_lb, p_ub);
-		double tu=g_rand.getDbl(tu_lb,tu_ub);
-		double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
-		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
-		int h=(int)(tu*p);
-		int l=(int)(h*ratio);
-		return new Task(tid,p,l,h);
-	}
 
-	public Task genMCTask2(int tid){
-		double getProb=g_rand.getDbl();
-		if (getProb>prob_HI) 
-			return genTask(tid);
-		int p=g_rand.getInt(p_lb, p_ub);
-		double tu=g_rand.getDbl(tu_lb,tu_ub);
-		double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
-		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
-		int h=(int)(tu*p);
-		int l=(int)(h*ratio);
-		if(l==0) l=1;
-		if(h==0) h=1;
-		return new Task(tid,p,l,h);
-	}
 	
 	
 	public boolean chkTask(Task t) {

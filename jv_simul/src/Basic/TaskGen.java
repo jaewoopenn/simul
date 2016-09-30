@@ -24,6 +24,8 @@ public class TaskGen {
 		Task t;
 		while(getUtil()<=g_param.u_ub){
 			t=genTask(tid);
+			if (!t.check())
+				continue;
 			g_tasks.add(t);
 			tid++;
 		}
@@ -32,7 +34,7 @@ public class TaskGen {
 	
 
 	public Task genTask(int tid){
-		Task tsk=g_param.genTask(tid);
+		Task tsk=g_param.genTask(tid,false);
 		if(!g_param.chkTask(tsk))
 			return null;
 		return tsk;

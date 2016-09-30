@@ -7,7 +7,7 @@ public class TaskGenMC extends TaskGen {
 	
 
 	public Task genTask(int tid){
-		Task tsk=g_param.genMCTask(tid);
+		Task tsk=g_param.genTask(tid,true);
 		if(!g_param.chkTask(tsk))
 			return null;
 		if(!g_param.chkMCTask(tsk))

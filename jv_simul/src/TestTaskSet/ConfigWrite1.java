@@ -84,7 +84,7 @@ public class ConfigWrite1 {
 		eg.setParam("p_ub","300");
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
-		eg.setParam("r_lb","0.05");
+		eg.setParam("r_lb","0.25");
 		eg.setParam("r_ub","1.0");
 		eg.setParam("prob_hi","0.5");
 		eg.setParam("num","10");
