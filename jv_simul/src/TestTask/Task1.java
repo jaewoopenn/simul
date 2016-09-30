@@ -1,13 +1,14 @@
-package Test;
+package TestTask;
 import java.util.Vector;
 
+import Util.Log;
 import Util.TEngine;
 import Basic.Task;
 
 public class Task1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
 	public static int total=10;
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
@@ -26,6 +27,9 @@ public class Task1 {
 	}
 	public  int test3()
 	{
+		Task t=new Task(0,3,0);
+		t.prn();
+		Log.prn(1, " "+t.check());
 		return 0;
 	}
 	public  int test4()

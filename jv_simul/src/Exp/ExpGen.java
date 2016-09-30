@@ -17,7 +17,7 @@ public class ExpGen {
 	private HashMap<String,String> param;
 
 	public ExpGen() {
-		tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		param=new HashMap<String,String>();
 	}
 
@@ -74,7 +74,7 @@ public class ExpGen {
 		return Double.valueOf(s.trim()).doubleValue();
 	}
 	public void gen() {
-		TaskGen tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		tg.setUtil(readDbl("u_lb"),readDbl("u_ub"));
 		tg.setPeriod(readInt("p_lb"),readInt("p_ub"));
 		tg.setTUtil(readDbl("tu_lb"),readDbl("tu_ub"));
@@ -91,10 +91,10 @@ public class ExpGen {
 		int sum=0;
 		
 		for(int i=0;i<num;i++){
-			TaskGen tg=new TaskGen();
+			TaskGen tg=new TaskGen(true);
 			String fn=readPar("subfix").trim()+"/taskset"+i;
 			tg.loadFile(fn);
-			double util=tg.getMCUtil();
+			double util=tg.getUtil();
 			TaskMng tm=new TaskMng();
 			tm.setTasks(tg.getAll());
 			Platform p=new Platform();

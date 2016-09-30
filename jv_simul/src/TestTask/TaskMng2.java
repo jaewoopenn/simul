@@ -1,4 +1,4 @@
-package Test;
+package TestTask;
 // MC task
 // VD
 

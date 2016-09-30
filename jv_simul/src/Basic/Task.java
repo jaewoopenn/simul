@@ -37,5 +37,15 @@ public class Task {
 	public void prn() {
 		System.out.println("tid:"+tid+" p:"+period+" e:"+c_l);
 	}
+
+	public boolean check() {
+		if (period==0)
+			return false;
+		if (c_h==0)
+			return false;
+		if (c_l==0)
+			return false;
+		return true;
+	}
 }
 

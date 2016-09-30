@@ -81,8 +81,6 @@ public class TaskGenParam {
 		//Log.prn(1,"tu:"+tu+",ratio:"+ratio);
 		int h=(int)(tu*p);
 		int l=(int)(h*ratio);
-		if(l==0) l=1;
-		if(h==0) h=1;
 		return new Task(tid,p,l,h);
 	}
 

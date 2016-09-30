@@ -1,4 +1,4 @@
-package Test;
+package TestTask;
 import Basic.Task;
 import Basic.TaskGen;
 import Basic.TaskMng;
@@ -13,7 +13,7 @@ public class TaskGenMC1 {
 	public static int total=10;
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
-		TaskGen tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.2,0.9);
@@ -22,7 +22,7 @@ public class TaskGenMC1 {
 		return tg;
 	}
 	public TaskGen getTG2(){
-		TaskGen tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		tg.setPeriod(50,300);
 		tg.setTUtil(0.02,0.3);
 		tg.setRatioLH(0.7,0.9);

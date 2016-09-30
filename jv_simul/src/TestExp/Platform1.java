@@ -12,7 +12,7 @@ public class Platform1 {
 
 	public int test1()
 	{
-		TaskGen tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		String fn="exp/ts2";
 		tg.loadFile(fn);
 //		tg.prn(1);

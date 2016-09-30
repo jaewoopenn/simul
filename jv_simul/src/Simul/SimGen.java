@@ -8,11 +8,11 @@ public class SimGen {
 	private TaskGen tg;
 	private ConfigGen g_cfg;
 	public SimGen(ConfigGen cfg) {
-		tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		g_cfg=cfg;
 	}
 	public int prepare(){
-		tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		tg.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tg.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
@@ -109,7 +109,7 @@ public class SimGen {
 	
 	
 	public TaskMng load_one(int i){
-		TaskGen tg=new TaskGen();
+		TaskGen tg=new TaskGen(true);
 		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
