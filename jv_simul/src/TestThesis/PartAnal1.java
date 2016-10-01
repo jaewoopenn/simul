@@ -10,7 +10,7 @@ public class PartAnal1 {
 	public static int log_level=2;
 //	public static int idx=-1;
 	public static int idx=3;
-	public static int total=10;
+	
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
 	public CompMng getComp1()
@@ -117,9 +117,8 @@ public class PartAnal1 {
 		Class c = PartAnal1.class;
 		PartAnal1 m=new PartAnal1();
 		int[] aret=PartAnal1.gret;
-		int sz=PartAnal1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

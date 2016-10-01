@@ -5,16 +5,16 @@ import Exp.Job;
 import Exp.JobMng;
 
 public class JobMng2 {
+	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=2;
-	public static int total=10;
 	public static int gret[]={0,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 	public JobMng ts1()
 	{
 		JobMng jm=new JobMng();
-		jm.addJob(0,3,1);
-		jm.addJob(1,4,1);
+		jm.add(new Job(0,3,1));
+		jm.add(new Job(1,4,1));
 		return jm;
 	}
 
@@ -84,11 +84,10 @@ public class JobMng2 {
 		Class c = JobMng2.class;
 		JobMng2 m=new JobMng2();
 		int[] aret=JobMng2.gret;
-		int sz=10;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

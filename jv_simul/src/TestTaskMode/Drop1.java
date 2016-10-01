@@ -125,9 +125,8 @@ public class Drop1 {
 		Class c = Drop1.class;
 		Drop1 m=new Drop1();
 		int[] aret=Drop1.gret;
-		int sz=Drop1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

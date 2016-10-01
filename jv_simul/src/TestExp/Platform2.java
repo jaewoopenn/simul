@@ -6,6 +6,7 @@ import Basic.TaskMng;
 import Exp.Platform;
 
 public class Platform2 {
+	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=10;
 	public static int gret[]={0,0,0,0,0, 1,0,1,1,1};
@@ -157,11 +158,10 @@ public class Platform2 {
 		Class c = Platform2.class;
 		Platform2 m=new Platform2();
 		int[] aret=Platform2.gret;
-		int sz=10;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

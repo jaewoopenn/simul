@@ -38,10 +38,9 @@ public class TaskSimul {
 			}
 			Log.prnc(1,"+");
 			if(tsk.is_HI)
-				g_js.a
-				g_js.addJob(tsk.tid,cur_t+(int)Math.ceil(tsk.vd),tsk.c_l);
+				g_js.add(new Job(tsk.tid,cur_t+(int)Math.ceil(tsk.vd),tsk.c_l));
 			else
-				g_js.addJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
+				g_js.add(new Job(tsk.tid,cur_t+tsk.period,tsk.c_l));
 		}
 		Log.prnc(1, " ");
 	}

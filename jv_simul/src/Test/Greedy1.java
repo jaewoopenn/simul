@@ -9,7 +9,6 @@ public class Greedy1 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=1;
-	public static int total=10;
 	public static int gret[]={1,0,1,1,1,1,0,0,0,0};
 
 	public int test1() 
@@ -71,9 +70,8 @@ public class Greedy1 {
 		Class c = Greedy1.class;
 		Greedy1 m=new Greedy1();
 		int[] aret=Greedy1.gret;
-		int sz=Greedy1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

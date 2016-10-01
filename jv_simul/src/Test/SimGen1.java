@@ -112,9 +112,8 @@ public class SimGen1 {
 		Class c = SimGen1.class;
 		SimGen1 m=new SimGen1();
 		int[] aret=SimGen1.gret;
-		int sz=SimGen1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

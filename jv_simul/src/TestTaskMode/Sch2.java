@@ -85,9 +85,8 @@ public class Sch2 {
 		Class c = Sch2.class;
 		Sch2 m=new Sch2();
 		int[] aret=Sch2.gret;
-		int sz=Sch2.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

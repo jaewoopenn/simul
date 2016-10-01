@@ -68,9 +68,8 @@ public class Simple1 {
 		Class c = Simple1.class;
 		Simple1 m=new Simple1();
 		int[] aret=Simple1.gret;
-		int sz=Simple1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

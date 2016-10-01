@@ -8,7 +8,6 @@ public class FUtil1 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=2;
-	public static int total=10;
 	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
@@ -67,9 +66,8 @@ public class FUtil1 {
 		Class c = FUtil1.class;
 		FUtil1 m=new FUtil1();
 		int[] aret=FUtil1.gret;
-		int sz=FUtil1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

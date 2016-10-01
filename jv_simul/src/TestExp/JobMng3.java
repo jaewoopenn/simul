@@ -1,39 +1,40 @@
-package TestTask;
-// MC task
-// VD
+package TestExp;
 
 import Util.TEngine;
-import Basic.TaskMng;
-public class TaskMng2 {
+import Exp.Job;
+import Exp.JobMng;
+
+public class JobMng3 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=2;
-	public static int total=10;
-	public static int gret[]={2,2,-1,-1,-1, -1,-1,-1,-1,-1};
-	
-	public TaskMng ts1()
+	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
+
+	public JobMng ts1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-		return tm;
+		JobMng jm=new JobMng();
+		jm.add(new Job(0,6,1,4.5,4));
+		jm.add(new Job(1,6,1,3.5,2));
+		jm.add(new Job(2,4,1));
+		return jm;
 	}
+
+
 	
-	public int test1()
-	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addHiTask(4,1,2);
-		return tm.size();
+	public int test1()	{ // not ordering
+		JobMng jm=ts1();
+		jm.prn();
+		return 1;
 	}
-	public int test2() // VD add
-	{
-		TaskMng tm=ts1();
-		tm.setVD(0,2.2);
-		tm.setVD(1,3.4);
-		tm.prn();
-		return tm.size();
+	public int test2()	{ // ordering 
+		JobMng jm=ts1();
+		while(true){
+			Job j=jm.removeCur();
+			if(j==null) break;
+			j.prn();
+			
+		}
+		return 1;
 	}
 	public  int test3()
 	{
@@ -70,9 +71,9 @@ public class TaskMng2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = TaskMng2.class;
-		TaskMng2 m=new TaskMng2();
-		int[] aret=TaskMng2.gret;
+		Class c = JobMng3.class;
+		JobMng3 m=new JobMng3();
+		int[] aret=JobMng3.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

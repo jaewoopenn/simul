@@ -2,7 +2,7 @@ package Exp;
 
 import Util.Log;
 
-public class Job implements Comparable{
+public class Job implements Comparable<Job>{
 	public int tid;
 	public double vd;
 	public int dl;
@@ -19,7 +19,7 @@ public class Job implements Comparable{
 		this.isHI=false;
 	}
 
-	public Job(int tid,double vd, int dl, double exec,double add) {
+	public Job(int tid,int dl, double exec,double vd,double add) {
 		this.tid=tid;
 		this.vd = vd;
 		this.dl = dl;
@@ -28,18 +28,22 @@ public class Job implements Comparable{
 		this.isHI=true;
 	}
 
+	public void prn() {
+//		Log.prn(1,tid+","+dl+","+exec+","+vd+","+add_exec);
+		if(isHI)
+			Log.prn(1,tid+","+dl+","+exec+","+vd+","+add_exec);
+		else
+			Log.prn(1,tid+","+dl+","+exec);
+	}
+
 	@Override
-	public int compareTo(Object o) {
-		double o_vd = ((Job)o).vd;  
+	public int compareTo(Job o) {
+		double o_vd = o.vd;  
 		if (vd>o_vd)
 			return 1;
 		else if (vd==o_vd)
 			return 0;
 		else
 			return -1;
-	}
-	
-	public void prn() {
-		Log.prn(1,tid+","+dl+","+exec);
 	}
 }

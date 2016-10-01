@@ -16,7 +16,7 @@ public class TaskSetGen1 {
 //	public static int idx=-1;
 //	public static int idx=1;
 	public static int idx=5;
-	public static int total=10;
+	
 	public static int gret[]={1,1,1,0,1, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
@@ -137,9 +137,8 @@ public class TaskSetGen1 {
 		Class c = TaskSetGen1.class;
 		TaskSetGen1 m=new TaskSetGen1();
 		int[] aret=TaskSetGen1.gret;
-		int sz=TaskSetGen1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

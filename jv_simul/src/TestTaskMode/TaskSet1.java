@@ -103,9 +103,8 @@ public class TaskSet1 {
 		Class c = TaskSet1.class;
 		TaskSet1 m=new TaskSet1();
 		int[] aret=TaskSet1.gret;
-		int sz=TaskSet1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

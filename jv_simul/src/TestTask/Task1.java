@@ -66,9 +66,8 @@ public class Task1 {
 		Class c = Task1.class;
 		Task1 m=new Task1();
 		int[] aret=Task1.gret;
-		int sz=Task1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

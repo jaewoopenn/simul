@@ -5,23 +5,15 @@ import java.util.PriorityQueue;
 import Util.Log;
 
 public class JobMng {
-	PriorityQueue<Job> jobs;
+	PriorityQueue<Job> g_jobs;
 	int g_task_num=0;
 	public JobMng() {
-		jobs=new PriorityQueue<Job>();
+		g_jobs=new PriorityQueue<Job>();
 	}
 	public void add(Job job) {
-		jobs.add(job);
+		g_jobs.add(job);
 	}
 
-	public void addJob(int tid,int dl,double et) {
-		Job j=new Job(tid,dl,et);
-		jobs.add(j);
-	}
-	public void addJob(int tid,double vd, int dl, double et, double add) {
-		Job j=new Job(tid,vd,dl,et,add);
-		jobs.add(j);
-	}
 	public boolean dlCheck(int cur_t){
 		Job j=getCur();
 		if(j==null) return true;
@@ -77,27 +69,22 @@ public class JobMng {
 //		Log.prn(1, "  \t exec_type:"+out_type);
 	}
 	public Job getCur(){
-		return jobs.peek();
+		return g_jobs.peek();
 	}
 	public Job removeCur(){
-		return jobs.poll();
+		return g_jobs.poll();
 	}
 	public int size(){
-		return jobs.size();
+		return g_jobs.size();
 	}
 	public void prn(){
-		int sz=jobs.size();
-		if(sz==0)
-		{
-			Log.prn(1,"empty");
-			return;
-		}
-		for(Job j:jobs){
-			Log.prn(1,"tid:"+j.tid+" dl:"+j.dl+", exec:"+j.exec);
+		int sz=g_jobs.size();
+		for(Job j:g_jobs){
+			j.prn();
 		}
 	}
 	public int endCheck(int et) {
-		for(Job j:jobs){
+		for(Job j:g_jobs){
 			if(j.dl<=et){
 				return 0; // dl miss
 			}
@@ -105,7 +92,7 @@ public class JobMng {
 		return 1; // OK 
 	}
 	public void modeswitch() {
-		for(Job j:jobs){
+		for(Job j:g_jobs){
 			j.exec=j.exec+j.add_exec;
 			j.add_exec=0;
 		}

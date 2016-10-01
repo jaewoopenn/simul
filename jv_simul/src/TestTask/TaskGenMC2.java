@@ -72,9 +72,8 @@ public class TaskGenMC2 {
 		Class c = TaskGenMC2.class;
 		TaskGenMC2 m=new TaskGenMC2();
 		int[] aret=TaskGenMC2.gret;
-		int sz=TaskGenMC2.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

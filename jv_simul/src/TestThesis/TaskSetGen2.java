@@ -23,7 +23,7 @@ public class TaskSetGen2 {
 	
 
 	
-	public static int total=10;
+	
 	public static int gret[]={1,1,1,0,0, 1,0,0,0,0};
 	public int test1() // gen 1
 	{
@@ -140,9 +140,8 @@ public class TaskSetGen2 {
 		Class c = TaskSetGen2.class;
 		TaskSetGen2 m=new TaskSetGen2();
 		int[] aret=TaskSetGen2.gret;
-		int sz=TaskSetGen2.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

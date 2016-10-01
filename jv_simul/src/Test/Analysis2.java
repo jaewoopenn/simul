@@ -98,9 +98,8 @@ public class Analysis2 {
 		Class c = Analysis2.class;
 		Analysis2 m=new Analysis2();
 		int[] aret=Analysis2.gret;
-		int sz=Analysis2.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

@@ -125,9 +125,8 @@ public class Sch1 {
 		Class c = Sch1.class;
 		Sch1 m=new Sch1();
 		int[] aret=Sch1.gret;
-		int sz=Sch1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

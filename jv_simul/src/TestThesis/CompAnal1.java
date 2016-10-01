@@ -12,7 +12,7 @@ public class CompAnal1 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=1;
-	public static int total=10;
+	
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
 	public CompMng getComp1()
@@ -148,9 +148,8 @@ public class CompAnal1 {
 		Class c = CompAnal1.class;
 		CompAnal1 m=new CompAnal1();
 		int[] aret=CompAnal1.gret;
-		int sz=CompAnal1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

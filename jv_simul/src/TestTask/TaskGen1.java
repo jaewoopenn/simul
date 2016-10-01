@@ -112,9 +112,8 @@ public class TaskGen1 {
 		Class c = TaskGen1.class;
 		TaskGen1 m=new TaskGen1();
 		int[] aret=TaskGen1.gret;
-		int sz=TaskGen1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

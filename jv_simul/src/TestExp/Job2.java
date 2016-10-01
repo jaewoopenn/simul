@@ -6,6 +6,7 @@ import Util.TEngine;
 import Exp.Job;
 
 public class Job2 {
+	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=1;
 	public static int gret[]={2,-1,-1,-1,-1, -1,-1,-1,-1,-1};
@@ -62,7 +63,7 @@ public class Job2 {
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,1);
+			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

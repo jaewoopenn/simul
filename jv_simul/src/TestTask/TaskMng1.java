@@ -79,9 +79,8 @@ public class TaskMng1 {
 		Class c = TaskMng1.class;
 		TaskMng1 m=new TaskMng1();
 		int[] aret=TaskMng1.gret;
-		int sz=TaskMng1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

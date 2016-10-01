@@ -12,7 +12,7 @@ public class ConfigCompGen1 {
 //	public static int cpus=4;
 //	public static int cpus=8;
 	
-	public static int total=10;
+	
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public int test1()
 	{
@@ -96,9 +96,8 @@ public class ConfigCompGen1 {
 		Class c = ConfigCompGen1.class;
 		ConfigCompGen1 m=new ConfigCompGen1();
 		int[] aret=ConfigCompGen1.gret;
-		int sz=ConfigCompGen1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}

@@ -108,9 +108,8 @@ public class TaskGenMC1 {
 		Class c = TaskGenMC1.class;
 		TaskGenMC1 m=new TaskGenMC1();
 		int[] aret=TaskGenMC1.gret;
-		int sz=TaskGenMC1.total;
 		if(idx==-1)
-			TEngine.run(m,c,aret,sz);
+			TEngine.run(m,c,aret,10);
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
