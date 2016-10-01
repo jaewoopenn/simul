@@ -11,16 +11,17 @@ public class Combined1 {
 	public static int log_level=3;
 //	public static int idx=-1;
 	public static int idx=4;
-	public static int st=100;
-	public static int num=1;
+	public static int st=85;
+	public static int num=6;
+	public static int durations=30000;
 	public static int gret[]={1,1,1,1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "exp/ts");
 		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","200");
-		eg.setParam("num","100");
+		eg.setParam("p_ub","300");
+		eg.setParam("num","5000");
 		eg.genRange("exp/cfg/cfg",st,5,num);
 		Log.prn(3, "cfg");
 		return 1;
@@ -43,8 +44,9 @@ public class Combined1 {
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
 			int size=eg.size();
-			int ret=eg.load(10000);
-			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size);
+			eg.g_prn=false;
+			int ret=eg.load(durations);
+			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size+","+(ret*1.0/size));
 		}
 		return 1;
 	}
