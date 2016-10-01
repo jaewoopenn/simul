@@ -5,6 +5,10 @@ public class Log {
 	public static void set_lv(int lv){
 		g_lv=lv;
 	}
+	public static boolean isPrn(int lv){
+		return 	(g_lv<=lv);
+
+	}
 	public static void prn(int lv,Object s)
 	{
 		if(g_lv<=lv)

@@ -43,7 +43,6 @@ public class Combined1 {
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
 			int size=eg.size();
-			eg.g_prn=false;
 			int ret=eg.load(10000);
 			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size);
 		}
