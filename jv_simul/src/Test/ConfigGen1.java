@@ -66,7 +66,7 @@ public class ConfigGen1 {
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "util");
 		eg.setParam("num","10");
-		eg.genRange(50,5,10);
+		eg.genRange("cfg/cfg",50,5,10);
 		return 0;
 	}
 	public  int test8()

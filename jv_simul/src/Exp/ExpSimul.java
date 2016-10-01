@@ -14,7 +14,8 @@ import Util.Log;
 
 public class ExpSimul {
 	private ConfigGen g_cfg;
-
+	public boolean g_prn=true;
+	
 	public ExpSimul(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
@@ -33,11 +34,12 @@ public class ExpSimul {
 			TaskSimul ts=new TaskSimul(tm);
 			int ret=ts.exec(dur);
 			sum+=ret;
-			System.out.format("task %d util: %.3f ret: %d\n" ,i,util,ret);
+			if(g_prn)
+				System.out.format("task %d util: %.3f ret: %d\n" ,i,util,ret);
 			if(util>1 && ret==1)
-				System.out.println("util>1 but sch");
+				Log.prn(2,"util>1 but sch");
 			if(util<=1 && ret==0)
-				System.out.println("util<=1 but not sch");
+				Log.prn(2,"util<=1 but not sch");
 //			Log.prn(2, "task "+i+" util:"+util+" ret:"+ret);
 		}
 		return sum;

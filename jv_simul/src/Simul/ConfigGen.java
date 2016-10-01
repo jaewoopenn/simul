@@ -88,12 +88,12 @@ public class ConfigGen {
 		fu.save();
 		
 	}
-	public void genRange(int start, int step, int size) {
+	public void genRange(String fn,int start, int step, int size) {
 		for(int i=0;i<size;i++){
 			setParam("u_lb", (i*step+start)*1.0/100+"");
 			setParam("u_ub", (i*step+start+5)*1.0/100+"");
 			setParam("mod", (i*step+start+5)+"");
-			write("cfg/cfg_"+i+".txt");
+			write(fn+"_"+i+".txt");
 		}
 	}
 	public void prn(int lv) {

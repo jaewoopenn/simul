@@ -38,9 +38,9 @@ public class ConfigWrite1 {
 	public int test3() // print config
 	{
 		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "util");
+		eg.setParam("subfix", "exp/ts");
 		eg.setParam("num","10");
-		eg.genRange(50,5,10);
+		eg.genRange("exp/cfg/cfg",50,5,10);
 		return 0;
 	}
 	public  int test4() // get config

@@ -1,36 +1,60 @@
 package TestExp;
 
 
+import Exp.ExpSimul;
 import Simul.ConfigGen;
+import Simul.SimGen;
+import Util.Log;
 import Util.TEngine;
 
 public class Combined1 {
-	public static int log_level=1;
-	public static int idx=-1;
-//	public static int idx=1;
-	public static int gret[]={1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int log_level=3;
+//	public static int idx=-1;
+	public static int idx=4;
+	public static int st=100;
+	public static int num=1;
+	public static int gret[]={1,1,1,1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "exp/ts");
-		eg.setParam("num","10");
-		eg.setParam("u_lb", "0.45");
-		eg.setParam("u_ub", "0.50");
-		eg.setParam("mod", "50");
-		eg.write("exp/cfg/cfg_50.txt");
+		eg.setParam("p_lb","50");
+		eg.setParam("p_ub","200");
+		eg.setParam("num","100");
+		eg.genRange("exp/cfg/cfg",st,5,num);
+		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		return 0;
+		for(int i=0;i<num;i++){
+			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
+			cfg.readFile();
+			SimGen eg=new SimGen(cfg);
+			eg.gen();
+		}
+		Log.prn(3, "task");
+		return 1;
 	}
 	public int test3() 
 	{
-		return 0;
+		for(int i=0;i<num;i++){
+			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
+			cfg.readFile();
+			ExpSimul eg=new ExpSimul(cfg);
+			int size=eg.size();
+			eg.g_prn=false;
+			int ret=eg.load(10000);
+			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size);
+		}
+		return 1;
 	}
 	public  int test4() 
 	{
-		return 0;
+		test1();
+		test2();
+		test3();
+		return 1;
 	}
 	public  int test5() 
 	{
