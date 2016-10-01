@@ -162,7 +162,7 @@ public class TaskMng {
 			Task t=g_tasks[i];
 			Log.prn(2, "tid:"+t.tid+" (t,cl,ch): "+
 					t.period+","+t.c_l+","+t.c_h+
-					" hi-crit?"+t.is_HI);
+					" hi-crit?"+t.is_HI+" VD:"+t.vd);
 		}
 		Log.prn(2, "util:"+g_util);
 		Log.prn(2, "lo_mode_util:"+(g_lo_util+g_hi_util_l));

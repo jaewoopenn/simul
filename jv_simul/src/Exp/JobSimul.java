@@ -17,6 +17,9 @@ public class JobSimul {
 	public void addJob(int id, int dl, double et ){
 		g_jm.addJob(id,dl,et);
 	}
+	public void addJob(int tid,double vd, int dl, double et, double add) {
+		g_jm.addJob(id,dl,et);
+	}
 	public int simul(int et){
 		int cur_t=0;
 		while(cur_t<et){

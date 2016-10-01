@@ -23,8 +23,8 @@ public class TaskSimul {
 		while(cur_t<et){
 			relCheck(cur_t);
 			if (g_js.work(cur_t)==0) return 0;
-			cur_t++;
 			Log.prn(1, " "+cur_t);
+			cur_t++;
 		}
 		return 1;
 	}
@@ -37,7 +37,11 @@ public class TaskSimul {
 				continue;
 			}
 			Log.prnc(1,"+");
-			g_js.addJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
+			if(tsk.is_HI)
+				g_js.a
+				g_js.addJob(tsk.tid,cur_t+(int)Math.ceil(tsk.vd),tsk.c_l);
+			else
+				g_js.addJob(tsk.tid,cur_t+tsk.period,tsk.c_l);
 		}
 		Log.prnc(1, " ");
 	}
@@ -48,6 +52,12 @@ public class TaskSimul {
 		init();
 		simulDur(0, et);
 		return simulEnd(et);
+	}
+	public void prn() {
+		g_tm.prn();
+	}
+	public void prepareMC() {
+		g_tm.setVD(0, 3.5);
 	}
 	
 	

@@ -1,0 +1,3 @@
+Job의 deadline은 VD값을 ceiling해서 넣는다. 
+
+그리고 HI-task를 먼저  작은 ID에 배정해서 항상 먼저 schedule되게 하자. 
