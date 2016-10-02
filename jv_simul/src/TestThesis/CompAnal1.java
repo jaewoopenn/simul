@@ -18,16 +18,16 @@ public class CompAnal1 {
 	public CompMng getComp1()
 	{
 		CompMng cm=new CompMng();
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
-		tm=new TaskMng();
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
+//		TaskMng tm=new TaskMng();
+//		tm.addTask(8,1);
+//		tm.addHiTask(12,1,5);
+//		tm.freezeTasks();
+//		cm.addComp(tm);
+//		tm=new TaskMng();
+//		tm.addTask(8,1);
+//		tm.addHiTask(12,1,5);
+//		tm.freezeTasks();
+//		cm.addComp(tm);
 		
 		return cm;
 	}
@@ -45,16 +45,16 @@ public class CompAnal1 {
 	public CompMng getComp2()
 	{
 		CompMng cm=new CompMng();
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
-		tm=new TaskMng();
-		tm.addTask(9,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
+//		TaskMng tm=new TaskMng();
+//		tm.addTask(8,1);
+//		tm.addHiTask(12,1,5);
+//		tm.freezeTasks();
+//		cm.addComp(tm);
+//		tm=new TaskMng();
+//		tm.addTask(9,1);
+//		tm.addHiTask(12,1,5);
+//		tm.freezeTasks();
+//		cm.addComp(tm);
 		
 		return cm;
 	}

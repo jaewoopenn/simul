@@ -2,7 +2,9 @@ package Test;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Analysis2 {
@@ -14,12 +16,12 @@ public class Analysis2 {
 
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,3);
-		tm.addHiTask(12,2,8);
-		tm.addHiTask(40,4,5);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,8,3));
+		tm.add(new Task(0,12,2,8));
+		tm.add(new Task(0,40,4,5));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test1() // EDF-VD
@@ -36,13 +38,13 @@ public class Analysis2 {
 
 	public TaskMng getTask2()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(4,1);
-		tm.addTask(8,1);
-		tm.addTask(16,2);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(0,8,1));
+		tm.add(new Task(0,16,2));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test3() // exact 1
@@ -53,20 +55,20 @@ public class Analysis2 {
 
 	public  int test4() // MC task
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,2);
-		tm.addHiTask(6,1,5);
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,4,2));
+		tm.add(new Task(0,6,1,5));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m);
 	}
 
 	public  int test5()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(13,7);
-		tm.addHiTask(12,4,8);
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,13,7));
+		tm.add(new Task(0,12,4,8));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m);
 	}
 	
 	public  int test6()

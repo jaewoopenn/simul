@@ -2,7 +2,9 @@ package TestTaskMode;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Sch1 {
@@ -14,14 +16,14 @@ public class Sch1 {
 
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(20,2,7);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,18);
-		tm.addTask(100,12);
-		tm.addTask(100,10);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,20,2,7));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,18));
+		tm.add(new Task(0,100,12));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test1() // EDF
@@ -44,14 +46,14 @@ public class Sch1 {
 	
 	public TaskMng getTask2() // t1 hutil 0.45
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(20,2,9);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,18);
-		tm.addTask(100,12);
-		tm.addTask(100,10);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,20,2,9));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,18));
+		tm.add(new Task(0,100,12));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 
 	public  int test4() // EDF-VD det:0.95
@@ -74,27 +76,27 @@ public class Sch1 {
 
 	public TaskMng getTask3() // t1 hutil 0.45
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(90,5,8);
-		tm.addHiTask(175,1,6);
-		tm.addHiTask(205,14,15);
-		tm.addHiTask(172,2,12);
-		tm.addHiTask(150,7,10);
-		tm.addHiTask(128,2,8);
-		tm.addHiTask(94,1,8);
-		tm.addHiTask(64,1,4);
-		tm.addTask(71,2);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,90,5,8));
+		tm.add(new Task(0,175,1,6));
+		tm.add(new Task(0,205,14,15));
+		tm.add(new Task(0,172,2,12));
+		tm.add(new Task(0,150,7,10));
+		tm.add(new Task(0,128,2,8));
+		tm.add(new Task(0,94,1,8));
+		tm.add(new Task(0,64,1,4));
+		tm.add(new Task(0,71,2));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	public TaskMng getTask4() // t1 hutil 0.45
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(10,2,3);
-		tm.addHiTask(10,1,5);
-		tm.addTask(10,1);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,10,1,5));
+		tm.add(new Task(0,10,1));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}	
 	public  int test7() // EDF sch/ EDF-TM not sch
 	{

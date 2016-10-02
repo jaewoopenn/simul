@@ -1,9 +1,10 @@
 package TestExp;
 
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskGen;
 import Basic.TaskGenMC;
-import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Exp.Platform;
 
 public class Platform1 {
@@ -18,57 +19,57 @@ public class Platform1 {
 		String fn="exp/ts2";
 		tg.loadFile(fn);
 //		tg.prn(1);
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
 		return post(tm,20);
 	}
 
 	public int test2()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,3,1));
 		return post(tm,7);
 	}
 
 	public int test3()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(5,2);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,5,2));
 		return post(tm,10);
 	}
 
 	public  int test4()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,2);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,3,2));
 		return post(tm,7);
 	}
 
 	public  int test5()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(6,2);
-		tm.addTask(9,6);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,6,2));
+		tm.add(new Task(0,9,6));
 		return post(tm,18);
 	}
 	
 	public  int test6()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
-		tm.addTask(4,1);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
 		return post(tm,20);
 	}
 	
 	public  int test7()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(10,5);
-		tm.addTask(12,6);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,10,5));
+		tm.add(new Task(0,12,6));
 		return post(tm,12);
 	}
 	
@@ -85,10 +86,9 @@ public class Platform1 {
 	{
 		return 0;
 	}
-	public int post(TaskMng tm,int dur){
+	public int post(TaskMngPre tm,int dur){
 		Platform p=new Platform();
 		p.init(tm);
-		tm.prn();
 		return p.simul(dur);
 		
 	}

@@ -22,6 +22,8 @@ public class TEngine {
 		}
 		
 	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void runOnce(Object m, Class c, int[] aret, int idx,int lv) throws Exception {
 		Log.set_lv(lv);
 		Method meth = c.getMethod("test"+idx);

@@ -118,10 +118,10 @@ public class TaskGen {
 
 	public TaskMng loadFileTM(String f) {
 		loadFile(f);
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(getAll());
-		tm.freezeTasks();
-		return tm;
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 }

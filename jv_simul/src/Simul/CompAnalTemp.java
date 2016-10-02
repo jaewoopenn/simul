@@ -2,6 +2,7 @@ package Simul;
 
 
 import Basic.TaskMng;
+import Basic.TaskSetInfo;
 import Util.Log;
 
 public class CompAnalTemp  {
@@ -13,9 +14,10 @@ public class CompAnalTemp  {
 
 	public void init(TaskMng mng) {
 		tm=mng;
-		lotasks_loutil=tm.getLoUtil();
-		hitasks_loutil=tm.getHiUtil_l();
-		hitasks_hiutil=tm.getHiUtil_h();
+		TaskSetInfo info=tm.getInfo();
+		lotasks_loutil=info.getLo_util();
+		hitasks_loutil=info.getHi_util_lm();
+		hitasks_hiutil=info.getHi_util_hm();
 	}
 	public void compute_X() {
 //		glo_x=hitasks_loutil/(1-lotasks_loutil);

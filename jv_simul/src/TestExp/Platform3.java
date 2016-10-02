@@ -1,6 +1,5 @@
 package TestExp;
 
-import Util.Log;
 import Util.TEngine;
 import Exp.Platform;
 

@@ -3,6 +3,7 @@ package Simul;
 import Basic.TaskGen;
 import Basic.TaskGenMC;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Util.Log;
 
 public class SimAnal {
@@ -66,17 +67,16 @@ public class SimAnal {
 			tg.prn(2);
 			return null;
 		}
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		tm.freezeTasks();
-		tm.sort();
-		return tm;
+		TaskMng m=tm.freezeTasks();
+		m.sort();
+		return m;
 	}
 	
 	public int process(TaskMng tm, int anal) {
-		double util=tm.getMCUtil();
+//		double util=tm.getInfo().getMCUtil();
 //		System.out.format("task set %d MC util: %.3f\n" ,i,util);
-		double v;
 		switch(anal)
 		{
 		case 0:

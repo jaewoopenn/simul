@@ -1,7 +1,9 @@
 package Test;
 
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Analysis3 {
@@ -12,13 +14,13 @@ public class Analysis3 {
 
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
-		tm.addTask(4,1);
-		tm.addHiTask(12,1,5);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(0,12,1,5));
+		tm.add(new Task(0,12,1,5));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	public int test1() // EDF-VD
 	{

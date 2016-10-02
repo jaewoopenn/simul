@@ -1,11 +1,7 @@
 package TestThesis;
 
-import Util.Log;
 import Util.TEngine;
 import Basic.Comp;
-import Basic.TaskMng;
-import Simul.Analysis;
-import Simul.CompAnal;
 import Simul.CompMng;
 
 public class CompMng1 {
@@ -19,18 +15,18 @@ public class CompMng1 {
 
 	public int test1() 
 	{
-		CompMng cm=new CompMng();
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
-		tm=new TaskMng();
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		cm.addComp(tm);
-		cm.prn(2);
+//		CompMng cm=new CompMng();
+//		TaskMng tm=new TaskMng();
+//		tm.add(new Task(0,8,1));
+//		tm.add(new Task(0,12,1,5));
+//		tm.freezeTasks();
+//		cm.addComp(tm);
+//		tm=new TaskMng();
+//		tm.add(new Task(0,8,1));
+//		tm.add(new Task(0,12,1,5));
+//		tm.freezeTasks();
+//		cm.addComp(tm);
+//		cm.prn(2);
 		return -1;
 	}
 
@@ -47,7 +43,6 @@ public class CompMng1 {
 
 	public int test3() 
 	{
-		
 		Comp c=new Comp(0,1.0/8,1.0/12,5.0/12);
 		return -1;
 	}

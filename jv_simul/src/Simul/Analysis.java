@@ -84,10 +84,6 @@ public class Analysis {
 	
 
 	public static boolean checkErr(TaskMng mng){
-		if(!mng.isFinal()) {
-			Log.prn(1,"task set is not finalized");
-			return true;
-		}
 		return false;
 	}
 

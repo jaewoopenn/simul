@@ -2,7 +2,9 @@ package TestTaskMode;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Sch2 {
@@ -14,14 +16,14 @@ public class Sch2 {
 
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(20,2,7);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,18);
-		tm.addTask(100,12);
-		tm.addTask(100,10);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,20,2,7));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,18));
+		tm.add(new Task(0,100,12));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test1() // EDF

@@ -1,6 +1,7 @@
 package Simul;
 
 import Basic.Task;
+import Basic.TaskSetInfo;
 import Util.Log;
 import Util.MUtil;
 
@@ -9,12 +10,13 @@ public class AnalEDF_TM extends Anal {
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
-
+	TaskSetInfo g_info;
 	@Override
 	public void prepare() {
-		lotasks_loutil=tm.getLoUtil();
-		hitasks_loutil=tm.getHiUtil_l();
-		hitasks_hiutil=tm.getHiUtil_h();
+		g_info=tm.getInfo();
+		lotasks_loutil=g_info.getLo_util();
+		hitasks_loutil=g_info.getHi_util_lm();
+		hitasks_hiutil=g_info.getHi_util_hm();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
@@ -23,7 +25,7 @@ public class AnalEDF_TM extends Anal {
 	@Override
 	public boolean isScheduable() {
 		double dtm=glo_x*lotasks_loutil;
-		for(int i=0;i<tm.size();i++){
+		for(int i=0;i<g_info.getSize();i++){
 			Task t=tm.getTask(i);
 			if (!t.is_HI)
 				continue;
@@ -45,7 +47,7 @@ public class AnalEDF_TM extends Anal {
 		double ul=0;
 		double ud=0;
 		int num=0;
-		for(int j=0;j<tm.size();j++){
+		for(int j=0;j<g_info.getSize();j++){
 			Task t=tm.getTask(j);
 			if(t.is_HI) 
 				continue;
@@ -62,8 +64,8 @@ public class AnalEDF_TM extends Anal {
 	}
 	
 	// no ratio / nl 
-	private double getHUtil(int i,double prob_hi){
-		int hi_size=tm.hi_size();
+	public double getHUtil(int i,double prob_hi){
+		int hi_size=g_info.getHi_size();
 		double u=0;
 		double prob=1;
 		for(int j=0;j<hi_size;j++){
@@ -88,9 +90,8 @@ public class AnalEDF_TM extends Anal {
 	
 	@Override
 	public double getDropRate(double p) {
-		int hi_size=tm.hi_size();
 		double sum_prob=0;
-		for(int i=0;i<=hi_size;i++){
+		for(int i=0;i<=g_info.getHi_size();i++){
 			sum_prob+=1;
 			Log.prn(1, i+" "+sum_prob);
 		}
@@ -98,7 +99,7 @@ public class AnalEDF_TM extends Anal {
 //		for(int i=0;i<lim;i++){
 //			sum_prob+=getHUtil(i,prob_hi);
 //		}
-		int num=tm.lo_size();
+		int num=g_info.getLo_size();
 		return sum_prob/num;
 	}
 }

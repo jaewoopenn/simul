@@ -78,7 +78,6 @@ public class JobMng {
 		return g_jobs.size();
 	}
 	public void prn(){
-		int sz=g_jobs.size();
 		for(Job j:g_jobs){
 			j.prn();
 		}

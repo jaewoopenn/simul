@@ -1,15 +1,17 @@
 package Basic;
 
+import Util.Log;
+
 public class Task {
 	public int tid;
 	public int cid;
 	public int period;
-	public double c_l;
-	public double c_h;
+	public int c_l;
+	public int c_h;
 	public double vd;
 	public boolean is_HI;
 
-	public Task(int tid,int period, double c_l) {
+	public Task(int tid,int period, int c_l) {
 		this.tid=tid;
 		this.period = period;
 		this.vd = period;
@@ -18,7 +20,7 @@ public class Task {
 		this.is_HI=false;
 	}
 
-	public Task(int tid,int period, double c_l, double c_h) {
+	public Task(int tid,int period, int c_l, int c_h) {
 		this.tid=tid;
 		this.period = period;
 		this.vd = period;
@@ -35,7 +37,17 @@ public class Task {
 		this.cid=c;
 	}
 	public void prn() {
-		System.out.println("tid:"+tid+" p:"+period+" e:"+c_l);
+		if (is_HI){
+			Log.prn(2, "tid:"+tid+" (t,cl,ch): "+
+					period+","+c_l+","+c_h+
+					" hi-crit?"+is_HI+" VD:"+vd);
+			
+		}else{
+			Log.prn(2, "tid:"+tid+" (t,cl): "+
+					period+","+c_l+
+					" hi-crit?"+is_HI);
+			
+		}
 	}
 
 	public boolean check() {

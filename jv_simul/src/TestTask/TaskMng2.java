@@ -3,7 +3,9 @@ package TestTask;
 // VD
 
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 public class TaskMng2 {
 	public static int log_level=1;
 //	public static int idx=-1;
@@ -13,19 +15,20 @@ public class TaskMng2 {
 	
 	public TaskMng ts1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addHiTask(4,1,2);
-		return tm.size();
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1,2));
+		TaskMng m=tm.freezeTasks();
+		return m.getInfo().getSize();
 	}
 	public int test2() // VD add
 	{
@@ -33,7 +36,7 @@ public class TaskMng2 {
 		tm.setVD(0,2.2);
 		tm.setVD(1,3.4);
 		tm.prn();
-		return tm.size();
+		return tm.getInfo().getSize();
 	}
 	public  int test3()
 	{

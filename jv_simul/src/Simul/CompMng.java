@@ -7,7 +7,6 @@ import Basic.Comp;
 import Basic.CompComparator;
 import Basic.CompComparatorHI;
 import Basic.CompComparatorLO;
-import Basic.Task;
 import Basic.TaskMng;
 import Util.Log;
 
@@ -32,18 +31,18 @@ public class CompMng {
 		Vector<TaskMng> tms=new Vector<TaskMng>();
 		int max_com=3;
 		for(int i=0;i<max_com;i++){
-			tms.addElement(new TaskMng());
+//			tms.addElement(new TaskMng());
 		}
 		
-		for(int i=0;i<tm.size();i++){
-			Task tsk=tm.getTask(i);
-			TaskMng com=tms.elementAt(tsk.cid);
-			com.addTask(tsk);
+		for(int i=0;i<tm.getInfo().getSize();i++){
+//			Task tsk=tm.getTask(i);
+//			TaskMng com=tms.elementAt(tsk.cid);
+//			com.addTask(tsk);
 //			Log.prn(2, i+","+tsk.cid);
 		}
 		for(int i=0;i<max_com;i++){
 			TaskMng com=tms.elementAt(i);
-			com.freezeTasks();
+//			com.freezeTasks();
 			addComp(com);
 		}
 //		prn();
@@ -51,10 +50,15 @@ public class CompMng {
 	
 	
 	public void addComp(TaskMng tm) {
-		Comp c=new Comp(tm.get_ID(),tm.getLoUtil(),
-				tm.getHiUtil_l(),tm.getHiUtil_h());
+//		TaskSetInfo info=tm.getInfo();
+//		double lotasks_loutil=info.getLo_util();
+//		double hitasks_loutil=info.getHi_util_lm();
+//		double hitasks_hiutil=info.getHi_util_hm();
 		
-		addComp(c);
+//		Comp c=new Comp(tm.get_ID(),lotasks_loutil,
+//				hitasks_loutil,hitasks_hiutil);
+		
+//		addComp(c);
 	}
 	public void addComp(Comp c) {
 		g_comp.addElement(c);

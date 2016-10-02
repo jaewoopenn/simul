@@ -1,10 +1,10 @@
 package TestExp;
 
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskGen;
 import Basic.TaskMng;
-import Exp.JobMng;
-import Exp.JobSimul;
+import Basic.TaskMngPre;
 import Exp.TaskSimul;
 
 public class TaskSimul1 {
@@ -67,20 +67,19 @@ public class TaskSimul1 {
 	}
 
 	public TaskMng ts1()	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,2);
-		tm.freezeTasks();
-//		tm.prn();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,2));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public TaskMng ts2()	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,3);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,3));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 
 	@SuppressWarnings("rawtypes")

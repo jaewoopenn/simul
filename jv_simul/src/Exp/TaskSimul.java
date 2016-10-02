@@ -30,7 +30,7 @@ public class TaskSimul {
 	}
 	private void relCheck(int cur_t){
 		
-		for(int i=0;i<g_tm.size();i++){
+		for(int i=0;i<g_tm.getInfo().getSize();i++){
 			Task tsk=g_tm.getTask(i);
 			if (cur_t%tsk.period!=0){
 				Log.prnc(1,"-");
@@ -56,7 +56,7 @@ public class TaskSimul {
 		g_tm.prn();
 	}
 	public void prepareMC() {
-		g_tm.setVD(0, 3.5);
+		g_tm.setVD(0, 3);
 	}
 	
 	

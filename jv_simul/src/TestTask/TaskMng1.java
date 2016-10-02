@@ -1,7 +1,9 @@
 package TestTask;
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 public class TaskMng1 {
 	public static int log_level=1;
 //	public static int idx=-1;
@@ -10,48 +12,45 @@ public class TaskMng1 {
 	public static int gret[]={2,3,2,2,67,0,0,0,0,0};
 	public int test1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		return tm.size();
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
+		TaskMng m=tm.freezeTasks();
+		return m.getInfo().getSize();
 	}
 	public int test2()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		tm.addTask(5,1);
-		return tm.size();
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(0,5,1));
+		TaskMng m=tm.freezeTasks();
+		return m.getInfo().getSize();
 	}
 	public  int test3()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-		int[] pt=tm.getPeriods();
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
+		TaskMng m=tm.freezeTasks();
+		int[] pt=m.getPeriods();
 		for(int p:pt)
 			Log.prn(1, p);
 		return pt.length;
 	}
 	public  int test4()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-		tm.addTask(5,1);
-		return tm.size();
+		return 0;
 	}
 	public  int test5()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(5,1);
-		tm.addTask(7,1);
-		tm.freezeTasks();
-		tm.prn();
-		return (int)(tm.getUtil()*100);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,5,1));
+		tm.add(new Task(0,7,1));
+		TaskMng m=tm.freezeTasks();
+		m.prn();
+		return (int)(m.getInfo().getUtil()*100);
 	}
 	public  int test6()
 	{

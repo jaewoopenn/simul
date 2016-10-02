@@ -10,7 +10,7 @@ public class AnalICG extends Anal {
 	private int[] prio;
 	@Override
 	public void prepare() {
-		sz=tm.size();
+		sz=tm.getInfo().getSize();
 		prio=new int[sz];
 	}
 	

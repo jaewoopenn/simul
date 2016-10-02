@@ -1,7 +1,9 @@
 package TestTaskMode;
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 
 public class TaskSet1 {
 	public static int log_level=1;
@@ -11,58 +13,58 @@ public class TaskSet1 {
 	public static int gret[]={1,1,1,0,0, 0,0,0,0,0};
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(20,2,7);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,18);
-		tm.addTask(100,12);
-		tm.addTask(100,10);
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,20,2,7));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,18));
+		tm.add(new Task(0,100,12));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test1() // EDF
 	{
 		TaskMng tm=getTask1();
 		tm.sort();
-		tm.freezeTasks();
 		tm.prn();
 		Log.prn(1, "hihi");
 		return 1;
 	}
 	public TaskMng getTask2()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(10,5,3);
-		tm.addHiTask(10,4,2);
-		tm.addHiTask(10,2,4);
-		tm.addHiTask(10,3,6);
-		tm.addHiTask(10,1,5);
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,10,5,3));
+		tm.add(new Task(0,10,4,2));
+		tm.add(new Task(0,10,2,4));
+		tm.add(new Task(0,10,3,6));
+		tm.add(new Task(0,10,1,5));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test2() // load
 	{
 		TaskMng tm=getTask2();
-		tm.freezeTasks();
 		tm.sort();
 		tm.prnHI();
 		return 1;
 	}
 	public TaskMng getTask3()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(10,3,4);
-		tm.addHiTask(10,3,6);
-		tm.addHiTask(10,1,5);
-		tm.addTask(10,5);
-		tm.addTask(10,6);
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,10,3,4));
+		tm.add(new Task(1,10,3,6));
+		tm.add(new Task(2,10,1,5));
+		tm.add(new Task(3,10,5));
+		tm.add(new Task(4,10,6));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test3() // load
 	{
 		TaskMng tm=getTask3();
-		tm.freezeTasks();
 		tm.sort();
 		tm.prnHI();
 		tm.prn();

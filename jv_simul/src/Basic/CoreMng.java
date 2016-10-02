@@ -3,7 +3,6 @@ package Basic;
 import java.util.Vector;
 
 import Simul.CompMng;
-import Util.Log;
 
 public class CoreMng {
 	private Vector<CompMng> g_comp;

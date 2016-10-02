@@ -1,9 +1,8 @@
 package TestTaskSet;
 import Basic.TaskGen;
 import Basic.TaskMng;
-import Exp.Platform;
+import Basic.TaskMngPre;
 import Exp.TaskSimul;
-import Util.Log;
 import Util.TEngine;
 
 public class TaskSetLoad1 {
@@ -15,10 +14,10 @@ public class TaskSetLoad1 {
 	{
 		TaskGen tg=new TaskGen();
 		tg.loadFile("exp/ts/test1.txt");
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		tm.freezeTasks();
-		tm.prn();
+		TaskMng m=tm.freezeTasks();
+		m.prn();
 		return 1;
 	}
 	public int test2()

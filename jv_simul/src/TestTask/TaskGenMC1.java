@@ -3,6 +3,7 @@ import Basic.Task;
 import Basic.TaskGen;
 import Basic.TaskGenMC;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 import Util.Log;
 import Util.TEngine;
@@ -53,10 +54,10 @@ public class TaskGenMC1 {
 	{
 		TaskGen tg=getTG2();
 		tg.generate();
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm);
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m);
 	}
 	public  int test4()
 	{
@@ -65,10 +66,10 @@ public class TaskGenMC1 {
 		while(true){
 			tg.generate();
 			double u=tg.getUtil();
-			TaskMng tm=new TaskMng();
+			TaskMngPre tm=new TaskMngPre();
 			tm.setTasks(tg.getAll());
-			tm.freezeTasks();
-			if(Analysis.anal_EDF_VD(tm)==1) 
+			TaskMng m=tm.freezeTasks();
+			if(Analysis.anal_EDF_VD(m)==1) 
 				Log.prn(1, "id:"+id+" util:"+u+" Y");
 			else
 				Log.prn(1, "id:"+id+" util:"+u+" N");

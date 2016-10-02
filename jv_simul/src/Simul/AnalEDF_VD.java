@@ -1,5 +1,6 @@
 package Simul;
 
+import Basic.TaskSetInfo;
 import Util.Log;
 
 public class AnalEDF_VD extends Anal {
@@ -7,12 +8,13 @@ public class AnalEDF_VD extends Anal {
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
-
+	TaskSetInfo g_info;
 	@Override
 	public void prepare() {
-		lotasks_loutil=tm.getLoUtil();
-		hitasks_loutil=tm.getHiUtil_l();
-		hitasks_hiutil=tm.getHiUtil_h();
+		g_info=tm.getInfo();
+		lotasks_loutil=g_info.getLo_util();
+		hitasks_loutil=g_info.getHi_util_lm();
+		hitasks_hiutil=g_info.getHi_util_hm();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
@@ -44,7 +46,7 @@ public class AnalEDF_VD extends Anal {
 	// no ratio / nl 
 	@Override
 	public double getDropRate(double p) {
-		int size=tm.hi_size();
+		int size=g_info.getHi_size();
 		double v=1-Math.pow(1-p,size);
 		Log.prn(1, v+" "+Math.pow(1-p,size)+" "+size);
 		return v;

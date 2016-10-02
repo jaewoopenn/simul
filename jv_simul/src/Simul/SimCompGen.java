@@ -4,6 +4,7 @@ package Simul;
 import Basic.TaskGen;
 import Basic.TaskGenMC;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Util.Log;
 
 public class SimCompGen {
@@ -12,7 +13,7 @@ public class SimCompGen {
 	private int g_max_com=0;
 	private double g_alpha;
 	public SimCompGen(ConfigGen cfg) {
-		TaskGenMC tg=new TaskGenMC();
+		tg=new TaskGenMC();
 		g_cfg=cfg;
 	}
 	public void setMaxCom(int c){
@@ -78,12 +79,12 @@ public class SimCompGen {
 			tg.prn(2);
 			System.exit(1);
 		}
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		tm.freezeTasks();
-		tm.sort();
+		TaskMng m=tm.freezeTasks();
+		m.sort();
 		CompMng cm=new CompMng();
-		cm.load(tm);
+		cm.load(m);
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.set_alpha(g_alpha);

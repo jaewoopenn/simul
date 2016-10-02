@@ -2,11 +2,10 @@ package TestThesis;
 import Basic.Comp;
 import Basic.CompGen;
 import Basic.CompGenParam;
-import Basic.TaskGen;
 import Basic.TaskGenMC;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Exp.Platform;
-import Util.Log;
 import Util.TEngine;
 
 public class CompGen1 {
@@ -50,10 +49,11 @@ public class CompGen1 {
 		tg.generate();
 		tg.prn(1);
 		int tg_size=tg.size();
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
+		TaskMng m=tm.freezeTasks();
 //		tm.prn();
-		int tm_size=tm.size();
+		int tm_size=m.getInfo().getSize();
 		if(tg_size!=tm_size){
 			System.out.println("tg:"+tg_size+", tm:"+tm_size);
 			return 0;
@@ -77,11 +77,11 @@ public class CompGen1 {
 		tg.loadFile("test2.txt");
 		tg.prn(1);
 		int tg_size=tg.size();
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		tm.freezeTasks();
-		tm.prn();
-		int tm_size=tm.size();
+		TaskMng m=tm.freezeTasks();
+		m.prn();
+		int tm_size=m.getInfo().getSize();
 		if(tg_size!=tm_size){
 			System.out.println("tg:"+tg_size+", tm:"+tm_size);
 			return 0;
@@ -92,7 +92,7 @@ public class CompGen1 {
 	{
 		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("test2.txt");
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
 		Platform p=new Platform();
 		p.init(tm);
@@ -102,7 +102,7 @@ public class CompGen1 {
 	{
 		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("t1/taskset2");
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
 		Platform p=new Platform();
 		p.init(tm);

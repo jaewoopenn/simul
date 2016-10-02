@@ -60,8 +60,8 @@ public class TaskGenFile {
             String[] words=line.split(",");
             int tid=Integer.valueOf(words[0]).intValue();
             int p=Integer.valueOf(words[1]).intValue();
-            double l=Double.valueOf(words[2]).doubleValue();
-            double h=Double.valueOf(words[3]).doubleValue();
+            int l=Integer.valueOf(words[4]).intValue();
+            int h=Integer.valueOf(words[3]).intValue();
             int isHI=Integer.valueOf(words[4]).intValue();
             if(isHI==1)
             	tsk=new Task(tid,p,l,h);

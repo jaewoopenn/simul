@@ -3,6 +3,7 @@ package Simul;
 
 import Basic.Comp;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Util.Log;
 
 public class CompAnal  {
@@ -75,17 +76,18 @@ public class CompAnal  {
 		
 	}
 	public TaskMng getInterfaces() {
-		TaskMng ret_tm=new TaskMng();
-		for(int i=0;i<cm.getSize();i++){
-			Comp tm=cm.getComp(i);
-			double lt_LU=tm.get_lt_lu(); 
-			double ht_LU=comp_interface_hi(i);
-			double ht_HU=tm.get_ht_hu();
-			ret_tm.addTask(1, lt_LU);
-			ret_tm.addHiTask(1, ht_LU,ht_HU);
-		}
-		ret_tm.freezeTasks();
-		return ret_tm;
+		TaskMngPre tm=new TaskMngPre();
+		TaskMng m=tm.freezeTasks();
+//		for(int i=0;i<cm.getSize();i++){
+//			Comp tm=cm.getComp(i);
+//			double lt_LU=tm.get_lt_lu(); 
+//			double ht_LU=comp_interface_hi(i);
+//			double ht_HU=tm.get_ht_hu();
+//			ret_tm.addTask(1, lt_LU);
+//			ret_tm.add(new Task(1, ht_LU,ht_HU));
+//		}
+//		ret_tm.freezeTasks();
+		return m;
 	}
 
 

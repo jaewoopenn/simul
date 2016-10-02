@@ -1,9 +1,8 @@
 package Simul;
 
-import Basic.TaskGen;
 import Basic.TaskGenMC;
 import Basic.TaskMng;
-import Util.Log;
+import Basic.TaskMngPre;
 
 public class SimGen {
 	private TaskGenMC g_tg;
@@ -26,10 +25,10 @@ public class SimGen {
 		g_tg.generate();
 //		Log.prn(2, "util:"+tg.getMCUtil());
 		if(b){
-			TaskMng tm=new TaskMng();
+			TaskMngPre tm=new TaskMngPre();
 			tm.setTasks(g_tg.getAll());
-			tm.freezeTasks();
-			int rs=Analysis.anal_EDF_VD(tm);
+			TaskMng m=tm.freezeTasks();
+			int rs=Analysis.anal_EDF_VD(m);
 			if(rs==0)
 				return 0;
 		}
@@ -60,10 +59,10 @@ public class SimGen {
 	
 	public TaskMng genOne(){
 		g_tg.generate();
-		TaskMng tm=new TaskMng();
+		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(g_tg.getAll());
-		tm.freezeTasks();
-		return tm;	
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 }

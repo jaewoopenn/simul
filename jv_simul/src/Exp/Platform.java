@@ -3,43 +3,46 @@ package Exp;
 
 import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Util.Log;
 
 public class Platform {
+	TaskMngPre tmp;
 	TaskMng tm;
 	JobMng jm;
 	int[] plst;
 	int g_mode=0;
 	int g_ms=-1;
 	public Platform(){
-		tm=new TaskMng();
+		tmp=new TaskMngPre();
 		
 	}
 	public void addTask(int p, int e) {
-		tm.addTask(p, e);
+		tmp.add(new Task(0,p, e));
 	}
 	public void addHiTask(int p, int l, int h) {
-		tm.addHiTask(p, l,h);
+		tmp.add(new Task(0,p, l,h));
 		
 	}
 	
 	public int post(int dur){
-		tm.freezeTasks();
+		tm=tmp.freezeTasks();
 		plst=tm.getPeriods();
 		
 		jm=new JobMng();
 		return simul(dur);
 	}
-	public void init(TaskMng mng) {
-		tm=mng;
-		tm.freezeTasks();
+	public void init(TaskMngPre mng) {
+		tmp=mng;
+		tm=tmp.freezeTasks();
+		
 		plst=tm.getPeriods();
 		
 		jm=new JobMng();
 	}
 	
 	public int simul(int et){
-		boolean bSuc;
+//		boolean bSuc;
 		int cur_t=0;
 		while(cur_t<et){
 			if (work(cur_t)==0) return 0;
@@ -65,7 +68,7 @@ public class Platform {
 	}
 	private void relCheck(int cur_t){
 		
-		for(int i=0;i<tm.size();i++){
+		for(int i=0;i<tm.getInfo().getSize();i++){
 			if (cur_t%plst[i]!=0){
 				Log.prnc(1,"-");
 				continue;
@@ -96,7 +99,6 @@ public class Platform {
 		g_ms=t;
 	}
 	public void setX(double x) {
-		tm.setX(x);
 		
 	}
 

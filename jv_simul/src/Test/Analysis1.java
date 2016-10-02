@@ -1,7 +1,9 @@
 package Test;
 
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Analysis1 {
@@ -12,60 +14,61 @@ public class Analysis1 {
 
 	public int test1() // less 1
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
-		tm.freezeTasks();
-		return Analysis.anal_EDF(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,3,1));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF(m);
 	}
 
 	public int test2() // over 1
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(3,1);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-		return Analysis.anal_EDF(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF(m);
 	}
 
 	public int test3() // exact 1
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(2,1);
-		tm.addTask(4,1);
-		tm.addTask(8,1);
-		tm.addTask(16,2);
-		tm.freezeTasks();
-		return Analysis.anal_EDF(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,2,1));
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(0,8,1));
+		tm.add(new Task(0,16,2));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF(m);
 	}
 
 	public  int test4() // MC task
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,2);
-		tm.addHiTask(6,1,5);
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,4,2));
+		tm.add(new Task(1,6,1,5));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m);
 	}
 
 	public  int test5()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(13,7);
-		tm.addHiTask(12,4,8);
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,13,7));
+		tm.add(new Task(1,12,4,8));
+		TaskMng m=tm.freezeTasks();
+
+		return Analysis.anal_EDF_VD(m);
 	}
 	
 	public  int test6()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
-		tm.addHiTask(6,1,5);
-		tm.addHiTask(40,10,11);
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm);
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(1,6,1,5));
+		tm.add(new Task(2,40,10,11));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m);
 	}
 	
 	public  int test7()

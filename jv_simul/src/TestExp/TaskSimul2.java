@@ -1,14 +1,17 @@
 package TestExp;
 
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskGen;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Exp.TaskSimul;
 
+// MC
 public class TaskSimul2 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int gret[]={1,1,1,0,-1, -1,-1,-1,-1,-1};
 
 	// MC
@@ -65,20 +68,19 @@ public class TaskSimul2 {
 	}
 
 	public TaskMng ts1()	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(6, 1, 5);
-		tm.addTask(4,1);
-		tm.freezeTasks();
-//		tm.prn();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,6,1,5));
+		tm.add(new Task(0,4,1));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public TaskMng ts2()	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(3,1);
-		tm.addTask(4,3);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,3));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 
 	@SuppressWarnings("rawtypes")

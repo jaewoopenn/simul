@@ -1,8 +1,9 @@
 package TestTaskMode;
 
-import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Drop1 {
@@ -14,15 +15,15 @@ public class Drop1 {
 
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(20,2,9);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,18);
-		tm.addTask(100,12);
-		tm.addTask(100,10);
-		tm.freezeTasks();
-		tm.sort();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,20,2,9));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,18));
+		tm.add(new Task(0,100,12));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		m.sort();
+		return m;
 	}
 	
 	public int test1() // EDF
@@ -44,16 +45,16 @@ public class Drop1 {
 
 	public TaskMng getTask2()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(20,1,4);
-		tm.addHiTask(20,1,5);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,18);
-		tm.addTask(100,12);
-		tm.addTask(100,10);
-		tm.freezeTasks();
-		tm.sort();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,20,1,4));
+		tm.add(new Task(0,20,1,5));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,18));
+		tm.add(new Task(0,100,12));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		m.sort();
+		return m;
 	}
 	
 	public int test3() // EDF-TM det:0.95
@@ -65,22 +66,22 @@ public class Drop1 {
 	}
 	public TaskMng getTask3()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addHiTask(40,1,3);
-		tm.addHiTask(40,1,5);
-		tm.addHiTask(40,1,5);
-		tm.addHiTask(40,1,5);
-		tm.addHiTask(10,2,3);
-		tm.addTask(100,2);
-		tm.addTask(100,2);
-		tm.addTask(100,1);
-		tm.addTask(100,5);
-		tm.addTask(100,10);
-		tm.addTask(100,10);
-		tm.addTask(100,10);
-		tm.freezeTasks();
-		tm.sort();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,40,1,3));
+		tm.add(new Task(0,40,1,5));
+		tm.add(new Task(0,40,1,5));
+		tm.add(new Task(0,40,1,5));
+		tm.add(new Task(0,10,2,3));
+		tm.add(new Task(0,100,2));
+		tm.add(new Task(0,100,2));
+		tm.add(new Task(0,100,1));
+		tm.add(new Task(0,100,5));
+		tm.add(new Task(0,100,10));
+		tm.add(new Task(0,100,10));
+		tm.add(new Task(0,100,10));
+		TaskMng m=tm.freezeTasks();
+		m.sort();
+		return m;
 	}
 	
 	public  int test4() // EDF-VD det:0.95

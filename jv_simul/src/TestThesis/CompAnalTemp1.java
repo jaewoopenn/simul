@@ -2,7 +2,9 @@ package TestThesis;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.CompAnalTemp;
 
 public class CompAnalTemp1 {
@@ -14,20 +16,20 @@ public class CompAnalTemp1 {
 
 	public TaskMng getTask1()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(4,1);
-		tm.addHiTask(6,1,5);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,4,1));
+		tm.add(new Task(1,6,1,5));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 
 	public TaskMng getTask2()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,1);
-		tm.addHiTask(12,1,5);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,8,1));
+		tm.add(new Task(1,12,1,5));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 
 	public int test1()
@@ -51,11 +53,11 @@ public class CompAnalTemp1 {
 
 	public TaskMng getTask3()
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,4);
-		tm.addHiTask(12,1,2);
-		tm.freezeTasks();
-		return tm;
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,8,4));
+		tm.add(new Task(1,12,1,2));
+		TaskMng m=tm.freezeTasks();
+		return m;
 	}
 	
 	public int test3() 

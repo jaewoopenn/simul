@@ -2,7 +2,9 @@ package Test;
 
 import Util.Log;
 import Util.TEngine;
+import Basic.Task;
 import Basic.TaskMng;
+import Basic.TaskMngPre;
 import Simul.Analysis;
 
 public class Greedy1 {
@@ -13,12 +15,12 @@ public class Greedy1 {
 
 	public int test1() 
 	{
-		TaskMng tm=new TaskMng();
-		tm.addTask(8,3);
-		tm.addHiTask(12,2,8);
-		tm.addHiTask(40,4,5);
-		tm.freezeTasks();
-		return Analysis.anal_EDF_VD(tm); // det:0.855
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,8,3));
+		tm.add(new Task(0,12,2,8));
+		tm.add(new Task(0,40,4,5));
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m); // det:0.855
 	}
 
 	public int test2() 
