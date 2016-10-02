@@ -16,30 +16,24 @@ public class TaskMng {
 	
 	
 
-
+	public void setX(double x){
+		for(Task t:g_tasks)
+		{
+			if (t.is_HI)
+				t.setVD(t.period*x);
+		}
+		
+	}
 	
 	public void setVD(int i, double vd){
-		if(g_info.isAdd()) {
-			Log.prn(1, "tasks are not finalized");
-			return;
-		}
-		Log.prn(1, "l:"+g_tasks.length);
 		g_tasks[i].vd=vd;
 	}
 
 	public int getPt(int i) {
-		if(g_info.isAdd()) {
-			Log.prn(1, "tasks are not finalized");
-			return -1;
-		}
 		return g_tasks[i].period;
 	}
 	
 	public int[] getPeriods() {
-		if(g_info.isAdd()) {
-			Log.prn(1, "tasks are not finalized");
-			return null;
-		}
 		int[] plst=new int[g_info.getSize()];
 		for(int i=0;i<g_info.getSize();i++)
 		{
@@ -65,6 +59,7 @@ public class TaskMng {
 		}
 		Log.prn(2, "util:"+g_info.getUtil());
 		Log.prn(2, "lo_mode_util:"+(g_info.getLo_util()+g_info.getHi_util_lm()));
+		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
 	}
 	public void prnHI() {
 		for(int i=0;i<g_info.getHi_size();i++)

@@ -17,13 +17,13 @@ public class TaskSimul2 {
 	// MC
 	public int test1()	{
 		TaskSimul ts=new TaskSimul(ts1());
-		ts.prepareMC();
-		ts.prn();
+		ts.getTM().setX(0.5);
+		ts.getTM().prn();
 		return 1;
 	}
 	public int test2() {
 		TaskSimul ts=new TaskSimul(ts1());
-		ts.prepareMC();
+		ts.getTM().setX(0.5);
 		ts.init();
 		ts.simulDur(0, 20);
 		return ts.simulEnd(20);
@@ -68,11 +68,11 @@ public class TaskSimul2 {
 	}
 
 	public TaskMng ts1()	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,6,1,5));
-		tm.add(new Task(0,4,1));
-		TaskMng m=tm.freezeTasks();
-		return m;
+		TaskMngPre tmp=new TaskMngPre();
+		tmp.add(new Task(0,6,1,5));
+		tmp.add(new Task(0,4,2));
+		TaskMng tm=tmp.freezeTasks();
+		return tm;
 	}
 	
 	public TaskMng ts2()	{

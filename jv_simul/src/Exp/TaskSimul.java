@@ -14,9 +14,6 @@ public class TaskSimul {
 	public void init() {
 		g_js=new JobSimul();
 		Log.prn(1, "rel  / exec / t");
-//		g_js.addJob(0, 4, 2);
-//		g_js.addJob(1, 5, 1);
-//		g_js.simul(5);
 	}
 	public int simulDur(int st, int et){
 		int cur_t=st;
@@ -52,11 +49,8 @@ public class TaskSimul {
 		simulDur(0, et);
 		return simulEnd(et);
 	}
-	public void prn() {
-		g_tm.prn();
-	}
-	public void prepareMC() {
-		g_tm.setVD(0, 3);
+	public TaskMng getTM(){
+		return g_tm;
 	}
 	
 	

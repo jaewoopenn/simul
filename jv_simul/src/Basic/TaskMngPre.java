@@ -56,8 +56,6 @@ public class TaskMngPre {
 		int hi_size=0;
 		for(Task t:g_tasks)
 		{
-			if (t.is_HI)
-				t.setVD(t.period*g_info.getX());
 			double tu=(double)(t.c_h)/t.period;
 			if(t.is_HI){
 				hiutil_lm+=(double)(t.c_l)/t.period;
