@@ -17,8 +17,7 @@ public class TaskMng {
 	
 
 	public void setX(double x){
-		for(Task t:g_tasks)
-		{
+		for(Task t:g_tasks)	{
 			if (t.is_HI)
 				t.setVD(t.period*x);
 		}
@@ -102,6 +101,13 @@ public class TaskMng {
 
 
 	public double getRU() {
+		double util=0;
+		for(Task t:g_tasks)	{
+			if(t.is_HI){
+//				util+=
+			}
+				
+		}
 		return 0;
 	}
 

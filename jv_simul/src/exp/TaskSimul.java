@@ -69,6 +69,9 @@ public class TaskSimul {
 		Log.prn(1, "mode-switch "+tid);
 		g_js.getJM().modeswitch(tid);
 		g_tm.modeswitch(tid);
+		dropDecision();
+	}
+	private void dropDecision() {
 		double curU=g_tm.getRU();
 		
 	}

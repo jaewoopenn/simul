@@ -68,6 +68,15 @@ public class Task {
 			return false;
 		return true;
 	}
+	public double getLoUtil(){
+		return c_l*1.0/period;
+	}
+	public double getHiUtil(){
+		return c_h*1.0/period;
+	}
+	public double getLoRUtil(){
+		return c_l*1.0/vd;
+	}
 
 }
 

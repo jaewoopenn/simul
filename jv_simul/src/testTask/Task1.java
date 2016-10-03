@@ -8,7 +8,7 @@ import utilSim.TEngine;
 public class Task1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=4;
 	public static int total=10;
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
@@ -34,6 +34,11 @@ public class Task1 {
 	}
 	public  int test4()
 	{
+		Task t=new Task(0,3,1,2);
+		t.setVD(2);
+		Log.prn(1," "+t.getLoUtil());
+		Log.prn(1," "+t.getLoRUtil());
+		Log.prn(1," "+t.getHiUtil());
 		return 0;
 	}
 	public  int test5()
