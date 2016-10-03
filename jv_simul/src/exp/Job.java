@@ -29,11 +29,12 @@ public class Job implements Comparable<Job>{
 	}
 
 	public void prn() {
-//		Log.prn(1,tid+","+dl+","+exec+","+vd+","+add_exec);
+		Log.prnc(1,tid+","+dl+","+exec);
 		if(isHI)
-			Log.prn(1,tid+","+dl+","+exec+","+vd+","+add_exec);
+			Log.prn(1,","+vd+","+add_exec);
 		else
-			Log.prn(1,tid+","+dl+","+exec);
+			Log.prn(1,"");
+			
 	}
 
 	@Override

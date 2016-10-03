@@ -41,11 +41,19 @@ public class JobSimul {
 		
 	}
 	public int work(int cur_t){
-		if(!g_jm.dlCheck(cur_t)) return 0;
+		if(!dlCheck(cur_t)) return 0;
 		if(!progress(cur_t)) return 0;
 		return 1;
 		
 	}
+	public boolean dlCheck(int cur_t){
+		Job j=g_jm.getCur();
+		if(j==null || cur_t<j.dl) 
+			return true;
+		Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
+		return false;
+	}
+	
 	public boolean progress(int cur_t){
 		Job j=g_jm.getCur();
 		int out_type=0;

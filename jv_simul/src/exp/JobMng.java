@@ -14,36 +14,6 @@ public class JobMng {
 		g_jobs.add(job);
 	}
 
-	public boolean dlCheck(int cur_t){
-		Job j=getCur();
-		if(j==null) return true;
-		if(cur_t>=j.dl){
-			Log.prn(1,"deadline miss tid:"+j.tid+" compl:"+(cur_t+j.exec)+" dl:"+j.dl);
-			return false;
-		}
-		return true;
-	}
-	public boolean progress(int cur_t){
-		int out_type=0; // idle
-		Job j=getCur(); 
-		if(j==null)	{
-			prnJob(null,out_type);
-			return true;
-		}
-		
-		if(j.exec<=1) {
-			out_type=1; // complete
-			j.exec=0;
-			removeCur();
-		} else {  // j.exec>1
-			out_type=2; // rem
-			j.exec-=1;
-		}
-		prnJob(j,out_type);
-//			Log.prn(1,"cur:"+cur_t+" dur:"+out_dur+" tid:"+j.tid+" exec_type:"+out_type);
-		return true;
-		
-	}
 	public void prnJob(Job j,int out_type)
 	{
 //		Log.prnc(1, "cur:"+cur_t+" ");

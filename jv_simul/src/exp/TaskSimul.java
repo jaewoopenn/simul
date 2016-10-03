@@ -34,21 +34,21 @@ public class TaskSimul {
 				continue;
 			}
 			Log.prnc(1,"+");
-			Job j;
-			if(tsk.is_HI){
-				if(tsk.is_HM)
-					j=new Job(tsk.tid, 
-							cur_t+(int)Math.ceil(tsk.vd),tsk.c_l);
-				else
-					j=new Job(tsk.tid, 
-							cur_t+(int)Math.ceil(tsk.vd),tsk.c_l);
-				
-			}
-			else
-				j=new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
-			g_js.add(j);
+			g_js.add(relJob(tsk,cur_t));
 		}
 		Log.prnc(1, " ");
+	}
+	private Job relJob(Task tsk, int cur_t) {
+		if(tsk.is_HI){
+			if(tsk.is_HM)
+				return new Job(tsk.tid, 
+						cur_t+tsk.period,tsk.c_l,cur_t+tsk.period,0);
+			else
+				return new Job(tsk.tid, 
+						cur_t+(int)Math.ceil(tsk.vd),tsk.c_l,
+						cur_t+tsk.period,tsk.c_h-tsk.c_l);
+		}
+		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
 	public int simulEnd(int t) {
 		return g_js.simulEnd(t);

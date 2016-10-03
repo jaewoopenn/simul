@@ -5,7 +5,7 @@ import basic.CompGenParam;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import exp.Platform;
+//import exp.Platform;
 import utilSim.TEngine;
 
 public class CompGen1 {
@@ -94,9 +94,10 @@ public class CompGen1 {
 		tg.loadFile("test2.txt");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		Platform p=new Platform();
-		p.init(tm);
-		return p.simul(20);
+//		Platform p=new Platform();
+//		p.init(tm);
+//		return p.simul(20);
+		return -1;
 	}
 	public  int test7()
 	{
@@ -104,9 +105,10 @@ public class CompGen1 {
 		tg.loadFile("t1/taskset2");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
-		Platform p=new Platform();
-		p.init(tm);
-		return p.simul(20);
+//		Platform p=new Platform();
+//		p.init(tm);
+//		return p.simul(20);
+		return -1;
 	}
 	public  int test8()
 	{
