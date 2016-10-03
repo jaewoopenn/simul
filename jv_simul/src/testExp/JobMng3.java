@@ -1,6 +1,5 @@
 package testExp;
 
-import exp.Job;
 import exp.JobMng;
 import taskSetEx.Job_NonMC1;
 import utilSim.TEngine;
@@ -8,26 +7,19 @@ import utilSim.TEngine;
 public class JobMng3 {
 	public static int idx=1;
 //	public static int idx=-1;
-	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 
 
 
 	
-	public int test1()	{ // not ordering
+	public int test1()	{ 
 		JobMng jm=Job_NonMC1.ts1();
 		jm.prn();
-		return 1;
+		return -1;
 	}
-	public int test2()	{ // ordering 
-		JobMng jm=Job_NonMC1.ts1();
-		while(true){
-			Job j=jm.removeCur();
-			if(j==null) break;
-			j.prn();
-			
-		}
-		return 1;
+	public int test2()	{ 
+		return -1;
 	}
 	public  int test3()
 	{
