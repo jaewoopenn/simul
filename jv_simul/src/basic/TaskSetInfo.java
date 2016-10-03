@@ -7,6 +7,13 @@ public class TaskSetInfo {
 	private double lo_util;
 	private double hi_util_lm;
 	private double hi_util_hm;
+	private double x_para;
+	public double getX() {
+		return x_para;
+	}
+	public void setX(double x_para) {
+		this.x_para = x_para;
+	}
 	public boolean isAdd() {
 		return isAdd;
 	}

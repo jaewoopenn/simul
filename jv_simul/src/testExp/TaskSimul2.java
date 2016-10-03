@@ -1,5 +1,6 @@
 package testExp;
 
+import basic.TaskMng;
 import exp.TaskSimul;
 import taskSetEx.TS_MC1;
 import utilSim.TEngine;
@@ -13,26 +14,30 @@ public class TaskSimul2 {
 
 	// MC
 	public int test1()	{
-		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts1();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		ts.getTM().prn();
 		return 1;
 	}
 	public int test2() {
 		int et=20;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts1();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		return ts.simulEnd(0, et);
 	}
 	public int test3()	{
 		int et=16;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts2());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts2();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		return ts.simulEnd(0,et);
 	}
 	public int test4()	{
 		int et=12;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
+		TaskMng tm=TS_MC1.ts1();
+		TaskSimul ts=new TaskSimul(tm);
 		ts.simulBy(0, 3);
 		ts.modeswitch(1);
 		return ts.simulEnd(3,et);
@@ -40,16 +45,18 @@ public class TaskSimul2 {
 	
 	public  int test5() {
 		int et=12;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts1();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		ts.simulBy(0, 1);
 		ts.modeswitch(1);
 		return ts.simulEnd(1,et);
 	}
 	public  int test6()	{
 		int et=12;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts1();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		ts.simulBy(0, 1);
 		ts.modeswitch(1);
 		ts.drop(0);
@@ -57,8 +64,9 @@ public class TaskSimul2 {
 	}
 	public  int test7()	{
 		int et=24;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts3());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts3();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		ts.simulBy(0, 1);
 		ts.modeswitch(2);
 //		ts.drop(0);

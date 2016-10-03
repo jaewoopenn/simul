@@ -17,6 +17,7 @@ public class TaskMng {
 	
 
 	public void setX(double x){
+		g_info.setX(x);
 		for(Task t:g_tasks)	{
 			if (t.is_HI)
 				t.setVD(t.period*x);
@@ -28,19 +29,19 @@ public class TaskMng {
 		g_tasks[i].vd=vd;
 	}
 
-	public int getPt(int i) {
-		return g_tasks[i].period;
-	}
-	
-	public int[] getPeriods() {
-		int[] plst=new int[g_info.getSize()];
-		for(int i=0;i<g_info.getSize();i++)
-		{
-			plst[i]=getPt(i);
-		}
-		
-		return plst;
-	}
+//	public int getPt(int i) {
+//		return g_tasks[i].period;
+//	}
+//	
+//	public int[] getPeriods() {
+//		int[] plst=new int[g_info.getSize()];
+//		for(int i=0;i<g_info.getSize();i++)
+//		{
+//			plst[i]=getPt(i);
+//		}
+//		
+//		return plst;
+//	}
 
 	public Task getTask(int i) {
 
@@ -104,9 +105,16 @@ public class TaskMng {
 		double util=0;
 		for(Task t:g_tasks)	{
 			if(t.is_HI){
-//				util+=
+				if(t.is_HM)
+					util+=t.getHiUtil();
+				else
+					util+=t.getLoRUtil();
+			} else{
+				if(t.is_dropped)
+					util+=t.getHiUtil();
+				else
+					util+=t.getLoUtil();
 			}
-				
 		}
 		return 0;
 	}

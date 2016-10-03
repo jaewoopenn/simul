@@ -1,5 +1,6 @@
 package testExp;
 
+import basic.TaskMng;
 import exp.TaskSimul;
 import taskSetEx.TS_MC1;
 import utilSim.TEngine;
@@ -14,8 +15,9 @@ public class TaskSimul3 {
 	// MC
 	public int test1()	{
 		int et=24;
-		TaskSimul ts=new TaskSimul(TS_MC1.ts3());
-		ts.getTM().setX(0.5);
+		TaskMng tm=TS_MC1.ts3();
+		tm.setX(0.5);
+		TaskSimul ts=new TaskSimul(tm);
 		ts.simulBy(0, 2);
 		ts.modeswitch(3);
 //		ts.drop(0);

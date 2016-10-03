@@ -1,4 +1,4 @@
-package test;
+package testAnal;
 
 import basic.Task;
 import basic.TaskMng;

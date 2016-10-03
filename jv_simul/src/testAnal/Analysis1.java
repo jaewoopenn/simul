@@ -1,4 +1,4 @@
-package test;
+package testAnal;
 
 import basic.Task;
 import basic.TaskMng;
@@ -7,10 +7,10 @@ import simul.Analysis;
 import utilSim.TEngine;
 
 public class Analysis1 {
-	public static int log_level=1;
+	public static int idx=1;
 //	public static int idx=-1;
-	public static int idx=6;
 	public static int gret[]={1,0,1,1,1,1,0,0,0,0};
+	public static int log_level=1;
 
 	public int test1() // less 1
 	{
