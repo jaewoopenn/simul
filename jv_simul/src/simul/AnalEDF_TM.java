@@ -29,8 +29,8 @@ public class AnalEDF_TM extends Anal {
 			Task t=tm.getTask(i);
 			if (!t.is_HI)
 				continue;
-			double v_util=t.c_l*1.0/t.period/glo_x;
-			double h_util=t.c_h*1.0/t.period;
+			double v_util=t.getLoUtil()/glo_x;
+			double h_util=t.getHiUtil();
 //			Log.prn(1,"v h:"+v_util+","+h_util);
 			dtm+=Math.max(v_util,h_util);
 		}

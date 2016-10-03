@@ -23,8 +23,8 @@ public class AnalEDF_TM_E extends Anal {
 		n_skip=0;
 		for(int i=0;i<g_info.getHi_size();i++){
 			Task t=tm.getHiTask(i);
-			double v_util=t.c_l*1.0/t.period/glo_x;
-			double h_util=t.c_h*1.0/t.period;
+			double v_util=t.getLoUtil()/glo_x;
+			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
 			if(v_util>=h_util)
 				n_skip++;
@@ -101,8 +101,8 @@ public class AnalEDF_TM_E extends Anal {
 		
 		for(int i=0;i<g_info.getHi_size();i++){
 			Task t=tm.getHiTask(i);
-			double v_util=t.c_l*1.0/t.period/glo_x;
-			double h_util=t.c_h*1.0/t.period;
+			double v_util=t.getLoUtil()/glo_x;
+			double h_util=t.getHiUtil();
 			if(v_util>=h_util)
 				req_util+=h_util;
 			else {
