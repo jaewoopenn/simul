@@ -1,15 +1,25 @@
-
-
+package testExp;
+import exp.ExpSimul;
+import simul.ConfigGen;
+import simul.SimGen;
+import utilSim.Log;
 import utilSim.TEngine;
 
-public class Mock1 {
-	public static int log_level=1;
-	public static int idx=-1;
-//	public static int idx=1;
-	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+public class ExpSimul1 {
+	public static int log_level=2;
+//	public static int idx=-1;
+	public static int idx=1;
+	public static int gret[]={1,1,0,6,0,0,0,0,0,0};
 	public int test1() 
 	{
-		return 0;
+		ConfigGen cfg=new ConfigGen("exp/cfg/cfg_50.txt");
+		cfg.readFile();
+		//cfg.prn(2);
+		ExpSimul eg=new ExpSimul(cfg);
+		int size=eg.size();
+		int ret=eg.load(100);
+		Log.prn(2, ret+"/"+size);
+		return 1;
 	}
 	public int test2() 
 	{
@@ -47,12 +57,12 @@ public class Mock1 {
 	{
 		return 0;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Mock1.class;
-		Mock1 m=new Mock1();
-		int[] aret=Mock1.gret;
+		Class c = ExpSimul1.class;
+		ExpSimul1 m=new ExpSimul1();
+		int[] aret=ExpSimul1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

@@ -1,19 +1,32 @@
+package test;
 
-
+import utilSim.FUtil;
+import utilSim.Log;
 import utilSim.TEngine;
 
-public class Mock1 {
+public class FUtil1 {
 	public static int log_level=1;
-	public static int idx=-1;
-//	public static int idx=1;
-	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+//	public static int idx=-1;
+	public static int idx=2;
+	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
-		return 0;
+		FUtil fu=new FUtil("test.txt");
+		fu.print("hihi");
+		fu.print("hihi!!");
+		fu.print("hihi!11s!");
+		fu.save();
+		
+		return 1;
 	}
 	public int test2() 
 	{
-		return 0;
+		FUtil fu=new FUtil("test.txt");
+		fu.load();
+		int no=fu.size();
+		for(int i=0;i<no;i++)
+			Log.prn(1, fu.get(i));
+		return 1;
 	}
 	public int test3() 
 	{
@@ -47,12 +60,12 @@ public class Mock1 {
 	{
 		return 0;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Mock1.class;
-		Mock1 m=new Mock1();
-		int[] aret=Mock1.gret;
+		Class c = FUtil1.class;
+		FUtil1 m=new FUtil1();
+		int[] aret=FUtil1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else
