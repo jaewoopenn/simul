@@ -32,9 +32,7 @@ public class TaskSetLoad1 {
 		TaskGen tg=new TaskGen();
 		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
 		TaskSimul ts=new TaskSimul(tm);
-		ts.init();
-		ts.simulDur(0, 20);
-		return ts.simulEnd(20);
+		return ts.simulEnd(0,20);
 	}
 	public  int test4()
 	{

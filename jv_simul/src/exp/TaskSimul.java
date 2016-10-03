@@ -10,20 +10,25 @@ public class TaskSimul {
 	private JobSimul g_js;
 	public TaskSimul(TaskMng m){
 		g_tm=m;
-	}
-	public void init() {
 		g_js=new JobSimul();
 		Log.prn(1, "rel  / exec / t");
 	}
-	public int simulDur(int st, int et){
+	public int simulBy(int st, int et){
 		int cur_t=st;
 		while(cur_t<et){
+			if (!g_js.dlCheck(cur_t)) return 0;
 			relCheck(cur_t);
-			if (g_js.work(cur_t)==0) return 0;
+			if(!g_js.progress(cur_t)) return 0;
 			Log.prn(1, " "+cur_t);
 			cur_t++;
 		}
 		return 1;
+	}
+	public int simulEnd(int st, int et) {
+		int ret=simulBy(st,et);
+		if(ret==0)
+			return 0;
+		return g_js.simulEnd(et);
 	}
 	private void relCheck(int cur_t){
 		
@@ -45,18 +50,10 @@ public class TaskSimul {
 						cur_t+tsk.period,tsk.c_l,cur_t+tsk.period,0);
 			else
 				return new Job(tsk.tid, 
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_l,
-						cur_t+tsk.period,tsk.c_h-tsk.c_l);
+						cur_t+tsk.period,tsk.c_l,
+						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 		}
 		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
-	}
-	public int simulEnd(int t) {
-		return g_js.simulEnd(t);
-	}
-	public int exec(int et) {
-		init();
-		simulDur(0, et);
-		return simulEnd(et);
 	}
 	public void modeswitch(int tid) {
 		Log.prn(1, "mode-switch "+tid);

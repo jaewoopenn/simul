@@ -15,16 +15,12 @@ public class TaskSimul1 {
 
 	public int test1()	{
 		TaskSimul ts=new TaskSimul(TS_NonMC1.ts1());
-		ts.init();
-		ts.simulDur(0, 20);
-		return ts.simulEnd(20);
+		return ts.simulEnd(0,20);
 	}
 	public int test2() {
 		int et=40;
 		TaskSimul ts=new TaskSimul(TS_NonMC1.ts2());
-		ts.init();
-		ts.simulDur(0, et);
-		return ts.simulEnd(et);
+		return ts.simulEnd(0,et);
 	}
 	
 	public  int test3()	{
@@ -32,9 +28,7 @@ public class TaskSimul1 {
 		TaskGen tg=new TaskGen();
 		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
 		TaskSimul ts=new TaskSimul(tm);
-		ts.init();
-		ts.simulDur(0, et);
-		return ts.simulEnd(et);
+		return ts.simulEnd(0,et);
 	}
 	
 	public  int test4()	{
@@ -43,7 +37,7 @@ public class TaskSimul1 {
 		TaskMng tm=tg.loadFileTM("exp/ts/test2.txt");
 //		tm.prn();
 		TaskSimul ts=new TaskSimul(tm);
-		return ts.exec(et);
+		return ts.simulEnd(0,et);
 	}
 	
 	public  int test5() {
