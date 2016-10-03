@@ -1,15 +1,14 @@
 package testExp;
-import java.util.PriorityQueue;
 import java.util.Vector;
 
 import exp.Job;
 import utilSim.TEngine;
 
 public class Job2 {
-	public static int log_level=1;
-//	public static int idx=-1;
 	public static int idx=1;
+//	public static int idx=-1;
 	public static int gret[]={2,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int log_level=1;
 	public int test1()
 	{
 		Vector<Job> jobs=new Vector<Job>();

@@ -97,5 +97,14 @@ public class JobMng {
 		}
 		
 	}
+	public void modeswitch(int tid) {
+		for(Job j:g_jobs){
+			if(j.tid==tid) {
+				j.exec=j.exec+j.add_exec;
+				j.add_exec=0;
+			}
+		}
+		
+	}
 
 }

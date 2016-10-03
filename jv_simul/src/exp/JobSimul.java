@@ -64,6 +64,8 @@ public class JobSimul {
 		}
 		g_jm.prnJob(j,out_type);
 		return true;
-		
+	}
+	public JobMng getJM() {
+		return g_jm;
 	}
 }

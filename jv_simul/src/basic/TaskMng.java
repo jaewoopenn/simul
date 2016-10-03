@@ -88,6 +88,12 @@ public class TaskMng {
 
 
 
+	public void modeswitch(int tid) {
+		g_tasks[tid].ms();
+	}
+
+
+
 
 
 }

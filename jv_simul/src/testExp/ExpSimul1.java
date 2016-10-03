@@ -1,15 +1,14 @@
 package testExp;
 import exp.ExpSimul;
 import simul.ConfigGen;
-import simul.SimGen;
 import utilSim.Log;
 import utilSim.TEngine;
 
 public class ExpSimul1 {
-	public static int log_level=2;
-//	public static int idx=-1;
 	public static int idx=1;
+//	public static int idx=-1;
 	public static int gret[]={1,1,0,6,0,0,0,0,0,0};
+	public static int log_level=2;
 	public int test1() 
 	{
 		ConfigGen cfg=new ConfigGen("exp/cfg/cfg_50.txt");

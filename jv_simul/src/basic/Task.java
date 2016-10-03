@@ -10,6 +10,7 @@ public class Task {
 	public int c_h;
 	public double vd;
 	public boolean is_HI;
+	public boolean is_HM;
 
 	public Task(int tid,int period, int c_l) {
 		this.tid=tid;
@@ -18,6 +19,7 @@ public class Task {
 		this.c_l = c_l;
 		this.c_h = c_l;
 		this.is_HI=false;
+		this.is_HM=false;
 	}
 
 	public Task(int tid,int period, int c_l, int c_h) {
@@ -27,15 +29,16 @@ public class Task {
 		this.c_l = c_l;
 		this.c_h = c_h;
 		this.is_HI=true;
+		this.is_HM=false;
 	}
-
+	public void ms(){
+		this.is_HI=true;
+	}
 	public void setVD(double vd){
 //		System.out.println("tid:"+tid+" vd:"+vd);
 		this.vd=vd;
 	}
-	public void setCom(int c){
-		this.cid=c;
-	}
+	
 	public void prn() {
 		if (is_HI){
 			Log.prn(2, "tid:"+tid+" (t,cl,ch): "+

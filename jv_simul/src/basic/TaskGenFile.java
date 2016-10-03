@@ -67,8 +67,8 @@ public class TaskGenFile {
             	tsk=new Task(tid,p,l,h);
             else
             	tsk=new Task(tid,p,l);
-            int cid=Integer.valueOf(words[5]).intValue();
-            tsk.setCom(cid);
+//            int cid=Integer.valueOf(words[5]).intValue();
+//            tsk.setCom(cid);
         	g_tasks.add(tsk);
 	    }
 	    return g_tasks;

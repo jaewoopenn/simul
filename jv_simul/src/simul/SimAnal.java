@@ -1,16 +1,13 @@
 package simul;
 
-import basic.TaskGen;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import utilSim.Log;
 
 public class SimAnal {
-	private TaskGenMC g_tg;
 	private ConfigGen g_cfg;
 	public SimAnal(ConfigGen cfg) {
-		g_tg=new TaskGenMC();
 		g_cfg=cfg;
 	}
 	

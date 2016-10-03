@@ -1,10 +1,9 @@
 package testExp;
 
-import basic.Task;
 import basic.TaskGen;
 import basic.TaskMng;
-import basic.TaskMngPre;
 import exp.TaskSimul;
+import taskSetEx.TS_NonMC1;
 import utilSim.TEngine;
 
 public class TaskSimul1 {
@@ -15,14 +14,14 @@ public class TaskSimul1 {
 
 
 	public int test1()	{
-		TaskSimul ts=new TaskSimul(ts1());
+		TaskSimul ts=new TaskSimul(TS_NonMC1.ts1());
 		ts.init();
 		ts.simulDur(0, 20);
 		return ts.simulEnd(20);
 	}
 	public int test2() {
 		int et=40;
-		TaskSimul ts=new TaskSimul(ts2());
+		TaskSimul ts=new TaskSimul(TS_NonMC1.ts2());
 		ts.init();
 		ts.simulDur(0, et);
 		return ts.simulEnd(et);
@@ -66,21 +65,7 @@ public class TaskSimul1 {
 		return -1;
 	}
 
-	public TaskMng ts1()	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,4,2));
-		TaskMng m=tm.freezeTasks();
-		return m;
-	}
-	
-	public TaskMng ts2()	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,4,3));
-		TaskMng m=tm.freezeTasks();
-		return m;
-	}
+
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {

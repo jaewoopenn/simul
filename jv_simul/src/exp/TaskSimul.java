@@ -6,8 +6,8 @@ import basic.TaskMng;
 import utilSim.Log;
 
 public class TaskSimul {
-	TaskMng g_tm;
-	JobSimul g_js;
+	private TaskMng g_tm;
+	private JobSimul g_js;
 	public TaskSimul(TaskMng m){
 		g_tm=m;
 	}
@@ -34,10 +34,19 @@ public class TaskSimul {
 				continue;
 			}
 			Log.prnc(1,"+");
-			if(tsk.is_HI)
-				g_js.add(new Job(tsk.tid,cur_t+(int)Math.ceil(tsk.vd),tsk.c_l));
+			Job j;
+			if(tsk.is_HI){
+				if(tsk.is_HM)
+					j=new Job(tsk.tid, 
+							cur_t+(int)Math.ceil(tsk.vd),tsk.c_l);
+				else
+					j=new Job(tsk.tid, 
+							cur_t+(int)Math.ceil(tsk.vd),tsk.c_l);
+				
+			}
 			else
-				g_js.add(new Job(tsk.tid,cur_t+tsk.period,tsk.c_l));
+				j=new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
+			g_js.add(j);
 		}
 		Log.prnc(1, " ");
 	}
@@ -49,9 +58,12 @@ public class TaskSimul {
 		simulDur(0, et);
 		return simulEnd(et);
 	}
+	public void modeswitch(int tid) {
+		Log.prn(1, "mode-switch "+tid);
+		g_js.getJM().modeswitch(tid);
+		g_tm.modeswitch(tid);
+	}
 	public TaskMng getTM(){
 		return g_tm;
 	}
-	
-	
 }

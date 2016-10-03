@@ -1,6 +1,5 @@
 package testThesis;
 import simul.ConfigCompGen;
-import simul.ConfigGen;
 import utilSim.Log;
 import utilSim.TEngine;
 
