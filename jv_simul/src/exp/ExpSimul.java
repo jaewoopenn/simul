@@ -25,7 +25,7 @@ public class ExpSimul {
 			TaskMng tm=tg.loadFileTM(fn);
 			double util=tg.getUtil();
 			TaskSimul ts=new TaskSimul(tm);
-			int ret=ts.exec(dur);
+			int ret=ts.simulEnd(0,dur);
 			sum+=ret;
 			if(Log.isPrn(2))
 				System.out.format("task %d util: %.3f ret: %d\n" ,i,util,ret);
