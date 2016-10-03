@@ -44,6 +44,7 @@ public class CompMng1 {
 	public int test3() 
 	{
 		Comp c=new Comp(0,1.0/8,1.0/12,5.0/12);
+		c.prn(1);
 		return -1;
 	}
 	

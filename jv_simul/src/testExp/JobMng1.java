@@ -5,29 +5,40 @@ import exp.JobMng;
 import taskSetEx.Job_NonMC1;
 import utilSim.TEngine;
 
-public class JobMng3 {
-	public static int idx=1;
-//	public static int idx=-1;
-	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
+public class JobMng1 {
 	public static int log_level=1;
+//	public static int idx=-1;
+	public static int idx=2;
+	public static int gret[]={0,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 
 
 	
-	public int test1()	{ // not ordering
+	public int test1()
+	{
 		JobMng jm=Job_NonMC1.ts1();
-		jm.prn();
-		return 1;
+		Job j;
+		j=jm.removeCur();
+		j=jm.removeCur();
+		j=jm.removeCur();
+		if (j!=null)
+			System.out.println(j.dl);
+		else
+			System.out.println(j);
+		return jm.size();
 	}
-	public int test2()	{ // ordering 
+	public int test2()
+	{
 		JobMng jm=Job_NonMC1.ts1();
-		while(true){
-			Job j=jm.removeCur();
-			if(j==null) break;
-			j.prn();
-			
-		}
-		return 1;
+		Job j;
+		j=jm.removeCur();
+		j=jm.removeCur();
+		j=jm.getCur();
+		if (j!=null)
+			System.out.println(j.dl);
+		else
+			System.out.println(j);
+		return jm.size();
 	}
 	public  int test3()
 	{
@@ -64,9 +75,9 @@ public class JobMng3 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = JobMng3.class;
-		JobMng3 m=new JobMng3();
-		int[] aret=JobMng3.gret;
+		Class c = JobMng1.class;
+		JobMng1 m=new JobMng1();
+		int[] aret=JobMng1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

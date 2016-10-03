@@ -13,6 +13,10 @@ public class TaskSimul {
 		g_js=new JobSimul();
 		Log.prn(1, "rel  / exec / t");
 	}
+	public TaskMng getTM(){
+		return g_tm;
+	}
+	
 	public int simulBy(int st, int et){
 		int cur_t=st;
 		while(cur_t<et){
@@ -34,7 +38,7 @@ public class TaskSimul {
 		
 		for(int i=0;i<g_tm.getInfo().getSize();i++){
 			Task tsk=g_tm.getTask(i);
-			if (cur_t%tsk.period!=0){
+			if (tsk.is_dropped||cur_t%tsk.period!=0){
 				Log.prnc(1,"-");
 				continue;
 			}
@@ -45,22 +49,36 @@ public class TaskSimul {
 	}
 	private Job relJob(Task tsk, int cur_t) {
 		if(tsk.is_HI){
-			if(tsk.is_HM)
+			if(tsk.is_HM){
 				return new Job(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,cur_t+tsk.period,0);
-			else
+						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
+			} else {
 				return new Job(tsk.tid, 
 						cur_t+tsk.period,tsk.c_l,
 						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+			}
 		}
 		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
 	public void modeswitch(int tid) {
+		Task tsk=g_tm.getTask(tid);
+		if(!tsk.is_HI) 	{
+			Log.prn(9, "task "+tid+" is not HI-task, cannot mode-switch");
+			System.exit(0);
+		}
 		Log.prn(1, "mode-switch "+tid);
 		g_js.getJM().modeswitch(tid);
 		g_tm.modeswitch(tid);
+		double curU=g_tm.getRU();
+		
 	}
-	public TaskMng getTM(){
-		return g_tm;
+	public void drop(int tid) {
+		Task tsk=g_tm.getTask(tid);
+		if(tsk.is_HI)	{
+			Log.prn(9, "task "+tid+" is not LO-task, cannot drop");
+			System.exit(0);
+		}
+		g_js.getJM().drop(tid);
+		g_tm.drop(tid);
 	}
 }

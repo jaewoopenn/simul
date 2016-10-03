@@ -4,9 +4,9 @@ import exp.TaskSimul;
 import taskSetEx.TS_MC1;
 import utilSim.TEngine;
 
-// MC
+// MC // manual mode-switch
 public class TaskSimul2 {
-	public static int idx=5;
+	public static int idx=7;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -34,7 +34,7 @@ public class TaskSimul2 {
 		int et=12;
 		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
 		ts.simulBy(0, 3);
-		ts.modeswitch(0);
+		ts.modeswitch(1);
 		return ts.simulEnd(3,et);
 	}
 	
@@ -42,16 +42,28 @@ public class TaskSimul2 {
 		int et=12;
 		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
 		ts.getTM().setX(0.5);
-		ts.getTM().prn();
 		ts.simulBy(0, 1);
-		ts.modeswitch(0);
+		ts.modeswitch(1);
 		return ts.simulEnd(1,et);
 	}
 	public  int test6()	{
-		return -1;
+		int et=12;
+		TaskSimul ts=new TaskSimul(TS_MC1.ts1());
+		ts.getTM().setX(0.5);
+		ts.simulBy(0, 1);
+		ts.modeswitch(1);
+		ts.drop(0);
+		return ts.simulEnd(1,et);
 	}
 	public  int test7()	{
-		return -1;
+		int et=24;
+		TaskSimul ts=new TaskSimul(TS_MC1.ts3());
+		ts.getTM().setX(0.5);
+		ts.simulBy(0, 1);
+		ts.modeswitch(2);
+//		ts.drop(0);
+		ts.drop(1);
+		return ts.simulEnd(1,et);
 	}
 	public  int test8()	{
 		return -1;

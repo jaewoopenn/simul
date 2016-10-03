@@ -1,0 +1,66 @@
+package testExp;
+
+import exp.TaskSimul;
+import taskSetEx.TS_MC1;
+import utilSim.TEngine;
+
+// MC 
+public class TaskSimul3 {
+	public static int idx=1;
+//	public static int idx=-1;
+	public static int log_level=1;
+	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+
+	// MC
+	public int test1()	{
+		int et=24;
+		TaskSimul ts=new TaskSimul(TS_MC1.ts3());
+		ts.getTM().setX(0.5);
+		ts.simulBy(0, 2);
+		ts.modeswitch(3);
+//		ts.drop(0);
+		ts.drop(1);
+		return ts.simulEnd(2,et);
+	}
+	public int test2() {
+		return -1;
+	}
+	public int test3()	{
+		return -1;
+	}
+	public int test4()	{
+		return -1;
+	}
+	
+	public  int test5() {
+		return -1;
+	}
+	public  int test6()	{
+		return -1;
+	}
+	public  int test7()	{
+		return -1;
+	}
+	public  int test8()	{
+		return -1;
+	}
+	public  int test9() {
+		return -1;
+	}
+	public  int test10() {
+		return -1;
+	}
+
+
+	@SuppressWarnings("rawtypes")
+	public static void main(String[] args) throws Exception {
+		Class c = TaskSimul3.class;
+		TaskSimul3 m=new TaskSimul3();
+		int[] aret=TaskSimul3.gret;
+		if(idx==-1)
+			TEngine.run(m,c,aret,10);
+		else
+			TEngine.runOnce(m,c,aret,idx,log_level);
+	}
+
+}

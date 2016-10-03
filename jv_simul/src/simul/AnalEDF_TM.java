@@ -45,7 +45,7 @@ public class AnalEDF_TM extends Anal {
 
 	private int getNum(double u){
 		double ul=0;
-		double ud=0;
+//		double ud=0;
 		int num=0;
 		for(int j=0;j<g_info.getSize();j++){
 			Task t=tm.getTask(j);
@@ -55,7 +55,7 @@ public class AnalEDF_TM extends Anal {
 			if (ul+add<=1-u+MUtil.err) {
 				ul+=add;
 			} else {
-				ud+=add;
+//				ud+=add;
 				num++;
 			}
 		}

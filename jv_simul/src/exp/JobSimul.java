@@ -59,7 +59,7 @@ public class JobSimul {
 		}
 		if(cur_t<j.dl) 
 			return true;
-		Log.prn(1,"deadline miss tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		Log.prn(1,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		return false;
 	}
 	

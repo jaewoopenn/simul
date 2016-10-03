@@ -25,14 +25,14 @@ public class Analysis3 {
 	public int test1() // EDF-VD
 	{
 		TaskMng tm=getTask1();
-		double dr=Analysis.getDrop_EDF_VD(tm, 0.05);
+		Analysis.getDrop_EDF_VD(tm, 0.05);
 		return 1;
 	}
 
 	public int test2() // EDF-TM det:0.802
 	{
 		TaskMng tm=getTask1();
-		double dr=Analysis.getDrop_EDF_TM_E(tm, 0.05); 
+		Analysis.getDrop_EDF_TM_E(tm, 0.05); 
 		return 1;
 	}
 

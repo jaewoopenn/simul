@@ -76,5 +76,13 @@ public class JobMng {
 		}
 		
 	}
+	public void drop(int tid) {
+		for(Job j:g_jobs){
+			if(j.tid==tid) {
+				j.exec=0;
+			}
+		}
+		
+	}
 
 }

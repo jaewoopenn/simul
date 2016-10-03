@@ -11,6 +11,7 @@ public class Task {
 	public double vd;
 	public boolean is_HI;
 	public boolean is_HM;
+	public boolean is_dropped;
 
 	public Task(int tid,int period, int c_l) {
 		this.tid=tid;
@@ -20,6 +21,7 @@ public class Task {
 		this.c_h = c_l;
 		this.is_HI=false;
 		this.is_HM=false;
+		this.is_dropped=false;
 	}
 
 	public Task(int tid,int period, int c_l, int c_h) {
@@ -30,9 +32,13 @@ public class Task {
 		this.c_h = c_h;
 		this.is_HI=true;
 		this.is_HM=false;
+		this.is_dropped=false;
 	}
 	public void ms(){
-		this.is_HI=true;
+		this.is_HM=true;
+	}
+	public void drop() {
+		this.is_dropped=true;
 	}
 	public void setVD(double vd){
 //		System.out.println("tid:"+tid+" vd:"+vd);
@@ -62,5 +68,6 @@ public class Task {
 			return false;
 		return true;
 	}
+
 }
 

@@ -2,49 +2,29 @@ package testExp;
 
 import exp.Job;
 import exp.JobMng;
+import taskSetEx.Job_NonMC1;
 import utilSim.TEngine;
 
 public class JobMng2 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=2;
-	public static int gret[]={0,0,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 
-	public JobMng ts1()
-	{
-		JobMng jm=new JobMng();
-		jm.add(new Job(0,3,1));
-		jm.add(new Job(1,4,1));
-		return jm;
+	public int test1()	{ // not ordering
+		JobMng jm=Job_NonMC1.ts1();
+		jm.prn();
+		return 1;
 	}
-
-
-	
-	public int test1()
-	{
-		JobMng jm=ts1();
-		Job j;
-		j=jm.removeCur();
-		j=jm.removeCur();
-		j=jm.removeCur();
-		if (j!=null)
-			System.out.println(j.dl);
-		else
-			System.out.println(j);
-		return jm.size();
-	}
-	public int test2()
-	{
-		JobMng jm=ts1();
-		Job j;
-		j=jm.removeCur();
-		j=jm.removeCur();
-		j=jm.getCur();
-		if (j!=null)
-			System.out.println(j.dl);
-		else
-			System.out.println(j);
-		return jm.size();
+	public int test2()	{ // ordering 
+		JobMng jm=Job_NonMC1.ts1();
+		while(true){
+			Job j=jm.removeCur();
+			if(j==null) break;
+			j.prn();
+			
+		}
+		return 1;
 	}
 	public  int test3()
 	{

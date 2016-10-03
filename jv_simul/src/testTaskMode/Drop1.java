@@ -4,6 +4,7 @@ import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import simul.Analysis;
+import utilSim.Log;
 import utilSim.TEngine;
 
 public class Drop1 {
@@ -30,7 +31,7 @@ public class Drop1 {
 	{
 		TaskMng tm=getTask1();
 		double d=Analysis.getDrop_EDF_VD(tm, 0.05);
-//		Log.prn(1, d+"");
+		Log.prn(1, d+"");
 		return 1;
 	}
 
@@ -39,7 +40,7 @@ public class Drop1 {
 		TaskMng tm=getTask1();
 		
 		double d=Analysis.getDrop_EDF_TM_E(tm, 0.05);
-//		Log.prn(1, d+"");
+		Log.prn(1, d+"");
 		return 1;
 	}
 
@@ -62,6 +63,7 @@ public class Drop1 {
 		TaskMng tm=getTask2();
 		
 		double d=Analysis.getDrop_EDF_TM_S(tm, 0.05);
+		Log.prn(1, d+"");
 		return 1;
 	}
 	public TaskMng getTask3()
@@ -89,6 +91,7 @@ public class Drop1 {
 		TaskMng tm=getTask3();
 		
 		double d=Analysis.getDrop_EDF_TM_E(tm, 0.05);
+		Log.prn(1, d+"");
 		return 1;
 	}
 

@@ -94,6 +94,19 @@ public class TaskMng {
 
 
 
+	public void drop(int tid) {
+		g_tasks[tid].drop();
+		
+	}
+
+
+
+	public double getRU() {
+		return 0;
+	}
+
+
+
 
 
 }
