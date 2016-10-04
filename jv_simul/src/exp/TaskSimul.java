@@ -75,6 +75,7 @@ public class TaskSimul {
 		double ru=g_tm.getRU();
 		while(ru>=1){
 			Log.prn(1, ""+ru);
+			int drop_id=g_tm.findDropTask();
 			drop(0);
 			ru=g_tm.getRU();
 		}

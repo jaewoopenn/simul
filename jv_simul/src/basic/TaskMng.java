@@ -126,6 +126,12 @@ public class TaskMng {
 
 
 
+	public int findDropTask() {
+		return 0;
+	}
+
+
+
 
 
 }
