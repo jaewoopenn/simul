@@ -65,12 +65,12 @@ public class AnalEDF_TM extends Anal {
 	
 	// no ratio / nl 
 	public double getHUtil(int i,double prob_hi){
-		int hi_size=g_info.getHi_size();
+		Task[] htasks=tm.getHiTasks();
 		double u=0;
 		double prob=1;
-		for(int j=0;j<hi_size;j++){
+		for(int j=0;j<htasks.length;j++){
 			int v=(i&(1<<j))>>j;
-			Task t=tm.getHiTask(j);
+			Task t=htasks[j];
 			if (v==0){
 				u+=t.getLoUtil()/glo_x;
 				Log.prnc(1, "- ");

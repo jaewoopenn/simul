@@ -21,8 +21,7 @@ public class AnalEDF_TM_E extends Anal {
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		n_skip=0;
-		for(int i=0;i<g_info.getHi_size();i++){
-			Task t=tm.getHiTask(i);
+		for(Task t:tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
@@ -37,8 +36,7 @@ public class AnalEDF_TM_E extends Anal {
 	@Override
 	public boolean isScheduable() {
 		double dtm=lotasks_loutil;
-		for(int i=0;i<g_info.getHi_size();i++){
-			Task t=tm.getHiTask(i);
+		for(Task t:tm.getHiTasks()){
 			double v_util=t.getLoRUtil()/glo_x;
 //			double h_util=t.c_h*1.0/t.period;
 //			Log.prn(1,"v h:"+v_util+","+h_util);
@@ -99,8 +97,7 @@ public class AnalEDF_TM_E extends Anal {
 		double req_util=0;
 		int cur=0;
 		
-		for(int i=0;i<g_info.getHi_size();i++){
-			Task t=tm.getHiTask(i);
+		for(Task t:tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 			if(v_util>=h_util)

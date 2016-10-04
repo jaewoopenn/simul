@@ -1,8 +1,9 @@
+package test;
 
 
 import utilSim.TEngine;
 
-public class Mock1 {
+public class RUtil1 {
 	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
@@ -50,9 +51,9 @@ public class Mock1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Mock1.class;
-		Mock1 m=new Mock1();
-		int[] aret=Mock1.gret;
+		Class c = RUtil1.class;
+		RUtil1 m=new RUtil1();
+		int[] aret=RUtil1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

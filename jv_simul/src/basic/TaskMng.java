@@ -9,6 +9,7 @@ public class TaskMng {
 	private Task[] g_hi_tasks;
 	private Task[] g_lo_tasks;
 	private TaskSetInfo g_info;
+
 	public TaskMng(Task[] g_tasks,Task[] g_hi_tasks,Task[] g_lo_tasks,TaskSetInfo g_info) {
 		this.g_tasks = g_tasks;
 		this.g_hi_tasks = g_hi_tasks;
@@ -32,28 +33,13 @@ public class TaskMng {
 		g_tasks[i].vd=vd;
 	}
 
-//	public int getPt(int i) {
-//		return g_tasks[i].period;
-//	}
-//	
-//	public int[] getPeriods() {
-//		int[] plst=new int[g_info.getSize()];
-//		for(int i=0;i<g_info.getSize();i++)
-//		{
-//			plst[i]=getPt(i);
-//		}
-//		
-//		return plst;
-//	}
-
 	public Task getTask(int i) {
 
 		return g_tasks[i];
 	}
-	public Task getHiTask(int i) {
-		return g_hi_tasks[i];
+	public Task[] getHiTasks(){
+		return g_hi_tasks;
 	}
-
 	public void prn() {
 		for(int i=0;i<g_info.getSize();i++)
 		{
@@ -126,15 +112,44 @@ public class TaskMng {
 		else
 			return t.getLoUtil();
 	}
-
+	public double getReclaimUtil(int tid){
+		Task t=g_tasks[tid];
+		return (1-g_info.getX())*t.getLoUtil();
+	}
 
 
 	public int findDropTask() {
-		return 0;
+		for(Task t:g_lo_tasks){
+			if (!t.is_dropped)
+				return t.tid;
+		}
+		return -1;
 	}
 
 
 
+	public void prnLoTasks() {
+		for(Task t:g_lo_tasks){
+			t.prn();
+		}
+	}
+
+
+
+
+//	public int getPt(int i) {
+//	return g_tasks[i].period;
+//}
+//
+//public int[] getPeriods() {
+//	int[] plst=new int[g_info.getSize()];
+//	for(int i=0;i<g_info.getSize();i++)
+//	{
+//		plst[i]=getPt(i);
+//	}
+//	
+//	return plst;
+//}
 
 
 }

@@ -47,20 +47,21 @@ public class JobSimul {
 		
 	}
 	public boolean dlCheck(int cur_t){
-		Job j;
-		while(true){
-			j=g_jm.getCur();
-			if(j==null)
-				return true;
-			if(j.exec==0)
-				g_jm.removeCur();
-			else
-				break;
-		}
+		Job j=g_jm.getCur();
+		if(j==null)
+			return true;
 		if(cur_t<j.dl) 
 			return true;
 		Log.prn(1,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		return false;
+	}
+	public int msCheck() {
+		Job j=g_jm.getCur();
+		if(j==null)
+			return -1;
+		if(j.exec==0&&j.isHI==true)
+			return j.tid;
+		return -1;
 	}
 	
 	public boolean progress(int cur_t){
@@ -73,6 +74,8 @@ public class JobSimul {
 		if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
+			if (!j.isHI)
+				g_jm.removeCur();
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;

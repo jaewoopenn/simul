@@ -16,10 +16,17 @@ public class TaskSimul {
 	public TaskMng getTM(){
 		return g_tm;
 	}
+	public int simulEnd(int st, int et) {
+		int ret=simulBy(st,et);
+		if(ret==0)
+			return 0;
+		return g_js.simulEnd(et);
+	}
 	
 	public int simulBy(int st, int et){
 		int cur_t=st;
 		while(cur_t<et){
+			msCheck();
 			if (!g_js.dlCheck(cur_t)) return 0;
 			relCheck(cur_t);
 			if(!g_js.progress(cur_t)) return 0;
@@ -28,12 +35,18 @@ public class TaskSimul {
 		}
 		return 1;
 	}
-	public int simulEnd(int st, int et) {
-		int ret=simulBy(st,et);
-		if(ret==0)
-			return 0;
-		return g_js.simulEnd(et);
+	private void msCheck(){
+		int tid=g_js.msCheck();
+		if(tid==-1) return;
+		boolean isMS=false;
+		if(isMS){
+			Log.prn(1, "ms");
+		} else {
+			g_js.getJM().removeCur();
+		}
+		
 	}
+	
 	private void relCheck(int cur_t){
 		
 		for(int i=0;i<g_tm.getInfo().getSize();i++){
@@ -74,12 +87,14 @@ public class TaskSimul {
 	private void dropDecision() {
 		double ru=g_tm.getRU();
 		while(ru>=1){
-			Log.prn(1, ""+ru);
-			int drop_id=g_tm.findDropTask();
-			drop(0);
-			ru=g_tm.getRU();
+//			Log.prn(1, ""+ru);
+			int id=g_tm.findDropTask();
+			drop(id);
+			Task t=g_tm.getTask(id);
+//			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
+			ru-=g_tm.getReclaimUtil(id);
 		}
-		Log.prn(1, ""+ru);
+//		Log.prn(1, ""+ru);
 		
 	}
 	public void drop(int tid) {

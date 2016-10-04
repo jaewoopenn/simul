@@ -6,7 +6,7 @@ import taskSetEx.TS_NonMC1;
 import utilSim.Log;
 import utilSim.TEngine;
 public class TaskMng1 {
-	public static int idx=2;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -19,12 +19,23 @@ public class TaskMng1 {
 	public int test2()
 	{
 		TaskMng m=TS_NonMC1.ts4();
-		m.sort();
-		m.prn();
+		m.prnLoTasks();
+		int tid=m.findDropTask();
+		Log.prn(1, ""+tid);
 		return 0;
 	}
 	public  int test3()
 	{
+		TaskMng m=TS_NonMC1.ts4();
+		m.setX(0.3);
+		m.prnLoTasks();
+		int tid=m.findDropTask();
+		Task t=m.getTask(tid);
+		Log.prn(1, ""+tid+","+t.getLoUtil()+","+m.getReclaimUtil(tid));
+		m.drop(tid);
+		tid=m.findDropTask();
+		t=m.getTask(tid);
+		Log.prn(1, ""+tid+","+t.getLoUtil()+","+m.getReclaimUtil(tid));
 		return 0;
 	}
 	public  int test4()
