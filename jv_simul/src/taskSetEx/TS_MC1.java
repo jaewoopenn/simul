@@ -10,16 +10,14 @@ public class TS_MC1 {
 		TaskMngPre tmp=new TaskMngPre();
 		tmp.add(new Task(0,4,2));
 		tmp.add(new Task(0,6,1,5));
-		TaskMng tm=tmp.freezeTasks();
-		return tm;
+		return tmp.freezeTasks();
 	}
 	
 	public static TaskMng ts2()	{
 		TaskMngPre tm=new TaskMngPre();
 		tm.add(new Task(0,4,3));
 		tm.add(new Task(0,8,2,4));
-		TaskMng m=tm.freezeTasks();
-		return m;
+		return tm.freezeTasks();
 	}
 
 	public static TaskMng ts3() {
@@ -28,8 +26,17 @@ public class TS_MC1 {
 		tmp.add(new Task(0,8,2));
 		tmp.add(new Task(0,12,1,5));
 		tmp.add(new Task(0,12,1,5));
-		TaskMng tm=tmp.freezeTasks();
-		return tm;
+		return tmp.freezeTasks();
+	}
+	
+	public static TaskMng ts4()	{
+		TaskMngPre tmp=new TaskMngPre();
+		tmp.add(new Task(0,4,1));
+		tmp.add(new Task(0,5,1));
+		tmp.add(new Task(0,16,2));
+		tmp.add(new Task(0,120,19));
+		tmp.add(new Task(0,6,1,3));
+		return tmp.freezeTasks();
 	}
 
 }

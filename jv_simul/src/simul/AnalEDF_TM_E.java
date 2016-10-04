@@ -39,7 +39,7 @@ public class AnalEDF_TM_E extends Anal {
 		double dtm=lotasks_loutil;
 		for(int i=0;i<g_info.getHi_size();i++){
 			Task t=tm.getHiTask(i);
-			double v_util=t.c_l*1.0/t.period/glo_x;
+			double v_util=t.getLoRUtil()/glo_x;
 //			double h_util=t.c_h*1.0/t.period;
 //			Log.prn(1,"v h:"+v_util+","+h_util);
 //			dtm+=Math.min(v_util,h_util);
@@ -83,7 +83,7 @@ public class AnalEDF_TM_E extends Anal {
 				continue;
 			if(req_util+lo_util>1){
 				drop++;
-				lo_util-=(1-glo_x)*t.c_l/t.period;
+				lo_util-=(1-glo_x)*t.getLoUtil();
 			}
 			else
 				break;

@@ -7,11 +7,14 @@ import utilSim.Log;
 public class TaskMng {
 	private Task[] g_tasks;
 	private Task[] g_hi_tasks;
+	private Task[] g_lo_tasks;
 	private TaskSetInfo g_info;
-	public TaskMng(Task[] g_tasks,Task[] g_hi_tasks,TaskSetInfo g_info) {
+	public TaskMng(Task[] g_tasks,Task[] g_hi_tasks,Task[] g_lo_tasks,TaskSetInfo g_info) {
 		this.g_tasks = g_tasks;
 		this.g_hi_tasks = g_hi_tasks;
+		this.g_lo_tasks = g_lo_tasks;
 		this.g_info = g_info;
+		Arrays.sort(g_lo_tasks,new ComparatorTask());
 	}
 	
 	
@@ -72,8 +75,8 @@ public class TaskMng {
 	}
 	
 	public void sort(){
-		Arrays.sort(g_hi_tasks,new TaskComparator());
-		Arrays.sort(g_tasks,new TaskComparatorLo());
+//		Arrays.sort(g_hi_tasks,new TaskComparator());
+		Arrays.sort(g_tasks,new ComparatorTask());
 //		Task t=g_hi_tasks[0];
 //		t.prn();
 	}

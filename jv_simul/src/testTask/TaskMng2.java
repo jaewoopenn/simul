@@ -5,38 +5,27 @@ package testTask;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
+import taskSetEx.TS_MC1;
 import utilSim.TEngine;
 public class TaskMng2 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int total=10;
-	public static int gret[]={2,2,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	
-	public TaskMng ts1()
-	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,4,1));
-		TaskMng m=tm.freezeTasks();
-		return m;
-	}
 	
 	public int test1()
 	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,4,1,2));
-		TaskMng m=tm.freezeTasks();
-		return m.getInfo().getSize();
-	}
-	public int test2() // VD add
-	{
-		TaskMng tm=ts1();
+		TaskMng tm=TS_MC1.ts1();
 		tm.setVD(0,2.2);
 		tm.setVD(1,3.4);
 		tm.prn();
-		return tm.getInfo().getSize();
+		return -1;
+	}
+	public int test2() // VD add
+	{
+		return -1;
 	}
 	public  int test3()
 	{

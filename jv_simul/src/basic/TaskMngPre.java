@@ -6,12 +6,15 @@ import utilSim.Log;
 
 public class TaskMngPre {
 	private Vector<Task> g_taskV;
+	private Vector<Task> g_lo_taskV;
 	private Vector<Task> g_hi_taskV;
 	private Task[] g_tasks;
+	private Task[] g_lo_tasks;
 	private Task[] g_hi_tasks;
 	public TaskSetInfo g_info;
 	public TaskMngPre() {
 		g_taskV=new Vector<Task>();
+		g_lo_taskV=new Vector<Task>();
 		g_hi_taskV=new Vector<Task>();
 		g_info=new TaskSetInfo();
 		g_info.setAdd(true);
@@ -23,23 +26,31 @@ public class TaskMngPre {
 		g_taskV.add(t);
 		if(t.is_HI)
 			g_hi_taskV.add(t);
+		else
+			g_lo_taskV.add(t);
 	}
 	public void setTasks(Vector<Task> all) {
 		g_taskV=all;
+		g_lo_taskV=new Vector<Task>();
 		g_hi_taskV=new Vector<Task>();
 		for(Task t:all){
 			if(t.is_HI)
 				g_hi_taskV.add(t);
+			else
+				g_lo_taskV.add(t);
 		}
 	}
 	public void goToArray(){
 		g_info.setAdd(false);
 		int size=g_taskV.size();
 		int h_size=g_hi_taskV.size();
+		int l_size=g_lo_taskV.size();
 		g_tasks=new Task[size];
 		g_hi_tasks=new Task[h_size];
+		g_lo_tasks=new Task[l_size];
 		g_taskV.toArray(g_tasks);
 		g_hi_taskV.toArray(g_hi_tasks);
+		g_lo_taskV.toArray(g_lo_tasks);
 	}
 	public TaskMng freezeTasks()
 	{
@@ -56,9 +67,9 @@ public class TaskMngPre {
 		int hi_size=0;
 		for(Task t:g_tasks)
 		{
-			double tu=(double)(t.c_h)/t.period;
+			double tu=t.getHiUtil();
 			if(t.is_HI){
-				hiutil_lm+=(double)(t.c_l)/t.period;
+				hiutil_lm+=t.getLoUtil();
 				hiutil_hm+=tu;
 				hi_size++;
 			} else {
@@ -71,7 +82,7 @@ public class TaskMngPre {
 		g_info.setHi_util_lm(hiutil_lm);
 		g_info.setHi_size(hi_size);
 		g_info.setLo_size(lo_size);
-		return new TaskMng(g_tasks,g_hi_tasks,g_info);
+		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,g_info);
 	}
 	
 	public boolean isFinal(){

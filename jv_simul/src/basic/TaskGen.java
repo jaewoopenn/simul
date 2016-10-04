@@ -64,7 +64,7 @@ public class TaskGen {
 	public double getUtil(){
 		double util=0;
 		for(Task t:g_tasks){
-			util+=(double)(t.c_l)/t.period;
+			util+=t.getLoUtil();
 		}
 		return util;
 	}

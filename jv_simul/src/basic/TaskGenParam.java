@@ -87,7 +87,7 @@ public class TaskGenParam {
 		int p=t.period;
 		if(p>=p_ub && p<p_lb)
 			return false;
-		double tu=(double)(t.c_h)/t.period;
+		double tu=t.getHiUtil();
 		if(tu>=p_ub && tu<p_lb)
 			return false;
 		return true;

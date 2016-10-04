@@ -51,7 +51,7 @@ public class AnalEDF_TM extends Anal {
 			Task t=tm.getTask(j);
 			if(t.is_HI) 
 				continue;
-			double add=t.c_l*1.0/t.period;
+			double add=t.getLoUtil();
 			if (ul+add<=1-u+MUtil.err) {
 				ul+=add;
 			} else {
@@ -72,11 +72,11 @@ public class AnalEDF_TM extends Anal {
 			int v=(i&(1<<j))>>j;
 			Task t=tm.getHiTask(j);
 			if (v==0){
-				u+=t.c_l*1.0/t.period/glo_x;
+				u+=t.getLoUtil()/glo_x;
 				Log.prnc(1, "- ");
 				prob=prob*(1-prob_hi);
 			} else {
-				u+=t.c_h*1.0/t.period;
+				u+=t.getHiUtil();
 				Log.prnc(1, "+ ");
 				prob=prob*(prob_hi);
 			}

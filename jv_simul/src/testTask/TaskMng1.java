@@ -2,39 +2,30 @@ package testTask;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
+import taskSetEx.TS_NonMC1;
 import utilSim.Log;
 import utilSim.TEngine;
 public class TaskMng1 {
-	public static int idx=5;
+	public static int idx=2;
 //	public static int idx=-1;
-	public static int gret[]={2,3,2,2,67,0,0,0,0,0};
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1()
 	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,4,1));
-		TaskMng m=tm.freezeTasks();
-		return m.getInfo().getSize();
+		TaskMng m=TS_NonMC1.ts4();
+		m.prn();
+		return 0;
 	}
 	public int test2()
 	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,4,1));
-		tm.add(new Task(0,5,1));
-		TaskMng m=tm.freezeTasks();
-		return m.getInfo().getSize();
+		TaskMng m=TS_NonMC1.ts4();
+		m.sort();
+		m.prn();
+		return 0;
 	}
 	public  int test3()
 	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,3,1));
-		tm.add(new Task(0,5,1));
-		tm.add(new Task(0,7,1));
-		TaskMng m=tm.freezeTasks();
-		m.prn();
-		return (int)(m.getInfo().getUtil()*100);
+		return 0;
 	}
 	public  int test4()
 	{

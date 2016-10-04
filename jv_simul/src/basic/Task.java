@@ -46,17 +46,16 @@ public class Task {
 	}
 	
 	public void prn() {
+		Log.prnc(2, "tid:"+tid);
+		Log.prnc(2," hi-crit?"+is_HI);
+		Log.prnc(2, " p:"+period);
 		if (is_HI){
-			Log.prn(2, "tid:"+tid+" (t,cl,ch): "+
-					period+","+c_l+","+c_h+
-					" hi-crit?"+is_HI+" VD:"+vd);
+			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
 			
 		}else{
-			Log.prn(2, "tid:"+tid+" (t,cl): "+
-					period+","+c_l+
-					" hi-crit?"+is_HI);
-			
+			Log.prnc(2," cl:"+c_l);
 		}
+		Log.prn(2," util:"+getLoUtil());
 	}
 
 	public boolean check() {
