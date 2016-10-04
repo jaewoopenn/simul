@@ -1,6 +1,7 @@
 package testThesis;
 
-import basic.Comp;
+import comp.Comp;
+
 import simul.CompMng;
 import simul.PartAnal;
 import utilSim.Log;

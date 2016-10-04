@@ -1,8 +1,8 @@
 package simul;
 
 
-import basic.CompGen;
-import basic.CompGenParam;
+import comp.CompGen;
+import comp.CompGenParam;
 
 public class SimPartGen {
 	private CompGen tg;

@@ -1,7 +1,7 @@
 package testThesis;
-import basic.Comp;
-import basic.CompGen;
-import basic.CompGenParam;
+import comp.Comp;
+import comp.CompGen;
+import comp.CompGenParam;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;

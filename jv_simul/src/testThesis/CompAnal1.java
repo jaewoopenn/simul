@@ -1,6 +1,7 @@
 package testThesis;
 
-import basic.Comp;
+import comp.Comp;
+
 import basic.TaskMng;
 import simul.Analysis;
 import simul.CompAnal;

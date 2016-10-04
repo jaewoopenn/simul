@@ -1,8 +1,8 @@
 package simul;
 
 
-import basic.Comp;
-import basic.CoreMng;
+import comp.Comp;
+import comp.CoreMng;
 import basic.TaskMng;
 import utilSim.Log;
 

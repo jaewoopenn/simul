@@ -3,10 +3,10 @@ package simul;
 import java.util.Collections;
 import java.util.Vector;
 
-import basic.Comp;
-import basic.CompComparator;
-import basic.CompComparatorHI;
-import basic.CompComparatorLO;
+import comp.Comp;
+import comp.CompComparator;
+import comp.CompComparatorHI;
+import comp.CompComparatorLO;
 import basic.TaskMng;
 import utilSim.Log;
 
