@@ -3,7 +3,7 @@ package utilSim;
 import java.util.Random;
 
 public class RUtil {
-	private Random g_rand=new Random();
+	private static Random g_rand=new Random();
 	public double getDbl(double l, double u){
 		return g_rand.nextDouble()*(u-l)+l;
 	}

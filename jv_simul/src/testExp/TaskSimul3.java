@@ -7,7 +7,7 @@ import utilSim.TEngine;
 
 // MC 
 public class TaskSimul3 {
-	public static int idx=2;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -24,14 +24,21 @@ public class TaskSimul3 {
 		return -1;
 	}
 	public int test2() {
-		int et=24;
+		int et=36;
 		TaskMng tm=TS_MC1.ts3();
-		tm.setX(0.5);
+		tm.getInfo().setProb_ms(0.6);
+		tm.setX(1.0/3);
 		TaskSimul ts=new TaskSimul(tm);
 		ts.simulEnd(0,et);
 		return -1;
 	}
 	public int test3()	{
+		int et=48;
+		TaskMng tm=TS_MC1.ts3();
+		tm.getInfo().setProb_ms(0.4); // set prob
+		tm.setX(1.0/3);
+		TaskSimul ts=new TaskSimul(tm);
+		ts.simulEnd(0,et);
 		return -1;
 	}
 	public int test4()	{

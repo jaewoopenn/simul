@@ -28,10 +28,10 @@ public class TaskGenMC extends TaskGen {
 	}
 
 	public void prn2(int lv) {
-		for(Task t:g_tasks) {
-			Log.prn(lv, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
-					", h:"+t.c_h+", Xi:"+t.is_HI+", com:"+t.cid);
-		}
+//		for(Task t:g_tasks) {
+//			Log.prn(lv, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
+//					", h:"+t.c_h+", Xi:"+t.is_HI+", com:"+t.cid);
+//		}
 		Log.prn(lv, "MC util:"+getUtil());
 			
 	}

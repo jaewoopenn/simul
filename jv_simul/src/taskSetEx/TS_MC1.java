@@ -22,8 +22,8 @@ public class TS_MC1 {
 
 	public static TaskMng ts3() {
 		TaskMngPre tmp=new TaskMngPre();
-		tmp.add(new Task(0,8,2));
-		tmp.add(new Task(0,8,2));
+		tmp.add(new Task(0,8,1));
+		tmp.add(new Task(0,8,3));
 		tmp.add(new Task(0,12,1,5));
 		tmp.add(new Task(0,12,1,5));
 		return tmp.freezeTasks();

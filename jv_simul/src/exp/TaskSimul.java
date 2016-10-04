@@ -4,10 +4,13 @@ package exp;
 import basic.Task;
 import basic.TaskMng;
 import utilSim.Log;
+import utilSim.MUtil;
+import utilSim.RUtil;
 
 public class TaskSimul {
 	private TaskMng g_tm;
 	private JobSimul g_js;
+	private RUtil g_rutil=new RUtil();
 	public TaskSimul(TaskMng m){
 		g_tm=m;
 		g_js=new JobSimul();
@@ -36,11 +39,15 @@ public class TaskSimul {
 		return 1;
 	}
 	private void msCheck(){
+		boolean isMS=false;
 		int tid=g_js.msCheck();
 		if(tid==-1) return;
-		boolean isMS=false;
+		double prob=g_rutil.getDbl();
+		if(prob<g_tm.getInfo().getProb_ms())
+			isMS=true;
 		if(isMS){
-			Log.prn(1, "ms");
+//			Log.prn(1, "ms");
+			modeswitch(tid);
 		} else {
 			g_js.getJM().removeCur();
 		}
@@ -86,11 +93,15 @@ public class TaskSimul {
 	}
 	private void dropDecision() {
 		double ru=g_tm.getRU();
-		while(ru>=1){
-//			Log.prn(1, ""+ru);
+		while(ru>=1+MUtil.err){
+//			Log.prn(1, "RU"+ru);
 			int id=g_tm.findDropTask();
+			if(id==-1){
+				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
+				System.exit(1);
+			}
 			drop(id);
-			Task t=g_tm.getTask(id);
+			Log.prn(1, "drop "+id);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
 			ru-=g_tm.getReclaimUtil(id);
 		}

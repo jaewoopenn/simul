@@ -2,9 +2,7 @@ package testTask;
 // MC task
 // VD
 
-import basic.Task;
 import basic.TaskMng;
-import basic.TaskMngPre;
 import taskSetEx.TS_MC1;
 import utilSim.TEngine;
 public class TaskMng2 {

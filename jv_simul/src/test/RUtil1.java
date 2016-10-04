@@ -1,23 +1,38 @@
 package test;
 
-
+import utilSim.Log;
+import utilSim.RUtil;
 import utilSim.TEngine;
 
 public class RUtil1 {
-	public static int idx=1;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1() 
 	{
+		RUtil r=new RUtil();
+		int v=r.getInt(10);
+		Log.prn(1, ""+v);
 		return 0;
 	}
 	public int test2() 
 	{
+		RUtil r=new RUtil();
+		double v=r.getDbl();
+		Log.prn(1, ""+v);
 		return 0;
 	}
 	public int test3() 
 	{
+		RUtil r=new RUtil();
+		double v=r.getDbl();
+		Log.prn(1, ""+v);
+		double sucRatio=0.4;
+		if (v<sucRatio)
+			Log.prn(1,"Suc");
+		else
+			Log.prn(1,"Fail");
 		return 0;
 	}
 	public  int test4() 

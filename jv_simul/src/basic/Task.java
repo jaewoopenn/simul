@@ -4,7 +4,7 @@ import utilSim.Log;
 
 public class Task {
 	public int tid;
-	public int cid;
+//	public int cid;
 	public int period;
 	public int c_l;
 	public int c_h;

@@ -8,6 +8,13 @@ public class TaskSetInfo {
 	private double hi_util_lm;
 	private double hi_util_hm;
 	private double x_para;
+	private double prob_ms;
+	public double getProb_ms() {
+		return prob_ms;
+	}
+	public void setProb_ms(double prob_ms) {
+		this.prob_ms = prob_ms;
+	}
 	public double getX() {
 		return x_para;
 	}
