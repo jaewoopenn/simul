@@ -72,7 +72,13 @@ public class TaskSimul {
 		dropDecision();
 	}
 	private void dropDecision() {
-		double curU=g_tm.getRU();
+		double ru=g_tm.getRU();
+		while(ru>=1){
+			Log.prn(1, ""+ru);
+			drop(0);
+			ru=g_tm.getRU();
+		}
+		Log.prn(1, ""+ru);
 		
 	}
 	public void drop(int tid) {

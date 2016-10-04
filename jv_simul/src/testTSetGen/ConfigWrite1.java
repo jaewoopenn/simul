@@ -1,4 +1,4 @@
-package testTaskSet;
+package testTSetGen;
 import simul.ConfigGen;
 import utilSim.Log;
 import utilSim.TEngine;

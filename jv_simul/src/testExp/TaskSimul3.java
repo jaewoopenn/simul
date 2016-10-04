@@ -21,8 +21,9 @@ public class TaskSimul3 {
 		ts.simulBy(0, 2);
 		ts.modeswitch(3);
 //		ts.drop(0);
-		ts.drop(1);
-		return ts.simulEnd(2,et);
+//		ts.drop(1);
+//		return ts.simulEnd(2,et);
+		return -1;
 	}
 	public int test2() {
 		return -1;

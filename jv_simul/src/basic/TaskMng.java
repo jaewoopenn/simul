@@ -104,19 +104,24 @@ public class TaskMng {
 	public double getRU() {
 		double util=0;
 		for(Task t:g_tasks)	{
-			if(t.is_HI){
-				if(t.is_HM)
-					util+=t.getHiUtil();
-				else
-					util+=t.getLoRUtil();
-			} else{
-				if(t.is_dropped)
-					util+=t.getHiUtil();
-				else
-					util+=t.getLoUtil();
-			}
+			util+=getRU(t);
 		}
-		return 0;
+		return util;
+	}
+
+
+
+	private double getRU(Task t) {
+		if(t.is_HI){
+			if(t.is_HM)
+				return t.getHiUtil();
+			else
+				return t.getLoRUtil();
+		} 
+		if(t.is_dropped)
+			return g_info.getX()*t.getLoUtil();
+		else
+			return t.getLoUtil();
 	}
 
 

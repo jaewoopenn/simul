@@ -1,4 +1,4 @@
-package testTaskSet;
+package testTSetGen;
 import basic.TaskGen;
 import basic.TaskMng;
 import basic.TaskMngPre;

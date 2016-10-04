@@ -1,4 +1,4 @@
-package testTaskSet;
+package testTSetGen;
 import basic.TaskMng;
 import simul.ConfigGen;
 import simul.SimAnal;
