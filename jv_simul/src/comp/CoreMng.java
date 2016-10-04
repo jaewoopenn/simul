@@ -23,11 +23,4 @@ public class CoreMng {
 	public int getSize() {
 		return g_comp.size();
 	}
-
-
-
-
-
-
-
 }
