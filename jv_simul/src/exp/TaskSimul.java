@@ -89,6 +89,7 @@ public class TaskSimul {
 		if(isSchTab)
 			Log.prnc(1, " ");
 	}
+	
 	private Job relJob(Task tsk, int cur_t) {
 		if(tsk.is_HI){
 			if(tsk.is_HM){
@@ -102,6 +103,7 @@ public class TaskSimul {
 		}
 		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
+	
 	public void modeswitch(int tid) {
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI) 	{
@@ -112,6 +114,7 @@ public class TaskSimul {
 		g_tm.modeswitch(tid);
 		dropDecision();
 	}
+	
 	private void dropDecision() {
 		double ru=g_tm.getRU();
 		while(ru>=1+MUtil.err){
@@ -130,6 +133,7 @@ public class TaskSimul {
 //		Log.prn(1, ""+ru);
 		
 	}
+	
 	public void drop(int tid) {
 		Task tsk=g_tm.getTask(tid);
 		if(tsk.is_HI)	{
@@ -139,6 +143,7 @@ public class TaskSimul {
 		g_js.getJM().drop(tid);
 		g_tm.drop(tid);
 	}
+	
 	public double getDMR(){
 		return (double)g_Drop/g_Rel;
 	}
