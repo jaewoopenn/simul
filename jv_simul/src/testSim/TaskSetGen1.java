@@ -1,4 +1,4 @@
-package testTaskMode;
+package testSim;
 import basic.TaskMng;
 import simul.ConfigGen;
 import simul.SimAnal;

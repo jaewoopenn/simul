@@ -39,7 +39,7 @@ public class JobSimul {
 	// deprecated 
 	private int work(int cur_t){
 		if(!dlCheck(cur_t)) return 0;
-		if(!progress(cur_t)) return 0;
+		if(!progress(cur_t,true)) return 0;
 		return 1;
 	}
 
@@ -79,7 +79,7 @@ public class JobSimul {
 		return -1;
 	}
 	
-	public boolean progress(int cur_t){
+	public boolean progress(int cur_t, boolean isSchTab){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)	{
@@ -95,7 +95,8 @@ public class JobSimul {
 			out_type=2;
 			j.exec-=1;
 		}
-		g_jm.prnJob(j,out_type);
+		if(isSchTab)
+			g_jm.prnJob(j,out_type);
 		return true;
 	}
 	public JobMng getJM() {

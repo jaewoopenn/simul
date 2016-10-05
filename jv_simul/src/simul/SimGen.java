@@ -8,7 +8,6 @@ public class SimGen {
 	private TaskGenMC g_tg;
 	private ConfigGen g_cfg;
 	public SimGen(ConfigGen cfg) {
-		g_tg=new TaskGenMC();
 		g_cfg=cfg;
 	}
 	public int prepare(){

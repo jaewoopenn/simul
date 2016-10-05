@@ -5,7 +5,7 @@ import basic.TaskSetInfo;
 import utilSim.Log;
 import utilSim.MUtil;
 
-public class AnalEDF_TM_S extends Anal {
+public class AnalEDF_AT_E extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
@@ -18,8 +18,8 @@ public class AnalEDF_TM_S extends Anal {
 		lotasks_loutil=g_info.getLo_util();
 		hitasks_loutil=g_info.getHi_util_lm();
 		hitasks_hiutil=g_info.getHi_util_hm();
-		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
-		glo_x=Math.min(1,cal_x);
+		glo_x=hitasks_loutil/(1-lotasks_loutil);
+		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		n_skip=0;
 		for(Task t:tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;
@@ -37,10 +37,11 @@ public class AnalEDF_TM_S extends Anal {
 	public boolean isScheduable() {
 		double dtm=lotasks_loutil;
 		for(Task t:tm.getHiTasks()){
-			double v_util=t.getLoUtil()/glo_x;
-			double h_util=t.getHiUtil();
+			double v_util=t.getLoRUtil()/glo_x;
+//			double h_util=t.c_h*1.0/t.period;
 //			Log.prn(1,"v h:"+v_util+","+h_util);
-			dtm+=Math.min(v_util,h_util);
+//			dtm+=Math.min(v_util,h_util);
+			dtm+=v_util;
 		}
 		Log.prn(1,"det:"+dtm);
 		if (dtm <=1) {
@@ -52,10 +53,11 @@ public class AnalEDF_TM_S extends Anal {
 
 
 
-
 	
 	@Override
 	public double getDropRate(double p) {
+		if(lotasks_loutil==0) 
+			return 0; 
 		double exp_drop_sum=0;
 		int drop=0;
 		double exp_drop=0;
@@ -89,7 +91,8 @@ public class AnalEDF_TM_S extends Anal {
 		
 		return drop;
 	}
-	private double getReq(int k){
+	
+	private double getReq(int k){ // Required utilization for k HI-behavior 
 		int nf=g_info.getHi_size()-n_skip;
 		double req_util=0;
 		int cur=0;

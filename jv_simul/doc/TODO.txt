@@ -1,2 +1,5 @@
 - Anal, Find X
 - Implement EDF-AT-S
+
+
+- 반드시 DL miss 나는 example (EDF-AT-S, HI-mode-preferred task를 set하지 않으면)

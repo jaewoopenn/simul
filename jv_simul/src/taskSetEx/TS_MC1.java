@@ -38,5 +38,13 @@ public class TS_MC1 {
 		tmp.add(new Task(0,6,1,3));
 		return tmp.freezeTasks();
 	}
+	public static TaskMng ts5() { // not schedulable
+		TaskMngPre tmp=new TaskMngPre();
+		tmp.add(new Task(0,8,1));
+		tmp.add(new Task(0,8,4));
+		tmp.add(new Task(0,12,1,5));
+		tmp.add(new Task(0,12,1,5));
+		return tmp.freezeTasks();
+	}
 
 }

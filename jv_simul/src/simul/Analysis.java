@@ -29,14 +29,14 @@ public class Analysis {
 	}
 	public static int anal_EDF_TM(TaskMng mng) {
 		if(checkErr(mng)) return -1;
-		AnalEDF_TM a=new AnalEDF_TM();
+		AnalEDF_AT a=new AnalEDF_AT();
 		a.init(mng);
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
 	}
 	public static int anal_EDF_TM_S(TaskMng mng) {
 		if(checkErr(mng)) return -1;
-		AnalEDF_TM_S a=new AnalEDF_TM_S();
+		AnalEDF_AT_S a=new AnalEDF_AT_S();
 		a.init(mng);
 		a.prepare();
 		return MUtil.btoi(a.isScheduable());
@@ -59,7 +59,7 @@ public class Analysis {
 	}
 	public static double getDrop_EDF_TM_E(TaskMng mng,double prob_hi) {
 		if(checkErr(mng)) return -1;
-		AnalEDF_TM_E a=new AnalEDF_TM_E();
+		AnalEDF_AT_E a=new AnalEDF_AT_E();
 		a.init(mng);
 		a.prepare();
 		double drop=0;
@@ -71,7 +71,7 @@ public class Analysis {
 
 	public static double getDrop_EDF_TM_S(TaskMng mng,double prob_hi) {
 		if(checkErr(mng)) return -1;
-		AnalEDF_TM_S a=new AnalEDF_TM_S();
+		AnalEDF_AT_S a=new AnalEDF_AT_S();
 		a.init(mng);
 		a.prepare();
 		double drop=0;

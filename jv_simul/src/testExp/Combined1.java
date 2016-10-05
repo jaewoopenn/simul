@@ -10,8 +10,8 @@ import utilSim.TEngine;
 public class Combined1 {
 	public static int log_level=3;
 //	public static int idx=-1;
-	public static int idx=4;
-	public static int st=85;
+	public static int idx=1;
+	public static int st=70;
 	public static int num=6;
 	public static int durations=10000;
 	public static int gret[]={1,1,1,1,-1, -1,-1,-1,-1,-1};

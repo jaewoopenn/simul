@@ -5,7 +5,7 @@ import basic.TaskSetInfo;
 import utilSim.Log;
 import utilSim.MUtil;
 
-public class AnalEDF_TM extends Anal {
+public class AnalEDF_AT extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
@@ -101,5 +101,9 @@ public class AnalEDF_TM extends Anal {
 //		}
 		int num=g_info.getLo_size();
 		return sum_prob/num;
+	}
+
+	public double getX() {
+		return glo_x;
 	}
 }

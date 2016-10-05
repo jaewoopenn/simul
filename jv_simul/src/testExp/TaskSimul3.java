@@ -2,12 +2,16 @@ package testExp;
 
 import basic.TaskMng;
 import exp.TaskSimul;
+import simul.AnalEDF_AT_S;
+import simul.ConfigGen;
+import simul.SimGen;
 import taskSetEx.TS_MC1;
+import utilSim.Log;
 import utilSim.TEngine;
 
 // MC 
 public class TaskSimul3 {
-	public static int idx=3;
+	public static int idx=5;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -42,13 +46,40 @@ public class TaskSimul3 {
 		return -1;
 	}
 	public int test4()	{
+		TaskMng tm=TS_MC1.ts5();
+		exec(tm,48);
 		return -1;
+	}
+	public void exec(TaskMng tm, int et){
+		AnalEDF_AT_S a=new AnalEDF_AT_S();
+		a.init(tm);
+		a.prepare();
+		if(!a.isScheduable()){
+			Log.prn(2, "not schedulable");
+			return;
+		}
+		tm.setX(a.getX());
+		
+		tm.getInfo().setProb_ms(0.1); // set prob
+		TaskSimul ts=new TaskSimul(tm);
+		ts.isSchTab=false;
+//		ts.isPrnMS=false;
+		ts.simulEnd(0,et);
+		Log.prn(1,"DMR:"+ts.getDMR());
 	}
 	
 	public  int test5() {
+		ConfigGen cfg=new ConfigGen("exp/cfg/cfg_3.txt");
+		cfg.readFile();
+		SimGen eg=new SimGen(cfg);
+		eg.prepare();
+		TaskMng tm=eg.genOne();
+		exec(tm,1000);
 		return -1;
 	}
 	public  int test6()	{
+		TaskMng tm=TS_MC1.ts3();
+		exec(tm,300);
 		return -1;
 	}
 	public  int test7()	{

@@ -1,4 +1,4 @@
-package testTaskMode;
+package testAnal;
 
 import basic.Task;
 import basic.TaskMng;

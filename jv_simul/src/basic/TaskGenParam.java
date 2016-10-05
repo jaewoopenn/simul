@@ -1,6 +1,7 @@
 package basic;
 
 
+import utilSim.Log;
 import utilSim.RUtil;
 
 
@@ -28,7 +29,7 @@ public class TaskGenParam {
 		return g_rand.getInt(max);
 	}
 	public void setUtil(double l, double u) {
-		if(l>u ){
+		if(l>u){
 			System.out.println("Error setUtil");
 		}
 		u_lb=l;
