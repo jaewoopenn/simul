@@ -39,15 +39,15 @@ public class Combined1 {
 	}
 	public int test3() 
 	{
-		for(int i=0;i<num;i++){
-			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
-			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
-			eg.setDuration(durations);
-			int size=eg.size();
-			int ret=eg.simul();
-			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size+","+(ret*1.0/size));
-		}
+//		for(int i=0;i<num;i++){
+//			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
+//			cfg.readFile();
+//			ExpSimul eg=new ExpSimul(cfg);
+//			eg.setDuration(durations);
+//			int size=eg.size();
+//			int ret=eg.simul();
+//			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size+","+(ret*1.0/size));
+//		}
 		return 1;
 	}
 	public  int test4() 

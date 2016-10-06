@@ -1,10 +1,8 @@
 package testExp;
 
 
-import exp.ExpSimul;
 import exp.Platform;
 import simul.ConfigGen;
-import simul.SimGen;
 import utilSim.Log;
 import utilSim.TEngine;
 
@@ -17,7 +15,7 @@ public class Platform1 {
 	private Platform getP1() {
 		Platform p=new Platform();
 		p.setCfg_fn("exp/cfg/cfg");
-		p.setStartUtil(70);
+		p.setStartUtil(85);
 		p.setSize(1);
 		p.setDuration(1000);
 		return p;

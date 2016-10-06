@@ -19,28 +19,33 @@ public class SimGen {
 		g_tg.setProbHI(g_cfg.readDbl("prob_hi"));
 		return g_cfg.readInt("num");
 	}
-	public int genSet(int i,boolean b)
+	public int genSys(int i)
 	{
 		g_tg.generate();
 //		Log.prn(2, "util:"+tg.getMCUtil());
-		if(b){
-			TaskMngPre tm=new TaskMngPre();
-			tm.setTasks(g_tg.getAll());
-			TaskMng m=tm.freezeTasks();
-			int rs=Analysis.anal_EDF_VD(m);
-			if(rs==0)
-				return 0;
-		}
 		String fn=g_cfg.get_fn(i);
 		g_tg.writeFile(fn);
 		return 1;
 	}
+	public int genSys2(int i)
+	{
+		g_tg.generate();
+//		Log.prn(2, "util:"+tg.getMCUtil());
+		TaskMngPre tm=new TaskMngPre();
+		tm.setTasks(g_tg.getAll());
+		TaskMng m=tm.freezeTasks();
+		int rs=Analysis.anal_EDF_VD(m);
+		if(rs==0)
+			return 0;
+		String fn=g_cfg.get_fn(i);
+		g_tg.writeFile(fn);
+		return 1;
+	}
+
 	public void gen() {
 		int num=prepare();
-//		Log.prn(2, num+"");
 		for(int i=0;i<num;i++){
-//			Log.prn(2, i+"");
-			genSet(i,false);
+			genSys(i);
 		}
 		
 	}
@@ -49,7 +54,7 @@ public class SimGen {
 		int i=0;
 		while(i<num){
 //			Log.prn(2, i+"");
-			int rs=genSet(i,true);
+			int rs=genSys2(i);
 			if(rs==1)
 				i++;
 		}

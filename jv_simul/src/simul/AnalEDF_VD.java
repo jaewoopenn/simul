@@ -21,10 +21,8 @@ public class AnalEDF_VD extends Anal {
 	}
 	
 	@Override
-	public boolean isScheduable() {
-		if (getScore()<=1) 
-			return true;
-		return false;
+	public double getDtm() {
+		return getScore();
 	}
 
 	public double getScore() {

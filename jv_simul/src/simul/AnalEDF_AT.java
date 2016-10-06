@@ -23,7 +23,7 @@ public class AnalEDF_AT extends Anal {
 	}
 	
 	@Override
-	public boolean isScheduable() {
+	public double getDtm() {
 		double dtm=glo_x*lotasks_loutil;
 		for(int i=0;i<g_info.getSize();i++){
 			Task t=tm.getTask(i);
@@ -35,11 +35,7 @@ public class AnalEDF_AT extends Anal {
 			dtm+=Math.max(v_util,h_util);
 		}
 		Log.prn(1,"det:"+dtm);
-		if (dtm <=1) {
-			//Log.prn(1, "Sch OK");
-			return true;
-		}
-		return false;
+		return dtm;
 	}
 
 

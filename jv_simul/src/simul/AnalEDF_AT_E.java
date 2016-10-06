@@ -33,8 +33,10 @@ public class AnalEDF_AT_E extends Anal {
 		Log.prn(1, "n_skip:"+n_skip);
 	}
 	
+
+
 	@Override
-	public boolean isScheduable() {
+	public double getDtm() {
 		double dtm=lotasks_loutil;
 		for(Task t:tm.getHiTasks()){
 			double v_util=t.getLoRUtil()/glo_x;
@@ -44,14 +46,8 @@ public class AnalEDF_AT_E extends Anal {
 			dtm+=v_util;
 		}
 		Log.prn(1,"det:"+dtm);
-		if (dtm <=1) {
-			//Log.prn(1, "Sch OK");
-			return true;
-		}
-		return false;
+		return dtm;
 	}
-
-
 
 	
 	@Override
@@ -119,4 +115,5 @@ public class AnalEDF_AT_E extends Anal {
 	public double getX() {
 		return glo_x;
 	}
+
 }

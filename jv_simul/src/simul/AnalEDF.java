@@ -11,10 +11,8 @@ public class AnalEDF extends Anal {
 	}
 	
 	@Override
-	public boolean isScheduable() {
-		if(u<=1)
-			return true;
-		return false;
+	public double getDtm() {
+		return u;
 	}
 
 	@Override

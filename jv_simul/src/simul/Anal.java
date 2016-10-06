@@ -9,7 +9,17 @@ public abstract class Anal {
 		tm=mng;
 	}
 	public abstract void prepare();
-	public abstract boolean isScheduable();
+	public abstract double getDtm();
+	public boolean isScheduable()
+	{
+		double dtm=getDtm();
+		if (dtm <=1) {
+			//Log.prn(1, "Sch OK");
+			return true;
+		}
+		return false;
+	
+	}
 	public abstract double getDropRate(double p);
 
 }

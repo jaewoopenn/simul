@@ -18,7 +18,7 @@ public class TaskGen1 {
 	}
 	public int test2()
 	{
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		tg.setUtil(0.5,0.8);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);

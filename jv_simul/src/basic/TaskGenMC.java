@@ -5,7 +5,7 @@ import utilSim.Log;
 
 public class TaskGenMC extends TaskGen {
 	
-
+	@Override
 	public Task genTask(int tid){
 		Task tsk=g_param.genTask(tid,true);
 		if(!g_param.chkTask(tsk))
@@ -16,8 +16,9 @@ public class TaskGenMC extends TaskGen {
 	}
 
 
+
 	
-	// getting
+	@Override
 	public void prn(int lv) {
 		for(Task t:g_tasks) {
 			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
@@ -27,16 +28,9 @@ public class TaskGenMC extends TaskGen {
 			
 	}
 
-	public void prn2(int lv) {
-//		for(Task t:g_tasks) {
-//			Log.prn(lv, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
-//					", h:"+t.c_h+", Xi:"+t.is_HI+", com:"+t.cid);
-//		}
-		Log.prn(lv, "MC util:"+getUtil());
-			
-	}
 
-	public double getUtil(){
+	@Override
+	protected double getUtil(){
 		double loutil=0;
 		double hiutil=0;
 		for(Task t:g_tasks){

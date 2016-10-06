@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import utilSim.Log;
 
-public class TaskGen {
+public abstract class TaskGen {
 	protected TaskGenParam g_param;
 	protected Vector<Task> g_tasks;
 	public TaskGen() {
@@ -33,12 +33,7 @@ public class TaskGen {
 	}
 	
 
-	public Task genTask(int tid){
-		Task tsk=g_param.genTask(tid,false);
-		if(!g_param.chkTask(tsk))
-			return null;
-		return tsk;
-	}
+	public abstract Task genTask(int tid);
 
 	public void assignComp(int max){
 //		for(Task t:g_tasks) {
@@ -51,23 +46,10 @@ public class TaskGen {
 		return g_param.check(getUtil());
 	}
 	
-	// getting
-	public void prn(int lv) {
-		for(Task t:g_tasks) {
-			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l);
-		}
-		Log.prn(lv, "Util:"+getUtil());
-			
-	}
+	public abstract void prn(int lv) ;
 
 
-	private double getUtil(){
-		double util=0;
-		for(Task t:g_tasks){
-			util+=t.getHiUtil();
-		}
-		return util;
-	}
+	protected abstract double getUtil(); 
 
 	public Vector<Task> getAll() {
 		return g_tasks;

@@ -1,6 +1,8 @@
 package exp;
 
 
+import basic.TaskMng;
+import simul.AnalEDF_AT_S;
 import simul.ConfigGen;
 import simul.SimGen;
 import utilSim.Log;
@@ -30,24 +32,47 @@ public class Platform {
 		
 	}
 	public void simul() {
+		int ret;
+
 		for(int i=0;i<g_size;i++){
+			int sum=0;
 			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
 			eg.setDuration(g_dur);
 			int size=eg.size();
-			int ret=eg.simul();
-			Log.prn(3, (g_startUtil+5+i*5)+":"+ret+"/"+size+","+(ret*1.0/size));
+			for(int j=0;j<size;j++){
+				TaskMng tm=eg.loadTM(j);
+				Log.prn(2, ""+j);
+				ret=eg.anal(tm,new AnalEDF_AT_S());
+				if(ret==0){
+					continue;
+				}
+				ret=eg.simul(tm,new TaskSimul_EDF_AT_S(tm));
+				sum+=ret;
+			}
+
+			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+(sum*1.0/size));
 		}
 	}
 	public void anal() {
+		int ret;
+
 		for(int i=0;i<g_size;i++){
+			int sum=0;
 			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
+			eg.setDuration(g_dur);
 			int size=eg.size();
-			int ret=eg.anal();
-			Log.prn(3, (g_startUtil+5+i*5)+":"+ret+"/"+size+","+(ret*1.0/size));
+			for(int j=0;j<size;j++){
+				TaskMng tm=eg.loadTM(j);
+				Log.prn(2, ""+j);
+				ret=eg.anal(tm,new AnalEDF_AT_S());
+				sum+=ret;
+			}
+
+			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+(sum*1.0/size));
 		}
 		
 	}

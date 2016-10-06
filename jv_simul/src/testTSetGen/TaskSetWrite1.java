@@ -11,7 +11,7 @@ public class TaskSetWrite1 {
 
 	public int test1() //
 	{
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		tg.setUtil(0.5,0.8);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.001,0.1);
@@ -21,7 +21,7 @@ public class TaskSetWrite1 {
 	}
 	public int test2() // Write
 	{
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		tg.setUtil(0.45,0.5);
 		tg.setPeriod(20,50);
 		tg.setTUtil(0.01,0.1);

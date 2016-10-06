@@ -1,5 +1,6 @@
 package testTSetGen;
 import basic.TaskGen;
+import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import exp.TaskSimul;
@@ -13,7 +14,7 @@ public class TaskSetLoad1 {
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
 	{
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		tg.loadFile("exp/ts/test1.txt");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
@@ -23,14 +24,14 @@ public class TaskSetLoad1 {
 	}
 	public int test2()
 	{
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
 		tm.prn();
 		return 1;
 	}
 	public  int test3()
 	{
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,20);

@@ -31,7 +31,9 @@ public class Simple1 {
 	}
 	public int test3() 
 	{
-		Log.prn(1, "hihi");
+		double d=0.612312512;
+		String str=String.format("%.3f", d);
+		Log.prn(1, "hihi "+str);
 		return 0;
 	}
 	public  int test4() 

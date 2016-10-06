@@ -15,9 +15,12 @@ public class AnalICG extends Anal {
 	}
 	
 	@Override
-	public boolean isScheduable() {
+	public double getDtm() {
 		Log.prn(1, "OPA");
-		return findOPA();
+		if (findOPA())
+			return 0.5;
+		else
+			return 2;
 	}
 
 

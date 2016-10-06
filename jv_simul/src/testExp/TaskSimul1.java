@@ -1,6 +1,7 @@
 package testExp;
 
 import basic.TaskGen;
+import basic.TaskGenMC;
 import basic.TaskMng;
 import exp.TaskSimul_EDF_AT_S;
 import taskSetEx.TS_NonMC1;
@@ -26,7 +27,7 @@ public class TaskSimul1 {
 	
 	public  int test3()	{
 		int et=40;
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);
@@ -34,7 +35,7 @@ public class TaskSimul1 {
 	
 	public  int test4()	{
 		int et=80;
-		TaskGen tg=new TaskGen();
+		TaskGenMC tg=new TaskGenMC();
 		TaskMng tm=tg.loadFileTM("exp/ts/test2.txt");
 //		tm.prn();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
