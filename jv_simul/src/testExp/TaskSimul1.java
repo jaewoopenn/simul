@@ -1,6 +1,5 @@
 package testExp;
 
-import basic.TaskGen;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import exp.TaskSimul_EDF_AT_S;
@@ -15,7 +14,7 @@ public class TaskSimul1 {
 
 
 	public int test1()	{
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(TS_NonMC1.ts1());
+		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(TS_NonMC1.ts5());
 		
 		return ts.simulEnd(0,20);
 	}

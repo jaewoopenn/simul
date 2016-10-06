@@ -1,50 +1,34 @@
 package testExp;
 
 import exp.JobD;
+import exp.JobF;
 import exp.JobMng;
 import exp.JobSimul;
 import utilSim.TEngine;
 // RM
 public class JobSimul2 {
-	public static int log_level=1;
-//	public static int idx=-1;
 	public static int idx=2;
-	public static int gret[]={2,0,-1,-1,-1, -1,-1,-1,-1,-1};
+//	public static int idx=-1;
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int log_level=1;
 
-	public JobMng ts1()	{
-		JobMng jm=new JobMng();
-		jm.add(new JobD(0,3,1));
-		jm.add(new JobD(1,4,1));
-		return jm;
-	}
-	
-	public JobMng ts2()	{
-		JobMng jm=new JobMng();
-		jm.add(new JobD(1,3,1));
-		jm.add(new JobD(0,4,2));
-		return jm;
-	}
-
-	public JobMng ts3()	{
-		JobMng jm=new JobMng();
-		jm.add(new JobD(1,3,1));
-		jm.add(new JobD(2,4,2));
-		jm.add(new JobD(0,5,1));
-		return jm;
-	}
 
 	public int test1()	{
-		JobSimul js=new JobSimul(ts3());
-		js.simul(6);
-		return -1;
+		JobSimul js=new JobSimul();
+		js.add(new JobF(0,8,3,3));
+		js.add(new JobF(1,8,5,2));
+		js.simulDur(0,6);
+		js.add(new JobF(2,12,1,1));
+		js.simulDur(6,10);
+		js.simulEnd(10);
+		return 0;
 	}
 	public int test2() {
 		JobSimul js=new JobSimul();
-		js.add(new JobD(1,3,1));
-		js.add(new JobD(2,4,2));
-		js.add(new JobD(0,5,1));
+		js.add(new JobF(0,8,3,3));
+		js.add(new JobF(1,8,5,2));
 		js.simulDur(0,6);
-		js.add(new JobD(0,8,1));
+		js.add(new JobF(2,12,1,4));
 		js.simulDur(6,10);
 		js.simulEnd(10);
 		return 0;

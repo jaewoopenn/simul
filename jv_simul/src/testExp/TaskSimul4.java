@@ -1,10 +1,7 @@
 package testExp;
 
 import basic.TaskMng;
-import exp.TaskSimul;
 import exp.TaskSimul_EDF_AT;
-import exp.TaskSimul_EDF_AT_S;
-import simul.AnalEDF_AT;
 import simul.AnalEDF_AT_S;
 import simul.ConfigGen;
 import simul.SimGen;

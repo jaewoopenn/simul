@@ -54,6 +54,22 @@ public class TaskSimul_EDF_AT_S extends TaskSimul{
 //		Log.prn(1, ""+ru);
 		
 	}
+
+	@Override
+	protected AbsJob relJob(Task tsk, int cur_t) {
+		if(tsk.is_HI){
+			if(tsk.is_HM){
+				return new JobD(tsk.tid, 
+						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
+			} else {
+				return new JobD(tsk.tid, 
+						cur_t+tsk.period,tsk.c_l,
+						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+			}
+		}
+		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
+	}
+	
 	
 	
 	

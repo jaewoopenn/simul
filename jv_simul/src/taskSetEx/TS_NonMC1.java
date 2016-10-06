@@ -37,4 +37,10 @@ public class TS_NonMC1 {
 		tm.add(new Task(0,19,3));
 		return tm.freezeTasks();
 	}
+	public static TaskMng ts5()	{
+		TaskMngPre tm=new TaskMngPre();
+		tm.add(new Task(0,3,1));
+		tm.add(new Task(0,4,1));
+		return tm.freezeTasks();
+	}
 }

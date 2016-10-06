@@ -1,5 +1,6 @@
 package testExp;
 
+import exp.AbsJob;
 import exp.JobD;
 import exp.JobMng;
 import taskSetEx.Job_NonMC1;
@@ -17,7 +18,7 @@ public class JobMng1 {
 	public int test1()
 	{
 		JobMng jm=Job_NonMC1.ts1();
-		JobD j;
+		AbsJob j;
 		j=jm.removeCur();
 		j=jm.removeCur();
 		j=jm.removeCur();
@@ -30,7 +31,7 @@ public class JobMng1 {
 	public int test2()
 	{
 		JobMng jm=Job_NonMC1.ts1();
-		JobD j;
+		AbsJob j;
 		j=jm.removeCur();
 		j=jm.removeCur();
 		j=jm.getCur();

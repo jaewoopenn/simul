@@ -1,5 +1,6 @@
 package testExp;
 
+import exp.AbsJob;
 import exp.JobD;
 import exp.JobMng;
 import taskSetEx.Job_NonMC1;
@@ -19,7 +20,7 @@ public class JobMng2 {
 	public int test2()	{ // ordering 
 		JobMng jm=Job_NonMC1.ts1();
 		while(true){
-			JobD j=jm.removeCur();
+			AbsJob j=jm.removeCur();
 			if(j==null) break;
 			j.prn();
 			

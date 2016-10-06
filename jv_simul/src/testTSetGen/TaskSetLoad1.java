@@ -1,9 +1,7 @@
 package testTSetGen;
-import basic.TaskGen;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import exp.TaskSimul;
 import exp.TaskSimul_EDF_AT_S;
 import utilSim.TEngine;
 

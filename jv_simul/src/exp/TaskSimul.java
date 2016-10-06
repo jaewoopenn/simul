@@ -100,19 +100,7 @@ public abstract class TaskSimul {
 			Log.prnc(1, " ");
 	}
 	
-	private JobD relJob(Task tsk, int cur_t) {
-		if(tsk.is_HI){
-			if(tsk.is_HM){
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
-			} else {
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
-		}
-		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
-	}
+	protected abstract AbsJob relJob(Task tsk, int cur_t);
 	
 	public void modeswitch(int tid){
 		Task tsk=g_tm.getTask(tid);

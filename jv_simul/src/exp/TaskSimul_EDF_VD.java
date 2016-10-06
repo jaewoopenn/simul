@@ -10,6 +10,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 		super(m);
 	}
 
+	@Override
 	protected void initMode() {
 		Task[] tasks=g_tm.getTasks();
 		for(Task t:tasks){
@@ -23,6 +24,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 	}
 	
 	
+	@Override
 	public void modeswitch_in(int tid) {
 		Task[] tasks=g_tm.getTasks();
 		for(Task t:tasks){
@@ -37,6 +39,21 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 				drop(t.tid);
 			}
 		}
+	}
+
+	@Override
+	protected AbsJob relJob(Task tsk, int cur_t) {
+		if(tsk.is_HI){
+			if(tsk.is_HM){
+				return new JobD(tsk.tid, 
+						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
+			} else {
+				return new JobD(tsk.tid, 
+						cur_t+tsk.period,tsk.c_l,
+						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+			}
+		}
+		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
 	
 	
