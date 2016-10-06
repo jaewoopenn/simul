@@ -47,14 +47,16 @@ public class Task {
 	
 	public void prn() {
 		Log.prnc(2, "tid:"+tid);
-		Log.prnc(2," hi-crit?"+is_HI);
 		Log.prnc(2, " p:"+period);
 		if (is_HI){
 			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
+			Log.prnc(2," isHM:"+is_HM);
 			
 		}else{
 			Log.prnc(2," cl:"+c_l);
+			Log.prnc(2," isDrop:"+is_dropped);
 		}
+		Log.prnc(2," hi-crit?"+is_HI);
 		Log.prn(2," util:"+getLoUtil());
 	}
 

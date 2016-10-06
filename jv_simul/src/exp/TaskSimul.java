@@ -10,23 +10,29 @@ import utilSim.RUtil;
 public class TaskSimul {
 	private int g_Rel=0;
 	private int g_Drop=0;
-	
+	private ISchAlgo g_algo;
 	private TaskMng g_tm;
 	private JobSimul g_js;
 	private RUtil g_rutil=new RUtil();
 	public boolean isSchTab=true;
 	public boolean isPrnMS=true;
+	public boolean isPrnEnd=true;
+
 	public TaskSimul(TaskMng m){
-		g_tm=m;
-		g_js=new JobSimul();
+		this(m,new AlgoEDF_AT());
 	}
-	public TaskMng getTM(){
-		return g_tm;
+
+	public TaskSimul(TaskMng m,ISchAlgo a){
+		g_tm=m;
+		g_algo=a;
+		g_js=new JobSimul();
 	}
 	public int simulEnd(int st, int et) {
 		int ret=simulBy(st,et);
 		if(ret==0)
 			return 0;
+		if(isPrnEnd)
+			g_js.simulEndPrn();
 		return g_js.simulEnd(et);
 	}
 	
@@ -34,6 +40,7 @@ public class TaskSimul {
 		if(st==0){
 			if(isSchTab)
 				Log.prn(1, "rel  / exec / t");
+			initMode();
 		}
 		int cur_t=st;
 		while(cur_t<et){
@@ -46,6 +53,10 @@ public class TaskSimul {
 			cur_t++;
 		}
 		return 1;
+	}
+	private void initMode() {
+		g_algo.initMode(g_tm);
+//		g_tm.prnHI();
 	}
 	private void msCheck(int cur_t){
 		boolean isMS=false;
@@ -144,7 +155,12 @@ public class TaskSimul {
 		g_tm.drop(tid);
 	}
 	
+	
+	// get param
 	public double getDMR(){
 		return (double)g_Drop/g_Rel;
+	}
+	public TaskMng getTM(){
+		return g_tm;
 	}
 }

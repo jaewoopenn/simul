@@ -2,6 +2,7 @@ package testTSetGen;
 import basic.TaskGen;
 import basic.TaskMng;
 import basic.TaskMngPre;
+import exp.AlgoEDF_AT;
 import exp.TaskSimul;
 import utilSim.TEngine;
 
@@ -31,7 +32,7 @@ public class TaskSetLoad1 {
 	{
 		TaskGen tg=new TaskGen();
 		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
-		TaskSimul ts=new TaskSimul(tm);
+		TaskSimul ts=new TaskSimul(tm,new AlgoEDF_AT());
 		return ts.simulEnd(0,20);
 	}
 	public  int test4()

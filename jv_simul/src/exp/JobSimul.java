@@ -43,13 +43,14 @@ public class JobSimul {
 		return 1;
 	}
 
-	// deprecated 
 	public int simulEnd(int cur_t){
-		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
-		g_jm.prn();
 		return g_jm.endCheck(cur_t);
-		
 	}
+	public void simulEndPrn(){
+		Log.prn(1, "*** Left Jobs  ***");
+		g_jm.prn();
+	}
+	
 	
 	public boolean dlCheck(int cur_t){
 		Job j=g_jm.getCur();

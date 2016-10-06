@@ -24,7 +24,7 @@ public class ExpSimul {
 			String fn=g_cfg.get_fn(i);
 			TaskMng tm=tg.loadFileTM(fn);
 			double util=tg.getUtil();
-			TaskSimul ts=new TaskSimul(tm);
+			TaskSimul ts=new TaskSimul(tm,new AlgoEDF_AT());
 			int ret=ts.simulEnd(0,dur);
 			sum+=ret;
 			if(Log.isPrn(2))

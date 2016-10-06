@@ -33,30 +33,17 @@ public class TaskMng {
 		g_tasks[i].vd=vd;
 	}
 
-	public Task getTask(int i) {
-
-		return g_tasks[i];
-	}
-	public Task[] getHiTasks(){
-		return g_hi_tasks;
-	}
 	public void prn() {
-		for(int i=0;i<g_info.getSize();i++)
-		{
-			Task t=g_tasks[i];
+		for(Task t:g_tasks)
 			t.prn();
-		}
 		Log.prn(2, "util:"+g_info.getUtil());
 		Log.prn(2, "lo_mode_util:"+(g_info.getLo_util()+g_info.getHi_util_lm()));
 		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
 	}
 	public void prnHI() {
-		for(int i=0;i<g_info.getHi_size();i++)
-		{
-			Task t=g_hi_tasks[i];
-			Log.prn(1, "tid:"+t.tid+" period:"+t.period+" exec:"+t.c_l+" hi_e:"+t.c_h);
-		}
-		Log.prn(1, "util:"+g_info.getUtil());
+		for(Task t:g_hi_tasks)
+			t.prn();
+		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
 		
 	}
 	
@@ -135,6 +122,20 @@ public class TaskMng {
 	}
 
 
+
+	public Task[] getTasks() {
+		return g_tasks;
+	}
+
+
+	public Task getTask(int i) {
+
+		return g_tasks[i];
+	}
+	
+	public Task[] getHiTasks(){
+		return g_hi_tasks;
+	}
 
 
 //	public int getPt(int i) {
