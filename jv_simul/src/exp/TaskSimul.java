@@ -7,26 +7,22 @@ import utilSim.Log;
 import utilSim.MUtil;
 import utilSim.RUtil;
 
-public class TaskSimul {
-	private int g_Rel=0;
-	private int g_Drop=0;
-	private ISchAlgo g_algo;
-	private TaskMng g_tm;
-	private JobSimul g_js;
-	private RUtil g_rutil=new RUtil();
+public abstract class TaskSimul {
+	protected int g_Rel=0;
+	protected int g_Drop=0;
+	protected TaskMng g_tm;
+	protected JobSimul g_js;
+	protected RUtil g_rutil=new RUtil();
+	protected boolean g_isMS=false;
 	public boolean isSchTab=true;
 	public boolean isPrnMS=true;
 	public boolean isPrnEnd=true;
 
 	public TaskSimul(TaskMng m){
-		this(m,new AlgoEDF_AT());
-	}
-
-	public TaskSimul(TaskMng m,ISchAlgo a){
 		g_tm=m;
-		g_algo=a;
 		g_js=new JobSimul();
 	}
+
 	public int simulEnd(int st, int et) {
 		int ret=simulBy(st,et);
 		if(ret==0)
@@ -47,17 +43,19 @@ public class TaskSimul {
 			msCheck(cur_t);
 			if (!g_js.dlCheck(cur_t)) return 0;
 			relCheck(cur_t);
-			if(!g_js.progress(cur_t,isSchTab)) return 0;
+			if(!g_js.progress(cur_t,isSchTab)&&g_isMS) {
+				if(isPrnMS)
+					Log.prn(1, "recover "+cur_t);
+				g_isMS=false;
+				initMode();
+			}
 			if(isSchTab)
 				Log.prn(1, " "+cur_t);
 			cur_t++;
 		}
 		return 1;
 	}
-	private void initMode() {
-		g_algo.initMode(g_tm);
-//		g_tm.prnHI();
-	}
+	protected abstract void initMode();
 	private void msCheck(int cur_t){
 		boolean isMS=false;
 		int tid=g_js.msCheck();
@@ -68,6 +66,7 @@ public class TaskSimul {
 		if(isMS){
 			if(isPrnMS)
 				Log.prn(1, "t:"+cur_t+" mode-switch "+tid);
+			g_isMS=true;
 			modeswitch(tid);
 		} else {
 			g_js.getJM().removeCur();
@@ -115,35 +114,16 @@ public class TaskSimul {
 		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
 	
-	public void modeswitch(int tid) {
+	public void modeswitch(int tid){
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI) 	{
 			Log.prn(9, "task "+tid+" is not HI-task, cannot mode-switch");
 			System.exit(0);
 		}
-		g_js.getJM().modeswitch(tid);
-		g_tm.modeswitch(tid);
-		dropDecision();
+		modeswitch_in(tid);
 	}
+	protected abstract void modeswitch_in(int tid);
 	
-	private void dropDecision() {
-		double ru=g_tm.getRU();
-		while(ru>=1+MUtil.err){
-//			Log.prn(1, "RU"+ru);
-			int id=g_tm.findDropTask();
-			if(id==-1){
-				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
-				System.exit(1);
-			}
-			drop(id);
-			if(isPrnMS)
-				Log.prn(1, "drop "+id);
-//			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
-			ru-=g_tm.getReclaimUtil(id);
-		}
-//		Log.prn(1, ""+ru);
-		
-	}
 	
 	public void drop(int tid) {
 		Task tsk=g_tm.getTask(tid);

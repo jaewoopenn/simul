@@ -77,33 +77,6 @@ public class TaskMng {
 
 
 
-	public double getRU() {
-		double util=0;
-		for(Task t:g_tasks)	{
-			util+=getRU(t);
-		}
-		return util;
-	}
-
-
-
-	private double getRU(Task t) {
-		if(t.is_HI){
-			if(t.is_HM)
-				return t.getHiUtil();
-			else
-				return t.getLoRUtil();
-		} 
-		if(t.is_dropped)
-			return g_info.getX()*t.getLoUtil();
-		else
-			return t.getLoUtil();
-	}
-	public double getReclaimUtil(int tid){
-		Task t=g_tasks[tid];
-		return (1-g_info.getX())*t.getLoUtil();
-	}
-
 
 	public int findDropTask() {
 		for(Task t:g_lo_tasks){
@@ -137,6 +110,41 @@ public class TaskMng {
 		return g_hi_tasks;
 	}
 
+	public double getRU() {
+		double util=0;
+		for(Task t:g_tasks)	{
+			util+=getRU(t);
+		}
+		return util;
+	}
+
+	public double getUtil() {
+		double util=0;
+		for(Task t:g_tasks)	{
+			util+=getRU(t);
+		}
+		return util;
+	}
+
+
+	private double getRU(Task t) {
+		if(t.is_HI){
+			if(t.is_HM)
+				return t.getHiUtil();
+			else
+				return t.getLoRUtil();
+		} 
+		if(t.is_dropped)
+			return g_info.getX()*t.getLoUtil();
+		else
+			return t.getLoUtil();
+	}
+	public double getReclaimUtil(int tid){
+		Task t=g_tasks[tid];
+		return (1-g_info.getX())*t.getLoUtil();
+	}
+
+	
 
 //	public int getPt(int i) {
 //	return g_tasks[i].period;

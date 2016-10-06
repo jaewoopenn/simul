@@ -85,7 +85,7 @@ public class JobSimul {
 		int out_type=0;
 		if(j==null)	{
 			g_jm.prnJob(null,out_type);
-			return true;
+			return false;
 		}
 		if(j.exec<=1) {
 			out_type=1;

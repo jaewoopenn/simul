@@ -2,59 +2,54 @@ package testExp;
 
 
 import exp.ExpSimul;
+import exp.Platform;
 import simul.ConfigGen;
 import simul.SimGen;
 import utilSim.Log;
 import utilSim.TEngine;
 
-public class Combined1 {
-	public static int idx=1;
+public class Platform1 {
+	public static int idx=3;
 //	public static int idx=-1;
-	public static int st=70;
-	public static int num=6;
-	public static int durations=10000;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
+	
+	private Platform getP1() {
+		Platform p=new Platform();
+		p.setCfg_fn("exp/cfg/cfg");
+		p.setStartUtil(70);
+		p.setSize(1);
+		p.setDuration(1000);
+		return p;
+	}
 	public int test1() 
 	{
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "exp/ts");
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("num","100");
-		eg.genRange("exp/cfg/cfg",st,5,num);
+		eg.setParam("num","10");
+		Platform p=getP1();
+		p.writeCfg(eg);
 		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		for(int i=0;i<num;i++){
-			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
-			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
-			eg.gen();
-		}
-		Log.prn(3, "task");
+		Platform p=getP1();
+		p.genTS();
 		return 1;
 	}
 	public int test3() 
 	{
-		for(int i=0;i<num;i++){
-			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
-			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
-			eg.setDuration(durations);
-			int size=eg.size();
-			int ret=eg.simul();
-			Log.prn(3, (st+5+i*5)+":"+ret+"/"+size+","+(ret*1.0/size));
-		}
+		Platform p=getP1();
+		p.anal();
 		return 1;
 	}
 	public  int test4() 
 	{
-		test1();
-		test2();
-		test3();
+		Platform p=getP1();
+		p.simul();
 		return 1;
 	}
 	public  int test5() 
@@ -84,9 +79,9 @@ public class Combined1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Combined1.class;
-		Combined1 m=new Combined1();
-		int[] aret=Combined1.gret;
+		Class c = Platform1.class;
+		Platform1 m=new Platform1();
+		int[] aret=Platform1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

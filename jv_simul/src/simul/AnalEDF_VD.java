@@ -52,5 +52,8 @@ public class AnalEDF_VD extends Anal {
 		return v;
 	}
 
+	public double getX() {
+		return glo_x;
+	}
 
 }

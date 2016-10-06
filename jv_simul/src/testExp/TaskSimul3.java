@@ -2,8 +2,12 @@ package testExp;
 
 import basic.TaskMng;
 import exp.TaskSimul;
+import exp.TaskSimul_EDF_AT;
+import exp.TaskSimul_EDF_AT_S;
+import exp.TaskSimul_EDF_VD;
 import simul.AnalEDF_AT;
 import simul.AnalEDF_AT_S;
+import simul.AnalEDF_VD;
 import simul.ConfigGen;
 import simul.SimGen;
 import taskSetEx.TS_MC1;
@@ -12,7 +16,7 @@ import utilSim.TEngine;
 
 // MC 
 public class TaskSimul3 {
-	public static int idx=5;
+	public static int idx=8;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -22,7 +26,7 @@ public class TaskSimul3 {
 		int et=24;
 		TaskMng tm=TS_MC1.ts3();
 		tm.setX(0.5);
-		TaskSimul ts=new TaskSimul(tm);
+		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		ts.simulBy(0, 2);
 		ts.modeswitch(3);
 		ts.simulEnd(2,et);
@@ -33,7 +37,7 @@ public class TaskSimul3 {
 		TaskMng tm=TS_MC1.ts3();
 		tm.getInfo().setProb_ms(0.6);
 		tm.setX(1.0/3);
-		TaskSimul ts=new TaskSimul(tm);
+		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		ts.simulEnd(0,et);
 		return -1;
 	}
@@ -42,7 +46,7 @@ public class TaskSimul3 {
 		TaskMng tm=TS_MC1.ts3();
 		tm.getInfo().setProb_ms(0.4); // set prob
 		tm.setX(1.0/3);
-		TaskSimul ts=new TaskSimul(tm);
+		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		ts.simulEnd(0,et);
 		return -1;
 	}
@@ -63,7 +67,7 @@ public class TaskSimul3 {
 		tm.setX(a.getX());
 		
 		tm.getInfo().setProb_ms(0.1); // set prob
-		TaskSimul ts=new TaskSimul(tm);
+		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);
@@ -85,10 +89,40 @@ public class TaskSimul3 {
 		return -1;
 	}
 	public  int test7()	{
-		return -1;
+		int et=100;
+		TaskMng tm=TS_MC1.ts3();
+		AnalEDF_VD a=new AnalEDF_VD();
+		a.init(tm);
+		a.prepare();
+		if(!a.isScheduable()){
+			Log.prn(2, "not schedulable");
+			return 1;
+		}
+		tm.setX(a.getX());
+		
+		tm.getInfo().setProb_ms(0.1); // set prob
+		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(tm);
+//		ts.isSchTab=false;
+//		ts.isPrnMS=false;
+		ts.simulEnd(0,et);
+		Log.prn(1,"DMR:"+ts.getDMR());
+		return 1;
 	}
 	public  int test8()	{
-		return -1;
+		int et=1000;
+		TaskMng tm=TS_MC1.ts3();
+		AnalEDF_VD a=new AnalEDF_VD();
+		a.init(tm);
+		a.prepare();
+		tm.setX(a.getX());
+		
+		tm.getInfo().setProb_ms(0.1); // set prob
+		TaskSimul_EDF_AT ts=new TaskSimul_EDF_AT(tm);
+//		ts.isSchTab=false;
+//		ts.isPrnMS=false;
+		ts.simulEnd(0,et);
+		Log.prn(1,"DMR:"+ts.getDMR());
+		return 1;
 	}
 	public  int test9() {
 		return -1;

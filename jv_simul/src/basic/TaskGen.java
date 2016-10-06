@@ -61,10 +61,10 @@ public class TaskGen {
 	}
 
 
-	public double getUtil(){
+	private double getUtil(){
 		double util=0;
 		for(Task t:g_tasks){
-			util+=t.getLoUtil();
+			util+=t.getHiUtil();
 		}
 		return util;
 	}

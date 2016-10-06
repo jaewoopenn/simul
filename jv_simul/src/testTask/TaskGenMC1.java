@@ -65,10 +65,10 @@ public class TaskGenMC1 {
 		int id=0;
 		while(true){
 			tg.generate();
-			double u=tg.getUtil();
 			TaskMngPre tm=new TaskMngPre();
 			tm.setTasks(tg.getAll());
 			TaskMng m=tm.freezeTasks();
+			double u=m.getUtil();
 			if(Analysis.anal_EDF_VD(m)==1) 
 				Log.prn(1, "id:"+id+" util:"+u+" Y");
 			else

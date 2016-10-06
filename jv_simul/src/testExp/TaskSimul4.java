@@ -1,8 +1,9 @@
 package testExp;
 
 import basic.TaskMng;
-import exp.AlgoEDF_AT_S;
 import exp.TaskSimul;
+import exp.TaskSimul_EDF_AT;
+import exp.TaskSimul_EDF_AT_S;
 import simul.AnalEDF_AT;
 import simul.AnalEDF_AT_S;
 import simul.ConfigGen;
@@ -36,13 +37,14 @@ public class TaskSimul4 {
 		}
 		tm.setX(a.getX());
 		
-		tm.getInfo().setProb_ms(0.1); // set prob
-		TaskSimul ts=new TaskSimul(tm,new AlgoEDF_AT_S());
+		tm.getInfo().setProb_ms(0.4); // set prob
+//		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
+		TaskSimul_EDF_AT ts=new TaskSimul_EDF_AT(tm);
 		ts.isSchTab=false;
-		ts.isPrnMS=false;
+//		ts.isPrnMS=false;
 		ts.isPrnEnd=false;
 		ts.simulEnd(0,et);
-//		Log.prn(1,"DMR:"+ts.getDMR());
+		Log.prn(1,"DMR:"+ts.getDMR());
 	}
 	public int test2() 
 	{

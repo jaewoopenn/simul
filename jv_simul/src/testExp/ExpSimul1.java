@@ -15,8 +15,9 @@ public class ExpSimul1 {
 		cfg.readFile();
 		//cfg.prn(2);
 		ExpSimul eg=new ExpSimul(cfg);
+		eg.setDuration(100);
 		int size=eg.size();
-		int ret=eg.load(100);
+		int ret=eg.simul();
 		Log.prn(2, ret+"/"+size);
 		return 1;
 	}
