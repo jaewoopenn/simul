@@ -7,6 +7,7 @@ import basic.TaskMngPre;
 public class SimGen {
 	private TaskGenMC g_tg;
 	private ConfigGen g_cfg;
+	private boolean g_isCheck=false;
 	public SimGen(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
@@ -19,48 +20,43 @@ public class SimGen {
 		g_tg.setProbHI(g_cfg.readDbl("prob_hi"));
 		return g_cfg.readInt("num");
 	}
-	public int genSys(int i)
-	{
-		g_tg.generate();
-//		Log.prn(2, "util:"+tg.getMCUtil());
-		String fn=g_cfg.get_fn(i);
-		g_tg.writeFile(fn);
-		return 1;
+	public void setCheck(boolean g_isCheck) {
+		this.g_isCheck = g_isCheck;
 	}
-	public int genSys2(int i)
+	public void gen() {
+		int num=prepare();
+		int i=0;
+		while(i<num){
+//			Log.prn(2, i+"");
+			g_tg.generate();
+			int rs=check();
+			if(rs==0)
+				continue;
+			writeSys(i);
+			i++;
+		}
+		
+	}
+	public void gen2(){
+		setCheck(true);
+		gen();
+	}
+	
+	public int writeSys(int i)
 	{
-		g_tg.generate();
-//		Log.prn(2, "util:"+tg.getMCUtil());
-		TaskMngPre tm=new TaskMngPre();
-		tm.setTasks(g_tg.getAll());
-		TaskMng m=tm.freezeTasks();
-		int rs=Analysis.anal_EDF_VD(m);
-		if(rs==0)
-			return 0;
 		String fn=g_cfg.get_fn(i);
 		g_tg.writeFile(fn);
 		return 1;
 	}
 
-	public void gen() {
-		int num=prepare();
-		for(int i=0;i<num;i++){
-			genSys(i);
-		}
-		
+	private int check() {
+		if(!g_isCheck)
+			return 1;
+		TaskMngPre tm=new TaskMngPre();
+		tm.setTasks(g_tg.getAll());
+		TaskMng m=tm.freezeTasks();
+		return Analysis.anal_EDF_VD(m);
 	}
-	public void gen2() {
-		int num=prepare();
-		int i=0;
-		while(i<num){
-//			Log.prn(2, i+"");
-			int rs=genSys2(i);
-			if(rs==1)
-				i++;
-		}
-		
-	}
-	
 	public TaskMng genOne(){
 		g_tg.generate();
 		TaskMngPre tm=new TaskMngPre();

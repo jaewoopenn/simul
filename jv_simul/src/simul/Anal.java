@@ -21,5 +21,6 @@ public abstract class Anal {
 	
 	}
 	public abstract double getDropRate(double p);
+	public abstract double getX();
 
 }

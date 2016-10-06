@@ -88,6 +88,12 @@ public class AnalICG extends Anal {
 		v.toArray(ret);
 		return ret;
 	}
+
+	@Override
+	public double getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 

@@ -20,6 +20,12 @@ public class AnalEDF extends Anal {
 		return 0;
 	}
 
+	@Override
+	public double getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 

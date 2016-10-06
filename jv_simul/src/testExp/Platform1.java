@@ -10,14 +10,15 @@ public class Platform1 {
 	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=3;
+	public static int log_level=2;
 	
 	private Platform getP1() {
 		Platform p=new Platform();
 		p.setCfg_fn("exp/cfg/cfg");
-		p.setStartUtil(85);
+		p.setStartUtil(95);
 		p.setSize(1);
 		p.setDuration(1000);
+		p.setProb(0.5);
 		return p;
 	}
 	public int test1() 
@@ -41,13 +42,11 @@ public class Platform1 {
 	public int test3() 
 	{
 		Platform p=getP1();
-		p.anal();
+		p.simul();
 		return 1;
 	}
 	public  int test4() 
 	{
-		Platform p=getP1();
-		p.simul();
 		return 1;
 	}
 	public  int test5() 

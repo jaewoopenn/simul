@@ -8,8 +8,8 @@ import utilSim.MUtil;
 import utilSim.RUtil;
 
 public abstract class TaskSimul {
-	protected int g_Rel=0;
-	protected int g_Drop=0;
+	protected int g_Rel;
+	protected int g_Drop;
 	protected TaskMng g_tm;
 	protected JobSimul g_js;
 	protected RUtil g_rutil=new RUtil();
@@ -18,9 +18,21 @@ public abstract class TaskSimul {
 	public boolean isPrnMS=true;
 	public boolean isPrnEnd=true;
 
-	public TaskSimul(TaskMng m){
-		g_tm=m;
+	public TaskSimul(){
+		init();
+	}
+	public void init() {
 		g_js=new JobSimul();
+		g_Rel=0;
+		g_Drop=0;
+		g_isMS=false;
+	}
+	public TaskSimul(TaskMng m){
+		this();
+		g_tm=m;
+	}
+	public void setTm(TaskMng tm) {
+		this.g_tm = tm;
 	}
 
 	public int simulEnd(int st, int et) {

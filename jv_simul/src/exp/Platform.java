@@ -2,6 +2,7 @@ package exp;
 
 
 import basic.TaskMng;
+import simul.Anal;
 import simul.AnalEDF_AT_S;
 import simul.ConfigGen;
 import simul.SimGen;
@@ -12,6 +13,7 @@ public class Platform {
 	private int g_size;
 	private String g_cfg_fn;
 	private int g_dur;
+	private double g_prob;
 	public void writeCfg(ConfigGen g_cfg) {
 		int step=5;
 		for(int i=0;i<g_size;i++){
@@ -26,16 +28,16 @@ public class Platform {
 			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
-			eg.gen();
+			eg.gen2();
 		}
 		Log.prn(3, "task");
 		
 	}
-	public void simul() {
-		int ret;
+	public void simul_in(Anal an,TaskSimul ts){
+		double ret;
 
 		for(int i=0;i<g_size;i++){
-			int sum=0;
+			double sum=0;
 			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
@@ -43,38 +45,25 @@ public class Platform {
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				TaskMng tm=eg.loadTM(j);
-				Log.prn(2, ""+j);
-				ret=eg.anal(tm,new AnalEDF_AT_S());
-				if(ret==0){
-					continue;
-				}
-				ret=eg.simul(tm,new TaskSimul_EDF_AT_S(tm));
-				sum+=ret;
-			}
-
-			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+(sum*1.0/size));
-		}
-	}
-	public void anal() {
-		int ret;
-
-		for(int i=0;i<g_size;i++){
-			int sum=0;
-			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
-			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
-			eg.setDuration(g_dur);
-			int size=eg.size();
-			for(int j=0;j<size;j++){
-				TaskMng tm=eg.loadTM(j);
-				Log.prn(2, ""+j);
-				ret=eg.anal(tm,new AnalEDF_AT_S());
+				tm.getInfo().setProb_ms(g_prob); 
+				an.init(tm);
+				an.prepare();
+				tm.setX(an.getX());
+//				ret=eg.anal(tm,new AnalEDF_AT_S());
+//				if(ret==0){
+//					continue;
+//				}
+				ret=eg.simul(tm,ts);
+				Log.prn(2, j+","+ret);
 				sum+=ret;
 			}
 
 			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+(sum*1.0/size));
 		}
 		
+	}
+	public void simul() {
+		simul_in(new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
 	}
 
 	
@@ -89,7 +78,8 @@ public class Platform {
 	}
 	public void setDuration(int dur ) {
 		this.g_dur = dur;
-		
 	}
-
+	public void setProb(double p){
+		this.g_prob=p;
+	}
 }

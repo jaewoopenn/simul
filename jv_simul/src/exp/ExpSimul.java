@@ -35,17 +35,15 @@ public class ExpSimul {
 		boolean b=a.isScheduable();
 		return MUtil.btoi(b);
 	}
-	public int simul(TaskMng tm,TaskSimul ts){
-		double util=tm.getUtil();
+	public double simul(TaskMng tm,TaskSimul ts){
+		ts.setTm(tm);
+		ts.init();
 		int ret=ts.simulEnd(0,g_dur);
-		if(Log.isPrn(2))
-			System.out.format("util: %.3f ret: %d\n" ,util,ret);
-		if(util>1 && ret==1)
-			Log.prn(2,"util>1 but sch");
-		if(util<=1 && ret==0)
-			Log.prn(2,"util<=1 but not sch");
-		Log.prn(2, " util:"+util+" ret:"+ret);
-		return ret;
+		if(ret==0){
+			Log.prn(9, "error ExpSimul");
+			System.exit(1);
+		}
+		return ts.getDMR();
 	}
 
 	public void setDuration(int dur ) {
