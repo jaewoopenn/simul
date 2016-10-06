@@ -1,9 +1,6 @@
-package simul;
+package utilSim;
 
 import java.util.Vector;
-
-import utilSim.FUtil;
-import utilSim.Log;
 
 public class Script {
 	Vector<String> g_scr;

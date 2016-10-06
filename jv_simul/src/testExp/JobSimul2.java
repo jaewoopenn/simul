@@ -4,8 +4,8 @@ import exp.JobD;
 import exp.JobMng;
 import exp.JobSimul;
 import utilSim.TEngine;
-
-public class JobSimul1 {
+// RM
+public class JobSimul2 {
 	public static int log_level=1;
 //	public static int idx=-1;
 	public static int idx=2;
@@ -79,9 +79,9 @@ public class JobSimul1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = JobSimul1.class;
-		JobSimul1 m=new JobSimul1();
-		int[] aret=JobSimul1.gret;
+		Class c = JobSimul2.class;
+		JobSimul2 m=new JobSimul2();
+		int[] aret=JobSimul2.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

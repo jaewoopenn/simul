@@ -37,19 +37,20 @@ public class SimAnal {
 	}
 	
 	public double load3(int anal,double p) {
-		int num=g_cfg.readInt("num");
-		double v=0;
-//		num=100;
-		for(int i=0;i<num;i++){
-			TaskMng tm=load_one(i);
-//			int rs=Analysis.analEDF_VD(tm);
-//			if(rs==0){
-//				Log.err("err");
-//			}
-			v+=process2(tm,anal,p);
-			Log.prn(1, "v:"+v);
-		}
-		return v/num;	
+//		int num=g_cfg.readInt("num");
+//		double v=0;
+////		num=100;
+//		for(int i=0;i<num;i++){
+//			TaskMng tm=load_one(i);
+////			int rs=Analysis.analEDF_VD(tm);
+////			if(rs==0){
+////				Log.err("err");
+////			}
+//			v+=process2(tm,anal,p);
+//			Log.prn(1, "v:"+v);
+//		}
+//		return v/num;	
+		return 0;
 	}
 
 	
@@ -98,18 +99,18 @@ public class SimAnal {
 		}
 		return -1;
 	}
-	public double process2(TaskMng tm, int anal,double p) {
-		switch(anal)
-		{
-		case 6:
-			return Analysis.getDrop_EDF_VD(tm,p);
-		case 7:
-			return Analysis.getDrop_EDF_TM_E(tm,p);
-		default:
-			Log.prn(2,"anal ID check");
-		}
-		return -1;
-	}
+//	public double process2(TaskMng tm, int anal,double p) {
+//		switch(anal)
+//		{
+//		case 6:
+//			return Analysis.getDrop_EDF_VD(tm,p);
+//		case 7:
+//			return Analysis.getDrop_EDF_TM_E(tm,p);
+//		default:
+//			Log.prn(2,"anal ID check");
+//		}
+//		return -1;
+//	}
 
 	
 }

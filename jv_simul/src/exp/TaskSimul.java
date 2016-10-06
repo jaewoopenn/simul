@@ -100,18 +100,18 @@ public abstract class TaskSimul {
 			Log.prnc(1, " ");
 	}
 	
-	private Job relJob(Task tsk, int cur_t) {
+	private JobD relJob(Task tsk, int cur_t) {
 		if(tsk.is_HI){
 			if(tsk.is_HM){
-				return new Job(tsk.tid, 
+				return new JobD(tsk.tid, 
 						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
 			} else {
-				return new Job(tsk.tid, 
+				return new JobD(tsk.tid, 
 						cur_t+tsk.period,tsk.c_l,
 						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 			}
 		}
-		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
+		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
 	
 	public void modeswitch(int tid){

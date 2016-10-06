@@ -53,8 +53,8 @@ public class SimGen2 {
 		cfg.readFile();
 		SimAnal eg=new SimAnal(cfg);
 		TaskMng tm=eg.load_one(8);
-		double v=eg.process2(tm,7,0.05);
-		Log.prn(2, "avg:"+v);
+//		double v=eg.process2(tm,7,0.05);
+//		Log.prn(2, "avg:"+v);
 		return 0;
 	}
 	public  int test5() //

@@ -12,7 +12,7 @@ public class JobSimul {
 		g_jm=m;
 	}
 	
-	public void add(Job j){
+	public void add(JobD j){
 		g_jm.add(j);
 	}
 	public int simul(int et){
@@ -53,7 +53,7 @@ public class JobSimul {
 	
 	
 	public boolean dlCheck(int cur_t){
-		Job j=g_jm.getCur();
+		JobD j=g_jm.getCur();
 		if(j==null)
 			return true;
 		if(cur_t<j.dl) 
@@ -62,7 +62,7 @@ public class JobSimul {
 		return false;
 	}
 	public int msCheck() { // before dlcheck
-		Job j;
+		JobD j;
 		while(true){
 			j=g_jm.getCur();
 			if(j==null)
@@ -81,7 +81,7 @@ public class JobSimul {
 	}
 	
 	public boolean progress(int cur_t, boolean isSchTab){
-		Job j=g_jm.getCur();
+		JobD j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)	{
 			g_jm.prnJob(null,out_type);

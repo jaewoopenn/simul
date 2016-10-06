@@ -1,6 +1,6 @@
 package test;
 
-import simul.Script;
+import utilSim.Script;
 import utilSim.TEngine;
 
 public class Script1 {
