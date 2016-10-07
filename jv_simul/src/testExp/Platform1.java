@@ -10,7 +10,7 @@ public class Platform1 {
 	public static int idx=4;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=2;
+	public static int log_level=1;
 	
 	private Platform getP1() {
 		Platform p=new Platform();
@@ -20,9 +20,12 @@ public class Platform1 {
 		p.setSize(10);
 //		p.setStartUtil(80);
 //		p.setSize(3);
-		p.setDuration(1000);
+		p.setDuration(10000);
+//		p.setDuration(1000);
 //		p.setProb(0.1);
-		p.setProb(0.4);
+//		p.setProb(0.4);
+//		p.setProb(0.7);
+		p.setProb(1.0);
 		return p;
 	}
 	public int test1() 
@@ -30,7 +33,8 @@ public class Platform1 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("num","10");
+		eg.setParam("num","100");
+//		eg.setParam("num","10");
 		Platform p=getP1();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
@@ -52,9 +56,10 @@ public class Platform1 {
 	public  int test4() 
 	{
 		Platform p=getP1();
-		for(int i=0;i<10;i++)
-			p.simul_one(0,9,i);
-//		p.simul_one(0,5,8);
+//		for(int i=63;i<100;i++)
+//			p.simul_one(1,5,i);
+//		p.simul_one(1,5,62);
+		p.simul_one(1,5,63);
 //		p.simul_one(0,9,8);
 		return 1;
 	}
