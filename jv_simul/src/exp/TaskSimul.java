@@ -131,7 +131,7 @@ public abstract class TaskSimul {
 			Log.prn(9, "task "+tid+" is not LO-task, cannot drop");
 			System.exit(0);
 		}
-		g_js.getJM().drop(tid);
+		g_si.drop+=g_js.getJM().drop(tid);
 		g_tm.drop(tid);
 	}
 	

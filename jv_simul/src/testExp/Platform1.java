@@ -7,10 +7,10 @@ import utilSim.Log;
 import utilSim.TEngine;
 
 public class Platform1 {
-	public static int idx=3;
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=3;
+	public static int log_level=2;
 	
 	private Platform getP1() {
 		Platform p=new Platform();
@@ -20,7 +20,7 @@ public class Platform1 {
 		p.setSize(10);
 //		p.setStartUtil(80);
 //		p.setSize(3);
-		p.setDuration(10000);
+		p.setDuration(1000);
 //		p.setProb(0.1);
 		p.setProb(0.4);
 		return p;
@@ -30,7 +30,7 @@ public class Platform1 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("num","100");
+		eg.setParam("num","10");
 		Platform p=getP1();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
@@ -52,7 +52,10 @@ public class Platform1 {
 	public  int test4() 
 	{
 		Platform p=getP1();
-		p.simul_one(0,1,82);
+		for(int i=0;i<10;i++)
+			p.simul_one(0,9,i);
+//		p.simul_one(0,5,8);
+//		p.simul_one(0,9,8);
 		return 1;
 	}
 	public  int test5() 

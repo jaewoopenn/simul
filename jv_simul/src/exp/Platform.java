@@ -113,7 +113,7 @@ public class Platform {
 		ts.setTm(tm);
 		SimulInfo si=eg.simul(ts);
 		ret=si.getDMR();
-		Log.prn(2, set+","+no+","+ret);
+		Log.prn(2, set+","+no+","+ret+","+si.ms);
 		
 	}
 	private void write_x_axis() {

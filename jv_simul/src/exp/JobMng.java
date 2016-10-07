@@ -77,12 +77,15 @@ public class JobMng {
 		}
 		
 	}
-	public void drop(int tid) {
+	public int drop(int tid) {
+		int s=0;
 		for(AbsJob j:g_jobs){
-			if(j.tid==tid) {
+			if(j.tid==tid&&j.exec>0) {
 				j.exec=0;
+				s++;
 			}
 		}
+		return s;
 		
 	}
 
