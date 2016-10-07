@@ -10,49 +10,65 @@ public class Platform1 {
 	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=3;
-	
-	private Platform getP1() {
+	public static int log_level=2;
+
+	private Platform getCommmon(){
 		Platform p=new Platform();
 		p.setPath("exp");
 		p.setCfg_fn("cfg/cfg");
-		p.setStartUtil(50);
-		p.setSize(10);
-//		p.setStartUtil(80);
-//		p.setSize(3);
-		p.setDuration(10000);
-//		p.setDuration(1000);
+//		p.setDuration(10000);
+		p.setDuration(1000);
+		p.setSysNum(100);
 //		p.setProb(0.1);
-//		p.setProb(0.4);
-		p.setProb(0.7);
+		p.setProb(0.4);
+//		p.setProb(0.7);
 //		p.setProb(1.0);
 //		p.setRS("1");
-//		p.setRS("4");
-		p.setRS("7");
+		p.setRS("4");
+//		p.setRS("7");
+		return p;
+		
+	}
+	
+	private Platform getP1() {
+		Platform p=getCommmon();
+		p.setTSName("util");
+		p.setKinds(0);
+		p.setStart(50);
+		p.setSize(10);
+		p.setStep(5);
 		return p;
 	}
+	private Platform getP2() {
+		Platform p=getCommmon();
+		p.setTSName("prob_hi");
+		p.setKinds(1);
+		p.setStart(10);
+		p.setSize(9);
+		p.setStep(10);
+		return p;
+	}
+
+	
 	public int test1() 
 	{
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("num","1000");
-//		eg.setParam("num","100");
-//		eg.setParam("num","10");
-		Platform p=getP1();
+		Platform p=getP2();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		Platform p=getP1();
+		Platform p=getP2();
 		p.genTS();
 		return 1;
 	}
 	public int test3() 
 	{
-		Platform p=getP1();
+		Platform p=getP2();
 //		p.isWrite=false;
 		p.simul();
 		return 1;
