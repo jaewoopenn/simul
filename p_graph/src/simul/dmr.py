@@ -39,7 +39,6 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(0.55,1.0)
-#     mp.log()
 #     mp.ylim(0, 1.05)
     mp.ylim(0, 0.3)
     mp.legend3()

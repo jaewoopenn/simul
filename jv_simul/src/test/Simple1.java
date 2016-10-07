@@ -42,10 +42,10 @@ public class Simple1 {
 	public  int test4() 
 	{
 		try{
-//		    String[] cmdArray = {"C:/Python27/python.exe", 
-//		    		"c:/my/py/mail.py","Alarm 111"};    
 		    String[] cmdArray = {"C:/Python27/python.exe", 
-		    		"c:/my/py/test.py"};    
+		    		"c:/my/py/mail.py","Alarm 111"};    
+//		    String[] cmdArray = {"C:/Python27/python.exe", 
+//		    		"c:/my/py/test.py"};    
 		    Process p =Runtime.getRuntime().exec(cmdArray);
 		    BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		    String line = null;
