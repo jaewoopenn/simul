@@ -4,6 +4,7 @@ package exp;
 import basic.TaskMng;
 import simul.Anal;
 import simul.AnalEDF_AT_S;
+import simul.AnalEDF_VD;
 import simul.ConfigGen;
 import simul.SimGen;
 import utilSim.Log;
@@ -64,6 +65,7 @@ public class Platform {
 	}
 	public void simul() {
 		simul_in(new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+		simul_in(new AnalEDF_VD(),new TaskSimul_EDF_VD());
 	}
 
 	

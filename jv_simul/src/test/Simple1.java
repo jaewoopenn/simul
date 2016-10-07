@@ -1,4 +1,7 @@
 package test;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import utilSim.Log;
 import utilSim.MUtil;
 import utilSim.TEngine;
@@ -6,7 +9,7 @@ import utilSim.TEngine;
 public class Simple1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=4;
 	public static int total=10;
 	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
 	public int test1() // error config
@@ -38,6 +41,20 @@ public class Simple1 {
 	}
 	public  int test4() 
 	{
+		try{
+//		    String[] cmdArray = {"C:/Python27/python.exe", 
+//		    		"c:/my/py/mail.py","Alarm 111"};    
+		    String[] cmdArray = {"C:/Python27/python.exe", 
+		    		"c:/my/py/test.py"};    
+		    Process p =Runtime.getRuntime().exec(cmdArray);
+		    BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		    String line = null;
+		   
+		    while((line = br.readLine()) != null){
+		        System.out.println(line);
+		    }		}catch(Exception e){
+		    System.out.println(e);
+		}
 		return 0;
 	}
 	public  int test5() 
