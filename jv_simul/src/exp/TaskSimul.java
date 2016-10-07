@@ -29,10 +29,11 @@ public abstract class TaskSimul {
 	}
 	public TaskSimul(TaskMng m){
 		this();
-		g_tm=m;
+		this.g_tm=m;
 	}
 	public void setTm(TaskMng tm) {
 		this.g_tm = tm;
+		tm.prn();
 	}
 
 	public int simulEnd(int st, int et) {

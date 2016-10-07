@@ -35,8 +35,7 @@ public class ExpSimul {
 		boolean b=a.isScheduable();
 		return MUtil.btoi(b);
 	}
-	public double simul(TaskMng tm,TaskSimul ts){
-		ts.setTm(tm);
+	public double simul(TaskSimul ts){
 		ts.init();
 		int ret=ts.simulEnd(0,g_dur);
 		if(ret==0){

@@ -17,6 +17,7 @@ public class Platform {
 	private int g_dur;
 	private double g_prob;
 	private String g_path;
+	public boolean isWrite=true;
 	public void writeCfg(ConfigGen g_cfg) {
 		g_cfg.setParam("subfix", g_path+"/ts");
 		int step=5;
@@ -39,8 +40,10 @@ public class Platform {
 	}
 	public void simul_in(int no,Anal an,TaskSimul ts){
 		double ret;
-		FUtil fu=new FUtil(g_path+"/rs/sim"+no+".txt");
-
+		FUtil fu=null;
+		if(isWrite)
+			fu=new FUtil(g_path+"/rs/sim"+no+".txt");
+		ts.isSchTab=false;
 		for(int i=0;i<g_size;i++){
 			double sum=0;
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+i+".txt");
@@ -58,24 +61,51 @@ public class Platform {
 //				if(ret==0){
 //					continue;
 //				}
-				ret=eg.simul(tm,ts);
+				ts.setTm(tm);
+				ret=eg.simul(ts);
 				Log.prn(2, j+","+ret);
 				sum+=ret;
 			}
 			double avg=(sum*1.0/size);
 			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+avg);
-			fu.print(avg+"");
+			if(isWrite)
+				fu.print(avg+"");
 		}
-		fu.save();
+		if(isWrite)
+			fu.save();
 		
 	}
 	public void simul() {
-		write_x_axis();
+//		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
-		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+//		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
 	}
 
+	public void simul_one(int anal, int set, int no) {
+		if(anal==0)
+			simul_in_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
+		else
+			simul_in_one(new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S(),set,no);
+	}
 	
+	private void simul_in_one(Anal an,
+			TaskSimul ts, int set, int no) {
+		double ret;
+
+		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+set+".txt");
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		eg.setDuration(g_dur);
+		TaskMng tm=eg.loadTM(no);
+		tm.getInfo().setProb_ms(g_prob); 
+		an.init(tm);
+		an.prepare();
+		tm.setX(an.getX());
+		ts.setTm(tm);
+		ret=eg.simul(ts);
+		Log.prn(2, set+","+no+","+ret);
+		
+	}
 	private void write_x_axis() {
 		FUtil fu=new FUtil(g_path+"/rs/x.txt");
 
