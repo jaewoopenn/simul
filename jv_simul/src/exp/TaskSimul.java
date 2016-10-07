@@ -31,7 +31,7 @@ public abstract class TaskSimul {
 	}
 	public void setTm(TaskMng tm) {
 		this.g_tm = tm;
-		tm.prn();
+//		tm.prn();
 	}
 
 	public int simulEnd(int st, int et) {

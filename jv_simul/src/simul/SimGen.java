@@ -50,11 +50,13 @@ public class SimGen {
 	}
 
 	private int check() {
-		if(!g_isCheck)
-			return 1;
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(g_tg.getAll());
 		TaskMng m=tm.freezeTasks();
+		if(tm.g_info.getLo_size()==0) return 0;
+		if(tm.g_info.getHi_size()==0) return 0;
+		if(!g_isCheck)
+			return 1;
 		return Analysis.anal_EDF_VD(m);
 	}
 	public TaskMng genOne(){

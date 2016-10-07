@@ -5,6 +5,7 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
+    RS="4"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']
@@ -23,12 +24,12 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="exp/rs/sim"+str(gl.data[i])+".txt"
+        fn="exp/rs/sim_"+gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
 def xiter():
-    fn="exp/rs/x.txt"
+    fn="exp/rs/sim_"+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def main():
@@ -40,7 +41,7 @@ def main():
         no+=1
     mp.xlim(0.55,1.0)
 #     mp.ylim(0, 1.05)
-    mp.ylim(0, 0.5)
+    mp.ylim(0, 0.65)
     mp.legend3()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
