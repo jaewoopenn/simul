@@ -29,7 +29,7 @@ public class Platform1 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("num","100");
+		eg.setParam("num","10");
 		Platform p=getP1();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
