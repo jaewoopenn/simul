@@ -3,10 +3,10 @@ package exp;
 
 
 public class SimulInfo {
-	public int g_Rel;
-	public int g_Drop;
-
+	public int rel;
+	public int drop;
+	public int ms;
 	public double getDMR(){
-		return (double)g_Drop/g_Rel;
+		return (double)drop/rel;
 	}
 }

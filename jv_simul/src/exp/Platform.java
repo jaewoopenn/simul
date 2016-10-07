@@ -46,6 +46,7 @@ public class Platform {
 		ts.isSchTab=false;
 		for(int i=0;i<g_size;i++){
 			double sum=0;
+			int sum_ms=0;
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+i+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
@@ -62,12 +63,15 @@ public class Platform {
 //					continue;
 //				}
 				ts.setTm(tm);
-				ret=eg.simul(ts);
-				Log.prn(2, j+","+ret);
+				SimulInfo si=eg.simul(ts);
+				ret=si.getDMR();
+				Log.prn(2, j+","+ret+","+si.ms);
 				sum+=ret;
+				sum_ms+=si.ms;
 			}
-			double avg=(sum*1.0/size);
-			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+avg);
+			double avg=sum/size;
+			double avg_ms=(sum_ms*1.0/size);
+			Log.prn(3, (g_startUtil+5+i*5)+":"+avg+","+avg_ms);
 			if(isWrite)
 				fu.print(avg+"");
 		}
@@ -107,7 +111,8 @@ public class Platform {
 		an.prepare();
 		tm.setX(an.getX());
 		ts.setTm(tm);
-		ret=eg.simul(ts);
+		SimulInfo si=eg.simul(ts);
+		ret=si.getDMR();
 		Log.prn(2, set+","+no+","+ret);
 		
 	}

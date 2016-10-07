@@ -35,14 +35,14 @@ public class ExpSimul {
 		boolean b=a.isScheduable();
 		return MUtil.btoi(b);
 	}
-	public double simul(TaskSimul ts){
+	public SimulInfo simul(TaskSimul ts){
 		ts.init();
 		int ret=ts.simulEnd(0,g_dur);
 		if(ret==0){
 			Log.prn(9, "error ExpSimul");
 			System.exit(1);
 		}
-		return ts.getSI().getDMR();
+		return ts.getSI();
 	}
 
 	public void setDuration(int dur ) {

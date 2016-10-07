@@ -95,9 +95,9 @@ public abstract class TaskSimul {
 				continue;
 			}
 			if(!tsk.is_HI){
-				g_si.g_Rel++;
+				g_si.rel++;
 				if(tsk.is_dropped){
-					g_si.g_Drop++;
+					g_si.drop++;
 					if(isSchTab)
 						Log.prnc(1,"-");
 					continue;
@@ -115,6 +115,7 @@ public abstract class TaskSimul {
 	
 	public void modeswitch(int tid){
 		Task tsk=g_tm.getTask(tid);
+		g_si.ms++;
 		if(!tsk.is_HI) 	{
 			Log.prn(9, "task "+tid+" is not HI-task, cannot mode-switch");
 			System.exit(0);
