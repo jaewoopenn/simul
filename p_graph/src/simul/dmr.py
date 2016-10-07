@@ -5,7 +5,7 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="4"
+    RS="7"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']
@@ -44,7 +44,7 @@ def main():
     mp.ylim(0, 0.65)
     mp.legend3()
     mp.xlabel("Utilization Bound")
-    mp.ylabel("Acceptance Ratio")
+    mp.ylabel("Deadline Miss Ratio")
     print "hihi"
     mp.show()
 

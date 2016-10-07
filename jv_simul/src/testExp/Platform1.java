@@ -23,12 +23,12 @@ public class Platform1 {
 		p.setDuration(10000);
 //		p.setDuration(1000);
 //		p.setProb(0.1);
-		p.setProb(0.4);
-//		p.setProb(0.7);
+//		p.setProb(0.4);
+		p.setProb(0.7);
 //		p.setProb(1.0);
 //		p.setRS("1");
-		p.setRS("4");
-//		p.setRS("7");
+//		p.setRS("4");
+		p.setRS("7");
 		return p;
 	}
 	public int test1() 
