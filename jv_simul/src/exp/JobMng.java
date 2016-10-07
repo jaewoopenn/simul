@@ -71,6 +71,7 @@ public class JobMng {
 		for(AbsJob j:g_jobs){
 			if(j.tid==tid) {
 				j.exec=j.exec+j.add_exec;
+				((JobD)j).vd=j.dl;
 				j.add_exec=0;
 			}
 		}
