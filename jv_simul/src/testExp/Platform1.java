@@ -10,13 +10,14 @@ public class Platform1 {
 	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=2;
+	public static int log_level=3;
 	
 	private Platform getP1() {
 		Platform p=new Platform();
-		p.setCfg_fn("exp/cfg/cfg");
-		p.setStartUtil(95);
-		p.setSize(1);
+		p.setPath("exp");
+		p.setCfg_fn("cfg/cfg");
+		p.setStartUtil(85);
+		p.setSize(3);
 		p.setDuration(1000);
 		p.setProb(0.5);
 		return p;
@@ -24,10 +25,9 @@ public class Platform1 {
 	public int test1() 
 	{
 		ConfigGen eg=ConfigGen.getCfg();
-		eg.setParam("subfix", "exp/ts");
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("num","10");
+		eg.setParam("num","100");
 		Platform p=getP1();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");

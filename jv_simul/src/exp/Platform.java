@@ -7,6 +7,7 @@ import simul.AnalEDF_AT_S;
 import simul.AnalEDF_VD;
 import simul.ConfigGen;
 import simul.SimGen;
+import utilSim.FUtil;
 import utilSim.Log;
 
 public class Platform {
@@ -15,18 +16,20 @@ public class Platform {
 	private String g_cfg_fn;
 	private int g_dur;
 	private double g_prob;
+	private String g_path;
 	public void writeCfg(ConfigGen g_cfg) {
+		g_cfg.setParam("subfix", g_path+"/ts");
 		int step=5;
 		for(int i=0;i<g_size;i++){
 			g_cfg.setParam("u_lb", (i*step+g_startUtil)*1.0/100+"");
 			g_cfg.setParam("u_ub", (i*step+g_startUtil+5)*1.0/100+"");
 			g_cfg.setParam("mod", (i*step+g_startUtil+5)+"");
-			g_cfg.write(g_cfg_fn+"_"+i+".txt");
+			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+i+".txt");
 		}
 	}
 	public void genTS() {
 		for(int i=0;i<g_size;i++){
-			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+i+".txt");
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 			eg.gen2();
@@ -34,12 +37,13 @@ public class Platform {
 		Log.prn(3, "task");
 		
 	}
-	public void simul_in(Anal an,TaskSimul ts){
+	public void simul_in(int no,Anal an,TaskSimul ts){
 		double ret;
+		FUtil fu=new FUtil(g_path+"/rs/sim"+no+".txt");
 
 		for(int i=0;i<g_size;i++){
 			double sum=0;
-			ConfigGen cfg=new ConfigGen("exp/cfg/cfg_"+i+".txt");
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+i+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
 			eg.setDuration(g_dur);
@@ -58,28 +62,42 @@ public class Platform {
 				Log.prn(2, j+","+ret);
 				sum+=ret;
 			}
-
-			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+(sum*1.0/size));
+			double avg=(sum*1.0/size);
+			Log.prn(3, (g_startUtil+5+i*5)+":"+sum+"/"+size+","+avg);
+			fu.print(avg+"");
 		}
+		fu.save();
 		
 	}
 	public void simul() {
-		simul_in(new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
-		simul_in(new AnalEDF_VD(),new TaskSimul_EDF_VD());
+		write_x_axis();
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
+		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
 	}
 
 	
+	private void write_x_axis() {
+		FUtil fu=new FUtil(g_path+"/rs/x.txt");
+
+		for(int i=0;i<g_size;i++){
+			fu.print((double)(g_startUtil+5+i*5)/100+"");
+		}		
+		fu.save();
+	}
 	public void setStartUtil(int g_startUtil) {
 		this.g_startUtil = g_startUtil;
 	}
-	public void setSize(int g_size) {
-		this.g_size = g_size;
+	public void setSize(int s) {
+		this.g_size = s;
 	}
-	public void setCfg_fn(String g_cfg_fn) {
-		this.g_cfg_fn = g_cfg_fn;
+	public void setCfg_fn(String t) {
+		this.g_cfg_fn = t;
 	}
-	public void setDuration(int dur ) {
-		this.g_dur = dur;
+	public void setPath(String t) {
+		this.g_path = t;
+	}
+	public void setDuration(int d ) {
+		this.g_dur = d;
 	}
 	public void setProb(double p){
 		this.g_prob=p;
