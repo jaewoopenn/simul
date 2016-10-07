@@ -8,8 +8,7 @@ import utilSim.MUtil;
 import utilSim.RUtil;
 
 public abstract class TaskSimul {
-	protected int g_Rel;
-	protected int g_Drop;
+	protected SimulInfo g_si;
 	protected TaskMng g_tm;
 	protected JobSimul g_js;
 	protected RUtil g_rutil=new RUtil();
@@ -23,8 +22,7 @@ public abstract class TaskSimul {
 	}
 	public void init() {
 		g_js=new JobSimul();
-		g_Rel=0;
-		g_Drop=0;
+		g_si=new SimulInfo();
 		g_isMS=false;
 	}
 	public TaskSimul(TaskMng m){
@@ -33,7 +31,7 @@ public abstract class TaskSimul {
 	}
 	public void setTm(TaskMng tm) {
 		this.g_tm = tm;
-		tm.prn();
+//		tm.prn();
 	}
 
 	public int simulEnd(int st, int et) {
@@ -97,9 +95,9 @@ public abstract class TaskSimul {
 				continue;
 			}
 			if(!tsk.is_HI){
-				g_Rel++;
+				g_si.g_Rel++;
 				if(tsk.is_dropped){
-					g_Drop++;
+					g_si.g_Drop++;
 					if(isSchTab)
 						Log.prnc(1,"-");
 					continue;
@@ -138,8 +136,8 @@ public abstract class TaskSimul {
 	
 	
 	// get param
-	public double getDMR(){
-		return (double)g_Drop/g_Rel;
+	public SimulInfo getSI(){
+		return g_si;
 	}
 	public TaskMng getTM(){
 		return g_tm;

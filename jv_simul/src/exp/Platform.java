@@ -76,9 +76,14 @@ public class Platform {
 		
 	}
 	public void simul() {
-//		write_x_axis();
+		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
-//		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+	}
+
+	public void simul_vd() {
+		isWrite=false;
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
 	}
 
 	public void simul_one(int anal, int set, int no) {

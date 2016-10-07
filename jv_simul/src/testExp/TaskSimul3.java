@@ -71,7 +71,7 @@ public class TaskSimul3 {
 		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);
-		Log.prn(1,"DMR:"+ts.getDMR());
+		Log.prn(1,"DMR:"+ts.getSI().getDMR());
 	}
 	
 	public  int test5() {
@@ -105,7 +105,7 @@ public class TaskSimul3 {
 //		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);
-		Log.prn(1,"DMR:"+ts.getDMR());
+		Log.prn(1,"DMR:"+ts.getSI().getDMR());
 		return 1;
 	}
 	public  int test8()	{
@@ -121,7 +121,7 @@ public class TaskSimul3 {
 //		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);
-		Log.prn(1,"DMR:"+ts.getDMR());
+		Log.prn(1,"DMR:"+ts.getSI().getDMR());
 		return 1;
 	}
 	public  int test9() {

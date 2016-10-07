@@ -41,7 +41,7 @@ public class TaskSimul4 {
 //		ts.isPrnMS=false;
 		ts.isPrnEnd=false;
 		ts.simulEnd(0,et);
-		Log.prn(1,"DMR:"+ts.getDMR());
+		Log.prn(1,"DMR:"+ts.getSI().getDMR());
 	}
 	public int test2() 
 	{

@@ -42,7 +42,7 @@ public class ExpSimul {
 			Log.prn(9, "error ExpSimul");
 			System.exit(1);
 		}
-		return ts.getDMR();
+		return ts.getSI().getDMR();
 	}
 
 	public void setDuration(int dur ) {

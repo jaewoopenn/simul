@@ -40,8 +40,9 @@ def main():
         no+=1
     mp.xlim(0.55,1.0)
 #     mp.log()
-    mp.ylim(0, 1.02)
-    mp.legend()
+#     mp.ylim(0, 1.05)
+    mp.ylim(0, 0.3)
+    mp.legend3()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
     print "hihi"
