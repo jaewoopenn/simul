@@ -69,7 +69,7 @@ public abstract class TaskSimul {
 	protected abstract void initMode();
 	private void msCheck(int cur_t){
 		boolean isMS=false;
-		int tid=g_js.msCheck();
+		int tid=g_js.msCheck(cur_t);
 		if(tid==-1) return;
 		double prob=g_rutil.getDbl();
 		if(prob<g_tm.getInfo().getProb_ms())

@@ -1,6 +1,7 @@
 package exp;
 
 import java.util.PriorityQueue;
+import java.util.Vector;
 
 import utilSim.Log;
 
@@ -68,12 +69,20 @@ public class JobMng {
 		
 	}
 	public void modeswitch(int tid) {
+		Vector<AbsJob> v=new Vector<AbsJob>();
 		for(AbsJob j:g_jobs){
 			if(j.tid==tid) {
 				j.exec=j.exec+j.add_exec;
 				((JobD)j).vd=j.dl;
 				j.add_exec=0;
+				v.add(j);
 			}
+		}
+		for(AbsJob j:v){
+			g_jobs.remove(j);
+		}
+		for(AbsJob j:v){
+			g_jobs.add(j);
 		}
 		
 	}

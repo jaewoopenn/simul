@@ -63,15 +63,20 @@ public class JobSimul {
 		Log.prn(1,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		return false;
 	}
-	public int msCheck() { // before dlcheck
-		AbsJob j;
+	public int msCheck(int cur_t) { // before dlcheck
+		JobD j;
 		while(true){
-			j=g_jm.getCur();
+			j=(JobD)g_jm.getCur();
 			if(j==null)
 				return -1;
 			if(j.exec==0){
-				if(j.isHI==true)
+				if(j.isHI==true){
+					if(cur_t>j.vd){
+						Log.prn(9, "vd miss"+j.tid);
+						System.exit(1);
+					}
 					return j.tid;
+				}
 				else
 					g_jm.removeCur();
 				
