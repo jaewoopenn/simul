@@ -36,10 +36,15 @@ public class TaskMng {
 	public void prn() {
 		for(Task t:g_tasks)
 			t.prn();
+		prnUtil();
+	}
+	public void prnUtil() {
 		Log.prn(2, "util:"+g_info.getUtil());
 		Log.prn(2, "lo_mode_util:"+(g_info.getLo_util()+g_info.getHi_util_lm()));
 		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
+		
 	}
+	
 	public void prnHI() {
 		for(Task t:g_hi_tasks)
 			t.prn();
@@ -143,6 +148,9 @@ public class TaskMng {
 		Task t=g_tasks[tid];
 		return (1-g_info.getX())*t.getLoUtil();
 	}
+
+
+
 
 	
 

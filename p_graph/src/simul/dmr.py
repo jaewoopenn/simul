@@ -5,7 +5,7 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="7"
+    RS="util_4"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']

@@ -30,8 +30,8 @@ public class Platform {
 			String modStr=g_ts_name+"_"+(mod);
 			g_cfg.setParam("num",g_sys_num+"");
 			if(g_kinds==0){
-				g_cfg.setParam("u_lb", (mod)*1.0/100+"");
-				g_cfg.setParam("u_ub", (mod+g_step)*1.0/100+"");
+				g_cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
+				g_cfg.setParam("u_ub", (mod)*1.0/100+"");
 			} else{
 				g_cfg.setParam("u_lb", "0.75");
 				g_cfg.setParam("u_ub", "0.80");
@@ -89,7 +89,7 @@ public class Platform {
 			}
 			double avg=sum/size;
 			double avg_ms=(sum_ms*1.0/size);
-			Log.prn(3, (g_start+5+i*5)+":"+avg+","+avg_ms);
+			Log.prn(3, (g_start+i*g_step)+":"+avg+","+avg_ms);
 			if(isWrite)
 				fu.print(avg+"");
 		}
@@ -138,7 +138,7 @@ public class Platform {
 		FUtil fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_x.txt");
 
 		for(int i=0;i<g_size;i++){
-			fu.print((double)(g_start+g_step+i*g_step)/100+"");
+			fu.print((double)(g_start+i*g_step)/100+"");
 		}		
 		fu.save();
 	}
