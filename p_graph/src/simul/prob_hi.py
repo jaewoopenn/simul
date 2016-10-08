@@ -43,7 +43,7 @@ def main():
     mp.ylim(0, 1.05)
 #     mp.ylim(0, 0.65)
     mp.legend3()
-    mp.xlabel("Utilization Bound")
+    mp.xlabel("Probability to be a HI-task")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"
     mp.show()

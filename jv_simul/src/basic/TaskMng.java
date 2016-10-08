@@ -3,6 +3,7 @@ package basic;
 import java.util.Arrays;
 
 import utilSim.Log;
+import utilSim.MUtil;
 
 public class TaskMng {
 	private Task[] g_tasks;
@@ -39,9 +40,10 @@ public class TaskMng {
 		prnUtil();
 	}
 	public void prnUtil() {
-		Log.prn(2, "util:"+g_info.getUtil());
-		Log.prn(2, "lo_mode_util:"+(g_info.getLo_util()+g_info.getHi_util_lm()));
-		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
+		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(g_info.getLo_util()+g_info.getHi_util_lm()));
+		Log.prnc(2, " ll_util:"+MUtil.getStr(g_info.getLo_util()));
+		Log.prn(2, " hl_util:"+MUtil.getStr(g_info.getHi_util_lm()));
+		Log.prn(2, "hi_mode_util:"+MUtil.getStr(g_info.getHi_util_hm()));
 		
 	}
 	

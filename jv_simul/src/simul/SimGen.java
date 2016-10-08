@@ -53,7 +53,6 @@ public class SimGen {
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(g_tg.getAll());
 		TaskMng m=tm.freezeTasks();
-		m.prnUtil();
 		if(tm.g_info.getLo_size()==0) return 0;
 		if(tm.g_info.getHi_size()==0) return 0;
 		if(!g_isCheck)

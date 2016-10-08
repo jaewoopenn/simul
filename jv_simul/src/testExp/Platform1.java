@@ -13,15 +13,18 @@ public class Platform1 {
 	public static int log_level=3;
 
 	private Platform getP(){
-		return getP1();
+//		return getP1();
+		return getP2();
 	}
 	
 	private Platform getP1() {
 		Platform p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
-		p.setStart(55);
-		p.setSize(10);
+//		p.setStart(55);
+//		p.setSize(10);
+		p.setStart(100);
+		p.setSize(1);
 		p.setStep(5);
 		return p;
 	}
@@ -29,9 +32,9 @@ public class Platform1 {
 		Platform p=getCommmon();
 		p.setTSName("prob_hi");
 		p.setKinds(1);
-		p.setStart(70);
-		p.setSize(10);
-		p.setStep(3);
+		p.setStart(5);
+		p.setSize(19);
+		p.setStep(5);
 		return p;
 	}
 
@@ -41,7 +44,8 @@ public class Platform1 {
 		p.setCfg_fn("cfg/cfg");
 //		p.setDuration(10000);
 		p.setDuration(1000);
-		p.setSysNum(100);
+		p.setSysNum(1000);
+//		p.setSysNum(100);
 //		p.setProb(0.1);
 		p.setProb(0.4);
 //		p.setProb(0.7);
@@ -95,6 +99,8 @@ public class Platform1 {
 	}
 	public  int test6() 
 	{
+		Platform p=getP();
+		p.analTasks();
 		return 0;
 	}
 	public  int test7()
