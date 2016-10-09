@@ -87,17 +87,17 @@ public abstract class TaskGen {
 		TaskFile.writeFile(file, g_tasks);
 	}
 	
-	public void loadFile(String f) {
-		g_tasks=TaskFile.loadFile(f);
-	}
-	
-
-	public TaskMng loadFileTM(String f) {
-		loadFile(f);
-		TaskMngPre tm=new TaskMngPre();
-		tm.setTasks(getAll());
-		TaskMng m=tm.freezeTasks();
-		return m;
-	}
+//	public void loadFile(String f) {
+//		g_tasks=TaskFile.loadFile(f);
+//	}
+//	
+//
+//	public TaskMng loadFileTM(String f) {
+//		loadFile(f);
+//		TaskMngPre tm=new TaskMngPre();
+//		tm.setTasks(getAll());
+//		TaskMng m=tm.freezeTasks();
+//		return m;
+//	}
 	
 }

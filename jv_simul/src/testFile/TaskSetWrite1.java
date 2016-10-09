@@ -1,38 +1,45 @@
-package testTSetGen;
+package testFile;
 import basic.TaskGenMC;
-import basic.TaskMng;
-import basic.TaskMngPre;
-import exp.TaskSimul_EDF_AT_S;
 import utilSim.TEngine;
 
-public class TaskSetLoad1 {
+public class TaskSetWrite1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=2;
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
-	public int test1()
+
+	public int test1() //
 	{
 		TaskGenMC tg=new TaskGenMC();
-		tg.loadFile("exp/ts/test1.txt");
-		TaskMngPre tm=new TaskMngPre();
-		tm.setTasks(tg.getAll());
-		TaskMng m=tm.freezeTasks();
-		m.prn();
+		tg.setUtil(0.5,0.8);
+		tg.setPeriod(20,50);
+		tg.setTUtil(0.001,0.1);
+		tg.generate();
+		tg.prn(1);
+		return tg.check();
+	}
+	public int test2() // Write
+	{
+		TaskGenMC tg=new TaskGenMC();
+		tg.setUtil(0.45,0.5);
+		tg.setPeriod(20,50);
+		tg.setTUtil(0.01,0.1);
+		tg.generate();
+		tg.writeFile("exp/ts/test1.txt");
 		return 1;
 	}
-	public int test2()
+	public  int test3() // MC task 
 	{
 		TaskGenMC tg=new TaskGenMC();
-		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
-		tm.prn();
+		tg.setRatioLH(0.25, 1);
+		tg.setUtil(0.45,0.5);
+		tg.setPeriod(300,500);
+		tg.setTUtil(0.01,0.1);
+		tg.setProbHI(0.5);
+		tg.generate();
+		tg.prn(1);
+//		tg.writeFile("test/ts/test_mc.txt");
 		return 1;
-	}
-	public  int test3()
-	{
-		TaskGenMC tg=new TaskGenMC();
-		TaskMng tm=tg.loadFileTM("exp/ts/test1.txt");
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
-		return ts.simulEnd(0,20);
 	}
 	public  int test4()
 	{
@@ -65,9 +72,9 @@ public class TaskSetLoad1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = TaskSetLoad1.class;
-		TaskSetLoad1 m=new TaskSetLoad1();
-		int[] aret=TaskSetLoad1.gret;
+		Class c = TaskSetWrite1.class;
+		TaskSetWrite1 m=new TaskSetWrite1();
+		int[] aret=TaskSetWrite1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

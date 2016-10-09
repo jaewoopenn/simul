@@ -56,18 +56,23 @@ public class SimAnal {
 	
 	
 	public TaskMng load_one(int i){
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+//		TaskGenMC tg=new TaskGenMC();
+//		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+//		String fn=g_cfg.get_fn(i);
+//		tg.loadFile(fn);
+//		if(tg.check()==0){
+//			Log.prn(2, "err "+i);
+//			tg.prn(2);
+//			return null;
+//		}
+//		TaskMngPre tm=new TaskMngPre();
+//		tm.setTasks(tg.getAll());
+//		TaskMng m=tm.freezeTasks();
+
+		TaskMngPre tmp=new TaskMngPre();
 		String fn=g_cfg.get_fn(i);
-		tg.loadFile(fn);
-		if(tg.check()==0){
-			Log.prn(2, "err "+i);
-			tg.prn(2);
-			return null;
-		}
-		TaskMngPre tm=new TaskMngPre();
-		tm.setTasks(tg.getAll());
-		TaskMng m=tm.freezeTasks();
+		tmp.loadFile(fn);
+		TaskMng m=tmp.freezeTasks();
 		m.sort();
 		return m;
 	}

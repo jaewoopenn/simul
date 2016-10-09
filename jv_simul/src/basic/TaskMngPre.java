@@ -88,7 +88,13 @@ public class TaskMngPre {
 	public boolean isFinal(){
 		return !g_info.isAdd();
 	}
+//	public void loadFile(String f) {
+//	}
+	
 
+	public void loadFile(String f) {
+		g_taskV=TaskFile.loadFile(f);
+	}
 
 	
 

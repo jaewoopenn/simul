@@ -19,6 +19,17 @@ public class TaskFile {
 		fu.save();
 	}
 
+	public static void writeFile(String file,Task[] g_tasks) {
+		FUtil fu=new FUtil(file);
+		for(Task t:g_tasks)
+		{
+			int isHI=t.is_HI?1:0;
+			String txt=t.tid+","+t.period+",";
+			txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
+			fu.print(txt);
+		}
+		fu.save();
+	}
 
 
 	public static Vector<Task>  loadFile(String f) {

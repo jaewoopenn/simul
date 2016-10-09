@@ -74,7 +74,7 @@ public class CompGen1 {
 	public  int test5()
 	{
 		TaskGenMC tg=new TaskGenMC();
-		tg.loadFile("test2.txt");
+//		tg.loadFile("test2.txt");
 		tg.prn(1);
 		int tg_size=tg.size();
 		TaskMngPre tm=new TaskMngPre();
@@ -91,7 +91,7 @@ public class CompGen1 {
 	public  int test6()
 	{
 		TaskGenMC tg=new TaskGenMC();
-		tg.loadFile("test2.txt");
+//		tg.loadFile("test2.txt");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
 //		Platform p=new Platform();
@@ -102,7 +102,7 @@ public class CompGen1 {
 	public  int test7()
 	{
 		TaskGenMC tg=new TaskGenMC();
-		tg.loadFile("t1/taskset2");
+//		tg.loadFile("t1/taskset2");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
 //		Platform p=new Platform();

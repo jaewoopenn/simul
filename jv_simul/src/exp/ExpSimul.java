@@ -3,6 +3,7 @@ package exp;
 
 import basic.TaskGenMC;
 import basic.TaskMng;
+import basic.TaskMngPre;
 import simul.Anal;
 import simul.ConfigGen;
 import utilSim.Log;
@@ -19,9 +20,10 @@ public class ExpSimul {
 	}
 	
 	public TaskMng loadTM(int i){
-		TaskGenMC tg=new TaskGenMC();
+		TaskMngPre tmp=new TaskMngPre();
 		String fn=g_cfg.get_fn(i);
-		return tg.loadFileTM(fn);
+		tmp.loadFile(fn);
+		return tmp.freezeTasks();
 	}
 	
 

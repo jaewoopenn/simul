@@ -2,6 +2,7 @@ package basic;
 
 import java.util.Arrays;
 
+import utilSim.FUtil;
 import utilSim.Log;
 import utilSim.MUtil;
 
@@ -149,6 +150,9 @@ public class TaskMng {
 	public double getReclaimUtil(int tid){
 		Task t=g_tasks[tid];
 		return (1-g_info.getX())*t.getLoUtil();
+	}
+	public void writeFile(String fn){
+		TaskFile.writeFile(fn, g_tasks);
 	}
 
 
