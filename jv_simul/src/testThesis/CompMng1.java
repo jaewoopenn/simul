@@ -1,7 +1,7 @@
 package testThesis;
 
-import comp.OldCompMng;
-import comp.OldComp;
+import oldComp.OComp;
+import oldComp.CompMng;
 import utilSim.TEngine;
 
 public class CompMng1 {
@@ -32,10 +32,10 @@ public class CompMng1 {
 
 	public int test2() 
 	{
-		OldCompMng cm=new OldCompMng();
-		OldComp c=new OldComp(0,1.0/8,1.0/12,5.0/12);
+		CompMng cm=new CompMng();
+		OComp c=new OComp(0,1.0/8,1.0/12,5.0/12);
 		cm.addComp(c);
-		c=new OldComp(0,1.0/8,1.0/12,5.0/12);
+		c=new OComp(0,1.0/8,1.0/12,5.0/12);
 		cm.addComp(c);
 		cm.prn2();
 		return -1;
@@ -43,8 +43,8 @@ public class CompMng1 {
 
 	public int test3() 
 	{
-		OldComp c=new OldComp(0,1.0/8,1.0/12,5.0/12);
-		c.prn(1);
+		OComp c=new OComp(0,1.0/8,1.0/12,5.0/12);
+		c.prn();
 		return -1;
 	}
 	

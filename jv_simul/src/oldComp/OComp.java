@@ -1,21 +1,21 @@
-package comp;
+package oldComp;
 
 import utilSim.Log;
 
-public class OldComp {
+public class OComp {
 	private int cid;
 	private double g_lt_lu;
 	private double g_ht_lu;
 	private double g_ht_hu;
 
-	public OldComp(int cid,double lt_lu, double ht_lu,double ht_hu) {
+	public OComp(int cid,double lt_lu, double ht_lu,double ht_hu) {
 		this.cid=cid;
 		this.g_lt_lu = lt_lu;
 		this.g_ht_lu = ht_lu;
 		this.g_ht_hu = ht_hu;
 	}
 
-	public OldComp(String line) {
+	public OComp(String line) {
         String[] words=line.split(",");
         int cid=Integer.valueOf(words[0]).intValue();
         double lt_lu=Double.valueOf(words[1]).doubleValue();
@@ -27,7 +27,8 @@ public class OldComp {
 		this.g_ht_hu = ht_hu;
 	}
 
-	public void prn(int lv) {
+	public void prn() {
+		int lv=1;
 		Log.prnc(lv,"cid:"+cid);
 		Log.prnc(lv," lt_lu:");
 		Log.prnDblc(lv,  g_lt_lu);

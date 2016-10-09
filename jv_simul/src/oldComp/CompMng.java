@@ -1,4 +1,4 @@
-package comp;
+package oldComp;
 
 import java.util.Collections;
 import java.util.Vector;
@@ -6,21 +6,21 @@ import java.util.Vector;
 import basic.TaskMng;
 import utilSim.Log;
 
-public class OldCompMng {
-	private Vector<OldComp> g_comp;
+public class CompMng {
+	private Vector<OComp> g_comp;
 	private double g_lt_LU;
 	private double g_ht_LU;
 	private double g_ht_HU;
-	public OldCompMng() {
-		g_comp=new Vector<OldComp>();
+	public CompMng() {
+		g_comp=new Vector<OComp>();
 	}
-	public OldCompMng(OldCompMng core) {
+	public CompMng(CompMng core) {
 		g_comp=core.cloneCore();
 	}
 
 	@SuppressWarnings("unchecked")
-	private Vector<OldComp> cloneCore() {
-		return (Vector<OldComp>)g_comp.clone();
+	private Vector<OComp> cloneCore() {
+		return (Vector<OComp>)g_comp.clone();
 	}
 	
 	public void load(TaskMng tm) {
@@ -56,28 +56,28 @@ public class OldCompMng {
 		
 //		addComp(c);
 	}
-	public void addComp(OldComp c) {
+	public void addComp(OComp c) {
 		g_comp.addElement(c);
 		
 	}
-	public OldComp getComp(int i) {
+	public OComp getComp(int i) {
 		return g_comp.elementAt(i);
 	}
 	public void computeUtils(){
 		double u=0;
-		for(OldComp c:g_comp){
+		for(OComp c:g_comp){
 			u+=c.get_lt_lu();
 		}
 		g_lt_LU=u;
 
 		u=0;
-		for(OldComp c:g_comp){
+		for(OComp c:g_comp){
 			u+=c.get_ht_lu();
 		}
 		g_ht_LU=u;
 
 		u=0;
-		for(OldComp c:g_comp){
+		for(OComp c:g_comp){
 			u+=c.get_ht_hu();
 		}
 		g_ht_HU=u;
@@ -100,15 +100,15 @@ public class OldCompMng {
 
 	public void prn(int lv){
 		Log.prn(lv, "tot:"+g_comp.size());
-		for(OldComp c:g_comp){
-			c.prn(lv);
+		for(OComp c:g_comp){
+			c.prn();
 		}
 	}
 	
 
 	public void prn2(){
 		
-		for(OldComp tm:g_comp){
+		for(OComp tm:g_comp){
 			Log.prnc(2, "comp "+tm.get_id());
 			Log.prnc(2, " lo ");
 			Log.prnDblc(2,tm.get_lt_lu()+tm.get_ht_lu());

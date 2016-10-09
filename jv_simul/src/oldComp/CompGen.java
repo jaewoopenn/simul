@@ -1,4 +1,4 @@
-package comp;
+package oldComp;
 
 import java.util.Vector;
 
@@ -6,7 +6,7 @@ import utilSim.Log;
 
 public class CompGen {
 	private CompGenParam g_param;
-	private Vector<OldComp> g_comps;
+	private Vector<OComp> g_comps;
 	
 	public CompGen(CompGenParam param) {
 		g_param=param;
@@ -14,7 +14,7 @@ public class CompGen {
 
 	public void generate() {
 		while(true){
-			g_comps=new Vector<OldComp>();
+			g_comps=new Vector<OComp>();
 			genSys();
 			if(check()==1) break;
 		}
@@ -22,7 +22,7 @@ public class CompGen {
 	private void genSys()
 	{
 		int tid=0;
-		OldComp t;
+		OComp t;
 		while(getMCUtil()<=g_param.get_util_u()){
 			t=genComp(tid);
 			g_comps.addElement(t);
@@ -32,8 +32,8 @@ public class CompGen {
 	}
 	
 
-	public OldComp genComp(int tid) {
-		OldComp tsk=g_param.genComp(tid);
+	public OComp genComp(int tid) {
+		OComp tsk=g_param.genComp(tid);
 		return tsk;
 	}
 	
@@ -44,11 +44,11 @@ public class CompGen {
 	}
 	
 	// getting
-	public void prn(int lv) {
-		for(OldComp c:g_comps) {
-			c.prn(lv);
+	public void prn() {
+		for(OComp c:g_comps) {
+			c.prn();
 		}
-		Log.prn(lv, "MC util:"+getMCUtil());
+		Log.prn(1, "MC util:"+getMCUtil());
 			
 	}
 
@@ -57,7 +57,7 @@ public class CompGen {
 	public double getMCUtil(){
 		double loutil=0;
 		double hiutil=0;
-		for(OldComp c:g_comps){
+		for(OComp c:g_comps){
 			loutil+=c.get_lt_lu();
 			loutil+=c.get_ht_lu();
 			hiutil+=c.get_ht_lu();
@@ -74,16 +74,16 @@ public class CompGen {
 	
 	// file
 	public void writeFile(String file) {
-		OldCompGenFile.writeFile(file, g_comps);
+		CompGenFile.writeFile(file, g_comps);
 	}
 	
 	public void loadFile(String f) {
-		g_comps=OldCompGenFile.loadFile(f);
+		g_comps=CompGenFile.loadFile(f);
 	}
 
-	public OldCompMng getCM() {
-		OldCompMng cm=new OldCompMng();
-		for(OldComp c:g_comps){
+	public CompMng getCM() {
+		CompMng cm=new CompMng();
+		for(OComp c:g_comps){
 //			c.prn(2);
 			cm.addComp(c);
 			

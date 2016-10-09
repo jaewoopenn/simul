@@ -1,8 +1,7 @@
 package simul;
 
 
-import comp.OldCompMng;
-
+import oldComp.CompMng;
 import basic.TaskGen;
 import basic.TaskGenMC;
 import basic.TaskMng;
@@ -60,7 +59,7 @@ public class SimCompGen {
 		return sum;	
 	}
 	public int analComp(TaskMng tm) {
-		OldCompMng cm=new OldCompMng();
+		CompMng cm=new CompMng();
 		cm.load(tm);
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
@@ -85,7 +84,7 @@ public class SimCompGen {
 		tm.setTasks(tg.getAll());
 		TaskMng m=tm.freezeTasks();
 		m.sort();
-		OldCompMng cm=new OldCompMng();
+		CompMng cm=new CompMng();
 		cm.load(m);
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();

@@ -1,4 +1,4 @@
-package comp;
+package oldComp;
 
 import java.util.Vector;
 
@@ -6,10 +6,10 @@ import utilSim.FUtil;
 
 
 
-public class OldCompGenFile {
-	public static void writeFile(String file,Vector<OldComp> g_comps) {
+public class CompGenFile {
+	public static void writeFile(String file,Vector<OComp> g_comps) {
 		FUtil fu=new FUtil(file);
-		for(OldComp c:g_comps)
+		for(OComp c:g_comps)
 		{
 			String txt=c.getString();
 			fu.print(txt);
@@ -18,14 +18,14 @@ public class OldCompGenFile {
 	}
 
 
-	public static Vector<OldComp>  loadFile(String f) {
-	    Vector<OldComp> comps=new Vector<OldComp>();
+	public static Vector<OComp>  loadFile(String f) {
+	    Vector<OComp> comps=new Vector<OComp>();
 	    FUtil fu=new FUtil(f);
 	    fu.load();
 	    for(int i=0;i<fu.size();i++){
 	    	String line=fu.get(i);
 //	    	Log.prn(2, line);
-	    	OldComp c=new OldComp(line);
+	    	OComp c=new OComp(line);
 	    	comps.add(c);
 	    }
 	    return comps;

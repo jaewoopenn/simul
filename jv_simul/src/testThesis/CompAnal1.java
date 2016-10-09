@@ -1,7 +1,7 @@
 package testThesis;
 
-import comp.OldCompMng;
-import comp.OldComp;
+import oldComp.OComp;
+import oldComp.CompMng;
 import basic.TaskMng;
 import simul.Analysis;
 import simul.CompAnal;
@@ -15,9 +15,9 @@ public class CompAnal1 {
 	
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
-	public OldCompMng getComp1()
+	public CompMng getComp1()
 	{
-		OldCompMng cm=new OldCompMng();
+		CompMng cm=new CompMng();
 //		TaskMng tm=new TaskMng();
 //		tm.addTask(8,1);
 //		tm.addHiTask(12,1,5);
@@ -35,16 +35,16 @@ public class CompAnal1 {
 
 	public int test1() 
 	{
-		OldCompMng cm=getComp1();
+		CompMng cm=getComp1();
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.comp_interface_help(0);
 		return -1;
 	}
 
-	public OldCompMng getComp2()
+	public CompMng getComp2()
 	{
-		OldCompMng cm=new OldCompMng();
+		CompMng cm=new CompMng();
 //		TaskMng tm=new TaskMng();
 //		tm.addTask(8,1);
 //		tm.addHiTask(12,1,5);
@@ -61,7 +61,7 @@ public class CompAnal1 {
 
 	public int test2() 
 	{
-		OldCompMng cm=getComp2();
+		CompMng cm=getComp2();
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.set_alpha(0.4);
@@ -72,7 +72,7 @@ public class CompAnal1 {
 
 	public int test3() 
 	{
-		OldCompMng cm=getComp2();
+		CompMng cm=getComp2();
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 		a.set_alpha(0.4);
@@ -85,7 +85,7 @@ public class CompAnal1 {
 	
 	public  int test4() 
 	{
-		OldCompMng cm=getComp2();
+		CompMng cm=getComp2();
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 //		a.set_alpha(0.0);
@@ -95,12 +95,12 @@ public class CompAnal1 {
 //		tm.prn();
 		return Analysis.anal_EDF_VD(tm); 
 	}
-	public OldCompMng getComp3()
+	public CompMng getComp3()
 	{
-		OldCompMng cm=new OldCompMng();
-		OldComp c=new OldComp(0,1.0/8,1.0/12,5.0/12);
+		CompMng cm=new CompMng();
+		OComp c=new OComp(0,1.0/8,1.0/12,5.0/12);
 		cm.addComp(c);
-		c=new OldComp(0,1.0/8,1.0/12,5.0/12);
+		c=new OComp(0,1.0/8,1.0/12,5.0/12);
 		cm.addComp(c);
 		
 		return cm;
@@ -108,7 +108,7 @@ public class CompAnal1 {
 	
 	public  int test5() 
 	{
-		OldCompMng cm=getComp3();
+		CompMng cm=getComp3();
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
 //		a.set_alpha(0.0);

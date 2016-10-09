@@ -2,6 +2,7 @@ package comp;
 
 import java.util.Vector;
 
+import oldComp.OComp;
 import utilSim.FUtil;
 
 
@@ -18,14 +19,14 @@ public class CompFile {
 	}
 
 
-	public static Vector<OldComp>  loadFile(String f) {
-	    Vector<OldComp> comps=new Vector<OldComp>();
+	public static Vector<OComp>  loadFile(String f) {
+	    Vector<OComp> comps=new Vector<OComp>();
 	    FUtil fu=new FUtil(f);
 	    fu.load();
 	    for(int i=0;i<fu.size();i++){
 	    	String line=fu.get(i);
 //	    	Log.prn(2, line);
-	    	OldComp c=new OldComp(line);
+	    	OComp c=new OComp(line);
 	    	comps.add(c);
 	    }
 	    return comps;
