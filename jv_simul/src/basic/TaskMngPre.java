@@ -2,6 +2,7 @@ package basic;
 
 import java.util.Vector;
 
+import utilSim.FUtil;
 import utilSim.Log;
 
 public class TaskMngPre {
@@ -93,7 +94,9 @@ public class TaskMngPre {
 	
 
 	public void loadFile(String f) {
-		g_taskV=TaskFile.loadFile(f);
+	    FUtil fu=new FUtil(f);
+	    fu.load();
+		g_taskV=TaskFile.loadFile(fu);
 	}
 
 	

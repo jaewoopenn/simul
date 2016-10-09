@@ -2,6 +2,7 @@ package basic;
 
 import java.util.Vector;
 
+import utilSim.FUtil;
 import utilSim.Log;
 
 public abstract class TaskGen {
@@ -84,7 +85,10 @@ public abstract class TaskGen {
 	
 	// file
 	public void writeFile(String file) {
-		TaskFile.writeFile(file, g_tasks);
+		FUtil fu=new FUtil(file);
+		for(Task t:g_tasks)
+			TaskFile.writeTask(fu,t);
+		fu.save();
 	}
 	
 //	public void loadFile(String f) {

@@ -1,8 +1,6 @@
 package testExp;
 
-import exp.JobD;
 import exp.JobF;
-import exp.JobMng;
 import exp.JobSimul;
 import utilSim.TEngine;
 // RM

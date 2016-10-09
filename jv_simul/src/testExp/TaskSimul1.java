@@ -1,6 +1,5 @@
 package testExp;
 
-import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import exp.TaskSimul_EDF_AT_S;

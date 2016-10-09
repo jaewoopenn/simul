@@ -152,7 +152,11 @@ public class TaskMng {
 		return (1-g_info.getX())*t.getLoUtil();
 	}
 	public void writeFile(String fn){
-		TaskFile.writeFile(fn, g_tasks);
+		FUtil fu=new FUtil(fn);
+		for(Task t:g_tasks)
+			TaskFile.writeTask(fu,t);
+		
+		fu.save();
 	}
 
 

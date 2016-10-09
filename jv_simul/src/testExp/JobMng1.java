@@ -1,7 +1,6 @@
 package testExp;
 
 import exp.AbsJob;
-import exp.JobD;
 import exp.JobMng;
 import taskSetEx.Job_NonMC1;
 import utilSim.TEngine;
