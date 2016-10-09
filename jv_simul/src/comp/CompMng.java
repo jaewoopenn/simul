@@ -2,7 +2,10 @@ package comp;
 
 import java.util.Vector;
 
+import basic.Task;
+import basic.TaskFile;
 import basic.TaskMng;
+import utilSim.FUtil;
 import utilSim.Log;
 
 public class CompMng {
@@ -34,6 +37,20 @@ public class CompMng {
 		for(Comp c:g_comp){
 			c.prn();
 		}
+	}
+
+
+
+
+	public void writeFile(String fn) {
+		FUtil fu=new FUtil(fn);
+		for(Comp c:g_comp){
+			Task[] tasks=c.getTasks();
+			for(Task t:tasks)
+				TaskFile.writeTask(fu,t);
+		}
+		fu.save();
+		
 	}
 	
 

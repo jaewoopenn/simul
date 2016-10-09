@@ -1,43 +1,45 @@
-package testComp;
-
+package testFile;
+import comp.CompMng;
 
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import comp.Comp;
-import comp.CompMng;
-import utilSim.TEngine;
 import taskSetEx.CompEx1;
+import utilSim.TEngine;
 
-public class Comp1 {
+public class CompFile1 {
 	public static int idx=1;
 //	public static int idx=-1;
-	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
-
-	public int test1() 
+	public int test1()
 	{
 		CompMng cm=CompEx1.getComp1();
 		cm.prn();
+		cm.writeFile("file/testCom.txt");
+		return 1;
+	}
+	public int test2()
+	{
+		TaskMngPre tmp=new TaskMngPre();
+		tmp.loadFile("file/test.txt");
+		TaskMng tm=tmp.freezeTasks();
+		tm.prn();
 		return 0;
 	}
-	public int test2() 
+	public  int test3()
 	{
 		return 0;
 	}
-	public int test3() 
+	public  int test4()
 	{
 		return 0;
 	}
-	public  int test4() 
+	public  int test5()
 	{
 		return 0;
 	}
-	public  int test5() 
-	{
-		return 0;
-	}
-	public  int test6() 
+	public  int test6()
 	{
 		return 0;
 	}
@@ -57,12 +59,12 @@ public class Comp1 {
 	{
 		return 0;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Comp1.class;
-		Comp1 m=new Comp1();
-		int[] aret=Comp1.gret;
+		Class c = CompFile1.class;
+		CompFile1 m=new CompFile1();
+		int[] aret=CompFile1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

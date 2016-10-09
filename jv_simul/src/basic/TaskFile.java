@@ -27,18 +27,21 @@ public class TaskFile {
 	    Vector<Task> g_tasks=new Vector<Task>();
 	    for(int i=0;i<fu.size();i++){
 	    	String line=fu.get(i);
-            String[] words=line.split(",");
-            int tid=Integer.valueOf(words[0]).intValue();
-            int p=Integer.valueOf(words[1]).intValue();
-            int l=Integer.valueOf(words[2]).intValue();
-            int h=Integer.valueOf(words[3]).intValue();
-            int isHI=Integer.valueOf(words[4]).intValue();
-            if(isHI==1)
-            	g_tasks.add(new Task(tid,p,l,h));
-            else
-            	g_tasks.add(new Task(tid,p,l));
+	    	Task t=loadTask(line);
+        	g_tasks.add(t);
 	    }
 	    return g_tasks;
 	}
-	
+	public static Task loadTask(String line){
+        String[] words=line.split(",");
+        int tid=Integer.valueOf(words[0]).intValue();
+        int p=Integer.valueOf(words[1]).intValue();
+        int l=Integer.valueOf(words[2]).intValue();
+        int h=Integer.valueOf(words[3]).intValue();
+        int isHI=Integer.valueOf(words[4]).intValue();
+        if(isHI==1)
+        	return new Task(tid,p,l,h);
+        else
+        	return new Task(tid,p,l);
+	}
 }
