@@ -4,14 +4,16 @@ import utilSim.Log;
 
 public class Task {
 	public int tid;
-	public int cid=-1;
 	public int period;
 	public int c_l;
 	public int c_h;
 	public double vd;
-	public boolean is_HI;
-	public boolean is_HM;
-	public boolean is_dropped;
+	public boolean is_HI=false;
+	public boolean is_HM=false;
+	public boolean is_dropped=false;
+
+	private int cid=-1;
+	private boolean is_isolated=false;
 
 	public Task(int tid,int period, int c_l) {
 		this.tid=tid;
@@ -19,9 +21,6 @@ public class Task {
 		this.vd = period;
 		this.c_l = c_l;
 		this.c_h = c_l;
-		this.is_HI=false;
-		this.is_HM=false;
-		this.is_dropped=false;
 	}
 
 	public Task(int tid,int period, int c_l, int c_h) {
@@ -31,8 +30,6 @@ public class Task {
 		this.c_l = c_l;
 		this.c_h = c_h;
 		this.is_HI=true;
-		this.is_HM=false;
-		this.is_dropped=false;
 	}
 	public void ms(){
 		this.is_HM=true;
@@ -47,11 +44,12 @@ public class Task {
 	public void setComp(int id) {
 		cid=id;
 	}
+	public void setIsolate(boolean b) {
+		is_isolated=b;
+	}
 	
 	public void prn() {
 		Log.prnc(2, "tid:"+tid);
-		if(cid!=-1)
-			Log.prnc(2, " cid:"+cid);
 		Log.prnc(2, " p:"+period);
 		if (is_HI){
 			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
@@ -64,7 +62,11 @@ public class Task {
 		Log.prnc(2," hi-crit?"+is_HI);
 		Log.prn(2," util:"+getLoUtil());
 	}
-
+	public void prnComp(){
+		Log.prnc(2, "cid:"+cid);
+		Log.prnc(2, " isol:"+is_isolated+" ");
+		prn();
+	}
 	public boolean check() {
 		if (period==0)
 			return false;
@@ -87,6 +89,10 @@ public class Task {
 	public int getComp(){
 		return cid;
 	}
+	public boolean isIsolated(){
+		return is_isolated;
+	}
+
 
 }
 

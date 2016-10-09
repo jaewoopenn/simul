@@ -22,7 +22,7 @@ public class Comp {
 
 	public void prn() {
 		Log.prn(1, "cid:"+cid+", alpha:"+alpha);
-		g_tm.prn();
+		g_tm.prnComp();
 	}
 	public void setID(int cid) {
 		this.cid = cid;
@@ -41,6 +41,18 @@ public class Comp {
 	}
 	public double getAlpha() {
 		return alpha;
+	}
+	public void partition() {
+		double tu=g_tm.getInfo().getLo_util()*alpha;
+		Log.prn(1,"tu:"+tu);
+		double cu=0;
+		for(Task t:g_tm.getLoTasks()){
+			t.prn();
+			cu+=t.getLoUtil();
+			t.setIsolate(true);
+			if(cu>=tu)
+				break;
+		}
 	}
 }
 

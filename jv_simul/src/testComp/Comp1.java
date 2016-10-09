@@ -26,6 +26,7 @@ public class Comp1 {
 	public int test3() 
 	{
 		Comp c=CompEx1.getComp3();
+		c.partition();
 		c.prn();
 		return 0;
 	}

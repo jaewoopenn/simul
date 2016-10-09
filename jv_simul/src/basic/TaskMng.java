@@ -22,38 +22,7 @@ public class TaskMng {
 	
 	
 
-	public void setX(double x){
-		g_info.setX(x);
-		for(Task t:g_tasks)	{
-			if (t.is_HI)
-				t.setVD(t.period*x);
-		}
-		
-	}
-	
-	public void setVD(int i, double vd){
-		g_tasks[i].vd=vd;
-	}
 
-	public void prn() {
-		for(Task t:g_tasks)
-			t.prn();
-		prnUtil();
-	}
-	public void prnUtil() {
-		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(g_info.getLo_util()+g_info.getHi_util_lm()));
-		Log.prnc(2, " ll_util:"+MUtil.getStr(g_info.getLo_util()));
-		Log.prn(2, " hl_util:"+MUtil.getStr(g_info.getHi_util_lm()));
-		Log.prn(2, "hi_mode_util:"+MUtil.getStr(g_info.getHi_util_hm()));
-		
-	}
-	
-	public void prnHI() {
-		for(Task t:g_hi_tasks)
-			t.prn();
-		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
-		
-	}
 	
 	public void sort(){
 //		Arrays.sort(g_hi_tasks,new TaskComparator());
@@ -94,7 +63,45 @@ public class TaskMng {
 		return -1;
 	}
 
-
+	public void setX(double x){
+		g_info.setX(x);
+		for(Task t:g_tasks)	{
+			if (t.is_HI)
+				t.setVD(t.period*x);
+		}
+		
+	}
+	
+	public void setVD(int i, double vd){
+		g_tasks[i].vd=vd;
+	}
+	
+	// prn 
+	
+	public void prn() {
+		for(Task t:g_tasks)
+			t.prn();
+		prnUtil();
+	}
+	public void prnComp() {
+		for(Task t:g_tasks)
+			t.prnComp();
+		prnUtil();
+	}
+	public void prnUtil() {
+		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(g_info.getLo_util()+g_info.getHi_util_lm()));
+		Log.prnc(2, " ll_util:"+MUtil.getStr(g_info.getLo_util()));
+		Log.prn(2, " hl_util:"+MUtil.getStr(g_info.getHi_util_lm()));
+		Log.prn(2, "hi_mode_util:"+MUtil.getStr(g_info.getHi_util_hm()));
+		
+	}
+	
+	public void prnHI() {
+		for(Task t:g_hi_tasks)
+			t.prn();
+		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
+		
+	}
 
 	public void prnLoTasks() {
 		for(Task t:g_lo_tasks){
@@ -102,7 +109,14 @@ public class TaskMng {
 		}
 	}
 
-
+	public void writeFile(String fn){
+		FUtil fu=new FUtil(fn);
+		for(Task t:g_tasks)
+			TaskFile.writeTask(fu,t);
+		
+		fu.save();
+	}
+	// get
 
 	public Task[] getTasks() {
 		return g_tasks;
@@ -116,6 +130,9 @@ public class TaskMng {
 	
 	public Task[] getHiTasks(){
 		return g_hi_tasks;
+	}
+	public Task[] getLoTasks(){
+		return g_lo_tasks;
 	}
 
 	public double getRU() {
@@ -150,13 +167,6 @@ public class TaskMng {
 	public double getReclaimUtil(int tid){
 		Task t=g_tasks[tid];
 		return (1-g_info.getX())*t.getLoUtil();
-	}
-	public void writeFile(String fn){
-		FUtil fu=new FUtil(fn);
-		for(Task t:g_tasks)
-			TaskFile.writeTask(fu,t);
-		
-		fu.save();
 	}
 
 
