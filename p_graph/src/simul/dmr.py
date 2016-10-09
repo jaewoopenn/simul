@@ -28,12 +28,12 @@ def iter(s,t):
         v=load(fn)
         gl.vv.append(v)
 
-def xiter():
+def x_load():
     fn="exp/rs/sim_"+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def main():
-    xiter()
+    x_load()
     iter(0,2)
     no=0
     for v in gl.vv:

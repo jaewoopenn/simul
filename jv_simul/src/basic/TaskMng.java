@@ -161,6 +161,12 @@ public class TaskMng {
 
 
 
+	public int size() {
+		return g_tasks.length;
+	}
+
+
+
 
 	
 

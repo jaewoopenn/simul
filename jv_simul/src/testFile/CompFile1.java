@@ -8,7 +8,7 @@ import taskSetEx.CompEx1;
 import utilSim.TEngine;
 
 public class CompFile1 {
-	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -21,10 +21,9 @@ public class CompFile1 {
 	}
 	public int test2()
 	{
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("file/test.txt");
-		TaskMng tm=tmp.freezeTasks();
-		tm.prn();
+		CompMng cm=CompMng.loadFile("file/testCom.txt");
+//		if(cm!=null)
+		cm.prn();
 		return 0;
 	}
 	public  int test3()

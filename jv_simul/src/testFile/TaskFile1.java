@@ -21,8 +21,7 @@ public class TaskFile1 {
 	}
 	public int test2()
 	{
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("file/test.txt");
+		TaskMngPre tmp=TaskMngPre.loadFile("file/test.txt");
 		TaskMng tm=tmp.freezeTasks();
 		tm.prn();
 		return 0;

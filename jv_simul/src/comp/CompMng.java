@@ -46,11 +46,30 @@ public class CompMng {
 		FUtil fu=new FUtil(fn);
 		for(Comp c:g_comp){
 			Task[] tasks=c.getTasks();
+			fu.print("C,"+c.cid+","+tasks.length);
 			for(Task t:tasks)
 				TaskFile.writeTask(fu,t);
 		}
 		fu.save();
 		
+	}
+
+
+
+
+	public static CompMng loadFile(String f) {
+	    FUtil fu=new FUtil(f);
+	    fu.load();
+	    CompMng cm=new CompMng();
+	    for(int i=0;i<fu.size();i++){
+	    	String line=fu.get(i);
+	    	Comp c=TaskFile.loadComp(line, fu,i+1);
+	    	if(c!=null){
+	    		cm.addComp(c);
+	    		i+=c.size();
+	    	}
+	    }
+		return cm;
 	}
 	
 

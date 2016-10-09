@@ -2,7 +2,9 @@ package basic;
 
 import java.util.Vector;
 
+import comp.Comp;
 import utilSim.FUtil;
+import utilSim.Log;
 
 
 
@@ -23,14 +25,15 @@ public class TaskFile {
 		fu.print(txt);
 	}
 
-	public static Vector<Task>  loadFile(FUtil fu) {
-	    Vector<Task> g_tasks=new Vector<Task>();
-	    for(int i=0;i<fu.size();i++){
+	public static Vector<Task>  loadFile(FUtil fu,int st,int size) {
+	    Vector<Task> tasks=new Vector<Task>();
+	    for(int i=st;i<st+size;i++){
 	    	String line=fu.get(i);
+//	    	Log.prn(1, line);
 	    	Task t=loadTask(line);
-        	g_tasks.add(t);
+        	tasks.add(t);
 	    }
-	    return g_tasks;
+	    return tasks;
 	}
 	public static Task loadTask(String line){
         String[] words=line.split(",");
@@ -44,4 +47,20 @@ public class TaskFile {
         else
         	return new Task(tid,p,l);
 	}
+	public static Comp loadComp(String line,FUtil fu,int st){
+        String[] words=line.split(",");
+        if(!words[0].equals("C"))
+        	return null;
+        int id=Integer.valueOf(words[1]).intValue();
+        int num=Integer.valueOf(words[2]).intValue();
+//        Log.prn(1,id+" "+num);
+        Comp c=new Comp();
+        c.cid=id;
+        
+        Vector<Task> tasks=loadFile(fu,st,num);
+        TaskMngPre tmp=new TaskMngPre(tasks);
+        c.setTM(tmp.freezeTasks());
+        return c;
+	}
+	
 }

@@ -1,10 +1,6 @@
 package testComp;
 
 
-import basic.Task;
-import basic.TaskMng;
-import basic.TaskMngPre;
-import comp.Comp;
 import comp.CompMng;
 import utilSim.TEngine;
 import taskSetEx.CompEx1;

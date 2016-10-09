@@ -18,9 +18,13 @@ public class TaskMngPre {
 		g_lo_taskV=new Vector<Task>();
 		g_hi_taskV=new Vector<Task>();
 		g_info=new TaskSetInfo();
-		g_info.setAdd(true);
 	}
 	
+	public TaskMngPre(Vector<Task> tasks) {
+		g_info=new TaskSetInfo();
+		setTasks(tasks);
+	}
+
 	public void add(Task t){
 		int tid=g_taskV.size();
 		t.tid=tid;
@@ -42,7 +46,6 @@ public class TaskMngPre {
 		}
 	}
 	public void goToArray(){
-		g_info.setAdd(false);
 		int size=g_taskV.size();
 		int h_size=g_hi_taskV.size();
 		int l_size=g_lo_taskV.size();
@@ -55,10 +58,6 @@ public class TaskMngPre {
 	}
 	public TaskMng freezeTasks()
 	{
-		if(!g_info.isAdd()){
-			Log.prnc(9, "already freezed!!");
-			return null;
-		}
 		goToArray();
 		
 		double loutil=0;
@@ -86,17 +85,14 @@ public class TaskMngPre {
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,g_info);
 	}
 	
-	public boolean isFinal(){
-		return !g_info.isAdd();
-	}
 //	public void loadFile(String f) {
 //	}
 	
-
-	public void loadFile(String f) {
+	public static TaskMngPre loadFile(String f) {
 	    FUtil fu=new FUtil(f);
 	    fu.load();
-		g_taskV=TaskFile.loadFile(fu);
+	    Vector<Task> tasks=TaskFile.loadFile(fu,0,fu.size());
+	    return new TaskMngPre(tasks);
 	}
 
 	

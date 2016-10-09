@@ -1,7 +1,6 @@
 package basic;
 
 public class TaskSetInfo {
-	private boolean isAdd;
 	private int hi_size;
 	private int lo_size;
 	private double lo_util;
@@ -20,12 +19,6 @@ public class TaskSetInfo {
 	}
 	public void setX(double x_para) {
 		this.x_para = x_para;
-	}
-	public boolean isAdd() {
-		return isAdd;
-	}
-	public void setAdd(boolean isAdd) {
-		this.isAdd = isAdd;
 	}
 	public int getSize() {
 		return lo_size+hi_size;

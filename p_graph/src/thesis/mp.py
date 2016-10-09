@@ -23,14 +23,14 @@ def load(fn):
         v.append(float(val))
     return v
 
-def iter(s,t):
+def iterate(s,t):
     for i in range(s,t):
         fn="com/rs/mp_"+str(gl.cpus)+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
 def main():
-    iter(0,3)
+    iterate(0,3)
     no=0
     for v in gl.vv:
         mp.plot2(gl.x,v,gl.line[no],gl.lab[no])

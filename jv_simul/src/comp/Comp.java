@@ -24,5 +24,9 @@ public class Comp {
 		return g_tm.getTasks();
 	}
 
+	public int size() {
+		return g_tm.size();
+	}
+
 }
 
