@@ -1,21 +1,21 @@
 package simul;
 
 
-import comp.Comp;
-
+import comp.OldCompMng;
+import comp.OldComp;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import utilSim.Log;
 
 public class CompAnal  {
-	CompMng cm;
+	OldCompMng cm;
 	private double g_lt_LU;
 	private double g_ht_LU;
 	private double g_ht_HU;
 	private double g_x;
 	private double g_alpha;
 
-	public CompAnal(CompMng mng) {
+	public CompAnal(OldCompMng mng) {
 		cm=mng;
 		cm.computeUtils();
 		g_lt_LU=cm.get_lt_LU();
@@ -32,7 +32,7 @@ public class CompAnal  {
 
 	public double comp_interface_hi(int i)
 	{
-		Comp tm=cm.getComp(i);
+		OldComp tm=cm.getComp(i);
 		double lt_LU=tm.get_lt_lu(); 
 		double ht_LU=tm.get_ht_lu();
 		double ht_HU=tm.get_ht_hu();
@@ -45,7 +45,7 @@ public class CompAnal  {
 	
 	public void comp_interface_help(int i)
 	{
-		Comp tm=cm.getComp(i);
+		OldComp tm=cm.getComp(i);
 		double lt_LU=tm.get_lt_lu(); 
 		double ht_LU=tm.get_ht_lu();
 		double ht_HU=tm.get_ht_hu();

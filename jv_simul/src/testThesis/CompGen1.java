@@ -1,5 +1,5 @@
 package testThesis;
-import comp.Comp;
+import comp.OldComp;
 import comp.CompGen;
 import comp.CompGenParam;
 import basic.TaskGenMC;
@@ -23,7 +23,7 @@ public class CompGen1 {
 		CompGen tg=new CompGen(p);
 		int max_num=2;
 		for(int i=0;i<max_num;i++){
-			Comp c=tg.genComp(i);
+			OldComp c=tg.genComp(i);
 			c.prn(1);
 		}
 		return 1;

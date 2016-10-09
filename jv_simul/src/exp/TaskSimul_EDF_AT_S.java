@@ -7,9 +7,11 @@ import utilSim.Log;
 import utilSim.MUtil;
 
 public class TaskSimul_EDF_AT_S extends TaskSimul{
+
 	public TaskSimul_EDF_AT_S() {
 		super();
 	}
+
 	public TaskSimul_EDF_AT_S(TaskMng m) {
 		super(m);
 	}

@@ -1,30 +1,26 @@
-package simul;
+package comp;
 
 import java.util.Collections;
 import java.util.Vector;
 
-import comp.Comp;
-import comp.CompComparator;
-import comp.CompComparatorHI;
-import comp.CompComparatorLO;
 import basic.TaskMng;
 import utilSim.Log;
 
-public class CompMng {
-	private Vector<Comp> g_comp;
+public class OldCompMng {
+	private Vector<OldComp> g_comp;
 	private double g_lt_LU;
 	private double g_ht_LU;
 	private double g_ht_HU;
-	public CompMng() {
-		g_comp=new Vector<Comp>();
+	public OldCompMng() {
+		g_comp=new Vector<OldComp>();
 	}
-	public CompMng(CompMng core) {
+	public OldCompMng(OldCompMng core) {
 		g_comp=core.cloneCore();
 	}
 
 	@SuppressWarnings("unchecked")
-	private Vector<Comp> cloneCore() {
-		return (Vector<Comp>)g_comp.clone();
+	private Vector<OldComp> cloneCore() {
+		return (Vector<OldComp>)g_comp.clone();
 	}
 	
 	public void load(TaskMng tm) {
@@ -60,28 +56,28 @@ public class CompMng {
 		
 //		addComp(c);
 	}
-	public void addComp(Comp c) {
+	public void addComp(OldComp c) {
 		g_comp.addElement(c);
 		
 	}
-	public Comp getComp(int i) {
+	public OldComp getComp(int i) {
 		return g_comp.elementAt(i);
 	}
 	public void computeUtils(){
 		double u=0;
-		for(Comp c:g_comp){
+		for(OldComp c:g_comp){
 			u+=c.get_lt_lu();
 		}
 		g_lt_LU=u;
 
 		u=0;
-		for(Comp c:g_comp){
+		for(OldComp c:g_comp){
 			u+=c.get_ht_lu();
 		}
 		g_ht_LU=u;
 
 		u=0;
-		for(Comp c:g_comp){
+		for(OldComp c:g_comp){
 			u+=c.get_ht_hu();
 		}
 		g_ht_HU=u;
@@ -104,7 +100,7 @@ public class CompMng {
 
 	public void prn(int lv){
 		Log.prn(lv, "tot:"+g_comp.size());
-		for(Comp c:g_comp){
+		for(OldComp c:g_comp){
 			c.prn(lv);
 		}
 	}
@@ -112,7 +108,7 @@ public class CompMng {
 
 	public void prn2(){
 		
-		for(Comp tm:g_comp){
+		for(OldComp tm:g_comp){
 			Log.prnc(2, "comp "+tm.get_id());
 			Log.prnc(2, " lo ");
 			Log.prnDblc(2,tm.get_lt_lu()+tm.get_ht_lu());

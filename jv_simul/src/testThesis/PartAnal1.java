@@ -1,8 +1,7 @@
 package testThesis;
 
-import comp.Comp;
-
-import simul.CompMng;
+import comp.OldCompMng;
+import comp.OldComp;
 import simul.PartAnal;
 import utilSim.Log;
 import utilSim.TEngine;
@@ -14,15 +13,15 @@ public class PartAnal1 {
 	
 	public static int gret[]={0,1,1,1,0,1,0,0,0,0};
 
-	public CompMng getComp1()
+	public OldCompMng getComp1()
 	{
-		CompMng cm=new CompMng();
+		OldCompMng cm=new OldCompMng();
 
-		cm.addComp(new Comp(0, 1.0/8, 1.0/12, 4.0/12));
-		cm.addComp(new Comp(1, 1.0/9, 1.0/12, 5.0/12));
-		cm.addComp(new Comp(2, 1.0/6, 1.0/13, 2.0/13));
-		cm.addComp(new Comp(3, 1.0/9, 1.0/14, 3.0/14));
-		cm.addComp(new Comp(4, 1.0/6, 1.0/10, 3.0/10));
+		cm.addComp(new OldComp(0, 1.0/8, 1.0/12, 4.0/12));
+		cm.addComp(new OldComp(1, 1.0/9, 1.0/12, 5.0/12));
+		cm.addComp(new OldComp(2, 1.0/6, 1.0/13, 2.0/13));
+		cm.addComp(new OldComp(3, 1.0/9, 1.0/14, 3.0/14));
+		cm.addComp(new OldComp(4, 1.0/6, 1.0/10, 3.0/10));
 		
 		return cm;
 	}
@@ -31,31 +30,31 @@ public class PartAnal1 {
 	
 	public int test1() 
 	{
-		CompMng cm=getComp1();
+		OldCompMng cm=getComp1();
 		cm.sortMC();
 		PartAnal a=new PartAnal(cm,2);
 		a.part_help();
 		return -1;
 	}
 
-	public CompMng getComp2()
+	public OldCompMng getComp2()
 	{
-		CompMng cm=new CompMng();
+		OldCompMng cm=new OldCompMng();
 
-		cm.addComp(new Comp(0, 0.01, 0.01, 0.10));
-		cm.addComp(new Comp(1, 0.04, 0.02, 0.20));
-		cm.addComp(new Comp(2, 0.03, 0.04, 0.10));
-		cm.addComp(new Comp(3, 0.02, 0.03, 0.30));
-		cm.addComp(new Comp(4, 0.1, 0.01, 0.04));
-		cm.addComp(new Comp(5, 0.2, 0.02, 0.04));
-		cm.addComp(new Comp(6, 0.4, 0.01, 0.03));
-		cm.addComp(new Comp(7, 0.3, 0.02, 0.05));
+		cm.addComp(new OldComp(0, 0.01, 0.01, 0.10));
+		cm.addComp(new OldComp(1, 0.04, 0.02, 0.20));
+		cm.addComp(new OldComp(2, 0.03, 0.04, 0.10));
+		cm.addComp(new OldComp(3, 0.02, 0.03, 0.30));
+		cm.addComp(new OldComp(4, 0.1, 0.01, 0.04));
+		cm.addComp(new OldComp(5, 0.2, 0.02, 0.04));
+		cm.addComp(new OldComp(6, 0.4, 0.01, 0.03));
+		cm.addComp(new OldComp(7, 0.3, 0.02, 0.05));
 		return cm;
 	}
 
 	public int test2() 
 	{
-		CompMng cm=getComp2();
+		OldCompMng cm=getComp2();
 //		cm.sortMC();
 		cm.sortHI();
 //		cm.sortLO();
@@ -66,7 +65,7 @@ public class PartAnal1 {
 
 	public int test3() 
 	{
-		CompMng cm=getComp2();
+		OldCompMng cm=getComp2();
 		cm.sortMC();
 		PartAnal a=new PartAnal(cm,2);
 		a.help1();

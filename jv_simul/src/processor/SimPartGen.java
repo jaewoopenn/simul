@@ -1,7 +1,9 @@
-package comp;
+package processor;
 
 
-import simul.CompMng;
+import comp.CompGen;
+import comp.CompGenParam;
+import comp.OldCompMng;
 import simul.ConfigCompGen;
 import simul.PartAnal;
 
@@ -58,7 +60,7 @@ public class SimPartGen {
 		}
 		return sum;	
 	}
-	public boolean analPart(CompMng cm) {
+	public boolean analPart(OldCompMng cm) {
 		if(g_method==0) {
 			cm.sortMC();
 			PartAnal a=new PartAnal(cm,g_cpus);
@@ -116,7 +118,7 @@ public class SimPartGen {
 		String cpus=g_cfg.readPar("cpus").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+cpus+"_"+i;
 		tg.loadFile(fn);
-		CompMng cm=tg.getCM();
+		OldCompMng cm=tg.getCM();
 		return analPart(cm);
 	}
 

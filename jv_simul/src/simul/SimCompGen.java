@@ -1,6 +1,8 @@
 package simul;
 
 
+import comp.OldCompMng;
+
 import basic.TaskGen;
 import basic.TaskGenMC;
 import basic.TaskMng;
@@ -37,7 +39,7 @@ public class SimCompGen {
 		String fn=subfix+"/taskset_"+mod+"_"+i;
 		tg.assignComp(g_max_com);
 //		tg.prn2(2);
-		tg.writeFile2(fn);
+//		tg.writeFile2(fn);
 		return 1;
 	}
 	public void gen() {
@@ -58,7 +60,7 @@ public class SimCompGen {
 		return sum;	
 	}
 	public int analComp(TaskMng tm) {
-		CompMng cm=new CompMng();
+		OldCompMng cm=new OldCompMng();
 		cm.load(tm);
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();
@@ -73,7 +75,7 @@ public class SimCompGen {
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+i;
-		tg.loadFile2(fn);
+//		tg.loadFile2(fn);
 		if(tg.check()==0){
 			Log.prn(2, "err "+i);
 			tg.prn(2);
@@ -83,7 +85,7 @@ public class SimCompGen {
 		tm.setTasks(tg.getAll());
 		TaskMng m=tm.freezeTasks();
 		m.sort();
-		CompMng cm=new CompMng();
+		OldCompMng cm=new OldCompMng();
 		cm.load(m);
 		CompAnal a=new CompAnal(cm);
 		a.compute_X();

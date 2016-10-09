@@ -1,6 +1,5 @@
 package testThesis;
-import comp.SimPartGen;
-
+import processor.SimPartGen;
 import simul.ConfigCompGen;
 import simul.ConfigGen;
 import simul.SimGen;

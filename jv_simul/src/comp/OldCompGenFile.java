@@ -6,10 +6,10 @@ import utilSim.FUtil;
 
 
 
-public class CompGenFile {
-	public static void writeFile(String file,Vector<Comp> g_comps) {
+public class OldCompGenFile {
+	public static void writeFile(String file,Vector<OldComp> g_comps) {
 		FUtil fu=new FUtil(file);
-		for(Comp c:g_comps)
+		for(OldComp c:g_comps)
 		{
 			String txt=c.getString();
 			fu.print(txt);
@@ -18,14 +18,14 @@ public class CompGenFile {
 	}
 
 
-	public static Vector<Comp>  loadFile(String f) {
-	    Vector<Comp> comps=new Vector<Comp>();
+	public static Vector<OldComp>  loadFile(String f) {
+	    Vector<OldComp> comps=new Vector<OldComp>();
 	    FUtil fu=new FUtil(f);
 	    fu.load();
 	    for(int i=0;i<fu.size();i++){
 	    	String line=fu.get(i);
 //	    	Log.prn(2, line);
-	    	Comp c=new Comp(line);
+	    	OldComp c=new OldComp(line);
 	    	comps.add(c);
 	    }
 	    return comps;

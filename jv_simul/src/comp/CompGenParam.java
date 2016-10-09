@@ -60,14 +60,14 @@ public class CompGenParam {
 
 
 
-	public Comp genComp(int tid) {
+	public OldComp genComp(int tid) {
 		double tu=g_rand.getDbl(tu_l, tu_u);
 		double ht_lt=g_rand.getDbl(ht_lt_l, ht_lt_u);
 		double ratio=g_rand.getDbl(ratio_lb, ratio_ub);
 		double lt_lu=tu*ht_lt;
 		double ht_lu=tu*(1-ht_lt);
 		double ht_hu=ht_lu*ratio;
-		return new Comp(tid,lt_lu,ht_lu,ht_hu);
+		return new OldComp(tid,lt_lu,ht_lu,ht_hu);
 	}
 
 	public int check(double util) {

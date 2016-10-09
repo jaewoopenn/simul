@@ -1,4 +1,4 @@
-package test;
+package testFile;
 
 import utilSim.FUtil;
 import utilSim.Log;

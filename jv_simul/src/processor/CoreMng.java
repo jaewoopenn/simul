@@ -1,20 +1,20 @@
-package comp;
+package processor;
 
 import java.util.Vector;
 
-import simul.CompMng;
+import comp.OldCompMng;
 
 public class CoreMng {
-	private Vector<CompMng> g_comp;
+	private Vector<OldCompMng> g_comp;
 	public CoreMng() {
-		g_comp=new Vector<CompMng>();
+		g_comp=new Vector<OldCompMng>();
 	}
 	
 
-	public void addCPU(CompMng tm) {
+	public void addCPU(OldCompMng tm) {
 		g_comp.addElement(tm);
 	}
-	public CompMng getCPU(int i) {
+	public OldCompMng getCPU(int i) {
 		return g_comp.elementAt(i);
 	}
 	

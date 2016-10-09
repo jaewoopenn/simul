@@ -1,22 +1,23 @@
 package simul;
 
 
-import comp.Comp;
-import comp.CoreMng;
+import processor.CoreMng;
+import comp.OldCompMng;
+import comp.OldComp;
 import basic.TaskMng;
 import utilSim.Log;
 
 public class PartAnal  {
-	private CompMng g_cm;
+	private OldCompMng g_cm;
 	private CoreMng g_pm;
 	private int g_num_cpu;
 
-	public PartAnal(CompMng mng, int cpus) {
+	public PartAnal(OldCompMng mng, int cpus) {
 		g_cm=mng;
 		g_num_cpu=cpus;
 		g_pm=new CoreMng();
 		for(int i=0;i<g_num_cpu;i++){
-			g_pm.addCPU(new CompMng());
+			g_pm.addCPU(new OldCompMng());
 		}
 	}
 
@@ -39,7 +40,7 @@ public class PartAnal  {
 		Log.prn(2, "after part");
 		for(int i=0;i<g_num_cpu;i++){
 			Log.prnc(2, "cpu "+i);
-			CompMng core=g_pm.getCPU(i);
+			OldCompMng core=g_pm.getCPU(i);
 //			core.prn();
 			core.computeUtils();
 			Log.prnc(2, " util:");
@@ -51,7 +52,7 @@ public class PartAnal  {
 
 	public void help1() {
 		for(int i=0;i<g_cm.getSize();i++){
-			Comp tm=g_cm.getComp(i);
+			OldComp tm=g_cm.getComp(i);
 			tm.prn(2);
 		}
 		g_cm.computeUtils();
@@ -62,10 +63,10 @@ public class PartAnal  {
 
 	public boolean partitionFF(double alpha) {
 		for(int i=0;i<g_cm.getSize();i++){
-			Comp tm=g_cm.getComp(i);
+			OldComp tm=g_cm.getComp(i);
 			double score=0;
 			for(int j=0;j<g_num_cpu;j++){
-				CompMng core=g_pm.getCPU(j);
+				OldCompMng core=g_pm.getCPU(j);
 			
 				score=getScore(core,tm,alpha);
 //				Log.prn(2, "FF"+score);
@@ -89,10 +90,10 @@ public class PartAnal  {
 		for(int i=0;i<g_cm.getSize();i++){
 			pID=-1;
 			pScore=-1;
-			Comp tm=g_cm.getComp(i);
+			OldComp tm=g_cm.getComp(i);
 
 			for(int j=0;j<g_num_cpu;j++){
-				CompMng core=g_pm.getCPU(j);
+				OldCompMng core=g_pm.getCPU(j);
 			
 				double score=getScore(core,tm,alpha);
 				if (score>pScore && score<=1){
@@ -101,7 +102,7 @@ public class PartAnal  {
 				}
 			}
 			if (pScore<=1 && pScore>=0) {
-				CompMng core=g_pm.getCPU(pID);
+				OldCompMng core=g_pm.getCPU(pID);
 				core.addComp(tm);
 			}
 			else{
@@ -118,10 +119,10 @@ public class PartAnal  {
 		for(int i=0;i<g_cm.getSize();i++){
 			pID=-1;
 			pScore=2;
-			Comp tm=g_cm.getComp(i);
+			OldComp tm=g_cm.getComp(i);
 
 			for(int j=0;j<g_num_cpu;j++){
-				CompMng core=g_pm.getCPU(j);
+				OldCompMng core=g_pm.getCPU(j);
 			
 				double score=getScore(core,tm,alpha);
 				if (score<pScore){
@@ -130,7 +131,7 @@ public class PartAnal  {
 				}
 			}
 			if (pScore<=1) {
-				CompMng core=g_pm.getCPU(pID);
+				OldCompMng core=g_pm.getCPU(pID);
 				core.addComp(tm);
 			}
 			else{
@@ -144,8 +145,8 @@ public class PartAnal  {
 	}
 
 
-	private double getScore(CompMng core, Comp tm,double alpha) {
-		CompMng tempCore=new CompMng(core);
+	private double getScore(OldCompMng core, OldComp tm,double alpha) {
+		OldCompMng tempCore=new OldCompMng(core);
 		tempCore.addComp(tm);
 		CompAnal a=new CompAnal(tempCore);
 		a.compute_X();

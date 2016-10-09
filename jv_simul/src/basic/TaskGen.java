@@ -84,19 +84,13 @@ public abstract class TaskGen {
 	
 	// file
 	public void writeFile(String file) {
-		TaskGenFile.writeFile(file, g_tasks);
+		TaskFile.writeFile(file, g_tasks);
 	}
 	
 	public void loadFile(String f) {
-		g_tasks=TaskGenFile.loadFile(f);
-	}
-	public void writeFile2(String file) {
-		TaskGenFile.writeFile2(file, g_tasks);
+		g_tasks=TaskFile.loadFile(f);
 	}
 	
-	public void loadFile2(String f) {
-		g_tasks=TaskGenFile.loadFile2(f);
-	}
 
 	public TaskMng loadFileTM(String f) {
 		loadFile(f);
