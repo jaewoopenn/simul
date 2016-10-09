@@ -5,6 +5,7 @@ import java.util.Vector;
 import basic.Task;
 import basic.TaskFile;
 import basic.TaskMng;
+import basic.TaskMngPre;
 import utilSim.FUtil;
 import utilSim.Log;
 
@@ -19,7 +20,7 @@ public class CompMng {
 	
 	public void addComp(Comp c) {
 		int cid=g_comp.size();
-		c.cid=cid;
+		c.setID(cid);
 		g_comp.add(c);		
 	}
 	public Comp getComp(int i) {
@@ -46,7 +47,7 @@ public class CompMng {
 		FUtil fu=new FUtil(fn);
 		for(Comp c:g_comp){
 			Task[] tasks=c.getTasks();
-			fu.print("C,"+c.cid+","+tasks.length);
+			fu.print("C,"+c.getID()+","+tasks.length+","+c.getAlpha());
 			for(Task t:tasks)
 				TaskFile.writeTask(fu,t);
 		}
@@ -70,6 +71,29 @@ public class CompMng {
 	    	}
 	    }
 		return cm;
+	}
+
+
+
+
+	public int getCompID(int tid) {
+		return 0;
+	}
+
+
+
+
+	public TaskMng getTM() {
+		TaskMngPre tmp=new TaskMngPre();
+		for(Comp c:g_comp){
+			Task[] tasks=c.getTasks();
+			for(Task t:tasks){
+				t.setComp(c.getID());
+				tmp.add(t);
+			}
+		}
+		
+		return tmp.freezeTasks();
 	}
 	
 

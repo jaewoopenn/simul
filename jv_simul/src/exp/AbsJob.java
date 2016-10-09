@@ -1,6 +1,5 @@
 package exp;
 
-import utilSim.Log;
 
 public abstract class AbsJob {
 	public int tid;

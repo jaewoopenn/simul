@@ -1,6 +1,5 @@
 package comp;
 
-import java.util.Vector;
 
 import utilSim.Log;
 import basic.Task;
@@ -8,16 +7,25 @@ import basic.TaskMng;
 
 
 public class Comp {
-	public int cid;
+	private int cid;
+	private double alpha;
+	private double maxRes;
 	private TaskMng g_tm;
 	
+	public Comp(double alpha) {
+		super();
+		this.alpha = alpha;
+	}
 	public void setTM(TaskMng tm){
 		g_tm=tm;
 	}
 
 	public void prn() {
-		Log.prn(1, "cid:"+cid);
+		Log.prn(1, "cid:"+cid+", alpha:"+alpha);
 		g_tm.prn();
+	}
+	public void setID(int cid) {
+		this.cid = cid;
 	}
 
 	public Task[] getTasks() {
@@ -28,5 +36,11 @@ public class Comp {
 		return g_tm.size();
 	}
 
+	public int getID() {
+		return cid;
+	}
+	public double getAlpha() {
+		return alpha;
+	}
 }
 

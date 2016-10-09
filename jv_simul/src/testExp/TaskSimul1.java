@@ -26,8 +26,7 @@ public class TaskSimul1 {
 	
 	public  int test3()	{
 		int et=40;
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("exp/ts/test1.txt");
+		TaskMngPre tmp=TaskMngPre.loadFile("exp/ts/test1.txt");
 		TaskMng tm=tmp.freezeTasks();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);
@@ -35,8 +34,7 @@ public class TaskSimul1 {
 	
 	public  int test4()	{
 		int et=80;
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("exp/ts/test2.txt");
+		TaskMngPre tmp=TaskMngPre.loadFile("exp/ts/test2.txt");
 		TaskMng tm=tmp.freezeTasks();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);

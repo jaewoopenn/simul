@@ -1,7 +1,4 @@
 package testExp;
-import exp.ExpSimul;
-import simul.ConfigGen;
-import utilSim.Log;
 import utilSim.TEngine;
 
 public class ExpSimul1 {

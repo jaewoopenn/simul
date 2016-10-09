@@ -59,8 +59,7 @@ public class TaskGen1 {
 	}
 	public  int test5()
 	{
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("file/test.txt");
+		TaskMngPre tmp=TaskMngPre.loadFile("file/test.txt");
 		TaskMng m=tmp.freezeTasks();
 		m.prn();
 		return 1;

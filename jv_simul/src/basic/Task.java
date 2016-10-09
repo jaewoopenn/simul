@@ -4,6 +4,7 @@ import utilSim.Log;
 
 public class Task {
 	public int tid;
+	public int cid=-1;
 	public int period;
 	public int c_l;
 	public int c_h;
@@ -43,9 +44,14 @@ public class Task {
 //		System.out.println("tid:"+tid+" vd:"+vd);
 		this.vd=vd;
 	}
+	public void setComp(int id) {
+		cid=id;
+	}
 	
 	public void prn() {
 		Log.prnc(2, "tid:"+tid);
+		if(cid!=-1)
+			Log.prnc(2, " cid:"+cid);
 		Log.prnc(2, " p:"+period);
 		if (is_HI){
 			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
@@ -76,6 +82,10 @@ public class Task {
 	}
 	public double getLoRUtil(){
 		return (double)c_l/vd;
+	}
+
+	public int getComp(){
+		return cid;
 	}
 
 }

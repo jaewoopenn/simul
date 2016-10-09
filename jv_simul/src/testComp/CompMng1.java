@@ -1,11 +1,14 @@
 package testComp;
 
 
-import comp.Comp;
+import basic.Task;
+import basic.TaskMng;
+import comp.CompMng;
+import utilSim.Log;
 import utilSim.TEngine;
-import taskSetEx.CompEx1;
+import taskSetEx.CompMngEx1;
 
-public class Comp1 {
+public class CompMng1 {
 	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
@@ -13,20 +16,24 @@ public class Comp1 {
 
 	public int test1() 
 	{
-		Comp c=CompEx1.getComp1();
-		c.prn();
+		CompMng cm=CompMngEx1.getCompMng1();
+		cm.prn();
 		return 0;
 	}
 	public int test2() 
 	{
-		Comp c=CompEx1.getComp2();
-		c.prn();
+		CompMng cm=CompMngEx1.getCompMng2();
+		cm.prn();
 		return 0;
 	}
 	public int test3() 
 	{
-		Comp c=CompEx1.getComp3();
-		c.prn();
+		CompMng cm=CompMngEx1.getCompMng1();
+		cm.prn();
+		TaskMng tm=cm.getTM();
+		tm.prn();
+		Task t=tm.getTask(1);
+		Log.prn(1,"CID:"+t.getComp());
 		return 0;
 	}
 	public  int test4() 
@@ -60,9 +67,9 @@ public class Comp1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Comp1.class;
-		Comp1 m=new Comp1();
-		int[] aret=Comp1.gret;
+		Class c = CompMng1.class;
+		CompMng1 m=new CompMng1();
+		int[] aret=CompMng1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

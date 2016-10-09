@@ -4,7 +4,6 @@ package exp;
 import basic.Task;
 import basic.TaskMng;
 import utilSim.Log;
-import utilSim.MUtil;
 import utilSim.RUtil;
 
 public abstract class TaskSimul {

@@ -3,7 +3,6 @@ package basic;
 import java.util.Vector;
 
 import utilSim.FUtil;
-import utilSim.Log;
 
 public abstract class TaskGen {
 	protected TaskGenParam g_param;

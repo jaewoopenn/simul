@@ -3,7 +3,6 @@ package basic;
 import java.util.Vector;
 
 import utilSim.FUtil;
-import utilSim.Log;
 
 public class TaskMngPre {
 	private Vector<Task> g_taskV;

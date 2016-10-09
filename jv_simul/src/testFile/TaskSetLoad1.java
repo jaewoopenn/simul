@@ -1,5 +1,4 @@
 package testFile;
-import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import exp.TaskSimul_EDF_AT_S;
@@ -12,8 +11,7 @@ public class TaskSetLoad1 {
 	public static int gret[]={1,1,1,0,1,1,1,0,0,0};
 	public int test1()
 	{
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("exp/ts/test1.txt");
+		TaskMngPre tmp=TaskMngPre.loadFile("exp/ts/test1.txt");
 		TaskMng m=tmp.freezeTasks();
 		m.prn();
 		return 1;
@@ -24,8 +22,7 @@ public class TaskSetLoad1 {
 	}
 	public  int test3()
 	{
-		TaskMngPre tmp=new TaskMngPre();
-		tmp.loadFile("exp/ts/test1.txt");
+		TaskMngPre tmp=TaskMngPre.loadFile("exp/ts/test1.txt");
 		TaskMng tm=tmp.freezeTasks();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,20);

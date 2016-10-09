@@ -1,6 +1,5 @@
 package simul;
 
-import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import utilSim.Log;
@@ -69,9 +68,8 @@ public class SimAnal {
 //		tm.setTasks(tg.getAll());
 //		TaskMng m=tm.freezeTasks();
 
-		TaskMngPre tmp=new TaskMngPre();
 		String fn=g_cfg.get_fn(i);
-		tmp.loadFile(fn);
+		TaskMngPre tmp=TaskMngPre.loadFile(fn);
 		TaskMng m=tmp.freezeTasks();
 		m.sort();
 		return m;

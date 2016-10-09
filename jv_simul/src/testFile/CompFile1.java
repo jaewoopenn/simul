@@ -1,10 +1,6 @@
 package testFile;
 import comp.CompMng;
-
-import basic.Task;
-import basic.TaskMng;
-import basic.TaskMngPre;
-import taskSetEx.CompEx1;
+import taskSetEx.CompMngEx1;
 import utilSim.TEngine;
 
 public class CompFile1 {
@@ -14,10 +10,10 @@ public class CompFile1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		CompMng cm=CompEx1.getComp1();
+		CompMng cm=CompMngEx1.getCompMng1();
 		cm.prn();
 		cm.writeFile("file/testCom.txt");
-		return 1;
+		return 0;
 	}
 	public int test2()
 	{
@@ -28,6 +24,9 @@ public class CompFile1 {
 	}
 	public  int test3()
 	{
+		CompMng cm=CompMngEx1.getCompMng2();
+		cm.prn();
+		cm.writeFile("file/testCom.txt");
 		return 0;
 	}
 	public  int test4()

@@ -1,7 +1,6 @@
 package testExp;
 
 
-import exp.ExpSimul;
 import simul.ConfigGen;
 import simul.SimGen;
 import utilSim.Log;

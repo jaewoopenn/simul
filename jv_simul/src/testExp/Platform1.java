@@ -12,12 +12,12 @@ public class Platform1 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 
-	private Platform getP(){
+	public Platform getP(){
 //		return getP1();
 		return getP2();
 	}
 	
-	private Platform getP1() {
+	public Platform getP1() {
 		Platform p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
@@ -28,7 +28,7 @@ public class Platform1 {
 		p.setStep(5);
 		return p;
 	}
-	private Platform getP2() {
+	public Platform getP2() {
 		Platform p=getCommmon();
 		p.setTSName("prob_hi");
 		p.setKinds(1);
@@ -38,7 +38,7 @@ public class Platform1 {
 		return p;
 	}
 
-	private Platform getCommmon(){
+	public Platform getCommmon(){
 		Platform p=new Platform();
 		p.setPath("exp");
 		p.setCfg_fn("cfg/cfg");

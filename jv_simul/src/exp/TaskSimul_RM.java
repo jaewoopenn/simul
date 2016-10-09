@@ -4,7 +4,6 @@ package exp;
 import basic.Task;
 import basic.TaskMng;
 import utilSim.Log;
-import utilSim.MUtil;
 
 public class TaskSimul_RM extends TaskSimul{
 	public TaskSimul_RM(TaskMng m) {

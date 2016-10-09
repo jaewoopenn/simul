@@ -4,17 +4,10 @@ import java.util.Vector;
 
 import comp.Comp;
 import utilSim.FUtil;
-import utilSim.Log;
 
 
 
 public class TaskFile {
-//	public static void writeFile(String file,Vector<Task> g_tasks) {
-//		FUtil fu=new FUtil(file);
-//		for(Task t:g_tasks)
-//			writeTask(fu,t);
-//		fu.save();
-//	}
 
 	
 
@@ -53,9 +46,10 @@ public class TaskFile {
         	return null;
         int id=Integer.valueOf(words[1]).intValue();
         int num=Integer.valueOf(words[2]).intValue();
+        double alpha=Double.valueOf(words[3]).doubleValue();
 //        Log.prn(1,id+" "+num);
-        Comp c=new Comp();
-        c.cid=id;
+        Comp c=new Comp(alpha);
+        c.setID(id);
         
         Vector<Task> tasks=loadFile(fu,st,num);
         TaskMngPre tmp=new TaskMngPre(tasks);
