@@ -29,6 +29,20 @@ public class TaskSetInfo {
 	public int getLo_size() {
 		return lo_size;
 	}
+	public double computeRU(Task t) {
+		if(t.is_HI){
+			if(t.is_HM)
+				return t.getHiUtil();
+			else
+				return t.getLoRUtil();
+		} 
+		if(t.is_dropped)
+			return x_para*t.getLoUtil();
+		else
+			return t.getLoUtil();
+		
+	}
+	
 	public double getUtil() {
 		return lo_util+hi_util_hm;
 	}

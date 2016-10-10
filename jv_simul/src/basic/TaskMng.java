@@ -26,7 +26,7 @@ public class TaskMng {
 	
 	public void sort(){
 //		Arrays.sort(g_hi_tasks,new TaskComparator());
-		Arrays.sort(g_tasks,new ComparatorTask());
+//		Arrays.sort(g_tasks,new ComparatorTask());
 //		Task t=g_hi_tasks[0];
 //		t.prn();
 	}
@@ -35,9 +35,6 @@ public class TaskMng {
 
 
 
-	public TaskSetInfo getInfo() {
-		return g_info;
-	}
 
 
 
@@ -117,6 +114,9 @@ public class TaskMng {
 		fu.save();
 	}
 	// get
+	public TaskSetInfo getInfo() {
+		return g_info;
+	}
 
 	public Task[] getTasks() {
 		return g_tasks;
@@ -138,7 +138,7 @@ public class TaskMng {
 	public double getRU() {
 		double util=0;
 		for(Task t:g_tasks)	{
-			util+=getRU(t);
+			util+=g_info.computeRU(t);
 		}
 		return util;
 	}
@@ -146,24 +146,12 @@ public class TaskMng {
 	public double getUtil() {
 		double util=0;
 		for(Task t:g_tasks)	{
-			util+=getRU(t);
+			util+=g_info.computeRU(t);
 		}
 		return util;
 	}
 
 
-	private double getRU(Task t) {
-		if(t.is_HI){
-			if(t.is_HM)
-				return t.getHiUtil();
-			else
-				return t.getLoRUtil();
-		} 
-		if(t.is_dropped)
-			return g_info.getX()*t.getLoUtil();
-		else
-			return t.getLoUtil();
-	}
 	public double getReclaimUtil(int tid){
 		Task t=g_tasks[tid];
 		return (1-g_info.getX())*t.getLoUtil();

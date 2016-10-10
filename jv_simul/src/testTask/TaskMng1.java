@@ -30,11 +30,13 @@ public class TaskMng1 {
 		m.prnLoTasks();
 		int tid=m.findDropTask();
 		Task t=m.getTask(tid);
-		Log.prn(1, ""+tid+","+t.getLoUtil()+","+m.getReclaimUtil(tid));
+		Log.prn(1, ""+tid+","+t.getLoUtil()+","+
+				m.getReclaimUtil(tid));
 		m.drop(tid);
 		tid=m.findDropTask();
 		t=m.getTask(tid);
-		Log.prn(1, ""+tid+","+t.getLoUtil()+","+m.getReclaimUtil(tid));
+		Log.prn(1, ""+tid+","+t.getLoUtil()+","+
+				m.getReclaimUtil(tid));
 		return 0;
 	}
 	public  int test4()
