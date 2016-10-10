@@ -10,7 +10,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['a=0.0','0<a<=0.3','0.3<a<=0.6','0.6<a<=0.9','0.9<a<=1.00','a=1']
+    lab=['a=0.0','0<a<=0.25','0.25<a<=0.5','0.5<a<=0.75','0.75<a<=1.00','a=1']
 #     data=[1,2,0,3]
     data=[0,1,2,3,4,5]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
@@ -39,7 +39,7 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.70,1.0)
+    mp.xlim(0.55,1.0)
     mp.ylim(0, 1.02)
     mp.legend()
     mp.xlabel("Utilization Bound")

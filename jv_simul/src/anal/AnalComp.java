@@ -1,6 +1,7 @@
 package anal;
 
 import utilSim.Log;
+import utilSim.MUtil;
 import basic.TaskMng;
 import comp.Comp;
 import comp.CompMng;
@@ -17,8 +18,9 @@ public class AnalComp {
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();
-		Log.prn(1, "sch"+a.isScheduable());
-		tm.setX(x);
+		Log.prn(1, "sch:"+a.isScheduable());
+		g_cm.setX(x);
+//		tm.setX(x);
 	}
 	public void part() {
 		g_cm.part();
@@ -31,12 +33,12 @@ public class AnalComp {
 		for(int i=0;i<size;i++){
 			Comp c=g_cm.getComp(i);
 			init_u+=c.getInitU();
-			wc_u+=Math.max(c.getExtU(), c.getIntU());
+			wc_u+=c.getWCU();
 		}
 		Log.prn(2, "initU:"+init_u);
 		Log.prn(2, "wcU:"+wc_u);
-		if(init_u>1) return 0;
-		if(wc_u>1) return 0;
+		if(init_u>1+MUtil.err) return 0;
+		if(wc_u>1+MUtil.err) return 0;
 		return 1;
 	}
 

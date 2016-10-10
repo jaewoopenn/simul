@@ -1,6 +1,7 @@
 package anal;
 
 import basic.Task;
+import basic.TaskMng;
 import basic.TaskSetInfo;
 import utilSim.Log;
 import utilSim.MUtil;
@@ -117,5 +118,11 @@ public class AnalEDF_AT_S extends Anal {
 
 	public double getX() {
 		return glo_x;
+	}
+	public static double computeX(TaskMng tm) {
+		AnalEDF_AT_S a=new AnalEDF_AT_S();
+		a.init(tm);
+		a.prepare();
+		return a.getX();
 	}
 }

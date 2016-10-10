@@ -143,6 +143,7 @@ public class TaskMng {
 		double util=0;
 		for(Task t:g_tasks)	{
 			util+=g_info.computeRU(t);
+//			Log.prn(1, "ru:"+util);
 		}
 		return util;
 	}

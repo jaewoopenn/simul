@@ -14,19 +14,19 @@ public class Platform3 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public Platform getP(){
-//		return getP1();
-		return getP2();
+		return getP1();
+//		return getP2();
 	}
 	
 	public Platform getP1() {
 		Platform p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
-		p.setStart(73);
+		p.setStart(55);
 		p.setSize(10);
 //		p.setStart(100);
 //		p.setSize(1);
-		p.setStep(3);
+		p.setStep(5);
 		return p;
 	}
 	public Platform getP2() {
@@ -57,10 +57,12 @@ public class Platform3 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("c_lb","0.03");
-		eg.setParam("c_ub","0.2");
+		eg.setParam("c_lb","0.05");
+		eg.setParam("c_ub","0.3");
 		eg.setParam("u_lb", "0.85");
 		eg.setParam("u_ub", "0.95");
+		eg.setParam("tu_lb","0.02");
+		eg.setParam("tu_ub","0.05");
 		Platform p=getP();
 		p.writeComCfg(eg);
 //		for(int i=0;i<4;i++){
@@ -89,14 +91,12 @@ public class Platform3 {
 		p.setAlpha(0,0);
 		p.setRS("0");
 		p.analCom();
-		for(int i=1;i<4;i++){
-			p.setAlpha(i*0.3-0.3,i*0.3);
+		double step=0.25;
+		for(int i=1;i<5;i++){
+			p.setAlpha((i-1)*step,i*step);
 			p.setRS(i+"");
 			p.analCom();
 		}	
-		p.setAlpha(1,1);
-		p.setRS("4");
-		p.analCom();
 //		MUtil.sendMail("ICG anal OK");
 		return 1;
 	}
@@ -125,15 +125,15 @@ public class Platform3 {
 	}
 	public  int test6() 
 	{
-		int set=4;
+		int set=3;
 		Platform p=getP();
 		int ret1;
-		p.setAlpha(1,1);
+		p.setAlpha(0,0);
 		for(int i=0;i<100;i++){
 			ret1=p.analCom(set,i);
 			Log.prn(2,ret1);
-//			if(ret1==0)
-//				break;
+			if(ret1==0)
+				break;
 		}
 		return 0;
 	}

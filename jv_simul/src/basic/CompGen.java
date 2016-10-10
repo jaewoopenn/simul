@@ -1,6 +1,7 @@
 package basic;
 
 
+import utilSim.Log;
 import comp.Comp;
 import comp.CompMng;
 
@@ -13,17 +14,21 @@ public class CompGen {
 	}
 
 	public CompMng generate() {
-		g_t_param.setUtil(g_param.c_lb,g_param.c_ub);
 		TaskGenMC tg=new TaskGenMC(g_t_param);
 		CompMng cm=new CompMng();
+		double u=0;
 		while(true){
+			if(u+g_param.c_ub>g_param.u_ub)
+				g_t_param.setUtil(0,g_param.u_ub-u);
+			else
+				g_t_param.setUtil(g_param.c_lb,g_param.c_ub);
 			tg.generate();
 			Comp c=new Comp(g_param.getAlpha());
 			TaskMngPre tmp=new TaskMngPre(tg.getAll());
 			TaskMng tm=tmp.freezeTasks();
 			c.setTM(tm);
 			cm.addComp(c);
-			double u=cm.getMCUtil();
+			u=cm.getMCUtil();
 			if(u>=g_param.u_lb)
 				break;
 		}
@@ -35,6 +40,7 @@ public class CompGen {
 
 	public int check(CompMng cm){
 		double u=cm.getMCUtil();
+//		Log.prn(1, u+"");
 		if(u>=g_param.u_lb&&u<=g_param.u_ub){
 			return 1;
 		}

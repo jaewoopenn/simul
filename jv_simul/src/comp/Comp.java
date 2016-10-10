@@ -22,7 +22,9 @@ public class Comp {
 		double tu=cu*(alpha);
 		Log.prn(1,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
 		cu=0;
-		for(Task t:g_tm.getLoTasks()){
+		Task[] tasks=g_tm.getLoTasks();
+		for(int i=tasks.length-1;i>=0;i--){
+			Task t=tasks[i];
 //			t.prn();
 			if(cu>=tu)
 				break;
@@ -58,6 +60,13 @@ public class Comp {
 		Log.prn(1, "cid:"+cid+", alpha:"+alpha);
 		Log.prn(1, "maxRes:"+maxRes);
 		g_tm.prnComp();
+	}
+	public void prnOff() {
+		Log.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());
+		Log.prn(1, "init:"+getInitU());
+		Log.prn(1, "wc:"+getWCU());
+//		Log.prn(1, "ext:"+getExtU());
+//		Log.prn(1, "int:"+getIntU());
 	}
 	
 	// set
@@ -105,7 +114,10 @@ public class Comp {
 		}
 		return u;
 	}
-
+	
+	public double getWCU(){
+		return Math.max(getExtU(), getIntU());
+	}
 	public double getExtU() {
 		Task[] tasks=g_tm.getTasks();
 		double u=0;
@@ -132,6 +144,9 @@ public class Comp {
 			}
 		}
 		return u;
+	}
+	public double getRU() {
+		return g_tm.getRU();
 	}
 	
 }

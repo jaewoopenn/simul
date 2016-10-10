@@ -67,13 +67,10 @@ public class Comp1 {
 		Comp c=CompEx1.getComp3();
 		c.setMaxRes(0.7);
 		c.prn();
-		TaskMng tm=c.getTM();
-		double ru=tm.getRU();
-		Log.prn(1, "RU:"+ru);
+		Log.prn(1, "RU:"+c.getRU());
 		c.request(0.1);
-		ru=tm.getRU();
-		Log.prn(1, "RU:"+ru);
-		tm.prnStat();
+		Log.prn(1, "RU:"+c.getRU());
+//		c.prnStat();
 		return 0;
 	}
 	public  int test7()

@@ -25,26 +25,32 @@ public class CompMng {
 		c.setID(cid);
 		g_comp.add(c);		
 	}
-	public Comp getComp(int i) {
-		return g_comp.elementAt(i);
-	}
 
 
-	public int getSize() {
-		return g_comp.size();
-	}
 
 
-	public void prn(){
-		Log.prn(2, "tot:"+g_comp.size());
+
+	public void analMaxRes() {
 		for(Comp c:g_comp){
-			c.prn();
+			double res=c.getWCU();
+			c.setMaxRes(res);
+		}
+		
+	}
+
+
+
+
+
+
+
+
+	public void part() {
+		for(Comp c:g_comp){
+			c.partition();
 		}
 	}
-
-
-
-
+	// file
 	public void writeFile(String fn) {
 		FUtil fu=new FUtil(fn);
 		for(Comp c:g_comp){
@@ -74,15 +80,42 @@ public class CompMng {
 	    }
 		return cm;
 	}
-
-
-
+	
+	// prn
+	
+	public void prn(){
+		Log.prn(2, "tot:"+g_comp.size());
+		for(Comp c:g_comp){
+			c.prn();
+		}
+	}
+	public void prnOff(){
+		Log.prn(2, "tot:"+g_comp.size());
+		
+		for(Comp c:g_comp){
+//			c.prn();
+			c.prnOff();
+		}
+	}
+	// set
+	
+	public void setX(double x) {
+		for(Comp c:g_comp){
+			c.getTM().setX(x);
+		}
+		
+	}
+	public void setAlpha(double g_a_l, double g_a_u) {
+		RUtil ru=new RUtil();
+		for(Comp c:g_comp){
+			c.setAlpha(ru.getDbl(g_a_l,g_a_u));
+		}
+	}
+	// get
 
 	public int getCompID(int tid) {
 		return 0;
 	}
-
-
 
 
 	public TaskMng getTM() {
@@ -97,17 +130,14 @@ public class CompMng {
 		
 		return tmp.freezeTasks();
 	}
-
-
-
-
-	public void part() {
-		for(Comp c:g_comp){
-			c.partition();
-		}
+	public Comp getComp(int i) {
+		return g_comp.elementAt(i);
 	}
 
 
+	public int getSize() {
+		return g_comp.size();
+	}
 
 
 	public double getMCUtil() {
@@ -118,10 +148,12 @@ public class CompMng {
 
 
 
-	public void setAlpha(double g_a_l, double g_a_u) {
-		RUtil ru=new RUtil();
-		for(Comp c:g_comp){
-			c.setAlpha(ru.getDbl(g_a_l,g_a_u));
-		}
-	}
+
+
+
+
+
+
+
+
 }

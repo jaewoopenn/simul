@@ -1,42 +1,37 @@
-package testAnal;
+package testComp;
 
-import comp.CompMng;
-import anal.AnalComp;
+
 import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskMngPre;
-import taskSetEx.CompMngEx1;
+import comp.Comp;
+import comp.CompMng;
 import utilSim.Log;
 import utilSim.TEngine;
+import taskSetEx.CompMngEx1;
 
-public class Anal2 {
-	public static int idx=2;
+public class CompMng2 {
+	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 
 	public int test1() 
 	{
-		CompMng cm=CompMngEx1.getCompMng2();
-//		cm.setAlpha(0, 0.25);
-		cm.setAlpha(0, 0);
-		AnalComp a=new AnalComp(cm);
-		a.computeX();
-		a.part();
+		CompMng cm=CompMngEx1.getCompMng3();
+		TaskMng tm=cm.getTM();
+		double x=AnalEDF_AT_S.computeX(tm);
+		cm.setX(x);
+		cm.analMaxRes();
+		cm.part();
 		cm.prn();
-		a.anal();
-//		cm.prn();
-//		Log.prn(2, "x:"+x);
-		return -1;
+		Comp c=cm.getComp(0);
+		Log.prn(1, "RU:"+c.getRU());
+		cm.prnOff();
+		return 0;
 	}
-
 	public int test2() 
 	{
-		CompMng cm=CompMng.loadFile("com/ts/taskset_util_70_5");
-		cm.setAlpha(0, 0);
-		AnalComp a=new AnalComp(cm);
-		a.computeX();
 		return 0;
 	}
 	public int test3() 
@@ -71,12 +66,12 @@ public class Anal2 {
 	{
 		return 0;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Anal2.class;
-		Anal2 m=new Anal2();
-		int[] aret=Anal2.gret;
+		Class c = CompMng2.class;
+		CompMng2 m=new CompMng2();
+		int[] aret=CompMng2.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else
