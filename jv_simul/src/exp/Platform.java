@@ -56,8 +56,12 @@ public class Platform {
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
 			g_cfg.setParam("num",g_sys_num+"");
-			g_cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
-			g_cfg.setParam("u_ub", (mod)*1.0/100+"");
+			if(g_kinds==0){
+				g_cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
+				g_cfg.setParam("u_ub", (mod)*1.0/100+"");
+			} else{
+				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
+			}
 			g_cfg.setParam("mod", modStr);
 			g_cfg.setParam("a_lb", g_a_l+"");
 			g_cfg.setParam("a_ub", g_a_u+"");

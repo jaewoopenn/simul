@@ -15,13 +15,14 @@ public class Platform3 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public Platform getP(){
-		return getP1();
-//		return getP2();
+//		return getP1();
+		return getP2();
 	}
 	
 	public Platform getP1() {
 		Platform p=getCommmon();
 		p.setTSName("util");
+		p.setKinds(0);
 		p.setStart(73);
 		p.setSize(10);
 //		p.setStart(100);
@@ -31,6 +32,11 @@ public class Platform3 {
 	}
 	public Platform getP2() {
 		Platform p=getCommmon();
+		p.setTSName("prob_hi");
+		p.setKinds(1);
+		p.setStart(5);
+		p.setSize(19);
+		p.setStep(5);
 		return p;
 	}
 
@@ -54,6 +60,8 @@ public class Platform3 {
 		eg.setParam("p_ub","300");
 		eg.setParam("c_lb","0.03");
 		eg.setParam("c_ub","0.2");
+		eg.setParam("u_lb", "0.85");
+		eg.setParam("u_ub", "0.95");
 		Platform p=getP();
 		p.writeComCfg(eg);
 //		for(int i=0;i<4;i++){

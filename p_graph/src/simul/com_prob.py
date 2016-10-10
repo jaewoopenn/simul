@@ -5,7 +5,7 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="util_0"
+    RS="prob_hi_0"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
@@ -28,7 +28,8 @@ def x_load():
 
 def iterate(s,t):
     for i in range(s,t):
-        fn="com/rs/anal_util_"+str(gl.data[i])+".txt"
+#         fn="com/rs/anal_util_"+str(gl.data[i])+".txt"
+        fn="com/rs/anal_prob_hi_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -39,7 +40,8 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.70,1.0)
+    mp.xlim(0.0,1.0)
+#     mp.xlim(0.70,1.0)
     mp.ylim(0, 1.02)
     mp.legend()
     mp.xlabel("Utilization Bound")
