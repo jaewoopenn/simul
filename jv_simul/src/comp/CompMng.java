@@ -95,6 +95,15 @@ public class CompMng {
 		
 		return tmp.freezeTasks();
 	}
+
+
+
+
+	public void part() {
+		for(Comp c:g_comp){
+			c.partition();
+		}
+	}
 	
 
 

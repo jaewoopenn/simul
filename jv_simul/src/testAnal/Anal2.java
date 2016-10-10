@@ -1,54 +1,43 @@
-package testComp;
+package testAnal;
 
-
+import comp.CompMng;
+import anal.AnalComp;
 import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;
-import comp.CompMng;
+import basic.TaskMngPre;
+import taskSetEx.CompMngEx1;
 import utilSim.Log;
 import utilSim.TEngine;
-import taskSetEx.CompMngEx1;
 
-public class CompMng1 {
-	public static int idx=4;
+public class Anal2 {
+	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 
 	public int test1() 
 	{
-		CompMng cm=CompMngEx1.getCompMng1();
-		cm.prn();
-		return 0;
+		CompMng cm=CompMngEx1.getCompMng2();
+		AnalComp a=new AnalComp(cm);
+		a.computeX();
+		a.part();
+		a.anal();
+//		cm.prn();
+//		Log.prn(2, "x:"+x);
+		return -1;
 	}
+
 	public int test2() 
 	{
-		CompMng cm=CompMngEx1.getCompMng2();
-		cm.prn();
 		return 0;
 	}
 	public int test3() 
 	{
-		CompMng cm=CompMngEx1.getCompMng1();
-		cm.prn();
-		TaskMng tm=cm.getTM();
-		tm.prn();
-		Task t=tm.getTask(1);
-		Log.prn(1,"CID:"+t.getComp());
 		return 0;
 	}
 	public  int test4() 
 	{
-		CompMng cm=CompMngEx1.getCompMng2();
-		TaskMng tm=cm.getTM();
-		tm.prn();
-		AnalEDF_AT_S a=new AnalEDF_AT_S();
-		a.init(tm);
-		a.prepare();
-		double x=a.getX();
-		tm.setX(x);
-		cm.prn();
-//		Log.prn(2, "x:"+x);
 		return 0;
 	}
 	public  int test5() 
@@ -75,12 +64,12 @@ public class CompMng1 {
 	{
 		return 0;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = CompMng1.class;
-		CompMng1 m=new CompMng1();
-		int[] aret=CompMng1.gret;
+		Class c = Anal2.class;
+		Anal2 m=new Anal2();
+		int[] aret=Anal2.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

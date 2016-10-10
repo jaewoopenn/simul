@@ -15,12 +15,12 @@ public class Anal1 {
 
 	public int test1() 
 	{
-		TaskMngPre tm=new TaskMngPre();
-		tm.add(new Task(0,4,2));
-		tm.add(new Task(1,6,1,5));
-		TaskMng m=tm.freezeTasks();
+		TaskMngPre tmp=new TaskMngPre();
+		tmp.add(new Task(0,4,2));
+		tmp.add(new Task(1,6,1,5));
+		TaskMng tm=tmp.freezeTasks();
 		AnalEDF_AT_S a=new AnalEDF_AT_S();
-		a.init(m);
+		a.init(tm);
 		a.prepare();
 		double x=a.getX();
 		Log.prn(2, ""+x);
