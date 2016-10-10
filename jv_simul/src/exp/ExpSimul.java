@@ -59,9 +59,8 @@ public class ExpSimul {
 		AnalComp a=new AnalComp(cm);
 		a.computeX();
 		a.part();
-		a.anal();
-		
-		return 0;
+		return 	a.anal();
+
 	}
 	
 }

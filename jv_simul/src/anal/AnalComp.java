@@ -23,7 +23,7 @@ public class AnalComp {
 		g_cm.part();
 		
 	}
-	public void anal() {
+	public int anal() {
 		int size=g_cm.getSize();
 		double init_u=0;
 		double wc_u=0;
@@ -34,6 +34,9 @@ public class AnalComp {
 		}
 		Log.prn(1, "initU:"+init_u);
 		Log.prn(1, "wcU:"+wc_u);
+		if(init_u>1) return 0;
+		if(wc_u>1) return 0;
+		return 1;
 	}
 
 }
