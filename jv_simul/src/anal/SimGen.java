@@ -2,6 +2,7 @@ package anal;
 
 import utilSim.MUtil;
 import basic.TaskGenMC;
+import basic.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskMngPre;
 
@@ -13,12 +14,13 @@ public class SimGen {
 		g_cfg=cfg;
 	}
 	public int prepare(){
-		g_tg=new TaskGenMC();
-		g_tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
-		g_tg.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
-		g_tg.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
-		g_tg.setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
-		g_tg.setProbHI(g_cfg.readDbl("prob_hi"));
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		tgp.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
+		tgp.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
+		tgp.setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
+		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
+		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
 	public void setCheck(boolean g_isCheck) {

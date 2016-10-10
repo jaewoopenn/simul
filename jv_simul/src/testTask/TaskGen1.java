@@ -1,5 +1,6 @@
 package testTask;
 import basic.TaskGenMC;
+import basic.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskMngPre;
 //import exp.Platform;
@@ -17,20 +18,22 @@ public class TaskGen1 {
 	}
 	public int test2()
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.5,0.8);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.001,0.1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.prn(1);
 		return tg.check();
 	}
 	public  int test3()
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.5,0.8);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.001,0.1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.prn(1);
 		int tg_size=tg.size();
@@ -47,11 +50,12 @@ public class TaskGen1 {
 	}
 	public  int test4()
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
-		tg.setRatioLH(0.25, 1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.5,0.8);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.001,0.1);
+		tgp.setRatioLH(0.25, 1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.writeFile("test2.txt");
 		return 0;

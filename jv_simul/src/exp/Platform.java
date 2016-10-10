@@ -11,6 +11,7 @@ import anal.SimGen;
 import basic.TaskMng;
 import utilSim.FUtil;
 import utilSim.Log;
+import utilSim.MUtil;
 
 public class Platform {
 	private int g_kinds;
@@ -100,7 +101,7 @@ public class Platform {
 			}
 			double avg=sum/size;
 			double avg_ms=(sum_ms*1.0/size);
-			Log.prn(3, (g_start+i*g_step)+":"+avg+","+avg_ms);
+			Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
 			if(isWrite)
 				fu.print(avg+"");
 		}

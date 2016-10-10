@@ -4,39 +4,40 @@ package anal;
 import oldComp.CompMng;
 import basic.TaskGen;
 import basic.TaskGenMC;
+import basic.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import utilSim.Log;
 
 public class SimCompGen {
-	private TaskGen tg;
+	private TaskGen g_tg;
 	private ConfigGen g_cfg;
 	private int g_max_com=0;
 	private double g_alpha;
 	public SimCompGen(ConfigGen cfg) {
-		tg=new TaskGenMC();
 		g_cfg=cfg;
 	}
 	public void setMaxCom(int c){
 		g_max_com=c;
 	}
 	public int prepare(){
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
-		tg.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
-		tg.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
-		tg.setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
-		tg.setProbHI(g_cfg.readDbl("prob_hi"));
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		tgp.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
+		tgp.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
+		tgp.setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
+		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
+		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
 	public int genSet(int i)
 	{
-		tg.generate();
+		g_tg.generate();
 //		Log.prn(2, "util:"+tg.getMCUtil());
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+i;
-		tg.assignComp(g_max_com);
+//		tg.assignComp(g_max_com);
 //		tg.prn2(2);
 //		tg.writeFile2(fn);
 		return 1;
@@ -70,8 +71,9 @@ public class SimCompGen {
 	}
 	
 	public int load_one(int i){
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		TaskGenMC tg=new TaskGenMC(tgp);
 		String subfix=g_cfg.readPar("subfix").trim();
 		String mod=g_cfg.readPar("mod").trim();
 		String fn=subfix+"/taskset_"+mod+"_"+i;

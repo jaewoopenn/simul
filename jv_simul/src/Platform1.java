@@ -1,4 +1,4 @@
-package testExp;
+
 
 
 import anal.ConfigGen;
@@ -7,24 +7,24 @@ import utilSim.Log;
 import utilSim.TEngine;
 
 public class Platform1 {
-	public static int idx=3;
+	public static int idx=7;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 
 	public Platform getP(){
-//		return getP1();
-		return getP2();
+		return getP1();
+//		return getP2();
 	}
 	
 	public Platform getP1() {
 		Platform p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
-//		p.setStart(55);
-//		p.setSize(10);
-		p.setStart(100);
-		p.setSize(1);
+		p.setStart(55);
+		p.setSize(10);
+//		p.setStart(100);
+//		p.setSize(1);
 		p.setStep(5);
 		return p;
 	}
@@ -44,8 +44,8 @@ public class Platform1 {
 		p.setCfg_fn("cfg/cfg");
 //		p.setDuration(10000);
 		p.setDuration(1000);
-		p.setSysNum(1000);
-//		p.setSysNum(100);
+//		p.setSysNum(1000);
+		p.setSysNum(100);
 //		p.setProb(0.1);
 		p.setProb(0.4);
 //		p.setProb(0.7);
@@ -103,14 +103,30 @@ public class Platform1 {
 		p.prnTasks();
 		return 0;
 	}
+	// All in One;
 	public  int test7()
 	{
+		Platform p=getP();
+		if(log_level<3){
+			Log.prn(9, "set Log level>=3");
+			return 0;
+		}
+		Log.prn(3, "Prob 0.1");
+		p.setProb(0.1);
+		p.simul();
+		Log.prn(3, "Prob 0.4");
+		p.setProb(0.4);
+		p.simul();
+		Log.prn(3, "Prob 0.7");
+		p.setProb(0.7);
+		p.simul();
 		return 0;
 	}
 	public  int test8()
 	{
 		return 0;
 	}
+	
 	public  int test9()
 	{
 		return 0;

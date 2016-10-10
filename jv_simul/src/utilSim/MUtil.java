@@ -20,7 +20,7 @@ public class MUtil {
 		return rs;
 	}
 	public static String getStr(double d){
-		return String.format("%.3f", d);
+		return String.format("%.4f", d);
 	}
 	public static void sendMail(String msg) {
 		try{

@@ -1,5 +1,6 @@
-package testFile;
+package testTSetGen;
 import basic.TaskGenMC;
+import basic.TaskGenParam;
 import utilSim.TEngine;
 
 public class TaskSetWrite1 {
@@ -10,32 +11,35 @@ public class TaskSetWrite1 {
 
 	public int test1() //
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.5,0.8);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.001,0.1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.prn(1);
 		return tg.check();
 	}
 	public int test2() // Write
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.45,0.5);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.01,0.1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.45,0.5);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.01,0.1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.writeFile("exp/ts/test1.txt");
 		return 1;
 	}
 	public  int test3() // MC task 
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setRatioLH(0.25, 1);
-		tg.setUtil(0.45,0.5);
-		tg.setPeriod(300,500);
-		tg.setTUtil(0.01,0.1);
-		tg.setProbHI(0.5);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setRatioLH(0.25, 1);
+		tgp.setUtil(0.45,0.5);
+		tgp.setPeriod(300,500);
+		tgp.setTUtil(0.01,0.1);
+		tgp.setProbHI(0.5);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.prn(1);
 //		tg.writeFile("test/ts/test_mc.txt");

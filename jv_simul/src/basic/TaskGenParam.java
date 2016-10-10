@@ -109,6 +109,10 @@ public class TaskGenParam {
 		return 0;
 	}
 
+	public void setProbHI(double d) {
+		prob_HI=d;
+	}
+
 
 
 	

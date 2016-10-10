@@ -5,6 +5,12 @@ import utilSim.Log;
 
 public class TaskGenNonMC extends TaskGen {
 	
+	public TaskGenNonMC(TaskGenParam tgp) {
+		super(tgp);
+	}
+
+
+
 	@Override
 	public Task genTask(int tid){
 		Task tsk=g_param.genTask(tid,false);

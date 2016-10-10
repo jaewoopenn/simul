@@ -1,6 +1,7 @@
 package testTask;
 import basic.TaskGen;
 import basic.TaskGenMC;
+import basic.TaskGenParam;
 import utilSim.TEngine;
 
 // Simulation
@@ -12,12 +13,13 @@ public class TaskGenMC2 {
 	public static int total=10;
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
-		TaskGenMC tg=new TaskGenMC();
-		tg.setPeriod(50,300);
-		tg.setTUtil(0.02,0.3);
-		tg.setRatioLH(0.2,0.9);
-		tg.setUtil(0.90,0.99);
-		tg.setProbHI(0.5);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setPeriod(50,300);
+		tgp.setTUtil(0.02,0.3);
+		tgp.setRatioLH(0.2,0.9);
+		tgp.setUtil(0.90,0.99);
+		tgp.setProbHI(0.5);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		return tg;
 	}
 

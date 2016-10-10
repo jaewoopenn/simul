@@ -3,6 +3,7 @@ import oldComp.CompGen;
 import oldComp.CompGenParam;
 import oldComp.OComp;
 import basic.TaskGenMC;
+import basic.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskMngPre;
 //import exp.Platform;
@@ -42,10 +43,11 @@ public class CompGen1 {
 	}
 	public  int test3()
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.5,0.8);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.001,0.1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.prn(1);
 		int tg_size=tg.size();
@@ -62,10 +64,11 @@ public class CompGen1 {
 	}
 	public  int test4()
 	{
-		TaskGenMC tg=new TaskGenMC();
-		tg.setUtil(0.5,0.8);
-		tg.setPeriod(20,50);
-		tg.setTUtil(0.001,0.1);
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setUtil(0.5,0.8);
+		tgp.setPeriod(20,50);
+		tgp.setTUtil(0.001,0.1);
+		TaskGenMC tg=new TaskGenMC(tgp);
 		tg.generate();
 		tg.writeFile("test2.txt");
 		return 0;
@@ -73,7 +76,7 @@ public class CompGen1 {
 	}
 	public  int test5()
 	{
-		TaskGenMC tg=new TaskGenMC();
+		TaskGenMC tg=new TaskGenMC(new TaskGenParam());
 //		tg.loadFile("test2.txt");
 		tg.prn(1);
 		int tg_size=tg.size();
@@ -90,7 +93,7 @@ public class CompGen1 {
 	}
 	public  int test6()
 	{
-		TaskGenMC tg=new TaskGenMC();
+		TaskGenMC tg=new TaskGenMC(new TaskGenParam());
 //		tg.loadFile("test2.txt");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());
@@ -101,7 +104,7 @@ public class CompGen1 {
 	}
 	public  int test7()
 	{
-		TaskGenMC tg=new TaskGenMC();
+		TaskGenMC tg=new TaskGenMC(new TaskGenParam());
 //		tg.loadFile("t1/taskset2");
 		TaskMngPre tm=new TaskMngPre();
 		tm.setTasks(tg.getAll());

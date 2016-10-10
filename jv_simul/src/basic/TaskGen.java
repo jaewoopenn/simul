@@ -7,8 +7,9 @@ import utilSim.FUtil;
 public abstract class TaskGen {
 	protected TaskGenParam g_param;
 	protected Vector<Task> g_tasks;
-	public TaskGen() {
-		g_param=new TaskGenParam();
+
+	public TaskGen(TaskGenParam tgp) {
+		g_param=tgp;
 	}
 
 	public void generate() {
@@ -35,12 +36,6 @@ public abstract class TaskGen {
 
 	public abstract Task genTask(int tid);
 
-	public void assignComp(int max){
-//		for(Task t:g_tasks) {
-//			t.setCom(g_param.getComp(max));
-//		}
-		
-	}
 
 	public int check(){
 		return g_param.check(getUtil());
@@ -60,27 +55,6 @@ public abstract class TaskGen {
 		return g_tasks.size();
 	}
 	
-	// setting 
-	public void setUtil(double l, double u) {
-		g_param.setUtil(l, u);
-	}
-
-	public void setTUtil(double l, double u) {
-		g_param.setTUtil(l, u);
-	}
-
-	public void setRatioLH(double l, double u) {
-		g_param.setRatioLH(l, u);
-	}
-
-	public void setPeriod(int l, int u) {
-		g_param.setPeriod(l, u);
-	}
-
-	public void setProbHI(double p){
-		g_param.prob_HI=p;
-	}
-
 	
 	// file
 	public void writeFile(String file) {
@@ -90,17 +64,5 @@ public abstract class TaskGen {
 		fu.save();
 	}
 	
-//	public void loadFile(String f) {
-//		g_tasks=TaskFile.loadFile(f);
-//	}
-//	
-//
-//	public TaskMng loadFileTM(String f) {
-//		loadFile(f);
-//		TaskMngPre tm=new TaskMngPre();
-//		tm.setTasks(getAll());
-//		TaskMng m=tm.freezeTasks();
-//		return m;
-//	}
 	
 }
