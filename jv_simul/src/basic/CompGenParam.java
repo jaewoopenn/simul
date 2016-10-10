@@ -10,6 +10,8 @@ public class CompGenParam {
 	
 	public double u_ub;
 	public double u_lb;
+	public double c_ub;
+	public double c_lb;
 	
 	public CompGenParam(){
 		g_rand=new RUtil();
@@ -22,6 +24,14 @@ public class CompGenParam {
 		}
 		u_lb=l;
 		u_ub=u;
+	}
+
+	public void setCUtil(double l, double u) {
+		if(l>u){
+			System.out.println("Error setUtil");
+		}
+		c_lb=l;
+		c_ub=u;
 	}
 
 

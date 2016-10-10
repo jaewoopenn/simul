@@ -10,7 +10,7 @@ public class ConfigWrite1 {
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() 
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "exp/ts");
 		eg.setParam("num","10");
 		eg.setParam("u_lb", "0.45");
@@ -21,7 +21,7 @@ public class ConfigWrite1 {
 	}
 	public int test2() 
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "drop");
 		eg.setParam("num","500");
 		int base=50;
@@ -37,7 +37,7 @@ public class ConfigWrite1 {
 	}
 	public int test3() // print config
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "exp/ts");
 		eg.setParam("num","10");
 		eg.genRange("exp/cfg/cfg",50,5,10);
@@ -46,7 +46,7 @@ public class ConfigWrite1 {
 	public  int test4() // get config
 	{
 		int lb=40;
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("subfix", "exp/ts");
 		eg.setParam("num","1");
 		eg.setParam("u_lb", (lb)*1.0/100+"");
@@ -78,22 +78,6 @@ public class ConfigWrite1 {
 	public  int test10()
 	{
 		return 0;
-	}
-	public ConfigGen getCfg()	{
-		ConfigGen eg=new ConfigGen("");
-		eg.setParam("u_lb","0.95");
-		eg.setParam("u_ub","1.0");
-		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","300");
-		eg.setParam("tu_lb","0.02");
-		eg.setParam("tu_ub","0.1");
-		eg.setParam("r_lb","0.25");
-		eg.setParam("r_ub","1.0");
-		eg.setParam("prob_hi","0.5");
-		eg.setParam("num","10");
-		eg.setParam("subfix","exp");
-		eg.setParam("mod","t");
-		return eg;
 	}
 	
 	@SuppressWarnings("rawtypes")

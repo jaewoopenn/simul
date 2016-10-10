@@ -147,7 +147,7 @@ public class TaskMng {
 		return util;
 	}
 
-	public double getUtil() {
+	public double getRUtil() {
 		double util=0;
 		for(Task t:g_tasks)	{
 			util+=g_info.computeRU(t);
@@ -155,6 +155,9 @@ public class TaskMng {
 		return util;
 	}
 
+	public double getMCUtil() {
+		return g_info.getMCUtil();
+	}
 
 	public double getReclaimUtil(int tid){
 		Task t=g_tasks[tid];
@@ -166,6 +169,11 @@ public class TaskMng {
 	public int size() {
 		return g_tasks.length;
 	}
+
+
+
+
+
 
 
 

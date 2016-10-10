@@ -1,7 +1,10 @@
 package exp;
 
 
+import comp.CompMng;
+
 import anal.Anal;
+import anal.AnalComp;
 import anal.ConfigGen;
 import basic.TaskMng;
 import basic.TaskMngPre;
@@ -23,7 +26,11 @@ public class ExpSimul {
 		TaskMngPre tmp=TaskMngPre.loadFile(fn);
 		return tmp.freezeTasks();
 	}
-	
+	public CompMng loadCM(int i){
+		String fn=g_cfg.get_fn(i);
+		CompMng cm=CompMng.loadFile(fn);
+		return cm;
+	}
 
 	
 	public int anal(TaskMng tm, Anal a) {
@@ -47,6 +54,14 @@ public class ExpSimul {
 	public void setDuration(int dur ) {
 		this.g_dur = dur;
 		
+	}
+	public int analComp(CompMng cm) {
+		AnalComp a=new AnalComp(cm);
+		a.computeX();
+		a.part();
+		a.anal();
+		
+		return 0;
 	}
 	
 }

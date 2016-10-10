@@ -114,7 +114,16 @@ public class TaskGenParam {
 	}
 
 
-
+	public static TaskGenParam getDefault(){
+		TaskGenParam tgp=new TaskGenParam();
+		tgp.setRatioLH(0.25, 1);
+		tgp.setUtil(0.45,0.5);
+		tgp.setPeriod(300,500);
+		tgp.setTUtil(0.01,0.1);
+		tgp.setProbHI(0.5);
+		return tgp;
+		
+	}
 	
 
 }

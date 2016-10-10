@@ -104,6 +104,14 @@ public class CompMng {
 			c.partition();
 		}
 	}
+
+
+
+
+	public double getMCUtil() {
+		TaskMng tm=getTM();
+		return tm.getMCUtil();
+	}
 	
 
 
