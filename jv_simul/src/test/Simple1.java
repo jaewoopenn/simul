@@ -9,7 +9,7 @@ import utilSim.TEngine;
 public class Simple1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=5;
 	public static int total=10;
 	public static int gret[]={1,1,0,0,0, 0,0,0,0,0};
 	public int test1() // error config
@@ -52,13 +52,15 @@ public class Simple1 {
 		   
 		    while((line = br.readLine()) != null){
 		        System.out.println(line);
-		    }		}catch(Exception e){
+		    }		
+		}catch(Exception e){
 		    System.out.println(e);
 		}
 		return 0;
 	}
 	public  int test5() 
 	{
+		MUtil.sendMail("Complete");
 		return 0;
 	}
 	public  int test6() 

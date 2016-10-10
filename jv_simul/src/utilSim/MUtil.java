@@ -1,5 +1,8 @@
 package utilSim;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class MUtil {
 	public static double err=0.00000000000001;
 	public static int btoi(boolean b){
@@ -18,5 +21,21 @@ public class MUtil {
 	}
 	public static String getStr(double d){
 		return String.format("%.3f", d);
+	}
+	public static void sendMail(String msg) {
+		try{
+		    String[] cmdArray = {"C:/Python27/python.exe", 
+		    		"c:/my/py/mail.py",msg};    
+		    Process p =Runtime.getRuntime().exec(cmdArray);
+		    BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		    String line = null;
+		   
+		    while((line = br.readLine()) != null){
+		        System.out.println(line);
+		    }		
+		}catch(Exception e){
+		    System.out.println(e);
+		}
+		
 	}
 }
