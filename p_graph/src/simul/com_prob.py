@@ -10,7 +10,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['a=0','a=0.3','a=0.6','a=0.9','a=1.00','a=1']
+    lab=['a=0.0','0<a<=0.3','0.3<a<=0.6','0.6<a<=0.9','0.9<a<=1.00','a=1']
 #     data=[1,2,0,3]
     data=[0,1,2,3,4,5]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
@@ -44,7 +44,7 @@ def main():
 #     mp.xlim(0.70,1.0)
     mp.ylim(0, 1.02)
     mp.legend()
-    mp.xlabel("Utilization Bound")
+    mp.xlabel("Probability to be a HI-task")
     mp.ylabel("Acceptance Ratio")
     print "hihi"
     mp.show()
