@@ -34,7 +34,7 @@ public class CompEx1 {
 		tmp.add(new Task(0,28,1));
 		tmp.add(new Task(0,38,2));
 		tmp.add(new Task(0,48,3));
-		tmp.add(new Task(0,6,1,5));
+		tmp.add(new Task(0,6,1,3));
 		TaskMng tm=tmp.freezeTasks();
 		c.setTM(tm);
 		return c;

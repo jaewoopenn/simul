@@ -1,12 +1,14 @@
 package testComp;
 
 
+import basic.TaskMng;
 import comp.Comp;
+import utilSim.Log;
 import utilSim.TEngine;
 import taskSetEx.CompEx1;
 
 public class Comp1 {
-	public static int idx=3;
+	public static int idx=6;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -30,16 +32,49 @@ public class Comp1 {
 		c.prn();
 		return 0;
 	}
+
+	// runtime util
 	public  int test4() 
 	{
+		Comp c=CompEx1.getComp3();
+		double ru=c.getTM().getRU();
+		Log.prn(1, "RU:"+ru);
 		return 0;
 	}
+
+	// test max Res when ms
 	public  int test5() 
 	{
+		Comp c=CompEx1.getComp3();
+		c.setMaxRes(0.7);
+		c.prn();
+		TaskMng tm=c.getTM();
+		double ru=tm.getRU();
+		Log.prn(1, "RU:"+ru);
+		tm.modeswitch(4);
+		ru=tm.getRU();
+		Log.prn(1, "RU:"+ru);
+		c.drop();
+		ru=tm.getRU();
+		Log.prn(1, "RU:"+ru);
 		return 0;
 	}
+
+	// test ext ms
 	public  int test6() 
 	{
+		Comp c=CompEx1.getComp3();
+		c.setMaxRes(0.7);
+		c.prn();
+		TaskMng tm=c.getTM();
+		double ru=tm.getRU();
+		Log.prn(1, "RU:"+ru);
+		tm.modeswitch(4);
+		ru=tm.getRU();
+		Log.prn(1, "RU:"+ru);
+		c.drop();
+		ru=tm.getRU();
+		Log.prn(1, "RU:"+ru);
 		return 0;
 	}
 	public  int test7()
