@@ -8,7 +8,7 @@ import utilSim.Log;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","c_lb","c_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"};
+			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod","alpha"};
 	private HashMap<String,String> param;
 	private String g_fn;
 	public ConfigGen(String f) {
@@ -113,6 +113,7 @@ public class ConfigGen {
 		eg.setParam("r_ub","1.0");
 		eg.setParam("prob_hi","0.5");
 		eg.setParam("num","10");
+		eg.setParam("alpha","0");
 		eg.setParam("subfix","exp");
 		eg.setParam("mod","t");
 		return eg;

@@ -12,6 +12,7 @@ public class CompGenParam {
 	public double u_lb;
 	public double c_ub;
 	public double c_lb;
+	public double alpha;
 	
 	public CompGenParam(){
 		g_rand=new RUtil();
@@ -32,6 +33,10 @@ public class CompGenParam {
 		}
 		c_lb=l;
 		c_ub=u;
+	}
+
+	public void setAlpha(double d) {
+		alpha=d;
 	}
 
 

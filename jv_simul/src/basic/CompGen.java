@@ -1,11 +1,8 @@
 package basic;
 
-import java.util.Vector;
 
 import comp.Comp;
 import comp.CompMng;
-import utilSim.FUtil;
-import utilSim.Log;
 
 public class CompGen {
 	protected CompGenParam g_param;
@@ -21,7 +18,7 @@ public class CompGen {
 		CompMng cm=new CompMng();
 		while(true){
 			tg.generate();
-			Comp c=new Comp(0);
+			Comp c=new Comp(g_param.alpha);
 			TaskMngPre tmp=new TaskMngPre(tg.getAll());
 			TaskMng tm=tmp.freezeTasks();
 			c.setTM(tm);

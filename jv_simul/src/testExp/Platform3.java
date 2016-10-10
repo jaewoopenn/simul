@@ -10,7 +10,7 @@ import utilSim.TEngine;
 
 // schedulability 
 public class Platform3 {
-	public static int idx=1;
+	public static int idx=6;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
@@ -29,6 +29,7 @@ public class Platform3 {
 //		p.setStart(100);
 //		p.setSize(1);
 		p.setStep(5);
+		p.setAlpha(0.2);
 		return p;
 	}
 	public Platform getP2() {
@@ -42,7 +43,8 @@ public class Platform3 {
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
 //		p.setSysNum(100);
-		p.setSysNum(1);
+		p.setSysNum(3);
+//		p.setSysNum(1);
 		p.setRS("X");
 		return p;
 		
@@ -61,7 +63,7 @@ public class Platform3 {
 	public int test2() 
 	{
 		Platform p=getP();
-		p.genTS(false);
+		p.genCom();
 		return 1;
 	}
 	public int test3() 
@@ -87,7 +89,7 @@ public class Platform3 {
 	public  int test6() 
 	{
 		Platform p=getP();
-		p.prnTasks();
+		p.prnCom();
 		return 0;
 	}
 	public  int test7()

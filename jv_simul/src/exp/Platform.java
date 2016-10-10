@@ -1,12 +1,15 @@
 package exp;
 
 
+import comp.CompMng;
+
 import anal.Anal;
 import anal.AnalEDF_AT;
 import anal.AnalEDF_AT_S;
 import anal.AnalEDF_VD;
 import anal.AnalICG;
 import anal.ConfigGen;
+import anal.SimCompGen;
 import anal.SimGen;
 import basic.TaskMng;
 import utilSim.FUtil;
@@ -26,6 +29,8 @@ public class Platform {
 	private String g_ts_name;
 	public boolean isWrite=true;
 	private String g_RS;
+	private double g_alpha;
+	
 	public void writeCfg(ConfigGen g_cfg) {
 		g_cfg.setParam("subfix", g_path+"/ts");
 		for(int i=0;i<g_size;i++){
@@ -41,6 +46,7 @@ public class Platform {
 				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
 			g_cfg.setParam("mod", modStr);
+			g_cfg.setParam("alpha", g_alpha+"");
 			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		}
 	}
@@ -57,6 +63,18 @@ public class Platform {
 				eg.gen();
 		}
 		Log.prn(3, "task");
+		
+	}
+	public void genCom() {
+		for(int i=0;i<g_size;i++){
+			int mod=i*g_step+g_start;
+			String modStr=g_ts_name+"_"+(mod);
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			cfg.readFile();
+			SimCompGen eg=new SimCompGen(cfg);
+			eg.gen();
+		}
+		Log.prn(3, "com");
 		
 	}
 	public void simul() {
@@ -225,6 +243,21 @@ public class Platform {
 		}
 		
 	}
+	public void prnCom() {
+		for(int i=0;i<g_size;i++){
+			int mod=i*g_step+g_start;
+			String modStr=g_ts_name+"_"+(mod);
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			cfg.readFile();
+			ExpSimul eg=new ExpSimul(cfg);
+			int size=eg.size();
+			for(int j=0;j<size;j++){
+				CompMng cm=eg.loadCM(j);
+				Log.prn(3, mod+" "+j+" "+cm.getMCUtil());
+			}
+		}
+		
+	}
 	
 	public void setKinds(int d) {
 		this.g_kinds = d;
@@ -258,6 +291,10 @@ public class Platform {
 	}
 	public void setRS(String s) {
 		this.g_RS=s;
+		
+	}
+	public void setAlpha(double d) {
+		this.g_alpha=d;
 		
 	}
 }
