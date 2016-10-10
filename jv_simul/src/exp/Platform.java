@@ -207,14 +207,13 @@ public class Platform {
 		}		
 		fu.save();
 	}
-	public void analTasks() {
+	public void prnTasks() {
 		for(int i=0;i<g_size;i++){
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
-			eg.setDuration(g_dur);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				TaskMng tm=eg.loadTM(j);

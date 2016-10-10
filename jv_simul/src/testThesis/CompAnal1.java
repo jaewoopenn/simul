@@ -2,7 +2,6 @@ package testThesis;
 
 import oldComp.OComp;
 import oldComp.CompMng;
-import anal.Analysis;
 import anal.CompAnal;
 import basic.TaskMng;
 import utilSim.Log;
@@ -93,7 +92,8 @@ public class CompAnal1 {
 //		a.set_alpha(1.0);
 		TaskMng tm=a.getInterfaces();
 //		tm.prn();
-		return Analysis.anal_EDF_VD(tm); 
+//		return Analysis.anal_EDF_VD(tm); 
+		return 0;
 	}
 	public CompMng getComp3()
 	{
@@ -115,7 +115,8 @@ public class CompAnal1 {
 //		a.set_alpha(0.4);
 		a.set_alpha(1.0);
 		TaskMng tm=a.getInterfaces();
-		return Analysis.anal_EDF_VD(tm); 
+//		return Analysis.anal_EDF_VD(tm); 
+		return 0;
 	}
 
 	

@@ -100,7 +100,7 @@ public class Platform1 {
 	public  int test6() 
 	{
 		Platform p=getP();
-		p.analTasks();
+		p.prnTasks();
 		return 0;
 	}
 	public  int test7()

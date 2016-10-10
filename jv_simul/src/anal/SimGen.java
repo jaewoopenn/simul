@@ -1,5 +1,6 @@
 package anal;
 
+import utilSim.MUtil;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
@@ -57,7 +58,11 @@ public class SimGen {
 		if(tm.g_info.getHi_size()==0) return 0;
 		if(!g_isCheck)
 			return 1;
-		return Analysis.anal_EDF_VD(m);
+		AnalEDF_VD a=new AnalEDF_VD();
+		a.init(m);
+		a.prepare();
+		
+		return MUtil.btoi(a.isScheduable());
 	}
 	public TaskMng genOne(){
 		g_tg.generate();

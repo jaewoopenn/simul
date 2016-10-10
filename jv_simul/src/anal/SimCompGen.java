@@ -65,7 +65,8 @@ public class SimCompGen {
 		a.compute_X();
 		a.set_alpha(g_alpha);
 		TaskMng ifc=a.getInterfaces();
-		return Analysis.anal_EDF_VD(ifc); 
+		return 0;
+//		return Analysis.anal_EDF_VD(ifc); 
 	}
 	
 	public int load_one(int i){
@@ -90,7 +91,8 @@ public class SimCompGen {
 		a.compute_X();
 		a.set_alpha(g_alpha);
 		TaskMng ifc=a.getInterfaces();
-		return Analysis.anal_EDF_VD(ifc); 
+		return 0;
+//		return Analysis.anal_EDF_VD(ifc); 
 	}
 
 	// getting
