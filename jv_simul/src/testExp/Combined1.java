@@ -1,8 +1,8 @@
 package testExp;
 
 
-import simul.ConfigGen;
-import simul.SimGen;
+import anal.ConfigGen;
+import anal.SimGen;
 import utilSim.Log;
 import utilSim.TEngine;
 

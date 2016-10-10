@@ -1,7 +1,7 @@
 package testThesis;
-import simul.ConfigGen;
-import simul.SimCompGen;
-import simul.SimGen;
+import anal.ConfigGen;
+import anal.SimCompGen;
+import anal.SimGen;
 import utilSim.FUtil;
 import utilSim.Log;
 import utilSim.TEngine;

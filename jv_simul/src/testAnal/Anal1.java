@@ -1,9 +1,9 @@
 package testAnal;
 
+import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import simul.AnalEDF_AT_S;
 import utilSim.Log;
 import utilSim.TEngine;
 

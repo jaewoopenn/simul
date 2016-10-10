@@ -1,8 +1,8 @@
 package testThesis;
 
+import anal.PartAnal;
 import oldComp.OComp;
 import oldComp.CompMng;
-import simul.PartAnal;
 import utilSim.Log;
 import utilSim.TEngine;
 

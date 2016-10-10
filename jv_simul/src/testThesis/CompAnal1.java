@@ -2,9 +2,9 @@ package testThesis;
 
 import oldComp.OComp;
 import oldComp.CompMng;
+import anal.Analysis;
+import anal.CompAnal;
 import basic.TaskMng;
-import simul.Analysis;
-import simul.CompAnal;
 import utilSim.Log;
 import utilSim.TEngine;
 

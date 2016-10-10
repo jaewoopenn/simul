@@ -1,9 +1,9 @@
 package testThesis;
 
+import anal.CompAnalTemp;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import simul.CompAnalTemp;
 import utilSim.TEngine;
 
 public class CompAnalTemp1 {

@@ -1,8 +1,8 @@
 package testExp;
 
 
+import anal.ConfigGen;
 import exp.Platform;
-import simul.ConfigGen;
 import utilSim.Log;
 import utilSim.TEngine;
 
@@ -70,7 +70,7 @@ public class Platform1 {
 	public int test2() 
 	{
 		Platform p=getP();
-		p.genTS();
+		p.genTS(true);
 		return 1;
 	}
 	public int test3() 

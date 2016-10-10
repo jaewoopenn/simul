@@ -1,4 +1,4 @@
-package simul;
+package anal;
 
 import basic.TaskMng;
 

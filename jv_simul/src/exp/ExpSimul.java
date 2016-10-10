@@ -1,10 +1,10 @@
 package exp;
 
 
+import anal.Anal;
+import anal.ConfigGen;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import simul.Anal;
-import simul.ConfigGen;
 import utilSim.Log;
 import utilSim.MUtil;
 
@@ -19,9 +19,8 @@ public class ExpSimul {
 	}
 	
 	public TaskMng loadTM(int i){
-		TaskMngPre tmp=new TaskMngPre();
 		String fn=g_cfg.get_fn(i);
-		TaskMngPre.loadFile(fn);
+		TaskMngPre tmp=TaskMngPre.loadFile(fn);
 		return tmp.freezeTasks();
 	}
 	
@@ -31,8 +30,7 @@ public class ExpSimul {
 //		AnalEDF_AT a=new AnalEDF_AT();
 		a.init(tm);
 		a.prepare();
-//		double dtm=a.getDtm();
-//		Log.prn(2, ""+dtm);
+//		Log.prn(2, ""+a.getDtm());
 		boolean b=a.isScheduable();
 		return MUtil.btoi(b);
 	}

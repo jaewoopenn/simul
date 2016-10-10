@@ -1,12 +1,14 @@
 package exp;
 
 
+import anal.Anal;
+import anal.AnalEDF_AT;
+import anal.AnalEDF_AT_S;
+import anal.AnalEDF_VD;
+import anal.AnalICG;
+import anal.ConfigGen;
+import anal.SimGen;
 import basic.TaskMng;
-import simul.Anal;
-import simul.AnalEDF_AT_S;
-import simul.AnalEDF_VD;
-import simul.ConfigGen;
-import simul.SimGen;
 import utilSim.FUtil;
 import utilSim.Log;
 
@@ -41,18 +43,27 @@ public class Platform {
 			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		}
 	}
-	public void genTS() {
+	public void genTS(boolean bCheck) {
 		for(int i=0;i<g_size;i++){
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
-			eg.gen2();
+			if(bCheck)
+				eg.gen2();
+			else
+				eg.gen();
 		}
 		Log.prn(3, "task");
 		
 	}
+	public void simul() {
+		write_x_axis();
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
+		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+	}
+	
 	public void simul_in(int no,Anal an,TaskSimul ts){
 		double ret;
 		FUtil fu=null;
@@ -97,10 +108,42 @@ public class Platform {
 			fu.save();
 		
 	}
-	public void simul() {
+	public void anal() {
 		write_x_axis();
-		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
-		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+		anal_in(1,new AnalEDF_VD());
+		anal_in(2,new AnalEDF_AT_S());
+		anal_in(3,new AnalEDF_AT());
+		anal_in(4,new AnalICG());
+	}
+	
+	public void anal_in(int no,Anal an){
+		int ret;
+		FUtil fu=null;
+		if(isWrite)
+			fu=new FUtil(g_path+"/rs/anal_"+g_ts_name+"_"+g_RS+"_"+no+".txt");
+		for(int i=0;i<g_size;i++){
+			int sum=0;
+			int mod=i*g_step+g_start;
+			String modStr=g_ts_name+"_"+(mod);
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			cfg.readFile();
+			ExpSimul eg=new ExpSimul(cfg);
+			int size=eg.size();
+			for(int j=0;j<size;j++){
+				TaskMng tm=eg.loadTM(j);
+				ret=eg.anal(tm,an);
+				Log.prn(2, j+","+ret);
+				sum+=ret;
+//				Log.prn(2, " "+sum);
+			}
+			double avg=(double)sum/size;
+			Log.prn(3, (g_start+i*g_step)+":"+avg);
+			if(isWrite)
+				fu.print(avg+"");
+		}
+		if(isWrite)
+			fu.save();
+		
 	}
 
 	public void simul_vd() {
@@ -119,7 +162,8 @@ public class Platform {
 			TaskSimul ts, int set, int no) {
 		double ret;
 		int mod=set*g_step+g_start;
-		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+mod+".txt");
+		String modStr=g_ts_name+"_"+(mod);
+		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
 		ExpSimul eg=new ExpSimul(cfg);
 		eg.setDuration(g_dur);
@@ -134,6 +178,27 @@ public class Platform {
 		Log.prn(2, set+","+no+","+ret+","+si.ms);
 		
 	}
+	public void anal_one(int anal, int set, int no) {
+		if(anal==0)
+			anal_in_one(new AnalEDF_VD(),set,no);
+		else
+			anal_in_one(new AnalEDF_AT_S(),set,no);
+	}
+	private void anal_in_one(Anal an,
+			int set, int no) {
+		int ret;
+		int mod=set*g_step+g_start;
+		String modStr=g_ts_name+"_"+(mod);
+		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		TaskMng tm=eg.loadTM(no);
+		tm.prn();
+		ret=eg.anal(tm,an);
+		Log.prn(2, set+","+no+","+ret);
+		
+	}
+	
 	private void write_x_axis() {
 		FUtil fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_x.txt");
 

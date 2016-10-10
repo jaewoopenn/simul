@@ -1,8 +1,8 @@
 package testThesis;
+import anal.ConfigCompGen;
+import anal.ConfigGen;
+import anal.SimGen;
 import processor.SimPartGen;
-import simul.ConfigCompGen;
-import simul.ConfigGen;
-import simul.SimGen;
 import utilSim.FUtil;
 import utilSim.Log;
 import utilSim.TEngine;

@@ -1,11 +1,11 @@
 package processor;
 
 
+import anal.ConfigCompGen;
+import anal.PartAnal;
 import oldComp.CompGen;
 import oldComp.CompGenParam;
 import oldComp.CompMng;
-import simul.ConfigCompGen;
-import simul.PartAnal;
 
 public class SimPartGen {
 	private CompGen tg;

@@ -1,9 +1,9 @@
 package testAnal;
 
+import anal.Analysis;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import simul.Analysis;
 import utilSim.TEngine;
 
 public class Analysis1 {

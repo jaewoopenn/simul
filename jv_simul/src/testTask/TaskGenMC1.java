@@ -1,10 +1,10 @@
 package testTask;
+import anal.Analysis;
 import basic.Task;
 import basic.TaskGen;
 import basic.TaskGenMC;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import simul.Analysis;
 import utilSim.Log;
 import utilSim.TEngine;
 
