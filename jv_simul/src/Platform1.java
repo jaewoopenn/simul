@@ -113,12 +113,15 @@ public class Platform1 {
 		}
 		Log.prn(3, "Prob 0.1");
 		p.setProb(0.1);
+		p.setRS("1");
 		p.simul();
 		Log.prn(3, "Prob 0.4");
 		p.setProb(0.4);
+		p.setRS("4");
 		p.simul();
 		Log.prn(3, "Prob 0.7");
 		p.setProb(0.7);
+		p.setRS("7");
 		p.simul();
 		return 0;
 	}

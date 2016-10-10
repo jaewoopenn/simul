@@ -1,8 +1,8 @@
 package testExp;
 import comp.CompMng;
-
 import exp.ExpSimul;
 import anal.ConfigGen;
+import utilSim.Log;
 import utilSim.TEngine;
 
 public class ExpSimul2 {
@@ -13,12 +13,13 @@ public class ExpSimul2 {
 
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_55.txt");
+		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_100.txt");
 		cfg.readFile();
 		//cfg.prn(2);
 		ExpSimul eg=new ExpSimul(cfg);
 		CompMng cm=eg.loadCM(0);
 		int ret=eg.analComp(cm);
+		Log.prn(1, ""+ret);
 		return 0;
 	}
 	public int test2() 

@@ -11,7 +11,7 @@ import utilSim.Log;
 import utilSim.TEngine;
 
 public class Anal2 {
-	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -19,9 +19,12 @@ public class Anal2 {
 	public int test1() 
 	{
 		CompMng cm=CompMngEx1.getCompMng2();
+//		cm.setAlpha(0, 0.25);
+		cm.setAlpha(0, 0);
 		AnalComp a=new AnalComp(cm);
 		a.computeX();
 		a.part();
+		cm.prn();
 		a.anal();
 //		cm.prn();
 //		Log.prn(2, "x:"+x);
@@ -30,6 +33,10 @@ public class Anal2 {
 
 	public int test2() 
 	{
+		CompMng cm=CompMng.loadFile("com/ts/taskset_util_79_73");
+		cm.setAlpha(0, 0);
+		AnalComp a=new AnalComp(cm);
+		a.computeX();
 		return 0;
 	}
 	public int test3() 

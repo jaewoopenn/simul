@@ -29,7 +29,8 @@ public class Platform {
 	private String g_ts_name;
 	public boolean isWrite=true;
 	private String g_RS;
-	private double g_alpha;
+	private double g_a_l;
+	private double g_a_u;
 	
 	public void writeCfg(ConfigGen g_cfg) {
 		g_cfg.setParam("subfix", g_path+"/ts");
@@ -46,10 +47,24 @@ public class Platform {
 				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
 			g_cfg.setParam("mod", modStr);
-			g_cfg.setParam("alpha", g_alpha+"");
 			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		}
 	}
+	public void writeComCfg(ConfigGen g_cfg) {
+		g_cfg.setParam("subfix", g_path+"/ts");
+		for(int i=0;i<g_size;i++){
+			int mod=i*g_step+g_start;
+			String modStr=g_ts_name+"_"+(mod);
+			g_cfg.setParam("num",g_sys_num+"");
+			g_cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
+			g_cfg.setParam("u_ub", (mod)*1.0/100+"");
+			g_cfg.setParam("mod", modStr);
+			g_cfg.setParam("a_lb", g_a_l+"");
+			g_cfg.setParam("a_ub", g_a_u+"");
+			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+		}
+	}
+	
 	public void genTS(boolean bCheck) {
 		for(int i=0;i<g_size;i++){
 			int mod=i*g_step+g_start;
@@ -144,7 +159,7 @@ public class Platform {
 		for(int i=0;i<g_size;i++){
 			int sum=0;
 			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod);
+			String modStr=g_ts_name+"_"+(mod)+"_"+g_a_u;
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);
@@ -165,7 +180,50 @@ public class Platform {
 			fu.save();
 		
 	}
-
+	public int analCom(int set, int no) {
+		int mod=set*g_step+g_start;
+		String modStr=g_ts_name+"_"+(mod);
+		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		CompMng cm=eg.loadCM(no);
+		cm.setAlpha(g_a_l,g_a_u);
+		int ret=eg.analComp(cm);
+		Log.prn(2, set+","+no+":"+ret);
+		return ret;
+	}
+	
+	public void analCom() {
+		int ret;
+		FUtil fu=null;
+		if(isWrite)
+			fu=new FUtil(g_path+"/rs/anal_"+g_ts_name+"_"+g_RS+".txt");
+		for(int i=0;i<g_size;i++){
+			int sum=0;
+			int mod=i*g_step+g_start;
+			String modStr=g_ts_name+"_"+(mod);
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			cfg.readFile();
+			ExpSimul eg=new ExpSimul(cfg);
+			int size=eg.size();
+			for(int j=0;j<size;j++){
+				CompMng cm=eg.loadCM(j);
+				cm.setAlpha(g_a_l,g_a_u);
+				ret=eg.analComp(cm);
+				Log.prn(2, j+","+ret);
+				sum+=ret;
+//				Log.prn(2, " "+sum);
+			}
+			double avg=(double)sum/size;
+			Log.prn(3, (g_start+i*g_step)+":"+avg);
+			if(isWrite)
+				fu.print(avg+"");
+		}
+		if(isWrite)
+			fu.save();
+		
+		
+	}
 	public void simul_vd() {
 		isWrite=false;
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
@@ -219,7 +277,7 @@ public class Platform {
 		
 	}
 	
-	private void write_x_axis() {
+	public void write_x_axis() {
 		FUtil fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_x.txt");
 
 		for(int i=0;i<g_size;i++){
@@ -293,8 +351,9 @@ public class Platform {
 		this.g_RS=s;
 		
 	}
-	public void setAlpha(double d) {
-		this.g_alpha=d;
+	public void setAlpha(double l,double u) {
+		this.g_a_l=l;
+		this.g_a_u=u;
 		
 	}
 }

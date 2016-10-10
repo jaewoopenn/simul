@@ -16,7 +16,7 @@ public class SimCompGen {
 		CompGenParam cgp=new CompGenParam();
 		cgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		cgp.setCUtil(g_cfg.readDbl("c_lb"),g_cfg.readDbl("c_ub"));
-		cgp.setAlpha(g_cfg.readDbl("alpha"));
+		cgp.setAlpha(g_cfg.readDbl("a_lb"),g_cfg.readDbl("a_ub"));
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tgp.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));

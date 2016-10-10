@@ -10,11 +10,10 @@ import utilSim.TEngine;
 
 // schedulability 
 public class Platform3 {
-	public static int idx=6;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
-
 	public Platform getP(){
 		return getP1();
 //		return getP2();
@@ -23,13 +22,11 @@ public class Platform3 {
 	public Platform getP1() {
 		Platform p=getCommmon();
 		p.setTSName("util");
-		p.setKinds(0);
-		p.setStart(55);
+		p.setStart(73);
 		p.setSize(10);
 //		p.setStart(100);
 //		p.setSize(1);
-		p.setStep(5);
-		p.setAlpha(0.2);
+		p.setStep(3);
 		return p;
 	}
 	public Platform getP2() {
@@ -42,10 +39,9 @@ public class Platform3 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
-//		p.setSysNum(100);
-		p.setSysNum(3);
+		p.setSysNum(100);
+//		p.setSysNum(10);
 //		p.setSysNum(1);
-		p.setRS("X");
 		return p;
 		
 	}
@@ -55,8 +51,14 @@ public class Platform3 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
+		eg.setParam("c_lb","0.03");
+		eg.setParam("c_ub","0.2");
 		Platform p=getP();
-		p.writeCfg(eg);
+		p.writeComCfg(eg);
+//		for(int i=0;i<4;i++){
+//			p.setAlpha(i*0.25,i*0.25+0.25);
+//			p.writeComCfg(eg);
+//		}	
 		Log.prn(3, "cfg");
 		return 1;
 	}
@@ -64,36 +66,78 @@ public class Platform3 {
 	{
 		Platform p=getP();
 		p.genCom();
+//		for(int i=0;i<4;i++){
+//			p.setAlpha(i*0.25,i*0.25+0.25);
+//			p.genCom();
+//		}	
 		return 1;
 	}
 	public int test3() 
 	{
 		Platform p=getP();
 //		p.isWrite=false;
-		p.anal();
+		p.setRS("0");
+		p.write_x_axis();
+		p.setAlpha(0,0);
+		p.setRS("0");
+		p.analCom();
+		for(int i=1;i<4;i++){
+			p.setAlpha(i*0.3-0.3,i*0.3);
+			p.setRS(i+"");
+			p.analCom();
+		}	
+		p.setAlpha(1,1);
+		p.setRS("4");
+		p.analCom();
 //		MUtil.sendMail("ICG anal OK");
 		return 1;
 	}
 	public  int test4() 
 	{
 		Platform p=getP();
-		p.anal_one(0,9,30);
+		p.prnCom();
 		return 1;
 	}
 	public  int test5() 
 	{
+		int set=9;
 		Platform p=getP();
-		p.simul_vd();
+		int ret1,ret2;
+		for(int i=0;i<100;i++){
+			p.setAlpha(0,0.25);
+			ret1=p.analCom(set,i);
+			p.setAlpha(0.75,1.00);
+			ret2=p.analCom(set,i);
+			if(ret1==0&&ret2==1)
+				break;
+//			if(ret1==1&&ret2==0)
+//				break;
+		}
 		return 0;
 	}
 	public  int test6() 
 	{
+		int set=4;
 		Platform p=getP();
-		p.prnCom();
+		int ret1;
+		p.setAlpha(1,1);
+		for(int i=0;i<100;i++){
+			ret1=p.analCom(set,i);
+			Log.prn(2,ret1);
+//			if(ret1==0)
+//				break;
+		}
 		return 0;
 	}
 	public  int test7()
 	{
+		int set=2;
+		int i=73;
+		Platform p=getP();
+		int ret1;
+		p.setAlpha(0,0);
+		ret1=p.analCom(set,i);
+		Log.prn(2,ret1);
 		return 0;
 	}
 	public  int test8()

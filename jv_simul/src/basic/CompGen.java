@@ -18,7 +18,7 @@ public class CompGen {
 		CompMng cm=new CompMng();
 		while(true){
 			tg.generate();
-			Comp c=new Comp(g_param.alpha);
+			Comp c=new Comp(g_param.getAlpha());
 			TaskMngPre tmp=new TaskMngPre(tg.getAll());
 			TaskMng tm=tmp.freezeTasks();
 			c.setTM(tm);

@@ -17,6 +17,7 @@ public class AnalComp {
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();
+		Log.prn(1, "sch"+a.isScheduable());
 		tm.setX(x);
 	}
 	public void part() {
@@ -32,8 +33,8 @@ public class AnalComp {
 			init_u+=c.getInitU();
 			wc_u+=Math.max(c.getExtU(), c.getIntU());
 		}
-		Log.prn(1, "initU:"+init_u);
-		Log.prn(1, "wcU:"+wc_u);
+		Log.prn(2, "initU:"+init_u);
+		Log.prn(2, "wcU:"+wc_u);
 		if(init_u>1) return 0;
 		if(wc_u>1) return 0;
 		return 1;

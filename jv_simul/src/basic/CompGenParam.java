@@ -12,7 +12,8 @@ public class CompGenParam {
 	public double u_lb;
 	public double c_ub;
 	public double c_lb;
-	public double alpha;
+	public double a_ub;
+	public double a_lb;
 	
 	public CompGenParam(){
 		g_rand=new RUtil();
@@ -35,8 +36,16 @@ public class CompGenParam {
 		c_ub=u;
 	}
 
-	public void setAlpha(double d) {
-		alpha=d;
+	public void setAlpha(double l, double u) {
+		if(l>u){
+			System.out.println("Error setUtil");
+		}
+		a_lb=l;
+		a_ub=u;
+	}
+
+	public double getAlpha() {
+		return g_rand.getDbl(a_lb,a_ub);
 	}
 
 

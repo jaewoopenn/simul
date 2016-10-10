@@ -7,10 +7,12 @@ import basic.TaskFile;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import utilSim.FUtil;
+import utilSim.RUtil;
 import utilSim.Log;
 
 public class CompMng {
 	private Vector<Comp> g_comp;
+	
 	public CompMng() {
 		g_comp=new Vector<Comp>();
 	}
@@ -112,9 +114,14 @@ public class CompMng {
 		TaskMng tm=getTM();
 		return tm.getMCUtil();
 	}
-	
 
 
 
 
+	public void setAlpha(double g_a_l, double g_a_u) {
+		RUtil ru=new RUtil();
+		for(Comp c:g_comp){
+			c.setAlpha(ru.getDbl(g_a_l,g_a_u));
+		}
+	}
 }

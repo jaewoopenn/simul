@@ -18,15 +18,16 @@ public class Comp {
 		this.alpha = alpha;
 	}
 	public void partition() {
-		double tu=g_tm.getInfo().getLo_util()*alpha;
-		Log.prn(1,"tu:"+tu);
-		double cu=0;
+		double cu=g_tm.getInfo().getLo_util();
+		double tu=cu*(alpha);
+		Log.prn(1,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
+		cu=0;
 		for(Task t:g_tm.getLoTasks()){
-			t.prn();
-			cu+=t.getLoUtil();
-			t.setIsolate(true);
+//			t.prn();
 			if(cu>=tu)
 				break;
+			cu+=t.getLoUtil();
+			t.setIsolate(true);
 		}
 	}
 	public void drop() {
@@ -68,6 +69,10 @@ public class Comp {
 	}
 	public void setMaxRes(double d) {
 		maxRes=d;
+	}
+	public void setAlpha(double d) {
+//		Log.prn(3, d+"");
+		alpha=d;
 	}
 	
 	// get

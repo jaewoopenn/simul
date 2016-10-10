@@ -18,7 +18,8 @@ public class ConfigWrite2 {
 		eg.setParam("u_ub", "0.50");
 		eg.setParam("c_lb", "0.1");
 		eg.setParam("c_ub", "0.3");
-		eg.setParam("alpha","0.2");
+		eg.setParam("a_lb","0.2");
+		eg.setParam("a_ub","0.3");
 		eg.setParam("mod", "50");
 		eg.write("file/cfg_50.txt");
 		return 0;
