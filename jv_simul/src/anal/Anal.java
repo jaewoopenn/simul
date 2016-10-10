@@ -3,8 +3,9 @@ package anal;
 import basic.TaskMng;
 
 public abstract class Anal {
-	TaskMng tm;
-	int g_limit=10000;
+	protected String name="";
+	protected TaskMng tm;
+	protected int g_limit=10000;
 	public void init(TaskMng mng) {
 		tm=mng;
 	}
@@ -22,5 +23,8 @@ public abstract class Anal {
 	}
 	public abstract double getDropRate(double p);
 	public abstract double getX();
+	public String getName() {
+		return name;
+	}
 
 }

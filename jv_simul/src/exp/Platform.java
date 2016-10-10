@@ -119,6 +119,7 @@ public class Platform {
 	public void anal_in(int no,Anal an){
 		int ret;
 		FUtil fu=null;
+		Log.prn(3, "anal:"+an.getName());
 		if(isWrite)
 			fu=new FUtil(g_path+"/rs/anal_"+g_ts_name+"_"+g_RS+"_"+no+".txt");
 		for(int i=0;i<g_size;i++){

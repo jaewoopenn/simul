@@ -6,12 +6,17 @@ import utilSim.Log;
 import utilSim.MUtil;
 
 public class AnalEDF_AT_E extends Anal {
+
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
 	private int n_skip;
 	TaskSetInfo g_info;
+	public AnalEDF_AT_E() {
+		super();
+		name="AT-E";
+	}
 	@Override
 	public void prepare() {
 		g_info=tm.getInfo();

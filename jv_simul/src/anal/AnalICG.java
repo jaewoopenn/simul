@@ -8,6 +8,10 @@ import utilSim.Log;
 public class AnalICG extends Anal {
 	private int sz;
 	private int[] prio;
+	public AnalICG() {
+		super();
+		name="ICG";
+	}
 	@Override
 	public void prepare() {
 		sz=tm.getInfo().getSize();

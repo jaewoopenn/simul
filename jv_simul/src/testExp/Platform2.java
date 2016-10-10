@@ -45,8 +45,8 @@ public class Platform2 {
 		Platform p=new Platform();
 		p.setPath("sch");
 		p.setCfg_fn("cfg/cfg");
-		p.setSysNum(5000);
-//		p.setSysNum(100);
+//		p.setSysNum(5000);
+		p.setSysNum(100);
 		p.setRS("X");
 		return p;
 		
@@ -73,7 +73,7 @@ public class Platform2 {
 		Platform p=getP();
 //		p.isWrite=false;
 		p.anal();
-		MUtil.sendMail("ICG anal OK");
+//		MUtil.sendMail("ICG anal OK");
 		return 1;
 	}
 	public  int test4() 

@@ -11,6 +11,10 @@ public class AnalEDF_AT extends Anal {
 	private double hitasks_hiutil;
 	private double glo_x;
 	TaskSetInfo g_info;
+	public AnalEDF_AT() {
+		super();
+		name="AT";
+	}
 	@Override
 	public void prepare() {
 		g_info=tm.getInfo();

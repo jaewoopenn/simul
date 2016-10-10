@@ -12,6 +12,10 @@ public class AnalEDF_AT_S extends Anal {
 	private double glo_x;
 	private int n_skip;
 	TaskSetInfo g_info;
+	public AnalEDF_AT_S() {
+		super();
+		name="AT-S";
+	}
 	@Override
 	public void prepare() {
 		g_info=tm.getInfo();

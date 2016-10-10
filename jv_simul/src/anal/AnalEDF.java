@@ -4,6 +4,10 @@ import utilSim.Log;
 
 public class AnalEDF extends Anal {
 	private double u;
+	public AnalEDF() {
+		super();
+		name="EDF";
+	}
 	@Override
 	public void prepare() {
 		u=tm.getInfo().getUtil();
