@@ -31,10 +31,13 @@ public class CompMng {
 
 
 	public void analMaxRes() {
+		double u=0;
 		for(Comp c:g_comp){
 			double res=c.getWCU();
+			u+=res;
 			c.setMaxRes(res);
 		}
+		Log.prn(1, "rem:"+u);
 		
 	}
 
