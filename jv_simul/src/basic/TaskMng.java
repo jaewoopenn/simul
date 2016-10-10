@@ -105,6 +105,10 @@ public class TaskMng {
 			t.prn();
 		}
 	}
+	public void prnStat() {
+		for(Task t:g_tasks)
+			t.prnStat();
+	}
 
 	public void writeFile(String fn){
 		FUtil fu=new FUtil(fn);
@@ -162,6 +166,11 @@ public class TaskMng {
 	public int size() {
 		return g_tasks.length;
 	}
+
+
+
+
+
 
 
 

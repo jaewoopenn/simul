@@ -67,6 +67,15 @@ public class Task {
 		Log.prnc(2, " isol:"+is_isolated+" ");
 		prn();
 	}
+	public void prnStat() {
+		Log.prnc(2, "tid:"+tid);
+		if (is_HI){
+			Log.prn(2," isHM:"+is_HM);
+			
+		}else{
+			Log.prn(2," isDrop:"+is_dropped);
+		}
+	}
 	public boolean check() {
 		if (period==0)
 			return false;
@@ -89,9 +98,11 @@ public class Task {
 	public int getComp(){
 		return cid;
 	}
-	public boolean isIsolated(){
+	public boolean is_isol(){
 		return is_isolated;
 	}
+
+
 
 
 }

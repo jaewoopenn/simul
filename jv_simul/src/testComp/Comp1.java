@@ -57,6 +57,7 @@ public class Comp1 {
 		c.drop();
 		ru=tm.getRU();
 		Log.prn(1, "RU:"+ru);
+		tm.prnStat();
 		return 0;
 	}
 
@@ -69,12 +70,10 @@ public class Comp1 {
 		TaskMng tm=c.getTM();
 		double ru=tm.getRU();
 		Log.prn(1, "RU:"+ru);
-		tm.modeswitch(4);
+		c.request(0.1);
 		ru=tm.getRU();
 		Log.prn(1, "RU:"+ru);
-		c.drop();
-		ru=tm.getRU();
-		Log.prn(1, "RU:"+ru);
+		tm.prnStat();
 		return 0;
 	}
 	public  int test7()

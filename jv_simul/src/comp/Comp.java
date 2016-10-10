@@ -29,7 +29,30 @@ public class Comp {
 				break;
 		}
 	}
-
+	public void drop() {
+		drop_in(maxRes);
+	}
+	private void drop_in(double lim) {
+		while(true){
+			double ru=g_tm.getRU();
+//			Log.prn(1, "RU:"+ru);
+			if(ru>lim){
+				int tid=g_tm.findDropTask();
+				g_tm.drop(tid);
+			}
+			else
+				break;
+			
+		}
+		
+	}
+	public void request(double d) {
+		double ru=g_tm.getRU();
+		double tu=ru-d;
+		drop_in(tu);
+		
+	}
+	// prn
 	public void prn() {
 		Log.prn(1, "cid:"+cid+", alpha:"+alpha);
 		Log.prn(1, "maxRes:"+maxRes);
@@ -65,18 +88,46 @@ public class Comp {
 	public TaskMng getTM() {
 		return g_tm;
 	}
-	public void drop() {
-		while(true){
-			double ru=g_tm.getRU();
-//			Log.prn(1, "RU:"+ru);
-			if(ru>maxRes){
-				int tid=g_tm.findDropTask();
-				g_tm.drop(tid);
-			}
+	
+	public double getInitU() {
+		Task[] tasks=g_tm.getTasks();
+		double u=0;
+		for(Task t:tasks){
+			if(t.is_HI)
+				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
 			else
-				break;
-			
+				u+=t.getLoUtil();
 		}
+		return u;
 	}
+
+	public double getExtU() {
+		Task[] tasks=g_tm.getTasks();
+		double u=0;
+		for(Task t:tasks){
+			if(t.is_HI)
+				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
+			else{
+				if(t.is_isol())
+					u+=t.getLoUtil();
+				else
+					u+=g_tm.getInfo().getX()*t.getLoUtil();
+			}
+		}
+		return u;
+	}
+	public double getIntU() {
+		Task[] tasks=g_tm.getTasks();
+		double u=0;
+		for(Task t:tasks){
+			if(t.is_HI)
+				u+= t.getHiUtil();
+			else{
+				u+=g_tm.getInfo().getX()*t.getLoUtil();
+			}
+		}
+		return u;
+	}
+	
 }
 
