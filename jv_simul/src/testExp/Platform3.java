@@ -39,7 +39,8 @@ public class Platform3 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
-		p.setSysNum(100);
+		p.setSysNum(1000);
+//		p.setSysNum(100);
 //		p.setSysNum(10);
 //		p.setSysNum(1);
 		return p;
