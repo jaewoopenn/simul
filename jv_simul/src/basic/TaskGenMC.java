@@ -41,9 +41,9 @@ public class TaskGenMC extends TaskGen {
 		double loutil=0;
 		double hiutil=0;
 		for(Task t:g_tasks){
-			loutil+=(double)(t.c_l)/t.period;
+			loutil+=t.getLoUtil();
 			if(t.is_HI)
-				hiutil+=(double)(t.c_h)/t.period;
+				hiutil+=t.getHiUtil();
 		}
 		return Math.max(loutil, hiutil);
 	}
