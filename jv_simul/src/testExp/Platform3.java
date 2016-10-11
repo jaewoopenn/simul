@@ -44,8 +44,8 @@ public class Platform3 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
-		p.setSysNum(1000);
-//		p.setSysNum(100);
+//		p.setSysNum(1000);
+		p.setSysNum(100);
 //		p.setSysNum(10);
 //		p.setSysNum(1);
 		return p;
@@ -58,11 +58,11 @@ public class Platform3 {
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
 		eg.setParam("c_lb","0.05");
-		eg.setParam("c_ub","0.3");
+		eg.setParam("c_ub","0.2");
 		eg.setParam("u_lb", "0.85");
 		eg.setParam("u_ub", "0.95");
 		eg.setParam("tu_lb","0.02");
-		eg.setParam("tu_ub","0.05");
+		eg.setParam("tu_ub","0.1");
 		Platform p=getP();
 		p.writeComCfg(eg);
 //		for(int i=0;i<4;i++){

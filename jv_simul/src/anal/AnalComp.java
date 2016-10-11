@@ -14,7 +14,7 @@ public class AnalComp {
 	}
 	public void computeX() {
 		TaskMng tm=g_cm.getTM();
-		AnalEDF_AT_S a=new AnalEDF_AT_S();
+		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();
