@@ -1,5 +1,6 @@
 package anal;
 
+import basic.TaskMng;
 import basic.TaskSetInfo;
 import utilSim.Log;
 
@@ -56,6 +57,12 @@ public class AnalEDF_VD extends Anal {
 
 	public double getX() {
 		return glo_x;
+	}
+	public static double computeX(TaskMng tm) {
+		AnalEDF_VD a=new AnalEDF_VD();
+		a.init(tm);
+		a.prepare();
+		return a.getX();
 	}
 
 }

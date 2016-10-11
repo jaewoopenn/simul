@@ -1,7 +1,7 @@
 package anal;
 
+import comp.CompFile;
 import comp.CompMng;
-
 import basic.CompGen;
 import basic.CompGenParam;
 import basic.TaskGenParam;
@@ -43,7 +43,7 @@ public class SimCompGen {
 	public int writeSys(int i, CompMng cm)
 	{
 		String fn=g_cfg.get_fn(i);
-		cm.writeFile(fn);
+		CompFile.writeFile(fn,cm.getComps());
 		return 1;
 	}
 

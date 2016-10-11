@@ -1,5 +1,6 @@
 package testFile;
 import basic.Task;
+import basic.TaskFile;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import utilSim.TEngine;
@@ -16,7 +17,7 @@ public class TaskFile1 {
 		tmp.add(new Task(0,4,1));
 		TaskMng tm=tmp.freezeTasks();
 		tm.prn();
-		tm.writeFile("file/test.txt");
+		TaskFile.writeFile("file/test.txt",tm.getTasks());
 		return 1;
 	}
 	public int test2()

@@ -59,7 +59,13 @@ public class TaskMng {
 		}
 		return -1;
 	}
+	public int findDropTask_shared() {
+		return 0;
+	}
 
+	
+	
+	// set
 	public void setX(double x){
 		g_info.setX(x);
 		for(Task t:g_tasks)	{
@@ -110,13 +116,6 @@ public class TaskMng {
 			t.prnStat();
 	}
 
-	public void writeFile(String fn){
-		FUtil fu=new FUtil(fn);
-		for(Task t:g_tasks)
-			TaskFile.writeTask(fu,t);
-		
-		fu.save();
-	}
 	// get
 	public TaskSetInfo getInfo() {
 		return g_info;
@@ -170,6 +169,11 @@ public class TaskMng {
 	public int size() {
 		return g_tasks.length;
 	}
+
+
+
+
+
 
 
 

@@ -1,8 +1,8 @@
 package exp;
 
 
+import comp.CompFile;
 import comp.CompMng;
-
 import anal.Anal;
 import anal.AnalComp;
 import anal.ConfigGen;
@@ -29,7 +29,7 @@ public class ExpSimul {
 	public CompMng loadCM(int i){
 		String fn=g_cfg.get_fn(i);
 		Log.prn(2, fn);
-		CompMng cm=CompMng.loadFile(fn);
+		CompMng cm=CompFile.loadFile(fn);
 		return cm;
 	}
 

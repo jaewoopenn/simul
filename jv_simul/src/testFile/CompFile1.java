@@ -1,4 +1,5 @@
 package testFile;
+import comp.CompFile;
 import comp.CompMng;
 import taskSetEx.CompMngEx1;
 import utilSim.TEngine;
@@ -12,12 +13,12 @@ public class CompFile1 {
 	{
 		CompMng cm=CompMngEx1.getCompMng1();
 		cm.prn();
-		cm.writeFile("file/testCom.txt");
+		CompFile.writeFile("file/testCom.txt",cm.getComps());
 		return 0;
 	}
 	public int test2()
 	{
-		CompMng cm=CompMng.loadFile("file/testCom.txt");
+		CompMng cm=CompFile.loadFile("file/testCom.txt");
 //		if(cm!=null)
 		cm.prn();
 		return 0;
@@ -26,7 +27,7 @@ public class CompFile1 {
 	{
 		CompMng cm=CompMngEx1.getCompMng2();
 		cm.prn();
-		cm.writeFile("file/testCom.txt");
+		CompFile.writeFile("file/testCom.txt",cm.getComps());
 		return 0;
 	}
 	public  int test4()

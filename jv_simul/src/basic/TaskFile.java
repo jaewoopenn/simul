@@ -9,6 +9,12 @@ import utilSim.FUtil;
 
 public class TaskFile {
 
+	public static void writeFile(String fn,Task[] tasks){
+		FUtil fu=new FUtil(fn);
+		for(Task t:tasks)
+			writeTask(fu,t);
+		fu.save();
+	}
 	
 
 	public static void writeTask(FUtil fu, Task t) {

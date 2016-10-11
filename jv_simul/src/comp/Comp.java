@@ -20,7 +20,7 @@ public class Comp {
 	public void partition() {
 		double cu=g_tm.getInfo().getLo_util();
 		double tu=cu*(alpha);
-		Log.prn(1,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
+//		Log.prn(1,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
 		cu=0;
 		Task[] tasks=g_tm.getLoTasks();
 		for(int i=tasks.length-1;i>=0;i--){
@@ -40,7 +40,9 @@ public class Comp {
 			double ru=g_tm.getRU();
 //			Log.prn(1, "RU:"+ru);
 			if(ru>lim){
-				int tid=g_tm.findDropTask();
+				int tid=g_tm.findDropTask_shared();
+				if(tid==-1) 
+					break;
 				g_tm.drop(tid);
 			}
 			else
@@ -65,8 +67,8 @@ public class Comp {
 		Log.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());
 		Log.prn(1, "init:"+getInitU());
 		Log.prn(1, "wc:"+getWCU());
-//		Log.prn(1, "ext:"+getExtU());
-//		Log.prn(1, "int:"+getIntU());
+		Log.prn(1, "ext:"+getExtU());
+		Log.prn(1, "int:"+getIntU());
 	}
 	
 	// set

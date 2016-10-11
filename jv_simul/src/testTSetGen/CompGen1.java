@@ -1,8 +1,8 @@
 package testTSetGen;
 
 
+import comp.CompFile;
 import comp.CompMng;
-
 import basic.CompGen;
 import basic.CompGenParam;
 import basic.TaskGenParam;
@@ -33,7 +33,7 @@ public class CompGen1 {
 		CompGen c=new CompGen(cgp,tgp);
 		CompMng cm=c.generate();
 		if(c.check(cm)!=0){
-			cm.writeFile("file/testCmp.txt");
+			CompFile.writeFile("file/testCom.txt",cm.getComps());
 		}
 		return 0;
 	}

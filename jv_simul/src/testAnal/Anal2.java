@@ -1,5 +1,6 @@
 package testAnal;
 
+import comp.CompFile;
 import comp.CompMng;
 import anal.AnalComp;
 import anal.AnalEDF_AT_S;
@@ -33,7 +34,7 @@ public class Anal2 {
 
 	public int test2() 
 	{
-		CompMng cm=CompMng.loadFile("com/ts/taskset_util_70_5");
+		CompMng cm=CompFile.loadFile("com/ts/taskset_util_70_5");
 		cm.setAlpha(0, 0);
 		AnalComp a=new AnalComp(cm);
 		a.computeX();

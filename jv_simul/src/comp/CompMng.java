@@ -36,6 +36,8 @@ public class CompMng {
 			double res=c.getWCU();
 			u+=res;
 			c.setMaxRes(res);
+//			Log.prn(1, "cur:"+u);
+			
 		}
 		Log.prn(1, "rem:"+u);
 		
@@ -53,36 +55,8 @@ public class CompMng {
 			c.partition();
 		}
 	}
-	// file
-	public void writeFile(String fn) {
-		FUtil fu=new FUtil(fn);
-		for(Comp c:g_comp){
-			Task[] tasks=c.getTasks();
-			fu.print("C,"+c.getID()+","+tasks.length+","+c.getAlpha());
-			for(Task t:tasks)
-				TaskFile.writeTask(fu,t);
-		}
-		fu.save();
-		
-	}
 
 
-
-
-	public static CompMng loadFile(String f) {
-	    FUtil fu=new FUtil(f);
-	    fu.load();
-	    CompMng cm=new CompMng();
-	    for(int i=0;i<fu.size();i++){
-	    	String line=fu.get(i);
-	    	Comp c=TaskFile.loadComp(line, fu,i+1);
-	    	if(c!=null){
-	    		cm.addComp(c);
-	    		i+=c.size();
-	    	}
-	    }
-		return cm;
-	}
 	
 	// prn
 	
@@ -96,7 +70,6 @@ public class CompMng {
 		Log.prn(2, "tot:"+g_comp.size());
 		
 		for(Comp c:g_comp){
-//			c.prn();
 			c.prnOff();
 		}
 	}
@@ -146,6 +119,12 @@ public class CompMng {
 	public double getMCUtil() {
 		TaskMng tm=getTM();
 		return tm.getMCUtil();
+	}
+
+
+
+	public Vector<Comp> getComps() {
+		return g_comp;
 	}
 
 
