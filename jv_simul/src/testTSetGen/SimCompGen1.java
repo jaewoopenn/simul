@@ -1,8 +1,9 @@
 package testTSetGen;
 
 
+import comp.SimCompGen;
+
 import anal.ConfigGen;
-import anal.SimCompGen;
 import utilSim.TEngine;
 
 public class SimCompGen1 {

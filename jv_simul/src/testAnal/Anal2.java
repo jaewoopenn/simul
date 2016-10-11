@@ -1,8 +1,8 @@
 package testAnal;
 
+import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
-import anal.AnalComp;
 import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;

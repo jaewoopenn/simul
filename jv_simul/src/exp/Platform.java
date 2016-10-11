@@ -2,14 +2,13 @@ package exp;
 
 
 import comp.CompMng;
-
+import comp.SimCompGen;
 import anal.Anal;
 import anal.AnalEDF_AT;
 import anal.AnalEDF_AT_S;
 import anal.AnalEDF_VD;
 import anal.AnalICG;
 import anal.ConfigGen;
-import anal.SimCompGen;
 import anal.SimGen;
 import basic.TaskMng;
 import utilSim.FUtil;

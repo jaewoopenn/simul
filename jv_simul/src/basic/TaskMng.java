@@ -60,7 +60,11 @@ public class TaskMng {
 		return -1;
 	}
 	public int findDropTask_shared() {
-		return 0;
+		for(Task t:g_lo_tasks){
+			if (!t.is_dropped&&!t.is_isol())
+				return t.tid;
+		}
+		return -1;
 	}
 
 	

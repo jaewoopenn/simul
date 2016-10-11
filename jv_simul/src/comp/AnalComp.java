@@ -1,10 +1,9 @@
-package anal;
+package comp;
 
 import utilSim.Log;
 import utilSim.MUtil;
+import anal.AnalEDF_VD;
 import basic.TaskMng;
-import comp.Comp;
-import comp.CompMng;
 
 public class AnalComp {
 	protected CompMng g_cm;

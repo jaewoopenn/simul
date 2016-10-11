@@ -33,14 +33,18 @@ public class Comp {
 		}
 	}
 	public void drop() {
-		drop_in(maxRes);
+		drop_in(maxRes,false);
 	}
-	private void drop_in(double lim) {
+	private void drop_in(double lim, boolean isShared) {
+		int tid;
 		while(true){
 			double ru=g_tm.getRU();
 //			Log.prn(1, "RU:"+ru);
 			if(ru>lim){
-				int tid=g_tm.findDropTask_shared();
+				if(isShared)
+					tid=g_tm.findDropTask_shared();
+				else
+					tid=g_tm.findDropTask();
 				if(tid==-1) 
 					break;
 				g_tm.drop(tid);
@@ -54,7 +58,7 @@ public class Comp {
 	public void request(double d) {
 		double ru=g_tm.getRU();
 		double tu=ru-d;
-		drop_in(tu);
+		drop_in(tu,true);
 		
 	}
 	// prn

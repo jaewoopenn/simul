@@ -1,7 +1,6 @@
-package anal;
+package comp;
 
-import comp.CompFile;
-import comp.CompMng;
+import anal.ConfigGen;
 import basic.CompGen;
 import basic.CompGenParam;
 import basic.TaskGenParam;

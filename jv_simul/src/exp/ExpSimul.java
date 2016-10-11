@@ -1,10 +1,10 @@
 package exp;
 
 
+import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
 import anal.Anal;
-import anal.AnalComp;
 import anal.ConfigGen;
 import basic.TaskMng;
 import basic.TaskMngPre;
