@@ -14,8 +14,8 @@ public class Platform3 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public Platform getP(){
-		return getP1();
-//		return getP2();
+//		return getP1();
+		return getP2();
 	}
 	
 	public Platform getP1() {
@@ -44,8 +44,8 @@ public class Platform3 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
-//		p.setSysNum(1000);
-		p.setSysNum(100);
+		p.setSysNum(1000);
+//		p.setSysNum(100);
 //		p.setSysNum(10);
 //		p.setSysNum(1);
 		return p;
@@ -60,7 +60,7 @@ public class Platform3 {
 		eg.setParam("c_lb","0.05");
 		eg.setParam("c_ub","0.2");
 		eg.setParam("u_lb", "0.85");
-		eg.setParam("u_ub", "0.95");
+		eg.setParam("u_ub", "0.90");
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
 		Platform p=getP();
