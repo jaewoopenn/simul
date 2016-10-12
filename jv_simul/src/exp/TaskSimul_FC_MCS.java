@@ -45,11 +45,30 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 			Log.prn(1, "ms hi "+tid);
 		g_js.getJM().modeswitch(tid);
 		g_tm.modeswitch(tid);
-		dropDecision(tid);
+		int cid=g_tm.getComp(tid);
+		dropDecision(cid);
+		resManager(cid);
 	}
 	
-	private void dropDecision(int tid) {
-		int cid=g_tm.getComp(tid);
+	private void resManager(int ex_id) {
+		double ru=g_cm.getRU();
+		Log.prn(1, "G_RU:"+ru);
+		double req=ru-1;
+		for(Comp c:g_cm.getComps()){
+			Log.prn(1, "req:"+req);
+			if(req<=0) break;
+			double ori=c.getRU();
+			double mod=c.request(req);
+			req-=ori-mod;
+			if(req<=0) break;
+		}
+		ru=g_cm.getRU();
+		Log.prn(1, "G_RU:"+ru);
+		System.exit(1);
+		
+	}
+
+	private void dropDecision(int cid) {
 		Comp c=g_cm.getComp(cid);
 		double ru=c.getRU();
 		double maxRes=c.getMaxRes();
@@ -67,11 +86,10 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 				Log.prn(1, "drop "+id);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
 			ru-=g_tm.getReclaimUtil(id);
-			Log.prn(1, ""+ru);
+//			Log.prn(1, ""+ru);
 			
 		}
 		Log.prn(1, ""+ru);
-		System.exit(1);
 		
 	}
 

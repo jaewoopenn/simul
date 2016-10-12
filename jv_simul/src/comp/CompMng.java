@@ -101,6 +101,14 @@ public class CompMng {
 	}
 	// get
 
+	public double getRU() {
+		double u=0;
+		for(Comp c:g_comp){
+			u+=c.getRU();
+		}
+		return u;
+	}
+	
 	public TaskMng getTM() {
 		if(g_tm==null)
 			makeTM();
@@ -126,6 +134,10 @@ public class CompMng {
 	public Vector<Comp> getComps() {
 		return g_comp;
 	}
+
+
+
+
 
 
 
