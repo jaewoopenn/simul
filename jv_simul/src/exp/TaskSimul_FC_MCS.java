@@ -52,23 +52,26 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 		int cid=g_tm.getComp(tid);
 		Comp c=g_cm.getComp(cid);
 		double ru=c.getRU();
+		double maxRes=c.getMaxRes();
 		Log.prnc(1, "cid:"+cid+" ");
+		Log.prnc(1, "max:"+maxRes+" ");
 		Log.prn(1, "C_RU:"+ru);
+		while(ru>=maxRes){
+			int id=c.getTM().findDropTask();
+			if(id==-1){
+				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
+				System.exit(1);
+			}
+			drop(id);
+			if(isPrnMS)
+				Log.prn(1, "drop "+id);
+//			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
+			ru-=g_tm.getReclaimUtil(id);
+			Log.prn(1, ""+ru);
+			
+		}
+		Log.prn(1, ""+ru);
 		System.exit(1);
-//		while(ru>=1+MUtil.err){
-////			Log.prn(1, "RU"+ru);
-//			int id=g_tm.findDropTask();
-//			if(id==-1){
-//				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
-//				System.exit(1);
-//			}
-//			drop(id);
-//			if(isPrnMS)
-//				Log.prn(1, "drop "+id);
-////			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
-//			ru-=g_tm.getReclaimUtil(id);
-//		}
-////		Log.prn(1, ""+ru);
 		
 	}
 

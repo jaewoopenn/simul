@@ -1,9 +1,8 @@
 package testExp;
 
+import anal.AnalEDF_VD;
 import basic.TaskMng;
-
 import comp.CompMng;
-
 import exp.TaskSimul_FC_MCS;
 import taskSetEx.CompMngEx1;
 import taskSetEx.TS_MC1;
@@ -21,6 +20,10 @@ public class TaskSimul5 {
 	{
 		CompMng cm=CompMngEx1.getCompMng3();
 		TaskMng tm=cm.getTM();
+		double x=AnalEDF_VD.computeX(tm);
+		cm.setX(x);
+		cm.part();
+		cm.analMaxRes();
 		tm.prnComp();
 		tm.getInfo().setProb_ms(1.0);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);

@@ -154,6 +154,10 @@ public class Comp {
 	public double getRU() {
 		return g_tm.getRU();
 	}
+	public double getMaxRes() {
+		// TODO Auto-generated method stub
+		return maxRes;
+	}
 	
 }
 
