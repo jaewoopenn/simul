@@ -1,20 +1,30 @@
 package testExp;
 
-import exp.TaskSimul_EDF_AT_S;
-import taskSetEx.TS_NonMC1;
+import basic.TaskMng;
+
+import comp.CompMng;
+
+import exp.TaskSimul_FC_MCS;
+import taskSetEx.CompMngEx1;
+import taskSetEx.TS_MC1;
 import utilSim.TEngine;
 
-// RM
+// Comp
 public class TaskSimul5 {
 	public static int idx=1;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
-	// RM
+	// Comp
 	public int test1() 
 	{
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(TS_NonMC1.ts1());
+		CompMng cm=CompMngEx1.getCompMng3();
+		TaskMng tm=cm.getTM();
+		tm.prnComp();
+		tm.getInfo().setProb_ms(1.0);
+		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
+		ts.set_cm(cm);
 		ts.simulEnd(0,20);
 		return 0;
 	}

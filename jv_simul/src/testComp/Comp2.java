@@ -22,11 +22,11 @@ public class Comp2 {
 		tm.setX(0.5);
 		double ru=tm.getRU();
 		Log.prn(1, "RU:"+ru);
-		double u=c.getInitU();
+		double u=c.getST_U();
 		Log.prn(1, "init:"+u);
-		u=c.getExtU();
+		u=c.getExt_U();
 		Log.prn(1, "ext:"+u);
-		u=c.getIntU();
+		u=c.getInt_U();
 		Log.prn(1, "int:"+u);
 		return 0;
 	}

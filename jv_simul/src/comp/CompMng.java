@@ -12,7 +12,7 @@ import utilSim.Log;
 
 public class CompMng {
 	private Vector<Comp> g_comp;
-	
+	private TaskMng g_tm;
 	public CompMng() {
 		g_comp=new Vector<Comp>();
 	}
@@ -23,17 +23,29 @@ public class CompMng {
 	public void addComp(Comp c) {
 		int cid=g_comp.size();
 		c.setID(cid);
-		g_comp.add(c);		
+		g_comp.add(c);
+		g_tm=null;
 	}
 
-
+	public void makeTM(){
+		TaskMngPre tmp=new TaskMngPre();
+		for(Comp c:g_comp){
+			Task[] tasks=c.getTasks();
+			for(Task t:tasks){
+				t.setComp(c.getID());
+				tmp.add(t);
+			}
+		}
+		g_tm=tmp.freezeTasks();
+		
+	}
 
 
 
 	public void analMaxRes() {
 		double u=0;
 		for(Comp c:g_comp){
-			double res=c.getWCU();
+			double res=c.getWC_U();
 			u+=res;
 			c.setMaxRes(res);
 //			Log.prn(1, "cur:"+u);
@@ -89,22 +101,10 @@ public class CompMng {
 	}
 	// get
 
-	public int getCompID(int tid) {
-		return 0;
-	}
-
-
 	public TaskMng getTM() {
-		TaskMngPre tmp=new TaskMngPre();
-		for(Comp c:g_comp){
-			Task[] tasks=c.getTasks();
-			for(Task t:tasks){
-				t.setComp(c.getID());
-				tmp.add(t);
-			}
-		}
-		
-		return tmp.freezeTasks();
+		if(g_tm==null)
+			makeTM();
+		return g_tm;
 	}
 	public Comp getComp(int i) {
 		return g_comp.elementAt(i);

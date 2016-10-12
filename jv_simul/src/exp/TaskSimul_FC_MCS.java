@@ -1,14 +1,15 @@
 package exp;
 
 
+import comp.Comp;
 import comp.CompMng;
-
 import basic.Task;
 import basic.TaskMng;
 import utilSim.Log;
 import utilSim.MUtil;
 
 public class TaskSimul_FC_MCS extends TaskSimul{
+
 	private CompMng g_cm;
 	public TaskSimul_FC_MCS() {
 		super();
@@ -19,6 +20,9 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 	}
 
 
+	public void set_cm(CompMng cm) {
+		this.g_cm = cm;
+	}
 	protected void initMode() {
 		Task[] tasks=g_tm.getTasks();
 		for(Task t:tasks){
@@ -45,22 +49,26 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 	}
 	
 	private void dropDecision(int tid) {
-		int cid=g_cm.getCompID(tid);
-		double ru=g_tm.getRU();
-		while(ru>=1+MUtil.err){
-//			Log.prn(1, "RU"+ru);
-			int id=g_tm.findDropTask();
-			if(id==-1){
-				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
-				System.exit(1);
-			}
-			drop(id);
-			if(isPrnMS)
-				Log.prn(1, "drop "+id);
-//			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
-			ru-=g_tm.getReclaimUtil(id);
-		}
-//		Log.prn(1, ""+ru);
+		int cid=g_tm.getComp(tid);
+		Comp c=g_cm.getComp(cid);
+		double ru=c.getRU();
+		Log.prnc(1, "cid:"+cid+" ");
+		Log.prn(1, "C_RU:"+ru);
+		System.exit(1);
+//		while(ru>=1+MUtil.err){
+////			Log.prn(1, "RU"+ru);
+//			int id=g_tm.findDropTask();
+//			if(id==-1){
+//				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
+//				System.exit(1);
+//			}
+//			drop(id);
+//			if(isPrnMS)
+//				Log.prn(1, "drop "+id);
+////			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
+//			ru-=g_tm.getReclaimUtil(id);
+//		}
+////		Log.prn(1, ""+ru);
 		
 	}
 

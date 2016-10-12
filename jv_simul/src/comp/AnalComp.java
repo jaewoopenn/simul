@@ -31,8 +31,8 @@ public class AnalComp {
 		double wc_u=0;
 		for(int i=0;i<size;i++){
 			Comp c=g_cm.getComp(i);
-			init_u+=c.getInitU();
-			wc_u+=c.getWCU();
+			init_u+=c.getST_U();
+			wc_u+=c.getWC_U();
 		}
 		Log.prn(2, "initU:"+init_u);
 		Log.prn(2, "wcU:"+wc_u);

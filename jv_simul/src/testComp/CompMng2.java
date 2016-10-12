@@ -12,7 +12,7 @@ import utilSim.TEngine;
 import taskSetEx.CompMngEx1;
 
 public class CompMng2 {
-	public static int idx=2;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -52,6 +52,18 @@ public class CompMng2 {
 	}
 	public int test3() 
 	{
+		CompMng cm=CompMngEx1.getCompMng3();
+		TaskMng tm=cm.getTM();
+		double x=AnalEDF_VD.computeX(tm);
+		cm.setX(x);
+		cm.part();
+		cm.analMaxRes();
+		cm.prn();
+		Comp c=cm.getComp(0);
+		c.request(0.1);
+		Log.prn(1, "RU:"+c.getRU());
+		c.getTM().prnStat();
+		c.prnOff();
 		return 0;
 	}
 	public  int test4() 

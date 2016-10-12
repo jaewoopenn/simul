@@ -69,10 +69,10 @@ public class Comp {
 	}
 	public void prnOff() {
 		Log.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());
-		Log.prn(1, "init:"+getInitU());
-		Log.prn(1, "wc:"+getWCU());
-		Log.prn(1, "ext:"+getExtU());
-		Log.prn(1, "int:"+getIntU());
+		Log.prn(1, "init:"+getST_U());
+		Log.prn(1, "wc:"+getWC_U());
+		Log.prn(1, "ext:"+getExt_U());
+		Log.prn(1, "int:"+getInt_U());
 	}
 	
 	// set
@@ -109,7 +109,7 @@ public class Comp {
 		return g_tm;
 	}
 	
-	public double getInitU() {
+	public double getST_U() {
 		Task[] tasks=g_tm.getTasks();
 		double u=0;
 		for(Task t:tasks){
@@ -121,10 +121,10 @@ public class Comp {
 		return u;
 	}
 	
-	public double getWCU(){
-		return Math.max(getExtU(), getIntU());
+	public double getWC_U(){
+		return Math.max(getExt_U(), getInt_U());
 	}
-	public double getExtU() {
+	public double getExt_U() {
 		Task[] tasks=g_tm.getTasks();
 		double u=0;
 		for(Task t:tasks){
@@ -139,7 +139,7 @@ public class Comp {
 		}
 		return u;
 	}
-	public double getIntU() {
+	public double getInt_U() {
 		Task[] tasks=g_tm.getTasks();
 		double u=0;
 		for(Task t:tasks){

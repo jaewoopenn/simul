@@ -121,6 +121,10 @@ public class TaskMng {
 	}
 
 	// get
+	public int getComp(int tid){
+		return g_tasks[tid].getComp();
+	}
+	
 	public TaskSetInfo getInfo() {
 		return g_info;
 	}
