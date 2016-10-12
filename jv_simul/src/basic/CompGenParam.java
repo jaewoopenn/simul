@@ -1,6 +1,7 @@
 package basic;
 
 
+import utilSim.Log;
 import utilSim.RUtil;
 
 
@@ -42,6 +43,7 @@ public class CompGenParam {
 		}
 		a_lb=l;
 		a_ub=u;
+//		Log.prn(1, a_lb+","+a_ub);
 	}
 
 	public double getAlpha() {

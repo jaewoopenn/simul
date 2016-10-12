@@ -124,14 +124,13 @@ public abstract class TaskSimul {
 	protected abstract void modeswitch_in(int tid);
 	
 	
-	public void drop(int tid) {
-		Task tsk=g_tm.getTask(tid);
-		if(tsk.is_HI)	{
-			Log.prn(9, "task "+tid+" is not LO-task, cannot drop");
+	public void drop(Task t) {
+		if(t.is_HI)	{
+			Log.prn(9, "task "+t.tid+" is not LO-task, cannot drop");
 			System.exit(0);
 		}
-		g_si.drop+=g_js.getJM().drop(tid);
-		g_tm.drop(tid);
+		g_si.drop+=g_js.getJM().drop(t.tid);
+		t.drop();
 	}
 	
 	

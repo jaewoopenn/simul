@@ -51,7 +51,7 @@ public class Comp1 {
 		TaskMng tm=c.getTM();
 		double ru=tm.getRU();
 		Log.prn(1, "RU:"+ru);
-		tm.modeswitch(4);
+		tm.getTask(4).ms();
 		ru=tm.getRU();
 		Log.prn(1, "RU:"+ru);
 		c.drop();

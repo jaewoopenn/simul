@@ -19,8 +19,8 @@ public class TaskMng1 {
 	{
 		TaskMng m=TS_NonMC1.ts4();
 		m.prnLoTasks();
-		int tid=m.findDropTask();
-		Log.prn(1, ""+tid);
+		Task t=m.findDropTask();
+		Log.prn(1, ""+t.tid);
 		return 0;
 	}
 	public  int test3()
@@ -28,15 +28,13 @@ public class TaskMng1 {
 		TaskMng m=TS_NonMC1.ts4();
 		m.setX(0.3);
 		m.prnLoTasks();
-		int tid=m.findDropTask();
-		Task t=m.getTask(tid);
-		Log.prn(1, ""+tid+","+t.getLoUtil()+","+
-				m.getReclaimUtil(tid));
-		m.drop(tid);
-		tid=m.findDropTask();
-		t=m.getTask(tid);
-		Log.prn(1, ""+tid+","+t.getLoUtil()+","+
-				m.getReclaimUtil(tid));
+		Task t=m.findDropTask();
+		Log.prn(1, ""+t.tid+","+t.getLoUtil()+","+
+				m.getReclaimUtil(t));
+		t.drop();
+		t=m.findDropTask();
+		Log.prn(1, ""+t.tid+","+t.getLoUtil()+","+
+				m.getReclaimUtil(t));
 		return 0;
 	}
 	public  int test4()

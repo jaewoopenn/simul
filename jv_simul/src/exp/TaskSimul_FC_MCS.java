@@ -44,7 +44,7 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 		if(isPrnMS)
 			Log.prn(1, "ms hi "+tid);
 		g_js.getJM().modeswitch(tid);
-		g_tm.modeswitch(tid);
+		g_tm.getTask(tid).ms();
 		int cid=g_tm.getComp(tid);
 		dropDecision(cid);
 		resManager(cid);
@@ -52,44 +52,52 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 	
 	private void resManager(int ex_id) {
 		double ru=g_cm.getRU();
-		Log.prn(1, "G_RU:"+ru);
+//		Log.prn(1, "G_RU:"+ru);
 		double req=ru-1;
 		for(Comp c:g_cm.getComps()){
-			Log.prn(1, "req:"+req);
+//			Log.prn(1, "req:"+req);
 			if(req<=0) break;
 			double ori=c.getRU();
+//			double mod=request(c,req);
 			double mod=c.request(req);
 			req-=ori-mod;
 			if(req<=0) break;
 		}
 		ru=g_cm.getRU();
-		Log.prn(1, "G_RU:"+ru);
-		System.exit(1);
+//		Log.prn(1, "G_RU:"+ru);
+//		System.exit(1);
 		
 	}
+
+//	private double request(Comp c, double req) {
+//		Log.prnc(1, "cid:"+c.getID());
+//		Log.prn(1, " req:"+req);
+//		System.exit(1);
+//		return 0;
+//	}
 
 	private void dropDecision(int cid) {
 		Comp c=g_cm.getComp(cid);
 		double ru=c.getRU();
 		double maxRes=c.getMaxRes();
-		Log.prnc(1, "cid:"+cid+" ");
-		Log.prnc(1, "max:"+maxRes+" ");
-		Log.prn(1, "C_RU:"+ru);
-		while(ru>=maxRes){
-			int id=c.getTM().findDropTask();
-			if(id==-1){
+//		Log.prnc(1, "cid:"+cid+" ");
+//		Log.prnc(1, "max:"+maxRes+" ");
+//		Log.prn(1, "C_RU:"+ru);
+		while(ru>=maxRes+MUtil.err){
+			Task t=c.getTM().findDropTask();
+			if(t==null){
 				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
 				System.exit(1);
 			}
-			drop(id);
+			drop(t);
 			if(isPrnMS)
-				Log.prn(1, "drop "+id);
+				Log.prn(1, "drop "+t.tid);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
-			ru-=g_tm.getReclaimUtil(id);
+			ru-=g_tm.getReclaimUtil(t);
 //			Log.prn(1, ""+ru);
 			
 		}
-		Log.prn(1, ""+ru);
+//		Log.prn(1, ""+ru);
 		
 	}
 

@@ -5,7 +5,7 @@ import taskSetEx.CompMngEx1;
 import utilSim.TEngine;
 
 public class CompFile1 {
-	public static int idx=2;
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -32,6 +32,10 @@ public class CompFile1 {
 	}
 	public  int test4()
 	{
+		String f="com/ts/taskset_util_80_2";
+		CompMng cm=CompFile.loadFile(f);
+		cm.part();
+		cm.prn();
 		return 0;
 	}
 	public  int test5()

@@ -114,7 +114,7 @@ public class ConfigGen {
 		eg.setParam("prob_hi","0.5");
 		eg.setParam("num","10");
 		eg.setParam("a_lb","0.0");
-		eg.setParam("a_ub","0.0");
+		eg.setParam("a_ub","0.3");
 		eg.setParam("subfix","exp");
 		eg.setParam("mod","t");
 		return eg;

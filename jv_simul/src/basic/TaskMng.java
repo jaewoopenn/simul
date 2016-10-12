@@ -38,33 +38,34 @@ public class TaskMng {
 
 
 
-	public void modeswitch(int tid) {
-		g_tasks[tid].ms();
-	}
+//	public void modeswitch(int tid) {
+//		g_tasks[tid].ms();
+//	}
 
 
 
-	public void drop(int tid) {
-		g_tasks[tid].drop();
-		
-	}
+//	public void drop(int tid) {
+//		g_tasks[tid].drop();
+//		
+//	}
 
 
 
 
-	public int findDropTask() {
+	public Task findDropTask() {
 		for(Task t:g_lo_tasks){
 			if (!t.is_dropped)
-				return t.tid;
+				return t;
 		}
-		return -1;
+		return null;
 	}
-	public int findDropTask_shared() {
+
+	public Task findDropTask_shared() {
 		for(Task t:g_lo_tasks){
 			if (!t.is_dropped&&!t.is_isol())
-				return t.tid;
+				return t;
 		}
-		return -1;
+		return null;
 	}
 
 	
@@ -167,8 +168,7 @@ public class TaskMng {
 		return g_info.getMCUtil();
 	}
 
-	public double getReclaimUtil(int tid){
-		Task t=g_tasks[tid];
+	public double getReclaimUtil(Task t){
 		return (1-g_info.getX())*t.getLoUtil();
 	}
 

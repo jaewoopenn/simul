@@ -1,5 +1,6 @@
 package testExp;
 
+import basic.Task;
 import basic.TaskMng;
 import exp.TaskSimul_EDF_AT_S;
 import taskSetEx.TS_MC1;
@@ -59,7 +60,8 @@ public class TaskSimul2 {
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		ts.simulBy(0, 1);
 		ts.modeswitch(1);
-		ts.drop(0);
+		Task t=tm.getTask(0);
+		ts.drop(t);
 		return ts.simulEnd(1,et);
 	}
 	public  int test7()	{
@@ -69,8 +71,8 @@ public class TaskSimul2 {
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		ts.simulBy(0, 1);
 		ts.modeswitch(2);
-//		ts.drop(0);
-		ts.drop(1);
+//		ts.drop(tm.getTask(0));
+		ts.drop(tm.getTask(1));
 		return ts.simulEnd(1,et);
 	}
 	public  int test8()	{

@@ -27,7 +27,7 @@ public class CompMng2 {
 		cm.analMaxRes();
 		cm.prn();
 		Comp c=cm.getComp(0);
-		c.getTM().modeswitch(2);
+		c.getTM().getTask(2).ms();
 		c.drop();
 		Log.prn(1, "RU:"+c.getRU());
 		c.getTM().prnStat();

@@ -9,13 +9,13 @@ import utilSim.TEngine;
 
 // schedulability 
 public class Platform3 {
-	public static int idx=3;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=3;
+	public static int log_level=1;
 	public Platform getP(){
-//		return getP1();
-		return getP2();
+		return getP1();
+//		return getP2();
 	}
 	
 	public Platform getP1() {
@@ -43,9 +43,10 @@ public class Platform3 {
 		Platform p=new Platform();
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
+		p.setAlpha(0,0.3);
 //		p.setSysNum(5000);
-		p.setSysNum(1000);
-//		p.setSysNum(100);
+//		p.setSysNum(1000);
+		p.setSysNum(100);
 //		p.setSysNum(10);
 //		p.setSysNum(1);
 		return p;
@@ -57,7 +58,8 @@ public class Platform3 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		eg.setParam("c_lb","0.05");
+		eg.setParam("c_lb","0.1");
+//		eg.setParam("c_lb","0.05");
 		eg.setParam("c_ub","0.2");
 		eg.setParam("u_lb", "0.85");
 		eg.setParam("u_ub", "0.90");

@@ -36,11 +36,11 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 				if(isPrnMS)
 					Log.prn(1, "ms hi "+t.tid);
 				g_js.getJM().modeswitch(t.tid);
-				g_tm.modeswitch(t.tid);
+				g_tm.getTask(tid).ms();
 			} else {
 				if(isPrnMS)
 					Log.prn(1, "drop "+t.tid);
-				drop(t.tid);
+				drop(t);
 			}
 		}
 	}

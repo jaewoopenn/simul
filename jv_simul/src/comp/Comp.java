@@ -24,6 +24,7 @@ public class Comp {
 		cu=0;
 		Task[] tasks=g_tm.getLoTasks();
 		for(int i=tasks.length-1;i>=0;i--){
+//		for(int i=0;i<tasks.length;i++){
 			Task t=tasks[i];
 //			t.prn();
 			if(cu>=tu)
@@ -36,19 +37,19 @@ public class Comp {
 		drop_in(maxRes,false);
 	}
 	private double drop_in(double lim, boolean isShared) {
-		int tid;
+		Task t;
 		while(true){
 			double ru=g_tm.getRU();
 //			Log.prn(1, "RU:"+ru);
 			if(ru>lim){
 				if(isShared)
-					tid=g_tm.findDropTask_shared();
+					t=g_tm.findDropTask_shared();
 				else
-					tid=g_tm.findDropTask();
-				if(tid==-1) 
+					t=g_tm.findDropTask();
+				if(t==null) 
 					return ru;
-				Log.prn(1, "drop "+tid);
-				g_tm.drop(tid);
+				Log.prn(1, "drop "+t.tid);
+				t.drop();
 			}
 			else
 				return ru;
@@ -60,7 +61,6 @@ public class Comp {
 		double ru=g_tm.getRU();
 		double tu=ru-d;
 		return drop_in(tu,true);
-		
 	}
 	// prn
 	public void prn() {
