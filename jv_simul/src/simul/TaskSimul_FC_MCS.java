@@ -16,6 +16,11 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 	public TaskSimul_FC_MCS(TaskMng m) {
 		super(m);
 	}
+	
+	@Override
+	protected void initMode() {
+		initModeS();
+	}
 
 
 	

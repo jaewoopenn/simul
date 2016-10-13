@@ -15,6 +15,11 @@ public class TaskSimul_FC_Naive extends TaskSimul_FC{
 		super(m);
 	}
 
+	@Override
+	protected void initMode() {
+		initModeS();
+		isExtMS=false;
+	}
 
 	
 	@Override

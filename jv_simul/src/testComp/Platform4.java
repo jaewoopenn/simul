@@ -44,21 +44,21 @@ public class Platform4 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 		p.setAlpha(0.3,0.6);
-//		p.setDuration(10000);
-		p.setDuration(1000);
+		p.setDuration(10000);
+//		p.setDuration(1000);
 //		p.setDuration(100);
 		
 //		p.setSysNum(5000);
-//		p.setSysNum(1000);
-		p.setSysNum(300);
+		p.setSysNum(1000);
+//		p.setSysNum(300);
 //		p.setSysNum(100);
 //		p.setSysNum(10);
 //		p.setSysNum(1);
 		
-		p.setRS("1");
-		p.setProb(0.1);
-//		p.setProb(0.4);
-//		p.setRS("4");
+//		p.setRS("1");
+//		p.setProb(0.1);
+		p.setProb(0.4);
+		p.setRS("4");
 //		p.setProb(0.7);
 //		p.setRS("7");
 
@@ -99,17 +99,27 @@ public class Platform4 {
 	}
 	public  int test4() 
 	{
-		int set=8;
+		int set=9;
 		int no=72;
-		PlatformCom p=getP();
-		p.setAlpha(0.1,0.3);
-		p.simulCom_one(0,set,no);
-		p.simulCom_one(1,set,no);
+		for(int i=0;i<1000;i++){
+			no=i;
+			PlatformCom p=getP();
+			p.setAlpha(0.1,0.3);
+			Log.prn(3, no+"");
+//			p.simulCom_one(0,set,no);
+			p.simulCom_one(1,set,no);
+		}
 		return 1;
 	}
 	public  int test5() 
 	{
-		return 0;
+		int set=9;
+		int no=192;
+		PlatformCom p=getP();
+		p.setAlpha(0.1,0.3);
+		Log.prn(3, no+"");
+		p.simulCom_one(1,set,no);
+		return 1;
 	}
 	public  int test6() 
 	{

@@ -23,7 +23,6 @@ public class TaskSimul_FC extends TaskSimul{
 
 	@Override
 	protected void initMode() {
-		initModeS();
 	}
 	
 	

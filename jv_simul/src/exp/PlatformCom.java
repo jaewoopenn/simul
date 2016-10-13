@@ -126,6 +126,7 @@ public class PlatformCom extends Platform{
 		cm.setX(an.getX());
 		ts.set_tm(tm);
 		ts.set_cm(cm);
+		ts.isSchTab=false;
 		SimulInfo si=eg.simul(ts);
 		ret=si.getDMR();
 		Log.prn(2, set+","+no+":"+ret+","+si.rel);
