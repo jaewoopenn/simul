@@ -18,19 +18,7 @@ public class TaskSimul_EDF_AT_S extends TaskSimul{
 
 
 	protected void initMode() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(t.is_HI){
-				if(t.getHiUtil()<t.getLoRUtil())
-					t.is_HM=true;
-				else
-					t.is_HM=false;
-			} else {
-				t.is_dropped=false;
-			}
-		}
-
-//		g_tm.prnHI();
+		initModeS();
 	}
 	
 	
@@ -63,21 +51,6 @@ public class TaskSimul_EDF_AT_S extends TaskSimul{
 
 	@Override
 	protected AbsJob relJob(Task tsk, int cur_t) {
-		if(tsk.is_HI){
-			if(tsk.is_HM){
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
-			} else {
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
-		}
-		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
+		return relJobD(tsk,cur_t);
 	}
-	
-	
-	
-	
-	// get param
 }

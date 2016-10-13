@@ -16,15 +16,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 
 	@Override
 	protected void initMode() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(!t.is_HI)
-				t.is_dropped=false;
-			else
-				t.is_HM=false;
-		}
-
-//		g_tm.prnHI();
+		initModeN();
 	}
 	
 	
@@ -47,20 +39,6 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 
 	@Override
 	protected AbsJob relJob(Task tsk, int cur_t) {
-		if(tsk.is_HI){
-			if(tsk.is_HM){
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
-			} else {
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
-		}
-		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
+		return relJobD(tsk,cur_t);
 	}
-	
-	
-	
-	// get param
 }

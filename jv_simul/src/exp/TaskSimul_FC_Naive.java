@@ -9,7 +9,7 @@ import utilSim.Log;
 import utilSim.MUtil;
 
 public class TaskSimul_FC_Naive extends TaskSimul{
-
+	private boolean isExtMS=false;
 	private CompMng g_cm;
 	public TaskSimul_FC_Naive() {
 		super();
@@ -24,19 +24,7 @@ public class TaskSimul_FC_Naive extends TaskSimul{
 		this.g_cm = cm;
 	}
 	protected void initMode() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(t.is_HI){
-				if(t.getHiUtil()<t.getLoRUtil())
-					t.is_HM=true;
-				else
-					t.is_HM=false;
-			} else {
-				t.is_dropped=false;
-			}
-		}
-
-//		g_tm.prnHI();
+		initModeS();
 	}
 	
 	
@@ -77,21 +65,6 @@ public class TaskSimul_FC_Naive extends TaskSimul{
 
 	@Override
 	protected AbsJob relJob(Task tsk, int cur_t) {
-		if(tsk.is_HI){
-			if(tsk.is_HM){
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
-			} else {
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
-		}
-		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
+		return relJobD(tsk,cur_t);
 	}
-	
-	
-	
-	
-	// get param
 }

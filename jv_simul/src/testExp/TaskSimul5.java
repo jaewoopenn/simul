@@ -5,13 +5,14 @@ import basic.TaskMng;
 import comp.CompFile;
 import comp.CompMng;
 import exp.TaskSimul_FC_MCS;
+import exp.TaskSimul_FC_Naive;
 import taskSetEx.CompMngEx1;
 import taskSetEx.TS_MC1;
 import utilSim.TEngine;
 
 // Comp
 public class TaskSimul5 {
-	public static int idx=2;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -50,6 +51,17 @@ public class TaskSimul5 {
 	}
 	public int test3() 
 	{
+		CompMng cm=CompMngEx1.getCompMng3();
+		TaskMng tm=cm.getTM();
+		double x=AnalEDF_VD.computeX(tm);
+		cm.setX(x);
+		cm.part();
+		cm.analMaxRes();
+		tm.prnComp();
+		tm.getInfo().setProb_ms(1.0);
+		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
+		ts.set_cm(cm);
+		ts.simulEnd(0,20);
 		return 0;
 	}
 	public  int test4() 

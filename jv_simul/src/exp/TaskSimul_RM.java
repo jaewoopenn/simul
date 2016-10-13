@@ -11,16 +11,7 @@ public class TaskSimul_RM extends TaskSimul{
 	}
 
 	protected void initMode() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(t.is_HI){
-				t.is_HM=false;
-			} else {
-				t.is_dropped=false;
-			}
-		}
-
-//		g_tm.prnHI();
+		initModeN();
 	}
 	
 	

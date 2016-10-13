@@ -12,31 +12,9 @@ public class TaskSimul_EDF_AT extends TaskSimul{
 	}
 
 	protected void initMode() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(!t.is_HI)
-				t.is_dropped=false;
-			else
-				t.is_HM=false;
-		}
-
-//		g_tm.prnHI();
+		initModeN();
 	}
 	
-	@Override
-	protected AbsJob relJob(Task tsk, int cur_t) {
-		if(tsk.is_HI){
-			if(tsk.is_HM){
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
-			} else {
-				return new JobD(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
-		}
-		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
-	}
 	
 	public void modeswitch_in(int tid) {
 		if(isPrnMS)
@@ -64,8 +42,9 @@ public class TaskSimul_EDF_AT extends TaskSimul{
 //		Log.prn(1, ""+ru);
 		
 	}
-	
-	
-	
-	// get param
+
+	@Override
+	protected AbsJob relJob(Task tsk, int cur_t) {
+		return relJobD(tsk,cur_t);
+	}
 }

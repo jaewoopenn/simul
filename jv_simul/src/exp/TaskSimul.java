@@ -32,6 +32,32 @@ public abstract class TaskSimul {
 		this.g_tm = tm;
 //		tm.prn();
 	}
+	public void initModeS() {
+		Task[] tasks=g_tm.getTasks();
+		for(Task t:tasks){
+			if(t.is_HI){
+				if(t.getHiUtil()<t.getLoRUtil())
+					t.is_HM=true;
+				else
+					t.is_HM=false;
+			} else {
+				t.is_dropped=false;
+			}
+		}
+
+//		g_tm.prnHI();
+	}
+	protected void initModeN() {
+		Task[] tasks=g_tm.getTasks();
+		for(Task t:tasks){
+			if(!t.is_HI)
+				t.is_dropped=false;
+			else
+				t.is_HM=false;
+		}
+
+//		g_tm.prnHI();
+	}
 
 	public int simulEnd(int st, int et) {
 		int ret=simulBy(st,et);
@@ -111,6 +137,20 @@ public abstract class TaskSimul {
 	}
 	
 	protected abstract AbsJob relJob(Task tsk, int cur_t);
+
+	protected AbsJob relJobD(Task tsk, int cur_t) {
+		if(tsk.is_HI){
+			if(tsk.is_HM){
+				return new JobD(tsk.tid, 
+						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
+			} else {
+				return new JobD(tsk.tid, 
+						cur_t+tsk.period,tsk.c_l,
+						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+			}
+		}
+		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
+	}
 	
 	public void modeswitch(int tid){
 		Task tsk=g_tm.getTask(tid);
