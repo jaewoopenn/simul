@@ -2,6 +2,7 @@ package comp;
 
 
 import utilSim.Log;
+import utilSim.MUtil;
 import basic.Task;
 import basic.TaskMng;
 
@@ -41,7 +42,7 @@ public class Comp {
 		while(true){
 			double ru=g_tm.getRU();
 //			Log.prn(1, "RU:"+ru);
-			if(ru>lim){
+			if(ru>lim+MUtil.err){
 				if(isShared)
 					t=g_tm.findDropTask_shared();
 				else
@@ -124,6 +125,21 @@ public class Comp {
 	
 	public double getWC_U(){
 		return Math.max(getExt_U(), getInt_U());
+	}
+	public double getNa_U(){
+		Task[] tasks=g_tm.getTasks();
+		double u=0;
+		for(Task t:tasks){
+			if(t.is_HI)
+				u+= t.getHiUtil();
+			else{
+				if(t.is_isol())
+					u+=t.getLoUtil();
+				else
+					u+=g_tm.getInfo().getX()*t.getLoUtil();
+			}
+		}
+		return u;
 	}
 	public double getExt_U() {
 		Task[] tasks=g_tm.getTasks();

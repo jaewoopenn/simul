@@ -5,9 +5,9 @@ import utilSim.MUtil;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 
-public class AnalComp {
+public class AnalCompNa {
 	protected CompMng g_cm;
-	public AnalComp(CompMng mng) {
+	public AnalCompNa(CompMng mng) {
 		g_cm=mng;
 	}
 	public void computeX() {
@@ -31,7 +31,7 @@ public class AnalComp {
 		for(int i=0;i<size;i++){
 			Comp c=g_cm.getComp(i);
 			init_u+=c.getST_U();
-			wc_u+=c.getWC_U();
+			wc_u+=c.getNa_U();
 		}
 		Log.prn(2, "initU:"+init_u);
 		Log.prn(2, "wcU:"+wc_u);

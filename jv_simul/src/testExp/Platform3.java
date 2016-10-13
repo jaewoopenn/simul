@@ -9,10 +9,10 @@ import utilSim.TEngine;
 
 // schedulability 
 public class Platform3 {
-	public static int idx=2;
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=1;
+	public static int log_level=3;
 	public Platform getP(){
 		return getP1();
 //		return getP2();
@@ -59,8 +59,8 @@ public class Platform3 {
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
 		eg.setParam("c_lb","0.1");
-//		eg.setParam("c_lb","0.05");
-		eg.setParam("c_ub","0.2");
+		eg.setParam("c_lb","0.05");
+//		eg.setParam("c_ub","0.2");
 		eg.setParam("u_lb", "0.85");
 		eg.setParam("u_ub", "0.90");
 		eg.setParam("tu_lb","0.02");
@@ -92,12 +92,12 @@ public class Platform3 {
 		p.write_x_axis();
 		p.setAlpha(0,0);
 		p.setRS("0");
-		p.analCom();
+		p.analCom(0);
 		double step=0.25;
 		for(int i=1;i<5;i++){
 			p.setAlpha((i-1)*step,i*step);
 			p.setRS(i+"");
-			p.analCom();
+			p.analCom(0);
 		}	
 //		MUtil.sendMail("ICG anal OK");
 		return 1;
@@ -105,7 +105,14 @@ public class Platform3 {
 	public  int test4() 
 	{
 		Platform p=getP();
-		p.prnCom();
+//		p.isWrite=false;
+		p.setRS("0");
+		p.write_x_axis();
+		p.setAlpha(0.25,0.75);
+		p.setRS("FC");
+		p.analCom(0);
+		p.setRS("NA");
+		p.analCom(1);
 		return 1;
 	}
 	public  int test5() 
@@ -152,7 +159,9 @@ public class Platform3 {
 	}
 	public  int test8()
 	{
-		return 0;
+		Platform p=getP();
+		p.prnCom();
+		return 1;
 	}
 	public  int test9()
 	{

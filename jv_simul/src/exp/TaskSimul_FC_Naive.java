@@ -8,14 +8,14 @@ import basic.TaskMng;
 import utilSim.Log;
 import utilSim.MUtil;
 
-public class TaskSimul_FC_MCS extends TaskSimul{
+public class TaskSimul_FC_Naive extends TaskSimul{
 
 	private CompMng g_cm;
-	public TaskSimul_FC_MCS() {
+	public TaskSimul_FC_Naive() {
 		super();
 	}
 
-	public TaskSimul_FC_MCS(TaskMng m) {
+	public TaskSimul_FC_Naive(TaskMng m) {
 		super(m);
 	}
 

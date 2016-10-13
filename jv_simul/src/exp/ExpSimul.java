@@ -2,6 +2,7 @@ package exp;
 
 
 import comp.AnalComp;
+import comp.AnalCompNa;
 import comp.CompFile;
 import comp.CompMng;
 import anal.Anal;
@@ -63,5 +64,13 @@ public class ExpSimul {
 		return 	a.anal();
 
 	}
+	public int analCompNa(CompMng cm) {
+		AnalCompNa a=new AnalCompNa(cm);
+		a.computeX();
+		a.part();
+		return 	a.anal();
+
+	}
+
 	
 }

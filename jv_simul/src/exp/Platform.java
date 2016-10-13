@@ -197,7 +197,7 @@ public class Platform {
 		return ret;
 	}
 	
-	public void analCom() {
+	public void analCom(int kinds) {
 		int ret;
 		FUtil fu=null;
 		if(isWrite)
@@ -213,7 +213,10 @@ public class Platform {
 			for(int j=0;j<size;j++){
 				CompMng cm=eg.loadCM(j);
 				cm.setAlpha(g_a_l,g_a_u);
-				ret=eg.analComp(cm);
+				if(kinds==0)
+					ret=eg.analComp(cm);
+				else
+					ret=eg.analCompNa(cm);
 				Log.prn(2, j+","+ret);
 				sum+=ret;
 //				Log.prn(2, " "+sum);
