@@ -122,9 +122,9 @@ public class Platform3 {
 		int ret1,ret2;
 		for(int i=0;i<100;i++){
 			p.setAlpha(0,0.25);
-			ret1=p.analCom(set,i);
+			ret1=p.analCom(set,i,0);
 			p.setAlpha(0.75,1.00);
-			ret2=p.analCom(set,i);
+			ret2=p.analCom(set,i,0);
 			if(ret1==0&&ret2==1)
 				break;
 //			if(ret1==1&&ret2==0)
@@ -139,7 +139,7 @@ public class Platform3 {
 		int ret1;
 		p.setAlpha(0,0);
 		for(int i=0;i<100;i++){
-			ret1=p.analCom(set,i);
+			ret1=p.analCom(set,i,0);
 			Log.prn(2,ret1);
 			if(ret1==0)
 				break;
@@ -153,7 +153,7 @@ public class Platform3 {
 		Platform p=getP();
 		int ret1;
 		p.setAlpha(0,0);
-		ret1=p.analCom(set,i);
+		ret1=p.analCom(set,i,0);
 		Log.prn(2,ret1);
 		return 0;
 	}

@@ -1,9 +1,7 @@
 package testComp;
 
 
-import anal.AnalEDF_AT_S;
 import anal.AnalEDF_VD;
-import basic.Task;
 import basic.TaskMng;
 import comp.Comp;
 import comp.CompMng;

@@ -184,7 +184,7 @@ public class Platform {
 			fu.save();
 		
 	}
-	public int analCom(int set, int no) {
+	public int analCom(int set, int no,int kinds) {
 		int mod=set*g_step+g_start;
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
@@ -192,7 +192,7 @@ public class Platform {
 		ExpSimul eg=new ExpSimul(cfg);
 		CompMng cm=eg.loadCM(no);
 		cm.setAlpha(g_a_l,g_a_u);
-		int ret=eg.analComp(cm);
+		int ret=eg.analComp(cm,kinds);
 		Log.prn(2, set+","+no+":"+ret);
 		return ret;
 	}
@@ -213,10 +213,7 @@ public class Platform {
 			for(int j=0;j<size;j++){
 				CompMng cm=eg.loadCM(j);
 				cm.setAlpha(g_a_l,g_a_u);
-				if(kinds==0)
-					ret=eg.analComp(cm);
-				else
-					ret=eg.analCompNa(cm);
+				ret=eg.analComp(cm,kinds);
 				Log.prn(2, j+","+ret);
 				sum+=ret;
 //				Log.prn(2, " "+sum);

@@ -26,7 +26,7 @@ public class Anal2 {
 		a.computeX();
 		a.part();
 		cm.prn();
-		a.anal();
+		a.anal(0);
 //		cm.prn();
 //		Log.prn(2, "x:"+x);
 		return -1;

@@ -18,7 +18,7 @@ public class ExpSimul2 {
 		//cfg.prn(2);
 		ExpSimul eg=new ExpSimul(cfg);
 		CompMng cm=eg.loadCM(0);
-		int ret=eg.analComp(cm);
+		int ret=eg.analComp(cm,0);
 		Log.prn(1, ""+ret);
 		return 0;
 	}
