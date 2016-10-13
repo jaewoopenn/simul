@@ -42,10 +42,11 @@ public class Platform1 {
 		Platform p=new Platform();
 		p.setPath("exp");
 		p.setCfg_fn("cfg/cfg");
-//		p.setDuration(10000);
-		p.setDuration(1000);
-//		p.setSysNum(1000);
-		p.setSysNum(100);
+		p.setDuration(10000);
+//		p.setDuration(1000);
+		
+		p.setSysNum(1000);
+//		p.setSysNum(100);
 //		p.setProb(0.1);
 		p.setProb(0.4);
 //		p.setProb(0.7);

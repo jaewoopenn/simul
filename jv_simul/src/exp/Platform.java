@@ -72,6 +72,7 @@ public class Platform {
 		for(int i=0;i<g_size;i++){
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
+			Log.prn(3, modStr);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
