@@ -1,5 +1,7 @@
 package comp;
 
+import utilSim.MUtil;
+import anal.AnalEDF_VD;
 import anal.ConfigGen;
 import basic.CompGen;
 import basic.CompGenParam;
@@ -8,6 +10,7 @@ import basic.TaskGenParam;
 public class SimCompGen {
 	private CompGen g_cg;
 	private ConfigGen g_cfg;
+	private boolean g_isCheck=false;
 	public SimCompGen(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
@@ -37,7 +40,10 @@ public class SimCompGen {
 			writeSys(i,cm);
 			i++;
 		}
-		
+	}
+	public void gen2(){
+		g_isCheck=true;
+		gen();
 	}
 	
 	public int writeSys(int i, CompMng cm)
@@ -48,7 +54,16 @@ public class SimCompGen {
 	}
 
 	private int check(CompMng cm) {
-		return g_cg.check(cm);
+		if(g_cg.check(cm)==0)
+			return 0;
+		if(!g_isCheck)
+			return 1;
+		
+		AnalEDF_VD a=new AnalEDF_VD();
+		a.init(cm.getTM());
+		a.prepare();
+		
+		return MUtil.btoi(a.isScheduable());
 	}
 	
 }

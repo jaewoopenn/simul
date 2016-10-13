@@ -1,24 +1,25 @@
-
+package testComp;
 
 
 import anal.ConfigGen;
-import exp.PlatformTM;
+import exp.PlatformCom;
 import utilSim.Log;
 import utilSim.TEngine;
 
-public class Platform1 {
-	public static int idx=3;
+
+// schedulability 
+public class Platform4 {
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=3;
-
-	public PlatformTM getP(){
-//		return getP1();
-		return getP2();
+	public static int log_level=1;
+	public PlatformCom getP(){
+		return getP1();
+//		return getP2();
 	}
 	
-	public PlatformTM getP1() {
-		PlatformTM p=getCommmon();
+	public PlatformCom getP1() {
+		PlatformCom p=getCommmon();
 		p.setTSName("util_sim");
 		p.setKinds(0);
 		p.setStart(55);
@@ -28,8 +29,8 @@ public class Platform1 {
 		p.setStep(5);
 		return p;
 	}
-	public PlatformTM getP2() {
-		PlatformTM p=getCommmon();
+	public PlatformCom getP2() {
+		PlatformCom p=getCommmon();
 		p.setTSName("prob_sim");
 		p.setKinds(1);
 		p.setStart(5);
@@ -38,21 +39,28 @@ public class Platform1 {
 		return p;
 	}
 
-	public PlatformTM getCommmon(){
-		PlatformTM p=new PlatformTM();
-		p.setPath("exp");
+	public PlatformCom getCommmon(){
+		PlatformCom p=new PlatformCom();
+		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
-		p.setDuration(10000);
+		p.setAlpha(0.3,0.6);
+//		p.setDuration(10000);
 //		p.setDuration(1000);
+		p.setDuration(100);
 		
-		p.setSysNum(1000);
-//		p.setSysNum(100);
+//		p.setSysNum(5000);
+//		p.setSysNum(1000);
+		p.setSysNum(100);
+//		p.setSysNum(10);
+//		p.setSysNum(1);
+		
 //		p.setRS("1");
 //		p.setProb(0.1);
 		p.setProb(0.4);
 		p.setRS("4");
 //		p.setProb(0.7);
 //		p.setRS("7");
+
 		return p;
 		
 	}
@@ -62,74 +70,58 @@ public class Platform1 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		PlatformTM p=getP();
-		p.writeCfg(eg);
+		eg.setParam("c_lb","0.1");
+		eg.setParam("c_lb","0.05");
+//		eg.setParam("c_ub","0.2");
+		eg.setParam("u_lb", "0.85");
+		eg.setParam("u_ub", "0.90");
+		eg.setParam("tu_lb","0.02");
+		eg.setParam("tu_ub","0.1");
+		PlatformCom p=getP();
+		p.writeComCfg(eg);
 		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		PlatformTM p=getP();
-		p.genTS(true);
+		PlatformCom p=getP();
+		p.genCom(true);
 		return 1;
 	}
 	public int test3() 
 	{
-		PlatformTM p=getP();
+		PlatformCom p=getP();
+		p.setAlpha(0.3,0.6);
 //		p.isWrite=false;
-		p.simul();
+		p.simulCom();
 		return 1;
 	}
 	public  int test4() 
 	{
-		PlatformTM p=getP();
-//		for(int i=0;i<1000;i++)
-//			p.simul_one(0,2,i);
-		p.simul_one(0,0,30);
-//		p.simul_one(1,5,999);
-//		p.simul_one(0,5,8);
-//		p.simul_one(0,9,8);
+		int set=8;
+		int no=72;
+		PlatformCom p=getP();
+		p.setAlpha(0.3,0.6);
+		p.simulCom_one(0,set,no);
+		p.simulCom_one(1,set,no);
 		return 1;
 	}
 	public  int test5() 
 	{
-		PlatformTM p=getP();
-		p.simul_vd();
 		return 0;
 	}
 	public  int test6() 
 	{
-		PlatformTM p=getP();
-		p.prnTasks();
 		return 0;
 	}
-	// All in One;
 	public  int test7()
 	{
-		PlatformTM p=getP();
-		if(log_level<3){
-			Log.prn(9, "set Log level>=3");
-			return 0;
-		}
-		Log.prn(3, "Prob 0.1");
-		p.setProb(0.1);
-		p.setRS("1");
-		p.simul();
-		Log.prn(3, "Prob 0.4");
-		p.setProb(0.4);
-		p.setRS("4");
-		p.simul();
-		Log.prn(3, "Prob 0.7");
-		p.setProb(0.7);
-		p.setRS("7");
-		p.simul();
 		return 0;
 	}
 	public  int test8()
 	{
 		return 0;
 	}
-	
 	public  int test9()
 	{
 		return 0;
@@ -141,9 +133,9 @@ public class Platform1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Platform1.class;
-		Platform1 m=new Platform1();
-		int[] aret=Platform1.gret;
+		Class c = Platform4.class;
+		Platform4 m=new Platform4();
+		int[] aret=Platform4.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

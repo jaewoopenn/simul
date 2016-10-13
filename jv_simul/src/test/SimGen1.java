@@ -1,9 +1,6 @@
 package test;
 import anal.ConfigGen;
 import anal.SimGen;
-import basic.TaskMng;
-import utilSim.FUtil;
-import utilSim.Log;
 import utilSim.TEngine;
 
 public class SimGen1 {

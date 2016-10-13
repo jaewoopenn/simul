@@ -12,7 +12,7 @@ import utilSim.TEngine;
 
 // Comp
 public class TaskSimul5 {
-	public static int idx=4;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -34,8 +34,10 @@ public class TaskSimul5 {
 		return 0;
 	}
 	public int test2() 
-	{
-		String f="com/ts/taskset_util_85_19";
+	{	
+		int set=8;
+		int no=72;
+		String f="com/ts/taskset_util_sim_"+(55+set*5)+"_"+no;
 		CompMng cm=CompFile.loadFile(f);
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
@@ -46,7 +48,7 @@ public class TaskSimul5 {
 		tm.getInfo().setProb_ms(1);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
 		ts.set_cm(cm);
-		ts.simulEnd(0,400);
+		ts.simulEnd(0,42);
 		return 0;
 	}
 	public int test3() 

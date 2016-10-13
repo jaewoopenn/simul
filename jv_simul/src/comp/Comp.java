@@ -2,7 +2,6 @@ package comp;
 
 
 import utilSim.Log;
-import utilSim.MUtil;
 import basic.Task;
 import basic.TaskMng;
 
@@ -11,7 +10,7 @@ public class Comp {
 	private int cid;
 	private double alpha;
 	private double maxRes;
-	private double curRes;
+//	private double curRes;
 	private TaskMng g_tm;
 	
 	public Comp(double alpha) {

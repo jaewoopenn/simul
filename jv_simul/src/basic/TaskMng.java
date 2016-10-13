@@ -2,7 +2,6 @@ package basic;
 
 import java.util.Arrays;
 
-import utilSim.FUtil;
 import utilSim.Log;
 import utilSim.MUtil;
 

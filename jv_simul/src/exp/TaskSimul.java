@@ -28,7 +28,7 @@ public abstract class TaskSimul {
 		this();
 		this.g_tm=m;
 	}
-	public void setTm(TaskMng tm) {
+	public void set_tm(TaskMng tm) {
 		this.g_tm = tm;
 //		tm.prn();
 	}

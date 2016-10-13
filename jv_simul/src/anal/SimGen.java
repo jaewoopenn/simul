@@ -23,9 +23,6 @@ public class SimGen {
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
-	public void setCheck(boolean g_isCheck) {
-		this.g_isCheck = g_isCheck;
-	}
 	public void gen() {
 		int num=prepare();
 		int i=0;
@@ -41,7 +38,7 @@ public class SimGen {
 		
 	}
 	public void gen2(){
-		setCheck(true);
+		g_isCheck=true;
 		gen();
 	}
 	

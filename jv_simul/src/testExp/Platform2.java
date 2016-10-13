@@ -2,9 +2,8 @@ package testExp;
 
 
 import anal.ConfigGen;
-import exp.Platform;
+import exp.PlatformTM;
 import utilSim.Log;
-import utilSim.MUtil;
 import utilSim.TEngine;
 
 
@@ -15,13 +14,13 @@ public class Platform2 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 
-	public Platform getP(){
+	public PlatformTM getP(){
 		return getP1();
 //		return getP2();
 	}
 	
-	public Platform getP1() {
-		Platform p=getCommmon();
+	public PlatformTM getP1() {
+		PlatformTM p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
 		p.setStart(55);
@@ -31,9 +30,9 @@ public class Platform2 {
 		p.setStep(5);
 		return p;
 	}
-	public Platform getP2() {
-		Platform p=getCommmon();
-		p.setTSName("prob_hi");
+	public PlatformTM getP2() {
+		PlatformTM p=getCommmon();
+		p.setTSName("prob");
 		p.setKinds(1);
 		p.setStart(5);
 		p.setSize(19);
@@ -41,8 +40,8 @@ public class Platform2 {
 		return p;
 	}
 
-	public Platform getCommmon(){
-		Platform p=new Platform();
+	public PlatformTM getCommmon(){
+		PlatformTM p=new PlatformTM();
 		p.setPath("sch");
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
@@ -57,20 +56,20 @@ public class Platform2 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		Platform p=getP();
+		PlatformTM p=getP();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		Platform p=getP();
+		PlatformTM p=getP();
 		p.genTS(false);
 		return 1;
 	}
 	public int test3() 
 	{
-		Platform p=getP();
+		PlatformTM p=getP();
 //		p.isWrite=false;
 		p.anal();
 //		MUtil.sendMail("ICG anal OK");
@@ -78,19 +77,19 @@ public class Platform2 {
 	}
 	public  int test4() 
 	{
-		Platform p=getP();
+		PlatformTM p=getP();
 		p.anal_one(0,9,30);
 		return 1;
 	}
 	public  int test5() 
 	{
-		Platform p=getP();
+		PlatformTM p=getP();
 		p.simul_vd();
 		return 0;
 	}
 	public  int test6() 
 	{
-		Platform p=getP();
+		PlatformTM p=getP();
 		p.prnTasks();
 		return 0;
 	}

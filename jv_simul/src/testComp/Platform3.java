@@ -1,8 +1,8 @@
-package testExp;
+package testComp;
 
 
 import anal.ConfigGen;
-import exp.Platform;
+import exp.PlatformCom;
 import utilSim.Log;
 import utilSim.TEngine;
 
@@ -13,13 +13,13 @@ public class Platform3 {
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
-	public Platform getP(){
+	public PlatformCom getP(){
 		return getP1();
 //		return getP2();
 	}
 	
-	public Platform getP1() {
-		Platform p=getCommmon();
+	public PlatformCom getP1() {
+		PlatformCom p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
 		p.setStart(55);
@@ -29,9 +29,9 @@ public class Platform3 {
 		p.setStep(5);
 		return p;
 	}
-	public Platform getP2() {
-		Platform p=getCommmon();
-		p.setTSName("prob_hi");
+	public PlatformCom getP2() {
+		PlatformCom p=getCommmon();
+		p.setTSName("prob");
 		p.setKinds(1);
 		p.setStart(5);
 		p.setSize(19);
@@ -39,8 +39,8 @@ public class Platform3 {
 		return p;
 	}
 
-	public Platform getCommmon(){
-		Platform p=new Platform();
+	public PlatformCom getCommmon(){
+		PlatformCom p=new PlatformCom();
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 		p.setAlpha(0,0.3);
@@ -65,7 +65,7 @@ public class Platform3 {
 		eg.setParam("u_ub", "0.90");
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
-		Platform p=getP();
+		PlatformCom p=getP();
 		p.writeComCfg(eg);
 //		for(int i=0;i<4;i++){
 //			p.setAlpha(i*0.25,i*0.25+0.25);
@@ -76,8 +76,8 @@ public class Platform3 {
 	}
 	public int test2() 
 	{
-		Platform p=getP();
-		p.genCom();
+		PlatformCom p=getP();
+		p.genCom(false);
 //		for(int i=0;i<4;i++){
 //			p.setAlpha(i*0.25,i*0.25+0.25);
 //			p.genCom();
@@ -86,7 +86,7 @@ public class Platform3 {
 	}
 	public int test3() 
 	{
-		Platform p=getP();
+		PlatformCom p=getP();
 //		p.isWrite=false;
 		p.setRS("0");
 		p.write_x_axis();
@@ -104,7 +104,7 @@ public class Platform3 {
 	}
 	public  int test4() 
 	{
-		Platform p=getP();
+		PlatformCom p=getP();
 //		p.isWrite=false;
 		p.setRS("0");
 		p.write_x_axis();
@@ -118,7 +118,7 @@ public class Platform3 {
 	public  int test5() 
 	{
 		int set=9;
-		Platform p=getP();
+		PlatformCom p=getP();
 		int ret1,ret2;
 		for(int i=0;i<100;i++){
 			p.setAlpha(0,0.25);
@@ -135,7 +135,7 @@ public class Platform3 {
 	public  int test6() 
 	{
 		int set=3;
-		Platform p=getP();
+		PlatformCom p=getP();
 		int ret1;
 		p.setAlpha(0,0);
 		for(int i=0;i<100;i++){
@@ -150,7 +150,7 @@ public class Platform3 {
 	{
 		int set=2;
 		int i=73;
-		Platform p=getP();
+		PlatformCom p=getP();
 		int ret1;
 		p.setAlpha(0,0);
 		ret1=p.analCom(set,i,0);
@@ -159,7 +159,7 @@ public class Platform3 {
 	}
 	public  int test8()
 	{
-		Platform p=getP();
+		PlatformCom p=getP();
 		p.prnCom();
 		return 1;
 	}

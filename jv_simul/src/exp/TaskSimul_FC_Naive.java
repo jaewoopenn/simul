@@ -2,15 +2,11 @@ package exp;
 
 
 import comp.Comp;
-import comp.CompMng;
 import basic.Task;
 import basic.TaskMng;
-import utilSim.Log;
-import utilSim.MUtil;
 
-public class TaskSimul_FC_Naive extends TaskSimul{
+public class TaskSimul_FC_Naive extends TaskSimul_FC{
 	private boolean isExtMS=false;
-	private CompMng g_cm;
 	public TaskSimul_FC_Naive() {
 		super();
 	}
@@ -20,15 +16,6 @@ public class TaskSimul_FC_Naive extends TaskSimul{
 	}
 
 
-	public void set_cm(CompMng cm) {
-		this.g_cm = cm;
-	}
-
-	@Override
-	protected void initMode() {
-		initModeS();
-	}
-	
 	
 	@Override
 	public void modeswitch_in(int tid) {
@@ -63,8 +50,4 @@ public class TaskSimul_FC_Naive extends TaskSimul{
 	}
 	
 
-	@Override
-	protected AbsJob relJob(Task tsk, int cur_t) {
-		return relJobD(tsk,cur_t);
-	}
 }
