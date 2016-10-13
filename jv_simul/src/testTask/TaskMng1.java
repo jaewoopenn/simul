@@ -1,7 +1,7 @@
 package testTask;
 import basic.Task;
 import basic.TaskMng;
-import taskSetEx.TS_NonMC1;
+import sysEx.TS_NonMC1;
 import utill.Log;
 import utill.TEngine;
 public class TaskMng1 {

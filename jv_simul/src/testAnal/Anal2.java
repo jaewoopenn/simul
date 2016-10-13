@@ -7,7 +7,7 @@ import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import taskSetEx.CompMngEx1;
+import sysEx.CompMngEx1;
 import utill.Log;
 import utill.TEngine;
 

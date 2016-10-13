@@ -3,7 +3,7 @@ package testTask;
 // VD
 
 import basic.TaskMng;
-import taskSetEx.TS_MC1;
+import sysEx.TS_MC1;
 import utill.TEngine;
 public class TaskMng2 {
 	public static int log_level=1;

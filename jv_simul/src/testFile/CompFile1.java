@@ -1,7 +1,7 @@
 package testFile;
 import comp.CompFile;
 import comp.CompMng;
-import taskSetEx.CompMngEx1;
+import sysEx.CompMngEx1;
 import utill.TEngine;
 
 public class CompFile1 {

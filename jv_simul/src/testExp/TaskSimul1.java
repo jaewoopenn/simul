@@ -3,7 +3,7 @@ package testExp;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import simul.TaskSimul_EDF_AT_S;
-import taskSetEx.TS_NonMC1;
+import sysEx.TS_NonMC1;
 import utill.TEngine;
 
 public class TaskSimul1 {

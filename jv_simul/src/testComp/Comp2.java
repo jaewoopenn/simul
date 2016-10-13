@@ -5,7 +5,7 @@ import basic.TaskMng;
 import comp.Comp;
 import utill.Log;
 import utill.TEngine;
-import taskSetEx.CompEx1;
+import sysEx.CompEx1;
 
 public class Comp2 {
 	public static int idx=1;
