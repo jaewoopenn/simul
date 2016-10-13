@@ -65,7 +65,7 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 		drop_in(c,c.getMaxRes(),false);		
 	}
 	public double request(Comp c,double req) {
-		double ru=g_tm.getRU();
+		double ru=c.getRU();
 		double tu=ru-req;
 		return drop_in(c,tu,true);
 	}

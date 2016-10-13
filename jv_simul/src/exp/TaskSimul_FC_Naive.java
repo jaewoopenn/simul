@@ -54,9 +54,10 @@ public class TaskSimul_FC_Naive extends TaskSimul{
 		dropAll(c,true);
 	}
 	public void dropAll(Comp c,boolean isAll) {
-		for(Task t:g_tm.getLoTasks()){
+		for(Task t:c.getTM().getLoTasks()){
+//			Log.prn(1, isAll+" "+t.is_isol());
 			if(isAll||!t.is_isol())
-				t.drop();
+				dropTask(t);
 		}
 		
 	}
