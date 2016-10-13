@@ -21,7 +21,7 @@ public class Platform {
 	protected double g_a_u;
 	
 	public void write_x_axis() {
-		FUtil fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_x.txt");
+		FUtil fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
 
 		for(int i=0;i<g_size;i++){
 			fu.print((double)(g_start+i*g_step)/100+"");

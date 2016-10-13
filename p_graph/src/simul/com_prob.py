@@ -23,13 +23,13 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn="com/rs/sim_"+gl.RS+"_x.txt"
+    fn="com/rs/"+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def iterate(s,t):
     for i in range(s,t):
 #         fn="com/rs/anal_util_"+str(gl.data[i])+".txt"
-        fn="com/rs/anal_prob_hi_"+str(gl.data[i])+".txt"
+        fn="com/rs/prob_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 

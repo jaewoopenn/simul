@@ -24,7 +24,7 @@ def load(fn):
 
 def iterate(s,t):
     for i in range(s,t):
-        fn="sch/rs/anal_util_X_"+str(gl.data[i])+".txt"
+        fn="sch/rs/util_X_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 

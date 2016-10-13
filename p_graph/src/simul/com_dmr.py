@@ -5,7 +5,9 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="util_sim_4"
+    RS="util_sim_1"
+#     RS="util_sim_4"
+#     RS="util_sim_7"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
@@ -20,12 +22,12 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn="com/rs/sim_"+gl.RS+"_x.txt"
+    fn="com/rs/"+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def iterate(s,t):
     for i in range(s,t):
-        fn="com/rs/sim_"+gl.RS+"_"+str(gl.data[i])+".txt"
+        fn="com/rs/"+gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -38,6 +40,7 @@ def main():
         no+=1
     mp.xlim(0.55,1.0)
     mp.ylim(0, 0.3)
+#     mp.ylim(0, 1.02)
     mp.legend2()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")

@@ -62,7 +62,7 @@ public class PlatformCom extends Platform{
 		double ret;
 		FUtil fu=null;
 		if(isWrite)
-			fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_"+kind+".txt");
+			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kind+".txt");
 		ts.isSchTab=false;
 		Anal an=new AnalEDF_VD();
 		Log.prn(3, "prob:"+g_prob);
@@ -148,7 +148,7 @@ public class PlatformCom extends Platform{
 		int ret;
 		FUtil fu=null;
 		if(isWrite)
-			fu=new FUtil(g_path+"/rs/anal_"+g_ts_name+"_"+g_RS+".txt");
+			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+".txt");
 		for(int i=0;i<g_size;i++){
 			int sum=0;
 			int mod=i*g_step+g_start;

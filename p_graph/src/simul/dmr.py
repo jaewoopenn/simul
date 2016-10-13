@@ -26,12 +26,12 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="exp/rs/sim_"+gl.RS+"_"+str(gl.data[i])+".txt"
+        fn="exp/rs/"+gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
 def x_load():
-    fn="exp/rs/sim_"+gl.RS+"_x.txt"
+    fn="exp/rs/"+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def main():

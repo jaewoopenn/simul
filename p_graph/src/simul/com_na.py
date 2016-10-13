@@ -28,7 +28,7 @@ def x_load():
 
 def iterate(s,t):
     for i in range(s,t):
-        fn="com/rs/anal_util_"+str(gl.data[i])+".txt"
+        fn="com/rs/util_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 

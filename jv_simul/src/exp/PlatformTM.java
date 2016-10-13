@@ -64,7 +64,7 @@ public class PlatformTM extends Platform{
 		double ret;
 		FUtil fu=null;
 		if(isWrite)
-			fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_"+no+".txt");
+			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt");
 		ts.isSchTab=false;
 		for(int i=0;i<g_size;i++){
 			double sum=0;
@@ -152,7 +152,7 @@ public class PlatformTM extends Platform{
 		FUtil fu=null;
 		Log.prn(3, "anal:"+an.getName());
 		if(isWrite)
-			fu=new FUtil(g_path+"/rs/anal_"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
+			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
 		for(int i=0;i<g_size;i++){
 			int sum=0;
 			int mod=i*g_step+g_start;
