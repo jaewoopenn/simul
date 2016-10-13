@@ -4,6 +4,7 @@ import anal.AnalEDF_VD;
 import basic.TaskMng;
 import comp.CompFile;
 import comp.CompMng;
+import exp.SimulInfo;
 import exp.TaskSimul_FC_MCS;
 import exp.TaskSimul_FC_Naive;
 import taskSetEx.CompMngEx1;
@@ -45,10 +46,13 @@ public class TaskSimul5 {
 		cm.part();
 		cm.analMaxRes();
 		tm.prnComp();
-		tm.getInfo().setProb_ms(1);
+		tm.getInfo().setProb_ms(0.5);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
+//		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
 		ts.set_cm(cm);
-		ts.simulEnd(0,42);
+		ts.simulEnd(0,200);
+		SimulInfo si=ts.getSI();
+		si.prn();
 		return 0;
 	}
 	public int test3() 

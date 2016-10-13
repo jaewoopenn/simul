@@ -26,6 +26,7 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 		int cid=g_tm.getComp(tid);
 		dropDecision(cid);
 		resManager(cid);
+//		System.exit(0);
 	}
 	
 	private void resManager(int ex_id) {
@@ -73,7 +74,6 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 					t=tm.findDropTask();
 				if(t==null) 
 					return ru;
-				Log.prn(1, "drop "+t.tid);
 				dropTask(t);
 			}
 			else
