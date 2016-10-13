@@ -1,6 +1,9 @@
-package exp;
+package simul;
 
 
+import exp.AbsJob;
+import exp.JobD;
+import exp.JobSimul;
 import basic.Task;
 import basic.TaskMng;
 import utilSim.Log;
@@ -126,6 +129,7 @@ public abstract class TaskSimul {
 				g_si.rel++;
 				if(tsk.is_dropped){
 					g_si.drop++;
+//					Log.prn(1, "drop plus:"+tsk.tid+" "+g_si.drop);
 					if(isSchTab)
 						Log.prnc(1,"-");
 					continue;

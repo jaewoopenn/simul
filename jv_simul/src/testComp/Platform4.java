@@ -9,10 +9,10 @@ import utilSim.TEngine;
 
 // schedulability 
 public class Platform4 {
-	public static int idx=4;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=1;
+	public static int log_level=3;
 	public PlatformCom getP(){
 		return getP1();
 //		return getP2();
@@ -54,10 +54,10 @@ public class Platform4 {
 //		p.setSysNum(10);
 //		p.setSysNum(1);
 		
-//		p.setRS("1");
-//		p.setProb(0.1);
-		p.setProb(0.4);
-		p.setRS("4");
+		p.setRS("1");
+		p.setProb(0.1);
+//		p.setProb(0.4);
+//		p.setRS("4");
 //		p.setProb(0.7);
 //		p.setRS("7");
 
@@ -101,7 +101,7 @@ public class Platform4 {
 		int set=8;
 		int no=72;
 		PlatformCom p=getP();
-		p.setAlpha(0.3,0.6);
+		p.setAlpha(0.1,0.3);
 		p.simulCom_one(0,set,no);
 		p.simulCom_one(1,set,no);
 		return 1;

@@ -4,7 +4,7 @@ import anal.AnalEDF_AT_S;
 import anal.ConfigGen;
 import anal.SimGen;
 import basic.TaskMng;
-import exp.TaskSimul_EDF_AT;
+import simul.TaskSimul_EDF_AT;
 import taskSetEx.TS_MC1;
 import utilSim.Log;
 import utilSim.TEngine;

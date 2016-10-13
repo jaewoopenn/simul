@@ -1,4 +1,4 @@
-package exp;
+package simul;
 
 
 import comp.Comp;

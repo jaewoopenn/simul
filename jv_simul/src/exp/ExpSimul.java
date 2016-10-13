@@ -8,6 +8,8 @@ import anal.Anal;
 import anal.ConfigGen;
 import basic.TaskMng;
 import basic.TaskMngPre;
+import simul.SimulInfo;
+import simul.TaskSimul;
 import utilSim.Log;
 import utilSim.MUtil;
 

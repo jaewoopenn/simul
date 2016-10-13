@@ -7,6 +7,10 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import anal.ConfigGen;
 import basic.TaskMng;
+import simul.SimulInfo;
+import simul.TaskSimul_FC;
+import simul.TaskSimul_FC_MCS;
+import simul.TaskSimul_FC_Naive;
 import utilSim.FUtil;
 import utilSim.Log;
 import utilSim.MUtil;
@@ -61,6 +65,7 @@ public class PlatformCom extends Platform{
 			fu=new FUtil(g_path+"/rs/sim_"+g_ts_name+"_"+g_RS+"_"+kind+".txt");
 		ts.isSchTab=false;
 		Anal an=new AnalEDF_VD();
+		Log.prn(3, "prob:"+g_prob);
 		for(int i=0;i<g_size;i++){
 			double sum=0;
 			int mod=i*g_step+g_start;

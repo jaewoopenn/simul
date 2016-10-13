@@ -2,7 +2,7 @@ package testExp;
 
 import basic.Task;
 import basic.TaskMng;
-import exp.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_AT_S;
 import taskSetEx.TS_MC1;
 import utilSim.TEngine;
 

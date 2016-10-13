@@ -1,19 +1,26 @@
-package exp;
+package simul;
 
 
+import exp.AbsJob;
 import basic.Task;
 import basic.TaskMng;
 import utilSim.Log;
 import utilSim.MUtil;
 
-public class TaskSimul_EDF_AT extends TaskSimul{
-	public TaskSimul_EDF_AT(TaskMng m) {
+public class TaskSimul_EDF_AT_S extends TaskSimul{
+
+	public TaskSimul_EDF_AT_S() {
+		super();
+	}
+
+	public TaskSimul_EDF_AT_S(TaskMng m) {
 		super(m);
 	}
 
+
 	@Override
 	protected void initMode() {
-		initModeN();
+		initModeS();
 	}
 	
 	

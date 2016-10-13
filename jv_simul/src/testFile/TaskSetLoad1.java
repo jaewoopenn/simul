@@ -1,7 +1,7 @@
 package testFile;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import exp.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_AT_S;
 import utilSim.TEngine;
 
 public class TaskSetLoad1 {
