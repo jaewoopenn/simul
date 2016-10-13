@@ -8,8 +8,8 @@ import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import taskSetEx.CompMngEx1;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 
 public class Anal2 {
 	public static int idx=2;

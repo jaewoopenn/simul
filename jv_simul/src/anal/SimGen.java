@@ -1,8 +1,8 @@
 package anal;
 
-import utilSim.FUtil;
-import utilSim.Log;
-import utilSim.MUtil;
+import utill.FUtil;
+import utill.Log;
+import utill.MUtil;
 import basic.TaskGenMC;
 import basic.TaskGenParam;
 import basic.TaskMng;

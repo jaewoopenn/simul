@@ -1,7 +1,7 @@
 package testTSetGen;
 import anal.ConfigGen;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 
 public class ConfigWrite2 {
 	public static int idx=1;

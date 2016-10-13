@@ -5,8 +5,8 @@ import anal.AnalEDF_VD;
 import basic.TaskMng;
 import comp.Comp;
 import comp.CompMng;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 import taskSetEx.CompMngEx1;
 
 public class CompMng2 {

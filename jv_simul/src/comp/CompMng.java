@@ -5,8 +5,8 @@ import java.util.Vector;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import utilSim.RUtil;
-import utilSim.Log;
+import utill.Log;
+import utill.RUtil;
 
 public class CompMng {
 	private Vector<Comp> g_comp;

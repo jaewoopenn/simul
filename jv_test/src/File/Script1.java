@@ -1,19 +1,25 @@
+package File;
 
-
+import utill.Script;
 import utill.TEngine;
 
-public class Mock1 {
-	public static int idx=1;
-//	public static int idx=-1;
-	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+public class Script1 {
 	public static int log_level=1;
+//	public static int idx=-1;
+	public static int idx=2;
+	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
-		return 0;
+		Script s=new Script();
+		s.test();
+		return 1;
 	}
 	public int test2() 
 	{
-		return 0;
+		Script s=new Script();
+		s.load("scr/test.txt");
+		s.exec();
+		return 1;
 	}
 	public int test3() 
 	{
@@ -47,12 +53,12 @@ public class Mock1 {
 	{
 		return 0;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Mock1.class;
-		Mock1 m=new Mock1();
-		int[] aret=Mock1.gret;
+		Class c = Script1.class;
+		Script1 m=new Script1();
+		int[] aret=Script1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

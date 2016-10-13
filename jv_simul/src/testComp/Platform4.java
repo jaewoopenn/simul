@@ -3,8 +3,8 @@ package testComp;
 
 import anal.ConfigGen;
 import exp.PlatformCom;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 
 
 // schedulability 

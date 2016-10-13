@@ -1,7 +1,7 @@
 package test;
 import anal.ConfigGen;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 
 public class ConfigGen1 {
 	public static int log_level=2;

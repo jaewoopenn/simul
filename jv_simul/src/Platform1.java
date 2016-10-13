@@ -3,8 +3,8 @@
 
 import anal.ConfigGen;
 import exp.PlatformTM;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 
 public class Platform1 {
 	public static int idx=3;

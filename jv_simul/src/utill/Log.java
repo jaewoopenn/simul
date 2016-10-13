@@ -1,4 +1,4 @@
-package utilSim;
+package utill;
 
 public class Log {
 	private static int g_lv=9;

@@ -6,8 +6,8 @@ import exp.JobD;
 import exp.JobSimul;
 import basic.Task;
 import basic.TaskMng;
-import utilSim.Log;
-import utilSim.RUtil;
+import utill.Log;
+import utill.RUtil;
 
 public abstract class TaskSimul {
 	protected SimulInfo g_si;

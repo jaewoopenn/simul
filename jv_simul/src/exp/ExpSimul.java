@@ -10,8 +10,8 @@ import basic.TaskMng;
 import basic.TaskMngPre;
 import simul.SimulInfo;
 import simul.TaskSimul;
-import utilSim.Log;
-import utilSim.MUtil;
+import utill.Log;
+import utill.MUtil;
 
 public class ExpSimul {
 	private ConfigGen g_cfg;

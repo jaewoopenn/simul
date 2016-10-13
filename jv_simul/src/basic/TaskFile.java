@@ -3,7 +3,7 @@ package basic;
 import java.util.Vector;
 
 import comp.Comp;
-import utilSim.FUtil;
+import utill.FUtil;
 
 
 

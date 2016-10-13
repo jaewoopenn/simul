@@ -9,7 +9,7 @@ import simul.TaskSimul_FC_MCS;
 import simul.TaskSimul_FC_Naive;
 import taskSetEx.CompMngEx1;
 import taskSetEx.TS_MC1;
-import utilSim.TEngine;
+import utill.TEngine;
 
 // Comp
 public class TaskSimul5 {

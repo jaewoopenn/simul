@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import basic.Task;
 import basic.TaskFile;
-import utilSim.FUtil;
+import utill.FUtil;
 
 public class CompFile {
 	// file

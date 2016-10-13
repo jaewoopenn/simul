@@ -3,8 +3,8 @@ package anal;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import utilSim.FUtil;
-import utilSim.Log;
+import utill.FUtil;
+import utill.Log;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","c_lb","c_ub","p_lb","p_ub",

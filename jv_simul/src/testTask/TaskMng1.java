@@ -2,8 +2,8 @@ package testTask;
 import basic.Task;
 import basic.TaskMng;
 import taskSetEx.TS_NonMC1;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 public class TaskMng1 {
 	public static int idx=3;
 //	public static int idx=-1;

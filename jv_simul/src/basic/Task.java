@@ -1,6 +1,6 @@
 package basic;
 
-import utilSim.Log;
+import utill.Log;
 
 public class Task {
 	public int tid;

@@ -4,8 +4,8 @@ import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskMngPre;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 
 public class Anal1 {
 	public static int idx=1;

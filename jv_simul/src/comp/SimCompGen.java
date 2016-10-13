@@ -1,7 +1,7 @@
 package comp;
 
-import utilSim.FUtil;
-import utilSim.MUtil;
+import utill.FUtil;
+import utill.MUtil;
 import anal.AnalEDF_VD;
 import anal.ConfigGen;
 import basic.CompGen;

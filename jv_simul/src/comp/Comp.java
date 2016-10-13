@@ -1,7 +1,7 @@
 package comp;
 
 
-import utilSim.Log;
+import utill.Log;
 import basic.Task;
 import basic.TaskMng;
 

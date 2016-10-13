@@ -3,8 +3,8 @@ package testComp;
 
 import basic.TaskMng;
 import comp.Comp;
-import utilSim.Log;
-import utilSim.TEngine;
+import utill.Log;
+import utill.TEngine;
 import taskSetEx.CompEx1;
 
 public class Comp1 {

@@ -1,7 +1,7 @@
 package comp;
 
-import utilSim.Log;
-import utilSim.MUtil;
+import utill.Log;
+import utill.MUtil;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 

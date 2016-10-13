@@ -1,6 +1,6 @@
 package exp;
 
-import utilSim.Log;
+import utill.Log;
 
 public class JobD extends AbsJob implements Comparable<JobD>{
 	public double vd;

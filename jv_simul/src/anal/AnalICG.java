@@ -3,7 +3,7 @@ package anal;
 import java.util.Vector;
 
 import basic.Task;
-import utilSim.Log;
+import utill.Log;
 
 public class AnalICG extends Anal {
 	private int sz;

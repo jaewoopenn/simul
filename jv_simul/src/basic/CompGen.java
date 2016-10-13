@@ -1,7 +1,7 @@
 package basic;
 
 
-import utilSim.Log;
+import utill.Log;
 import comp.Comp;
 import comp.CompMng;
 

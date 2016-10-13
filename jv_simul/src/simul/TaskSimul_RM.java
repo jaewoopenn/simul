@@ -4,7 +4,7 @@ package simul;
 import exp.AbsJob;
 import basic.Task;
 import basic.TaskMng;
-import utilSim.Log;
+import utill.Log;
 
 public class TaskSimul_RM extends TaskSimul{
 	public TaskSimul_RM(TaskMng m) {

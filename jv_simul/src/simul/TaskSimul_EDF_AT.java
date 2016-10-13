@@ -4,8 +4,8 @@ package simul;
 import exp.AbsJob;
 import basic.Task;
 import basic.TaskMng;
-import utilSim.Log;
-import utilSim.MUtil;
+import utill.Log;
+import utill.MUtil;
 
 public class TaskSimul_EDF_AT extends TaskSimul{
 	public TaskSimul_EDF_AT(TaskMng m) {

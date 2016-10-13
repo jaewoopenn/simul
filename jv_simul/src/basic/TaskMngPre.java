@@ -2,7 +2,7 @@ package basic;
 
 import java.util.Vector;
 
-import utilSim.FUtil;
+import utill.FUtil;
 
 public class TaskMngPre {
 	private Vector<Task> g_taskV;

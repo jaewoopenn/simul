@@ -4,8 +4,8 @@ package simul;
 import comp.Comp;
 import basic.Task;
 import basic.TaskMng;
-import utilSim.Log;
-import utilSim.MUtil;
+import utill.Log;
+import utill.MUtil;
 
 public class TaskSimul_FC_MCS extends TaskSimul_FC{
 

@@ -2,7 +2,7 @@ package anal;
 
 import basic.TaskMng;
 import basic.TaskSetInfo;
-import utilSim.Log;
+import utill.Log;
 
 public class AnalEDF_VD extends Anal {
 	private double lotasks_loutil;
