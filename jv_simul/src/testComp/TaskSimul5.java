@@ -1,4 +1,4 @@
-package testExp;
+package testComp;
 
 import anal.AnalEDF_VD;
 import basic.TaskMng;

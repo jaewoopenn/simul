@@ -23,16 +23,16 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 	public void set_cm(CompMng cm) {
 		this.g_cm = cm;
 	}
+
+	@Override
 	protected void initMode() {
 		initModeS();
 	}
 	
 	
+	@Override
 	public void modeswitch_in(int tid) {
-		if(isPrnMS)
-			Log.prn(1, "ms hi "+tid);
-		g_js.getJM().modeswitch(tid);
-		g_tm.getTask(tid).ms();
+		modeswitch_in_pre(tid);		
 		int cid=g_tm.getComp(tid);
 		dropDecision(cid);
 		resManager(cid);
@@ -45,9 +45,11 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 		for(Comp c:g_cm.getComps()){
 //			Log.prn(1, "req:"+req);
 			if(req<=0) break;
+			if(c.getID()==ex_id)
+				continue;
 			double ori=c.getRU();
-//			double mod=request(c,req);
-			double mod=c.request(req);
+			double mod=request(c,req);
+//			double mod=c.request(req);
 			req-=ori-mod;
 			if(req<=0) break;
 		}
@@ -60,7 +62,35 @@ public class TaskSimul_FC_MCS extends TaskSimul{
 
 	private void dropDecision(int cid) {
 		Comp c=g_cm.getComp(cid);
-		c.drop();
+		drop_in(c,c.getMaxRes(),false);		
+	}
+	public double request(Comp c,double req) {
+		double ru=g_tm.getRU();
+		double tu=ru-req;
+		return drop_in(c,tu,true);
+	}
+	
+	private double drop_in(Comp c, double lim, boolean isShared) {
+		Task t;
+		TaskMng tm=c.getTM();
+		while(true){
+			double ru=tm.getRU();
+//			Log.prn(1, "RU:"+ru);
+			if(ru>lim+MUtil.err){
+				if(isShared)
+					t=tm.findDropTask_shared();
+				else
+					t=tm.findDropTask();
+				if(t==null) 
+					return ru;
+				Log.prn(1, "drop "+t.tid);
+				dropTask(t);
+			}
+			else
+				return ru;
+			
+		}
+		
 	}
 	
 	@Override

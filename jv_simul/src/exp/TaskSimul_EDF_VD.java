@@ -32,7 +32,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 			} else {
 				if(isPrnMS)
 					Log.prn(1, "drop "+t.tid);
-				drop(t);
+				dropTask(t);
 			}
 		}
 	}

@@ -23,45 +23,44 @@ public class TaskSimul_FC_Naive extends TaskSimul{
 	public void set_cm(CompMng cm) {
 		this.g_cm = cm;
 	}
+
+	@Override
 	protected void initMode() {
 		initModeS();
 	}
 	
 	
+	@Override
 	public void modeswitch_in(int tid) {
-		if(isPrnMS)
-			Log.prn(1, "ms hi "+tid);
-		g_js.getJM().modeswitch(tid);
-		g_tm.getTask(tid).ms();
+		modeswitch_in_pre(tid);		
 		int cid=g_tm.getComp(tid);
 		dropDecision(cid);
 		resManager(cid);
 	}
 	
 	private void resManager(int ex_id) {
-		double ru=g_cm.getRU();
-//		Log.prn(1, "G_RU:"+ru);
-		double req=ru-1;
+		if(isExtMS) return;
 		for(Comp c:g_cm.getComps()){
-//			Log.prn(1, "req:"+req);
-			if(req<=0) break;
-			double ori=c.getRU();
-//			double mod=request(c,req);
-			double mod=c.request(req);
-			req-=ori-mod;
-			if(req<=0) break;
+			if(c.getID()==ex_id)
+				continue;
+			dropAll(c,false); // only shared
 		}
-		ru=g_cm.getRU();
-//		Log.prn(1, "G_RU:"+ru);
-//		System.exit(1);
-		
+		isExtMS=true;
 	}
 
 
 	private void dropDecision(int cid) {
 		Comp c=g_cm.getComp(cid);
-		c.drop();
+		dropAll(c,true);
 	}
+	public void dropAll(Comp c,boolean isAll) {
+		for(Task t:g_tm.getLoTasks()){
+			if(isAll||!t.is_isol())
+				t.drop();
+		}
+		
+	}
+	
 
 	@Override
 	protected AbsJob relJob(Task tsk, int cur_t) {

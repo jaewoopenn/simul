@@ -45,32 +45,32 @@ public class Comp1 {
 	// test max Res when ms
 	public  int test5() 
 	{
-		Comp c=CompEx1.getComp3();
-		c.setMaxRes(0.7);
-		c.prn();
-		TaskMng tm=c.getTM();
-		double ru=tm.getRU();
-		Log.prn(1, "RU:"+ru);
-		tm.getTask(4).ms();
-		ru=tm.getRU();
-		Log.prn(1, "RU:"+ru);
-		c.drop();
-		ru=tm.getRU();
-		Log.prn(1, "RU:"+ru);
-		tm.prnStat();
+//		Comp c=CompEx1.getComp3();
+//		c.setMaxRes(0.7);
+//		c.prn();
+//		TaskMng tm=c.getTM();
+//		double ru=tm.getRU();
+//		Log.prn(1, "RU:"+ru);
+//		tm.getTask(4).ms();
+//		ru=tm.getRU();
+//		Log.prn(1, "RU:"+ru);
+//		c.drop();
+//		ru=tm.getRU();
+//		Log.prn(1, "RU:"+ru);
+//		tm.prnStat();
 		return 0;
 	}
 
 	// test ext ms
 	public  int test6() 
 	{
-		Comp c=CompEx1.getComp3();
-		c.setMaxRes(0.7);
-		c.prn();
-		Log.prn(1, "RU:"+c.getRU());
-		c.request(0.1);
-		Log.prn(1, "RU:"+c.getRU());
-//		c.prnStat();
+//		Comp c=CompEx1.getComp3();
+//		c.setMaxRes(0.7);
+//		c.prn();
+//		Log.prn(1, "RU:"+c.getRU());
+//		c.request(0.1);
+//		Log.prn(1, "RU:"+c.getRU());
+////		c.prnStat();
 		return 0;
 	}
 	public  int test7()

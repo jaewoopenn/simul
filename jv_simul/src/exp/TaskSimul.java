@@ -32,32 +32,6 @@ public abstract class TaskSimul {
 		this.g_tm = tm;
 //		tm.prn();
 	}
-	public void initModeS() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(t.is_HI){
-				if(t.getHiUtil()<t.getLoRUtil())
-					t.is_HM=true;
-				else
-					t.is_HM=false;
-			} else {
-				t.is_dropped=false;
-			}
-		}
-
-//		g_tm.prnHI();
-	}
-	protected void initModeN() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
-			if(!t.is_HI)
-				t.is_dropped=false;
-			else
-				t.is_HM=false;
-		}
-
-//		g_tm.prnHI();
-	}
 
 	public int simulEnd(int st, int et) {
 		int ret=simulBy(st,et);
@@ -91,7 +65,36 @@ public abstract class TaskSimul {
 		}
 		return 1;
 	}
+
 	protected abstract void initMode();
+	
+	public void initModeS() {
+		Task[] tasks=g_tm.getTasks();
+		for(Task t:tasks){
+			if(t.is_HI){
+				if(t.getHiUtil()<t.getLoRUtil())
+					t.is_HM=true;
+				else
+					t.is_HM=false;
+			} else {
+				t.is_dropped=false;
+			}
+		}
+
+//		g_tm.prnHI();
+	}
+	protected void initModeN() {
+		Task[] tasks=g_tm.getTasks();
+		for(Task t:tasks){
+			if(!t.is_HI)
+				t.is_dropped=false;
+			else
+				t.is_HM=false;
+		}
+
+//		g_tm.prnHI();
+	}
+
 	private void msCheck(int cur_t){
 		boolean isMS=false;
 		int tid=g_js.msCheck(cur_t);
@@ -162,9 +165,14 @@ public abstract class TaskSimul {
 		modeswitch_in(tid);
 	}
 	protected abstract void modeswitch_in(int tid);
+	protected void modeswitch_in_pre(int tid){
+		if(isPrnMS)
+			Log.prn(1, "ms hi "+tid);
+		g_js.getJM().modeswitch(tid);
+		g_tm.getTask(tid).ms();
+	}
 	
-	
-	public void drop(Task t) {
+	public void dropTask(Task t) {
 		if(t.is_HI)	{
 			Log.prn(9, "task "+t.tid+" is not LO-task, cannot drop");
 			System.exit(0);

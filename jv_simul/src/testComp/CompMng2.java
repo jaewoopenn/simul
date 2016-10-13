@@ -17,51 +17,51 @@ public class CompMng2 {
 
 	public int test1() 
 	{
-		CompMng cm=CompMngEx1.getCompMng3();
-		TaskMng tm=cm.getTM();
-		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
-		cm.part();
-		cm.analMaxRes();
-		cm.prn();
-		Comp c=cm.getComp(0);
-		c.getTM().getTask(2).ms();
-		c.drop();
-		Log.prn(1, "RU:"+c.getRU());
-		c.getTM().prnStat();
-		cm.prnOff();
+//		CompMng cm=CompMngEx1.getCompMng3();
+//		TaskMng tm=cm.getTM();
+//		double x=AnalEDF_VD.computeX(tm);
+//		cm.setX(x);
+//		cm.part();
+//		cm.analMaxRes();
+//		cm.prn();
+//		Comp c=cm.getComp(0);
+//		c.getTM().getTask(2).ms();
+//		c.drop();
+//		Log.prn(1, "RU:"+c.getRU());
+//		c.getTM().prnStat();
+//		cm.prnOff();
 		return 0;
 	}
 	public int test2() 
 	{
-		CompMng cm=CompMngEx1.getCompMng3();
-		TaskMng tm=cm.getTM();
-		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
-		cm.part();
-		cm.analMaxRes();
-		cm.prn();
-		Comp c=cm.getComp(0);
-		c.request(0.1);
-		Log.prn(1, "RU:"+c.getRU());
-		c.getTM().prnStat();
-		c.prnOff();
+//		CompMng cm=CompMngEx1.getCompMng3();
+//		TaskMng tm=cm.getTM();
+//		double x=AnalEDF_VD.computeX(tm);
+//		cm.setX(x);
+//		cm.part();
+//		cm.analMaxRes();
+//		cm.prn();
+//		Comp c=cm.getComp(0);
+//		c.request(0.1);
+//		Log.prn(1, "RU:"+c.getRU());
+//		c.getTM().prnStat();
+//		c.prnOff();
 		return 0;
 	}
 	public int test3() 
 	{
-		CompMng cm=CompMngEx1.getCompMng3();
-		TaskMng tm=cm.getTM();
-		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
-		cm.part();
-		cm.analMaxRes();
-		cm.prn();
-		Comp c=cm.getComp(0);
-		c.request(0.1);
-		Log.prn(1, "RU:"+c.getRU());
-		c.getTM().prnStat();
-		c.prnOff();
+//		CompMng cm=CompMngEx1.getCompMng3();
+//		TaskMng tm=cm.getTM();
+//		double x=AnalEDF_VD.computeX(tm);
+//		cm.setX(x);
+//		cm.part();
+//		cm.analMaxRes();
+//		cm.prn();
+//		Comp c=cm.getComp(0);
+//		c.request(0.1);
+//		Log.prn(1, "RU:"+c.getRU());
+//		c.getTM().prnStat();
+//		c.prnOff();
 		return 0;
 	}
 	public  int test4() 

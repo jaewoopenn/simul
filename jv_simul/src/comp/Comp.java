@@ -34,35 +34,6 @@ public class Comp {
 			t.setIsolate(true);
 		}
 	}
-	public void drop() {
-		drop_in(maxRes,false);
-	}
-	private double drop_in(double lim, boolean isShared) {
-		Task t;
-		while(true){
-			double ru=g_tm.getRU();
-//			Log.prn(1, "RU:"+ru);
-			if(ru>lim+MUtil.err){
-				if(isShared)
-					t=g_tm.findDropTask_shared();
-				else
-					t=g_tm.findDropTask();
-				if(t==null) 
-					return ru;
-				Log.prn(1, "drop "+t.tid);
-				t.drop();
-			}
-			else
-				return ru;
-			
-		}
-		
-	}
-	public double request(double d) {
-		double ru=g_tm.getRU();
-		double tu=ru-d;
-		return drop_in(tu,true);
-	}
 	// prn
 	public void prn() {
 		Log.prn(1, "cid:"+cid+", alpha:"+alpha);

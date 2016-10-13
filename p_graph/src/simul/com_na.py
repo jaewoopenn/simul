@@ -10,7 +10,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['FC-MCS','Naive','0.25<a<=0.5','0.5<a<=0.75','0.75<a<=1.00','a=1']
+    lab=['FC-MCS','Naive']
 #     data=[1,2,0,3]
     data=['FC','NA']
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
