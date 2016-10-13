@@ -69,7 +69,7 @@ public class FUtil {
 	public static void makeDir(String str) {
 		 File theDir = new File("/Users/jaewoo/data/"+str);
 		if (theDir.exists()) {
-			System.out.println("dir exist");
+//			System.out.println("dir exist");
 			return;
 		}
 		try{
