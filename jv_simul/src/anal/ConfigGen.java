@@ -43,7 +43,14 @@ public class ConfigGen {
 	public String get_fn(int i){
 		String subfix=readPar("subfix").trim();
 		String mod=readPar("mod").trim();
-		String fn=subfix+"/taskset_"+mod+"_"+i;
+		String fn=subfix+"/"+mod+"/taskset_"+i;
+		return fn;
+		
+	}
+	public String get_dir(){
+		String subfix=readPar("subfix").trim();
+		String mod=readPar("mod").trim();
+		String fn=subfix+"/"+mod;
 		return fn;
 		
 	}

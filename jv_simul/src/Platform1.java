@@ -13,8 +13,8 @@ public class Platform1 {
 	public static int log_level=3;
 
 	public PlatformTM getP(){
-//		return getP1();
-		return getP2();
+		return getP1();
+//		return getP2();
 	}
 	
 	public PlatformTM getP1() {
@@ -45,8 +45,8 @@ public class Platform1 {
 		p.setDuration(10000);
 //		p.setDuration(1000);
 		
-		p.setSysNum(1000);
-//		p.setSysNum(100);
+//		p.setSysNum(1000);
+		p.setSysNum(100);
 //		p.setRS("1");
 //		p.setProb(0.1);
 		p.setProb(0.4);

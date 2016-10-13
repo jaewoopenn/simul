@@ -1,5 +1,6 @@
 package comp;
 
+import utilSim.FUtil;
 import utilSim.MUtil;
 import anal.AnalEDF_VD;
 import anal.ConfigGen;
@@ -31,6 +32,8 @@ public class SimCompGen {
 	public void gen() {
 		int num=prepare();
 		int i=0;
+		String fn=g_cfg.get_dir();
+		FUtil.makeDir(fn);
 		while(i<num){
 //			Log.prn(2, i+"");
 			CompMng cm=g_cg.generate();

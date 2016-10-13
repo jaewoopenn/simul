@@ -66,5 +66,18 @@ public class FUtil {
 	public Vector<String> getVec() {
 		return g_v;
 	}
+	public static void makeDir(String str) {
+		 File theDir = new File("/Users/jaewoo/data/"+str);
+		if (theDir.exists()) {
+			System.out.println("dir exist");
+			return;
+		}
+		try{
+	        theDir.mkdir();
+	    } 
+	    catch(SecurityException se){
+	        se.printStackTrace();
+	    }        
+	}
 
 }

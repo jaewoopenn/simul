@@ -1,5 +1,7 @@
 package anal;
 
+import utilSim.FUtil;
+import utilSim.Log;
 import utilSim.MUtil;
 import basic.TaskGenMC;
 import basic.TaskGenParam;
@@ -26,6 +28,9 @@ public class SimGen {
 	public void gen() {
 		int num=prepare();
 		int i=0;
+		String fn=g_cfg.get_dir();
+		Log.prn(2, fn);
+		FUtil.makeDir(fn);
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();

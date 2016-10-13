@@ -7,7 +7,7 @@ import utilSim.TEngine;
 public class FUtil1 {
 	public static int log_level=1;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
 	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
@@ -30,6 +30,7 @@ public class FUtil1 {
 	}
 	public int test3() 
 	{
+		FUtil.makeDir("test1");
 		return 0;
 	}
 	public  int test4() 

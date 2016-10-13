@@ -156,7 +156,7 @@ public class PlatformTM extends Platform{
 		for(int i=0;i<g_size;i++){
 			int sum=0;
 			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod)+"_"+g_a_u;
+			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul(cfg);

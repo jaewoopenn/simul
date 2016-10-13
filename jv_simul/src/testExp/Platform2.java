@@ -42,7 +42,7 @@ public class Platform2 {
 
 	public PlatformTM getCommmon(){
 		PlatformTM p=new PlatformTM();
-		p.setPath("sch");
+		p.setPath("exp");
 		p.setCfg_fn("cfg/cfg");
 //		p.setSysNum(5000);
 		p.setSysNum(100);
