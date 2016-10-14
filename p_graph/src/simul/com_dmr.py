@@ -14,7 +14,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['FC-MCS','Naive2']
+    lab=['FC-MCS','Naive-Drop']
     data=[1,2,3,4,5]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
