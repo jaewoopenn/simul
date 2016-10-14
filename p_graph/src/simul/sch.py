@@ -10,11 +10,11 @@ class gl:
     
     x=[0.55,0.60,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.0]
     vv=[]
-    line=['r-','b--','m-.','g:','k:']
+    line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
-    lab=['EDF-AT-S ','EDF-AT-E (EDF-VD)','EDF-AT','ICG',]
+    lab=['EDF-AT-S ','EDF-AT-E (EDF-VD)','EDF-AT','ICG','EDF']
 #     data=[1,2,0,3]
-    data=[1,2,3,4]
+    data=[1,2,3,4,5]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
 def load(fn):
@@ -32,7 +32,7 @@ def iterate(s,t):
         gl.vv.append(v)
 
 def main():
-    iterate(0,4)
+    iterate(0,5)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])

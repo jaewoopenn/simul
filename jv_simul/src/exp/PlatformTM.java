@@ -2,6 +2,7 @@ package exp;
 
 
 import anal.Anal;
+import anal.AnalEDF;
 import anal.AnalEDF_AT;
 import anal.AnalEDF_AT_S;
 import anal.AnalEDF_VD;
@@ -141,10 +142,11 @@ public class PlatformTM extends Platform{
 	
 	public void anal() {
 		write_x_axis();
-		anal_in(1,new AnalEDF_VD());
-		anal_in(2,new AnalEDF_AT_S());
+		anal_in(1,new AnalEDF_AT_S());
+		anal_in(2,new AnalEDF_VD());
 		anal_in(3,new AnalEDF_AT());
 		anal_in(4,new AnalICG());
+		anal_in(5,new AnalEDF());
 	}
 	
 	public void anal_in(int kinds,Anal an){
