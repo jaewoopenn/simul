@@ -5,6 +5,9 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
+#     path="exp/rs/"
+    path="final_rs/"
+    
     x=[0.55,0.60,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.0]
     vv=[]
     line=['r-','b--','m-.','g:','k:']
@@ -24,7 +27,7 @@ def load(fn):
 
 def iterate(s,t):
     for i in range(s,t):
-        fn="sch/rs/util_X_"+str(gl.data[i])+".txt"
+        fn=gl.path+"util_X_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -41,6 +44,7 @@ def main():
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
     print "hihi"
+    mp.savefig("/Users/jaewoo/data/fig/adams_sch.pdf")
     mp.show()
 
 if __name__ == '__main__':

@@ -1,23 +1,46 @@
 package testPlatform;
 
 
+import utill.MUtil;
 import utill.TEngine;
 
 public class Platform5 {
-	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public int test1() 
 	{
 		Platform1 p=new Platform1();
+//		p.isReal=0;
+		p.isReal=1;
+		p.kind=0;
+		p.test1();
+		p.test2();
+		p.prob=1;
+		p.test3();
+		p.prob=4;
+		p.test3();
+		p.prob=7;
+		p.test3();
+		p.kind=1;
+		p.prob=4;
 		p.test1();
 		p.test2();
 		p.test3();
+		MUtil.sendMail("DMR anal OK");
+
 		return 0;
 	}
 	public int test2() 
 	{
+		Platform2 p=new Platform2();
+//		p.isReal=0;
+		p.isReal=1;
+		p.test1();
+		p.test2();
+		p.test3();
+		MUtil.sendMail("SCH anal OK");
 		return 0;
 	}
 	public int test3() 

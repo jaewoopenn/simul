@@ -13,10 +13,19 @@ public class Platform4 {
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
+	public int kind=0;
+	public int isReal=0;
+//	public int prob=1;
+	public int prob=4;
+//	public int prob=7;
+
 	public PlatformCom getP(){
-		return getP1();
-//		return getP2();
+		if(kind==0)
+			return getP1();
+		else
+			return getP2();
 	}
+	
 	
 	public PlatformCom getP1() {
 		PlatformCom p=getCommmon();
@@ -44,23 +53,15 @@ public class Platform4 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 		p.setAlpha(0.3,0.6);
-		p.setDuration(10000);
-//		p.setDuration(1000);
-//		p.setDuration(100);
-		
-//		p.setSysNum(5000);
-		p.setSysNum(1000);
-//		p.setSysNum(300);
-//		p.setSysNum(100);
-//		p.setSysNum(10);
-//		p.setSysNum(1);
-		
-//		p.setRS("1");
-//		p.setProb(0.1);
-		p.setProb(0.4);
-		p.setRS("4");
-//		p.setProb(0.7);
-//		p.setRS("7");
+		if(isReal==1){
+			p.setDuration(10000);
+			p.setSysNum(5000);
+		} else{
+			p.setDuration(1000);
+			p.setSysNum(100);
+		}
+		p.setProb(prob*0.1);
+		p.setRS(prob+"");
 
 		return p;
 		

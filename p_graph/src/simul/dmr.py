@@ -5,9 +5,11 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-#     RS="util_1"
-#     RS="util_4"
-    RS="util_7"
+#     path="exp/rs/"
+    path="final_rs/"
+    RS="util_sim_1"
+#     RS="util_sim_4"
+#     RS="util_sim_7"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']
@@ -26,12 +28,12 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="exp/rs/"+gl.RS+"_"+str(gl.data[i])+".txt"
+        fn=gl.path++gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
 def x_load():
-    fn="exp/rs/"+gl.RS+"_x.txt"
+    fn=gl.path+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def main():
@@ -48,7 +50,9 @@ def main():
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"
+    mp.savefig("/Users/jaewoo/data/fig/"+gl.RS+".pdf")
     mp.show()
+
 
 if __name__ == '__main__':
     main()

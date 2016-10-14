@@ -3,6 +3,7 @@ package testPlatform;
 
 import anal.ConfigGen;
 import exp.PlatformCom;
+import exp.PlatformTM;
 import utill.Log;
 import utill.TEngine;
 
@@ -13,10 +14,16 @@ public class Platform3 {
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
+	public int kind=0;
+	public int isReal=0;
+
 	public PlatformCom getP(){
-		return getP1();
-//		return getP2();
+		if(kind==0)
+			return getP1();
+		else
+			return getP2();
 	}
+	
 	
 	public PlatformCom getP1() {
 		PlatformCom p=getCommmon();
@@ -44,11 +51,11 @@ public class Platform3 {
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
 		p.setAlpha(0,0.3);
-//		p.setSysNum(5000);
-//		p.setSysNum(1000);
-		p.setSysNum(100);
-//		p.setSysNum(10);
-//		p.setSysNum(1);
+		if(isReal==1){
+			p.setSysNum(5000);
+		} else{
+			p.setSysNum(100);
+		}
 		return p;
 		
 	}

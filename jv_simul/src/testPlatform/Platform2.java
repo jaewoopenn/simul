@@ -13,10 +13,14 @@ public class Platform2 {
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
+	public int kind=0;
+	public int isReal=0;
 
 	public PlatformTM getP(){
-		return getP1();
-//		return getP2();
+		if(kind==0)
+			return getP1();
+		else
+			return getP2();
 	}
 	
 	public PlatformTM getP1() {
@@ -44,8 +48,11 @@ public class Platform2 {
 		PlatformTM p=new PlatformTM();
 		p.setPath("exp");
 		p.setCfg_fn("cfg/cfg");
-//		p.setSysNum(5000);
-		p.setSysNum(100);
+		if(isReal==1){
+			p.setSysNum(5000);
+		} else{
+			p.setSysNum(100);
+		}
 		p.setRS("X");
 		return p;
 		

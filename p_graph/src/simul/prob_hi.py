@@ -5,7 +5,9 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="prob_4"
+#     path="exp/rs/"
+    path="final_rs/"
+    RS="prob_sim_4"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']
@@ -15,7 +17,7 @@ class gl:
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
 def load(fn):
-    i_f = open("C:/Users/jaewoo/data/"+fn,"r")
+    i_f = open("/Users/jaewoo/data/"+fn,"r")
     v=[]
     for line in i_f:
         val=line.strip()
@@ -24,12 +26,12 @@ def load(fn):
 
 def iter(s,t):
     for i in range(s,t):
-        fn="exp/rs/"+gl.RS+"_"+str(gl.data[i])+".txt"
+        fn=gl.path+gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
 def x_load():
-    fn="exp/rs/"+gl.RS+"_x.txt"
+    fn=gl.path+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def main():
@@ -46,6 +48,7 @@ def main():
     mp.xlabel("Probability to be a HI-task")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"
+    mp.savefig("/Users/jaewoo/data/fig/"+gl.RS+".pdf")
     mp.show()
 
 if __name__ == '__main__':
