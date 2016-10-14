@@ -5,7 +5,9 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="util_0"
+    path="com/rs/"
+#     path="final_rs/"
+    RS="util"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
@@ -23,12 +25,12 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn="com/rs/"+gl.RS+"_x.txt"
+    fn=gl.path+gl.RS+"_x_x.txt"
     gl.x=load(fn)
 
 def iterate(s,t):
     for i in range(s,t):
-        fn="com/rs/util_"+str(gl.data[i])+".txt"
+        fn=gl.path+gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -45,6 +47,7 @@ def main():
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
     print "hihi"
+    mp.savefig("/Users/jaewoo/data/fig/com.pdf")
     mp.show()
 
 if __name__ == '__main__':

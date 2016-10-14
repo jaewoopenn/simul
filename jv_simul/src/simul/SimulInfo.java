@@ -9,7 +9,10 @@ public class SimulInfo {
 	public int drop;
 	public int ms;
 	public double getDMR(){
-		return (double)drop/rel;
+		if(rel==0)
+			return 0;
+		else
+			return (double)drop/rel;
 	}
 	public void prn() {
 		Log.prn(1, "rel:"+rel);

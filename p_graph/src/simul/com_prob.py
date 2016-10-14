@@ -5,12 +5,14 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    RS="prob_hi_0"
+    path="com/rs/"
+#     path="final_rs/"
+    RS="prob"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['a=0.0','0<a<=0.3','0.3<a<=0.6','0.6<a<=0.9','0.9<a<=1.00','a=1']
+    lab=['a=0.0','0<a<=0.25','0.25<a<=0.5','0.5<a<=0.75','0.75<a<=1.00','a=1']
 #     data=[1,2,0,3]
     data=[0,1,2,3,4,5]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
@@ -23,13 +25,13 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn="com/rs/"+gl.RS+"_x.txt"
+    fn=gl.path+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def iterate(s,t):
     for i in range(s,t):
 #         fn="com/rs/anal_util_"+str(gl.data[i])+".txt"
-        fn="com/rs/prob_"+str(gl.data[i])+".txt"
+        fn=gl.path+gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 
@@ -47,6 +49,7 @@ def main():
     mp.xlabel("Probability to be a HI-task")
     mp.ylabel("Acceptance Ratio")
     print "hihi"
+    mp.savefig("/Users/jaewoo/data/fig/com_prob.pdf")
     mp.show()
 
 if __name__ == '__main__':

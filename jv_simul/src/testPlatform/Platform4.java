@@ -9,10 +9,10 @@ import utill.TEngine;
 
 // schedulability 
 public class Platform4 {
-	public static int idx=3;
+	public static int idx=5;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	public static int log_level=3;
+	public static int log_level=1;
 	public int kind=0;
 	public int isReal=0;
 //	public int prob=1;
@@ -52,10 +52,11 @@ public class Platform4 {
 		PlatformCom p=new PlatformCom();
 		p.setPath("com");
 		p.setCfg_fn("cfg/cfg");
-		p.setAlpha(0.3,0.6);
+		p.setAlpha(0.25,0.75);
 		if(isReal==1){
 			p.setDuration(10000);
-			p.setSysNum(5000);
+//			p.setSysNum(5000);
+			p.setSysNum(1000);
 		} else{
 			p.setDuration(1000);
 			p.setSysNum(100);
@@ -93,16 +94,16 @@ public class Platform4 {
 	public int test3() 
 	{
 		PlatformCom p=getP();
-		p.setAlpha(0.3,0.6);
+		p.setAlpha(0.25,0.75);
 //		p.isWrite=false;
 		p.simulCom();
 		return 1;
 	}
 	public  int test4() 
 	{
-		int set=9;
+		int set=0;
 		int no=72;
-		for(int i=0;i<1000;i++){
+		for(int i=0;i<100;i++){
 			no=i;
 			PlatformCom p=getP();
 			p.setAlpha(0.1,0.3);
@@ -114,8 +115,8 @@ public class Platform4 {
 	}
 	public  int test5() 
 	{
-		int set=9;
-		int no=192;
+		int set=0;
+		int no=82;
 		PlatformCom p=getP();
 		p.setAlpha(0.1,0.3);
 		Log.prn(3, no+"");
