@@ -1,4 +1,4 @@
-package testExp;
+package testPlatform;
 
 
 import anal.ConfigGen;

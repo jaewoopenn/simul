@@ -1,8 +1,9 @@
+package testPlatform;
 
 
 import utill.TEngine;
 
-public class Platform6 {
+public class Platform5 {
 	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
@@ -54,9 +55,9 @@ public class Platform6 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Platform6.class;
-		Platform6 m=new Platform6();
-		int[] aret=Platform6.gret;
+		Class c = Platform5.class;
+		Platform5 m=new Platform5();
+		int[] aret=Platform5.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

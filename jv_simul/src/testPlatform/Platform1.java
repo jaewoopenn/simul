@@ -1,3 +1,4 @@
+package testPlatform;
 
 
 
@@ -7,14 +8,20 @@ import utill.Log;
 import utill.TEngine;
 
 public class Platform1 {
-	public static int idx=8;
+	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
-
+	public int kind=0;
+	public int isReal=0;
+//	public int prob=1;
+	public int prob=4;
+//	public int prob=7;
 	public PlatformTM getP(){
-		return getP1();
-//		return getP2();
+		if(kind==0)
+			return getP1();
+		else
+			return getP2();
 	}
 	
 	public PlatformTM getP1() {
@@ -23,8 +30,6 @@ public class Platform1 {
 		p.setKinds(0);
 		p.setStart(55);
 		p.setSize(10);
-//		p.setStart(100);
-//		p.setSize(1);
 		p.setStep(5);
 		return p;
 	}
@@ -42,17 +47,15 @@ public class Platform1 {
 		PlatformTM p=new PlatformTM();
 		p.setPath("exp");
 		p.setCfg_fn("cfg/cfg");
-		p.setDuration(10000);
-//		p.setDuration(1000);
-		
-//		p.setSysNum(1000);
-		p.setSysNum(100);
-//		p.setRS("1");
-//		p.setProb(0.1);
-		p.setProb(0.4);
-		p.setRS("4");
-//		p.setProb(0.7);
-//		p.setRS("7");
+		if(isReal==1){
+			p.setDuration(10000);
+			p.setSysNum(5000);
+		} else{
+			p.setDuration(1000);
+			p.setSysNum(100);
+		}
+		p.setProb(prob*0.1);
+		p.setRS(prob+"'");
 		return p;
 		
 	}
