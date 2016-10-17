@@ -1,22 +1,27 @@
-package testTSetGen;
-
-
-import comp.SimCompGen;
+package testSysGen;
 import anal.ConfigGen;
+import utill.Log;
 import utill.TEngine;
 
-public class SimCompGen1 {
+public class ConfigWrite2 {
 	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
+
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_55.txt");
-		cfg.readFile();
-		SimCompGen eg=new SimCompGen(cfg);
-		eg.gen();
-		
+		ConfigGen eg=ConfigGen.getCfg();
+		eg.setParam("subfix", "com/ts");
+		eg.setParam("num","10");
+		eg.setParam("u_lb", "0.45");
+		eg.setParam("u_ub", "0.50");
+		eg.setParam("c_lb", "0.1");
+		eg.setParam("c_ub", "0.3");
+		eg.setParam("a_lb","0.2");
+		eg.setParam("a_ub","0.3");
+		eg.setParam("mod", "50");
+		eg.write("file/cfg_50.txt");
 		return 0;
 	}
 	public int test2() 
@@ -55,12 +60,12 @@ public class SimCompGen1 {
 	{
 		return 0;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = SimCompGen1.class;
-		SimCompGen1 m=new SimCompGen1();
-		int[] aret=SimCompGen1.gret;
+		Class c = ConfigWrite2.class;
+		ConfigWrite2 m=new ConfigWrite2();
+		int[] aret=ConfigWrite2.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else
