@@ -8,7 +8,6 @@ import simul.SimulInfo;
 import simul.TaskSimul_FC_MCS;
 import simul.TaskSimul_FC_Naive;
 import sysEx.CompMngEx1;
-import sysEx.TS_MC1;
 import utill.TEngine;
 
 // Comp

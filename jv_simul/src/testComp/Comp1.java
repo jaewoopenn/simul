@@ -1,7 +1,6 @@
 package testComp;
 
 
-import basic.TaskMng;
 import comp.Comp;
 import utill.Log;
 import utill.TEngine;
