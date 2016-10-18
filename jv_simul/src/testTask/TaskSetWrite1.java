@@ -1,4 +1,4 @@
-package testSysGen;
+package testTask;
 import basic.TaskGenMC;
 import basic.TaskGenParam;
 import utill.TEngine;

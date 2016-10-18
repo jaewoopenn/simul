@@ -1,4 +1,4 @@
-package testSysGen;
+package testComp;
 
 
 import comp.CompFile;

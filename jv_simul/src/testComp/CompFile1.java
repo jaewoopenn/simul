@@ -1,4 +1,4 @@
-package testFile;
+package testComp;
 import comp.CompFile;
 import comp.CompMng;
 import sysEx.CompMngEx1;
