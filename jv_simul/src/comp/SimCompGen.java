@@ -3,9 +3,7 @@ package comp;
 import utill.FUtil;
 import utill.MUtil;
 import anal.AnalEDF_VD;
-import anal.ConfigGen;
-import basic.CompGen;
-import basic.CompGenParam;
+import basic.ConfigGen;
 import basic.TaskGenParam;
 
 public class SimCompGen {

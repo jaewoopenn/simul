@@ -2,9 +2,9 @@ package testSysGen;
 
 
 import comp.CompFile;
+import comp.CompGen;
+import comp.CompGenParam;
 import comp.CompMng;
-import basic.CompGen;
-import basic.CompGenParam;
 import basic.TaskGenParam;
 import utill.TEngine;
 

@@ -1,12 +1,9 @@
-package anal;
+package basic;
 
 import utill.FUtil;
 import utill.Log;
 import utill.MUtil;
-import basic.TaskGenMC;
-import basic.TaskGenParam;
-import basic.TaskMng;
-import basic.TaskMngPre;
+import anal.AnalEDF_VD;
 
 public class SimGen {
 	private TaskGenMC g_tg;

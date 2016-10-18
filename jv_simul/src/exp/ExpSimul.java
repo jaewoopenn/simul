@@ -5,7 +5,7 @@ import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
 import anal.Anal;
-import anal.ConfigGen;
+import basic.ConfigGen;
 import basic.TaskMng;
 import basic.TaskMngPre;
 import simul.SimulInfo;

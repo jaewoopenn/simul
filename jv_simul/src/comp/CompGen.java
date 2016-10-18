@@ -1,9 +1,11 @@
-package basic;
+package comp;
 
 
+import basic.TaskGenMC;
+import basic.TaskGenParam;
+import basic.TaskMng;
+import basic.TaskMngPre;
 import utill.Log;
-import comp.Comp;
-import comp.CompMng;
 
 public class CompGen {
 	protected CompGenParam g_param;

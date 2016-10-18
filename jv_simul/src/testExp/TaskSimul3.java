@@ -2,8 +2,8 @@ package testExp;
 
 import anal.AnalEDF_AT;
 import anal.AnalEDF_VD;
-import anal.ConfigGen;
-import anal.SimGen;
+import basic.ConfigGen;
+import basic.SimGen;
 import basic.TaskMng;
 import simul.TaskSimul_EDF_AT;
 import simul.TaskSimul_EDF_AT_S;

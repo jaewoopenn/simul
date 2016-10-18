@@ -1,5 +1,5 @@
 package testSysGen;
-import anal.ConfigGen;
+import basic.ConfigGen;
 import utill.Log;
 import utill.TEngine;
 

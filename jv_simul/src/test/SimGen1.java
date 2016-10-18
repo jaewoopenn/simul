@@ -1,6 +1,6 @@
 package test;
-import anal.ConfigGen;
-import anal.SimGen;
+import basic.ConfigGen;
+import basic.SimGen;
 import utill.TEngine;
 
 public class SimGen1 {
