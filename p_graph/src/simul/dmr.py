@@ -26,7 +26,7 @@ def load(fn):
         v.append(float(val))
     return v
 
-def iter(s,t):
+def iterate(s,t):
     for i in range(s,t):
         fn=gl.path++gl.RS+"_"+str(gl.data[i])+".txt"
         v=load(fn)
@@ -38,7 +38,7 @@ def x_load():
 
 def main():
     x_load()
-    iter(0,2)
+    iterate(0,2)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
