@@ -68,15 +68,14 @@ public class TaskGenParam {
 		int p=g_rand.getInt(p_lb,p_ub);
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		double getProb=g_rand.getDbl();
-		if (getProb>prob_HI ||!isMC) {
-			int e=(int)(tu*p);
-			return new Task(tid,p,e);
-		}
-		else {
+		if(getProb<=prob_HI&&isMC){
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
 			return new Task(tid,p,l,h);
+		} else{
+			int e=(int)(tu*p);
+			return new Task(tid,p,e);
 		}
 	}
 
