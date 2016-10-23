@@ -5,7 +5,7 @@ Created on 2016. 9. 30.
 '''
 import util.FUtil as fu
 def main():
-    test1()
+    test3()
 def test1():
     i_f = open("/Users/jaewoo/data/file/test.txt","r")
     for line in i_f:
@@ -16,6 +16,7 @@ def test2():
 def test3():
     ll=fu.load("file/test.txt")
     for v in ll:
-        print v
+        wd=v.split();
+        print wd
 if __name__ == '__main__':
     main()
