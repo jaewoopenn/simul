@@ -5,9 +5,9 @@ Created on 2016. 9. 30.
 '''
 import util.FUtil as fu
 def main():
-    test3()
+    test1()
 def test1():
-    i_f = open("C:/Users/jaewoo/data/file/test.txt","r")
+    i_f = open("/Users/jaewoo/data/file/test.txt","r")
     for line in i_f:
         val=line.strip()
         print val
