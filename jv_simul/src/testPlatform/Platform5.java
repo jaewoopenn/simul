@@ -11,7 +11,7 @@ public class Platform5 {
 	public static int log_level=3;
 	public int test1() 
 	{
-		Platform1 p=new Platform1();
+		Platform1 p=new Platform1(); // TM DMR
 //		p.isReal=0;
 		p.isReal=1;
 		p.kind=0;
@@ -34,7 +34,7 @@ public class Platform5 {
 	}
 	public int test2() 
 	{
-		Platform2 p=new Platform2();
+		Platform2 p=new Platform2();  // TM SCH
 //		p.isReal=0;
 		p.isReal=1;
 		p.test1();
@@ -45,7 +45,7 @@ public class Platform5 {
 	}
 	public int test3() 
 	{
-		Platform3 p=new Platform3();
+		Platform3 p=new Platform3(); // comp SCH
 		p.isReal=0;
 //		p.isReal=1;
 		p.kind=0;
@@ -61,7 +61,7 @@ public class Platform5 {
 	}
 	public  int test4() 
 	{
-		Platform4 p=new Platform4();
+		Platform4 p=new Platform4(); // comp DMR
 //		p.isReal=0;
 		p.isReal=1;
 		p.test1();
