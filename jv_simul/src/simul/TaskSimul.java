@@ -1,8 +1,7 @@
 package simul;
 
 
-import exp.AbsJob;
-import exp.JobD;
+import exp.Job;
 import exp.JobSimul;
 import basic.Task;
 import basic.TaskMng;
@@ -143,20 +142,20 @@ public abstract class TaskSimul {
 			Log.prnc(1, " ");
 	}
 	
-	protected abstract AbsJob relJob(Task tsk, int cur_t);
+	protected abstract Job relJob(Task tsk, int cur_t);
 
-	protected AbsJob relJobD(Task tsk, int cur_t) {
+	protected Job relJobD(Task tsk, int cur_t) {
 		if(tsk.is_HI){
 			if(tsk.is_HM){
-				return new JobD(tsk.tid, 
+				return new Job(tsk.tid, 
 						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
 			} else {
-				return new JobD(tsk.tid, 
+				return new Job(tsk.tid, 
 						cur_t+tsk.period,tsk.c_l,
 						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 			}
 		}
-		return new JobD(tsk.tid,cur_t+tsk.period,tsk.c_l);
+		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
 	}
 	
 	public void modeswitch(int tid){

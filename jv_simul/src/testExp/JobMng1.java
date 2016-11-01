@@ -1,6 +1,6 @@
 package testExp;
 
-import exp.AbsJob;
+import exp.Job;
 import exp.JobMng;
 import sysEx.Job_NonMC1;
 import utill.TEngine;
@@ -17,7 +17,7 @@ public class JobMng1 {
 	public int test1()
 	{
 		JobMng jm=Job_NonMC1.ts1();
-		AbsJob j;
+		Job j;
 		j=jm.removeCur();
 		j=jm.removeCur();
 		j=jm.removeCur();
@@ -30,7 +30,7 @@ public class JobMng1 {
 	public int test2()
 	{
 		JobMng jm=Job_NonMC1.ts1();
-		AbsJob j;
+		Job j;
 		j=jm.removeCur();
 		j=jm.removeCur();
 		j=jm.getCur();

@@ -1,7 +1,7 @@
 package simul;
 
 
-import exp.AbsJob;
+import exp.Job;
 import basic.Task;
 import basic.TaskMng;
 import utill.Log;
@@ -22,7 +22,7 @@ public class TaskSimul_RM extends TaskSimul{
 	}
 	
 	@Override
-	protected AbsJob relJob(Task tsk, int cur_t) {
+	protected Job relJob(Task tsk, int cur_t) {
 //		if(tsk.is_HI){
 //			return new JobF(tsk.tid, 
 //					cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);

@@ -1,6 +1,6 @@
 package testExp;
 
-import exp.AbsJob;
+import exp.Job;
 import exp.JobMng;
 import sysEx.Job_NonMC1;
 import utill.TEngine;
@@ -19,7 +19,7 @@ public class JobMng2 {
 	public int test2()	{ // ordering 
 		JobMng jm=Job_NonMC1.ts1();
 		while(true){
-			AbsJob j=jm.removeCur();
+			Job j=jm.removeCur();
 			if(j==null) break;
 			j.prn();
 			

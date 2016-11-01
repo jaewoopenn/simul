@@ -1,7 +1,7 @@
 package simul;
 
 
-import exp.AbsJob;
+import exp.Job;
 import basic.Task;
 import basic.TaskMng;
 import utill.Log;
@@ -44,7 +44,7 @@ public class TaskSimul_EDF_AT extends TaskSimul{
 	}
 
 	@Override
-	protected AbsJob relJob(Task tsk, int cur_t) {
+	protected Job relJob(Task tsk, int cur_t) {
 		return relJobD(tsk,cur_t);
 	}
 }

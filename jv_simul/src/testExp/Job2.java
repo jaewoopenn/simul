@@ -1,7 +1,7 @@
 package testExp;
 import java.util.Vector;
 
-import exp.JobD;
+import exp.Job;
 import utill.TEngine;
 
 public class Job2 {
@@ -11,10 +11,10 @@ public class Job2 {
 	public static int log_level=1;
 	public int test1()
 	{
-		Vector<JobD> jobs=new Vector<JobD>();
+		Vector<Job> jobs=new Vector<Job>();
 		
-		jobs.add(new JobD(0,3,1));
-		jobs.add(new JobD(1,4,1));
+		jobs.add(new Job(0,3,1));
+		jobs.add(new Job(1,4,1));
 		return jobs.size();
 	}
 	public int test2()
