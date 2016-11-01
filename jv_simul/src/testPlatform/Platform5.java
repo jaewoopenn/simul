@@ -5,7 +5,7 @@ import utill.MUtil;
 import utill.TEngine;
 
 public class Platform5 {
-	public static int idx=3;
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=3;
@@ -62,8 +62,8 @@ public class Platform5 {
 	public  int test4() 
 	{
 		Platform4 p=new Platform4(); // comp DMR
-//		p.isReal=0;
-		p.isReal=1;
+		p.isReal=0;
+//		p.isReal=1;
 		p.test1();
 		p.test2();
 		p.test3();
