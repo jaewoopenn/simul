@@ -5,8 +5,8 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-    path="com/rs/"
-#     path="final_rs/"
+#     path="com/rs/"
+    path="final_rs/"
     RS="util"
     x=[]
     vv=[]

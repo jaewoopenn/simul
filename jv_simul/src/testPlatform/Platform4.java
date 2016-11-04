@@ -55,8 +55,8 @@ public class Platform4 {
 		p.setAlpha(0.25,0.75);
 		if(isReal==1){
 			p.setDuration(10000);
-//			p.setSysNum(5000);
-			p.setSysNum(1000);
+			p.setSysNum(5000);
+//			p.setSysNum(1000);
 		} else{
 			p.setDuration(1000);
 			p.setSysNum(100);

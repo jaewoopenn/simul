@@ -51,8 +51,8 @@ public class Platform3 {
 		p.setCfg_fn("cfg/cfg");
 		p.setAlpha(0,0.3);
 		if(isReal==1){
-//			p.setSysNum(5000);
-			p.setSysNum(1000);
+			p.setSysNum(5000);
+//			p.setSysNum(1000);
 		} else{
 			p.setSysNum(100);
 		}
