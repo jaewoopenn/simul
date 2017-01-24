@@ -12,7 +12,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:']
     marker=['o','v','D','^','s']
-    lab=['EDF-VD','EDF-AT-S','EDF','ICG',]
+    lab=['EDF-VD','EDF-AD-E','EDF','ICG',]
     data=[1,2]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
