@@ -6,7 +6,7 @@ Created on 2015. 12. 11.
 import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib.backends.backend_pdf import PdfPages
-matplotlib.rcParams.update({'font.size': 14})
+matplotlib.rcParams.update({'font.size': 15})
 def legend():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
 #     plt.legend(loc='upper right',prop=font)
