@@ -1,7 +1,7 @@
 package testExp;
 
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 import simul.TaskSimul_EDF_AT_S;
 import sysEx.TS_NonMC1;
 import utill.TEngine;
@@ -26,7 +26,7 @@ public class TaskSimul1 {
 	
 	public  int test3()	{
 		int et=40;
-		TaskMngPre tmp=TaskMngPre.loadFile("exp/ts/test1.txt");
+		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
 		TaskMng tm=tmp.freezeTasks();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);
@@ -34,7 +34,7 @@ public class TaskSimul1 {
 	
 	public  int test4()	{
 		int et=80;
-		TaskMngPre tmp=TaskMngPre.loadFile("exp/ts/test2.txt");
+		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test2.txt");
 		TaskMng tm=tmp.freezeTasks();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);

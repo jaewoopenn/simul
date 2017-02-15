@@ -58,7 +58,7 @@ public class TaskFile {
         c.setID(id);
         
         Vector<Task> tasks=loadFile(fu,st,num);
-        TaskMngPre tmp=new TaskMngPre(tasks);
+        TaskSetFix tmp=new TaskSetFix(tasks);
         c.setTM(tmp.freezeTasks());
         return c;
 	}

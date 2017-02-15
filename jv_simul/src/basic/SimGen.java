@@ -52,7 +52,7 @@ public class SimGen {
 	}
 
 	private int check() {
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.setTasks(g_tg.getAll());
 		TaskMng m=tm.freezeTasks();
 		if(tm.g_info.getLo_size()==0) return 0;
@@ -67,7 +67,7 @@ public class SimGen {
 	}
 	public TaskMng genOne(){
 		g_tg.generate();
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.setTasks(g_tg.getAll());
 		TaskMng m=tm.freezeTasks();
 		return m;

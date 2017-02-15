@@ -2,26 +2,26 @@ package sysEx;
 
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 
 // Task Set MC
 public class TS_NonMC1 {
 	public static TaskMng ts1()	{
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.add(new Task(0,3,1));
 		tm.add(new Task(0,4,2));
 		return tm.freezeTasks();
 	}
 	
 	public static TaskMng ts2()	{
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.add(new Task(0,3,1));
 		tm.add(new Task(0,4,3));
 		return tm.freezeTasks();
 	}
 	public static TaskMng ts3()
 	{
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.add(new Task(0,3,1));
 		tm.add(new Task(0,4,1));
 		tm.add(new Task(0,5,1));
@@ -29,7 +29,7 @@ public class TS_NonMC1 {
 	}
 	public static TaskMng ts4()
 	{
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.add(new Task(0,23,2));
 		tm.add(new Task(0,4,1));
 		tm.add(new Task(0,3,1));
@@ -38,7 +38,7 @@ public class TS_NonMC1 {
 		return tm.freezeTasks();
 	}
 	public static TaskMng ts5()	{
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.add(new Task(0,3,1));
 		tm.add(new Task(0,4,1));
 		return tm.freezeTasks();

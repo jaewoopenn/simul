@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 import utill.Log;
 import utill.RUtil;
 
@@ -26,7 +26,7 @@ public class CompMng {
 	}
 
 	public void makeTM(){
-		TaskMngPre tmp=new TaskMngPre();
+		TaskSetFix tmp=new TaskSetFix();
 		for(Comp c:g_comp){
 			Task[] tasks=c.getTasks();
 			for(Task t:tasks){

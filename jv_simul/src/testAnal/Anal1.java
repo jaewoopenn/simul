@@ -3,7 +3,7 @@ package testAnal;
 import anal.AnalEDF_AT_S;
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 import utill.Log;
 import utill.TEngine;
 
@@ -15,7 +15,7 @@ public class Anal1 {
 
 	public int test1() 
 	{
-		TaskMngPre tmp=new TaskMngPre();
+		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,4,2));
 		tmp.add(new Task(1,6,1,5));
 		TaskMng tm=tmp.freezeTasks();

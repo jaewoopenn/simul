@@ -4,7 +4,7 @@ package comp;
 import basic.TaskGenMC;
 import basic.TaskGenParam;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 import utill.Log;
 
 public class CompGen {
@@ -26,7 +26,7 @@ public class CompGen {
 				g_t_param.setUtil(g_param.c_lb,g_param.c_ub);
 			tg.generate();
 			Comp c=new Comp(g_param.getAlpha());
-			TaskMngPre tmp=new TaskMngPre(tg.getAll());
+			TaskSetFix tmp=new TaskSetFix(tg.getAll());
 			TaskMng tm=tmp.freezeTasks();
 			c.setTM(tm);
 			cm.addComp(c);

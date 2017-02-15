@@ -7,7 +7,7 @@ import comp.CompMng;
 import anal.Anal;
 import basic.ConfigGen;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 import simul.SimulInfo;
 import simul.TaskSimul;
 import utill.Log;
@@ -25,7 +25,7 @@ public class ExpSimul {
 	
 	public TaskMng loadTM(int i){
 		String fn=g_cfg.get_fn(i);
-		TaskMngPre tmp=TaskMngPre.loadFile(fn);
+		TaskSetFix tmp=TaskSetFix.loadFile(fn);
 		return tmp.freezeTasks();
 	}
 	public CompMng loadCM(int i){

@@ -2,7 +2,7 @@ package testFile;
 import basic.Task;
 import basic.TaskFile;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 import utill.TEngine;
 
 public class TaskFile1 {
@@ -12,7 +12,7 @@ public class TaskFile1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		TaskMngPre tmp=new TaskMngPre();
+		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,3,1));
 		tmp.add(new Task(0,4,1));
 		TaskMng tm=tmp.freezeTasks();
@@ -22,7 +22,7 @@ public class TaskFile1 {
 	}
 	public int test2()
 	{
-		TaskMngPre tmp=TaskMngPre.loadFile("file/test.txt");
+		TaskSetFix tmp=TaskSetFix.loadFile("file/test.txt");
 		TaskMng tm=tmp.freezeTasks();
 		tm.prn();
 		return 0;

@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import utill.FUtil;
 
-public class TaskMngPre {
+public class TaskSetFix {
 	private Vector<Task> g_taskV;
 	private Vector<Task> g_lo_taskV;
 	private Vector<Task> g_hi_taskV;
@@ -12,14 +12,14 @@ public class TaskMngPre {
 	private Task[] g_lo_tasks;
 	private Task[] g_hi_tasks;
 	public TaskSetInfo g_info;
-	public TaskMngPre() {
+	public TaskSetFix() {
 		g_taskV=new Vector<Task>();
 		g_lo_taskV=new Vector<Task>();
 		g_hi_taskV=new Vector<Task>();
 		g_info=new TaskSetInfo();
 	}
 	
-	public TaskMngPre(Vector<Task> tasks) {
+	public TaskSetFix(Vector<Task> tasks) {
 		g_info=new TaskSetInfo();
 		setTasks(tasks);
 	}
@@ -83,18 +83,12 @@ public class TaskMngPre {
 		g_info.setLo_size(lo_size);
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,g_info);
 	}
-	
-//	public void loadFile(String f) {
-//	}
-	
-	public static TaskMngPre loadFile(String f) {
+		
+	public static TaskSetFix loadFile(String f) {
 	    FUtil fu=new FUtil(f);
 	    fu.load();
 	    Vector<Task> tasks=TaskFile.loadFile(fu,0,fu.size());
-	    return new TaskMngPre(tasks);
+	    return new TaskSetFix(tasks);
 	}
-
-	
-
 
 }

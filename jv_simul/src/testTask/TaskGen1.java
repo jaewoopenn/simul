@@ -2,7 +2,7 @@ package testTask;
 import basic.TaskGenMC;
 import basic.TaskGenParam;
 import basic.TaskMng;
-import basic.TaskMngPre;
+import basic.TaskSetFix;
 //import exp.Platform;
 import utill.TEngine;
 
@@ -37,7 +37,7 @@ public class TaskGen1 {
 		tg.generate();
 		tg.prn(1);
 		int tg_size=tg.size();
-		TaskMngPre tm=new TaskMngPre();
+		TaskSetFix tm=new TaskSetFix();
 		tm.setTasks(tg.getAll());
 		TaskMng m=tm.freezeTasks();
 //		tm.prn();
@@ -63,7 +63,7 @@ public class TaskGen1 {
 	}
 	public  int test5()
 	{
-		TaskMngPre tmp=TaskMngPre.loadFile("file/test.txt");
+		TaskSetFix tmp=TaskSetFix.loadFile("file/test.txt");
 		TaskMng m=tmp.freezeTasks();
 		m.prn();
 		return 1;

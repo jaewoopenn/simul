@@ -6,15 +6,15 @@ import utill.Log;
 import utill.MUtil;
 
 public class TaskMng {
-	private Task[] g_tasks;
-	private Task[] g_hi_tasks;
-	private Task[] g_lo_tasks;
+	private TaskSet g_tasks;
+	private TaskSet g_hi_tasks;
+	private TaskSet g_lo_tasks;
 	private TaskSetInfo g_info;
 
 	public TaskMng(Task[] g_tasks,Task[] g_hi_tasks,Task[] g_lo_tasks,TaskSetInfo g_info) {
-		this.g_tasks = g_tasks;
-		this.g_hi_tasks = g_hi_tasks;
-		this.g_lo_tasks = g_lo_tasks;
+		this.g_tasks = new TaskSet(g_tasks);
+		this.g_hi_tasks = new TaskSet(g_hi_tasks);
+		this.g_lo_tasks = new TaskSet(g_lo_tasks);
 		this.g_info = g_info;
 		Arrays.sort(g_lo_tasks,new ComparatorTask());
 	}
@@ -37,22 +37,12 @@ public class TaskMng {
 
 
 
-//	public void modeswitch(int tid) {
-//		g_tasks[tid].ms();
-//	}
-
-
-
-//	public void drop(int tid) {
-//		g_tasks[tid].drop();
-//		
-//	}
 
 
 
 
 	public Task findDropTask() {
-		for(Task t:g_lo_tasks){
+		for(Task t:g_lo_tasks.getArr()){
 			if (!t.is_dropped)
 				return t;
 		}
@@ -60,7 +50,7 @@ public class TaskMng {
 	}
 
 	public Task findDropTask_shared() {
-		for(Task t:g_lo_tasks){
+		for(Task t:g_lo_tasks.getArr()){
 			if (!t.is_dropped&&!t.is_isol())
 				return t;
 		}
@@ -72,7 +62,7 @@ public class TaskMng {
 	// set
 	public void setX(double x){
 		g_info.setX(x);
-		for(Task t:g_tasks)	{
+		for(Task t:g_tasks.getArr())	{
 			if (t.is_HI)
 				t.setVD(t.period*x);
 		}
@@ -80,18 +70,18 @@ public class TaskMng {
 	}
 	
 	public void setVD(int i, double vd){
-		g_tasks[i].vd=vd;
+		g_tasks.get(i).vd=vd;
 	}
 	
 	// prn 
 	
 	public void prn() {
-		for(Task t:g_tasks)
+		for(Task t:g_tasks.getArr())
 			t.prn();
 		prnUtil();
 	}
 	public void prnComp() {
-		for(Task t:g_tasks)
+		for(Task t:g_tasks.getArr())
 			t.prnComp();
 		prnUtil();
 	}
@@ -104,25 +94,25 @@ public class TaskMng {
 	}
 	
 	public void prnHI() {
-		for(Task t:g_hi_tasks)
+		for(Task t:g_hi_tasks.getArr())
 			t.prn();
 		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
 		
 	}
 
 	public void prnLoTasks() {
-		for(Task t:g_lo_tasks){
+		for(Task t:g_lo_tasks.getArr()){
 			t.prn();
 		}
 	}
 	public void prnStat() {
-		for(Task t:g_tasks)
+		for(Task t:g_tasks.getArr())
 			t.prnStat();
 	}
 
 	// get
 	public int getComp(int tid){
-		return g_tasks[tid].getComp();
+		return g_tasks.get(tid).getComp();
 	}
 	
 	public TaskSetInfo getInfo() {
@@ -130,25 +120,25 @@ public class TaskMng {
 	}
 
 	public Task[] getTasks() {
-		return g_tasks;
+		return g_tasks.getArr();
 	}
 
 
 	public Task getTask(int i) {
 
-		return g_tasks[i];
+		return g_tasks.get(i);
 	}
 	
 	public Task[] getHiTasks(){
-		return g_hi_tasks;
+		return g_hi_tasks.getArr();
 	}
 	public Task[] getLoTasks(){
-		return g_lo_tasks;
+		return g_lo_tasks.getArr();
 	}
 
 	public double getRU() {
 		double util=0;
-		for(Task t:g_tasks)	{
+		for(Task t:g_tasks.getArr())	{
 			util+=g_info.computeRU(t);
 //			Log.prn(1, "ru:"+util);
 		}
@@ -157,7 +147,7 @@ public class TaskMng {
 
 	public double getRUtil() {
 		double util=0;
-		for(Task t:g_tasks)	{
+		for(Task t:g_tasks.getArr())	{
 			util+=g_info.computeRU(t);
 		}
 		return util;
@@ -174,7 +164,7 @@ public class TaskMng {
 
 
 	public int size() {
-		return g_tasks.length;
+		return g_tasks.size();
 	}
 
 
