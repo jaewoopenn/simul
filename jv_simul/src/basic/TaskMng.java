@@ -72,29 +72,7 @@ public class TaskMng {
 		g_tasks.get(i).vd=vd;
 	}
 	
-	// prn 
 	
-	public void prn() {
-		g_tasks.prn();
-		g_info.prn();
-	}
-	public void prnComp() {
-		g_tasks.prnComp();
-		g_info.prn();
-	}
-	
-	public void prnHI() {
-		g_hi_tasks.prn();
-		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
-		
-	}
-
-	public void prnLoTasks() {
-		g_lo_tasks.prn();
-	}
-	public void prnStat() {
-		g_tasks.prnStat();
-	}
 
 	// get
 	public int getComp(int tid){
@@ -122,14 +100,6 @@ public class TaskMng {
 		return g_lo_tasks.getArr();
 	}
 
-	public double getRU() {
-		double util=0;
-		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeRU(t);
-//			Log.prn(1, "ru:"+util);
-		}
-		return util;
-	}
 
 	public double getRUtil() {
 		double util=0;
@@ -163,37 +133,32 @@ public class TaskMng {
 
 
 
+	// prn 
 
+	public void prnShort() {
+		g_info.prnUtil();
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	public void prn() {
+		g_tasks.prn();
+		g_info.prn();
+	}
+	public void prnComp() {
+		g_tasks.prnComp();
+		g_info.prn();
+	}
 	
+	public void prnHI() {
+		g_hi_tasks.prn();
+		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
+		
+	}
 
-//	public int getPt(int i) {
-//	return g_tasks[i].period;
-//}
-//
-//public int[] getPeriods() {
-//	int[] plst=new int[g_info.getSize()];
-//	for(int i=0;i<g_info.getSize();i++)
-//	{
-//		plst[i]=getPt(i);
-//	}
-//	
-//	return plst;
-//}
-
+	public void prnLoTasks() {
+		g_lo_tasks.prn();
+	}
+	public void prnStat() {
+		g_tasks.prnStat();
+	}
 
 }

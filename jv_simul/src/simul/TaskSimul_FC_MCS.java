@@ -70,7 +70,7 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 		Task t;
 		TaskMng tm=c.getTM();
 		while(true){
-			double ru=tm.getRU();
+			double ru=tm.getRUtil();
 //			Log.prn(1, "RU:"+ru);
 			if(ru>lim+MUtil.err){
 				if(isShared)

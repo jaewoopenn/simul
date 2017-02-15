@@ -20,7 +20,7 @@ public class Comp2 {
 		c.prn();
 		TaskMng tm=c.getTM();
 		tm.setX(0.5);
-		double ru=tm.getRU();
+		double ru=tm.getRUtil();
 		Log.prn(1, "RU:"+ru);
 		double u=c.getST_U();
 		Log.prn(1, "init:"+u);

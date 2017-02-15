@@ -22,6 +22,8 @@ public class Part1 {
 	public int test2() {
 		CoreMng cm=TS_MP1.core1();
 		cm.prn();
+		cm.move();
+		cm.prn();
 		return -1;
 	}
 	

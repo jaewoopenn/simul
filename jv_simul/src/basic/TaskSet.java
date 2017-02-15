@@ -23,8 +23,8 @@ public class TaskSet {
 		return g_taskV.size();
 	}
 	
-	public void removeLast() {
-		g_taskV.remove(v_size()-1);
+	public Task removeLast() {
+		return g_taskV.remove(v_size()-1);
 		
 	}
 	public void transform_Array(){

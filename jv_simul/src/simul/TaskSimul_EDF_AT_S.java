@@ -31,7 +31,7 @@ public class TaskSimul_EDF_AT_S extends TaskSimul{
 	}
 	
 	private void dropDecision() {
-		double ru=g_tm.getRU();
+		double ru=g_tm.getRUtil();
 		while(ru>=1+MUtil.err){
 //			Log.prn(1, "RU"+ru);
 			Task t=g_tm.findDropTask();

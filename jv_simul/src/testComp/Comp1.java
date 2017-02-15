@@ -36,7 +36,7 @@ public class Comp1 {
 	public  int test4() 
 	{
 		Comp c=CompEx1.getComp3();
-		double ru=c.getTM().getRU();
+		double ru=c.getTM().getRUtil();
 		Log.prn(1, "RU:"+ru);
 		return 0;
 	}
