@@ -1,8 +1,5 @@
 package Vec;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.Vector;
 
 public class Read1 {

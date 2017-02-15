@@ -3,7 +3,6 @@ package basic;
 import java.util.Arrays;
 import java.util.Vector;
 
-import util.Log;
 
 
 public class TaskSet {
