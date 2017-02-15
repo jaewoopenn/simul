@@ -2,7 +2,8 @@ package basic;
 
 import java.util.Vector;
 
-import utill.FUtil;
+import util.FUtil;
+import util.Log;
 
 public class TaskSetFix {
 	private Vector<Task> g_taskV;
@@ -33,6 +34,7 @@ public class TaskSetFix {
 		else
 			g_lo_taskV.add(t);
 	}
+	
 	public void setTasks(Vector<Task> all) {
 		g_taskV=all;
 		g_lo_taskV=new Vector<Task>();
@@ -44,7 +46,8 @@ public class TaskSetFix {
 				g_lo_taskV.add(t);
 		}
 	}
-	public void goToArray(){
+	
+	public void transform_Array(){
 		int size=g_taskV.size();
 		int h_size=g_hi_taskV.size();
 		int l_size=g_lo_taskV.size();
@@ -55,9 +58,13 @@ public class TaskSetFix {
 		g_hi_taskV.toArray(g_hi_tasks);
 		g_lo_taskV.toArray(g_lo_tasks);
 	}
-	public TaskMng freezeTasks()
+	public void stat(){
+		Log.prn(2, g_taskV.size());
+	}
+	
+	public TaskMng getTM()
 	{
-		goToArray();
+		transform_Array();
 		
 		double loutil=0;
 		double hiutil_lm=0;

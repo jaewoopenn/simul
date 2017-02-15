@@ -2,7 +2,7 @@ package testFile;
 import basic.TaskMng;
 import basic.TaskSetFix;
 import simul.TaskSimul_EDF_AT_S;
-import utill.TEngine;
+import util.TEngine;
 
 public class TaskSetLoad1 {
 	public static int log_level=1;
@@ -12,7 +12,7 @@ public class TaskSetLoad1 {
 	public int test1()
 	{
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
-		TaskMng m=tmp.freezeTasks();
+		TaskMng m=tmp.getTM();
 		m.prn();
 		return 1;
 	}
@@ -23,7 +23,7 @@ public class TaskSetLoad1 {
 	public  int test3()
 	{
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,20);
 	}

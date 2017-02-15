@@ -1,6 +1,6 @@
 package exp;
 
-import utill.Log;
+import util.Log;
 
 public class Job implements Comparable<Job>{
 	public int tid;

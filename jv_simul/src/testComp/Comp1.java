@@ -2,8 +2,8 @@ package testComp;
 
 
 import comp.Comp;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 import sysEx.CompEx1;
 
 public class Comp1 {

@@ -14,9 +14,9 @@ import simul.SimulInfo;
 import simul.TaskSimul;
 import simul.TaskSimul_EDF_AT_S;
 import simul.TaskSimul_EDF_VD;
-import utill.FUtil;
-import utill.Log;
-import utill.MUtil;
+import util.FUtil;
+import util.Log;
+import util.MUtil;
 
 public class PlatformTM extends Platform{
 	

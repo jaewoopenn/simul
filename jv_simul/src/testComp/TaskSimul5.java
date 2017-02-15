@@ -8,7 +8,7 @@ import simul.SimulInfo;
 import simul.TaskSimul_FC_MCS;
 import simul.TaskSimul_FC_Naive;
 import sysEx.CompMngEx1;
-import utill.TEngine;
+import util.TEngine;
 
 // Comp
 public class TaskSimul5 {

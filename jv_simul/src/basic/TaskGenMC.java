@@ -1,7 +1,7 @@
 package basic;
 
 
-import utill.Log;
+import util.Log;
 
 public class TaskGenMC extends TaskGen {
 	

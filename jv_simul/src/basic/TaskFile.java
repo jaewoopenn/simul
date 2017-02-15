@@ -3,7 +3,7 @@ package basic;
 import java.util.Vector;
 
 import comp.Comp;
-import utill.FUtil;
+import util.FUtil;
 
 
 
@@ -59,7 +59,7 @@ public class TaskFile {
         
         Vector<Task> tasks=loadFile(fu,st,num);
         TaskSetFix tmp=new TaskSetFix(tasks);
-        c.setTM(tmp.freezeTasks());
+        c.setTM(tmp.getTM());
         return c;
 	}
 	

@@ -4,7 +4,7 @@ import basic.TaskMng;
 import basic.TaskSetFix;
 import simul.TaskSimul_EDF_AT_S;
 import sysEx.TS_NonMC1;
-import utill.TEngine;
+import util.TEngine;
 
 public class TaskSimul1 {
 	public static int log_level=2;
@@ -27,7 +27,7 @@ public class TaskSimul1 {
 	public  int test3()	{
 		int et=40;
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);
 	}
@@ -35,7 +35,7 @@ public class TaskSimul1 {
 	public  int test4()	{
 		int et=80;
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test2.txt");
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		return ts.simulEnd(0,et);
 	}

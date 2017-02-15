@@ -11,9 +11,9 @@ import simul.SimulInfo;
 import simul.TaskSimul_FC;
 import simul.TaskSimul_FC_MCS;
 import simul.TaskSimul_FC_Naive;
-import utill.FUtil;
-import utill.Log;
-import utill.MUtil;
+import util.FUtil;
+import util.Log;
+import util.MUtil;
 
 public class PlatformCom extends Platform{
 	

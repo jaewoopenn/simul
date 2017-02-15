@@ -1,5 +1,5 @@
 package testExp;
-import utill.TEngine;
+import util.TEngine;
 
 public class ExpSimul1 {
 	public static int idx=1;

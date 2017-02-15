@@ -2,9 +2,9 @@ package test;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import utill.Log;
-import utill.MUtil;
-import utill.TEngine;
+import util.Log;
+import util.MUtil;
+import util.TEngine;
 
 public class Simple1 {
 	public static int log_level=1;

@@ -14,7 +14,7 @@ public class TS_MP1 {
 		tmp.add(new Task(0,6,1,2));
 		tmp.add(new Task(0,8,1,3));
 		tmp.add(new Task(0,14,2,3));
-		return tmp.freezeTasks();
+		return tmp.getTM();
 	}
 	
 

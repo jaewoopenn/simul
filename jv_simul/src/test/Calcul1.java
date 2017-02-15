@@ -1,7 +1,7 @@
 package test;
 
-import utill.FUtil;
-import utill.TEngine;
+import util.FUtil;
+import util.TEngine;
 
 public class Calcul1 {
 	public static int log_level=1;

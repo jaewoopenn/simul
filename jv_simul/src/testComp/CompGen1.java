@@ -6,7 +6,7 @@ import comp.CompGen;
 import comp.CompGenParam;
 import comp.CompMng;
 import basic.TaskGenParam;
-import utill.TEngine;
+import util.TEngine;
 
 public class CompGen1 {
 	public static int idx=2;

@@ -3,7 +3,7 @@ package exp;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
-import utill.Log;
+import util.Log;
 
 public class JobMng {
 	PriorityQueue<Job> g_jobs;

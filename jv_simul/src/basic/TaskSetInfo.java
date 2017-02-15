@@ -1,7 +1,7 @@
 package basic;
 
-import utill.Log;
-import utill.MUtil;
+import util.Log;
+import util.MUtil;
 
 public class TaskSetInfo {
 	private int hi_size;

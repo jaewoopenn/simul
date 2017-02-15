@@ -1,7 +1,7 @@
 package exp;
 
 
-import utill.Log;
+import util.Log;
 
 public class JobSimul {
 	JobMng g_jm;

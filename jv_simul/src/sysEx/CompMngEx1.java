@@ -17,7 +17,7 @@ public class CompMngEx1 {
 		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,6,1));
 		tmp.add(new Task(0,8,1));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		c.setTM(tm);
 		cm.addComp(c);
 		
@@ -25,7 +25,7 @@ public class CompMngEx1 {
 		tmp=new TaskSetFix();
 		tmp.add(new Task(0,7,1));
 		tmp.add(new Task(0,9,1));
-		tm=tmp.freezeTasks();
+		tm=tmp.getTM();
 		c.setTM(tm);
 		cm.addComp(c);
 		return cm;
@@ -37,7 +37,7 @@ public class CompMngEx1 {
 		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,8,1));
 		tmp.add(new Task(0,12,1,5));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		c.setTM(tm);
 		cm.addComp(c);
 		
@@ -45,7 +45,7 @@ public class CompMngEx1 {
 		tmp=new TaskSetFix();
 		tmp.add(new Task(0,8,3));
 		tmp.add(new Task(0,12,1,5));
-		tm=tmp.freezeTasks();
+		tm=tmp.getTM();
 		c.setTM(tm);
 		cm.addComp(c);
 		return cm;
@@ -58,7 +58,7 @@ public class CompMngEx1 {
 		tmp.add(new Task(0,16,1));
 		tmp.add(new Task(0,27,1));
 		tmp.add(new Task(0,12,1,5));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		c.setTM(tm);
 		cm.addComp(c);
 		
@@ -68,7 +68,7 @@ public class CompMngEx1 {
 		tmp.add(new Task(0,30,1));
 		tmp.add(new Task(0,120,3));
 		tmp.add(new Task(0,12,1,5));
-		tm=tmp.freezeTasks();
+		tm=tmp.getTM();
 		c.setTM(tm);
 		cm.addComp(c);
 		return cm;

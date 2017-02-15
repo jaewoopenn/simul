@@ -2,8 +2,11 @@ package part;
 
 
 
+import anal.AnalEDF;
+import basic.Task;
 import basic.TaskSet;
-//import utill.Log;
+import util.Log;
+import basic.TaskSetFix;
 
 public class Partition {
 	TaskSet g_ts;
@@ -12,8 +15,18 @@ public class Partition {
 	}
 	public void anal() {
 		g_ts.sortLo();
-		
 		g_ts.prn();
+		TaskSetFix tsf=new TaskSetFix();
+		AnalEDF a=new AnalEDF();
+
+		for(Task t:g_ts.getArr()){
+			tsf.add(t);
+			tsf.stat();
+			a.init(tsf.getTM());
+			a.prepare();
+			double d=a.getDtm();
+			Log.prn(2, d);
+		}
 	}
 
 }

@@ -1,7 +1,7 @@
 package basic;
 
 
-import utill.RUtil;
+import util.RUtil;
 
 
 

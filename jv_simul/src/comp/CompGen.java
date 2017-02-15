@@ -27,7 +27,7 @@ public class CompGen {
 			tg.generate();
 			Comp c=new Comp(g_param.getAlpha());
 			TaskSetFix tmp=new TaskSetFix(tg.getAll());
-			TaskMng tm=tmp.freezeTasks();
+			TaskMng tm=tmp.getTM();
 			c.setTM(tm);
 			cm.addComp(c);
 			u=cm.getMCUtil();

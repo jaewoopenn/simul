@@ -1,8 +1,8 @@
 package testFile;
 
-import utill.FUtil;
-import utill.Log;
-import utill.TEngine;
+import util.FUtil;
+import util.Log;
+import util.TEngine;
 
 public class FUtil1 {
 	public static int log_level=1;

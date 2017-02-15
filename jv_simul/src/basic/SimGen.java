@@ -1,8 +1,8 @@
 package basic;
 
-import utill.FUtil;
-import utill.Log;
-import utill.MUtil;
+import util.FUtil;
+import util.Log;
+import util.MUtil;
 import anal.AnalEDF_VD;
 
 public class SimGen {
@@ -54,7 +54,7 @@ public class SimGen {
 	private int check() {
 		TaskSetFix tm=new TaskSetFix();
 		tm.setTasks(g_tg.getAll());
-		TaskMng m=tm.freezeTasks();
+		TaskMng m=tm.getTM();
 		if(tm.g_info.getLo_size()==0) return 0;
 		if(tm.g_info.getHi_size()==0) return 0;
 		if(!g_isCheck)
@@ -69,7 +69,7 @@ public class SimGen {
 		g_tg.generate();
 		TaskSetFix tm=new TaskSetFix();
 		tm.setTasks(g_tg.getAll());
-		TaskMng m=tm.freezeTasks();
+		TaskMng m=tm.getTM();
 		return m;
 	}
 	

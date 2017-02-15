@@ -3,7 +3,7 @@ package testExp;
 import exp.Job;
 import exp.JobMng;
 import exp.JobSimul;
-import utill.TEngine;
+import util.TEngine;
 
 public class JobSimul1 {
 	public static int log_level=1;

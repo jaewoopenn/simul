@@ -2,7 +2,7 @@ package testComp;
 import comp.CompFile;
 import comp.CompMng;
 import sysEx.CompMngEx1;
-import utill.TEngine;
+import util.TEngine;
 
 public class CompFile1 {
 	public static int idx=4;

@@ -3,8 +3,8 @@ package basic;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import utill.FUtil;
-import utill.Log;
+import util.FUtil;
+import util.Log;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","c_lb","c_ub","p_lb","p_ub",

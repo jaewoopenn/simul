@@ -2,8 +2,8 @@ package testExp;
 import basic.ConfigGen;
 import comp.CompMng;
 import exp.ExpSimul;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 
 public class ExpSimul2 {
 	public static int idx=1;

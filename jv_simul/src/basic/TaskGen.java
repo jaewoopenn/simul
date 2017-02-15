@@ -2,7 +2,7 @@ package basic;
 
 import java.util.Vector;
 
-import utill.FUtil;
+import util.FUtil;
 
 public abstract class TaskGen {
 	protected TaskGenParam g_param;

@@ -1,7 +1,7 @@
 package comp;
 
-import utill.FUtil;
-import utill.MUtil;
+import util.FUtil;
+import util.MUtil;
 import anal.AnalEDF_VD;
 import basic.ConfigGen;
 import basic.TaskGenParam;

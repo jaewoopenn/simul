@@ -6,8 +6,8 @@ import basic.SimGen;
 import basic.TaskMng;
 import simul.TaskSimul_EDF_AT;
 import sysEx.TS_MC1;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 
 // EDF-AT-S
 public class TaskSimul4 {

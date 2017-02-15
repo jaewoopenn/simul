@@ -5,8 +5,8 @@ import java.util.Vector;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import utill.Log;
-import utill.RUtil;
+import util.Log;
+import util.RUtil;
 
 public class CompMng {
 	private Vector<Comp> g_comp;
@@ -33,7 +33,7 @@ public class CompMng {
 				tmp.add(t);
 			}
 		}
-		g_tm=tmp.freezeTasks();
+		g_tm=tmp.getTM();
 		
 	}
 

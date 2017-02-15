@@ -3,20 +3,20 @@ package testMP;
 import part.Partition;
 import basic.TaskMng;
 import sysEx.TS_MP1;
-import utill.TEngine;
+import util.TEngine;
 
 public class Part1 {
 	public static int log_level=2;
 //	public static int idx=-1;
 	public static int idx=1;
-	public static int gret[]={1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int gret[]={0,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
 		TaskMng tm=TS_MP1.ts1();
 		Partition p=new Partition(tm.getTaskSet());
 		p.anal();
-		return -1;
+		return 0;
 	}
 	public int test2() {
 		return -1;

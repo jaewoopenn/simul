@@ -2,8 +2,8 @@ package anal;
 
 import basic.Task;
 import basic.TaskSetInfo;
-import utill.Log;
-import utill.MUtil;
+import util.Log;
+import util.MUtil;
 
 public class AnalEDF_AD extends Anal {
 	private double lotasks_loutil;

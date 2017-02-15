@@ -3,7 +3,7 @@ package testComp;
 
 import basic.ConfigGen;
 import comp.SimCompGen;
-import utill.TEngine;
+import util.TEngine;
 
 public class SimCompGen1 {
 	public static int idx=1;

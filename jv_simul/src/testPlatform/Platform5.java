@@ -1,8 +1,8 @@
 package testPlatform;
 
 
-import utill.MUtil;
-import utill.TEngine;
+import util.MUtil;
+import util.TEngine;
 
 public class Platform5 {
 	public static int idx=1;

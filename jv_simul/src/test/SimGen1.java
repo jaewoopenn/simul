@@ -1,7 +1,7 @@
 package test;
 import basic.ConfigGen;
 import basic.SimGen;
-import utill.TEngine;
+import util.TEngine;
 
 public class SimGen1 {
 	public static int log_level=2;

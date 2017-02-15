@@ -4,7 +4,7 @@ import basic.Task;
 import basic.TaskMng;
 import simul.TaskSimul_EDF_AT_S;
 import sysEx.TS_MC1;
-import utill.TEngine;
+import util.TEngine;
 
 // MC // manual mode-switch
 public class TaskSimul2 {

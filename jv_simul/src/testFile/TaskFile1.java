@@ -3,7 +3,7 @@ import basic.Task;
 import basic.TaskFile;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import utill.TEngine;
+import util.TEngine;
 
 public class TaskFile1 {
 	public static int idx=2;
@@ -15,7 +15,7 @@ public class TaskFile1 {
 		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,3,1));
 		tmp.add(new Task(0,4,1));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		tm.prn();
 		TaskFile.writeFile("file/test.txt",tm.getTasks());
 		return 1;
@@ -23,7 +23,7 @@ public class TaskFile1 {
 	public int test2()
 	{
 		TaskSetFix tmp=TaskSetFix.loadFile("file/test.txt");
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return 0;
 	}

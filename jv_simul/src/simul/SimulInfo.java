@@ -1,6 +1,6 @@
 package simul;
 
-import utill.Log;
+import util.Log;
 
 
 

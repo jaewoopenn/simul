@@ -1,6 +1,6 @@
 package anal;
 
-import utill.Log;
+import util.Log;
 
 public class AnalEDF extends Anal {
 	private double u;

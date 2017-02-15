@@ -4,8 +4,8 @@ import anal.AnalEDF_AD_E;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 
 public class Anal1 {
 	public static int idx=1;
@@ -18,7 +18,7 @@ public class Anal1 {
 		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,4,2));
 		tmp.add(new Task(1,6,1,5));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();

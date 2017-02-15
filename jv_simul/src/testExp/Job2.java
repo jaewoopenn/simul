@@ -2,7 +2,7 @@ package testExp;
 import java.util.Vector;
 
 import exp.Job;
-import utill.TEngine;
+import util.TEngine;
 
 public class Job2 {
 	public static int idx=1;

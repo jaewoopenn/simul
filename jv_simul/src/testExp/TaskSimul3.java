@@ -9,8 +9,8 @@ import simul.TaskSimul_EDF_AT;
 import simul.TaskSimul_EDF_AT_S;
 import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MC1;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 
 // MC 
 public class TaskSimul3 {

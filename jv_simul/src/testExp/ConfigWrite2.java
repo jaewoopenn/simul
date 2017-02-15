@@ -1,7 +1,7 @@
 package testExp;
 import basic.ConfigGen;
 //import utill.Log;
-import utill.TEngine;
+import util.TEngine;
 
 public class ConfigWrite2 {
 	public static int idx=1;

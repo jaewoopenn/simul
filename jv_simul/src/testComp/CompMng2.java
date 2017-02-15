@@ -5,8 +5,8 @@ import anal.AnalEDF_VD;
 import basic.TaskMng;
 import comp.Comp;
 import comp.CompMng;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 import sysEx.CompMngEx1;
 
 @SuppressWarnings("unused")

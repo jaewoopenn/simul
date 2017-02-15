@@ -5,7 +5,7 @@ import comp.Comp;
 import basic.Task;
 import basic.TaskMng;
 //import utill.Log;
-import utill.MUtil;
+import util.MUtil;
 
 public class TaskSimul_FC_MCS extends TaskSimul_FC{
 

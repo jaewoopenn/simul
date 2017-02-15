@@ -4,7 +4,7 @@ import basic.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskSetFix;
 //import exp.Platform;
-import utill.TEngine;
+import util.TEngine;
 
 public class TaskGen1 {
 	public static int log_level=1;
@@ -39,7 +39,7 @@ public class TaskGen1 {
 		int tg_size=tg.size();
 		TaskSetFix tm=new TaskSetFix();
 		tm.setTasks(tg.getAll());
-		TaskMng m=tm.freezeTasks();
+		TaskMng m=tm.getTM();
 //		tm.prn();
 		int tm_size=m.getInfo().getSize();
 		if(tg_size!=tm_size){
@@ -64,7 +64,7 @@ public class TaskGen1 {
 	public  int test5()
 	{
 		TaskSetFix tmp=TaskSetFix.loadFile("file/test.txt");
-		TaskMng m=tmp.freezeTasks();
+		TaskMng m=tmp.getTM();
 		m.prn();
 		return 1;
 	}

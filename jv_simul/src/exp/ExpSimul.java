@@ -10,8 +10,8 @@ import basic.TaskMng;
 import basic.TaskSetFix;
 import simul.SimulInfo;
 import simul.TaskSimul;
-import utill.Log;
-import utill.MUtil;
+import util.Log;
+import util.MUtil;
 
 public class ExpSimul {
 	private ConfigGen g_cfg;
@@ -26,7 +26,7 @@ public class ExpSimul {
 	public TaskMng loadTM(int i){
 		String fn=g_cfg.get_fn(i);
 		TaskSetFix tmp=TaskSetFix.loadFile(fn);
-		return tmp.freezeTasks();
+		return tmp.getTM();
 	}
 	public CompMng loadCM(int i){
 		String fn=g_cfg.get_fn(i);

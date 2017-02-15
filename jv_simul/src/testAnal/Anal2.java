@@ -5,7 +5,7 @@ import comp.CompFile;
 import comp.CompMng;
 import sysEx.CompMngEx1;
 //import utill.Log;
-import utill.TEngine;
+import util.TEngine;
 
 public class Anal2 {
 	public static int idx=2;

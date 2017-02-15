@@ -1,8 +1,8 @@
 package test;
 
-import utill.Log;
-import utill.RUtil;
-import utill.TEngine;
+import util.Log;
+import util.RUtil;
+import util.TEngine;
 
 public class RUtil1 {
 	public static int idx=3;

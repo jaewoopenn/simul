@@ -13,7 +13,7 @@ public class CompEx1 {
 		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,6,1));
 		tmp.add(new Task(0,8,1));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		c.setTM(tm);
 		return c;
 	}
@@ -22,7 +22,7 @@ public class CompEx1 {
 		TaskSetFix tmp=new TaskSetFix();
 		tmp.add(new Task(0,8,1));
 		tmp.add(new Task(0,12,1,5));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		c.setTM(tm);
 		return c;
 	}
@@ -35,7 +35,7 @@ public class CompEx1 {
 		tmp.add(new Task(0,38,2));
 		tmp.add(new Task(0,48,3));
 		tmp.add(new Task(0,6,1,3));
-		TaskMng tm=tmp.freezeTasks();
+		TaskMng tm=tmp.getTM();
 		c.setTM(tm);
 		return c;
 	}

@@ -4,8 +4,8 @@ package testPlatform;
 
 import basic.ConfigGen;
 import exp.PlatformTM;
-import utill.Log;
-import utill.TEngine;
+import util.Log;
+import util.TEngine;
 
 public class Platform1 {
 	public static int idx=1;
