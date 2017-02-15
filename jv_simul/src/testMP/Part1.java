@@ -16,6 +16,7 @@ public class Part1 {
 		TaskMng tm=TS_MP1.ts1();
 		Partition p=new Partition(tm.getTaskSet());
 		p.anal();
+		//s
 		return 0;
 	}
 	public int test2() {
