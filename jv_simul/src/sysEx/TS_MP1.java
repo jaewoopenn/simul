@@ -1,7 +1,9 @@
 package sysEx;
 
+import part.CoreMng;
 import basic.Task;
 import basic.TaskMng;
+import basic.TaskSet;
 import basic.TaskSetFix;
 
 // Task Set MC
@@ -31,6 +33,24 @@ public class TS_MP1 {
 		tmp.add(new Task(0,8,1,3));
 		tmp.add(new Task(0,14,2,3));
 		return tmp.getTM();
+	}
+
+	public static CoreMng core1() {
+		CoreMng cm=new CoreMng();
+		TaskSet ts=new TaskSet();
+		ts.add(new Task(0,3,1));
+		ts.add(new Task(1,4,1));
+		ts.add(new Task(2,7,1));
+		ts.transform_Array();
+		cm.addTS(ts);
+		
+		ts=new TaskSet();
+		ts.add(new Task(0,14,1));
+		ts.add(new Task(1,17,1));
+		ts.transform_Array();
+		cm.addTS(ts);
+		
+		return cm;
 	}
 	
 

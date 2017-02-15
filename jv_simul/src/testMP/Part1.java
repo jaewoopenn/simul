@@ -1,5 +1,6 @@
 package testMP;
 
+import part.CoreMng;
 import part.Partition;
 import basic.TaskMng;
 import sysEx.TS_MP1;
@@ -8,7 +9,7 @@ import util.TEngine;
 public class Part1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=1;
+	public static int idx=2;
 	public static int gret[]={0,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 
@@ -19,6 +20,8 @@ public class Part1 {
 		return 0;
 	}
 	public int test2() {
+		CoreMng cm=TS_MP1.core1();
+		cm.prn();
 		return -1;
 	}
 	

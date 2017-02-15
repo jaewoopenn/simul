@@ -1,22 +1,18 @@
 package basic;
 
 import java.util.Vector;
-
 import util.FUtil;
 import util.Log;
 
 public class TaskSetFix {
-	private Vector<Task> g_taskV;
-	private Vector<Task> g_lo_taskV;
-	private Vector<Task> g_hi_taskV;
-	private Task[] g_tasks;
-	private Task[] g_lo_tasks;
-	private Task[] g_hi_tasks;
+	private TaskSet g_tasks;
+	private TaskSet g_hi_tasks;
+	private TaskSet g_lo_tasks;
 	public TaskSetInfo g_info;
 	public TaskSetFix() {
-		g_taskV=new Vector<Task>();
-		g_lo_taskV=new Vector<Task>();
-		g_hi_taskV=new Vector<Task>();
+		g_tasks=new TaskSet();
+		g_lo_tasks=new TaskSet();
+		g_hi_tasks=new TaskSet();
 		g_info=new TaskSetInfo();
 	}
 	
@@ -26,52 +22,33 @@ public class TaskSetFix {
 	}
 
 	public void add(Task t){
-		int tid=g_taskV.size();
+		int tid=g_tasks.v_size();
 		t.tid=tid;
-		g_taskV.add(t);
+		g_tasks.add(t);
 		if(t.is_HI)
-			g_hi_taskV.add(t);
+			g_hi_tasks.add(t);
 		else
-			g_lo_taskV.add(t);
+			g_lo_tasks.add(t);
 	}
 	
-	public void setTasks(Vector<Task> all) {
-		g_taskV=all;
-		g_lo_taskV=new Vector<Task>();
-		g_hi_taskV=new Vector<Task>();
-		for(Task t:all){
-			if(t.is_HI)
-				g_hi_taskV.add(t);
-			else
-				g_lo_taskV.add(t);
-		}
-	}
 	
-	public void transform_Array(){
-		int size=g_taskV.size();
-		int h_size=g_hi_taskV.size();
-		int l_size=g_lo_taskV.size();
-		g_tasks=new Task[size];
-		g_hi_tasks=new Task[h_size];
-		g_lo_tasks=new Task[l_size];
-		g_taskV.toArray(g_tasks);
-		g_hi_taskV.toArray(g_hi_tasks);
-		g_lo_taskV.toArray(g_lo_tasks);
-	}
 	public void stat(){
-		Log.prn(2, g_taskV.size());
+		Log.prn(2, g_tasks.v_size());
 	}
 	
+	// export 
 	public TaskMng getTM()
 	{
-		transform_Array();
-		
+		g_tasks.transform_Array();
+		g_hi_tasks.transform_Array();
+		g_lo_tasks.transform_Array();
+				
 		double loutil=0;
 		double hiutil_lm=0;
 		double hiutil_hm=0;
 		int lo_size=0;
 		int hi_size=0;
-		for(Task t:g_tasks)
+		for(Task t:g_tasks.getArr())
 		{
 			double tu=t.getHiUtil();
 			if(t.is_HI){
@@ -90,12 +67,44 @@ public class TaskSetFix {
 		g_info.setLo_size(lo_size);
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,g_info);
 	}
+	public TaskSet getTS() {
+		return g_tasks;
+	}
 		
+	
+	// import 
 	public static TaskSetFix loadFile(String f) {
 	    FUtil fu=new FUtil(f);
 	    fu.load();
 	    Vector<Task> tasks=TaskFile.loadFile(fu,0,fu.size());
 	    return new TaskSetFix(tasks);
 	}
+	
+	public void setTaskSet(TaskSet ts) {
+		g_tasks=ts;
+		g_lo_tasks=new TaskSet();
+		g_hi_tasks=new TaskSet();
+		for(Task t:ts.getArr()){
+			if(t.is_HI)
+				g_hi_tasks.add(t);
+			else
+				g_lo_tasks.add(t);
+		}		
+	}
+
+	public void setTasks(Vector<Task> all) {
+		g_tasks=new TaskSet();
+		g_lo_tasks=new TaskSet();
+		g_hi_tasks=new TaskSet();
+		for(Task t:all){
+			g_tasks.add(t);
+			if(t.is_HI)
+				g_hi_tasks.add(t);
+			else
+				g_lo_tasks.add(t);
+		}
+	}
+
+
 
 }

@@ -10,10 +10,10 @@ public class TaskMng {
 	private TaskSet g_lo_tasks;
 	private TaskSetInfo g_info;
 
-	public TaskMng(Task[] tasks,Task[] hi_tasks,Task[] lo_tasks,TaskSetInfo info) {
-		this.g_tasks = new TaskSet(tasks);
-		this.g_hi_tasks = new TaskSet(hi_tasks);
-		this.g_lo_tasks = new TaskSet(lo_tasks);
+	public TaskMng(TaskSet tasks,TaskSet hi_tasks,TaskSet lo_tasks,TaskSetInfo info) {
+		this.g_tasks=tasks;
+		this.g_hi_tasks = hi_tasks;
+		this.g_lo_tasks = lo_tasks;
 		this.g_info = info;
 		g_lo_tasks.sortLo();
 	}
