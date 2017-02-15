@@ -13,6 +13,12 @@ def legend():
     plt.legend(loc='lower left',prop=font)
 #    plt.legend(loc='upper left',prop=font)
 
+def prepare():
+    plt.figure(figsize=(8,5))
+
+def prepare2():
+    plt.figure(figsize=(8,7))
+        
 def legend2():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
     plt.legend(loc='lower right',prop=font)
