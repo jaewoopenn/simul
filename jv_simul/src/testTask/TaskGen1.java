@@ -1,6 +1,6 @@
 package testTask;
-import basic.TaskGenMC;
-import basic.TaskGenParam;
+import gen.TaskGenMC;
+import gen.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskSetFix;
 //import exp.Platform;
@@ -37,8 +37,7 @@ public class TaskGen1 {
 		tg.generate();
 		tg.prn(1);
 		int tg_size=tg.size();
-		TaskSetFix tm=new TaskSetFix();
-		tm.setTasks(tg.getAll());
+		TaskSetFix tm=new TaskSetFix(tg.getAll());
 		TaskMng m=tm.getTM();
 //		tm.prn();
 		int tm_size=m.getInfo().getSize();

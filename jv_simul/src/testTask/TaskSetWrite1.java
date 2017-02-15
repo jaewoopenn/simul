@@ -1,6 +1,6 @@
 package testTask;
-import basic.TaskGenMC;
-import basic.TaskGenParam;
+import gen.TaskGenMC;
+import gen.TaskGenParam;
 import util.TEngine;
 
 public class TaskSetWrite1 {

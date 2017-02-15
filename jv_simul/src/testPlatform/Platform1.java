@@ -2,8 +2,8 @@ package testPlatform;
 
 
 
-import basic.ConfigGen;
 import exp.PlatformTM;
+import gen.ConfigGen;
 import util.Log;
 import util.TEngine;
 

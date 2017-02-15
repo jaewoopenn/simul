@@ -10,16 +10,39 @@ public class TaskSetFix {
 	private TaskSet g_lo_tasks;
 	public TaskSetInfo g_info;
 	public TaskSetFix() {
+		g_info=new TaskSetInfo();
 		g_tasks=new TaskSet();
 		g_lo_tasks=new TaskSet();
 		g_hi_tasks=new TaskSet();
-		g_info=new TaskSetInfo();
 	}
 	
-	public TaskSetFix(Vector<Task> tasks) {
+
+	public TaskSetFix(Vector<Task> all) {
 		g_info=new TaskSetInfo();
-		setTasks(tasks);
+		g_tasks=new TaskSet();
+		g_lo_tasks=new TaskSet();
+		g_hi_tasks=new TaskSet();
+		for(Task t:all){
+			g_tasks.add(t);
+			if(t.is_HI)
+				g_hi_tasks.add(t);
+			else
+				g_lo_tasks.add(t);
+		}
 	}
+	public TaskSetFix(TaskSet ts) {
+		g_info=new TaskSetInfo();
+		g_tasks=ts;
+		g_lo_tasks=new TaskSet();
+		g_hi_tasks=new TaskSet();
+		for(Task t:ts.getArr()){
+			if(t.is_HI)
+				g_hi_tasks.add(t);
+			else
+				g_lo_tasks.add(t);
+		}		
+	}
+
 
 	public void add(Task t){
 		int tid=g_tasks.v_size();
@@ -67,9 +90,6 @@ public class TaskSetFix {
 		g_info.setLo_size(lo_size);
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,g_info);
 	}
-	public TaskSet getTS() {
-		return g_tasks;
-	}
 		
 	
 	// import 
@@ -79,31 +99,13 @@ public class TaskSetFix {
 	    Vector<Task> tasks=TaskFile.loadFile(fu,0,fu.size());
 	    return new TaskSetFix(tasks);
 	}
-	
-	public void setTaskSet(TaskSet ts) {
-		g_tasks=ts;
-		g_lo_tasks=new TaskSet();
-		g_hi_tasks=new TaskSet();
-		for(Task t:ts.getArr()){
-			if(t.is_HI)
-				g_hi_tasks.add(t);
-			else
-				g_lo_tasks.add(t);
-		}		
-	}
 
-	public void setTasks(Vector<Task> all) {
-		g_tasks=new TaskSet();
-		g_lo_tasks=new TaskSet();
-		g_hi_tasks=new TaskSet();
-		for(Task t:all){
-			g_tasks.add(t);
-			if(t.is_HI)
-				g_hi_tasks.add(t);
-			else
-				g_lo_tasks.add(t);
-		}
+
+	public TaskSet getTS() {
+		return g_tasks;
 	}
+	
+
 
 
 

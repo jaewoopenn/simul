@@ -16,8 +16,7 @@ public class CoreMng {
 		g_tm=new Vector<TaskMng>();
 	}
 	public void addTS(TaskSet ts) {
-		TaskSetFix tsf=new TaskSetFix();
-		tsf.setTaskSet(ts);
+		TaskSetFix tsf=new TaskSetFix(ts);
 		g_tm.addElement(tsf.getTM());
 	}
 	public void prn() {

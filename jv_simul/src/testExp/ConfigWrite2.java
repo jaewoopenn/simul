@@ -1,5 +1,5 @@
 package testExp;
-import basic.ConfigGen;
+import gen.ConfigGen;
 //import utill.Log;
 import util.TEngine;
 

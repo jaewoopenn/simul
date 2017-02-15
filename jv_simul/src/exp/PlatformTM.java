@@ -1,14 +1,14 @@
 package exp;
 
 
+import gen.ConfigGen;
+import gen.SimGen;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_AD;
 import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import anal.AnalICG;
-import basic.ConfigGen;
-import basic.SimGen;
 import basic.TaskMng;
 import simul.SimulInfo;
 import simul.TaskSimul;

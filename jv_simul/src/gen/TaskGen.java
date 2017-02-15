@@ -1,7 +1,9 @@
-package basic;
+package gen;
 
 import java.util.Vector;
 
+import basic.Task;
+import basic.TaskFile;
 import util.FUtil;
 
 public abstract class TaskGen {

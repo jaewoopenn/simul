@@ -25,7 +25,7 @@ public class Partition {
 
 		for(Task t:g_ts.getArr()){
 			tsf.add(t);
-//			tsf.stat();
+			tsf.stat();
 			a.init(tsf.getTM());
 			a.prepare();
 			double d=a.getDtm();
@@ -41,7 +41,6 @@ public class Partition {
 		g_part.addElement(tsf.getTS());
 		Log.prn(2,"aa"+g_part.size());
 		for(TaskSet ts:g_part){
-			ts.transform_Array();
 			ts.prn();
 			Log.prn(2,"--");
 		}

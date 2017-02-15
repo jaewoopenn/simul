@@ -1,7 +1,7 @@
 package testComp;
 
 
-import basic.ConfigGen;
+import gen.ConfigGen;
 import comp.SimCompGen;
 import util.TEngine;
 

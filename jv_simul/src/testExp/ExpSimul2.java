@@ -1,7 +1,7 @@
 package testExp;
-import basic.ConfigGen;
 import comp.CompMng;
 import exp.ExpSimul;
+import gen.ConfigGen;
 import util.Log;
 import util.TEngine;
 

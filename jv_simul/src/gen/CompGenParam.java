@@ -1,4 +1,4 @@
-package comp;
+package gen;
 
 
 //import utill.Log;

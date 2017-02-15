@@ -1,11 +1,11 @@
 package testComp;
 
 
+import gen.CompGen;
+import gen.CompGenParam;
+import gen.TaskGenParam;
 import comp.CompFile;
-import comp.CompGen;
-import comp.CompGenParam;
 import comp.CompMng;
-import basic.TaskGenParam;
 import util.TEngine;
 
 public class CompGen1 {

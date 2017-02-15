@@ -1,5 +1,7 @@
-package basic;
+package gen;
 
+import basic.TaskMng;
+import basic.TaskSetFix;
 import util.FUtil;
 import util.Log;
 import util.MUtil;
@@ -52,8 +54,7 @@ public class SimGen {
 	}
 
 	private int check() {
-		TaskSetFix tm=new TaskSetFix();
-		tm.setTasks(g_tg.getAll());
+		TaskSetFix tm=new TaskSetFix(g_tg.getAll());
 		TaskMng m=tm.getTM();
 		if(tm.g_info.getLo_size()==0) return 0;
 		if(tm.g_info.getHi_size()==0) return 0;
@@ -67,8 +68,7 @@ public class SimGen {
 	}
 	public TaskMng genOne(){
 		g_tg.generate();
-		TaskSetFix tm=new TaskSetFix();
-		tm.setTasks(g_tg.getAll());
+		TaskSetFix tm=new TaskSetFix(g_tg.getAll());
 		TaskMng m=tm.getTM();
 		return m;
 	}

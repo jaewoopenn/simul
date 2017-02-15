@@ -1,10 +1,12 @@
 package comp;
 
+import gen.CompGen;
+import gen.CompGenParam;
+import gen.ConfigGen;
+import gen.TaskGenParam;
 import util.FUtil;
 import util.MUtil;
 import anal.AnalEDF_VD;
-import basic.ConfigGen;
-import basic.TaskGenParam;
 
 public class SimCompGen {
 	private CompGen g_cg;

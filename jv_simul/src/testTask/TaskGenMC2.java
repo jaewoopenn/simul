@@ -1,7 +1,7 @@
 package testTask;
-import basic.TaskGen;
-import basic.TaskGenMC;
-import basic.TaskGenParam;
+import gen.TaskGen;
+import gen.TaskGenMC;
+import gen.TaskGenParam;
 import util.TEngine;
 
 // Simulation

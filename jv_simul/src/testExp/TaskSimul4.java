@@ -1,8 +1,8 @@
 package testExp;
 
+import gen.ConfigGen;
+import gen.SimGen;
 import anal.AnalEDF_AD_E;
-import basic.ConfigGen;
-import basic.SimGen;
 import basic.TaskMng;
 import simul.TaskSimul_EDF_AT;
 import sysEx.TS_MC1;
