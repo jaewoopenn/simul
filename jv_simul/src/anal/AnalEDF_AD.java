@@ -5,13 +5,13 @@ import basic.TaskSetInfo;
 import utill.Log;
 import utill.MUtil;
 
-public class AnalEDF_AT extends Anal {
+public class AnalEDF_AD extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
 	TaskSetInfo g_info;
-	public AnalEDF_AT() {
+	public AnalEDF_AD() {
 		super();
 		name="AT";
 	}

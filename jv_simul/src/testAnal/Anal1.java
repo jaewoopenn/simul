@@ -1,6 +1,6 @@
 package testAnal;
 
-import anal.AnalEDF_AT_S;
+import anal.AnalEDF_AD_E;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSetFix;
@@ -19,7 +19,7 @@ public class Anal1 {
 		tmp.add(new Task(0,4,2));
 		tmp.add(new Task(1,6,1,5));
 		TaskMng tm=tmp.freezeTasks();
-		AnalEDF_AT_S a=new AnalEDF_AT_S();
+		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();

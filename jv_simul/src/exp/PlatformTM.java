@@ -3,8 +3,8 @@ package exp;
 
 import anal.Anal;
 import anal.AnalEDF;
-import anal.AnalEDF_AT;
-import anal.AnalEDF_AT_S;
+import anal.AnalEDF_AD;
+import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import anal.AnalICG;
 import basic.ConfigGen;
@@ -59,7 +59,7 @@ public class PlatformTM extends Platform{
 	public void simul() {
 		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
-		simul_in(2,new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S());
+		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AT_S());
 	}
 	public void simul_in(int no,Anal an,TaskSimul ts){
 		double ret;
@@ -114,7 +114,7 @@ public class PlatformTM extends Platform{
 		if(anal==0)
 			simul_in_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
 		else
-			simul_in_one(new AnalEDF_AT_S(),new TaskSimul_EDF_AT_S(),set,no);
+			simul_in_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AT_S(),set,no);
 	}
 	
 	private void simul_in_one(Anal an,
@@ -142,9 +142,9 @@ public class PlatformTM extends Platform{
 	
 	public void anal() {
 		write_x_axis();
-		anal_in(1,new AnalEDF_AT_S());
+		anal_in(1,new AnalEDF_AD_E());
 		anal_in(2,new AnalEDF_VD());
-		anal_in(3,new AnalEDF_AT());
+		anal_in(3,new AnalEDF_AD());
 		anal_in(4,new AnalICG());
 		anal_in(5,new AnalEDF());
 	}
@@ -184,7 +184,7 @@ public class PlatformTM extends Platform{
 		if(kinds==0)
 			anal_in_one(new AnalEDF_VD(),set,no);
 		else
-			anal_in_one(new AnalEDF_AT_S(),set,no);
+			anal_in_one(new AnalEDF_AD_E(),set,no);
 	}
 	private void anal_in_one(Anal an,
 			int set, int no) {

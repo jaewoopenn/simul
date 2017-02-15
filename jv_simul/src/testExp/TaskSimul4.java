@@ -1,6 +1,6 @@
 package testExp;
 
-import anal.AnalEDF_AT_S;
+import anal.AnalEDF_AD_E;
 import basic.ConfigGen;
 import basic.SimGen;
 import basic.TaskMng;
@@ -24,7 +24,7 @@ public class TaskSimul4 {
 		return -1;
 	}
 	public void exec(TaskMng tm, int et){
-		AnalEDF_AT_S a=new AnalEDF_AT_S();
+		AnalEDF_AD_E a=new AnalEDF_AD_E();
 //		AnalEDF_AT a=new AnalEDF_AT();
 		a.init(tm);
 		a.prepare();

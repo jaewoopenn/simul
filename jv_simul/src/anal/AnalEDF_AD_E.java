@@ -1,21 +1,21 @@
 package anal;
 
 import basic.Task;
+import basic.TaskMng;
 import basic.TaskSetInfo;
 import utill.Log;
 import utill.MUtil;
 
-public class AnalEDF_AT_E extends Anal {
-
+public class AnalEDF_AD_E extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
 	private int n_skip;
 	TaskSetInfo g_info;
-	public AnalEDF_AT_E() {
+	public AnalEDF_AD_E() {
 		super();
-		name="AT-E";
+		name="AT-S";
 	}
 	@Override
 	public void prepare() {
@@ -23,8 +23,8 @@ public class AnalEDF_AT_E extends Anal {
 		lotasks_loutil=g_info.getLo_util();
 		hitasks_loutil=g_info.getHi_util_lm();
 		hitasks_hiutil=g_info.getHi_util_hm();
-		glo_x=hitasks_loutil/(1-lotasks_loutil);
-		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
+		double cal_x=(1-hitasks_hiutil)/lotasks_loutil;
+		glo_x=Math.min(1,cal_x);
 		n_skip=0;
 		for(Task t:tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;
@@ -33,32 +33,32 @@ public class AnalEDF_AT_E extends Anal {
 			if(v_util>=h_util)
 				n_skip++;
 		}
-		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
-		Log.prn(1, "x:"+glo_x);
+		Log.prnc(1, "ll:"+MUtil.getStr(lotasks_loutil));
+		Log.prnc(1, " hl:"+MUtil.getStr(hitasks_loutil));
+		Log.prn(1, " hh:"+MUtil.getStr(hitasks_hiutil));
+		Log.prnc(1, "x:"+glo_x);
 		Log.prn(1, "n_skip:"+n_skip);
 	}
 	
-
-
 	@Override
 	public double getDtm() {
 		double dtm=lotasks_loutil;
 		for(Task t:tm.getHiTasks()){
-			double v_util=t.getLoRUtil()/glo_x;
-//			double h_util=t.c_h*1.0/t.period;
+			double v_util=t.getLoUtil()/glo_x;
+			double h_util=t.getHiUtil();
 //			Log.prn(1,"v h:"+v_util+","+h_util);
-//			dtm+=Math.min(v_util,h_util);
-			dtm+=v_util;
+			dtm+=Math.min(v_util,h_util);
 		}
 		Log.prn(1,"det:"+dtm);
 		return dtm;
 	}
 
+
+
+
 	
 	@Override
 	public double getDropRate(double p) {
-		if(lotasks_loutil==0) 
-			return 0; 
 		double exp_drop_sum=0;
 		int drop=0;
 		double exp_drop=0;
@@ -92,8 +92,7 @@ public class AnalEDF_AT_E extends Anal {
 		
 		return drop;
 	}
-	
-	private double getReq(int k){ // Required utilization for k HI-behavior 
+	private double getReq(int k){
 		int nf=g_info.getHi_size()-n_skip;
 		double req_util=0;
 		int cur=0;
@@ -120,5 +119,10 @@ public class AnalEDF_AT_E extends Anal {
 	public double getX() {
 		return glo_x;
 	}
-
+	public static double computeX(TaskMng tm) {
+		AnalEDF_AD_E a=new AnalEDF_AD_E();
+		a.init(tm);
+		a.prepare();
+		return a.getX();
+	}
 }

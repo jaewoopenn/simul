@@ -1,7 +1,7 @@
 package testComp;
 
 
-import anal.AnalEDF_AT_S;
+import anal.AnalEDF_AD_E;
 import basic.Task;
 import basic.TaskMng;
 import comp.CompMng;
@@ -42,7 +42,7 @@ public class CompMng1 {
 		CompMng cm=CompMngEx1.getCompMng2();
 		TaskMng tm=cm.getTM();
 		tm.prn();
-		AnalEDF_AT_S a=new AnalEDF_AT_S();
+		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();

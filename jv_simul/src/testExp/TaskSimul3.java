@@ -1,6 +1,6 @@
 package testExp;
 
-import anal.AnalEDF_AT;
+import anal.AnalEDF_AD;
 import anal.AnalEDF_VD;
 import basic.ConfigGen;
 import basic.SimGen;
@@ -55,7 +55,7 @@ public class TaskSimul3 {
 	}
 	public void exec(TaskMng tm, int et){
 //		AnalEDF_AT_S a=new AnalEDF_AT_S();
-		AnalEDF_AT a=new AnalEDF_AT();
+		AnalEDF_AD a=new AnalEDF_AD();
 		a.init(tm);
 		a.prepare();
 		if(!a.isScheduable()){
