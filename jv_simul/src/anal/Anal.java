@@ -21,7 +21,6 @@ public abstract class Anal {
 		return false;
 	
 	}
-	public abstract double getDropRate(double p);
 	public abstract double getX();
 	public String getName() {
 		return name;

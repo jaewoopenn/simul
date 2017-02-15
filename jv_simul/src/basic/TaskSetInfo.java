@@ -1,5 +1,8 @@
 package basic;
 
+import utill.Log;
+import utill.MUtil;
+
 public class TaskSetInfo {
 	private int hi_size;
 	private int lo_size;
@@ -73,4 +76,11 @@ public class TaskSetInfo {
 	public void setHi_util_hm(double hi_util_hm) {
 		this.hi_util_hm = hi_util_hm;
 	}
+	public void prn() {
+		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(getLo_util()+getHi_util_lm()));
+		Log.prnc(2, " ll_util:"+MUtil.getStr(getLo_util()));
+		Log.prn(2, " hl_util:"+MUtil.getStr(getHi_util_lm()));
+		Log.prn(2, "hi_mode_util:"+MUtil.getStr(getHi_util_hm()));
+	}
+	
 }

@@ -4,6 +4,7 @@ package comp;
 import utill.Log;
 import basic.Task;
 import basic.TaskMng;
+import basic.TaskSet;
 
 
 public class Comp {
@@ -63,7 +64,7 @@ public class Comp {
 	}
 	
 	// get
-	public Task[] getTasks() {
+	public TaskSet getTasks() {
 		return g_tm.getTasks();
 	}
 
@@ -82,9 +83,8 @@ public class Comp {
 	}
 	
 	public double getST_U() {
-		Task[] tasks=g_tm.getTasks();
 		double u=0;
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(t.is_HI)
 				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
 			else
@@ -97,9 +97,8 @@ public class Comp {
 		return Math.max(getExt_U(), getInt_U());
 	}
 	public double getNa_U(){
-		Task[] tasks=g_tm.getTasks();
 		double u=0;
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(t.is_HI)
 				u+= t.getHiUtil();
 			else{
@@ -112,9 +111,8 @@ public class Comp {
 		return u;
 	}
 	public double getExt_U() {
-		Task[] tasks=g_tm.getTasks();
 		double u=0;
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(t.is_HI)
 				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
 			else{
@@ -127,9 +125,8 @@ public class Comp {
 		return u;
 	}
 	public double getInt_U() {
-		Task[] tasks=g_tm.getTasks();
 		double u=0;
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(t.is_HI)
 				u+= t.getHiUtil();
 			else{

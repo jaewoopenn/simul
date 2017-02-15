@@ -9,9 +9,9 @@ import utill.FUtil;
 
 public class TaskFile {
 
-	public static void writeFile(String fn,Task[] tasks){
+	public static void writeFile(String fn,TaskSet tasks){
 		FUtil fu=new FUtil(fn);
-		for(Task t:tasks)
+		for(Task t:tasks.getArr())
 			writeTask(fu,t);
 		fu.save();
 	}

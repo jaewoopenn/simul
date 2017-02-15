@@ -1,10 +1,8 @@
 package basic;
 
 
-import java.util.Arrays;
 
 import utill.Log;
-import utill.MUtil;
 
 public class TaskMng {
 	private TaskSet g_tasks;
@@ -12,12 +10,12 @@ public class TaskMng {
 	private TaskSet g_lo_tasks;
 	private TaskSetInfo g_info;
 
-	public TaskMng(Task[] g_tasks,Task[] g_hi_tasks,Task[] g_lo_tasks,TaskSetInfo g_info) {
-		this.g_tasks = new TaskSet(g_tasks);
-		this.g_hi_tasks = new TaskSet(g_hi_tasks);
-		this.g_lo_tasks = new TaskSet(g_lo_tasks);
-		this.g_info = g_info;
-		Arrays.sort(g_lo_tasks,new ComparatorTask());
+	public TaskMng(Task[] tasks,Task[] hi_tasks,Task[] lo_tasks,TaskSetInfo info) {
+		this.g_tasks = new TaskSet(tasks);
+		this.g_hi_tasks = new TaskSet(hi_tasks);
+		this.g_lo_tasks = new TaskSet(lo_tasks);
+		this.g_info = info;
+		g_lo_tasks.sortLo();
 	}
 	
 	
@@ -77,38 +75,25 @@ public class TaskMng {
 	// prn 
 	
 	public void prn() {
-		for(Task t:g_tasks.getArr())
-			t.prn();
-		prnUtil();
+		g_tasks.prn();
+		g_info.prn();
 	}
 	public void prnComp() {
-		for(Task t:g_tasks.getArr())
-			t.prnComp();
-		prnUtil();
-	}
-	public void prnUtil() {
-		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(g_info.getLo_util()+g_info.getHi_util_lm()));
-		Log.prnc(2, " ll_util:"+MUtil.getStr(g_info.getLo_util()));
-		Log.prn(2, " hl_util:"+MUtil.getStr(g_info.getHi_util_lm()));
-		Log.prn(2, "hi_mode_util:"+MUtil.getStr(g_info.getHi_util_hm()));
-		
+		g_tasks.prnComp();
+		g_info.prn();
 	}
 	
 	public void prnHI() {
-		for(Task t:g_hi_tasks.getArr())
-			t.prn();
+		g_hi_tasks.prn();
 		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
 		
 	}
 
 	public void prnLoTasks() {
-		for(Task t:g_lo_tasks.getArr()){
-			t.prn();
-		}
+		g_lo_tasks.prn();
 	}
 	public void prnStat() {
-		for(Task t:g_tasks.getArr())
-			t.prnStat();
+		g_tasks.prnStat();
 	}
 
 	// get
@@ -120,8 +105,8 @@ public class TaskMng {
 		return g_info;
 	}
 
-	public Task[] getTasks() {
-		return g_tasks.getArr();
+	public TaskSet getTasks() {
+		return g_tasks;
 	}
 
 
@@ -166,6 +151,14 @@ public class TaskMng {
 
 	public int size() {
 		return g_tasks.size();
+	}
+
+
+
+
+
+	public TaskSet getTaskSet() {
+		return g_tasks;
 	}
 
 

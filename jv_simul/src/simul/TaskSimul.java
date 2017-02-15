@@ -71,8 +71,7 @@ public abstract class TaskSimul {
 	protected abstract void initMode();
 	
 	public void initModeS() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(t.is_HI){
 				if(t.getHiUtil()<t.getLoRUtil())
 					t.is_HM=true;
@@ -86,8 +85,7 @@ public abstract class TaskSimul {
 //		g_tm.prnHI();
 	}
 	protected void initModeN() {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(!t.is_HI)
 				t.is_dropped=false;
 			else

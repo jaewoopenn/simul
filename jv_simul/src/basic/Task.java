@@ -1,6 +1,7 @@
 package basic;
 
 import utill.Log;
+import utill.MUtil;
 
 public class Task {
 	public int tid;
@@ -61,6 +62,14 @@ public class Task {
 		}
 		Log.prnc(2," hi-crit?"+is_HI);
 		Log.prn(2," util:"+getLoUtil());
+	}
+	public void prnShort() {
+		Log.prnc(2, tid);
+		Log.prnc(2, ", "+period);
+		Log.prnc(2, ", "+c_l);
+		Log.prnc(2, ", "+c_h);
+		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
+		Log.prn(2, ", "+MUtil.getStr(getHiUtil()));
 	}
 	public void prnComp(){
 		Log.prnc(2, "cid:"+cid);

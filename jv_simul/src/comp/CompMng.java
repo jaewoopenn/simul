@@ -28,8 +28,7 @@ public class CompMng {
 	public void makeTM(){
 		TaskSetFix tmp=new TaskSetFix();
 		for(Comp c:g_comp){
-			Task[] tasks=c.getTasks();
-			for(Task t:tasks){
+			for(Task t:c.getTasks().getArr()){
 				t.setComp(c.getID());
 				tmp.add(t);
 			}

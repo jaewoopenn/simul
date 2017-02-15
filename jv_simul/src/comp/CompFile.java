@@ -11,7 +11,7 @@ public class CompFile {
 	public static void writeFile(String fn,Vector<Comp> comps) {
 		FUtil fu=new FUtil(fn);
 		for(Comp c:comps){
-			Task[] tasks=c.getTasks();
+			Task[] tasks=c.getTasks().getArr();
 			fu.print("C,"+c.getID()+","+tasks.length+","+c.getAlpha());
 			for(Task t:tasks)
 				TaskFile.writeTask(fu,t);

@@ -88,20 +88,6 @@ public class AnalEDF_AD extends Anal {
 		return sum_prob;
 	}
 	
-	@Override
-	public double getDropRate(double p) {
-		double sum_prob=0;
-		for(int i=0;i<=g_info.getHi_size();i++){
-			sum_prob+=1;
-			Log.prn(1, i+" "+sum_prob);
-		}
-//		int lim=(int)Math.pow(2,hi_size);
-//		for(int i=0;i<lim;i++){
-//			sum_prob+=getHUtil(i,prob_hi);
-//		}
-		int num=g_info.getLo_size();
-		return sum_prob/num;
-	}
 
 	public double getX() {
 		return glo_x;

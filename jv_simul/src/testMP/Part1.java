@@ -1,5 +1,6 @@
 package testMP;
 
+import part.Partition;
 import basic.TaskMng;
 import sysEx.TS_MP1;
 import utill.TEngine;
@@ -13,7 +14,8 @@ public class Part1 {
 
 	public int test1()	{
 		TaskMng tm=TS_MP1.ts1();
-		
+		Partition p=new Partition(tm.getTaskSet());
+		p.anal();
 		return -1;
 	}
 	public int test2() {

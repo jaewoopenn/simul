@@ -213,7 +213,7 @@ public class PlatformTM extends Platform{
 			for(int j=0;j<size;j++){
 				TaskMng tm=eg.loadTM(j);
 				Log.prn(2, mod+" "+j);
-				tm.prnUtil();
+				tm.getInfo().prn();
 			}
 		}
 		

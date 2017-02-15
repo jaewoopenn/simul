@@ -29,11 +29,6 @@ public class AnalICG extends Anal {
 
 
 
-	@Override
-	public double getDropRate(double prob_hi) {
-		return 0;
-	}
-
 	private boolean findOPA()
 	{
 		boolean b;

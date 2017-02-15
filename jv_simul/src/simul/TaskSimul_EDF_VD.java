@@ -23,8 +23,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 	
 	@Override
 	public void modeswitch_in(int tid) {
-		Task[] tasks=g_tm.getTasks();
-		for(Task t:tasks){
+		for(Task t:g_tm.getTasks().getArr()){
 			if(t.is_HI){
 				if(isPrnMS)
 					Log.prn(1, "ms hi "+t.tid);
