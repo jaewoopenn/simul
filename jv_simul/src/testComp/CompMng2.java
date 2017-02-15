@@ -9,6 +9,7 @@ import utill.Log;
 import utill.TEngine;
 import sysEx.CompMngEx1;
 
+@SuppressWarnings("unused")
 public class CompMng2 {
 	public static int idx=3;
 //	public static int idx=-1;

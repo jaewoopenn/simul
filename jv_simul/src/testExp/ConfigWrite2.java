@@ -1,6 +1,6 @@
 package testExp;
 import basic.ConfigGen;
-import utill.Log;
+//import utill.Log;
 import utill.TEngine;
 
 public class ConfigWrite2 {

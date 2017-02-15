@@ -1,7 +1,7 @@
 package comp;
 
 
-import utill.Log;
+//import utill.Log;
 import utill.RUtil;
 
 

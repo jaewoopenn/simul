@@ -5,7 +5,7 @@ import basic.TaskGenMC;
 import basic.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import utill.Log;
+//import utill.Log;
 
 public class CompGen {
 	protected CompGenParam g_param;

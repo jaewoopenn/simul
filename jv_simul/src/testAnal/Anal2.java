@@ -4,7 +4,7 @@ import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
 import sysEx.CompMngEx1;
-import utill.Log;
+//import utill.Log;
 import utill.TEngine;
 
 public class Anal2 {
