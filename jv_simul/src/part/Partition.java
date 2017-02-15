@@ -25,6 +25,10 @@ public class Partition {
 			a.init(tsf.getTM());
 			a.prepare();
 			double d=a.getDtm();
+			if (d>1){
+				tsf=new TaskSetFix();
+				tsf.add(t);
+			}
 			Log.prn(2, d);
 		}
 	}

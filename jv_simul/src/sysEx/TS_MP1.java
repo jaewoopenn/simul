@@ -16,6 +16,22 @@ public class TS_MP1 {
 		tmp.add(new Task(0,14,2,3));
 		return tmp.getTM();
 	}
+
+	public static TaskMng ts2()	{
+		TaskSetFix tmp=new TaskSetFix();
+		tmp.add(new Task(0,8,1));
+		tmp.add(new Task(0,16,3));
+		tmp.add(new Task(0,27,2));
+		tmp.add(new Task(0,27,2));
+		tmp.add(new Task(0,6,1,2));
+		tmp.add(new Task(0,24,1,2));
+		tmp.add(new Task(0,28,4,5));
+		tmp.add(new Task(0,20,2,3));
+		tmp.add(new Task(0,8,1,3));
+		tmp.add(new Task(0,8,1,3));
+		tmp.add(new Task(0,14,2,3));
+		return tmp.getTM();
+	}
 	
 
 }
