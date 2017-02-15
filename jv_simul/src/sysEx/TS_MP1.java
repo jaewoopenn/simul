@@ -53,5 +53,21 @@ public class TS_MP1 {
 		return cm;
 	}
 	
+	public static CoreMng core2() {
+		CoreMng cm=new CoreMng();
+		TaskSet ts=new TaskSet();
+		ts.add(new Task(0,4,2));
+		ts.add(new Task(1,6,1,5));
+		ts.transform_Array();
+		cm.addTS(ts);
+		
+		ts=new TaskSet();
+		ts.add(new Task(0,12,1));
+		ts.transform_Array();
+		cm.addTS(ts);
+		
+		return cm;
+	}
+	
 
 }

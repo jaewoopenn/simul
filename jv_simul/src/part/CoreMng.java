@@ -49,6 +49,9 @@ public class CoreMng {
 		}
 		return v;
 	}
+	public TaskMng getTM(int i) {
+		return g_tm.elementAt(i);
+	}
 	
 
 }

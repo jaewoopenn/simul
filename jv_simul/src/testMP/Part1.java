@@ -3,14 +3,18 @@ package testMP;
 import part.CoreMng;
 import part.Partition;
 import basic.TaskMng;
+import simul.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MP1;
+import sysEx.TS_NonMC1;
+import util.Log;
 import util.TEngine;
 
 public class Part1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=2;
-	public static int gret[]={0,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	public static int idx=3;
+	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
@@ -24,11 +28,16 @@ public class Part1 {
 		cm.prn();
 		cm.move();
 		cm.prn();
-		return -1;
+		return 0;
 	}
 	
 	public  int test3()	{
-		return -1;
+		CoreMng cm=TS_MP1.core2();
+		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(cm.getTM(0));
+		Log.set_lv(1);
+		ts.simulEnd(0,20);
+		return 0;
+		
 	}
 	
 	public  int test4()	{
