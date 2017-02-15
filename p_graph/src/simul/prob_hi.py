@@ -38,6 +38,7 @@ def main():
     x_load()
     iter(0,2)
     no=0
+    mp.prepare()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
