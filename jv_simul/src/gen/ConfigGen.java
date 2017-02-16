@@ -7,8 +7,10 @@ import util.FUtil;
 import util.Log;
 
 public class ConfigGen {
-	private final String[] g_predefined={"u_lb","u_ub","c_lb","c_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod","a_lb","a_ub"};
+	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
+			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"}; 
+	//"c_lb","c_ub",
+	//"a_lb","a_ub",
 	private HashMap<String,String> param;
 	private String g_fn;
 	public ConfigGen(String f) {
@@ -43,7 +45,7 @@ public class ConfigGen {
 	public String get_fn(int i){
 		String subfix=readPar("subfix").trim();
 		String mod=readPar("mod").trim();
-		String fn=subfix+"/"+mod+"_"+i;
+		String fn=subfix+"/"+mod+"/taskset_"+i;
 		return fn;
 		
 	}

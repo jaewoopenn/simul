@@ -1,59 +1,44 @@
 package testPlatform;
 
 
+
 import exp.PlatformTM;
 import gen.ConfigGen;
 import util.Log;
 import util.TEngine;
 
-
-// schedulability 
-public class Platform2 {
+public class PlatformMP1 {
 	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
-	public int kind=0;
 	public int isReal=0;
-
-	public PlatformTM getP(){
-		if(kind==0)
-			return getP1();
-		else
-			return getP2();
-	}
 	
 	public PlatformTM getP1() {
 		PlatformTM p=getCommmon();
-		p.setTSName("util");
+		p.setTSName("mp_util_sim");
 		p.setKinds(0);
+//		p.setStart(110);
+//		p.setStep(10);
 		p.setStart(55);
+		p.setStep(5);
 		p.setSize(10);
-//		p.setStart(100);
-//		p.setSize(1);
-		p.setStep(5);
-		return p;
-	}
-	public PlatformTM getP2() {
-		PlatformTM p=getCommmon();
-		p.setTSName("prob");
-		p.setKinds(1);
-		p.setStart(5);
-		p.setSize(19);
-		p.setStep(5);
 		return p;
 	}
 
 	public PlatformTM getCommmon(){
 		PlatformTM p=new PlatformTM();
 		p.setPath("exp");
-		p.setCfg_fn("cfg/cfg");
+		p.setCfg_fn("cfg/");
 		if(isReal==1){
+			p.setDuration(10000);
 			p.setSysNum(5000);
 		} else{
+			p.setDuration(100);
 			p.setSysNum(10);
 		}
-		p.setRS("X");
+		p.setProb(0.5);
+		p.setRS("aa");
 		return p;
 		
 	}
@@ -63,41 +48,34 @@ public class Platform2 {
 		ConfigGen eg=ConfigGen.getCfg();
 		eg.setParam("p_lb","50");
 		eg.setParam("p_ub","300");
-		PlatformTM p=getP();
+		PlatformTM p=getP1();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		PlatformTM p=getP();
-		p.genTS(false);
+		PlatformTM p=getP1();
+		p.genTS(true);
 		return 1;
 	}
 	public int test3() 
 	{
-		PlatformTM p=getP();
+		PlatformTM p=getP1();
 //		p.isWrite=false;
-		p.anal();
-//		MUtil.sendMail("ICG anal OK");
+		p.simul();
 		return 1;
 	}
 	public  int test4() 
 	{
-		PlatformTM p=getP();
-		p.anal_one(0,9,30);
 		return 1;
 	}
 	public  int test5() 
 	{
-		PlatformTM p=getP();
-		p.simul_vd();
 		return 0;
 	}
 	public  int test6() 
 	{
-		PlatformTM p=getP();
-		p.prnTasks();
 		return 0;
 	}
 	public  int test7()
@@ -108,6 +86,7 @@ public class Platform2 {
 	{
 		return 0;
 	}
+	
 	public  int test9()
 	{
 		return 0;
@@ -119,9 +98,9 @@ public class Platform2 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Platform2.class;
-		Platform2 m=new Platform2();
-		int[] aret=Platform2.gret;
+		Class c = PlatformMP1.class;
+		PlatformMP1 m=new PlatformMP1();
+		int[] aret=PlatformMP1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

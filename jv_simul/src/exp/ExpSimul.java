@@ -15,7 +15,6 @@ import util.MUtil;
 
 public class ExpSimul {
 	private ConfigGen g_cfg;
-	private TaskSimul g_tsim;
 	public ExpSimul() {
 		
 	}

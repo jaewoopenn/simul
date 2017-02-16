@@ -19,9 +19,9 @@ public class Platform1 {
 //	public int prob=7;
 	public PlatformTM getP(){
 		if(kind==0)
-			return getP1();
+			return getP1();  // utilization
 		else
-			return getP2();
+			return getP2();  // probability 
 	}
 	
 	public PlatformTM getP1() {
@@ -51,8 +51,8 @@ public class Platform1 {
 			p.setDuration(10000);
 			p.setSysNum(5000);
 		} else{
-			p.setDuration(1000);
-			p.setSysNum(100);
+			p.setDuration(100);
+			p.setSysNum(10);
 		}
 		p.setProb(prob*0.1);
 		p.setRS(prob+"");

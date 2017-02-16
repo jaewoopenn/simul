@@ -35,8 +35,8 @@ public class PlatformTM extends Platform{
 				g_cfg.setParam("u_ub", "0.80");
 				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
-			g_cfg.setParam("mod", modStr+"/taskset");
-			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			g_cfg.setParam("mod", modStr);
+			g_cfg.write(g_path+"/"+g_cfg_fn+modStr+".txt");
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class PlatformTM extends Platform{
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
 			Log.prn(3, modStr);
-			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+modStr+".txt");
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
 			if(bCheck)
@@ -72,7 +72,7 @@ public class PlatformTM extends Platform{
 			int sum_ms=0;
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
-			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+modStr+".txt");
 			cfg.readFile();
 			ExpSimul eg=new ExpSimul();
 			eg.setCfg(cfg);

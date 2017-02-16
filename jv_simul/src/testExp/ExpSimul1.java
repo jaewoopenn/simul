@@ -8,7 +8,7 @@ import simul.TaskSimul_EDF_VD;
 import util.TEngine;
 
 public class ExpSimul1 {
-	public static int idx=3;
+	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=2;
@@ -40,13 +40,19 @@ public class ExpSimul1 {
 		TaskMng tm=eg.loadTM("test/ts/taskset_0");
 		eg.init(0,new TaskSimul_EDF_VD(tm));
 		eg.simul(1000);
-		SimulInfo si=eg.getSI(0);
-		si.prn();
+		eg.prn();
 		return 1;
 	}
 	public  int test4() 
 	{
-		return 0;
+		ExpSimulMP eg=new ExpSimulMP(2);
+		TaskMng tm=eg.loadTM("test/ts/taskset_0");
+		eg.init(0,new TaskSimul_EDF_VD(tm));
+		tm=eg.loadTM("test/ts/taskset_0");
+		eg.init(1,new TaskSimul_EDF_VD(tm));
+		eg.simul(1000);
+		eg.prn();
+		return 1;
 	}
 	public  int test5() 
 	{
