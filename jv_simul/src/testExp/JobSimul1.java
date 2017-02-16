@@ -43,9 +43,9 @@ public class JobSimul1 {
 		js.add(new Job(1,3,1));
 		js.add(new Job(2,4,2));
 		js.add(new Job(0,5,1));
-		js.simulDur(0,6);
+//		js.simulDur(0,6);
 		js.add(new Job(0,8,1));
-		js.simulDur(6,10);
+//		js.simulDur(6,10);
 		js.simulEnd(10);
 		return 0;
 	}

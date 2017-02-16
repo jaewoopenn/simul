@@ -1,7 +1,6 @@
-package simul;
+package comp;
 
 
-import comp.Comp;
 import basic.Task;
 import basic.TaskMng;
 //import utill.Log;

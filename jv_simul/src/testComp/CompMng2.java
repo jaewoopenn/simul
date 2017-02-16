@@ -5,9 +5,9 @@ import anal.AnalEDF_VD;
 import basic.TaskMng;
 import comp.Comp;
 import comp.CompMng;
+import comp.CompMngEx1;
 import util.Log;
 import util.TEngine;
-import sysEx.CompMngEx1;
 
 @SuppressWarnings("unused")
 public class CompMng2 {

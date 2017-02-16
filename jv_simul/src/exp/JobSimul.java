@@ -27,15 +27,15 @@ public class JobSimul {
 	}
 
 	// deprecated 
-	public int simulDur(int st, int et){
-		int cur_t=st;
-		while(cur_t<et){
-			if (work(cur_t)==0) return 0;
-			cur_t++;
-		}
-		return 1;
-	}
-	
+//	public int simulDur(int st, int et){
+//		int cur_t=st;
+//		while(cur_t<et){
+//			if (work(cur_t)==0) return 0;
+//			cur_t++;
+//		}
+//		return 1;
+//	}
+//	
 	// deprecated 
 	private int work(int cur_t){
 		Log.prnc(1, cur_t+" ");

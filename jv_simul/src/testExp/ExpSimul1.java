@@ -10,7 +10,7 @@ import util.Log;
 import util.TEngine;
 
 public class ExpSimul1 {
-	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={1,1,0,6,0,0,0,0,0,0};
 	public static int log_level=2;
@@ -22,10 +22,11 @@ public class ExpSimul1 {
 		ExpSimul eg=new ExpSimul(cfg);
 		eg.setDuration(1000);
 		TaskMng tm=eg.loadTM(0);
+		tm.getInfo().setProb_ms(0.5); 
 //		tm.prn();
 		TaskSimul ts=new TaskSimul_EDF_VD();
 		ts.set_tm(tm);
-		tm.prnInfo();
+//		tm.prnInfo();
 
 		SimulInfo si=eg.simul(ts);
 		si.prn();
@@ -33,7 +34,15 @@ public class ExpSimul1 {
 	}
 	public int test2() 
 	{
-		return 0;
+		ExpSimul eg=new ExpSimul();
+		TaskMng tm=eg.loadTM("test/ts/taskset_0");
+//		TaskMng tm=eg.loadTM("test/ts/taskset_1");
+		eg.setDuration(1000);
+		TaskSimul ts=new TaskSimul_EDF_VD(tm);
+
+		SimulInfo si=eg.simul(ts);
+		si.prn();
+		return 1;
 	}
 	public int test3() 
 	{

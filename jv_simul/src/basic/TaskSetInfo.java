@@ -10,7 +10,7 @@ public class TaskSetInfo {
 	private double hi_util_lm;
 	private double hi_util_hm;
 	private double x_para;
-	private double prob_ms;
+	private double prob_ms=0.5;
 	public double getProb_ms() {
 		return prob_ms;
 	}

@@ -1,7 +1,5 @@
 package comp;
 
-import gen.CompGen;
-import gen.CompGenParam;
 import gen.ConfigGen;
 import gen.TaskGenParam;
 import util.FUtil;

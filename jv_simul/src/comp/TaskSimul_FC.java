@@ -1,7 +1,7 @@
-package simul;
+package comp;
 
 
-import comp.CompMng;
+import simul.TaskSimul;
 import exp.Job;
 import basic.Task;
 import basic.TaskMng;

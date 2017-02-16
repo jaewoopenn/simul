@@ -16,6 +16,9 @@ import util.MUtil;
 public class ExpSimul {
 	private ConfigGen g_cfg;
 	private int g_dur;
+	public ExpSimul() {
+		
+	}
 	public ExpSimul(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
@@ -25,6 +28,9 @@ public class ExpSimul {
 	
 	public TaskMng loadTM(int i){
 		String fn=g_cfg.get_fn(i);
+		return loadTM(fn);
+	}
+	public TaskMng loadTM(String fn){
 		TaskSetFix tmp=TaskSetFix.loadFile(fn);
 		return tmp.getTM();
 	}

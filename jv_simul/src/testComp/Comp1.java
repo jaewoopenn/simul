@@ -2,9 +2,9 @@ package testComp;
 
 
 import comp.Comp;
+import comp.CompEx1;
 import util.Log;
 import util.TEngine;
-import sysEx.CompEx1;
 
 public class Comp1 {
 	public static int idx=6;

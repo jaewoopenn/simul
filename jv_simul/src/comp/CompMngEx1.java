@@ -1,11 +1,8 @@
-package sysEx;
+package comp;
 
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSetFix;
-
-import comp.Comp;
-import comp.CompMng;
 
 
 // Task Set MC

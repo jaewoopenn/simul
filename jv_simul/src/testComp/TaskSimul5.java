@@ -4,10 +4,10 @@ import anal.AnalEDF_VD;
 import basic.TaskMng;
 import comp.CompFile;
 import comp.CompMng;
+import comp.CompMngEx1;
+import comp.TaskSimul_FC_MCS;
+import comp.TaskSimul_FC_Naive;
 import simul.SimulInfo;
-import simul.TaskSimul_FC_MCS;
-import simul.TaskSimul_FC_Naive;
-import sysEx.CompMngEx1;
 import util.TEngine;
 
 // Comp

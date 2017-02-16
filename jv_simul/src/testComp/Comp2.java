@@ -3,9 +3,9 @@ package testComp;
 
 import basic.TaskMng;
 import comp.Comp;
+import comp.CompEx1;
 import util.Log;
 import util.TEngine;
-import sysEx.CompEx1;
 
 public class Comp2 {
 	public static int idx=1;

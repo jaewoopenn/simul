@@ -3,7 +3,7 @@ package testAnal;
 import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
-import sysEx.CompMngEx1;
+import comp.CompMngEx1;
 //import utill.Log;
 import util.TEngine;
 

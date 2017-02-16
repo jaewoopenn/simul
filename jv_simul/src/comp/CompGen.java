@@ -1,8 +1,8 @@
-package gen;
+package comp;
 
 
-import comp.Comp;
-import comp.CompMng;
+import gen.TaskGenMC;
+import gen.TaskGenParam;
 import basic.TaskMng;
 import basic.TaskSetFix;
 //import utill.Log;

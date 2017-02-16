@@ -5,9 +5,9 @@ import anal.AnalEDF_AD_E;
 import basic.Task;
 import basic.TaskMng;
 import comp.CompMng;
+import comp.CompMngEx1;
 import util.Log;
 import util.TEngine;
-import sysEx.CompMngEx1;
 
 public class CompMng1 {
 	public static int idx=4;
