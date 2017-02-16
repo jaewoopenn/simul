@@ -12,7 +12,7 @@ import anal.AnalICG;
 import basic.TaskMng;
 import simul.SimulInfo;
 import simul.TaskSimul;
-import simul.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_AD_E;
 import simul.TaskSimul_EDF_VD;
 import util.FUtil;
 import util.Log;
@@ -35,7 +35,7 @@ public class PlatformTM extends Platform{
 				g_cfg.setParam("u_ub", "0.80");
 				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
-			g_cfg.setParam("mod", modStr);
+			g_cfg.setParam("mod", modStr+"/taskset");
 			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		}
 	}
@@ -59,7 +59,7 @@ public class PlatformTM extends Platform{
 	public void simul() {
 		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
-		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AT_S());
+		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E());
 	}
 	public void simul_in(int no,Anal an,TaskSimul ts){
 		double ret;
@@ -114,7 +114,7 @@ public class PlatformTM extends Platform{
 		if(anal==0)
 			simul_in_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
 		else
-			simul_in_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AT_S(),set,no);
+			simul_in_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(),set,no);
 	}
 	
 	private void simul_in_one(Anal an,

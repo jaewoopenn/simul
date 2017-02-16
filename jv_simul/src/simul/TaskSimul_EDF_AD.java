@@ -7,8 +7,11 @@ import basic.TaskMng;
 import util.Log;
 import util.MUtil;
 
-public class TaskSimul_EDF_AT extends TaskSimul{
-	public TaskSimul_EDF_AT(TaskMng m) {
+public class TaskSimul_EDF_AD extends TaskSimul{
+	public TaskSimul_EDF_AD() {
+		super();
+	}
+	public TaskSimul_EDF_AD(TaskMng m) {
 		super(m);
 	}
 

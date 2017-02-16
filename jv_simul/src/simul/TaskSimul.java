@@ -21,15 +21,23 @@ public abstract class TaskSimul {
 	public TaskSimul(){
 		init();
 	}
+	public TaskSimul(TaskMng m){
+		this();
+		this.g_tm=m;
+	}
 	public void init() {
 		g_js=new JobSimul();
 		g_si=new SimulInfo();
 		g_isMS=false;
 	}
-	public TaskSimul(TaskMng m){
-		this();
-		this.g_tm=m;
+	public void checkErr() {
+		if(g_tm==null){
+			Log.prn(9, "ERROR: TaskMng is not set");
+			System.exit(1);
+		}
+		
 	}
+	
 	public void set_tm(TaskMng tm) {
 		this.g_tm = tm;
 //		tm.prn();
@@ -85,6 +93,7 @@ public abstract class TaskSimul {
 //		g_tm.prnHI();
 	}
 	protected void initModeN() {
+//		g_tm.prn();
 		for(Task t:g_tm.getTasks().getArr()){
 			if(!t.is_HI)
 				t.is_dropped=false;
@@ -160,7 +169,7 @@ public abstract class TaskSimul {
 		Task tsk=g_tm.getTask(tid);
 		g_si.ms++;
 		if(!tsk.is_HI) 	{
-			Log.prn(9, "task "+tid+" is not HI-task, cannot mode-switch");
+			Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode-switch");
 			System.exit(0);
 		}
 		modeswitch_in(tid);
@@ -175,7 +184,7 @@ public abstract class TaskSimul {
 	
 	public void dropTask(Task t) {
 		if(t.is_HI)	{
-			Log.prn(9, "task "+t.tid+" is not LO-task, cannot drop");
+			Log.prn(9, "ERROR: task "+t.tid+" is not LO-task, cannot drop");
 			System.exit(0);
 		}
 		if(t.is_dropped)
@@ -193,5 +202,8 @@ public abstract class TaskSimul {
 	}
 	public TaskMng getTM(){
 		return g_tm;
+	}
+	public void prnInfo() {
+		
 	}
 }

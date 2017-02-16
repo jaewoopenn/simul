@@ -2,7 +2,7 @@ package testExp;
 
 import basic.TaskMng;
 import basic.TaskSetFix;
-import simul.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_AD_E;
 import sysEx.TS_NonMC1;
 import util.TEngine;
 
@@ -14,13 +14,13 @@ public class TaskSimul1 {
 
 
 	public int test1()	{
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(TS_NonMC1.ts5());
+		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(TS_NonMC1.ts5());
 		
 		return ts.simulEnd(0,20);
 	}
 	public int test2() {
 		int et=40;
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(TS_NonMC1.ts2());
+		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(TS_NonMC1.ts2());
 		return ts.simulEnd(0,et);
 	}
 	
@@ -28,7 +28,7 @@ public class TaskSimul1 {
 		int et=40;
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
 		TaskMng tm=tmp.getTM();
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
+		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		return ts.simulEnd(0,et);
 	}
 	
@@ -36,7 +36,7 @@ public class TaskSimul1 {
 		int et=80;
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test2.txt");
 		TaskMng tm=tmp.getTM();
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
+		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		return ts.simulEnd(0,et);
 	}
 	

@@ -46,9 +46,10 @@ public class ExpSimul {
 	}
 	public SimulInfo simul(TaskSimul ts){
 		ts.init();
+		ts.checkErr();
 		int ret=ts.simulEnd(0,g_dur);
 		if(ret==0){
-			Log.prn(9, "error ExpSimul");
+			Log.prn(9, "ERROR: ExpSimul");
 			System.exit(1);
 		}
 		return ts.getSI();
@@ -64,6 +65,10 @@ public class ExpSimul {
 		a.part();
 		return 	a.anal(kinds);
 
+	}
+	public void prnInfo() {
+//		Log.prn(2, "g_prob"+g_prob);
+		
 	}
 
 	

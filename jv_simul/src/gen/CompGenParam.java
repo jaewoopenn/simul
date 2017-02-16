@@ -49,21 +49,4 @@ public class CompGenParam {
 	public double getAlpha() {
 		return g_rand.getDbl(a_lb,a_ub);
 	}
-
-
-
-//	public Task genComp(){
-//		double tu=g_rand.getDbl(u_lb,u_ub);
-//	}
-
-
-	
-	
-
-
-
-
-
-	
-
 }

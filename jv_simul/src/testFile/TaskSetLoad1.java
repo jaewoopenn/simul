@@ -1,7 +1,7 @@
 package testFile;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import simul.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_AD_E;
 import util.TEngine;
 
 public class TaskSetLoad1 {
@@ -24,7 +24,7 @@ public class TaskSetLoad1 {
 	{
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
 		TaskMng tm=tmp.getTM();
-		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
+		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		return ts.simulEnd(0,20);
 	}
 	public  int test4()

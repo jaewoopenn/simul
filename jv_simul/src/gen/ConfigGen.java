@@ -28,13 +28,13 @@ public class ConfigGen {
             	continue;
             
             if(!setParam(words[0],words[1])) {
-            	System.out.println("Err: loading field ("+words[0]+") is not defined");
+            	System.out.println("ERROR: loading field ("+words[0]+") is not defined");
             	System.exit(1);
             }
 		}
 		for (String s:g_predefined){
 			if(readPar(s)==null){
-				System.out.println("Err: required field ("+s+") is not defined");
+				System.out.println("ERROR: required field ("+s+") is not defined");
             	System.exit(1);
 			}
 		}
@@ -43,7 +43,7 @@ public class ConfigGen {
 	public String get_fn(int i){
 		String subfix=readPar("subfix").trim();
 		String mod=readPar("mod").trim();
-		String fn=subfix+"/"+mod+"/taskset_"+i;
+		String fn=subfix+"/"+mod+"_"+i;
 		return fn;
 		
 	}
@@ -66,7 +66,7 @@ public class ConfigGen {
 	public String readPar(String f) {
 		if(Arrays.asList(g_predefined).contains(f))
 			return param.get(f);
-		System.out.println("ERR: requested field ("+f+") is not defined");
+		System.out.println("ERROR: requested field ("+f+") is not defined");
 		return null;
 	}
 	public int readInt(String f){

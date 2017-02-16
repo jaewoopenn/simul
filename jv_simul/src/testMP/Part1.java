@@ -3,7 +3,7 @@ package testMP;
 import part.CoreMng;
 import part.Partition;
 import basic.TaskMng;
-import simul.TaskSimul_EDF_AT_S;
+import simul.TaskSimul_EDF_AD_E;
 import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MP1;
 import sysEx.TS_NonMC1;
@@ -13,7 +13,7 @@ import util.TEngine;
 public class Part1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=3;
+	public static int idx=4;
 	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
 
@@ -41,6 +41,8 @@ public class Part1 {
 	}
 	
 	public  int test4()	{
+//		ExpSimul
+		
 		return -1;
 	}
 	

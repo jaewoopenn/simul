@@ -4,7 +4,7 @@ import gen.ConfigGen;
 import gen.SimGen;
 import anal.AnalEDF_AD_E;
 import basic.TaskMng;
-import simul.TaskSimul_EDF_AT;
+import simul.TaskSimul_EDF_AD;
 import sysEx.TS_MC1;
 import util.Log;
 import util.TEngine;
@@ -36,7 +36,7 @@ public class TaskSimul4 {
 		
 		tm.getInfo().setProb_ms(0.4); // set prob
 //		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
-		TaskSimul_EDF_AT ts=new TaskSimul_EDF_AT(tm);
+		TaskSimul_EDF_AD ts=new TaskSimul_EDF_AD(tm);
 		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.isPrnEnd=false;

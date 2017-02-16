@@ -160,5 +160,8 @@ public class TaskMng {
 	public void prnStat() {
 		g_tasks.prnStat();
 	}
+	public void prnInfo() {
+		Log.prn(2, "prob:"+g_info.getProb_ms());
+	}
 
 }

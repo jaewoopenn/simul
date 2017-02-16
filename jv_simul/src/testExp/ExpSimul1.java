@@ -1,4 +1,12 @@
 package testExp;
+import basic.TaskMng;
+import exp.ExpSimul;
+import gen.ConfigGen;
+import simul.SimulInfo;
+import simul.TaskSimul;
+import simul.TaskSimul_EDF_AD;
+import simul.TaskSimul_EDF_VD;
+import util.Log;
 import util.TEngine;
 
 public class ExpSimul1 {
@@ -8,14 +16,19 @@ public class ExpSimul1 {
 	public static int log_level=2;
 	public int test1() 
 	{
-//		ConfigGen cfg=new ConfigGen("exp/cfg/cfg_50.txt");
-//		cfg.readFile();
-//		//cfg.prn(2);
-//		ExpSimul eg=new ExpSimul(cfg);
-//		eg.setDuration(100);
-//		int size=eg.size();
-//		int ret=eg.simul();
-//		Log.prn(2, ret+"/"+size);
+		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
+		cfg.readFile();
+//		cfg.prn(2);
+		ExpSimul eg=new ExpSimul(cfg);
+		eg.setDuration(1000);
+		TaskMng tm=eg.loadTM(0);
+//		tm.prn();
+		TaskSimul ts=new TaskSimul_EDF_VD();
+		ts.set_tm(tm);
+		tm.prnInfo();
+
+		SimulInfo si=eg.simul(ts);
+		si.prn();
 		return 1;
 	}
 	public int test2() 
