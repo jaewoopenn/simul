@@ -39,7 +39,6 @@ public class Part1 {
 	}
 	
 	public  int test4()	{
-//		ExpSimul
 		
 		return -1;
 	}
