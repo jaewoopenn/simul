@@ -3,10 +3,8 @@ package testMP;
 import part.CoreMng;
 import part.Partition;
 import basic.TaskMng;
-import simul.TaskSimul_EDF_AD_E;
 import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MP1;
-import sysEx.TS_NonMC1;
 import util.Log;
 import util.TEngine;
 

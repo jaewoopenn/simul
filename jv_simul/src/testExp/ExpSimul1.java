@@ -1,34 +1,26 @@
 package testExp;
+import part.ExpSimulMP;
 import basic.TaskMng;
 import exp.ExpSimul;
 import gen.ConfigGen;
 import simul.SimulInfo;
-import simul.TaskSimul;
-import simul.TaskSimul_EDF_AD;
 import simul.TaskSimul_EDF_VD;
-import util.Log;
 import util.TEngine;
 
 public class ExpSimul1 {
-	public static int idx=2;
+	public static int idx=3;
 //	public static int idx=-1;
-	public static int gret[]={1,1,0,6,0,0,0,0,0,0};
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=2;
 	public int test1() 
 	{
 		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
 		cfg.readFile();
-//		cfg.prn(2);
-		ExpSimul eg=new ExpSimul(cfg);
-		eg.setDuration(1000);
+		ExpSimul eg=new ExpSimul();
+		eg.setCfg(cfg);
 		TaskMng tm=eg.loadTM(0);
-		tm.getInfo().setProb_ms(0.5); 
-//		tm.prn();
-		TaskSimul ts=new TaskSimul_EDF_VD();
-		ts.set_tm(tm);
-//		tm.prnInfo();
-
-		SimulInfo si=eg.simul(ts);
+		
+		SimulInfo si=eg.simul(new TaskSimul_EDF_VD(tm),1000);
 		si.prn();
 		return 1;
 	}
@@ -37,16 +29,20 @@ public class ExpSimul1 {
 		ExpSimul eg=new ExpSimul();
 		TaskMng tm=eg.loadTM("test/ts/taskset_0");
 //		TaskMng tm=eg.loadTM("test/ts/taskset_1");
-		eg.setDuration(1000);
-		TaskSimul ts=new TaskSimul_EDF_VD(tm);
 
-		SimulInfo si=eg.simul(ts);
+		SimulInfo si=eg.simul(new TaskSimul_EDF_VD(tm),1000);
 		si.prn();
 		return 1;
 	}
 	public int test3() 
 	{
-		return 0;
+		ExpSimulMP eg=new ExpSimulMP(1);
+		TaskMng tm=eg.loadTM("test/ts/taskset_0");
+		eg.init(0,new TaskSimul_EDF_VD(tm));
+		eg.simul(1000);
+		SimulInfo si=eg.getSI(0);
+		si.prn();
+		return 1;
 	}
 	public  int test4() 
 	{

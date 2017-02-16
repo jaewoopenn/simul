@@ -69,8 +69,8 @@ public class PlatformCom extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
-			eg.setDuration(g_dur);
+			ExpSimul eg=new ExpSimul();
+			eg.setCfg(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				CompMng cm=eg.loadCM(j);
@@ -82,7 +82,7 @@ public class PlatformCom extends Platform{
 				cm.setX(an.getX());
 				ts.set_tm(tm);
 				ts.set_cm(cm);
-				SimulInfo si=eg.simul(ts);
+				SimulInfo si=eg.simul(ts,g_dur);
 				ret=si.getDMR();
 				Log.prnc(2, j+","+ret+","+si.ms);
 				sum+=ret;
@@ -112,8 +112,8 @@ public class PlatformCom extends Platform{
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
-		eg.setDuration(g_dur);
+		ExpSimul eg=new ExpSimul();
+		eg.setCfg(cfg);
 		CompMng cm=eg.loadCM(no);
 		cm.setAlpha(g_a_l,g_a_u);
 		TaskMng tm=cm.getTM();
@@ -124,7 +124,7 @@ public class PlatformCom extends Platform{
 		ts.set_tm(tm);
 		ts.set_cm(cm);
 		ts.isSchTab=false;
-		SimulInfo si=eg.simul(ts);
+		SimulInfo si=eg.simul(ts,g_dur);
 //		si.prn();
 		ret=si.getDMR();
 		Log.prn(2, set+","+no+":"+ret+","+si.rel);
@@ -135,7 +135,8 @@ public class PlatformCom extends Platform{
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimul eg=new ExpSimul();
+		eg.setCfg(cfg);
 		CompMng cm=eg.loadCM(no);
 		cm.setAlpha(g_a_l,g_a_u);
 		int ret=eg.analComp(cm,kinds);
@@ -154,7 +155,8 @@ public class PlatformCom extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
+			ExpSimul eg=new ExpSimul();
+			eg.setCfg(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				CompMng cm=eg.loadCM(j);
@@ -180,7 +182,8 @@ public class PlatformCom extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
+			ExpSimul eg=new ExpSimul();
+			eg.setCfg(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				CompMng cm=eg.loadCM(j);

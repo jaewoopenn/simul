@@ -45,8 +45,10 @@ public abstract class TaskSimul {
 
 	public int simulEnd(int st, int et) {
 		int ret=simulBy(st,et);
-		if(ret==0)
-			return 0;
+		if(ret==0){
+			Log.prn(9, "ERROR: ExpSimul");
+			System.exit(1);
+		}
 		if(isPrnEnd)
 			g_js.simulEndPrn();
 		return g_js.simulEnd(et);
