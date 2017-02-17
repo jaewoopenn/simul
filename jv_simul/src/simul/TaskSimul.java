@@ -60,20 +60,20 @@ public abstract class TaskSimul {
 				Log.prn(1, "rel  / exec / t");
 			initMode();
 		}
-		int cur_t=st;
-		while(cur_t<et){
-			msCheck(cur_t);
-			if (!g_js.dlCheck(cur_t)) return 0;
-			relCheck(cur_t);
-			if(!g_js.progress(cur_t,isSchTab)&&g_isMS) {
+		int t=st;
+		while(t<et){
+			msCheck(t);
+			if (!g_js.dlCheck(t)) return 0;
+			relCheck(t);
+			if(!g_js.progress(t,isSchTab)&&g_isMS) {
 				if(isPrnMS)
-					Log.prn(1, "recover "+cur_t);
+					Log.prn(1, "recover "+t);
 				g_isMS=false;
 				initMode();
 			}
 			if(isSchTab)
-				Log.prn(1, " "+cur_t);
-			cur_t++;
+				Log.prn(1, " "+t);
+			t++;
 		}
 		return 1;
 	}
@@ -106,16 +106,16 @@ public abstract class TaskSimul {
 //		g_tm.prnHI();
 	}
 
-	private void msCheck(int cur_t){
+	private void msCheck(int t){
 		boolean isMS=false;
-		int tid=g_js.msCheck(cur_t);
+		int tid=g_js.msCheck(t);
 		if(tid==-1) return;
 		double prob=g_rutil.getDbl();
 		if(prob<g_tm.getInfo().getProb_ms())
 			isMS=true;
 		if(isMS){
 			if(isPrnMS)
-				Log.prn(1, "t:"+cur_t+" mode-switch "+tid);
+				Log.prn(1, "t:"+t+" mode-switch "+tid);
 			g_isMS=true;
 			modeswitch(tid);
 		} else {
@@ -124,11 +124,11 @@ public abstract class TaskSimul {
 		
 	}
 	
-	private void relCheck(int cur_t){
+	private void relCheck(int t){
 		
 		for(int i=0;i<g_tm.getInfo().getSize();i++){
 			Task tsk=g_tm.getTask(i);
-			if (cur_t%tsk.period!=0){
+			if (t%tsk.period!=0){
 				if(isSchTab)
 					Log.prnc(1,"-");
 				continue;
@@ -145,26 +145,26 @@ public abstract class TaskSimul {
 			}
 			if(isSchTab)
 				Log.prnc(1,"+");
-			g_js.add(relJob(tsk,cur_t));
+			g_js.add(relJob(tsk,t));
 		}
 		if(isSchTab)
 			Log.prnc(1, " ");
 	}
 	
-	protected abstract Job relJob(Task tsk, int cur_t);
+	protected abstract Job relJob(Task tsk, int t);
 
-	protected Job relJobD(Task tsk, int cur_t) {
+	protected Job relJobD(Task tsk, int t) {
 		if(tsk.is_HI){
 			if(tsk.is_HM){
 				return new Job(tsk.tid, 
-						cur_t+tsk.period,tsk.c_h,cur_t+tsk.period,0);
+						t+tsk.period,tsk.c_h,t+tsk.period,0);
 			} else {
 				return new Job(tsk.tid, 
-						cur_t+tsk.period,tsk.c_l,
-						cur_t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+						t+tsk.period,tsk.c_l,
+						t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 			}
 		}
-		return new Job(tsk.tid,cur_t+tsk.period,tsk.c_l);
+		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
 	
 	public void modeswitch(int tid){
@@ -184,17 +184,17 @@ public abstract class TaskSimul {
 		g_tm.getTask(tid).ms();
 	}
 	
-	public void dropTask(Task t) {
-		if(t.is_HI)	{
-			Log.prn(9, "ERROR: task "+t.tid+" is not LO-task, cannot drop");
+	public void dropTask(Task tsk) {
+		if(tsk.is_HI)	{
+			Log.prn(9, "ERROR: task "+tsk.tid+" is not LO-task, cannot drop");
 			System.exit(0);
 		}
-		if(t.is_dropped)
+		if(tsk.is_dropped)
 			return;
 		if(isPrnMS)
-			Log.prn(1, "drop "+t.tid);
-		g_si.drop+=g_js.getJM().drop(t.tid);
-		t.drop();
+			Log.prn(1, "drop "+tsk.tid);
+		g_si.drop+=g_js.getJM().drop(tsk.tid);
+		tsk.drop();
 	}
 	
 	

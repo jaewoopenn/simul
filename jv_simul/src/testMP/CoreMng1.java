@@ -8,20 +8,25 @@ import sysEx.TS_MP1;
 import util.Log;
 import util.TEngine;
 
-public class Part1 {
+public class CoreMng1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=2;
 	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
-		TaskMng tm=TS_MP1.ts2();
-		Partition p=new Partition(tm.getTaskSet());
-		p.anal();
+		CoreMng cm=TS_MP1.core1();
+		cm.prn();
+		cm.move();
+		cm.prn();
 		return 0;
 	}
 	public int test2() {
+		CoreMng cm=TS_MP1.core2();
+		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(cm.getTM(0));
+		Log.set_lv(1);
+		ts.simulEnd(0,20);
 		return 0;
 	}
 	
@@ -58,9 +63,9 @@ public class Part1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = Part1.class;
-		Part1 m=new Part1();
-		int[] aret=Part1.gret;
+		Class c = CoreMng1.class;
+		CoreMng1 m=new CoreMng1();
+		int[] aret=CoreMng1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

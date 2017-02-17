@@ -50,8 +50,7 @@ public class ExpSimul1 {
 		eg.init(0,new TaskSimul_EDF_VD(tm));
 		tm=eg.loadTM("test/ts/taskset_0");
 		eg.init(1,new TaskSimul_EDF_VD(tm));
-		eg.simul(0,500);
-		eg.simul(500,1000);
+		eg.simul(0,1000);
 		eg.prn();
 		return 1;
 	}
@@ -62,7 +61,9 @@ public class ExpSimul1 {
 		eg.init(0,new TaskSimul_EDF_VD(tm));
 		tm=eg.loadTM("test/ts/taskset_2");
 		eg.init(1,new TaskSimul_EDF_VD(tm));
-		eg.simul(0,1000);
+		eg.simul(0,500);
+		eg.move();
+		eg.simul(500,1000);
 		eg.prn();
 		return 1;
 	}

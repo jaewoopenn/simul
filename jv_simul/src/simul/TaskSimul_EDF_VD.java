@@ -23,22 +23,22 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 	
 	@Override
 	public void modeswitch_in(int tid) {
-		for(Task t:g_tm.getTasks().getArr()){
-			if(t.is_HI){
+		for(Task tsk:g_tm.getTasks().getArr()){
+			if(tsk.is_HI){
 				if(isPrnMS)
-					Log.prn(1, "ms hi "+t.tid);
-				g_js.getJM().modeswitch(t.tid);
+					Log.prn(1, "ms hi "+tsk.tid);
+				g_js.getJM().modeswitch(tsk.tid);
 				g_tm.getTask(tid).ms();
 			} else {
 				if(isPrnMS)
-					Log.prn(1, "drop "+t.tid);
-				dropTask(t);
+					Log.prn(1, "drop "+tsk.tid);
+				dropTask(tsk);
 			}
 		}
 	}
 
 	@Override
-	protected Job relJob(Task tsk, int cur_t) {
-		return relJobD(tsk,cur_t);
+	protected Job relJob(Task tsk, int t) {
+		return relJobD(tsk,t);
 	}
 }
