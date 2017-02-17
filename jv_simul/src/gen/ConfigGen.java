@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import util.FUtil;
 import util.Log;
+import util.MUtil;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
@@ -23,7 +24,7 @@ public class ConfigGen {
 	public void readFile() {
 	    FUtil fu=new FUtil(g_fn);
 	    fu.load();
-	    for(int i=0;i<fu.size();i++){
+	    for(int i:MUtil.getLoop(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
             if(words.length<2) 

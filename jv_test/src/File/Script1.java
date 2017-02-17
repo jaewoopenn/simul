@@ -1,7 +1,7 @@
 package File;
 
-import utill.Script;
-import utill.TEngine;
+import util.Script;
+import util.TEngine;
 
 public class Script1 {
 	public static int log_level=1;

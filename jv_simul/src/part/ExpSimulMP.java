@@ -5,6 +5,7 @@ import basic.TaskMng;
 import basic.TaskSetFix;
 import simul.SimulInfo;
 import simul.TaskSimul;
+import util.MUtil;
 //import util.Log;
 
 public class ExpSimulMP {
@@ -24,9 +25,9 @@ public class ExpSimulMP {
 		tsim.checkErr();
 	}
 	
-	public void simul(int dur){
-		for(int t=0;t<dur;t++){
-			for(int j=0;j<g_ncpu;j++){
+	public void simul(int st, int et){
+		for(int t:MUtil.getLoop(st,et)){
+			for(int j:MUtil.getLoop(g_ncpu)){
 				g_tsim[j].simulBy(t,t+1);
 			}
 		}

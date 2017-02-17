@@ -41,7 +41,7 @@ public class PlatformTM extends Platform{
 	}
 	
 	public void genTS(boolean bCheck) {
-		for(int i=0;i<g_size;i++){
+		for(int i:MUtil.getLoop(g_size)){
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
 			Log.prn(3, modStr);

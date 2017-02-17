@@ -3,6 +3,7 @@ package util;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+
 public class MUtil {
 	public static double err=0.00000000000001;
 	public static int btoi(boolean b){
@@ -38,4 +39,15 @@ public class MUtil {
 		}
 		
 	}
+	public static int[] getLoop(int size){
+		return getLoop(0,size);
+	}
+	public static int[] getLoop(int st,int et){
+		int[] loop=new int[et-st];
+		for(int i=st;i<et;i++){
+			loop[i-st]=i;
+		}
+		return loop;
+	}
+
 }
