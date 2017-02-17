@@ -26,10 +26,12 @@ public class ExpSimulMP {
 	}
 	
 	public void simul(int st, int et){
-		for(int t:MUtil.getLoop(st,et)){
-			for(int j:MUtil.getLoop(g_ncpu)){
+		int t=st;
+		while(t<et){
+			for(int j:MUtil.loop(g_ncpu)){
 				g_tsim[j].simulBy(t,t+1);
 			}
+			t++;
 		}
 	}
 	
@@ -52,6 +54,13 @@ public class ExpSimulMP {
 			SimulInfo si=g_tsim[j].getSI();
 			si.prn();
 		}
+		
+	}
+
+
+
+	// test
+	public void move() {
 		
 	}
 	

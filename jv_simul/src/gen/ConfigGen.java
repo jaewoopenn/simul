@@ -24,7 +24,7 @@ public class ConfigGen {
 	public void readFile() {
 	    FUtil fu=new FUtil(g_fn);
 	    fu.load();
-	    for(int i:MUtil.getLoop(fu.size())){
+	    for(int i:MUtil.loop(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
             if(words.length<2) 
