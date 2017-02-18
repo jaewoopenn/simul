@@ -3,9 +3,8 @@ package part;
 
 import simul.SimulInfo;
 import simul.TaskSimul;
-import util.Log;
-import util.MUtil;
 //import util.Log;
+import util.MUtil;
 
 public class ExpSimulMP {
 	private TaskSimul[] g_tsim;

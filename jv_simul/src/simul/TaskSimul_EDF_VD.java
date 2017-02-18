@@ -25,13 +25,9 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 	public void modeswitch_in(int tid) {
 		for(Task tsk:g_tm.getTasks().getArr()){
 			if(tsk.is_HI){
-				if(isPrnMS)
-					Log.prn(1, "ms hi "+tsk.tid);
 				g_js.getJM().modeswitch(tsk.tid);
 				g_tm.getTask(tid).ms();
 			} else {
-				if(isPrnMS)
-					Log.prn(1, "drop "+tsk.tid);
 				dropTask(tsk);
 			}
 		}

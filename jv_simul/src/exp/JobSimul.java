@@ -39,14 +39,18 @@ public class JobSimul {
 	// deprecated 
 	private int work(int cur_t){
 		Log.prnc(1, cur_t+" ");
-		if(!dlCheck(cur_t)) return 0;
+		dlCheck(cur_t);
 		progress(cur_t,true);
 		Log.prn(1, "");
 		return 1;
 	}
 
-	public int simulEnd(int cur_t){
-		return g_jm.endCheck(cur_t);
+	public void simulEnd(int cur_t){
+		if(g_jm.endCheck(cur_t)==0){
+			g_jm.prn();
+			Log.prn(9,"Deadline miss at time "+cur_t);
+			System.exit(1);
+		}
 	}
 	public void simulEndPrn(){
 		Log.prn(1, "*** Left Jobs  ***");
@@ -54,14 +58,14 @@ public class JobSimul {
 	}
 	
 	
-	public boolean dlCheck(int cur_t){
+	public void dlCheck(int cur_t){
 		Job j=g_jm.getCur();
 		if(j==null)
-			return true;
+			return;
 		if(cur_t<j.dl) 
-			return true;
-		Log.prn(1,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
-		return false;
+			return;
+		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		System.exit(1);
 	}
 	public int msCheck(int cur_t) { // before dlcheck
 		Job j;

@@ -25,7 +25,8 @@ public class TaskSetLoad1 {
 		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
 		TaskMng tm=tmp.getTM();
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
-		return ts.simulEnd(0,20);
+		ts.simulEnd(0,20);
+		return 0;
 	}
 	public  int test4()
 	{

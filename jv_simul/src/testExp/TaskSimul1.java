@@ -16,28 +16,32 @@ public class TaskSimul1 {
 	public int test1()	{
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(TS_NonMC1.ts5());
 		
-		return ts.simulEnd(0,20);
+		ts.simulEnd(0,20);
+		return 0;
 	}
 	public int test2() {
 		int et=40;
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(TS_NonMC1.ts2());
-		return ts.simulEnd(0,et);
+		ts.simulEnd(0,et);
+		return 0;
 	}
 	
 	public  int test3()	{
 		int et=40;
-		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test1.txt");
+		TaskSetFix tmp=TaskSetFix.loadFile("test/ts/simul1.txt");
 		TaskMng tm=tmp.getTM();
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
-		return ts.simulEnd(0,et);
+		ts.simulEnd(0,et);
+		return 0;
 	}
 	
 	public  int test4()	{
 		int et=80;
-		TaskSetFix tmp=TaskSetFix.loadFile("exp/ts/test2.txt");
+		TaskSetFix tmp=TaskSetFix.loadFile("test/ts/simul1.txt");
 		TaskMng tm=tmp.getTM();
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
-		return ts.simulEnd(0,et);
+		ts.simulEnd(0,et);
+		return 0;
 	}
 	
 	public  int test5() {

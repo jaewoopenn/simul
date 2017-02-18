@@ -43,30 +43,23 @@ public abstract class TaskSimul {
 //		tm.prn();
 	}
 
-	public int simulEnd(int st, int et) {
-		int ret=simulBy(st,et);
-		if(ret==0){
-			Log.prn(9, "ERROR: ExpSimul");
-			System.exit(1);
-		}
-		if(isPrnEnd)
-			g_js.simulEndPrn();
-		return g_js.simulEnd(et);
-	}
-	
-	public int simulBy(int st, int et){
+	// simul interval
+	public void simulBy(int st, int et){
 		if(st==0){
 			simulStart();
 		}
 		int t=st;
 		while(t<et){
-			if(simul_t(t)==0) 
-				return 0;
+			simul_t(t);
 			t++;
 		}
-		return 1;
+	}
+	public void simulEnd(int st,int et){
+		simulBy(st,et);
+		simulEnd(et);
 	}
 	
+	// simul time
 	public void simulStart()
 	{
 		if(isSchTab)
@@ -74,9 +67,9 @@ public abstract class TaskSimul {
 		initMode();
 	}
 	
-	public int simul_t(int t){
+	public void simul_t(int t){
 		msCheck(t);
-		if (!g_js.dlCheck(t)) return 0;
+		g_js.dlCheck(t);
 		relCheck(t);
 		if(!g_js.progress(t,isSchTab)&&g_isMS) {
 			if(isPrnMS)
@@ -86,9 +79,14 @@ public abstract class TaskSimul {
 		}
 		if(isSchTab)
 			Log.prn(1, " "+t);
-		return 1;
+	}
+	public void simulEnd(int et) {
+		if(isPrnEnd)
+			g_js.simulEndPrn();
+		g_js.simulEnd(et);
 	}
 	
+	// init
 	protected abstract void initMode();
 	
 	public void initModeS() {

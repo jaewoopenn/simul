@@ -26,14 +26,16 @@ public class TaskSimul2 {
 		TaskMng tm=TS_MC1.ts1();
 		tm.setX(0.5);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
-		return ts.simulEnd(0, et);
+		ts.simulEnd(0,et);
+		return 0;
 	}
 	public int test3()	{
 		int et=16;
 		TaskMng tm=TS_MC1.ts2();
 		tm.setX(0.5);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
-		return ts.simulEnd(0,et);
+		ts.simulEnd(0,et);
+		return 0;
 	}
 	public int test4()	{
 		int et=12;
@@ -41,7 +43,8 @@ public class TaskSimul2 {
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 3);
 		ts.modeswitch(1);
-		return ts.simulEnd(3,et);
+		ts.simulEnd(0,et);
+		return 0;
 	}
 	
 	public  int test5() {
@@ -51,7 +54,8 @@ public class TaskSimul2 {
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 1);
 		ts.modeswitch(1);
-		return ts.simulEnd(1,et);
+		ts.simulEnd(1,et);
+		return 0;
 	}
 	public  int test6()	{
 		int et=12;
@@ -62,7 +66,8 @@ public class TaskSimul2 {
 		ts.modeswitch(1);
 		Task t=tm.getTask(0);
 		ts.dropTask(t);
-		return ts.simulEnd(1,et);
+		ts.simulEnd(1,et);
+		return 0;
 	}
 	public  int test7()	{
 		int et=24;
@@ -73,7 +78,8 @@ public class TaskSimul2 {
 		ts.modeswitch(2);
 //		ts.drop(tm.getTask(0));
 		ts.dropTask(tm.getTask(1));
-		return ts.simulEnd(1,et);
+		ts.simulEnd(1,et);
+		return 0;
 	}
 	public  int test8()	{
 		return -1;

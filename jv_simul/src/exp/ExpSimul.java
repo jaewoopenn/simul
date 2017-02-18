@@ -39,11 +39,7 @@ public class ExpSimul {
 	public SimulInfo simul(TaskSimul tsim,int dur){
 		tsim.init();
 		tsim.checkErr();
-		int ret=tsim.simulEnd(0,dur);
-		if(ret==0){
-			Log.prn(9, "ERROR: ExpSimul");
-			System.exit(1);
-		}
+		tsim.simulEnd(0,dur);
 		return tsim.getSI();
 	}
 

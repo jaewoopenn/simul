@@ -1,5 +1,7 @@
 package testMP;
 
+import anal.Anal;
+import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetFix;
 import part.CoreMng;
@@ -12,8 +14,8 @@ import util.MUtil;
 import util.TEngine;
 
 public class CoreMng1 {
-	public static int idx=4;
-	public static int log_level=1;
+	public static int idx=5;
+	public static int log_level=2;
 //	public static int idx=-1;
 	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
@@ -29,7 +31,8 @@ public class CoreMng1 {
 		CoreMng cm=TS_MP1.core2();
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(cm.getTM(0));
 		Log.set_lv(1);
-		ts.simulEnd(0,20);
+		ts.simulBy(0,20);
+		ts.simulEnd(20);
 		return 0;
 	}
 	
@@ -48,7 +51,13 @@ public class CoreMng1 {
 		int cpus=2;
 		ExpSimulMP eg=new ExpSimulMP(cpus);
 		for(int i:MUtil.loop(cpus)){
-			eg.init(i,new TaskSimul_EDF_VD(cm.getTM(i)));
+			TaskMng tm=cm.getTM(i);
+			Anal an=new AnalEDF_VD();
+			an.init(tm);
+			an.prepare();
+			tm.setX(an.getX());
+			
+			eg.init(i,new TaskSimul_EDF_VD(tm));
 		}
 		eg.simulStart();
 		eg.simul(0,100);
@@ -66,7 +75,10 @@ public class CoreMng1 {
 		for(int i:MUtil.loop(cpus)){
 			TaskSetFix tsf=new TaskSetFix(p.getTS(i));
 			tm=tsf.getTM();
-			tm.prn();
+			Anal an=new AnalEDF_VD();
+			an.init(tm);
+			an.prepare();
+			tm.setX(an.getX());
 			eg.init(i,new TaskSimul_EDF_VD(tm));
 		}
 		eg.simul(0,1000);
