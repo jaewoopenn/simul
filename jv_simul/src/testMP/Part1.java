@@ -1,17 +1,14 @@
 package testMP;
 
-import part.CoreMng;
 import part.Partition;
 import basic.TaskMng;
-import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MP1;
-import util.Log;
 import util.TEngine;
 
 public class Part1 {
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=4;
+	public static int idx=2;
 	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
 
@@ -22,6 +19,13 @@ public class Part1 {
 		return 0;
 	}
 	public int test2() {
+		TaskMng tm=TS_MP1.ts3();
+		Partition p=new Partition(tm.getTaskSet());
+		p.anal();
+		
+		p.prn();
+//		TaskSet ts=p.getTS(0);
+//		ts.prn();
 		return 0;
 	}
 	

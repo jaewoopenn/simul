@@ -52,6 +52,10 @@ public class CoreMng {
 	public TaskMng getTM(int i) {
 		return g_tm.elementAt(i);
 	}
+	public static CoreMng getFile(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

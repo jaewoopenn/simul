@@ -56,28 +56,39 @@ public abstract class TaskSimul {
 	
 	public int simulBy(int st, int et){
 		if(st==0){
-			if(isSchTab)
-				Log.prn(1, "rel  / exec / t");
-			initMode();
+			simulStart();
 		}
 		int t=st;
 		while(t<et){
-			msCheck(t);
-			if (!g_js.dlCheck(t)) return 0;
-			relCheck(t);
-			if(!g_js.progress(t,isSchTab)&&g_isMS) {
-				if(isPrnMS)
-					Log.prn(1, "recover "+t);
-				g_isMS=false;
-				initMode();
-			}
-			if(isSchTab)
-				Log.prn(1, " "+t);
+			if(simul_t(t)==0) 
+				return 0;
 			t++;
 		}
 		return 1;
 	}
-
+	
+	public void simulStart()
+	{
+		if(isSchTab)
+			Log.prn(1, "rel  / exec / t");
+		initMode();
+	}
+	
+	public int simul_t(int t){
+		msCheck(t);
+		if (!g_js.dlCheck(t)) return 0;
+		relCheck(t);
+		if(!g_js.progress(t,isSchTab)&&g_isMS) {
+			if(isPrnMS)
+				Log.prn(1, "recover "+t);
+			g_isMS=false;
+			initMode();
+		}
+		if(isSchTab)
+			Log.prn(1, " "+t);
+		return 1;
+	}
+	
 	protected abstract void initMode();
 	
 	public void initModeS() {
@@ -133,8 +144,10 @@ public abstract class TaskSimul {
 					Log.prnc(1,"-");
 				continue;
 			}
+//			Log.prn(2, "rc:"+t);
 			if(!tsk.is_HI){
 				g_si.rel++;
+//				Log.prn(2, "rel:"+t);
 				if(tsk.is_dropped){
 					g_si.drop++;
 //					Log.prn(1, "drop plus:"+tsk.tid+" "+g_si.drop);

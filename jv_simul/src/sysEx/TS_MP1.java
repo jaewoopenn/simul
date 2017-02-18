@@ -34,6 +34,14 @@ public class TS_MP1 {
 		tmp.add(new Task(0,14,2,3));
 		return tmp.getTM();
 	}
+	
+	public static TaskMng ts3()	{
+		TaskSetFix tmp=new TaskSetFix();
+		tmp.add(new Task(0,4,2));
+		tmp.add(new Task(1,6,1,5));
+		tmp.add(new Task(1,6,1,5));
+		return tmp.getTM();
+	}
 
 	public static CoreMng core1() {
 		CoreMng cm=new CoreMng();
@@ -53,6 +61,7 @@ public class TS_MP1 {
 		return cm;
 	}
 	
+
 	public static CoreMng core2() {
 		CoreMng cm=new CoreMng();
 		TaskSet ts=new TaskSet();
@@ -69,5 +78,20 @@ public class TS_MP1 {
 		return cm;
 	}
 	
+	public static CoreMng core3() {
+		CoreMng cm=new CoreMng();
+		TaskSet ts=new TaskSet();
+		ts.add(new Task(0,4,2));
+		ts.add(new Task(1,6,1,5));
+		ts.transform_Array();
+		cm.addTS(ts);
+		
+		ts=new TaskSet();
+		ts.add(new Task(0,6,1,5));
+		ts.transform_Array();
+		cm.addTS(ts);
+		
+		return cm;
+	}
 
 }

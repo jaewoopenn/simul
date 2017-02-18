@@ -1,10 +1,9 @@
 package part;
 
 
-import basic.TaskMng;
-import basic.TaskSetFix;
 import simul.SimulInfo;
 import simul.TaskSimul;
+import util.Log;
 import util.MUtil;
 //import util.Log;
 
@@ -24,12 +23,18 @@ public class ExpSimulMP {
 		tsim.init();
 		tsim.checkErr();
 	}
-	
+	public void simulStart(){
+		for(int j:MUtil.loop(g_ncpu)){
+			g_tsim[j].simulStart();
+		}
+		
+	}
 	public void simul(int st, int et){
 		int t=st;
 		while(t<et){
+//			Log.prn(2, ""+t);
 			for(int j:MUtil.loop(g_ncpu)){
-				g_tsim[j].simulBy(t,t+1);
+				g_tsim[j].simul_t(t);
 			}
 			t++;
 		}
@@ -40,11 +45,6 @@ public class ExpSimulMP {
 		return g_tsim[core].getSI();
 	}
 	
-	// load 
-	public TaskMng loadTM(String fn){
-		TaskSetFix tmp=TaskSetFix.loadFile(fn);
-		return tmp.getTM();
-	}
 
 
 

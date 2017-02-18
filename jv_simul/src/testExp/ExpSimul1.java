@@ -8,7 +8,7 @@ import simul.TaskSimul_EDF_VD;
 import util.TEngine;
 
 public class ExpSimul1 {
-	public static int idx=5;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=2;
@@ -36,8 +36,9 @@ public class ExpSimul1 {
 	}
 	public int test3() 
 	{
+		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
+		
 		ExpSimulMP eg=new ExpSimulMP(1);
-		TaskMng tm=eg.loadTM("test/ts/taskset_0");
 		eg.init(0,new TaskSimul_EDF_VD(tm));
 		eg.simul(0,1000);
 		eg.prn();
@@ -45,10 +46,10 @@ public class ExpSimul1 {
 	}
 	public  int test4() 
 	{
+		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
 		ExpSimulMP eg=new ExpSimulMP(2);
-		TaskMng tm=eg.loadTM("test/ts/taskset_0");
 		eg.init(0,new TaskSimul_EDF_VD(tm));
-		tm=eg.loadTM("test/ts/taskset_0");
+		tm=TaskMng.getFile("test/ts/taskset_0");
 		eg.init(1,new TaskSimul_EDF_VD(tm));
 		eg.simul(0,1000);
 		eg.prn();
@@ -57,13 +58,12 @@ public class ExpSimul1 {
 	public  int test5() 
 	{
 		ExpSimulMP eg=new ExpSimulMP(2);
-		TaskMng tm=eg.loadTM("test/ts/taskset_0");
+		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
 		eg.init(0,new TaskSimul_EDF_VD(tm));
-		tm=eg.loadTM("test/ts/taskset_2");
+		tm=TaskMng.getFile("test/ts/taskset_2");
 		eg.init(1,new TaskSimul_EDF_VD(tm));
-		eg.simul(0,500);
-		eg.move();
-		eg.simul(500,1000);
+		eg.simulStart();
+		eg.simul(0,100);
 		eg.prn();
 		return 1;
 	}

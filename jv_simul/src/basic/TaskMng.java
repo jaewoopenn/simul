@@ -164,4 +164,12 @@ public class TaskMng {
 		Log.prn(2, "prob:"+g_info.getProb_ms());
 	}
 
+
+
+
+
+	public static TaskMng getFile(String fn) {
+		return TaskSetFix.loadFile(fn).getTM();
+	}
+
 }
