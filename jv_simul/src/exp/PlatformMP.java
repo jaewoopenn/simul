@@ -18,7 +18,7 @@ import util.FUtil;
 import util.Log;
 import util.MUtil;
 
-public class PlatformTM extends Platform{
+public class PlatformMP extends Platform{
 	
 	// task
 	public void writeCfg(ConfigGen cfg) {

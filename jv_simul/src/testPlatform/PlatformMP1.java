@@ -2,33 +2,20 @@ package testPlatform;
 
 
 
-import exp.PlatformTM;
+import exp.PlatformMP;
 import gen.ConfigGen;
 import util.Log;
 import util.TEngine;
 
 public class PlatformMP1 {
-	public static int idx=3;
+	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public int isReal=0;
-	
-	public PlatformTM getP1() {
-		PlatformTM p=getCommmon();
-		p.setTSName("mp_util_sim");
-		p.setKinds(0);
-//		p.setStart(110);
-//		p.setStep(10);
-		p.setStart(55);
-		p.setStep(5);
-		p.setSize(10);
-		return p;
-	}
-
-	public PlatformTM getCommmon(){
-		PlatformTM p=new PlatformTM();
-		p.setPath("exp");
+	public PlatformMP getCommmon(){
+		PlatformMP p=new PlatformMP();
+		p.setPath("mp");
 		p.setCfg_fn("cfg/");
 		if(isReal==1){
 			p.setDuration(10000);
@@ -42,26 +29,38 @@ public class PlatformMP1 {
 		return p;
 		
 	}
+
+	
+	public PlatformMP getP1() {
+		PlatformMP p=getCommmon();
+		p.setTSName("util_sim");
+		p.setKinds(0);
+//		p.setStart(110);
+//		p.setStep(10);
+		p.setStart(55);
+		p.setStep(5);
+		p.setSize(10);
+		return p;
+	}
+
 	
 	public int test1() 
 	{
 		ConfigGen eg=ConfigGen.getCfg();
-		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","300");
-		PlatformTM p=getP1();
+		PlatformMP p=getP1();
 		p.writeCfg(eg);
 		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
-		PlatformTM p=getP1();
+		PlatformMP p=getP1();
 		p.genTS(true);
 		return 1;
 	}
 	public int test3() 
 	{
-		PlatformTM p=getP1();
+		PlatformMP p=getP1();
 //		p.isWrite=false;
 		p.simul();
 		return 1;
