@@ -20,44 +20,49 @@ public class PlatformMP extends Platform{
 	public PlatformMP(int ncpu){
 		g_ncpu=ncpu;
 	}
-	// task
+	
 	public void writeCfg(ConfigGen cfg) {
 		cfg.setParam("subfix", g_path+"/ts");
 		for(int i=0;i<g_size;i++){
-			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod);
 			cfg.setParam("num",g_sys_num+"");
-			if(g_kinds==0){
-				cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
-				cfg.setParam("u_ub", (mod)*1.0/100+"");
-			} else{
-				cfg.setParam("u_lb", "0.75");
-				cfg.setParam("u_ub", "0.80");
-				cfg.setParam("prob_hi",(mod*1.0/100)+"");
-			}
-			cfg.setParam("mod", modStr);
+			writeCfg_i(cfg,i);
 			cfg.write(getCfgFN(i));
 		}
 	}
 	
-	public void genTS(boolean bCheck) {
+	private void writeCfg_i(ConfigGen cfg, int i) {
+		int mod=i*g_step+g_start;
+		String modStr=g_ts_name+"_"+(mod);
+		if(g_kinds==0){
+			cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
+			cfg.setParam("u_ub", (mod)*1.0/100+"");
+		} else{
+			cfg.setParam("u_lb", "0.75");
+			cfg.setParam("u_ub", "0.80");
+			cfg.setParam("prob_hi",(mod*1.0/100)+"");
+		}
+		cfg.setParam("mod", modStr);
+	}
+	
+	public void genTS(boolean b) {
 		for(int i:MUtil.loop(g_size)){
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
-			eg.setCheck(bCheck);
+			eg.setCheck(b);
 			eg.gen();
 		}
 		Log.prn(3, "task");
-		
 	}
+	
 	public void simul() {
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
 	}
-	public void simul_in(int no,Anal an,TaskSimul ts){
+	
+	public void simul_in(int algo_num,Anal an,TaskSimul ts){
 		g_fu=new FUtil();
 		if(isWrite)
-			g_fu=new FUtil(getRsFN(no));
+			g_fu=new FUtil(getRsFN(algo_num));
 		ts.isSchTab=false;
 		for(int i:MUtil.loop(g_size)){
 			simul_in_i(i,an,ts);
@@ -78,7 +83,7 @@ public class PlatformMP extends Platform{
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
 			Partition p=new Partition(tm.getTaskSet());
 			p.anal();
-			checkPartition(p);
+			checkPart(p);
 			for(int k:MUtil.loop(g_ncpu)){
 				TaskSetFix tsf=new TaskSetFix(p.getTS(k));
 				tm=tsf.getTM();
@@ -101,7 +106,8 @@ public class PlatformMP extends Platform{
 		g_fu.print(avg+"");
 		
 	}
-	private void checkPartition(Partition p) {
+	
+	private void checkPart(Partition p) {
 		int cpus=p.size();
 		if(cpus>g_ncpu){
 			Log.prn(9, "ERROR: ncpu>"+g_ncpu);

@@ -24,22 +24,26 @@ public class PlatformTM extends Platform{
 	public void writeCfg(ConfigGen cfg) {
 		cfg.setParam("subfix", g_path+"/ts");
 		for(int i=0;i<g_size;i++){
-			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod);
-			cfg.setParam("num",g_sys_num+"");
-			if(g_kinds==0){
-				cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
-				cfg.setParam("u_ub", (mod)*1.0/100+"");
-			} else{
-				cfg.setParam("u_lb", "0.75");
-				cfg.setParam("u_ub", "0.80");
-				cfg.setParam("prob_hi",(mod*1.0/100)+"");
-			}
-			cfg.setParam("mod", modStr);
-			cfg.write(getCfgFN(i));
+			writeCfg_i(cfg,i);
 		}
 	}
 	
+	private void writeCfg_i(ConfigGen cfg, int i) {
+		int mod=i*g_step+g_start;
+		String modStr=g_ts_name+"_"+(mod);
+		cfg.setParam("num",g_sys_num+"");
+		if(g_kinds==0){
+			cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
+			cfg.setParam("u_ub", (mod)*1.0/100+"");
+		} else{
+			cfg.setParam("u_lb", "0.75");
+			cfg.setParam("u_ub", "0.80");
+			cfg.setParam("prob_hi",(mod*1.0/100)+"");
+		}
+		cfg.setParam("mod", modStr);
+		cfg.write(getCfgFN(i));
+	}
+
 	public void genTS(boolean bCheck) {
 		for(int i:MUtil.loop(g_size)){
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
