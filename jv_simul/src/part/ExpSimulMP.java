@@ -1,9 +1,12 @@
 package part;
 
 
+import anal.Anal;
+import basic.TaskMng;
 import gen.ConfigGen;
 import simul.SimulInfo;
 import simul.TaskSimul;
+import util.Log;
 //import util.Log;
 import util.MUtil;
 
@@ -48,6 +51,7 @@ public class ExpSimulMP {
 //			Log.prn(2, ""+t);
 			for(int j:MUtil.loop(g_ncpu)){
 				g_tsim[j].simul_t(t);
+				Log.prn(2, t+","+j);
 			}
 			t++;
 		}
@@ -75,6 +79,17 @@ public class ExpSimulMP {
 	// test
 	public void move() {
 		
+	}
+
+
+
+
+	public int anal(TaskMng tm, Anal an) {
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		if(p.size()>g_ncpu)
+			return 0;
+		return 1;
 	}
 	
 

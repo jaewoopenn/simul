@@ -1,26 +1,29 @@
 package testMP;
 
 import part.Partition;
+import anal.AnalEDF;
+import anal.AnalEDF_VD;
 import basic.TaskMng;
 import sysEx.TS_MP1;
+import util.Log;
 import util.TEngine;
 
 public class Part1 {
-	public static int log_level=2;
 //	public static int idx=-1;
-	public static int idx=2;
+	public static int idx=3;
+	public static int log_level=2;
 	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
 		TaskMng tm=TS_MP1.ts2();
-		Partition p=new Partition(tm.getTaskSet());
+		Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
 		p.anal();
 		return 0;
 	}
 	public int test2() {
 		TaskMng tm=TS_MP1.ts3();
-		Partition p=new Partition(tm.getTaskSet());
+		Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
 		p.anal();
 		
 		p.prn();
@@ -30,6 +33,12 @@ public class Part1 {
 	}
 	
 	public  int test3()	{
+		TaskMng tm=TS_MP1.ts3();
+		Partition p=new Partition(new AnalEDF(),tm.getTaskSet());
+//		Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
+		p.anal();
+		Log.prn(2,""+p.size());
+		
 		return 0;
 		
 	}

@@ -144,57 +144,52 @@ public class PlatformTM extends Platform{
 		anal_in(5,new AnalEDF());
 	}
 	
-	public void anal_in(int kinds,Anal an){
-		Log.prn(3, "anal:"+an.getName());
+	public void anal_in(int algo_num,Anal an){
+		g_fu=new FUtil();
 		if(isWrite)
-			g_fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
+			g_fu=new FUtil(getRsFN(algo_num));
 		for(int i=0;i<g_size;i++){
-			int sum=0;
-			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod);
-			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
-			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
-			int size=eg.size();
-			for(int j=0;j<size;j++){
-				String fn=cfg.get_fn(j);
-				TaskMng tm=TaskMng.getFile(fn);
-				int ret=eg.anal(tm,an);
-				Log.prn(2, j+","+ret);
-				sum+=ret;
-//				Log.prn(2, " "+sum);
-			}
-			double avg=(double)sum/size;
-			Log.prn(3, (g_start+i*g_step)+":"+avg);
-			if(isWrite)
-				g_fu.print(avg+"");
+			anal_in_i(i,an);			
 		}
-		if(isWrite)
-			g_fu.save();
+		g_fu.save();
 		
+	}
+	public void anal_in_i(int i,Anal an){
+		int sum=0;
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		int size=eg.size();
+		for(int j=0;j<size;j++){
+			String fn=cfg.get_fn(j);
+			TaskMng tm=TaskMng.getFile(fn);
+			int ret=eg.anal(tm,an);
+			Log.prn(2, j+","+ret);
+			sum+=ret;
+//			Log.prn(2, " "+sum);
+		}
+		double avg=(double)sum/size;
+		Log.prn(3, (g_start+i*g_step)+":"+avg);
+		g_fu.print(avg+"");
 	}
 	
 	public void anal_one(int kinds, int set, int no) {
 		if(kinds==0)
-			anal_in_one(new AnalEDF_VD(),set,no);
+			anal_one(new AnalEDF_VD(),set,no);
 		else
-			anal_in_one(new AnalEDF_AD_E(),set,no);
+			anal_one(new AnalEDF_AD_E(),set,no);
 	}
-	private void anal_in_one(Anal an,
-			int set, int no) {
-		int ret;
-		int mod=set*g_step+g_start;
-		String modStr=g_ts_name+"_"+(mod);
-		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+
+	public void anal_one(Anal an, int i, int j) {
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimul eg=new ExpSimul(cfg);
-		String fn=cfg.get_fn(no);
+		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
-		tm.prn();
-		ret=eg.anal(tm,an);
-		Log.prn(2, set+","+no+","+ret);
+		int ret=eg.anal(tm,an);
+		Log.prn(3, i+","+j+":"+ret);
 		
-	}
+	}	
 	
 	
 	public void prnTasks() {

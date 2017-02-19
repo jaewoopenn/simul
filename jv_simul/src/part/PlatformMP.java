@@ -7,6 +7,7 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetFix;
+import exp.ExpSimul;
 import exp.Platform;
 import simul.SimulInfo;
 import simul.TaskSimul;
@@ -81,7 +82,7 @@ public class PlatformMP extends Platform{
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
-			Partition p=new Partition(tm.getTaskSet());
+			Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
 			p.anal();
 			checkPart(p);
 			for(int k:MUtil.loop(g_ncpu)){
@@ -90,7 +91,7 @@ public class PlatformMP extends Platform{
 				an.init(tm);
 				an.prepare();
 				tm.setX(an.getX());
-				eg.init(i,new TaskSimul_EDF_VD(tm));
+				eg.init(k,new TaskSimul_EDF_VD(tm));
 			}
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
@@ -119,6 +120,39 @@ public class PlatformMP extends Platform{
 		}
 		
 	}
+	
+	public void anal() {
+		anal_in(1,new AnalEDF_VD());
+	}
+	public void anal_in(int algo_num,Anal an){
+		g_fu=new FUtil();
+		if(isWrite)
+			g_fu=new FUtil(getRsFN(algo_num));
+		for(int i=0;i<g_size;i++){
+			anal_in_i(i,an);			
+		}
+		g_fu.save();
+		
+	}
+	public void anal_in_i(int i,Anal an){
+		int sum=0;
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		int size=eg.size();
+		for(int j=0;j<size;j++){
+			String fn=cfg.get_fn(j);
+			TaskMng tm=TaskMng.getFile(fn);
+			int ret=eg.anal(tm,an);
+			Log.prn(2, j+","+ret);
+			sum+=ret;
+//			Log.prn(2, " "+sum);
+		}
+		double avg=(double)sum/size;
+		Log.prn(3, (g_start+i*g_step)+":"+avg);
+		g_fu.print(avg+"");
+	}
+	
 	private String getCfgFN(int i){
 		String modStr=g_ts_name+"_"+(i*g_step+g_start);
 		return g_path+"/"+g_cfg_fn+modStr+".txt";
@@ -126,5 +160,17 @@ public class PlatformMP extends Platform{
 	private String getRsFN(int no){
 		return g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt";
 	}
+
+	public void anal_one(Anal an, int i, int j) {
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
+		cfg.readFile();
+		ExpSimulMP eg=new ExpSimulMP(g_ncpu,cfg);
+		String fn=cfg.get_fn(j);
+		TaskMng tm=TaskMng.getFile(fn);
+		int ret=eg.anal(tm,an);
+		Log.prn(3, i+","+j+":"+ret);
+		
+	}
+
 	
 }

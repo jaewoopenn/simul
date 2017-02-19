@@ -1,14 +1,16 @@
 package testMP;
 
-// simul
+import anal.AnalEDF_VD;
+
+// anal
 
 import gen.ConfigGen;
 import part.PlatformMP;
 import util.Log;
 import util.TEngine;
 
-public class PlatformMP1 {
-	public static int idx=3;
+public class PlatformMP2 {
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int isReal=0;
@@ -35,12 +37,12 @@ public class PlatformMP1 {
 	
 	public PlatformMP getP1() {
 		PlatformMP p=getCommmon();
-		p.setTSName("util_sim");
+		p.setTSName("util");
 		p.setKinds(0);
-		p.setStart(110);
-		p.setStep(10);
-//		p.setStart(55);
-//		p.setStep(5);
+//		p.setStart(110);
+//		p.setStep(10);
+		p.setStart(55);
+		p.setStep(5);
 		p.setSize(10);
 		return p;
 	}
@@ -65,11 +67,13 @@ public class PlatformMP1 {
 	{
 		PlatformMP p=getP1();
 //		p.isWrite=false;
-		p.simul();
+		p.anal();
 		return 1;
 	}
 	public  int test4() 
 	{
+		PlatformMP p=getP1();
+		p.anal_one(new AnalEDF_VD(),6,1);
 		return 1;
 	}
 	public  int test5() 
@@ -100,9 +104,9 @@ public class PlatformMP1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = PlatformMP1.class;
-		PlatformMP1 m=new PlatformMP1();
-		int[] aret=PlatformMP1.gret;
+		Class c = PlatformMP2.class;
+		PlatformMP2 m=new PlatformMP2();
+		int[] aret=PlatformMP2.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

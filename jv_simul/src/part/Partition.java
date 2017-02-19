@@ -5,7 +5,6 @@ package part;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalEDF_VD;
 import basic.Task;
 import basic.TaskSet;
 import util.Log;
@@ -13,22 +12,23 @@ import basic.TaskSetFix;
 
 public class Partition {
 	TaskSet g_ts;
+	Anal g_anal;
 	Vector<TaskSet> g_part;
-	public Partition(TaskSet t) {
+	public Partition(Anal a,TaskSet t) {
 		g_ts=t;
+		g_anal=a;
 		g_part=new Vector<TaskSet>();
 	}
 	public int anal() {
 		g_ts.sortHi();
 //		g_ts.prn();
 		TaskSetFix tsf=new TaskSetFix();
-		Anal anal=new AnalEDF_VD();
 
 		for(Task t:g_ts.getArr()){
 			tsf.add(t);
-			anal.init(tsf.getTM());
-			anal.prepare();
-			double d=anal.getDtm();
+			g_anal.init(tsf.getTM());
+			g_anal.prepare();
+			double d=g_anal.getDtm();
 			if (d>1){
 				TaskSet ts=tsf.getTS();
 				ts.removeLast();

@@ -68,7 +68,7 @@ public class CoreMng1 {
 	
 	public  int test5() {
 		TaskMng tm=TS_MP1.ts3();
-		Partition p=new Partition(tm.getTaskSet());
+		Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
 		int cpus=p.anal();
 //		p.prn();
 		ExpSimulMP eg=new ExpSimulMP(cpus);
