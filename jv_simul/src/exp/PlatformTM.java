@@ -36,22 +36,17 @@ public class PlatformTM extends Platform{
 				cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
 			cfg.setParam("mod", modStr);
-			cfg.write(g_path+"/"+g_cfg_fn+modStr+".txt");
+			cfg.write(getCfgFN(i));
 		}
 	}
 	
 	public void genTS(boolean bCheck) {
 		for(int i:MUtil.loop(g_size)){
-			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod);
-			Log.prn(3, modStr);
-			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+modStr+".txt");
+			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			cfg.readFile();
 			SimGen eg=new SimGen(cfg);
-			if(bCheck)
-				eg.gen2();
-			else
-				eg.gen();
+			eg.setCheck(bCheck);
+			eg.gen();
 		}
 		Log.prn(3, "task");
 		
@@ -62,49 +57,47 @@ public class PlatformTM extends Platform{
 		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E());
 	}
 	public void simul_in(int no,Anal an,TaskSimul ts){
-		double ret;
-		FUtil fu=null;
+		g_fu=new FUtil();
 		if(isWrite)
-			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt");
+			g_fu=new FUtil(getRsFN(no));
+		
 		ts.isSchTab=false;
-		for(int i=0;i<g_size;i++){
-			double sum=0;
-			int sum_ms=0;
-			int mod=i*g_step+g_start;
-			String modStr=g_ts_name+"_"+(mod);
-			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+modStr+".txt");
-			cfg.readFile();
-			ExpSimul eg=new ExpSimul();
-			eg.setCfg(cfg);
-			int size=eg.size();
-			for(int j=0;j<size;j++){
-				TaskMng tm=eg.loadTM(j);
-				tm.getInfo().setProb_ms(g_prob); 
-				an.init(tm);
-				an.prepare();
-				tm.setX(an.getX());
-//				ret=eg.anal(tm,new AnalEDF_AT_S());
-//				if(ret==0){
-//					continue;
-//				}
-				ts.set_tm(tm);
-				SimulInfo si=eg.simul(ts,g_dur);
-				ret=si.getDMR();
-				Log.prnc(2, j+","+ret+","+si.ms);
-				sum+=ret;
-				sum_ms+=si.ms;
-				Log.prn(2, " "+sum);
-			}
-			double avg=sum/size;
-			double avg_ms=(sum_ms*1.0/size);
-			Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
-			if(isWrite)
-				fu.print(avg+"");
+		for(int i:MUtil.loop(g_size)){
+			simul_in_i(i,an,ts);
 		}
-		if(isWrite)
-			fu.save();
+		g_fu.save();
 		
 	}
+	
+	public void simul_in_i(int i,Anal an,TaskSimul ts)
+	{
+		double sum=0;
+		int sum_ms=0;
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		int size=eg.size();
+		for(int j:MUtil.loop(size)){
+			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
+			tm.getInfo().setProb_ms(g_prob); 
+			an.init(tm);
+			an.prepare();
+			tm.setX(an.getX());
+			ts.set_tm(tm);
+			SimulInfo si=eg.simul(ts,g_dur);
+			double ret=si.getDMR();
+			Log.prnc(2, j+","+ret+","+si.ms);
+			sum+=ret;
+			sum_ms+=si.ms;
+			Log.prn(2, " "+sum);
+		}
+		double avg=sum/size;
+		double avg_ms=(sum_ms*1.0/size);
+		Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
+		g_fu.print(avg+"");
+		
+	}
+	
 	public void simul_vd() {
 		isWrite=false;
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
@@ -123,9 +116,9 @@ public class PlatformTM extends Platform{
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul();
-		eg.setCfg(cfg);
-		TaskMng tm=eg.loadTM(no);
+		ExpSimul eg=new ExpSimul(cfg);
+		String fn=cfg.get_fn(no);
+		TaskMng tm=TaskMng.getFile(fn);
 		tm.getInfo().setProb_ms(g_prob); 
 		an.init(tm);
 		an.prepare();
@@ -148,23 +141,21 @@ public class PlatformTM extends Platform{
 	}
 	
 	public void anal_in(int kinds,Anal an){
-		int ret;
-		FUtil fu=null;
 		Log.prn(3, "anal:"+an.getName());
 		if(isWrite)
-			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
+			g_fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
 		for(int i=0;i<g_size;i++){
 			int sum=0;
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimul eg=new ExpSimul();
-			eg.setCfg(cfg);
+			ExpSimul eg=new ExpSimul(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
-				TaskMng tm=eg.loadTM(j);
-				ret=eg.anal(tm,an);
+				String fn=cfg.get_fn(j);
+				TaskMng tm=TaskMng.getFile(fn);
+				int ret=eg.anal(tm,an);
 				Log.prn(2, j+","+ret);
 				sum+=ret;
 //				Log.prn(2, " "+sum);
@@ -172,10 +163,10 @@ public class PlatformTM extends Platform{
 			double avg=(double)sum/size;
 			Log.prn(3, (g_start+i*g_step)+":"+avg);
 			if(isWrite)
-				fu.print(avg+"");
+				g_fu.print(avg+"");
 		}
 		if(isWrite)
-			fu.save();
+			g_fu.save();
 		
 	}
 	
@@ -192,9 +183,9 @@ public class PlatformTM extends Platform{
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul();
-		eg.setCfg(cfg);
-		TaskMng tm=eg.loadTM(no);
+		ExpSimul eg=new ExpSimul(cfg);
+		String fn=cfg.get_fn(no);
+		TaskMng tm=TaskMng.getFile(fn);
 		tm.prn();
 		ret=eg.anal(tm,an);
 		Log.prn(2, set+","+no+","+ret);
@@ -208,15 +199,25 @@ public class PlatformTM extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimul eg=new ExpSimul();
-			eg.setCfg(cfg);
+			ExpSimul eg=new ExpSimul(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
-				TaskMng tm=eg.loadTM(j);
+				String fn=cfg.get_fn(j);
+				TaskMng tm=TaskMng.getFile(fn);
 				Log.prn(2, mod+" "+j);
 				tm.getInfo().prn();
 			}
 		}
+	}
+
+	private String getCfgFN(int i){
+		String modStr=g_ts_name+"_"+(i*g_step+g_start);
+		return g_path+"/"+g_cfg_fn+modStr+".txt";
 		
 	}
+
+	private String getRsFN(int no){
+		return g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt";
+	}
+	
 }

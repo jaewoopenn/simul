@@ -18,9 +18,9 @@ public class ExpSimul1 {
 	{
 		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul();
-		eg.setCfg(cfg);
-		TaskMng tm=eg.loadTM(0);
+		ExpSimul eg=new ExpSimul(cfg);
+		String fn=cfg.get_fn(0);
+		TaskMng tm=TaskMng.getFile(fn);
 		Anal an=new AnalEDF_VD();
 		an.init(tm);
 		an.prepare();
@@ -32,9 +32,10 @@ public class ExpSimul1 {
 	}
 	public int test2() 
 	{
-		ExpSimul eg=new ExpSimul();
-		TaskMng tm=eg.loadTM("test/ts/taskset_0");
-//		TaskMng tm=eg.loadTM("test/ts/taskset_1");
+		ExpSimul eg=new ExpSimul(null);
+		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
+//		TaskMng tm=TaskMng.getFile("test/ts/taskset_1");
+		
 		Anal an=new AnalEDF_VD();
 		an.init(tm);
 		an.prepare();

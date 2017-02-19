@@ -11,6 +11,10 @@ import java.util.Vector;
 public class FUtil {
 	private String g_fn;
 	private Vector<String> g_v;
+	public FUtil(){
+		g_fn=null;
+		g_v=new Vector<String>();
+	}
 	public FUtil(String file) {
 		g_fn=file;
 		g_v=new Vector<String>();
@@ -22,10 +26,13 @@ public class FUtil {
 		return g_v.elementAt(idx);
 	}
 	public void print(String txt){
-		g_v.add(txt);
+		if(g_fn!=null)
+			g_v.add(txt);
 	}
 	public void save()
 	{
+		if(g_fn==null)
+			return;
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter("/Users/jaewoo/data/"+g_fn);
@@ -41,6 +48,8 @@ public class FUtil {
 		
 	}
 	public void load(){
+		if(g_fn==null)
+			return;
 	    File file = new File("/Users/jaewoo/data/"+g_fn);
 		g_v=new Vector<String>();
 		try {

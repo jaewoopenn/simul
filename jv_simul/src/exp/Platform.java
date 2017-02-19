@@ -17,6 +17,9 @@ public class Platform {
 	protected String g_ts_name;
 	public boolean isWrite=true;
 	protected String g_RS;
+	protected FUtil g_fu;
+	
+	// com
 	protected double g_a_l;
 	protected double g_a_u;
 	

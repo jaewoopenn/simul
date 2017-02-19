@@ -16,8 +16,7 @@ public class ExpSimul2 {
 		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_100.txt");
 		cfg.readFile();
 		//cfg.prn(2);
-		ExpSimul eg=new ExpSimul();
-		eg.setCfg(cfg);
+		ExpSimul eg=new ExpSimul(cfg);
 		CompMng cm=eg.loadCM(0);
 		int ret=eg.analComp(cm,0);
 		Log.prn(1, ""+ret);

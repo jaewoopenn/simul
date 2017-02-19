@@ -54,5 +54,8 @@ public class Partition {
 		}
 		
 	}
+	public int size() {
+		return g_part.size();
+	}
 
 }

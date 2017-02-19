@@ -41,10 +41,6 @@ public class SimGen {
 		}
 		
 	}
-	public void gen2(){
-		g_isCheck=true;
-		gen();
-	}
 	
 	public int writeSys(int i)
 	{
@@ -71,6 +67,9 @@ public class SimGen {
 		TaskSetFix tm=new TaskSetFix(g_tg.getAll());
 		TaskMng m=tm.getTM();
 		return m;
+	}
+	public void setCheck(boolean b){
+		g_isCheck=b;
 	}
 	
 }

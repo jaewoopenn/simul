@@ -7,7 +7,6 @@ import comp.CompFile;
 import comp.CompMng;
 import anal.Anal;
 import basic.TaskMng;
-import basic.TaskSetFix;
 import simul.SimulInfo;
 import simul.TaskSimul;
 import util.Log;
@@ -15,10 +14,7 @@ import util.MUtil;
 
 public class ExpSimul {
 	private ConfigGen g_cfg;
-	public ExpSimul() {
-		
-	}
-	public void setCfg(ConfigGen cfg) {
+	public ExpSimul(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
 	public int size(){
@@ -44,15 +40,6 @@ public class ExpSimul {
 	}
 
 
-	// load 
-	public TaskMng loadTM(int i){
-		String fn=g_cfg.get_fn(i);
-		return loadTM(fn);
-	}
-	public TaskMng loadTM(String fn){
-		TaskSetFix tmp=TaskSetFix.loadFile(fn);
-		return tmp.getTM();
-	}
 	
 	//comp
 	public CompMng loadCM(int i){

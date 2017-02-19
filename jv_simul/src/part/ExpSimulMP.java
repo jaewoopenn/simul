@@ -1,6 +1,7 @@
 package part;
 
 
+import gen.ConfigGen;
 import simul.SimulInfo;
 import simul.TaskSimul;
 //import util.Log;
@@ -9,14 +10,27 @@ import util.MUtil;
 public class ExpSimulMP {
 	private TaskSimul[] g_tsim;
 	private int g_ncpu;
-	public ExpSimulMP(int core) {
-		g_ncpu=core;
-		g_tsim=new TaskSimul[core];
+	private ConfigGen g_cfg;
+	
+	public ExpSimulMP(int core, ConfigGen cfg) {
+		this(core);
+		g_cfg=cfg;
 	}
 	
 
 	
 	
+	public ExpSimulMP(int core) {
+		g_ncpu=core;
+		g_tsim=new TaskSimul[core];
+	}
+
+
+	public int size(){
+		return g_cfg.readInt("num");
+	}
+
+
 	public void init(int core,TaskSimul tsim){
 		g_tsim[core]=tsim;
 		tsim.init();

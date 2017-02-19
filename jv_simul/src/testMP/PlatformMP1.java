@@ -1,20 +1,20 @@
-package testPlatform;
+package testMP;
 
 
 
-import exp.PlatformMP;
 import gen.ConfigGen;
+import part.PlatformMP;
 import util.Log;
 import util.TEngine;
 
 public class PlatformMP1 {
-	public static int idx=1;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public int isReal=0;
 	public PlatformMP getCommmon(){
-		PlatformMP p=new PlatformMP();
+		PlatformMP p=new PlatformMP(2);
 		p.setPath("mp");
 		p.setCfg_fn("cfg/");
 		if(isReal==1){

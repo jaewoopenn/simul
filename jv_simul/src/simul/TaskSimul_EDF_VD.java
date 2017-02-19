@@ -2,7 +2,6 @@ package simul;
 
 
 import exp.Job;
-import util.Log;
 import basic.Task;
 import basic.TaskMng;
 
