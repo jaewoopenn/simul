@@ -109,28 +109,25 @@ public class PlatformTM extends Platform{
 
 	public void simul_one(int anal, int set, int no) {
 		if(anal==0)
-			simul_in_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
+			simul_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
 		else
-			simul_in_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(),set,no);
+			simul_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(),set,no);
 	}
 	
-	private void simul_in_one(Anal an,
-			TaskSimul ts, int set, int no) {
-		int mod=set*g_step+g_start;
-		String modStr=g_ts_name+"_"+(mod);
-		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+	public void simul_one(Anal an,
+			TaskSimul tsim, int i, int j) {
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimul eg=new ExpSimul(cfg);
-		String fn=cfg.get_fn(no);
+		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
 		tm.getInfo().setProb_ms(g_prob); 
 		an.init(tm);
 		an.prepare();
 		tm.setX(an.getX());
-		ts.set_tm(tm);
-		SimulInfo si=eg.simul(ts,g_dur);
-		Log.prn(2, set+","+no+","+si.getDMR()+","+si.ms);
-		
+		tsim.set_tm(tm);
+		SimulInfo si=eg.simul(tsim,g_dur);
+		Log.prn(2, i+","+j+","+si.getDMR()+","+si.ms);
 	}
 
 	

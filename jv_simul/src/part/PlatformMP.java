@@ -172,5 +172,21 @@ public class PlatformMP extends Platform{
 		
 	}
 
+	public void simul_one(Anal an,
+			TaskSimul tsim, int i, int j) {
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
+		cfg.readFile();
+		ExpSimul eg=new ExpSimul(cfg);
+		String fn=cfg.get_fn(j);
+		TaskMng tm=TaskMng.getFile(fn);
+		tm.getInfo().setProb_ms(g_prob); 
+		an.init(tm);
+		an.prepare();
+		tm.setX(an.getX());
+		tsim.set_tm(tm);
+		SimulInfo si=eg.simul(tsim,g_dur);
+		Log.prn(3, i+","+j+","+si.getDMR()+","+si.ms);
+	}
+
 	
 }
