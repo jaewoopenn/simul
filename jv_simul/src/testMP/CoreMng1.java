@@ -57,9 +57,8 @@ public class CoreMng1 {
 			an.prepare();
 			tm.setX(an.getX());
 			
-			eg.init(i,new TaskSimul_EDF_VD(tm));
+			eg.initSim(i,new TaskSimul_EDF_VD(tm));
 		}
-		eg.simulStart();
 		eg.simul(0,100);
 		eg.prn();
 		
@@ -79,7 +78,7 @@ public class CoreMng1 {
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.getX());
-			eg.init(i,new TaskSimul_EDF_VD(tm));
+			eg.initSim(i,new TaskSimul_EDF_VD(tm));
 		}
 		eg.simul(0,1000);
 		eg.prn();

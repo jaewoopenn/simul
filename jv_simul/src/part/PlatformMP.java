@@ -7,7 +7,7 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import exp.ExpSimul;
+import exp.ExpSimulTM;
 import exp.Platform;
 import simul.SimulInfo;
 import simul.TaskSimul;
@@ -91,7 +91,7 @@ public class PlatformMP extends Platform{
 				an.init(tm);
 				an.prepare();
 				tm.setX(an.getX());
-				eg.init(k,new TaskSimul_EDF_VD(tm));
+				eg.initSim(k,new TaskSimul_EDF_VD(tm));
 			}
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
@@ -138,7 +138,7 @@ public class PlatformMP extends Platform{
 		int sum=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulMP eg=new ExpSimulMP(g_ncpu,cfg);
 		int size=eg.size();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
@@ -176,7 +176,7 @@ public class PlatformMP extends Platform{
 			TaskSimul tsim, int i, int j) {
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
 		tm.getInfo().setProb_ms(g_prob); 
@@ -184,7 +184,9 @@ public class PlatformMP extends Platform{
 		an.prepare();
 		tm.setX(an.getX());
 		tsim.set_tm(tm);
-		SimulInfo si=eg.simul(tsim,g_dur);
+		eg.initSim(0, tsim);
+		eg.simul(0,g_dur);
+		SimulInfo si=eg.getSI(0);
 		Log.prn(3, i+","+j+","+si.getDMR()+","+si.ms);
 	}
 

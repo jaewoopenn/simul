@@ -1,6 +1,7 @@
 package part;
 
 
+import exp.ExpSimul;
 import anal.Anal;
 import basic.TaskMng;
 import gen.ConfigGen;
@@ -10,42 +11,43 @@ import util.Log;
 //import util.Log;
 import util.MUtil;
 
-public class ExpSimulMP {
+public class ExpSimulMP extends ExpSimul {
 	private TaskSimul[] g_tsim;
 	private int g_ncpu;
-	private ConfigGen g_cfg;
 	
 	public ExpSimulMP(int core, ConfigGen cfg) {
-		this(core);
-		g_cfg=cfg;
-	}
-	
-
-	
-	
-	public ExpSimulMP(int core) {
+		super(cfg);
 		g_ncpu=core;
 		g_tsim=new TaskSimul[core];
 	}
-
-
-	public int size(){
-		return g_cfg.readInt("num");
+	
+	public ExpSimulMP(int core) {
+		this(core,null);
 	}
 
+	
+	
 
-	public void init(int core,TaskSimul tsim){
+
+	@Override
+	public void initSim(int core, TaskSimul tsim) {
 		g_tsim[core]=tsim;
 		tsim.init();
 		tsim.checkErr();
 	}
-	public void simulStart(){
+	
+	@Override
+	protected void simulStart() {
 		for(int j:MUtil.loop(g_ncpu)){
 			g_tsim[j].simulStart();
 		}
-		
 	}
+
+	@Override
 	public void simul(int st, int et){
+		if(st==0){
+			simulStart();
+		}
 		int t=st;
 		while(t<et){
 //			Log.prn(2, ""+t);
@@ -57,10 +59,16 @@ public class ExpSimulMP {
 		}
 	}
 	
-	// get 
+	@Override
 	public SimulInfo getSI(int core){
 		return g_tsim[core].getSI();
 	}
+
+	
+	
+
+	
+	
 	
 
 
@@ -91,7 +99,14 @@ public class ExpSimulMP {
 			return 0;
 		return 1;
 	}
-	
+
+
+
+
+
+
+
+
 
 	
 }

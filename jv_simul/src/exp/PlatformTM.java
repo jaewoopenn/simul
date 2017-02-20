@@ -73,13 +73,13 @@ public class PlatformTM extends Platform{
 		
 	}
 	
-	public void simul_in_i(int i,Anal an,TaskSimul ts)
+	public void simul_in_i(int i,Anal an,TaskSimul tsim)
 	{
 		double sum=0;
 		int sum_ms=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
@@ -87,8 +87,10 @@ public class PlatformTM extends Platform{
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.getX());
-			ts.set_tm(tm);
-			SimulInfo si=eg.simul(ts,g_dur);
+			tsim.set_tm(tm);
+			eg.initSim(0, tsim);
+			eg.simul(0,g_dur);
+			SimulInfo si=eg.getSI(0);
 			double ret=si.getDMR();
 			Log.prnc(2, j+","+ret+","+si.ms);
 			sum+=ret;
@@ -118,7 +120,7 @@ public class PlatformTM extends Platform{
 			TaskSimul tsim, int i, int j) {
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
 		tm.getInfo().setProb_ms(g_prob); 
@@ -126,7 +128,9 @@ public class PlatformTM extends Platform{
 		an.prepare();
 		tm.setX(an.getX());
 		tsim.set_tm(tm);
-		SimulInfo si=eg.simul(tsim,g_dur);
+		eg.initSim(0, tsim);
+		eg.simul(0,g_dur);
+		SimulInfo si=eg.getSI(0);
 		Log.prn(2, i+","+j+","+si.getDMR()+","+si.ms);
 	}
 
@@ -155,7 +159,7 @@ public class PlatformTM extends Platform{
 		int sum=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		int size=eg.size();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
@@ -180,7 +184,7 @@ public class PlatformTM extends Platform{
 	public void anal_one(Anal an, int i, int j) {
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
 		int ret=eg.anal(tm,an);
@@ -195,7 +199,7 @@ public class PlatformTM extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimul eg=new ExpSimul(cfg);
+			ExpSimulTM eg=new ExpSimulTM(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				String fn=cfg.get_fn(j);

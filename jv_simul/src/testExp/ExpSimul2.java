@@ -1,6 +1,6 @@
 package testExp;
 import comp.CompMng;
-import exp.ExpSimul;
+import exp.ExpSimulTM;
 import gen.ConfigGen;
 import util.Log;
 import util.TEngine;
@@ -16,7 +16,7 @@ public class ExpSimul2 {
 		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_100.txt");
 		cfg.readFile();
 		//cfg.prn(2);
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		CompMng cm=eg.loadCM(0);
 		int ret=eg.analComp(cm,0);
 		Log.prn(1, ""+ret);

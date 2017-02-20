@@ -3,7 +3,7 @@ import part.ExpSimulMP;
 import anal.Anal;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
-import exp.ExpSimul;
+import exp.ExpSimulTM;
 import gen.ConfigGen;
 import simul.SimulInfo;
 import simul.TaskSimul_EDF_VD;
@@ -18,21 +18,23 @@ public class ExpSimul1 {
 	{
 		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
 		cfg.readFile();
-		ExpSimul eg=new ExpSimul(cfg);
+		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(0);
 		TaskMng tm=TaskMng.getFile(fn);
 		Anal an=new AnalEDF_VD();
 		an.init(tm);
 		an.prepare();
 		tm.setX(an.getX());
+		eg.initSim(0, new TaskSimul_EDF_VD(tm));
+		eg.simul(0,1000);
+		SimulInfo si=eg.getSI(0);
 
-		SimulInfo si=eg.simul(new TaskSimul_EDF_VD(tm),1000);
 		si.prn();
 		return 1;
 	}
 	public int test2() 
 	{
-		ExpSimul eg=new ExpSimul(null);
+		ExpSimulTM eg=new ExpSimulTM(null);
 		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
 //		TaskMng tm=TaskMng.getFile("test/ts/taskset_1");
 		
@@ -41,7 +43,9 @@ public class ExpSimul1 {
 		an.prepare();
 		tm.setX(an.getX());
 
-		SimulInfo si=eg.simul(new TaskSimul_EDF_VD(tm),100);
+		eg.initSim(0, new TaskSimul_EDF_VD(tm));
+		eg.simul(0,100);
+		SimulInfo si=eg.getSI(0);
 		si.prn();
 		return 1;
 	}
@@ -50,7 +54,7 @@ public class ExpSimul1 {
 		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
 		
 		ExpSimulMP eg=new ExpSimulMP(1);
-		eg.init(0,new TaskSimul_EDF_VD(tm));
+		eg.initSim(0,new TaskSimul_EDF_VD(tm));
 		eg.simul(0,1000);
 		eg.prn();
 		return 1;
@@ -59,9 +63,9 @@ public class ExpSimul1 {
 	{
 		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
 		ExpSimulMP eg=new ExpSimulMP(2);
-		eg.init(0,new TaskSimul_EDF_VD(tm));
+		eg.initSim(0,new TaskSimul_EDF_VD(tm));
 		tm=TaskMng.getFile("test/ts/taskset_2");
-		eg.init(1,new TaskSimul_EDF_VD(tm));
+		eg.initSim(1,new TaskSimul_EDF_VD(tm));
 		eg.simul(0,1000);
 		eg.prn();
 		return 1;
@@ -70,10 +74,9 @@ public class ExpSimul1 {
 	{
 		ExpSimulMP eg=new ExpSimulMP(2);
 		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
-		eg.init(0,new TaskSimul_EDF_VD(tm));
+		eg.initSim(0,new TaskSimul_EDF_VD(tm));
 		tm=TaskMng.getFile("test/ts/taskset_2");
-		eg.init(1,new TaskSimul_EDF_VD(tm));
-		eg.simulStart();
+		eg.initSim(1,new TaskSimul_EDF_VD(tm));
 		eg.simul(0,100);
 		eg.prn();
 		return 1;

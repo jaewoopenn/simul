@@ -10,7 +10,7 @@ import util.Log;
 import util.TEngine;
 
 public class PlatformMP2 {
-	public static int idx=4;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int isReal=0;
