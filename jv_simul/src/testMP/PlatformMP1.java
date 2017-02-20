@@ -5,7 +5,6 @@ package testMP;
 import anal.AnalEDF_VD;
 import exp.PlatformMP;
 import gen.ConfigGen;
-import simul.TaskSimul_EDF_VD;
 import util.Log;
 import util.TEngine;
 
@@ -72,7 +71,7 @@ public class PlatformMP1 {
 	public  int test4() 
 	{
 		PlatformMP p=getP1();
-		p.simul_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),0,0);
+		p.simul_one(new AnalEDF_VD(),1,0,0);
 		return 1;
 	}
 	public  int test5() 

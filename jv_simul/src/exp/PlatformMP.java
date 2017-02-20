@@ -4,15 +4,13 @@ package exp;
 import gen.ConfigGen;
 import gen.SimGen;
 import gen.SimGenMP;
+import part.CoreMng;
 import part.Partition;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
-import basic.TaskSetFix;
 import simul.SimulInfo;
-import simul.TaskSimul;
-import simul.TaskSimul_EDF_VD;
 import util.FUtil;
 import util.Log;
 import util.MUtil;
@@ -58,22 +56,21 @@ public class PlatformMP extends Platform{
 	}
 	
 	public void simul() {
-		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
+		simul_in(1,new AnalEDF_VD(),1);
 	}
 	
-	public void simul_in(int algo_num,Anal an,TaskSimul ts){
+	public void simul_in(int algo_num,Anal an,int simul_no){
 		g_fu=new FUtil();
 		if(isWrite)
 			g_fu=new FUtil(getRsFN(algo_num));
-		ts.isSchTab=false;
 		for(int i:MUtil.loop(g_size)){
-			simul_in_i(i,an,ts);
+			simul_in_i(i,an,simul_no);
 		}
 		g_fu.save();
 		
 	}
 	
-	public void simul_in_i(int i,Anal an,TaskSimul ts)
+	public void simul_in_i(int i,Anal an,int simul_no)
 	{
 		double sum=0;
 		int sum_ms=0;
@@ -84,17 +81,11 @@ public class PlatformMP extends Platform{
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
-			Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
+			Partition p=new Partition(an,tm.getTaskSet());
 			p.anal();
-			checkPart(p);
-			for(int k:MUtil.loop(g_ncpu)){
-				TaskSetFix tsf=new TaskSetFix(p.getTS(k));
-				tm=tsf.getTM();
-				an.init(tm);
-				an.prepare();
-				tm.setX(an.getX());
-				eg.initSim(k,new TaskSimul_EDF_VD(tm));
-			}
+			CoreMng cm=p.getCoreMng();
+			checkPart(cm);
+			eg.loadCM(cm,an,simul_no);
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
 			double dmr=si.getDMR();
@@ -109,18 +100,31 @@ public class PlatformMP extends Platform{
 		g_fu.print(avg+"");
 		
 	}
+
+	public void simul_one(Anal an,
+			int simul_no, int i, int j) {
+		ConfigGen cfg=new ConfigGen(getCfgFN(i));
+		cfg.readFile();
+		ExpSimulMP eg=new ExpSimulMP(cfg);
+		String fn=cfg.get_fn(j);
+		TaskMng tm=TaskMng.getFile(fn);
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		CoreMng cm=p.getCoreMng();
+		checkPart(cm);
+		eg.loadCM(cm,an,simul_no);
+		eg.simul(0,g_dur);
+		SimulInfo si=eg.getSI(0);
+		Log.prn(3, i+","+j+","+si.getDMR()+","+si.ms);
+	}
+
 	
-	private void checkPart(Partition p) {
-		int cpus=p.size();
-		if(cpus>g_ncpu){
-			Log.prn(9, "ERROR: ncpu>"+g_ncpu);
+	private void checkPart(CoreMng cm) {
+		int cpus=cm.size();
+		if(cpus!=g_ncpu){
+			Log.prn(9, "ERROR: ncpu:"+g_ncpu+", cm cpu"+cpus);
 			System.exit(1);
 		}
-		if(cpus==1){
-			Log.prn(9, "ERROR: ncpu=1");
-			System.exit(1);
-		}
-		
 	}
 	
 	public void anal() {
@@ -146,9 +150,7 @@ public class PlatformMP extends Platform{
 		eg.initCores(g_ncpu);
 		int size=eg.size();
 		for(int j=0;j<size;j++){
-			String fn=cfg.get_fn(j);
-			TaskMng tm=TaskMng.getFile(fn);
-			int ret=eg.anal(tm,an);
+			int ret=eg.anal(TaskMng.getFile(cfg.get_fn(j)),an);
 			Log.prn(2, j+","+ret);
 			sum+=ret;
 //			Log.prn(2, " "+sum);
@@ -156,14 +158,6 @@ public class PlatformMP extends Platform{
 		double avg=(double)sum/size;
 		Log.prn(3, (g_start+i*g_step)+":"+avg);
 		g_fu.print(avg+"");
-	}
-	
-	private String getCfgFN(int i){
-		String modStr=g_ts_name+"_"+(i*g_step+g_start);
-		return g_path+"/"+g_cfg_fn+modStr+".txt";
-	}
-	private String getRsFN(int no){
-		return g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt";
 	}
 
 	public void anal_one(Anal an, int i, int j) {
@@ -178,23 +172,13 @@ public class PlatformMP extends Platform{
 		
 	}
 
-	public void simul_one(Anal an,
-			TaskSimul tsim, int i, int j) {
-		ConfigGen cfg=new ConfigGen(getCfgFN(i));
-		cfg.readFile();
-		ExpSimulTM eg=new ExpSimulTM(cfg);
-		String fn=cfg.get_fn(j);
-		TaskMng tm=TaskMng.getFile(fn);
-		tm.getInfo().setProb_ms(g_prob); 
-		an.init(tm);
-		an.prepare();
-		tm.setX(an.getX());
-		tsim.set_tm(tm);
-		eg.initSim(0, tsim);
-		eg.simul(0,g_dur);
-		SimulInfo si=eg.getSI(0);
-		Log.prn(3, i+","+j+","+si.getDMR()+","+si.ms);
+	// get 
+	private String getCfgFN(int i){
+		String modStr=g_ts_name+"_"+(i*g_step+g_start);
+		return g_path+"/"+g_cfg_fn+modStr+".txt";
 	}
-
+	private String getRsFN(int no){
+		return g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt";
+	}
 	
 }

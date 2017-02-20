@@ -25,7 +25,7 @@ public abstract class TaskSimul {
 		this();
 		this.g_tm=m;
 	}
-	public void init() {
+	private void init() {
 		g_js=new JobSimul();
 		g_si=new SimulInfo();
 		g_isMS=false;
@@ -40,7 +40,7 @@ public abstract class TaskSimul {
 	
 	public void set_tm(TaskMng tm) {
 		this.g_tm = tm;
-//		tm.prn();
+		init();
 	}
 
 	// simul interval

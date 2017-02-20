@@ -90,11 +90,16 @@ public class CoreMng1 {
 		CoreMng cm=p.getCoreMng();
 		
 		ExpSimulMP eg=new ExpSimulMP();
-		eg.initCores(cm.size());
-		eg.loadCM(cm,an);
+		int ncpu=2;
+		eg.initCores(ncpu);
+		if(ncpu!=cm.size()){
+			Log.prn(9, "size not match");
+			return 0;
+		}
+		eg.loadCM(cm,an,1);
 		eg.simul(0,1000);
 		eg.prn();
-		return -1;
+		return 0;
 	}
 	public int test6()	{
 		return 0;

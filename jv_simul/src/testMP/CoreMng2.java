@@ -36,7 +36,6 @@ public class CoreMng2 {
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.getX());
-			
 			eg.initSim(i,new TaskSimul_EDF_VD(tm));
 		}
 		eg.simul(0,500);

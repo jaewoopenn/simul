@@ -9,7 +9,7 @@ import part.CoreMng;
 import part.Partition;
 import simul.SimulInfo;
 import simul.TaskSimul;
-import simul.TaskSimul_EDF_VD;
+import simul.TaskSimulGen;
 //import util.Log;
 import util.MUtil;
 
@@ -29,14 +29,17 @@ public class ExpSimulMP extends ExpSimul {
 		g_ncpu=core;
 		g_tsim=new TaskSimul[core];
 	}
-	public void loadCM(CoreMng cm, Anal an){
+	public void loadCM(CoreMng cm, Anal an, int simul_no) {
 		for(int i:MUtil.loop(cm.size())){
 			TaskSetFix tsf=new TaskSetFix(cm.getTS(i));
 			TaskMng tm=tsf.getTM();
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.getX());
-			initSim(i,new TaskSimul_EDF_VD(tm));
+			TaskSimul tsim=TaskSimulGen.get(simul_no);
+			tsim.set_tm(tm);
+//			tm.prn();
+			initSim(i,tsim);
 		}
 		
 	}
@@ -45,7 +48,6 @@ public class ExpSimulMP extends ExpSimul {
 	@Override
 	public void initSim(int core, TaskSimul tsim) {
 		g_tsim[core]=tsim;
-		tsim.init();
 		tsim.checkErr();
 	}
 	
@@ -107,6 +109,7 @@ public class ExpSimulMP extends ExpSimul {
 	public void move() {
 		
 	}
+
 
 
 

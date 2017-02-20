@@ -45,12 +45,12 @@ public class PlatformTM extends Platform{
 		cfg.write(getCfgFN(i));
 	}
 
-	public void genTS(boolean bCheck) {
+	public void genTS(boolean b) {
 		for(int i:MUtil.loop(g_size)){
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			cfg.readFile();
 			SimGen eg=new SimGenTM(cfg,new AnalEDF_VD());
-			eg.setCheck(bCheck);
+			eg.setCheck(b);
 			eg.gen();
 		}
 		Log.prn(3, "task");
@@ -61,14 +61,14 @@ public class PlatformTM extends Platform{
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
 		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E());
 	}
-	public void simul_in(int no,Anal an,TaskSimul ts){
+	public void simul_in(int no,Anal an,TaskSimul tsim){
 		g_fu=new FUtil();
 		if(isWrite)
 			g_fu=new FUtil(getRsFN(no));
 		
-		ts.isSchTab=false;
+		tsim.isSchTab=false;
 		for(int i:MUtil.loop(g_size)){
-			simul_in_i(i,an,ts);
+			simul_in_i(i,an,tsim);
 		}
 		g_fu.save();
 		
@@ -211,6 +211,7 @@ public class PlatformTM extends Platform{
 		}
 	}
 
+	// get 
 	private String getCfgFN(int i){
 		String modStr=g_ts_name+"_"+(i*g_step+g_start);
 		return g_path+"/"+g_cfg_fn+modStr+".txt";

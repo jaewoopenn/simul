@@ -43,7 +43,6 @@ public class ExpSimulTM extends ExpSimul{
 
 	@Override
 	public void simul(int st, int et) {
-		g_tsim[0].init();
 		g_tsim[0].checkErr();
 		if(st==0){
 			g_tsim[0].simulStart();
