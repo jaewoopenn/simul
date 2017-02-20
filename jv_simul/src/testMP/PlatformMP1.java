@@ -3,8 +3,8 @@ package testMP;
 // simul
 
 import anal.AnalEDF_VD;
+import exp.PlatformMP;
 import gen.ConfigGen;
-import part.PlatformMP;
 import simul.TaskSimul_EDF_VD;
 import util.Log;
 import util.TEngine;

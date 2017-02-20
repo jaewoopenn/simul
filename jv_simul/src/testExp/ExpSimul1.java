@@ -1,8 +1,8 @@
 package testExp;
-import part.ExpSimulMP;
 import anal.Anal;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
+import exp.ExpSimulMP;
 import exp.ExpSimulTM;
 import gen.ConfigGen;
 import simul.SimulInfo;

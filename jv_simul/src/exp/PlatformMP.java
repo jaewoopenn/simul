@@ -1,16 +1,15 @@
-package part;
+package exp;
 
 
 import gen.ConfigGen;
 import gen.SimGen;
 import gen.SimGenMP;
+import part.Partition;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetFix;
-import exp.ExpSimulTM;
-import exp.Platform;
 import simul.SimulInfo;
 import simul.TaskSimul;
 import simul.TaskSimul_EDF_VD;

@@ -1,10 +1,10 @@
-package part;
+package exp;
 
 
-import exp.ExpSimul;
 import anal.Anal;
 import basic.TaskMng;
 import gen.ConfigGen;
+import part.Partition;
 import simul.SimulInfo;
 import simul.TaskSimul;
 import util.Log;

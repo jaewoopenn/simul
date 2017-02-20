@@ -1,11 +1,11 @@
 package testMP;
 
 import anal.AnalEDF_VD;
+import exp.PlatformMP;
 
 // anal
 
 import gen.ConfigGen;
-import part.PlatformMP;
 import util.Log;
 import util.TEngine;
 
