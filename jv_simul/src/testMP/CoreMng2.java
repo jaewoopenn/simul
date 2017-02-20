@@ -28,7 +28,8 @@ public class CoreMng2 {
 		
 		CoreMng cm=TS_MP1.core3();
 		int cpus=2;
-		ExpSimulMP eg=new ExpSimulMP(cpus);
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(cpus);
 		for(int i:MUtil.loop(cpus)){
 			TaskMng tm=cm.getTM(i);
 			Anal an=new AnalEDF_VD();

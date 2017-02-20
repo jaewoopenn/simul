@@ -14,15 +14,11 @@ import util.MUtil;
 import util.TEngine;
 
 public class CoreMng1 {
-	public static int idx=1;
+	public static int idx=5;
 	public static int log_level=2;
-//	public static int idx=-1;
 
 
-	public int test1()	{
-		return 0;
-	}
-	public int test2() {
+	public int test1() {
 		CoreMng cm=TS_MP1.core2();
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(cm.getTM(0));
 		Log.set_lv(1);
@@ -31,7 +27,7 @@ public class CoreMng1 {
 		return 0;
 	}
 	
-	public  int test3()	{
+	public  int test2()	{
 		CoreMng cm=TS_MP1.core2();
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(cm.getTM(0));
 		Log.set_lv(1);
@@ -40,11 +36,12 @@ public class CoreMng1 {
 		
 	}
 	
-	public  int test4()	{
+	public  int test3()	{
 		
 		CoreMng cm=TS_MP1.core3();
 		int cpus=2;
-		ExpSimulMP eg=new ExpSimulMP(cpus);
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(cpus);
 		for(int i:MUtil.loop(cpus)){
 			TaskMng tm=cm.getTM(i);
 			Anal an=new AnalEDF_VD();
@@ -60,12 +57,47 @@ public class CoreMng1 {
 		return 0;
 	}
 	
-	public  int test5() {
+	public  int test4() {
+		TaskMng tm=TS_MP1.ts3();
+		Anal an=new AnalEDF_VD();
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		CoreMng cm=p.getCoreMng();
 		
-		return 0;
+//		p.prn();
+		
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(cm.size());
+		for(int i:MUtil.loop(cm.size())){
+			TaskSetFix tsf=new TaskSetFix(cm.getTS(i));
+			tm=tsf.getTM();
+			an.init(tm);
+			an.prepare();
+			tm.setX(an.getX());
+			eg.initSim(i,new TaskSimul_EDF_VD(tm));
+		}
+		eg.simul(0,1000);
+		eg.prn();
+		
+		return 1;
 	}
-	public  int test6()	{
+	
+	public  int test5()	{
+		TaskMng tm=TaskMng.getFile("test/ts/mp_0");
+		Anal an=new AnalEDF_VD();
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		CoreMng cm=p.getCoreMng();
+		
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(cm.size());
+		eg.loadCM(cm,an);
+		eg.simul(0,1000);
+		eg.prn();
 		return -1;
+	}
+	public int test6()	{
+		return 0;
 	}
 	public  int test7()	{
 		return -1;

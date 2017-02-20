@@ -79,7 +79,8 @@ public class PlatformMP extends Platform{
 		int sum_ms=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimulMP eg=new ExpSimulMP(g_ncpu,cfg);
+		ExpSimulMP eg=new ExpSimulMP(cfg);
+		eg.initCores(g_ncpu);
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
@@ -141,7 +142,8 @@ public class PlatformMP extends Platform{
 		int sum=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimulMP eg=new ExpSimulMP(g_ncpu,cfg);
+		ExpSimulMP eg=new ExpSimulMP(cfg);
+		eg.initCores(g_ncpu);
 		int size=eg.size();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
@@ -167,7 +169,8 @@ public class PlatformMP extends Platform{
 	public void anal_one(Anal an, int i, int j) {
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimulMP eg=new ExpSimulMP(g_ncpu,cfg);
+		ExpSimulMP eg=new ExpSimulMP(cfg);
+		eg.initCores(g_ncpu);
 		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
 		int ret=eg.anal(tm,an);

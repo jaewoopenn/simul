@@ -2,6 +2,7 @@ package part;
 
 
 
+
 import java.util.Vector;
 
 import util.Log;
@@ -52,9 +53,11 @@ public class CoreMng {
 	public TaskMng getTM(int i) {
 		return g_tm.elementAt(i);
 	}
-	public static CoreMng getFile(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public TaskSet getTS(int i) {
+		return g_tm.elementAt(i).getTaskSet();
+	}
+	public int size() {
+		return g_tm.size();
 	}
 	
 

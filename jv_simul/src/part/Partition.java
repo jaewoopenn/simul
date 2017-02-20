@@ -7,6 +7,7 @@ import java.util.Vector;
 import anal.Anal;
 import basic.Task;
 import basic.TaskSet;
+import part.CoreMng;
 import util.Log;
 import basic.TaskSetFix;
 
@@ -55,6 +56,13 @@ public class Partition {
 	}
 	public int size() {
 		return g_part.size();
+	}
+	public CoreMng getCoreMng() {
+		CoreMng cm=new CoreMng();
+		for(TaskSet ts:g_part){
+			cm.addTS(ts);
+		}
+		return cm;
 	}
 
 }

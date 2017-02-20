@@ -3,11 +3,13 @@ package exp;
 
 import anal.Anal;
 import basic.TaskMng;
+import basic.TaskSetFix;
 import gen.ConfigGen;
+import part.CoreMng;
 import part.Partition;
 import simul.SimulInfo;
 import simul.TaskSimul;
-import util.Log;
+import simul.TaskSimul_EDF_VD;
 //import util.Log;
 import util.MUtil;
 
@@ -15,18 +17,29 @@ public class ExpSimulMP extends ExpSimul {
 	private TaskSimul[] g_tsim;
 	private int g_ncpu;
 	
-	public ExpSimulMP(int core, ConfigGen cfg) {
+	public ExpSimulMP(ConfigGen cfg) {
 		super(cfg);
+	}
+	
+	public ExpSimulMP() {
+		this(null);
+	}
+	
+	public void initCores(int core){
 		g_ncpu=core;
 		g_tsim=new TaskSimul[core];
 	}
-	
-	public ExpSimulMP(int core) {
-		this(core,null);
+	public void loadCM(CoreMng cm, Anal an){
+		for(int i:MUtil.loop(cm.size())){
+			TaskSetFix tsf=new TaskSetFix(cm.getTS(i));
+			TaskMng tm=tsf.getTM();
+			an.init(tm);
+			an.prepare();
+			tm.setX(an.getX());
+			initSim(i,new TaskSimul_EDF_VD(tm));
+		}
+		
 	}
-
-	
-	
 
 
 	@Override
