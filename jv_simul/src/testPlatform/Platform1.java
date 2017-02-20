@@ -10,7 +10,6 @@ import util.TEngine;
 public class Platform1 {
 	public static int idx=1;
 //	public static int idx=-1;
-	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=3;
 	public int kind=0;
 	public int isReal=0;
@@ -135,5 +134,6 @@ public class Platform1 {
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 }

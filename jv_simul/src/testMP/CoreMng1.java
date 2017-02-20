@@ -14,17 +14,12 @@ import util.MUtil;
 import util.TEngine;
 
 public class CoreMng1 {
-	public static int idx=5;
+	public static int idx=1;
 	public static int log_level=2;
 //	public static int idx=-1;
-	public static int gret[]={0,0,0,-1,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
-		CoreMng cm=TS_MP1.core1();
-		cm.prn();
-		cm.move();
-		cm.prn();
 		return 0;
 	}
 	public int test2() {
@@ -113,5 +108,6 @@ public class CoreMng1 {
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 }
