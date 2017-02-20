@@ -81,8 +81,8 @@ public class TS_MP1 {
 	public static CoreMng core3() {
 		CoreMng cm=new CoreMng();
 		TaskSet ts=new TaskSet();
-		ts.add(new Task(0,4,2));
-		ts.add(new Task(1,6,1,5));
+		ts.add(new Task(0,6,1,5));
+		ts.add(new Task(1,4,2));
 		ts.transform_Array();
 		cm.addTS(ts);
 		

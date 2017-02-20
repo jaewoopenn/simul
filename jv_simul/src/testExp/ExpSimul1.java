@@ -51,34 +51,14 @@ public class ExpSimul1 {
 	}
 	public int test3() 
 	{
-		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
-		
-		ExpSimulMP eg=new ExpSimulMP(1);
-		eg.initSim(0,new TaskSimul_EDF_VD(tm));
-		eg.simul(0,1000);
-		eg.prn();
 		return 1;
 	}
 	public  int test4() 
 	{
-		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
-		ExpSimulMP eg=new ExpSimulMP(2);
-		eg.initSim(0,new TaskSimul_EDF_VD(tm));
-		tm=TaskMng.getFile("test/ts/taskset_2");
-		eg.initSim(1,new TaskSimul_EDF_VD(tm));
-		eg.simul(0,1000);
-		eg.prn();
 		return 1;
 	}
 	public  int test5() 
 	{
-		ExpSimulMP eg=new ExpSimulMP(2);
-		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
-		eg.initSim(0,new TaskSimul_EDF_VD(tm));
-		tm=TaskMng.getFile("test/ts/taskset_2");
-		eg.initSim(1,new TaskSimul_EDF_VD(tm));
-		eg.simul(0,100);
-		eg.prn();
 		return 1;
 	}
 	public  int test6() 

@@ -19,7 +19,7 @@ public class Partition {
 		g_anal=a;
 		g_part=new Vector<TaskSet>();
 	}
-	public int anal() {
+	public void anal() {
 		g_ts.sortHi();
 //		g_ts.prn();
 		TaskSetFix tsf=new TaskSetFix();
@@ -41,7 +41,6 @@ public class Partition {
 		TaskSet ts=tsf.getTS();
 		ts.transform_Array();
 		g_part.addElement(ts);
-		return g_part.size();
 	}
 	public TaskSet getTS(int core){
 		return g_part.elementAt(core);

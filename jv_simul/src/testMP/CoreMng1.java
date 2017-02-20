@@ -61,22 +61,6 @@ public class CoreMng1 {
 	}
 	
 	public  int test5() {
-		TaskMng tm=TS_MP1.ts3();
-		Partition p=new Partition(new AnalEDF_VD(),tm.getTaskSet());
-		int cpus=p.anal();
-//		p.prn();
-		ExpSimulMP eg=new ExpSimulMP(cpus);
-		for(int i:MUtil.loop(cpus)){
-			TaskSetFix tsf=new TaskSetFix(p.getTS(i));
-			tm=tsf.getTM();
-			Anal an=new AnalEDF_VD();
-			an.init(tm);
-			an.prepare();
-			tm.setX(an.getX());
-			eg.initSim(i,new TaskSimul_EDF_VD(tm));
-		}
-		eg.simul(0,1000);
-		eg.prn();
 		
 		return 0;
 	}

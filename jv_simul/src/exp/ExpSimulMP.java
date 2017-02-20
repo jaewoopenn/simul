@@ -53,7 +53,7 @@ public class ExpSimulMP extends ExpSimul {
 //			Log.prn(2, ""+t);
 			for(int j:MUtil.loop(g_ncpu)){
 				g_tsim[j].simul_t(t);
-				Log.prn(2, t+","+j);
+//				Log.prn(2, t+","+j);
 			}
 			t++;
 		}

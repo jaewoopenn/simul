@@ -1,15 +1,20 @@
 package testMP;
 
 
+import anal.Anal;
+import anal.AnalEDF_VD;
+import basic.TaskMng;
+import exp.ExpSimulMP;
 // move 
 import part.CoreMng;
+import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MP1;
+import util.MUtil;
 import util.TEngine;
 
 public class CoreMng2 {
-	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=2;
-//	public static int idx=-1;
 
 
 	public int test1()	{
@@ -20,6 +25,24 @@ public class CoreMng2 {
 		return 0;
 	}
 	public int test2() {
+		
+		CoreMng cm=TS_MP1.core3();
+		int cpus=2;
+		ExpSimulMP eg=new ExpSimulMP(cpus);
+		for(int i:MUtil.loop(cpus)){
+			TaskMng tm=cm.getTM(i);
+			Anal an=new AnalEDF_VD();
+			an.init(tm);
+			an.prepare();
+			tm.setX(an.getX());
+			
+			eg.initSim(i,new TaskSimul_EDF_VD(tm));
+		}
+		eg.simul(0,500);
+		eg.move();
+		eg.simul(500,1000);
+		eg.prn();
+		
 		return 0;
 	}
 	
