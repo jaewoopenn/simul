@@ -2,6 +2,7 @@ package testExp;
 
 import gen.ConfigGen;
 import gen.SimGen;
+import gen.SimGenTM;
 import anal.AnalEDF_AD;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
@@ -75,7 +76,7 @@ public class TaskSimul3 {
 	public  int test5() {
 		ConfigGen cfg=new ConfigGen("exp/cfg/cfg_3.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimGen eg=new SimGenTM(cfg);
 		eg.prepare();
 		TaskMng tm=eg.genOne();
 		exec(tm,1000);

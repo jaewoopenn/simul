@@ -3,6 +3,7 @@ package exp;
 
 import gen.ConfigGen;
 import gen.SimGen;
+import gen.SimGenTM;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_AD;
@@ -48,7 +49,7 @@ public class PlatformTM extends Platform{
 		for(int i:MUtil.loop(g_size)){
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimGen eg=new SimGenTM(cfg,new AnalEDF_VD());
 			eg.setCheck(bCheck);
 			eg.gen();
 		}

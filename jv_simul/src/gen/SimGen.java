@@ -1,18 +1,20 @@
 package gen;
 
+import anal.Anal;
 import basic.TaskMng;
 import basic.TaskSetFix;
 import util.FUtil;
 import util.Log;
-import util.MUtil;
-import anal.AnalEDF_VD;
 
-public class SimGen {
-	private TaskGenMC g_tg;
+public abstract class SimGen {
+	protected TaskGenMC g_tg;
+	protected Anal g_anal;
 	private ConfigGen g_cfg;
-	private boolean g_isCheck=false;
-	public SimGen(ConfigGen cfg) {
+	protected boolean g_isCheck=false;
+
+	public SimGen(ConfigGen cfg,Anal an) {
 		g_cfg=cfg;
+		g_anal=an;
 	}
 	public int prepare(){
 		TaskGenParam tgp=new TaskGenParam();
@@ -49,19 +51,7 @@ public class SimGen {
 		return 1;
 	}
 
-	private int check() {
-		TaskSetFix tm=new TaskSetFix(g_tg.getAll());
-		TaskMng m=tm.getTM();
-		if(tm.g_info.getLo_size()==0) return 0;
-		if(tm.g_info.getHi_size()==0) return 0;
-		if(!g_isCheck)
-			return 1;
-		AnalEDF_VD a=new AnalEDF_VD();
-		a.init(m);
-		a.prepare();
-		
-		return MUtil.btoi(a.isScheduable());
-	}
+	protected abstract int check() ;
 	public TaskMng genOne(){
 		g_tg.generate();
 		TaskSetFix tm=new TaskSetFix(g_tg.getAll());

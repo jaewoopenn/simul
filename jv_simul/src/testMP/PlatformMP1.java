@@ -10,7 +10,7 @@ import util.Log;
 import util.TEngine;
 
 public class PlatformMP1 {
-	public static int idx=4;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int isReal=0;
@@ -39,10 +39,10 @@ public class PlatformMP1 {
 		PlatformMP p=getCommmon();
 		p.setTSName("util_sim");
 		p.setKinds(0);
-//		p.setStart(110);
-//		p.setStep(10);
-		p.setStart(55);
+		p.setStart(110);
 		p.setStep(5);
+//		p.setStart(55);
+//		p.setStep(5);
 		p.setSize(10);
 		return p;
 	}
@@ -59,8 +59,8 @@ public class PlatformMP1 {
 	public int test2() 
 	{
 		PlatformMP p=getP1();
-		p.genTS(false);
-//		p.genTS(true);
+//		p.genTS(false);
+		p.genTS(true);
 		return 1;
 	}
 	public int test3() 

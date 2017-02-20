@@ -65,8 +65,14 @@ public class ExpSimulMP extends ExpSimul {
 	}
 
 	
-	
-
+	@Override
+	public int anal(TaskMng tm, Anal an) {
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		if(p.size()>g_ncpu)
+			return 0;
+		return 1;
+	}
 	
 	
 	
@@ -92,13 +98,7 @@ public class ExpSimulMP extends ExpSimul {
 
 
 
-	public int anal(TaskMng tm, Anal an) {
-		Partition p=new Partition(an,tm.getTaskSet());
-		p.anal();
-		if(p.size()>g_ncpu)
-			return 0;
-		return 1;
-	}
+
 
 
 

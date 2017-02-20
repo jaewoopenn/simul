@@ -1,6 +1,7 @@
 package test;
 import gen.ConfigGen;
 import gen.SimGen;
+import gen.SimGenTM;
 import util.TEngine;
 
 public class SimGen1 {
@@ -13,7 +14,7 @@ public class SimGen1 {
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimGen eg=new SimGenTM(cfg);
 		eg.gen();
 		return 1;
 
@@ -30,7 +31,7 @@ public class SimGen1 {
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		cfg.readFile();
-		SimGen eg=new SimGen(cfg);
+		SimGen eg=new SimGenTM(cfg);
 		eg.gen();
 		return 1;
 	}
@@ -40,7 +41,7 @@ public class SimGen1 {
 		for(int i=0;i<10;i++){
 			cfg=new ConfigGen("cfg/cfg_"+i+".txt");
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimGen eg=new SimGenTM(cfg);
 			eg.gen();
 			
 		}

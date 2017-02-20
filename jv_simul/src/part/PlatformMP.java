@@ -3,6 +3,7 @@ package part;
 
 import gen.ConfigGen;
 import gen.SimGen;
+import gen.SimGenMP;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_VD;
@@ -50,7 +51,7 @@ public class PlatformMP extends Platform{
 		for(int i:MUtil.loop(g_size)){
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			cfg.readFile();
-			SimGen eg=new SimGen(cfg);
+			SimGen eg=new SimGenMP(cfg,new AnalEDF_VD(), g_ncpu);
 			eg.setCheck(b);
 			eg.gen();
 		}
