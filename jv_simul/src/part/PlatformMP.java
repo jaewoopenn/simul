@@ -4,6 +4,7 @@ package part;
 import gen.ConfigGen;
 import gen.SimGen;
 import anal.Anal;
+import anal.AnalEDF;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetFix;
@@ -122,7 +123,9 @@ public class PlatformMP extends Platform{
 	}
 	
 	public void anal() {
-		anal_in(1,new AnalEDF_VD());
+		write_x_axis();
+		anal_in(1,new AnalEDF());
+		anal_in(2,new AnalEDF_VD());
 	}
 	public void anal_in(int algo_num,Anal an){
 		g_fu=new FUtil();

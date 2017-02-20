@@ -26,7 +26,7 @@ public class PlatformMP2 {
 			p.setSysNum(5000);
 		} else{
 			p.setDuration(100);
-			p.setSysNum(10);
+			p.setSysNum(100);
 		}
 		p.setProb(0.5);
 		p.setRS("aa");
@@ -34,15 +34,15 @@ public class PlatformMP2 {
 		
 	}
 
-	
 	public PlatformMP getP1() {
 		PlatformMP p=getCommmon();
 		p.setTSName("util");
 		p.setKinds(0);
-//		p.setStart(110);
-//		p.setStep(10);
-		p.setStart(55);
-		p.setStep(5);
+		
+		p.setStart(110);
+		p.setStep(10);
+//		p.setStart(55);
+//		p.setStep(5);
 		p.setSize(10);
 		return p;
 	}
