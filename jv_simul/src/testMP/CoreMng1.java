@@ -14,7 +14,7 @@ import util.MUtil;
 import util.TEngine;
 
 public class CoreMng1 {
-	public static int idx=5;
+	public static int idx=1;
 	public static int log_level=2;
 
 
