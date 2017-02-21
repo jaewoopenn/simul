@@ -58,8 +58,8 @@ public class PlatformTM extends Platform{
 	}
 	public void simul() {
 		write_x_axis();
-		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
-		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E());
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
+		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
 	}
 	public void simul_in(int no,Anal an,TaskSimul tsim){
 		g_fu=new FUtil();
@@ -107,14 +107,14 @@ public class PlatformTM extends Platform{
 	
 	public void simul_vd() {
 		isWrite=false;
-		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
 	}
 
 	public void simul_one(int anal, int set, int no) {
 		if(anal==0)
-			simul_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
+			simul_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(null),set,no);
 		else
-			simul_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(),set,no);
+			simul_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null),set,no);
 	}
 	
 	public void simul_one(Anal an,

@@ -33,6 +33,7 @@ public class ExpSimulMP extends ExpSimul {
 	public void loadCM(CoreMng cm, Anal an, int simul_no) {
 		// 1: EDF-VD
 		// 2: EDF-AD-E
+		// 3: MP
 		g_cm=cm;
 		for(int i:MUtil.loop(cm.size())){
 			TaskSetFix tsf=new TaskSetFix(cm.getTS(i));
@@ -40,6 +41,7 @@ public class ExpSimulMP extends ExpSimul {
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.getX());
+			tm.set_cm(cm);
 			TaskSimul tsim=TaskSimulGen.get(simul_no);
 			tsim.set_tm(tm);
 //			tm.prn();
@@ -111,10 +113,10 @@ public class ExpSimulMP extends ExpSimul {
 
 	// test
 	public void move() {
-		g_cm.move();
-		for(int j:MUtil.loop(g_ncpu)){
-			
-		}
+		g_cm.move(null,0);
+//		for(int j:MUtil.loop(g_ncpu)){
+//			
+//		}
 	}
 
 

@@ -71,11 +71,8 @@ public class Task {
 		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
 		Log.prn(2, ", "+MUtil.getStr(getHiUtil()));
 	}
-	public void prnComp(){
-		Log.prnc(2, "cid:"+cid);
-		Log.prnc(2, " isol:"+is_isolated+" ");
-		prn();
-	}
+	
+	
 	public void prnStat() {
 		Log.prnc(2, "tid:"+tid);
 		if (is_HI){
@@ -85,6 +82,7 @@ public class Task {
 			Log.prn(2," isDrop:"+is_dropped);
 		}
 	}
+	
 	public boolean check() {
 		if (period==0)
 			return false;
@@ -113,6 +111,11 @@ public class Task {
 
 
 
+//	public void prnComp(){
+//		Log.prnc(2, "cid:"+cid);
+//		Log.prnc(2, " isol:"+is_isolated+" ");
+//		prn();
+//	}
 
 }
 

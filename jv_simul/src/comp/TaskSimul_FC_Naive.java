@@ -6,9 +6,6 @@ import basic.TaskMng;
 
 public class TaskSimul_FC_Naive extends TaskSimul_FC{
 	private boolean isExtMS=false;
-	public TaskSimul_FC_Naive() {
-		super();
-	}
 
 	public TaskSimul_FC_Naive(TaskMng m) {
 		super(m);
@@ -24,7 +21,7 @@ public class TaskSimul_FC_Naive extends TaskSimul_FC{
 	@Override
 	public void modeswitch_in(int tid) {
 		modeswitch_in_pre(tid);		
-		int cid=g_tm.getComp(tid);
+		int cid=g_tm.get_comp(tid);
 		dropDecision(cid);
 		resManager(cid);
 	}

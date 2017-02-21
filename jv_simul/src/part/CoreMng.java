@@ -30,7 +30,7 @@ public class CoreMng {
 		}
 		
 	}
-	public void move() {
+	public void move(Task tsk, int i) {
 		Log.prn(2, "move ");
 		Vector<TaskSet> v=getVec();
 		TaskSet ts1=v.elementAt(0);

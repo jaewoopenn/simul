@@ -57,16 +57,18 @@ public class TaskSet {
 		}
 		
 	}
-	public void prnComp() {
-		for(Task t:g_tasks){
-			t.prnComp();
-		}
-	}
+	
+
 	public void prnStat() {
 		for(Task t:g_tasks){
 			t.prnStat();
 		}
 	}
 
+//	public void prnComp() {
+//		for(Task t:g_tasks){
+//			t.prnComp();
+//		}
+//	}
 
 }

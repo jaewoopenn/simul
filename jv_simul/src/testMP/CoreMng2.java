@@ -1,7 +1,6 @@
 package testMP;
 
 
-import anal.Anal;
 import anal.AnalEDF_VD;
 import exp.ExpSimulMP;
 // move 
@@ -17,7 +16,7 @@ public class CoreMng2 {
 	public int test1()	{
 		CoreMng cm=TS_MP1.core1();
 		cm.prn();
-		cm.move();
+		cm.move(null,0);
 		cm.prn();
 		return 0;
 	}
@@ -27,11 +26,11 @@ public class CoreMng2 {
 		int cpus=2;
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(cpus);
-		eg.loadCM(cm,new AnalEDF_VD(),1);
+		eg.loadCM(cm,new AnalEDF_VD(),3);
 		eg.simul(0,500);
-		eg.move();
-		eg.simul(500,1000);
-		eg.prn();
+//		eg.move();
+//		eg.simul(500,1000);
+//		eg.prn();
 		return 0;
 	}
 	

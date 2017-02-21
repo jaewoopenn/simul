@@ -9,10 +9,6 @@ import util.MUtil;
 
 public class TaskSimul_EDF_AD_E extends TaskSimul{
 
-	public TaskSimul_EDF_AD_E() {
-		super();
-	}
-
 	public TaskSimul_EDF_AD_E(TaskMng m) {
 		super(m);
 	}

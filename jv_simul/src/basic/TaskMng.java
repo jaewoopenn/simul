@@ -2,6 +2,7 @@ package basic;
 
 
 
+import part.CoreMng;
 import util.Log;
 
 public class TaskMng {
@@ -9,7 +10,7 @@ public class TaskMng {
 	private TaskSet g_hi_tasks;
 	private TaskSet g_lo_tasks;
 	private TaskSetInfo g_info;
-
+	private CoreMng g_cm;
 	public TaskMng(TaskSet tasks,TaskSet hi_tasks,TaskSet lo_tasks,TaskSetInfo info) {
 		this.g_tasks=tasks;
 		this.g_hi_tasks = hi_tasks;
@@ -53,6 +54,11 @@ public class TaskMng {
 	
 	
 	// set
+
+
+	public void set_cm(CoreMng g_cm) {
+		this.g_cm = g_cm;
+	}
 	public void setX(double x){
 		g_info.setX(x);
 		for(Task t:g_tasks.getArr())	{
@@ -69,7 +75,10 @@ public class TaskMng {
 	
 
 	// get
-	public int getComp(int tid){
+	public CoreMng get_cm() {
+		return g_cm;
+	}
+	public int get_comp(int tid){
 		return g_tasks.get(tid).getComp();
 	}
 	
@@ -137,10 +146,6 @@ public class TaskMng {
 		g_tasks.prn();
 		g_info.prn();
 	}
-	public void prnComp() {
-		g_tasks.prnComp();
-		g_info.prn();
-	}
 	
 	public void prnHI() {
 		g_hi_tasks.prn();
@@ -166,4 +171,27 @@ public class TaskMng {
 		return TaskSetFix.loadFile(fn).getTM();
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+//	public void prnComp() {
+//	g_tasks.prnComp();
+//	g_info.prn();
+//}
+
+	
 }

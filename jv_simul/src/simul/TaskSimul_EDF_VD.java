@@ -10,9 +10,6 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 		super(m);
 	}
 
-	public TaskSimul_EDF_VD() {
-		super();
-	}
 
 	@Override
 	protected void initMode() {

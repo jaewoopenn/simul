@@ -8,9 +8,6 @@ import util.MUtil;
 
 public class TaskSimul_FC_MCS extends TaskSimul_FC{
 
-	public TaskSimul_FC_MCS() {
-		super();
-	}
 
 	public TaskSimul_FC_MCS(TaskMng m) {
 		super(m);
@@ -27,7 +24,7 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 	@Override
 	public void modeswitch_in(int tid) {
 		modeswitch_in_pre(tid);		
-		int cid=g_tm.getComp(tid);
+		int cid=g_tm.get_comp(tid);
 		dropDecision(cid);
 		resManager(cid);
 //		System.exit(0);

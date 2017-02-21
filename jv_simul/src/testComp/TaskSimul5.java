@@ -26,7 +26,7 @@ public class TaskSimul5 {
 		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
-		tm.prnComp();
+//		tm.prnComp();
 		tm.getInfo().setProb_ms(1.0);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
 		ts.set_cm(cm);
@@ -44,7 +44,7 @@ public class TaskSimul5 {
 		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
-		tm.prnComp();
+//		tm.prnComp();
 		tm.getInfo().setProb_ms(0.1);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
 //		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
@@ -65,7 +65,7 @@ public class TaskSimul5 {
 		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
-		tm.prnComp();
+//		tm.prnComp();
 		tm.getInfo().setProb_ms(1.0);
 		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
 		ts.set_cm(cm);
@@ -81,7 +81,7 @@ public class TaskSimul5 {
 		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
-		tm.prnComp();
+//		tm.prnComp();
 		tm.getInfo().setProb_ms(1);
 		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
 		ts.set_cm(cm);

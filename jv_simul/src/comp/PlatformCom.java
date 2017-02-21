@@ -50,8 +50,8 @@ public class PlatformCom extends Platform{
 	}
 	public void simulCom(){
 		write_x_axis();
-		simul_com_in(1,new TaskSimul_FC_MCS());
-		simul_com_in(2,new TaskSimul_FC_Naive());
+		simul_com_in(1,new TaskSimul_FC_MCS(null));
+		simul_com_in(2,new TaskSimul_FC_Naive(null));
 		
 	}
 	
@@ -100,9 +100,9 @@ public class PlatformCom extends Platform{
 	}
 	public void simulCom_one(int kinds, int set, int no) {
 		if(kinds==0)
-			simul_com_in_one(new TaskSimul_FC_MCS(),set,no);
+			simul_com_in_one(new TaskSimul_FC_MCS(null),set,no);
 		else
-			simul_com_in_one(new TaskSimul_FC_Naive(),set,no);
+			simul_com_in_one(new TaskSimul_FC_Naive(null),set,no);
 	}
 	
 	private void simul_com_in_one(TaskSimul_FC ts, int set,

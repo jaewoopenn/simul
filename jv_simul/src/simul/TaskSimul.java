@@ -18,12 +18,9 @@ public abstract class TaskSimul {
 	public boolean isPrnMS=true;
 	public boolean isPrnEnd=true;
 
-	public TaskSimul(){
-		init();
-	}
 	public TaskSimul(TaskMng m){
-		this();
 		this.g_tm=m;
+		init();
 	}
 	private void init() {
 		g_js=new JobSimul();
@@ -124,7 +121,7 @@ public abstract class TaskSimul {
 			isMS=true;
 		if(isMS){
 			if(isPrnMS)
-				Log.prn(1, "t:"+t+" mode-switch "+tid);
+				Log.prn(2, "t:"+t+" mode-switch "+tid);
 			g_isMS=true;
 			modeswitch(tid);
 		} else {

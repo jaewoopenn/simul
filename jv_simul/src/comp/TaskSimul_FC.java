@@ -8,9 +8,6 @@ import basic.TaskMng;
 
 public class TaskSimul_FC extends TaskSimul{
 	protected CompMng g_cm;
-	public TaskSimul_FC() {
-		super();
-	}
 
 	public TaskSimul_FC(TaskMng m) {
 		super(m);
