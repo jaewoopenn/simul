@@ -3,13 +3,10 @@ package testMP;
 
 import anal.Anal;
 import anal.AnalEDF_VD;
-import basic.TaskMng;
 import exp.ExpSimulMP;
 // move 
 import part.CoreMng;
-import simul.TaskSimul_EDF_VD;
 import sysEx.TS_MP1;
-import util.MUtil;
 import util.TEngine;
 
 public class CoreMng2 {
@@ -24,25 +21,17 @@ public class CoreMng2 {
 		cm.prn();
 		return 0;
 	}
+	
 	public int test2() {
-		
 		CoreMng cm=TS_MP1.core3();
 		int cpus=2;
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(cpus);
-		for(int i:MUtil.loop(cpus)){
-			TaskMng tm=cm.getTM(i);
-			Anal an=new AnalEDF_VD();
-			an.init(tm);
-			an.prepare();
-			tm.setX(an.getX());
-			eg.initSim(i,new TaskSimul_EDF_VD(tm));
-		}
+		eg.loadCM(cm,new AnalEDF_VD(),1);
 		eg.simul(0,500);
 		eg.move();
 		eg.simul(500,1000);
 		eg.prn();
-		
 		return 0;
 	}
 	

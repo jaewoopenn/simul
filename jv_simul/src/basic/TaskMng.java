@@ -22,12 +22,6 @@ public class TaskMng {
 
 
 	
-	public void sort(){
-//		Arrays.sort(g_hi_tasks,new TaskComparator());
-//		Arrays.sort(g_tasks,new ComparatorTask());
-//		Task t=g_hi_tasks[0];
-//		t.prn();
-	}
 
 
 

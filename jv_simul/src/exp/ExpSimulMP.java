@@ -16,6 +16,7 @@ import util.MUtil;
 public class ExpSimulMP extends ExpSimul {
 	private TaskSimul[] g_tsim;
 	private int g_ncpu;
+	private CoreMng g_cm;
 	
 	public ExpSimulMP(ConfigGen cfg) {
 		super(cfg);
@@ -30,6 +31,9 @@ public class ExpSimulMP extends ExpSimul {
 		g_tsim=new TaskSimul[core];
 	}
 	public void loadCM(CoreMng cm, Anal an, int simul_no) {
+		// 1: EDF-VD
+		// 2: EDF-AD-E
+		g_cm=cm;
 		for(int i:MUtil.loop(cm.size())){
 			TaskSetFix tsf=new TaskSetFix(cm.getTS(i));
 			TaskMng tm=tsf.getTM();
@@ -107,7 +111,10 @@ public class ExpSimulMP extends ExpSimul {
 
 	// test
 	public void move() {
-		
+		g_cm.move();
+		for(int j:MUtil.loop(g_ncpu)){
+			
+		}
 	}
 
 
