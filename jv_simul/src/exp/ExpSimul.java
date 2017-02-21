@@ -9,7 +9,6 @@ import simul.TaskSimul;
 
 public abstract class ExpSimul {
 	protected ConfigGen g_cfg;
-	protected TaskSimul[] g_tsim;
 	public ExpSimul(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
