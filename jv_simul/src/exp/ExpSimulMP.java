@@ -10,11 +10,11 @@ import part.Partition;
 import simul.SimulInfo;
 import simul.TaskSimul;
 import simul.TaskSimulGen;
+import util.Log;
 //import util.Log;
 import util.MUtil;
 
 public class ExpSimulMP extends ExpSimul {
-	private TaskSimul[] g_tsim;
 	private int g_ncpu;
 	private CoreMng g_cm;
 	
@@ -28,7 +28,6 @@ public class ExpSimulMP extends ExpSimul {
 	
 	public void initCores(int core){
 		g_ncpu=core;
-		g_tsim=new TaskSimul[core];
 	}
 	public void loadCM(CoreMng cm, Anal an, int simul_no) {
 		// 1: EDF-VD
@@ -53,14 +52,15 @@ public class ExpSimulMP extends ExpSimul {
 
 	@Override
 	public void initSim(int core, TaskSimul tsim) {
-		g_tsim[core]=tsim;
+		g_cm.setSim(core, tsim);
+//		g_tsim[core]=tsim;
 		tsim.checkErr();
 	}
 	
 	@Override
 	protected void simulStart() {
 		for(int j:MUtil.loop(g_ncpu)){
-			g_tsim[j].simulStart();
+			g_cm.getSim(j).simulStart();
 		}
 	}
 
@@ -73,7 +73,7 @@ public class ExpSimulMP extends ExpSimul {
 		while(t<et){
 //			Log.prn(2, ""+t);
 			for(int j:MUtil.loop(g_ncpu)){
-				g_tsim[j].simul_t(t);
+				g_cm.getSim(j).simul_t(t);
 //				Log.prn(2, t+","+j);
 			}
 			t++;
@@ -82,7 +82,7 @@ public class ExpSimulMP extends ExpSimul {
 	
 	@Override
 	public SimulInfo getSI(int core){
-		return g_tsim[core].getSI();
+		return g_cm.getSim(core).getSI();
 	}
 
 	
@@ -102,8 +102,8 @@ public class ExpSimulMP extends ExpSimul {
 
 
 	public void prn() {
-		for(int j=0;j<g_ncpu;j++){
-			SimulInfo si=g_tsim[j].getSI();
+		for(int j:MUtil.loop(g_ncpu)){
+			SimulInfo si=g_cm.getSim(j).getSI();
 			si.prn();
 		}
 		
@@ -117,6 +117,14 @@ public class ExpSimulMP extends ExpSimul {
 //		for(int j:MUtil.loop(g_ncpu)){
 //			
 //		}
+	}
+
+	public void check() {
+		for(int j:MUtil.loop(g_ncpu)){
+			if(g_cm.getSim(j)==null){
+				Log.prn(9, "null"+j);
+			}
+		}
 	}
 
 

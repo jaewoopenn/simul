@@ -1,9 +1,9 @@
 package testMP;
+//move 
 
 
 import anal.AnalEDF_VD;
 import exp.ExpSimulMP;
-// move 
 import part.CoreMng;
 import sysEx.TS_MP1;
 import util.TEngine;
@@ -27,6 +27,7 @@ public class CoreMng2 {
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(cpus);
 		eg.loadCM(cm,new AnalEDF_VD(),3);
+		eg.check();
 		eg.simul(0,500);
 //		eg.move();
 //		eg.simul(500,1000);

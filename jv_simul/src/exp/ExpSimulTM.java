@@ -13,9 +13,9 @@ import util.Log;
 import util.MUtil;
 
 public class ExpSimulTM extends ExpSimul{
+	private TaskSimul g_tsim;
 	public ExpSimulTM(ConfigGen cfg) {
 		super(cfg);
-		g_tsim=new TaskSimul[0];
 	}
 	
 
@@ -33,7 +33,7 @@ public class ExpSimulTM extends ExpSimul{
 
 	@Override
 	public void initSim(int core, TaskSimul tsim) {
-		g_tsim[0]=tsim;
+		g_tsim=tsim;
 	}
 
 	@Override
@@ -43,17 +43,17 @@ public class ExpSimulTM extends ExpSimul{
 
 	@Override
 	public void simul(int st, int et) {
-		g_tsim[0].checkErr();
+		g_tsim.checkErr();
 		if(st==0){
-			g_tsim[0].simulStart();
+			g_tsim.simulStart();
 		}
-		g_tsim[0].simulEnd(st,et);
+		g_tsim.simulEnd(st,et);
 	}
 
 
 	@Override
 	public SimulInfo getSI(int core) {
-		return g_tsim[0].getSI();
+		return g_tsim.getSI();
 	}
 
 

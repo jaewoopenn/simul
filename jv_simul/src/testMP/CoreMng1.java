@@ -1,4 +1,5 @@
 package testMP;
+// start
 
 import anal.Anal;
 import anal.AnalEDF_VD;
@@ -63,9 +64,6 @@ public class CoreMng1 {
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
 		CoreMng cm=p.getCoreMng();
-		
-//		p.prn();
-		
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(cm.size());
 		for(int i:MUtil.loop(cm.size())){
