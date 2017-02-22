@@ -20,14 +20,14 @@ public class TaskSimul_MP extends TaskSimul{
 	}
 	@Override
 	protected void initMode() {
-		Log.prn(2, "c:"+g_core);
+//		Log.prn(2, "c:"+g_core);
 		initMode_base_hi();
 	}
 	
 	
 	@Override
 	public void modeswitch_in(Task t) {
-		Log.prn(2, "c:"+g_core);
+//		Log.prn(2, "c:"+g_core);
 		modeswitch_in_base(t);		
 		dropDecision();
 	}
@@ -51,14 +51,20 @@ public class TaskSimul_MP extends TaskSimul{
 	}
 	private void dropTaskMP(Task tsk){
 		if(!TaskSimul_MP.bMove){
-			Log.prn(9, "MOVE: LO task "+tsk.tid+"");
-			tsk.prn();
+//			Log.prn(9, "MOVE: LO task "+tsk.tid+"");
+//			tsk.prn();
 			CoreMng cm=g_tm.get_cm();
 //			cm.prn();
 			cm.move(tsk,2);
 			TaskSimul_MP.bMove=true;
 		} 
 		dropTask_base(tsk);
+	}
+
+	@Override
+	protected void recover_in() {
+		g_tm.get_cm().recover(g_core);
+		
 	}
 
 }

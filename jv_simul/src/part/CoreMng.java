@@ -4,6 +4,7 @@ package part;
 
 
 import util.Log;
+import util.MUtil;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSet;
@@ -54,14 +55,29 @@ public class CoreMng {
 	public void move(Task tsk, int i) {
 		Log.prn(2, "move ");
 		TaskSet ts2=g_tm[1].getTaskSet();
-		ts2.add(tsk);
+		ts2.add(tsk.getCopy());
 		ts2.transform_Array();
 		setTS(1,ts2);
-//		prn();
+		g_tm[1].set_cm(this);
 		g_tsim[1].set_tm(g_tm[1]);
-		g_tsim[1].getTM().prn();
+//		g_tsim[1].getTM().prn();
 //		g_cm.getSim(1).getTM().prn();
 //		System.exit(0);
+	}
+
+	public void recover(int core) {
+		for(int i:MUtil.loop(g_size)){
+			if(i==core)
+				continue;
+			TaskSet ts=g_tm[i].getTaskSet();
+			ts.removeCore(core);
+			ts.transform_Array();
+			setTS(i,ts);
+			g_tm[i].set_cm(this);
+			
+			g_tsim[i].set_tm(g_tm[i]);
+
+		}
 	}
 	
 

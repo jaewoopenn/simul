@@ -73,8 +73,8 @@ public class ExpSimulMP extends ExpSimul {
 	public void simul(int st, int et){
 		if(st==0){
 			simulStart();
-//			g_cm.getSim(0).isSchTab=false;
-			g_cm.getSim(1).isSchTab=false;
+			g_cm.getSim(0).isSchTab=false;
+//			g_cm.getSim(1).isSchTab=false;
 //			g_cm.getSim(0).getTM().prn();
 //			g_cm.getSim(1).getTM().prn();
 		}

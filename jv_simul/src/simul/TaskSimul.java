@@ -13,11 +13,11 @@ public abstract class TaskSimul {
 	protected TaskMng g_tm;
 	protected JobSimul g_js;
 	protected RUtil g_rutil=new RUtil();
-	protected boolean g_isMS=false;
+	protected boolean g_needRecover=false;
+	public boolean g_recoverOn=true;
 	public boolean isSchTab=true;
 	public boolean isPrnMS=true;
 	public boolean isPrnEnd=true;
-	public boolean isRecover=true;
 
 	public TaskSimul(TaskMng tm){
 		g_tm=tm;
@@ -26,7 +26,7 @@ public abstract class TaskSimul {
 	private void init() {
 		g_js=new JobSimul();
 		g_si=new SimulInfo();
-		g_isMS=false;
+		g_needRecover=false;
 	}
 	public void init_tm(TaskMng tm) {
 		g_tm=tm;
@@ -73,7 +73,7 @@ public abstract class TaskSimul {
 		msCheck(t);
 		g_js.dlCheck(t);
 		relCheck(t);
-		if(!g_js.progress(t,isSchTab)&&g_isMS&&isRecover) {
+		if(!g_js.progress(t,isSchTab)&&g_needRecover&&g_recoverOn) {
 			recover(t);
 		}
 		Log.prn(isSchTab,1, " "+t);
@@ -84,7 +84,8 @@ public abstract class TaskSimul {
 	}
 	private void recover(int t){
 		Log.prn(isPrnMS,1, "recover "+t);
-		g_isMS=false;
+		g_needRecover=false;
+		recover_in();
 		initMode();
 //		System.exit(0);
 		
@@ -102,7 +103,7 @@ public abstract class TaskSimul {
 			isMS=true;
 		if(isMS){
 			Log.prn(isPrnMS,1, "t:"+t+" mode-switch "+tsk.tid);
-			g_isMS=true;
+			g_needRecover=true;
 			mode_switch(tsk);
 		} else {
 			g_js.getJM().removeCur();
@@ -160,6 +161,7 @@ public abstract class TaskSimul {
 	
 	// abstract method
 	protected abstract void initMode();
+	protected abstract void recover_in();
 	protected abstract void modeswitch_in(Task tsk);
 	
 	// base instruction
@@ -171,7 +173,7 @@ public abstract class TaskSimul {
 					t.is_HM=true;
 				else
 					t.is_HM=false;
-				Log.prn(2, "m:"+t.is_HM);
+//				Log.prn(2, "m:"+t.is_HM);
 				
 			} else {
 				t.is_dropped=false;
@@ -194,6 +196,7 @@ public abstract class TaskSimul {
 	
 	protected Job relJob_base(Task tsk, int t) {
 		if(tsk.is_HI){
+//			tsk.prnStat();
 			if(tsk.is_HM){
 				return new Job(tsk, 
 						t+tsk.period,tsk.c_h,t+tsk.period,0);

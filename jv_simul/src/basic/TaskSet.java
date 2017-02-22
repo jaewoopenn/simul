@@ -29,6 +29,14 @@ public class TaskSet {
 	public void removeLast(){
 		g_taskV.remove(g_taskV.size()-1);
 	}
+	public void removeCore(int core) {
+		Vector<Task> v=new Vector<Task>();
+		for(Task t:g_taskV){
+			if(t.getCPU()!=core)
+				v.add(t);
+		}
+		g_taskV=v;
+	}
 	
 	public void transform_Array(){
 		int size=g_taskV.size();
@@ -80,6 +88,7 @@ public class TaskSet {
 		}
 		
 	}
+
 
 
 

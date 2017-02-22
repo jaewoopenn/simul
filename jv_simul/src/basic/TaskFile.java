@@ -2,7 +2,6 @@ package basic;
 
 import java.util.Vector;
 
-import comp.Comp;
 import util.FUtil;
 
 
@@ -45,22 +44,6 @@ public class TaskFile {
         	return new Task(tid,p,l,h);
         else
         	return new Task(tid,p,l);
-	}
-	public static Comp loadComp(String line,FUtil fu,int st){
-        String[] words=line.split(",");
-        if(!words[0].equals("C"))
-        	return null;
-        int id=Integer.valueOf(words[1]).intValue();
-        int num=Integer.valueOf(words[2]).intValue();
-        double alpha=Double.valueOf(words[3]).doubleValue();
-//        Log.prn(1,id+" "+num);
-        Comp c=new Comp(alpha);
-        c.setID(id);
-        
-        Vector<Task> tasks=loadFile(fu,st,num);
-        TaskSetFix tmp=new TaskSetFix(tasks);
-        c.setTM(tmp.getTM());
-        return c;
 	}
 	
 }

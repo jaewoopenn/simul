@@ -44,4 +44,11 @@ public class TaskSimul_EDF_AD_E extends TaskSimul{
 		
 	}
 
+
+	@Override
+	protected void recover_in() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

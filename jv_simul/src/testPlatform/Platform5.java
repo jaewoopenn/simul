@@ -44,30 +44,11 @@ public class Platform5 {
 	}
 	public int test3() 
 	{
-		Platform3 p=new Platform3(); // comp SCH
-//		p.isReal=0;
-		p.isReal=1;
-		p.kind=0;
-		p.test1();
-		p.test2();
-		p.test3();
-		p.test4();
-		p.kind=1;
-		p.test1();
-		p.test2();
-		p.test3();
-//		MUtil.sendMail("DMR anal OK");
+
 		return 0;
 	}
 	public  int test4() 
 	{
-		Platform4 p=new Platform4(); // comp DMR
-//		p.isReal=0;
-		p.isReal=1;
-		p.test1();
-		p.test2();
-		p.test3();
-		MUtil.sendMail("SCH anal OK");
 		return 0;
 	}
 	public  int test5() 

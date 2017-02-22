@@ -13,9 +13,7 @@ public class Task {
 	public boolean is_HM=false;
 	public boolean is_dropped=false;
 
-	private int cid=-1;
 	private int pid=-1;
-	private boolean is_isolated=false;
 
 	public Task(int tid){
 		this.tid=tid;
@@ -45,9 +43,6 @@ public class Task {
 	public void setVD(double vd){
 //		System.out.println("tid:"+tid+" vd:"+vd);
 		this.vd=vd;
-	}
-	public void setIsolate(boolean b) {
-		is_isolated=b;
 	}
 	
 	public void prn() {
@@ -103,9 +98,6 @@ public class Task {
 		return (double)c_l/vd;
 	}
 
-	public boolean is_isol(){
-		return is_isolated;
-	}
 
 	public void setCPU(int id) {
 		pid=id;
@@ -114,11 +106,10 @@ public class Task {
 		return pid;
 	}
 	
-	public void setComp(int id) {
-		cid=id;
-	}
-	public int getComp(){
-		return cid;
+	public Task getCopy() {
+		Task t=new Task(tid,period, c_l);
+		t.setCPU(pid);
+		return t;
 	}
 
 

@@ -28,15 +28,7 @@ public class TaskMng {
 		return null;
 	}
 
-	public Task findDropTask_shared() {
-		for(Task t:g_lo_tasks.getArr()){
-			if (!t.is_dropped&&!t.is_isol())
-				return t;
-		}
-		return null;
-	}
 
-	
 	
 	// set
 
@@ -165,14 +157,7 @@ public class TaskMng {
 
 
 
-	public int get_comp(int tid){
-		return g_tasks.get(tid).getComp();
-	}
-	
-	public void prnComp() {
-//		g_tasks.prnComp();
-//		g_info.prn();
-	}
+
 
 	
 }
