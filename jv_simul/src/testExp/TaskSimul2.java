@@ -65,7 +65,7 @@ public class TaskSimul2 {
 		ts.simulBy(0, 1);
 		ts.modeswitch(1);
 		Task t=tm.getTask(0);
-		ts.dropTask(t);
+		ts.dropTask_base(t);
 		ts.simulEnd(1,et);
 		return 0;
 	}
@@ -77,7 +77,7 @@ public class TaskSimul2 {
 		ts.simulBy(0, 1);
 		ts.modeswitch(2);
 //		ts.drop(tm.getTask(0));
-		ts.dropTask(tm.getTask(1));
+		ts.dropTask_base(tm.getTask(1));
 		ts.simulEnd(1,et);
 		return 0;
 	}

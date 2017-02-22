@@ -13,14 +13,14 @@ public class TaskSimul_FC_Naive extends TaskSimul_FC{
 
 	@Override
 	protected void initMode() {
-		initModeS();
+		initMode_base_hi();
 		isExtMS=false;
 	}
 
 	
 	@Override
 	public void modeswitch_in(int tid) {
-		modeswitch_in_pre(tid);		
+		modeswitch_in_base(tid);		
 		int cid=g_tm.get_comp(tid);
 		dropDecision(cid);
 		resManager(cid);
@@ -45,7 +45,7 @@ public class TaskSimul_FC_Naive extends TaskSimul_FC{
 		for(Task t:c.getTM().getLoTasks()){
 //			Log.prn(1, isAll+" "+t.is_isol());
 			if(isAll||!t.is_isol())
-				dropTask(t);
+				dropTask_base(t);
 		}
 		
 	}

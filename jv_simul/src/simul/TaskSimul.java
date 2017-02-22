@@ -86,31 +86,6 @@ public abstract class TaskSimul {
 	// init
 	protected abstract void initMode();
 	
-	public void initModeS() {
-		for(Task t:g_tm.getTasks().getArr()){
-			if(t.is_HI){
-				if(t.getHiUtil()<t.getLoRUtil())
-					t.is_HM=true;
-				else
-					t.is_HM=false;
-			} else {
-				t.is_dropped=false;
-			}
-		}
-
-//		g_tm.prnHI();
-	}
-	protected void initModeN() {
-//		g_tm.prn();
-		for(Task t:g_tm.getTasks().getArr()){
-			if(!t.is_HI)
-				t.is_dropped=false;
-			else
-				t.is_HM=false;
-		}
-
-//		g_tm.prnHI();
-	}
 
 	private void msCheck(int t){
 		boolean isMS=false;
@@ -161,7 +136,58 @@ public abstract class TaskSimul {
 	
 	protected abstract Job relJob(Task tsk, int t);
 
-	protected Job relJobD(Task tsk, int t) {
+	
+	public void modeswitch(int tid){
+		Task tsk=g_tm.getTask(tid);
+		g_si.ms++;
+		if(!tsk.is_HI) 	{
+			Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode-switch");
+			System.exit(0);
+		}
+		modeswitch_in(tid);
+	}
+	protected abstract void modeswitch_in(int tid);
+	
+	
+	// get param
+	public SimulInfo getSI(){
+		return g_si;
+	}
+	public TaskMng getTM(){
+		return g_tm;
+	}
+	public void prnInfo() {
+		
+	}
+	
+	// base instruction
+	public void initMode_base_hi() {
+		for(Task t:g_tm.getTasks().getArr()){
+			if(t.is_HI){
+				if(t.getHiUtil()<t.getLoRUtil())
+					t.is_HM=true;
+				else
+					t.is_HM=false;
+			} else {
+				t.is_dropped=false;
+			}
+		}
+
+//		g_tm.prnHI();
+	}
+	protected void initMode_base() {
+//		g_tm.prn();
+		for(Task t:g_tm.getTasks().getArr()){
+			if(!t.is_HI)
+				t.is_dropped=false;
+			else
+				t.is_HM=false;
+		}
+
+//		g_tm.prnHI();
+	}
+	
+	protected Job relJob_base(Task tsk, int t) {
 		if(tsk.is_HI){
 			if(tsk.is_HM){
 				return new Job(tsk.tid, 
@@ -174,25 +200,14 @@ public abstract class TaskSimul {
 		}
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
-	
-	public void modeswitch(int tid){
-		Task tsk=g_tm.getTask(tid);
-		g_si.ms++;
-		if(!tsk.is_HI) 	{
-			Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode-switch");
-			System.exit(0);
-		}
-		modeswitch_in(tid);
-	}
-	protected abstract void modeswitch_in(int tid);
-	protected void modeswitch_in_pre(int tid){
+	protected void modeswitch_in_base(int tid){
 		if(isPrnMS)
 			Log.prn(1, "ms hi "+tid);
 		g_js.getJM().modeswitch(tid);
 		g_tm.getTask(tid).ms();
 	}
 	
-	public void dropTask(Task tsk) {
+	public void dropTask_base(Task tsk) {
 		if(tsk.is_HI)	{
 			Log.prn(9, "ERROR: task "+tsk.tid+" is not LO-task, cannot drop");
 			System.exit(0);
@@ -206,14 +221,4 @@ public abstract class TaskSimul {
 	}
 	
 	
-	// get param
-	public SimulInfo getSI(){
-		return g_si;
-	}
-	public TaskMng getTM(){
-		return g_tm;
-	}
-	public void prnInfo() {
-		
-	}
 }

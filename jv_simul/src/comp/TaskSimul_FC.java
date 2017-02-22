@@ -31,6 +31,6 @@ public class TaskSimul_FC extends TaskSimul{
 
 	@Override
 	protected Job relJob(Task tsk, int cur_t) {
-		return relJobD(tsk,cur_t);
+		return relJob_base(tsk,cur_t);
 	}
 }

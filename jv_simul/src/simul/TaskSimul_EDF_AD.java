@@ -14,13 +14,13 @@ public class TaskSimul_EDF_AD extends TaskSimul{
 
 	@Override
 	protected void initMode() {
-		initModeN();
+		initMode_base();
 	}
 	
 	
 	@Override
 	public void modeswitch_in(int tid) {
-		modeswitch_in_pre(tid);		
+		modeswitch_in_base(tid);		
 		dropDecision();
 	}
 	
@@ -33,7 +33,7 @@ public class TaskSimul_EDF_AD extends TaskSimul{
 				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
 				System.exit(1);
 			}
-			dropTask(tsk);
+			dropTask_base(tsk);
 			if(isPrnMS)
 				Log.prn(1, "drop "+tsk.tid);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
@@ -45,6 +45,6 @@ public class TaskSimul_EDF_AD extends TaskSimul{
 
 	@Override
 	protected Job relJob(Task tsk, int t) {
-		return relJobD(tsk,t);
+		return relJob_base(tsk,t);
 	}
 }

@@ -15,7 +15,7 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 	
 	@Override
 	protected void initMode() {
-		initModeS();
+		initMode_base_hi();
 	}
 
 
@@ -23,7 +23,7 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 	
 	@Override
 	public void modeswitch_in(int tid) {
-		modeswitch_in_pre(tid);		
+		modeswitch_in_base(tid);		
 		int cid=g_tm.get_comp(tid);
 		dropDecision(cid);
 		resManager(cid);
@@ -75,7 +75,7 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 					t=tm.findDropTask();
 				if(t==null) 
 					return ru;
-				dropTask(t);
+				dropTask_base(t);
 			}
 			else
 				return ru;

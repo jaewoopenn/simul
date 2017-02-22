@@ -17,13 +17,13 @@ public class TaskSimul_MP extends TaskSimul{
 
 	@Override
 	protected void initMode() {
-		initModeS();
+		initMode_base_hi();
 	}
 	
 	
 	@Override
 	public void modeswitch_in(int tid) {
-		modeswitch_in_pre(tid);		
+		modeswitch_in_base(tid);		
 		dropDecision();
 	}
 	
@@ -53,12 +53,12 @@ public class TaskSimul_MP extends TaskSimul{
 		cm.move(tsk,2);
 		cm.prn();
 		System.exit(0);
-		dropTask(tsk);
+		dropTask_base(tsk);
 		
 	}
 
 	@Override
 	protected Job relJob(Task tsk, int t) {
-		return relJobD(tsk,t);
+		return relJob_base(tsk,t);
 	}
 }

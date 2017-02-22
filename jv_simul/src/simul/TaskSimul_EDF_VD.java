@@ -13,7 +13,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 
 	@Override
 	protected void initMode() {
-		initModeN();
+		initMode_base();
 	}
 	
 	
@@ -24,13 +24,13 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 				g_js.getJM().modeswitch(tsk.tid);
 				g_tm.getTask(tid).ms();
 			} else {
-				dropTask(tsk);
+				dropTask_base(tsk);
 			}
 		}
 	}
 
 	@Override
 	protected Job relJob(Task tsk, int t) {
-		return relJobD(tsk,t);
+		return relJob_base(tsk,t);
 	}
 }
