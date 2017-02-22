@@ -4,8 +4,6 @@ import util.Log;
 import util.MUtil;
 
 public class TaskSetInfo {
-	private int hi_size;
-	private int lo_size;
 	private double lo_util;
 	private double hi_util_lm;
 	private double hi_util_hm;
@@ -22,15 +20,6 @@ public class TaskSetInfo {
 	}
 	public void setX(double x_para) {
 		this.x_para = x_para;
-	}
-	public int getSize() {
-		return lo_size+hi_size;
-	}
-	public int getHi_size() {
-		return hi_size;
-	}
-	public int getLo_size() {
-		return lo_size;
 	}
 	public double computeRU(Task t) {
 		if(t.is_HI){
@@ -60,12 +49,6 @@ public class TaskSetInfo {
 	}
 	public double getHi_util_hm() {
 		return hi_util_hm;
-	}
-	public void setHi_size(int hi_size) {
-		this.hi_size = hi_size;
-	}
-	public void setLo_size(int lo_size) {
-		this.lo_size = lo_size;
 	}
 	public void setLo_util(double lo_util) {
 		this.lo_util = lo_util;

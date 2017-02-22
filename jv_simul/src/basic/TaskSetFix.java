@@ -69,25 +69,19 @@ public class TaskSetFix {
 		double loutil=0;
 		double hiutil_lm=0;
 		double hiutil_hm=0;
-		int lo_size=0;
-		int hi_size=0;
 		for(Task t:g_tasks.getArr())
 		{
 			double tu=t.getHiUtil();
 			if(t.is_HI){
 				hiutil_lm+=t.getLoUtil();
 				hiutil_hm+=tu;
-				hi_size++;
 			} else {
 				loutil+=tu;
-				lo_size++;
 			}
 		}
 		g_info.setLo_util(loutil);
 		g_info.setHi_util_hm(hiutil_hm);
 		g_info.setHi_util_lm(hiutil_lm);
-		g_info.setHi_size(hi_size);
-		g_info.setLo_size(lo_size);
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,g_info);
 	}
 		

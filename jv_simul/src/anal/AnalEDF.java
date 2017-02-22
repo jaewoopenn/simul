@@ -10,7 +10,7 @@ public class AnalEDF extends Anal {
 	}
 	@Override
 	public void prepare() {
-		u=tm.getInfo().getUtil();
+		u=g_tm.getInfo().getUtil();
 		Log.prn(1, "det:"+u);
 	}
 	

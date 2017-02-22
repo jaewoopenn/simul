@@ -20,8 +20,7 @@ public class SimGenMP extends SimGen {
 		
 		TaskSetFix tsf=new TaskSetFix(g_tg.getAll());
 		TaskMng tm=tsf.getTM();
-		if(tsf.g_info.getLo_size()==0) return 0;
-		if(tsf.g_info.getHi_size()==0) return 0;
+		if(tm.getTasks().length==0) return 0;
 		if(!g_isCheck)
 			return 1;
 		Partition p=new Partition(g_anal,tm.getTaskSet());

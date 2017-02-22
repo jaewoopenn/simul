@@ -17,7 +17,7 @@ public class AnalEDF_AD extends Anal {
 	}
 	@Override
 	public void prepare() {
-		g_info=tm.getInfo();
+		g_info=g_tm.getInfo();
 		lotasks_loutil=g_info.getLo_util();
 		hitasks_loutil=g_info.getHi_util_lm();
 		hitasks_hiutil=g_info.getHi_util_hm();
@@ -29,8 +29,7 @@ public class AnalEDF_AD extends Anal {
 	@Override
 	public double getDtm() {
 		double dtm=glo_x*lotasks_loutil;
-		for(int i=0;i<g_info.getSize();i++){
-			Task t=tm.getTask(i);
+		for(Task t:g_tm.getTasks()){
 			if (!t.is_HI)
 				continue;
 			double v_util=t.getLoUtil()/glo_x;
@@ -47,8 +46,7 @@ public class AnalEDF_AD extends Anal {
 		double ul=0;
 //		double ud=0;
 		int num=0;
-		for(int j=0;j<g_info.getSize();j++){
-			Task t=tm.getTask(j);
+		for(Task t:g_tm.getTasks()){
 			if(t.is_HI) 
 				continue;
 			double add=t.getLoUtil();
@@ -65,7 +63,7 @@ public class AnalEDF_AD extends Anal {
 	
 	// no ratio / nl 
 	public double getHUtil(int i,double prob_hi){
-		Task[] htasks=tm.getHiTasks();
+		Task[] htasks=g_tm.getHiTasks();
 		double u=0;
 		double prob=1;
 		for(int j=0;j<htasks.length;j++){

@@ -4,10 +4,10 @@ import basic.TaskMng;
 
 public abstract class Anal {
 	protected String name="";
-	protected TaskMng tm;
+	protected TaskMng g_tm;
 	protected int g_limit=10000;
 	public void init(TaskMng mng) {
-		tm=mng;
+		g_tm=mng;
 	}
 	public abstract void prepare();
 	public abstract double getDtm();

@@ -15,13 +15,12 @@ public class SimGenTM extends SimGen {
 	}
 
 	protected int check() {
-		TaskSetFix tm=new TaskSetFix(g_tg.getAll());
-		TaskMng m=tm.getTM();
-		if(tm.g_info.getLo_size()==0) return 0;
-		if(tm.g_info.getHi_size()==0) return 0;
+		TaskSetFix tsf=new TaskSetFix(g_tg.getAll());
+		TaskMng tm=tsf.getTM();
+		if(tm.getTasks().length==0) return 0;
 		if(!g_isCheck)
 			return 1;
-		g_anal.init(m);
+		g_anal.init(tm);
 		g_anal.prepare();
 		
 		return MUtil.btoi(g_anal.isScheduable());

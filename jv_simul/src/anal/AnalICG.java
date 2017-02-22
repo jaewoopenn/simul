@@ -14,7 +14,7 @@ public class AnalICG extends Anal {
 	}
 	@Override
 	public void prepare() {
-		sz=tm.getInfo().getSize();
+		sz=g_tm.getTasks().length;
 		prio=new int[sz];
 	}
 	
@@ -38,7 +38,7 @@ public class AnalICG extends Anal {
 			Task[] ts=getUnprio();
 			b=false;
 			for(int i=0;i<sz;i++){
-				Task t=tm.getTask(i);
+				Task t=g_tm.getTask(i);
 				if(prio[i]!=0) continue;
 				Log.prn(1, "checking "+i+" "+ts.length);
 				if(chk(t,ts)){
@@ -81,7 +81,7 @@ public class AnalICG extends Anal {
 		{
 //			Log.prn(1, "prio"+i+" "+prio[i]);
 			if(prio[i]==0)
-				v.add(tm.getTask(i));
+				v.add(g_tm.getTask(i));
 		}
 		Task[] ret=new Task[v.size()];
 		v.toArray(ret);

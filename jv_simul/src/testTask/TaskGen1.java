@@ -40,7 +40,7 @@ public class TaskGen1 {
 		TaskSetFix tm=new TaskSetFix(tg.getAll());
 		TaskMng m=tm.getTM();
 //		tm.prn();
-		int tm_size=m.getInfo().getSize();
+		int tm_size=m.getTasks().length;
 		if(tg_size!=tm_size){
 			System.out.println("tg:"+tg_size+", tm:"+tm_size);
 			return 0;
