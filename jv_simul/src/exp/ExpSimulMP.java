@@ -3,6 +3,7 @@ package exp;
 
 import anal.Anal;
 import basic.TaskMng;
+import basic.TaskSet;
 import basic.TaskSetFix;
 import gen.ConfigGen;
 import part.CoreMng;
@@ -35,7 +36,9 @@ public class ExpSimulMP extends ExpSimul {
 		// 3: MP
 		g_cm=cm;
 		for(int i:MUtil.loop(cm.size())){
-			TaskSetFix tsf=new TaskSetFix(cm.getTS(i));
+			TaskSet ts=cm.getTS(i);
+			ts.setCPU(i);
+			TaskSetFix tsf=new TaskSetFix(ts);
 			TaskMng tm=tsf.getTM();
 			an.init(tm);
 			an.prepare();

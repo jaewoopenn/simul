@@ -11,6 +11,7 @@ public class TaskMng {
 	private TaskSet g_lo_tasks;
 	private TaskSetInfo g_info;
 	private CoreMng g_cm;
+
 	public TaskMng(TaskSet tasks,TaskSet hi_tasks,TaskSet lo_tasks,TaskSetInfo info) {
 		this.g_tasks=tasks;
 		this.g_hi_tasks = hi_tasks;
@@ -19,22 +20,6 @@ public class TaskMng {
 		g_lo_tasks.sortLo();
 	}
 	
-	
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
 	public Task findDropTask() {
 		for(Task t:g_lo_tasks.getArr()){
 			if (!t.is_dropped)
@@ -59,27 +44,19 @@ public class TaskMng {
 	public void set_cm(CoreMng g_cm) {
 		this.g_cm = g_cm;
 	}
+	
 	public void setX(double x){
 		g_info.setX(x);
-		for(Task t:g_tasks.getArr())	{
-			if (t.is_HI)
-				t.setVD(t.period*x);
-		}
-		
+		g_hi_tasks.setX(x);
 	}
-	
-	public void setVD(int i, double vd){
-		g_tasks.get(i).vd=vd;
-	}
+
+
 	
 	
 
 	// get
 	public CoreMng get_cm() {
 		return g_cm;
-	}
-	public int get_comp(int tid){
-		return g_tasks.get(tid).getComp();
 	}
 	
 	public TaskSetInfo getInfo() {
@@ -187,11 +164,15 @@ public class TaskMng {
 
 
 
+
+	public int get_comp(int tid){
+		return g_tasks.get(tid).getComp();
+	}
 	
-//	public void prnComp() {
-//	g_tasks.prnComp();
-//	g_info.prn();
-//}
+	public void prnComp() {
+//		g_tasks.prnComp();
+//		g_info.prn();
+	}
 
 	
 }

@@ -85,9 +85,9 @@ public class CompMng {
 	// set
 	
 	public void setX(double x) {
-		for(Comp c:g_comp){
-			c.getTM().setX(x);
-		}
+//		for(Comp c:g_comp){
+//			c.getTM().setX(x);
+//		}
 		
 	}
 	public void setAlpha(double g_a_l, double g_a_u) {

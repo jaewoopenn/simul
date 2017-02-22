@@ -14,6 +14,7 @@ public class Task {
 	public boolean is_dropped=false;
 
 	private int cid=-1;
+	private int pid=-1;
 	private boolean is_isolated=false;
 
 	public Task(int tid,int period, int c_l) {
@@ -41,9 +42,6 @@ public class Task {
 	public void setVD(double vd){
 //		System.out.println("tid:"+tid+" vd:"+vd);
 		this.vd=vd;
-	}
-	public void setComp(int id) {
-		cid=id;
 	}
 	public void setIsolate(boolean b) {
 		is_isolated=b;
@@ -102,11 +100,22 @@ public class Task {
 		return (double)c_l/vd;
 	}
 
-	public int getComp(){
-		return cid;
-	}
 	public boolean is_isol(){
 		return is_isolated;
+	}
+
+	public void setCPU(int id) {
+		pid=id;
+	}
+	public int getCPU(){
+		return pid;
+	}
+	
+	public void setComp(int id) {
+		cid=id;
+	}
+	public int getComp(){
+		return cid;
 	}
 
 

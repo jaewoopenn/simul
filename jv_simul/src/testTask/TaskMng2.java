@@ -16,8 +16,8 @@ public class TaskMng2 {
 	public int test1()
 	{
 		TaskMng tm=TS_MC1.ts1();
-		tm.setVD(0,2.2);
-		tm.setVD(1,3.4);
+//		tm.setVD(0,2.2);
+//		tm.setVD(1,3.4);
 		tm.prn();
 		return -1;
 	}

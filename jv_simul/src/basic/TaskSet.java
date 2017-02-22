@@ -65,6 +65,20 @@ public class TaskSet {
 		}
 	}
 
+	public void setCPU(int core) {
+		for(Task t:g_tasks){
+			t.setCPU(core);
+		}
+	}
+
+	public void setX(double x) {
+		for(Task t:g_tasks){
+			t.setVD(t.period*x);
+		}
+		
+	}
+
+
 //	public void prnComp() {
 //		for(Task t:g_tasks){
 //			t.prnComp();
