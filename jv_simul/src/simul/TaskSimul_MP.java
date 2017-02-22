@@ -9,7 +9,8 @@ import util.Log;
 import util.MUtil;
 
 public class TaskSimul_MP extends TaskSimul{
-
+//	private boolean bMove=true;
+	private static boolean bMove=false;
 	public TaskSimul_MP(TaskMng m) {
 		super(m);
 	}
@@ -46,15 +47,16 @@ public class TaskSimul_MP extends TaskSimul{
 		
 	}
 	private void dropTaskMP(Task tsk){
-		Log.prn(9, "MOVE: LO task "+tsk.tid+"");
-		tsk.prn();
-		CoreMng cm=g_tm.get_cm();
-		cm.prn();
-		cm.move(tsk,2);
-		cm.prn();
-		System.exit(0);
-		dropTask_base(tsk);
-		
+		if(!TaskSimul_MP.bMove){
+			Log.prn(9, "MOVE: LO task "+tsk.tid+"");
+			tsk.prn();
+			CoreMng cm=g_tm.get_cm();
+//			cm.prn();
+			cm.move(tsk,2);
+			TaskSimul_MP.bMove=true;
+		} else {
+			dropTask_base(tsk);
+		}
 	}
 
 	@Override

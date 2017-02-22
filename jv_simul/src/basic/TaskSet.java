@@ -23,10 +23,13 @@ public class TaskSet {
 		return g_taskV.size();
 	}
 	
-	public Task removeLast() {
-		return g_taskV.remove(v_size()-1);
-		
+	public void remove(Task t) {
+		g_taskV.remove(t);
 	}
+	public void removeLast(){
+		g_taskV.remove(g_taskV.size()-1);
+	}
+	
 	public void transform_Array(){
 		int size=g_taskV.size();
 		g_tasks=new Task[size];
@@ -77,6 +80,7 @@ public class TaskSet {
 		}
 		
 	}
+
 
 
 //	public void prnComp() {

@@ -55,10 +55,26 @@ public class CoreMng {
 		Log.prn(2, "move ");
 		TaskSet ts1=g_tm[0].getTaskSet();
 		TaskSet ts2=g_tm[1].getTaskSet();
-		Task t=ts1.removeLast();
-		ts2.add(t);
+//		Log.prn(9, "before, core1");
+//		ts1.prn();
+//		Log.prn(9, "before, core2");
+//		ts2.prn();
+		ts1.remove(tsk);
+		ts2.add(tsk);
 		ts1.transform_Array();
 		ts2.transform_Array();
+//		Log.prn(9, "after, core1");
+//		ts1.prn();
+//		Log.prn(9, "after, core2");
+//		ts2.prn();
+		setTS(0,ts1);
+		setTS(1,ts1);
+//		prn();
+		g_tsim[0].set_tm(g_tm[0]);
+		g_tsim[1].set_tm(g_tm[1]);
+		g_tsim[0].getTM().prn();
+		g_tsim[1].getTM().prn();
+//		System.exit(0);
 	}
 	
 

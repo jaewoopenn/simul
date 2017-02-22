@@ -45,7 +45,7 @@ public class ExpSimulMP extends ExpSimul {
 			tm.setX(an.getX());
 			tm.set_cm(cm);
 			TaskSimul tsim=TaskSimulGen.get(simul_no);
-			tsim.set_tm(tm);
+			tsim.init_tm(tm);
 //			tm.prn();
 			initSim(i,tsim);
 		}

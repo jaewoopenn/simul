@@ -83,12 +83,13 @@ public class TS_MP1 {
 		TaskSet ts=new TaskSet();
 		ts.add(new Task(0,6,1,5));
 		ts.add(new Task(1,4,1));
-		ts.add(new Task(1,8,2));
+		ts.add(new Task(2,8,2));
 		ts.transform_Array();
 		cm.setTS(0,ts);
 		
 		ts=new TaskSet();
 		ts.add(new Task(0,6,1,5));
+//		ts.add(new Task(1,4,1));
 		ts.transform_Array();
 		cm.setTS(1,ts);
 		

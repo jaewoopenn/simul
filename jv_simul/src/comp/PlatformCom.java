@@ -79,7 +79,7 @@ public class PlatformCom extends Platform{
 				an.init(tm);
 				an.prepare();
 				cm.setX(an.getX());
-				tsim.set_tm(tm);
+				tsim.init_tm(tm);
 				tsim.set_cm(cm);
 				eg.initSim(0, tsim);
 				eg.simul(0,g_dur);
@@ -121,7 +121,7 @@ public class PlatformCom extends Platform{
 		an.init(tm);
 		an.prepare();
 		cm.setX(an.getX());
-		ts.set_tm(tm);
+		ts.init_tm(tm);
 		ts.set_cm(cm);
 		ts.isSchTab=false;
 		eg.initSim(0, ts);

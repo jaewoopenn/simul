@@ -88,7 +88,7 @@ public class PlatformTM extends Platform{
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.getX());
-			tsim.set_tm(tm);
+			tsim.init_tm(tm);
 			eg.initSim(0, tsim);
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
@@ -128,7 +128,7 @@ public class PlatformTM extends Platform{
 		an.init(tm);
 		an.prepare();
 		tm.setX(an.getX());
-		tsim.set_tm(tm);
+		tsim.init_tm(tm);
 		eg.initSim(0, tsim);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI(0);

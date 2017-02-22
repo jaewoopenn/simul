@@ -28,10 +28,10 @@ public class CoreMng2 {
 		eg.initCores(cpus);
 		eg.loadCM(cm,new AnalEDF_VD(),3);
 		eg.check();
-		eg.simul(0,500);
+		eg.simul(0,1000);
 //		eg.move();
 //		eg.simul(500,1000);
-//		eg.prn();
+		eg.prn();
 		return 0;
 	}
 	

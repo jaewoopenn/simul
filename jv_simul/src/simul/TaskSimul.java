@@ -18,14 +18,23 @@ public abstract class TaskSimul {
 	public boolean isPrnMS=true;
 	public boolean isPrnEnd=true;
 
-	public TaskSimul(TaskMng m){
-		this.g_tm=m;
+	public TaskSimul(TaskMng tm){
+		g_tm=tm;
 		init();
 	}
 	private void init() {
 		g_js=new JobSimul();
 		g_si=new SimulInfo();
 		g_isMS=false;
+	}
+	public void init_tm(TaskMng tm) {
+		g_tm=tm;
+		init();
+		
+	}
+	public void set_tm(TaskMng tm) {
+		g_tm=tm;
+		
 	}
 	public void checkErr() {
 		if(g_tm==null){
@@ -35,10 +44,6 @@ public abstract class TaskSimul {
 		
 	}
 	
-	public void set_tm(TaskMng tm) {
-		this.g_tm = tm;
-		init();
-	}
 
 	// simul interval
 	public void simulBy(int st, int et){
@@ -96,7 +101,7 @@ public abstract class TaskSimul {
 			isMS=true;
 		if(isMS){
 			if(isPrnMS)
-				Log.prn(2, "t:"+t+" mode-switch "+tid);
+				Log.prn(1, "t:"+t+" mode-switch "+tid);
 			g_isMS=true;
 			modeswitch(tid);
 		} else {
@@ -140,6 +145,7 @@ public abstract class TaskSimul {
 	public void modeswitch(int tid){
 		Task tsk=g_tm.getTask(tid);
 		g_si.ms++;
+//		Log.prn(9, "a"+g_si.ms);
 		if(!tsk.is_HI) 	{
 			Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode-switch");
 			System.exit(0);
@@ -214,8 +220,6 @@ public abstract class TaskSimul {
 		}
 		if(tsk.is_dropped)
 			return;
-		if(isPrnMS)
-			Log.prn(1, "drop "+tsk.tid);
 		g_si.drop+=g_js.getJM().drop(tsk.tid);
 		tsk.drop();
 	}
