@@ -2,7 +2,7 @@ package testMP;
 //move 
 
 
-import anal.AnalEDF_VD;
+import anal.AnalEDF_AD_E;
 import exp.ExpSimulMP;
 import part.CoreMng;
 import sysEx.TS_MP1;
@@ -10,7 +10,7 @@ import util.TEngine;
 
 public class CoreMng2 {
 	public static int idx=2;
-	public static int log_level=2;
+	public static int log_level=1;
 
 
 	public int test1()	{
@@ -26,12 +26,12 @@ public class CoreMng2 {
 		int cpus=2;
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(cpus);
-		eg.loadCM(cm,new AnalEDF_VD(),3);
+		eg.loadCM(cm,new AnalEDF_AD_E(),3);
 		eg.check();
-		eg.simul(0,1000);
+		eg.simul(0,50);
 //		eg.move();
 //		eg.simul(500,1000);
-		eg.prn();
+//		eg.prn();
 		return 0;
 	}
 	

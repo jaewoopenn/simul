@@ -1,7 +1,6 @@
 package simul;
 
 
-import exp.Job;
 import basic.Task;
 import basic.TaskMng;
 
@@ -18,19 +17,15 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 	
 	
 	@Override
-	public void modeswitch_in(int tid) {
-		for(Task tsk:g_tm.getTasks().getArr()){
+	public void modeswitch_in(Task t) {
+		for(Task tsk:g_tm.getTasks()){
 			if(tsk.is_HI){
-				g_js.getJM().modeswitch(tsk.tid);
-				g_tm.getTask(tid).ms();
+				g_js.getJM().modeswitch(t);
+				t.ms();
 			} else {
-				dropTask_base(tsk);
+				dropTask_base(t);
 			}
 		}
 	}
 
-	@Override
-	protected Job relJob(Task tsk, int t) {
-		return relJob_base(tsk,t);
-	}
 }

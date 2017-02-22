@@ -19,7 +19,6 @@ public abstract class Anal {
 			return true;
 		}
 		return false;
-	
 	}
 	public abstract double getX();
 	public String getName() {

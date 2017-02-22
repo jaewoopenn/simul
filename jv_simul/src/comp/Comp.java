@@ -64,8 +64,8 @@ public class Comp {
 	}
 	
 	// get
-	public TaskSet getTasks() {
-		return g_tm.getTasks();
+	public TaskSet getTaskSet() {
+		return g_tm.getTaskSet();
 	}
 
 	public int size() {
@@ -84,7 +84,7 @@ public class Comp {
 	
 	public double getST_U() {
 		double u=0;
-		for(Task t:g_tm.getTasks().getArr()){
+		for(Task t:g_tm.getTasks()){
 			if(t.is_HI)
 				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
 			else
@@ -98,7 +98,7 @@ public class Comp {
 	}
 	public double getNa_U(){
 		double u=0;
-		for(Task t:g_tm.getTasks().getArr()){
+		for(Task t:g_tm.getTasks()){
 			if(t.is_HI)
 				u+= t.getHiUtil();
 			else{
@@ -112,7 +112,7 @@ public class Comp {
 	}
 	public double getExt_U() {
 		double u=0;
-		for(Task t:g_tm.getTasks().getArr()){
+		for(Task t:g_tm.getTasks()){
 			if(t.is_HI)
 				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
 			else{
@@ -126,7 +126,7 @@ public class Comp {
 	}
 	public double getInt_U() {
 		double u=0;
-		for(Task t:g_tm.getTasks().getArr()){
+		for(Task t:g_tm.getTasks()){
 			if(t.is_HI)
 				u+= t.getHiUtil();
 			else{

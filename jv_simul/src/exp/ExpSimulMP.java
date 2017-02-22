@@ -11,6 +11,7 @@ import part.Partition;
 import simul.SimulInfo;
 import simul.TaskSimul;
 import simul.TaskSimulGen;
+import simul.TaskSimul_MP;
 import util.Log;
 //import util.Log;
 import util.MUtil;
@@ -44,7 +45,8 @@ public class ExpSimulMP extends ExpSimul {
 			an.prepare();
 			tm.setX(an.getX());
 			tm.set_cm(cm);
-			TaskSimul tsim=TaskSimulGen.get(simul_no);
+			TaskSimul_MP tsim=TaskSimulGen.get_MP(simul_no);
+			tsim.setCore(i);
 			tsim.init_tm(tm);
 //			tm.prn();
 			initSim(i,tsim);
@@ -71,6 +73,10 @@ public class ExpSimulMP extends ExpSimul {
 	public void simul(int st, int et){
 		if(st==0){
 			simulStart();
+//			g_cm.getSim(0).isSchTab=false;
+			g_cm.getSim(1).isSchTab=false;
+//			g_cm.getSim(0).getTM().prn();
+//			g_cm.getSim(1).getTM().prn();
 		}
 		int t=st;
 		while(t<et){
@@ -114,13 +120,6 @@ public class ExpSimulMP extends ExpSimul {
 
 
 
-	// test
-	public void move() {
-		g_cm.move(null,0);
-//		for(int j:MUtil.loop(g_ncpu)){
-//			
-//		}
-	}
 
 	public void check() {
 		for(int j:MUtil.loop(g_ncpu)){

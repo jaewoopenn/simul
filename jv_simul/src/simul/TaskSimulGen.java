@@ -14,4 +14,8 @@ public class TaskSimulGen {
 			return null;
 		}
 	}
+	public static TaskSimul_MP get_MP(int i){
+		return new TaskSimul_MP(null);
+		
+	}
 }

@@ -17,6 +17,9 @@ public class Task {
 	private int pid=-1;
 	private boolean is_isolated=false;
 
+	public Task(int tid){
+		this.tid=tid;
+	}
 	public Task(int tid,int period, int c_l) {
 		this.tid=tid;
 		this.period = period;

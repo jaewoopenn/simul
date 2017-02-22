@@ -3,6 +3,7 @@ package exp;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
+import basic.Task;
 import util.Log;
 
 public class JobMng {
@@ -15,25 +16,28 @@ public class JobMng {
 		g_jobs.add(job);
 	}
 
-	public void prnJob(Job j,int out_type)
+	public void prnJob(boolean b,Job j,int out_type)
 	{
+		// out_type=0
+		if(!b)
+			return;
 //		Log.prnc(1, "cur:"+cur_t+" ");
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
 				Log.prnc(1, "-");
 			return;
 		} 
-		if (j.tid+1>g_task_num)
-			g_task_num=j.tid+1;
+		if (j.tsk.tid+1>g_task_num)
+			g_task_num=j.tsk.tid+1;
 		for (int i=0;i<g_task_num;i++)
 		{
-			if(i==j.tid){
+			if(i==j.tsk.tid){
 				if(out_type==1)
-					Log.prnc(1, "+");
+					Log.prnc(1, "+"); // end
 				else
-					Log.prnc(1, "|");
+					Log.prnc(1, "|"); // continue
 			} else {
-				Log.prnc(1, "-");
+				Log.prnc(1, "-"); // empty
 			}
 		}
 //		Log.prn(1, " ");
@@ -68,10 +72,10 @@ public class JobMng {
 		}
 		
 	}
-	public void modeswitch(int tid) {
+	public void modeswitch(Task tsk) {
 		Vector<Job> v=new Vector<Job>();
 		for(Job j:g_jobs){
-			if(j.tid==tid) {
+			if(j.tsk==tsk) {
 				j.exec=j.exec+j.add_exec;
 				((Job)j).vd=j.dl;
 				j.add_exec=0;
@@ -86,10 +90,10 @@ public class JobMng {
 		}
 		
 	}
-	public int drop(int tid) {
+	public int drop(Task tsk) {
 		int d_num=0;
 		for(Job j:g_jobs){
-			if(j.tid==tid&&j.exec>0) {
+			if(j.tsk==tsk&&j.exec>0) {
 				j.exec=0;
 				d_num++;
 			}

@@ -9,16 +9,23 @@ public class Log {
 		return 	(g_lv<=lv);
 
 	}
+	public static void prn(boolean b,int lv,Object s) {
+		if(b) 
+			prn(lv,s);
+	}
 	public static void prn(int lv,Object s)
 	{
 		if(g_lv<=lv)
 			System.out.println(s);
 	}
 
+	public static void prnc(boolean b,int lv,Object s) {
+		if(b) 
+			prnc(lv,s);
+	}
 	public static void prnc(int lv,Object s) {
 		if(g_lv<=lv)
 			System.out.print(s);
-		
 	}
 	public static void form(int lv,String s,int v) {
 		if(g_lv<=lv)

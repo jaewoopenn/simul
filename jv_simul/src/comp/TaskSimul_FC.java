@@ -2,7 +2,6 @@ package comp;
 
 
 import simul.TaskSimul;
-import exp.Job;
 import basic.Task;
 import basic.TaskMng;
 
@@ -24,13 +23,7 @@ public class TaskSimul_FC extends TaskSimul{
 	
 	
 	@Override
-	public void modeswitch_in(int tid) {
-	}
+	public void modeswitch_in(Task t) {
+	}	
 	
-	
-
-	@Override
-	protected Job relJob(Task tsk, int cur_t) {
-		return relJob_base(tsk,cur_t);
-	}
 }

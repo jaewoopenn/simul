@@ -17,7 +17,7 @@ public class TaskFile1 {
 		tmp.add(new Task(0,4,1));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
-		TaskFile.writeFile("file/test.txt",tm.getTasks());
+		TaskFile.writeFile("file/test.txt",tm.getTaskSet());
 		return 1;
 	}
 	public int test2()

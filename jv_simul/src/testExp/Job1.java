@@ -2,6 +2,7 @@ package testExp;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
+import basic.Task;
 import exp.Job;
 import util.TEngine;
 
@@ -14,23 +15,23 @@ public class Job1 {
 	{
 		Vector<Job> jobs=new Vector<Job>();
 		
-		jobs.add(new Job(0,3,1));
-		jobs.add(new Job(1,4,1));
+		jobs.add(new Job(new Task(0),3,1));
+		jobs.add(new Job(new Task(1),4,1));
 		return jobs.size();
 	}
 	public int test2()
 	{
 		PriorityQueue<Job> pq=new PriorityQueue<Job>();
-		pq.add(new Job(0,4,1));
-		pq.add(new Job(1,3,1));
+		pq.add(new Job(new Task(0),4,1));
+		pq.add(new Job(new Task(1),3,1));
 		Job j=pq.poll();
 		return j.dl;
 	}
 	public  double test3()
 	{
 		PriorityQueue<Job> pq=new PriorityQueue<Job>();
-		pq.add(new Job(0,4,1));
-		pq.add(new Job(1,3,2));
+		pq.add(new Job(new Task(0),4,1));
+		pq.add(new Job(new Task(1),3,2));
 		Job j=pq.poll();
 		j.exec-=1;
 		pq.add(j);
@@ -41,8 +42,8 @@ public class Job1 {
 	public  int test4()
 	{
 		PriorityQueue<Job> pq=new PriorityQueue<Job>();
-		pq.add(new Job(0,4,2));
-		pq.add(new Job(1,3,1));
+		pq.add(new Job(new Task(0),4,2));
+		pq.add(new Job(new Task(1),3,1));
 		Job j=pq.poll();
 		j.exec-=1;
 		if(j.exec>0)

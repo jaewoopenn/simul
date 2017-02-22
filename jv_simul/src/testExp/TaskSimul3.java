@@ -27,7 +27,7 @@ public class TaskSimul3 {
 		tm.setX(0.5);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 2);
-		ts.modeswitch(3);
+		ts.mode_switch(tm.getTask(3));
 		ts.simulEnd(2,et);
 		return -1;
 	}

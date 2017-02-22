@@ -63,8 +63,17 @@ public class TaskMng {
 		return g_info;
 	}
 
-	public TaskSet getTasks() {
+	public TaskSet getTaskSet(){
 		return g_tasks;
+	}
+	public Task[] getTasks() {
+		return g_tasks.getArr();
+	}
+	public Task[] getHiTasks(){
+		return g_hi_tasks.getArr();
+	}
+	public Task[] getLoTasks(){
+		return g_lo_tasks.getArr();
 	}
 
 
@@ -73,12 +82,6 @@ public class TaskMng {
 		return g_tasks.get(i);
 	}
 	
-	public Task[] getHiTasks(){
-		return g_hi_tasks.getArr();
-	}
-	public Task[] getLoTasks(){
-		return g_lo_tasks.getArr();
-	}
 
 
 	public double getRUtil() {
@@ -107,9 +110,6 @@ public class TaskMng {
 
 
 
-	public TaskSet getTaskSet() {
-		return g_tasks;
-	}
 
 
 

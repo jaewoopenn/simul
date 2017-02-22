@@ -1,7 +1,6 @@
 package simul;
 
 
-import exp.Job;
 import basic.Task;
 import basic.TaskMng;
 import util.Log;
@@ -19,8 +18,8 @@ public class TaskSimul_EDF_AD extends TaskSimul{
 	
 	
 	@Override
-	public void modeswitch_in(int tid) {
-		modeswitch_in_base(tid);		
+	public void modeswitch_in(Task t) {
+		modeswitch_in_base(t);		
 		dropDecision();
 	}
 	
@@ -43,8 +42,4 @@ public class TaskSimul_EDF_AD extends TaskSimul{
 		
 	}
 
-	@Override
-	protected Job relJob(Task tsk, int t) {
-		return relJob_base(tsk,t);
-	}
 }

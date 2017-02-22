@@ -2,7 +2,6 @@ package simul;
 
 
 import part.CoreMng;
-import exp.Job;
 import basic.Task;
 import basic.TaskMng;
 import util.Log;
@@ -11,20 +10,25 @@ import util.MUtil;
 public class TaskSimul_MP extends TaskSimul{
 //	private boolean bMove=true;
 	private static boolean bMove=false;
+	private int g_core;
 	public TaskSimul_MP(TaskMng m) {
 		super(m);
 	}
 
-
+	public void setCore(int core){
+		g_core=core;
+	}
 	@Override
 	protected void initMode() {
+		Log.prn(2, "c:"+g_core);
 		initMode_base_hi();
 	}
 	
 	
 	@Override
-	public void modeswitch_in(int tid) {
-		modeswitch_in_base(tid);		
+	public void modeswitch_in(Task t) {
+		Log.prn(2, "c:"+g_core);
+		modeswitch_in_base(t);		
 		dropDecision();
 	}
 	
@@ -38,8 +42,7 @@ public class TaskSimul_MP extends TaskSimul{
 				System.exit(1);
 			}
 			dropTaskMP(tsk);
-			if(isPrnMS)
-				Log.prn(1, "drop "+tsk.tid);
+			Log.prn(isPrnMS,1, "drop "+tsk.tid);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
 			ru-=g_tm.getReclaimUtil(tsk);
 		}
@@ -54,13 +57,8 @@ public class TaskSimul_MP extends TaskSimul{
 //			cm.prn();
 			cm.move(tsk,2);
 			TaskSimul_MP.bMove=true;
-		} else {
-			dropTask_base(tsk);
-		}
+		} 
+		dropTask_base(tsk);
 	}
 
-	@Override
-	protected Job relJob(Task tsk, int t) {
-		return relJob_base(tsk,t);
-	}
 }

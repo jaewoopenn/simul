@@ -1,6 +1,7 @@
 package testExp;
 import java.util.Vector;
 
+import basic.Task;
 import exp.Job;
 import util.TEngine;
 
@@ -13,8 +14,8 @@ public class Job2 {
 	{
 		Vector<Job> jobs=new Vector<Job>();
 		
-		jobs.add(new Job(0,3,1));
-		jobs.add(new Job(1,4,1));
+		jobs.add(new Job(new Task(0),3,1));
+		jobs.add(new Job(new Task(1),4,1));
 		return jobs.size();
 	}
 	public int test2()

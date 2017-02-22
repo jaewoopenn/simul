@@ -19,9 +19,9 @@ public class TaskSimul_FC_Naive extends TaskSimul_FC{
 
 	
 	@Override
-	public void modeswitch_in(int tid) {
-		modeswitch_in_base(tid);		
-		int cid=g_tm.get_comp(tid);
+	public void modeswitch_in(Task t) {
+		modeswitch_in_base(t);		
+		int cid=g_tm.get_comp(t.tid);
 		dropDecision(cid);
 		resManager(cid);
 	}

@@ -42,7 +42,7 @@ public class TaskSimul2 {
 		TaskMng tm=TS_MC1.ts1();
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 3);
-		ts.modeswitch(1);
+		ts.mode_switch(tm.getTask(1));
 		ts.simulEnd(0,et);
 		return 0;
 	}
@@ -53,7 +53,7 @@ public class TaskSimul2 {
 		tm.setX(0.5);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 1);
-		ts.modeswitch(1);
+		ts.mode_switch(tm.getTask(1));
 		ts.simulEnd(1,et);
 		return 0;
 	}
@@ -63,7 +63,7 @@ public class TaskSimul2 {
 		tm.setX(0.5);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 1);
-		ts.modeswitch(1);
+		ts.mode_switch(tm.getTask(1));
 		Task t=tm.getTask(0);
 		ts.dropTask_base(t);
 		ts.simulEnd(1,et);
@@ -75,7 +75,7 @@ public class TaskSimul2 {
 		tm.setX(0.5);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
 		ts.simulBy(0, 1);
-		ts.modeswitch(2);
+		ts.mode_switch(tm.getTask(2));
 //		ts.drop(tm.getTask(0));
 		ts.dropTask_base(tm.getTask(1));
 		ts.simulEnd(1,et);

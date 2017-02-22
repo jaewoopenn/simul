@@ -1,6 +1,7 @@
 package exp;
 
 
+import basic.Task;
 import util.Log;
 
 public class JobSimul {
@@ -52,7 +53,9 @@ public class JobSimul {
 			System.exit(1);
 		}
 	}
-	public void simulEndPrn(){
+	public void simulEndPrn(boolean b){
+		if(!b)
+			return;
 		Log.prn(1, "*** Left Jobs  ***");
 		g_jm.prn();
 	}
@@ -64,22 +67,22 @@ public class JobSimul {
 			return;
 		if(cur_t<j.dl) 
 			return;
-		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tsk.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		System.exit(1);
 	}
-	public int msCheck(int cur_t) { // before dlcheck
+	public Task msCheck(int cur_t) { // before dlcheck
 		Job j;
 		while(true){
 			j=(Job)g_jm.getCur();
 			if(j==null)
-				return -1;
+				return null;
 			if(j.exec==0){
 				if(j.isHI==true){
 					if(cur_t>j.vd){
-						Log.prn(9, "vd miss"+j.tid);
+						Log.prn(9, "vd miss"+j.tsk.tid);
 						System.exit(1);
 					}
-					return j.tid;
+					return j.tsk;
 				}
 				else
 					g_jm.removeCur();
@@ -88,14 +91,14 @@ public class JobSimul {
 			else
 				break;
 		}
-		return -1;
+		return null;
 	}
 	
-	public boolean progress(int cur_t, boolean isSchTab){
+	public boolean progress(int cur_t, boolean b){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)	{
-			g_jm.prnJob(null,out_type);
+			g_jm.prnJob(true,null,out_type);
 			return false;
 		}
 		if(j.exec<=1) {
@@ -107,8 +110,7 @@ public class JobSimul {
 			out_type=2;
 			j.exec-=1;
 		}
-		if(isSchTab)
-			g_jm.prnJob(j,out_type);
+		g_jm.prnJob(b,j,out_type);
 		return true;
 	}
 	public JobMng getJM() {

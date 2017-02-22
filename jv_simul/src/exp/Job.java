@@ -1,9 +1,10 @@
 package exp;
 
+import basic.Task;
 import util.Log;
 
 public class Job implements Comparable<Job>{
-	public int tid;
+	public Task tsk;
 	public int dl;
 	public int exec;
 	public int add_exec;
@@ -12,8 +13,8 @@ public class Job implements Comparable<Job>{
 
 	public double vd;
 
-	public Job(int tid,int dl, int exec) {
-		this.tid=tid;
+	public Job(Task tsk,int dl, int exec) {
+		this.tsk=tsk;
 		this.dl = dl;
 		this.exec = exec;
 		this.add_exec=0;
@@ -21,8 +22,8 @@ public class Job implements Comparable<Job>{
 		this.vd = dl;
 	}
 
-	public Job(int tid,int dl, int exec,double  vd,int add) {
-		this.tid=tid;
+	public Job(Task tsk,int dl, int exec,double  vd,int add) {
+		this.tsk=tsk;
 		this.dl = dl;
 		this.exec = exec;
 		this.add_exec=add;
@@ -31,7 +32,7 @@ public class Job implements Comparable<Job>{
 	}
 
 	public void prn() {
-		Log.prnc(1,tid+","+dl+","+exec);
+		Log.prnc(1,tsk.tid+","+dl+","+exec);
 		if(isHI)
 			Log.prn(1,","+vd+","+add_exec);
 		else
