@@ -120,6 +120,10 @@ public abstract class TaskSimul {
 			}
 //			Log.prn(2, "rc:"+t);
 			if(!tsk.is_HI){
+				if(tsk.is_moved){
+					Log.prnc(isSchTab,1,"-");
+					continue;
+				}
 				g_si.rel++;
 //				Log.prn(2, "rel:"+t);
 				if(tsk.is_dropped){
@@ -221,7 +225,13 @@ public abstract class TaskSimul {
 		}
 		if(tsk.is_dropped)
 			return;
-		g_si.drop+=g_js.getJM().drop(tsk);
+		int n=g_js.getJM().drop(tsk);
+		if(n>1){
+			Log.prn(9, "drop num>1");
+			System.exit(1);
+		}
+		if(!tsk.is_moved)
+			g_si.drop+=n;
 		tsk.drop();
 	}
 	

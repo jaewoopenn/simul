@@ -10,7 +10,7 @@ import util.TEngine;
 
 public class CoreMng2 {
 	public static int idx=2;
-	public static int log_level=1;
+	public static int log_level=2;
 
 
 	public int test1()	{
@@ -23,14 +23,14 @@ public class CoreMng2 {
 	
 	public int test2() {
 		CoreMng cm=TS_MP1.core3();
+		cm.prn();
 		int cpus=2;
 		ExpSimulMP eg=new ExpSimulMP();
+		
 		eg.initCores(cpus);
 		eg.loadCM(cm,new AnalEDF_AD_E(),3);
 		eg.check();
-		eg.simul(0,20);
-//		eg.move();
-//		eg.simul(500,1000);
+		eg.simul(0,300);
 		eg.prn();
 		return 0;
 	}

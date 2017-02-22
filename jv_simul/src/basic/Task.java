@@ -12,6 +12,7 @@ public class Task {
 	public boolean is_HI=false;
 	public boolean is_HM=false;
 	public boolean is_dropped=false;
+	public boolean is_moved=false;
 
 	private int pid=-1;
 
