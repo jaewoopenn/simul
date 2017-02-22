@@ -30,6 +30,10 @@ public class CoreMng {
 	public void setSim(int core, TaskSimul tsim) {
 		g_tsim[core]=tsim;
 	}
+	public void set_tm(int core,TaskMng tm) {
+		g_tm[core]=tm;
+	}
+	
 	public TaskMng getTM(int i) {
 		return g_tm[i];
 	}
@@ -44,25 +48,29 @@ public class CoreMng {
 	}
 	// action
 	public void prn() {
-		int i=1;
+		int i=0;
 		for(TaskMng tm:g_tm){
 			Log.prn(2, "core "+i);
 			i++;
-			tm.prnShort();
+			tm.prn();
 		}
 		
 	}
-	public void move(Task tsk, int i) {
-		Log.prn(2, "move ");
-		TaskSet ts2=g_tm[1].getTaskSet();
-		ts2.add(tsk.getCopy());
-		ts2.transform_Array();
-		setTS(1,ts2);
-		g_tm[1].set_cm(this);
-		g_tsim[1].set_tm(g_tm[1]);
-//		g_tsim[1].getTM().prn();
-//		g_cm.getSim(1).getTM().prn();
-//		System.exit(0);
+	public void move(Task tsk, int core) {
+		Log.prn(2, "task "+tsk.tid+" move cpu "+core);
+		TaskSet ts=g_tm[core].getTaskSet();
+		ts.add(tsk.getCopy());
+		setTS_in(ts,core);
+	}
+
+	private void setTS_in(TaskSet ts, int core) {
+		double x=g_tm[core].getInfo().getX();
+		ts.transform_Array();
+		setTS(core,ts);
+		g_tm[core].setX(x);
+		g_tm[core].set_cm(this);
+		g_tsim[core].set_tm(g_tm[core]);
+		
 	}
 
 	public void recover(int core) {
@@ -71,14 +79,10 @@ public class CoreMng {
 				continue;
 			TaskSet ts=g_tm[i].getTaskSet();
 			ts.removeCore(core);
-			ts.transform_Array();
-			setTS(i,ts);
-			g_tm[i].set_cm(this);
-			
-			g_tsim[i].set_tm(g_tm[i]);
-
+			setTS_in(ts,i);
 		}
 	}
+
 	
 
 }

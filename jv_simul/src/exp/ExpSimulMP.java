@@ -50,6 +50,7 @@ public class ExpSimulMP extends ExpSimul {
 			tsim.init_tm(tm);
 //			tm.prn();
 			initSim(i,tsim);
+			cm.set_tm(i,tm);
 		}
 		
 	}
@@ -73,22 +74,20 @@ public class ExpSimulMP extends ExpSimul {
 	public void simul(int st, int et){
 		if(st==0){
 			simulStart();
-			g_cm.getSim(0).isSchTab=false;
-//			g_cm.getSim(1).isSchTab=false;
-//			g_cm.getSim(0).getTM().prn();
-//			g_cm.getSim(1).getTM().prn();
 		}
 		int t=st;
 		while(t<et){
-//			Log.prn(2, ""+t);
-			for(int j:MUtil.loop(g_ncpu)){
-				g_cm.getSim(j).simul_t(t);
-//				Log.prn(2, t+","+j);
-			}
+			simul_t(t);
 			t++;
 		}
 	}
 	
+	private void simul_t(int t) {
+		for(int j:MUtil.loop(g_ncpu)){
+			g_cm.getSim(j).simul_t(t);
+		}
+	}
+
 	@Override
 	public SimulInfo getSI(int core){
 		return g_cm.getSim(core).getSI();

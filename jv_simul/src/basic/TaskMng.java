@@ -84,14 +84,25 @@ public class TaskMng {
 		return util;
 	}
 
-	public double getMCUtil() {
-		return g_info.getMCUtil();
+	public double getWCUtil() {
+		double util=0;
+		for(Task t:g_hi_tasks.getArr())	{
+			util+=t.getHiUtil();
+		}
+		for(Task t:g_lo_tasks.getArr())	{
+			util+=getDroppedUtil(t);
+		}
+		return util;
 	}
 
 	public double getReclaimUtil(Task t){
 		return (1-g_info.getX())*t.getLoUtil();
 	}
 
+	public double getDroppedUtil(Task t){
+		Log.prn(2, g_info.getX()+" "+t.getLoUtil());
+		return g_info.getX()*t.getLoUtil();
+	}
 
 
 	public int size() {
@@ -139,6 +150,7 @@ public class TaskMng {
 	public static TaskMng getFile(String fn) {
 		return TaskSetFix.loadFile(fn).getTM();
 	}
+
 
 
 
