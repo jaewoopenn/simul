@@ -69,6 +69,7 @@ public class TaskSimul_MP extends TaskSimul{
 				System.exit(1);
 				break;
 			}
+			Log.prn(9, "TaskSimul_MP: we need analysis ");
 			System.exit(1);
 		}
 		if(core==-1)
