@@ -10,8 +10,11 @@ import util.MUtil;
 
 public class AnalMP extends Anal {
 	private double g_lt_lu;
+	private double g_lt_lu_max;
 	private double g_ht_lu;
 	private double g_ht_hu;
+	private double g_ft_lu;
+	private double g_ft_hu;
 	private double glo_x;
 	private int n_hi_prefer;
 	TaskSetInfo g_info;
@@ -23,15 +26,21 @@ public class AnalMP extends Anal {
 	@Override
 	public void prepare() {
 		load();
-		comp_X();
+		comp_X(g_lt_lu);
 		comp_hi_prefer();
+		comp_lt_lu_max();
+		comp_X(g_lt_lu_max);
+		
 	}
 	
-	private void comp_X() {
-		double cal_x=(1-g_ht_hu)/g_lt_lu;
+	private void comp_X(double lt_lu) {
+		double cal_x=(1-g_ht_hu)/lt_lu;
 		glo_x=Math.min(1,cal_x);
 	}
 
+	private void comp_lt_lu_max() {
+		g_lt_lu_max=(1-g_ht_hu)*(1-g_ft_hu)/(1+g_ht_lu-g_ft_lu-g_ht_hu);
+	}
 	private void load() {
 		g_info=g_tm.getInfo();
 		g_lt_lu=g_info.getLo_util();
@@ -42,12 +51,17 @@ public class AnalMP extends Anal {
 	
 	private void comp_hi_prefer() {
 		n_hi_prefer=0;
+		g_ft_lu=0;
+		g_ft_hu=0;
 		for(Task t:g_tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
-			if(v_util>=h_util)
+			if(v_util>=h_util){
 				n_hi_prefer++;
+				g_ft_lu+=t.getLoUtil();
+				g_ft_hu+=t.getHiUtil();
+			}
 		}
 	}
 
