@@ -94,6 +94,15 @@ public class TaskMng {
 		}
 		return util;
 	}
+	public double getLoUtil() {
+		double util=0;
+		for(Task t:g_lo_tasks.getArr())	{
+			util+=t.getLoUtil();
+		}
+		return util;
+	}
+
+	
 
 	public double getReclaimUtil(Task t){
 		return (1-g_info.getX())*t.getLoUtil();
@@ -151,25 +160,4 @@ public class TaskMng {
 		return TaskSetFix.loadFile(fn).getTM();
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 }

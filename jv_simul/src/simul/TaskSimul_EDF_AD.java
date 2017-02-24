@@ -12,7 +12,7 @@ public class TaskSimul_EDF_AD extends TaskSimul{
 	}
 
 	@Override
-	protected void initMode() {
+	protected void initMode_in() {
 		initMode_base();
 	}
 	

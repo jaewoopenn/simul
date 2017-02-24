@@ -108,7 +108,6 @@ public class ExpSimulMP extends ExpSimul {
 
 
 
-
 	public void prn() {
 		for(int j:MUtil.loop(g_ncpu)){
 			SimulInfo si=g_cm.getSim(j).getSI();
@@ -127,20 +126,4 @@ public class ExpSimulMP extends ExpSimul {
 			}
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 }

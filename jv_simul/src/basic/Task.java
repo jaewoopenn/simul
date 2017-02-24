@@ -39,6 +39,7 @@ public class Task {
 		this.is_HM=true;
 	}
 	public void drop() {
+//		Log.prn(1, "drop tid:"+tid);
 		this.is_dropped=true;
 	}
 	public void setVD(double vd){

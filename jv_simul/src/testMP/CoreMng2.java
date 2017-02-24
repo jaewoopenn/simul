@@ -10,7 +10,7 @@ import util.TEngine;
 
 public class CoreMng2 {
 	public static int idx=2;
-	public static int log_level=2;
+	public static int log_level=1;
 
 
 	public int test1()	{

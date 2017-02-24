@@ -8,8 +8,6 @@ import util.Log;
 import util.MUtil;
 
 public class TaskSimul_MP extends TaskSimul{
-//	private boolean bMove=true;
-	private static boolean bMove=false;
 	private int g_core;
 	public TaskSimul_MP(TaskMng m) {
 		super(m);
@@ -19,7 +17,7 @@ public class TaskSimul_MP extends TaskSimul{
 		g_core=core;
 	}
 	@Override
-	protected void initMode() {
+	protected void initMode_in() {
 //		Log.prn(2, "c:"+g_core);
 		initMode_base_hi();
 	}
@@ -42,22 +40,18 @@ public class TaskSimul_MP extends TaskSimul{
 				System.exit(1);
 			}
 			dropTaskMP(tsk);
-			Log.prn(isPrnMS,1, "drop "+tsk.tid);
-//			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
+			Log.prn(isPrnMS,1, "drop "+tsk.tid+","+tsk.getLoUtil()+","+g_tm.getReclaimUtil(tsk));
 			ru-=g_tm.getReclaimUtil(tsk);
 		}
 //		Log.prn(1, ""+ru);
 		
 	}
 	private void dropTaskMP(Task tsk){
-		if(!TaskSimul_MP.bMove){
-			migrate(tsk);
-		} 
+		migrate(tsk);
 		dropTask_base(tsk);
 	}
 
 	private void migrate(Task tsk) {
-		TaskSimul_MP.bMove=true;
 		int core=-1;
 		CoreMng cm=g_tm.get_cm();
 		for(int i:MUtil.loop(cm.size())){
@@ -65,12 +59,11 @@ public class TaskSimul_MP extends TaskSimul{
 				continue;
 			if(dtm_mig(i,tsk)){
 				core=i;
-				Log.prn(2, "mig OK:"+i);
-				System.exit(1);
+//				Log.prn(2, "mig OK:"+i);
+//				System.exit(1);
 				break;
 			}
-			Log.prn(9, "TaskSimul_MP: we need analysis ");
-			System.exit(1);
+//			System.exit(1);
 		}
 		if(core==-1)
 			return;
@@ -81,15 +74,10 @@ public class TaskSimul_MP extends TaskSimul{
 	private boolean dtm_mig(int core,Task tsk) {
 		CoreMng cm=g_tm.get_cm();
 		TaskMng tm=cm.getTM(core);
-		double ru=tm.getRUtil();
+		double lo=tm.getLoUtil();
 		double add=tsk.getLoUtil();
-		Log.prn(2, "ru: "+ru+" tsk:"+add);
-		if(ru+add>1) 
-			return false;
-		ru=tm.getWCUtil();
-		add=tm.getDroppedUtil(tsk);
-		Log.prn(2, "ru: "+ru+" tsk:"+add);
-		if(ru+add>1) 
+//		Log.prn(2, "lo: "+lo+" tsk:"+add);
+		if(lo+add>0.5) 
 			return false;
 		return true;
 	}

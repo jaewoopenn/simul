@@ -66,7 +66,7 @@ public abstract class TaskSimul {
 	public void simulStart()
 	{
 		Log.prn(isSchTab,1, "rel  / exec / t");
-		initMode();
+		initMode_in();
 	}
 	
 	public void simul_t(int t){
@@ -86,7 +86,7 @@ public abstract class TaskSimul {
 		Log.prn(isPrnMS,1, "recover "+t);
 		g_needRecover=false;
 		recover_in();
-		initMode();
+		initMode_in();
 //		System.exit(0);
 		
 	}
@@ -164,7 +164,7 @@ public abstract class TaskSimul {
 	}
 	
 	// abstract method
-	protected abstract void initMode();
+	protected abstract void initMode_in();
 	protected abstract void recover_in();
 	protected abstract void modeswitch_in(Task tsk);
 	
@@ -187,7 +187,6 @@ public abstract class TaskSimul {
 //		g_tm.prnHI();
 	}
 	protected void initMode_base() {
-//		g_tm.prn();
 		for(Task t:g_tm.getTasks()){
 			if(!t.is_HI)
 				t.is_dropped=false;
@@ -195,7 +194,6 @@ public abstract class TaskSimul {
 				t.is_HM=false;
 		}
 
-//		g_tm.prnHI();
 	}
 	
 	protected Job relJob_base(Task tsk, int t) {

@@ -11,7 +11,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 
 
 	@Override
-	protected void initMode() {
+	protected void initMode_in() {
 		initMode_base();
 	}
 	
