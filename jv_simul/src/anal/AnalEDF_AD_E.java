@@ -25,6 +25,7 @@ public class AnalEDF_AD_E extends Anal {
 	}
 	
 	private void comp_X() {
+//		Log.prn(2, g_ht_hu+","+g_lt_lu);
 		double cal_x=(1-g_ht_hu)/g_lt_lu;
 		glo_x=Math.min(1,cal_x);
 	}
@@ -50,6 +51,12 @@ public class AnalEDF_AD_E extends Anal {
 	
 	@Override
 	public double getDtm() {
+		if(g_ht_hu>1){
+			return g_ht_hu;
+		}
+		if(g_lt_lu>1){
+			return g_lt_lu;
+		}
 		double dtm=g_lt_lu;
 		for(Task t:g_tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;

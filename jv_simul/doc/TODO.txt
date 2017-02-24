@@ -1,1 +1,2 @@
-		eg.move(); , test2(), CoreMng2.java 
+PlatformMP1
+

@@ -2,21 +2,28 @@ package testMP;
 //move 
 
 
+import basic.TaskMng;
+import anal.Anal;
+import anal.AnalEDF_AD_E;
 import anal.AnalMP;
 import exp.ExpSimulMP;
 import part.CoreMng;
+import part.Partition;
+import simul.SimulInfo;
 import sysEx.TS_MP1;
+import util.Log;
+import util.MUtil;
 import util.TEngine;
 
 public class CoreMng2 {
-	public static int idx=3;
+	public static int idx=4;
 	public static int log_level=2;
 
 
 	public int test1()	{
 		CoreMng cm=TS_MP1.core1();
 		cm.prn();
-		cm.move(null,0);
+		cm.move(cm.getTS(0).get(1),1);
 		cm.prn();
 		return 0;
 	}
@@ -51,10 +58,54 @@ public class CoreMng2 {
 	}
 	
 	public  int test4()	{
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(2);
+		Anal an=new AnalEDF_AD_E(); 
+		int g_dur=100;
+		for(int i:MUtil.loop(11,12)){
+			String fn="mp/ts/util_sim_135/taskset_"+i;
+			TaskMng tm=TaskMng.getFile(fn);
+			Partition p=new Partition(an,tm.getTaskSet());
+			p.anal();
+			
+			CoreMng cm=p.getCoreMng();
+			eg.loadCM(cm,an,1);
+			eg.check();
+			eg.simul(0,g_dur);
+			SimulInfo si=eg.getSI(0);
+			double dmr=si.getDMR();
+			Log.prnc(2, i+","+dmr+","+si.ms);
+		}
+		
 		return 0;
 	}
 	
 	public  int test5() {
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(2);
+		Anal an=new AnalEDF_AD_E(); 
+		
+		String fn="mp/ts/util_sim_135/taskset_11";
+		TaskMng tm=TaskMng.getFile(fn);
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		if(!p.check()){
+			Log.prn(2, "Part ERR");
+			return 0;
+		}
+		int cpu=p.size();
+		Log.prn(2, "p cpus:"+cpu);
+		CoreMng cm=p.getCoreMng();
+
+		eg.loadCM(cm,an,1);
+		eg.check();
+		eg.prnTasks();
+		if(eg.checkTasks())
+			Log.prn(2, "Part OK");
+		else
+			Log.prn(2, "Part ERR");
+			
+		
 		return 0;
 	}
 	public  int test6()	{

@@ -35,6 +35,13 @@ public class AnalEDF_AD extends Anal {
 	
 	@Override
 	public double getDtm() {
+		if(g_ht_hu>1){
+			return g_ht_hu;
+		}
+		if(g_lt_lu>1){
+			return g_lt_lu;
+		}
+		
 		double dtm=glo_x*g_lt_lu;
 		for(Task t:g_tm.getTasks()){
 			if (!t.is_HI)

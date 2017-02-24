@@ -38,9 +38,16 @@ public class TaskSetInfo {
 	public double getUtil() {
 		return lo_util+hi_util_hm;
 	}
-	public double getMCUtil() {
+	public double getCritUtil() {
 		return 	Math.max(lo_util+hi_util_lm, hi_util_hm);	
 	}
+	public double get_lm_util() {
+		return lo_util+hi_util_lm;
+	}
+	public double get_hm_util() {
+		return hi_util_hm;
+	}
+	
 	public double getLo_util() {
 		return lo_util;
 	}

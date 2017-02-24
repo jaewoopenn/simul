@@ -9,6 +9,7 @@ import part.Partition;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_VD;
+import anal.AnalMP;
 import basic.TaskMng;
 import simul.SimulInfo;
 import util.FUtil;
@@ -56,7 +57,9 @@ public class PlatformMP extends Platform{
 	}
 	
 	public void simul() {
-		simul_in(1,new AnalEDF_VD(),1);
+		write_x_axis();
+		simul_in(1,new AnalMP(),1);
+		simul_in(2,new AnalMP(),2);
 	}
 	
 	public void simul_in(int algo_num,Anal an,int simul_no){
@@ -81,6 +84,7 @@ public class PlatformMP extends Platform{
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
+			Log.prn(2,"i:"+i+" fn:"+cfg.get_fn(j));
 			Partition p=new Partition(an,tm.getTaskSet());
 			p.anal();
 			CoreMng cm=p.getCoreMng();
@@ -107,6 +111,7 @@ public class PlatformMP extends Platform{
 		cfg.readFile();
 		ExpSimulMP eg=new ExpSimulMP(cfg);
 		String fn=cfg.get_fn(j);
+		Log.prn(2,"i:"+i+" fn:"+fn);
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();

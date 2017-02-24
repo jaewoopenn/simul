@@ -160,4 +160,16 @@ public class TaskMng {
 		return TaskSetFix.loadFile(fn).getTM();
 	}
 
+	public boolean check() {
+		if(g_info.get_lm_util()>1){
+			Log.prn(2, "lm "+g_info.get_lm_util()+" error");
+			return false;
+		}
+		if(g_info.get_hm_util()>1){
+			Log.prn(2, "hm "+g_info.get_hm_util()+" error");
+			return false;
+		}
+		return true;
+	}
+
 }

@@ -69,7 +69,8 @@ public class CoreMng {
 		setTS(core,ts);
 		g_tm[core].setX(x);
 		g_tm[core].set_cm(this);
-		g_tsim[core].set_tm(g_tm[core]);
+		if(g_tsim[core]!=null)
+			g_tsim[core].set_tm(g_tm[core]);
 		
 	}
 

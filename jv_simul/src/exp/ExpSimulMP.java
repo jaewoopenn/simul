@@ -45,7 +45,6 @@ public class ExpSimulMP extends ExpSimul {
 			an.prepare();
 			
 			tm.setX(an.getX());
-			tm.prn();
 			tm.set_cm(cm);
 			TaskSimul_MP tsim=TaskSimulGen.get_MP(simul_no);
 			tsim.setCore(i);
@@ -114,28 +113,42 @@ public class ExpSimulMP extends ExpSimul {
 
 
 	public void prn() {
-		for(int j:MUtil.loop(g_ncpu)){
-			SimulInfo si=g_cm.getSim(j).getSI();
+		for(int i:MUtil.loop(g_ncpu)){
+			SimulInfo si=g_cm.getSim(i).getSI();
 			si.prn();
+		}
+		
+	}
+	public void prnTasks(){
+		Log.prn(2, "cpus:"+g_ncpu);
+		for(int i:MUtil.loop(g_ncpu)){
+			g_cm.getTM(i).prn();
 		}
 		
 	}
 
 
 
-
 	public void check() {
-		for(int j:MUtil.loop(g_ncpu)){
-			if(g_cm.getSim(j)==null){
-				Log.prn(9, "simul null"+j);
+		for(int i:MUtil.loop(g_ncpu)){
+			if(g_cm.getSim(i)==null){
+				Log.prn(9, "simul null"+i);
 				System.exit(1);
 			}
-			if(g_cm.getTM(j)==null){
-				Log.prn(9, "tm null"+j);
+			if(g_cm.getTM(i)==null){
+				Log.prn(9, "tm null"+i);
 				System.exit(1);
 			}
 		}
 		Log.prn(2, "check OK");
-		
+	}
+	public boolean checkTasks(){
+		for(int i:MUtil.loop(g_ncpu)){
+			if(!g_cm.getTM(i).check()){
+				Log.prn(2, "cpu "+i+" error");
+				return false;
+			}
+		}
+		return true;
 	}
 }

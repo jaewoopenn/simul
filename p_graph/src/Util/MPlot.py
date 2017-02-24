@@ -19,12 +19,16 @@ def prepare():
 def prepare2():
     plt.figure(figsize=(8,7))
         
-def legend2():
+def legendLR():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
     plt.legend(loc='lower right',prop=font)
-def legend3():
+def legendUL():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
     plt.legend(loc='upper left',prop=font)
+def legendUR():
+    font= matplotlib.font_manager.FontProperties(weight="normal") 
+    plt.legend(loc='upper right',prop=font)
+    
 def plot(x,v):
     plt.plot(x,v)
 

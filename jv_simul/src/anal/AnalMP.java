@@ -68,6 +68,12 @@ public class AnalMP extends Anal {
 
 	@Override
 	public double getDtm() {
+		if(g_ht_hu>1){
+			return g_ht_hu;
+		}
+		if(g_lt_lu>1){
+			return g_lt_lu;
+		}
 		double dtm=g_lt_lu;
 		for(Task t:g_tm.getHiTasks()){
 			double v_util=t.getLoUtil()/glo_x;

@@ -6,9 +6,11 @@ import java.util.Vector;
 
 import anal.Anal;
 import basic.Task;
+import basic.TaskMng;
 import basic.TaskSet;
 import part.CoreMng;
 import util.Log;
+import util.MUtil;
 import basic.TaskSetFix;
 
 public class Partition {
@@ -30,7 +32,9 @@ public class Partition {
 			g_anal.init(tsf.getTM());
 			g_anal.prepare();
 			double d=g_anal.getDtm();
+//			Log.prn(2, "d:"+d+" x:"+g_anal.getX());
 			if (d>1){
+//				Log.prn(2, "d:"+d);
 				TaskSet ts=tsf.getTS();
 				ts.removeLast();
 				ts.transform_Array();
@@ -65,6 +69,19 @@ public class Partition {
 			i++;
 		}
 		return cm;
+	}
+	public boolean check() {
+		for(int i:MUtil.loop(size())){
+			TaskSet ts=g_part.elementAt(i);
+			TaskSetFix tsf=new TaskSetFix(ts);
+			TaskMng tm=tsf.getTM();
+			if(!tm.check()){
+				Log.prn(2, "cpu "+i+" error");
+				return false;
+			}
+		}
+		return true;
+		
 	}
 
 }

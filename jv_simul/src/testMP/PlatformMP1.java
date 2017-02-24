@@ -2,7 +2,7 @@ package testMP;
 
 // simul
 
-import anal.AnalEDF_VD;
+import anal.AnalMP;
 import exp.PlatformMP;
 import gen.ConfigGen;
 import util.Log;
@@ -24,7 +24,7 @@ public class PlatformMP1 {
 			p.setSysNum(5000);
 		} else{
 			p.setDuration(100);
-			p.setSysNum(10);
+			p.setSysNum(100);
 		}
 		p.setProb(0.5);
 		p.setRS("aa");
@@ -71,7 +71,7 @@ public class PlatformMP1 {
 	public  int test4() 
 	{
 		PlatformMP p=getP1();
-		p.simul_one(new AnalEDF_VD(),1,0,0);
+		p.simul_one(new AnalMP(),1,5,11);
 		return 1;
 	}
 	public  int test5() 
