@@ -23,6 +23,8 @@ public class AnalMP extends Anal {
 		name="MP";
 	}
 	
+	
+	
 	@Override
 	public void prepare() {
 		load();
