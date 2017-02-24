@@ -70,6 +70,9 @@ public class ExpSimulMP extends ExpSimul {
 		for(int j:MUtil.loop(g_ncpu)){
 			g_cm.getSim(j).simulStart();
 		}
+//		g_cm.getSim(0).isSchTab=false;
+		g_cm.getSim(1).isSchTab=false;
+		g_cm.getSim(1).isPrnMS=false;
 	}
 
 	@Override

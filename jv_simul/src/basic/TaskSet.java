@@ -32,7 +32,7 @@ public class TaskSet {
 	public void removeCore(int core) {
 		Vector<Task> v=new Vector<Task>();
 		for(Task t:g_taskV){
-			if(t.getCPU()!=core)
+			if(!t.is_moved)
 				v.add(t);
 		}
 		g_taskV=v;

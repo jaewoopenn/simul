@@ -9,7 +9,7 @@ import sysEx.TS_MP1;
 import util.TEngine;
 
 public class CoreMng2 {
-	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=2;
 
 
@@ -28,14 +28,24 @@ public class CoreMng2 {
 		ExpSimulMP eg=new ExpSimulMP();
 		
 		eg.initCores(cpus);
-		eg.loadCM(cm,new AnalMP(),3);
+		eg.loadCM(cm,new AnalMP(),1);
 		eg.check();
-//		eg.simul(0,300);
-//		eg.prn();
+		eg.simul(0,200);
+		eg.prn();
 		return 0;
 	}
 	
 	public  int test3()	{
+		CoreMng cm=TS_MP1.core3();
+//		cm.prn();
+		int cpus=2;
+		ExpSimulMP eg=new ExpSimulMP();
+		
+		eg.initCores(cpus);
+		eg.loadCM(cm,new AnalMP(),2);
+		eg.check();
+		eg.simul(0,200);
+		eg.prn();
 		return 0;
 		
 	}

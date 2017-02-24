@@ -4,7 +4,6 @@ package part;
 
 
 import util.Log;
-import util.MUtil;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSet;
@@ -57,6 +56,7 @@ public class CoreMng {
 		
 	}
 	public void move(Task tsk, int core) {
+		tsk.is_moved=true;
 		Log.prn(2, "task "+tsk.tid+" move cpu "+core);
 		TaskSet ts=g_tm[core].getTaskSet();
 		ts.add(tsk.getCopy());
@@ -74,13 +74,9 @@ public class CoreMng {
 	}
 
 	public void recover(int core) {
-		for(int i:MUtil.loop(g_size)){
-			if(i==core)
-				continue;
-			TaskSet ts=g_tm[i].getTaskSet();
-			ts.removeCore(core);
-			setTS_in(ts,i);
-		}
+		TaskSet ts=g_tm[core].getTaskSet();
+		ts.removeCore(core);
+		setTS_in(ts,core);
 	}
 
 	

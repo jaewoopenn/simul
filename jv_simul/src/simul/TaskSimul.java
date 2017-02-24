@@ -83,7 +83,7 @@ public abstract class TaskSimul {
 		g_js.simulEnd(et);
 	}
 	private void recover(int t){
-		Log.prn(isPrnMS,1, "recover "+t);
+//		Log.prn(isPrnMS,1, "recover "+t);
 		g_needRecover=false;
 		recover_in();
 		initMode_in();
