@@ -1,4 +1,6 @@
 package anal;
+// based on EDF-AD-E
+
 
 import basic.Task;
 import basic.TaskMng;
@@ -6,17 +8,18 @@ import basic.TaskSetInfo;
 import util.Log;
 import util.MUtil;
 
-public class AnalEDF_AD_E extends Anal {
+public class AnalMP extends Anal {
 	private double g_lt_lu;
 	private double g_ht_lu;
 	private double g_ht_hu;
 	private double glo_x;
 	private int n_hi_prefer;
 	TaskSetInfo g_info;
-	public AnalEDF_AD_E() {
+	public AnalMP() {
 		super();
-		name="AD-E";
+		name="MP";
 	}
+	
 	@Override
 	public void prepare() {
 		load();
@@ -47,7 +50,7 @@ public class AnalEDF_AD_E extends Anal {
 				n_hi_prefer++;
 		}
 	}
-	
+
 	@Override
 	public double getDtm() {
 		double dtm=g_lt_lu;
@@ -64,17 +67,13 @@ public class AnalEDF_AD_E extends Anal {
 
 	
 
+	@Override
 	public double getX() {
 		return glo_x;
 	}
-	public static double computeX(TaskMng tm) {
-		AnalEDF_AD_E a=new AnalEDF_AD_E();
-		a.init(tm);
-		a.prepare();
-		return a.getX();
-	}
+	
 	@Override
-	public void prn() {
+	public void prn(){
 		Log.prnc(1, "ll:"+MUtil.getStr(g_lt_lu));
 		Log.prnc(1, " hl:"+MUtil.getStr(g_ht_lu));
 		Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
@@ -82,4 +81,7 @@ public class AnalEDF_AD_E extends Anal {
 		Log.prn(1, "hi_prefer:"+n_hi_prefer);
 		
 	}
+	
+	
+	
 }

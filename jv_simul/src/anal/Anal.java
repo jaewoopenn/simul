@@ -9,8 +9,9 @@ public abstract class Anal {
 	public void init(TaskMng mng) {
 		g_tm=mng;
 	}
-	public abstract void prepare();
-	public abstract double getDtm();
+	public String getName() {
+		return name;
+	}
 	public boolean isScheduable()
 	{
 		double dtm=getDtm();
@@ -20,9 +21,10 @@ public abstract class Anal {
 		}
 		return false;
 	}
-	public abstract double getX();
-	public String getName() {
-		return name;
-	}
 
+	// abs method
+	public abstract void prn();
+	public abstract void prepare();
+	public abstract double getDtm();
+	public abstract double getX();
 }

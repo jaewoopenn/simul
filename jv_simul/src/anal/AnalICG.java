@@ -29,6 +29,14 @@ public class AnalICG extends Anal {
 
 
 
+
+	@Override
+	public double getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+
 	private boolean findOPA()
 	{
 		boolean b;
@@ -87,13 +95,10 @@ public class AnalICG extends Anal {
 		v.toArray(ret);
 		return ret;
 	}
-
 	@Override
-	public double getX() {
+	public void prn() {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
-	
-
 
 }

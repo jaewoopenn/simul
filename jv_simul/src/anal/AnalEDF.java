@@ -11,7 +11,6 @@ public class AnalEDF extends Anal {
 	@Override
 	public void prepare() {
 		u=g_tm.getInfo().getUtil();
-		Log.prn(1, "det:"+u);
 	}
 	
 	@Override
@@ -22,6 +21,11 @@ public class AnalEDF extends Anal {
 	@Override
 	public double getX() {
 		return 0;
+	}
+	@Override
+	public void prn() {
+		Log.prn(1, "det:"+u);
+		
 	}
 
 

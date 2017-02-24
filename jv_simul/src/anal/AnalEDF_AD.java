@@ -6,29 +6,36 @@ import util.Log;
 import util.MUtil;
 
 public class AnalEDF_AD extends Anal {
-	private double lotasks_loutil;
-	private double hitasks_loutil;
-	private double hitasks_hiutil;
+	private double g_lt_lu;
+	private double g_ht_lu;
+	private double g_ht_hu;
 	private double glo_x;
+	private int n_hi_prefer;
 	TaskSetInfo g_info;
 	public AnalEDF_AD() {
 		super();
-		name="AT";
+		name="AD";
 	}
-	@Override
 	public void prepare() {
-		g_info=g_tm.getInfo();
-		lotasks_loutil=g_info.getLo_util();
-		hitasks_loutil=g_info.getHi_util_lm();
-		hitasks_hiutil=g_info.getHi_util_hm();
-		glo_x=hitasks_loutil/(1-lotasks_loutil);
-		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
-		Log.prn(1, "x:"+glo_x);
+		load();
+		comp_X();
 	}
+	
+	private void comp_X() {
+		glo_x=g_ht_lu/(1-g_lt_lu);
+	}
+
+	private void load() {
+		g_info=g_tm.getInfo();
+		g_lt_lu=g_info.getLo_util();
+		g_ht_lu=g_info.getHi_util_lm();
+		g_ht_hu=g_info.getHi_util_hm();
+	}
+	
 	
 	@Override
 	public double getDtm() {
-		double dtm=glo_x*lotasks_loutil;
+		double dtm=glo_x*g_lt_lu;
 		for(Task t:g_tm.getTasks()){
 			if (!t.is_HI)
 				continue;
@@ -42,52 +49,18 @@ public class AnalEDF_AD extends Anal {
 	}
 
 
-	private int getNum(double u){
-		double ul=0;
-//		double ud=0;
-		int num=0;
-		for(Task t:g_tm.getTasks()){
-			if(t.is_HI) 
-				continue;
-			double add=t.getLoUtil();
-			if (ul+add<=1-u+MUtil.err) {
-				ul+=add;
-			} else {
-//				ud+=add;
-				num++;
-			}
-		}
-		return num;
-		
-	}
 	
-	// no ratio / nl 
-	public double getHUtil(int i,double prob_hi){
-		Task[] htasks=g_tm.getHiTasks();
-		double u=0;
-		double prob=1;
-		for(int j=0;j<htasks.length;j++){
-			int v=(i&(1<<j))>>j;
-			Task t=htasks[j];
-			if (v==0){
-				u+=t.getLoUtil()/glo_x;
-				Log.prnc(1, "- ");
-				prob=prob*(1-prob_hi);
-			} else {
-				u+=t.getHiUtil();
-				Log.prnc(1, "+ ");
-				prob=prob*(prob_hi);
-			}
-		}
-		int num=getNum(u);
-//		if(num>=1) 	num=tm.lo_size();    // test for EDF-VD
-		double sum_prob=num*prob;
-		Log.prn(1, u+" "+num+" "+prob+" "+sum_prob);
-		return sum_prob;
-	}
 	
 
 	public double getX() {
 		return glo_x;
+	}
+	@Override
+	public void prn() {
+		Log.prnc(1, "ll:"+MUtil.getStr(g_lt_lu));
+		Log.prnc(1, " hl:"+MUtil.getStr(g_ht_lu));
+		Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
+		Log.prnc(1, "x:"+glo_x);
+		Log.prn(1, "hi_prefer:"+n_hi_prefer);
 	}
 }

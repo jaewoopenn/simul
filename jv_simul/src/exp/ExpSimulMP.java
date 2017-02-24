@@ -43,7 +43,9 @@ public class ExpSimulMP extends ExpSimul {
 			TaskMng tm=tsf.getTM();
 			an.init(tm);
 			an.prepare();
+			
 			tm.setX(an.getX());
+			tm.prn();
 			tm.set_cm(cm);
 			TaskSimul_MP tsim=TaskSimulGen.get_MP(simul_no);
 			tsim.setCore(i);
@@ -122,8 +124,15 @@ public class ExpSimulMP extends ExpSimul {
 	public void check() {
 		for(int j:MUtil.loop(g_ncpu)){
 			if(g_cm.getSim(j)==null){
-				Log.prn(9, "null"+j);
+				Log.prn(9, "simul null"+j);
+				System.exit(1);
+			}
+			if(g_cm.getTM(j)==null){
+				Log.prn(9, "tm null"+j);
+				System.exit(1);
 			}
 		}
+		Log.prn(2, "check OK");
+		
 	}
 }
