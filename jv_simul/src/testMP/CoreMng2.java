@@ -16,7 +16,7 @@ import util.MUtil;
 import util.TEngine;
 
 public class CoreMng2 {
-	public static int idx=4;
+	public static int idx=5;
 	public static int log_level=2;
 
 
@@ -85,7 +85,7 @@ public class CoreMng2 {
 		eg.initCores(2);
 		Anal an=new AnalEDF_AD_E(); 
 		
-		String fn="mp/ts/util_sim_135/taskset_11";
+		String fn="mp/ts/util_sim_125/taskset_17";
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
@@ -104,6 +104,7 @@ public class CoreMng2 {
 			Log.prn(2, "Part OK");
 		else
 			Log.prn(2, "Part ERR");
+		eg.simul(0,1000);
 			
 		
 		return 0;

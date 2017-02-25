@@ -46,5 +46,13 @@ public class TS_MC1 {
 		tmp.add(new Task(0,12,1,5));
 		return tmp.getTM();
 	}
+	public static TaskMng ts6() { // not schedulable
+		TaskSetFix tmp=new TaskSetFix();
+		tmp.add(new Task(0,8,1));
+		tmp.add(new Task(0,8,4));
+		tmp.add(new Task(0,12,1,2));
+		tmp.add(new Task(0,12,1,7));
+		return tmp.getTM();
+	}
 
 }

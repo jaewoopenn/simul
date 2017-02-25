@@ -27,6 +27,7 @@ public class TaskSimul_MP_nomig extends TaskSimul_MP{
 //			Log.prn(1, "RU"+ru);
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
+				g_tm.getTaskSet().prnRuntime();
 				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
 				System.exit(1);
 			}

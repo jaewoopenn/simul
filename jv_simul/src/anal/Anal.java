@@ -1,16 +1,18 @@
 package anal;
 
 import basic.TaskMng;
+import util.Log;
 
 public abstract class Anal {
-	protected String name="";
+	protected String g_name="";
 	protected TaskMng g_tm;
 	protected int g_limit=10000;
 	public void init(TaskMng mng) {
+		Log.prn(2, "Algo:"+g_name);
 		g_tm=mng;
 	}
 	public String getName() {
-		return name;
+		return g_name;
 	}
 	public boolean isScheduable()
 	{

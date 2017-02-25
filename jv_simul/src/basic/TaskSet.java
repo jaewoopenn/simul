@@ -62,19 +62,6 @@ public class TaskSet {
 		Arrays.sort(g_tasks,new ComparatorHighTask());
 		
 	}
-	public void prn() {
-		for(Task t:g_tasks){
-			t.prnShort();
-		}
-		
-	}
-	
-
-	public void prnStat() {
-		for(Task t:g_tasks){
-			t.prnStat();
-		}
-	}
 
 	public void setCPU(int core) {
 		for(Task t:g_tasks){
@@ -89,13 +76,36 @@ public class TaskSet {
 		
 	}
 
+	public void prn() {
+		for(Task t:g_tasks){
+			t.prnShort();
+		}
+		
+	}
+	public void prnRuntime() {
+		for(Task t:g_tasks){
+			t.prnRuntime();
+		}
+		
+	}
+	
+	public void prnStat() {
+		for(Task t:g_tasks){
+			t.prnStat();
+		}
+		
+	}
+
+	public void prnOffline() {
+		for(Task t:g_tasks){
+			t.prnOffline();
+		}
+		
+	}
 
 
 
-//	public void prnComp() {
-//		for(Task t:g_tasks){
-//			t.prnComp();
-//		}
-//	}
+
+
 
 }

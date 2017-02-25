@@ -11,6 +11,7 @@ public class Task {
 	public double vd;
 	public boolean is_HI=false;
 	public boolean is_HM=false;
+	public boolean is_hi_preferred=false;
 	public boolean is_dropped=false;
 	public boolean is_moved=false;
 
@@ -47,39 +48,6 @@ public class Task {
 		this.vd=vd;
 	}
 	
-	public void prn() {
-		Log.prnc(2, "tid:"+tid);
-		Log.prnc(2, " p:"+period);
-		if (is_HI){
-			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
-			Log.prnc(2," isHM:"+is_HM);
-			
-		}else{
-			Log.prnc(2," cl:"+c_l);
-			Log.prnc(2," isDrop:"+is_dropped);
-		}
-		Log.prnc(2," hi-crit?"+is_HI);
-		Log.prn(2," util:"+getLoUtil());
-	}
-	public void prnShort() {
-		Log.prnc(2, tid);
-		Log.prnc(2, ", "+period);
-		Log.prnc(2, ", "+c_l);
-		Log.prnc(2, ", "+c_h);
-		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
-		Log.prn(2, ", "+MUtil.getStr(getHiUtil()));
-	}
-	
-	
-	public void prnStat() {
-		Log.prnc(2, "tid:"+tid);
-		if (is_HI){
-			Log.prn(2," isHM:"+is_HM);
-			
-		}else{
-			Log.prn(2," isDrop:"+is_dropped);
-		}
-	}
 	
 	public boolean check() {
 		if (period==0)
@@ -113,14 +81,72 @@ public class Task {
 		t.setCPU(pid);
 		return t;
 	}
+	public void prn() {
+		Log.prnc(2, "tid:"+tid);
+		Log.prnc(2, " p:"+period);
+		if (is_HI){
+			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
+			Log.prnc(2," isHM:"+is_HM);
+			
+		}else{
+			Log.prnc(2," cl:"+c_l);
+			Log.prnc(2," isDrop:"+is_dropped);
+		}
+		Log.prnc(2," hi-crit?"+is_HI);
+		Log.prn(2," util:"+getLoUtil());
+	}
+	public void prnShort() {
+		Log.prnc(2, tid);
+		Log.prnc(2, ", "+period);
+		Log.prnc(2, ", "+c_l);
+		Log.prnc(2, ", "+c_h);
+		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
+		Log.prn(2, ", "+MUtil.getStr(getHiUtil()));
+	}
+	
+	
+	
+	public void prnRuntime() {
+		Log.prnc(2, "tid:"+tid);
+		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
+		Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
+		if (is_HI){
+			Log.prn(2," isHM:"+is_HM);
+			
+		}else{
+			Log.prn(2," isDrop:"+is_dropped);
+		}
+		
+	}
+	public void prnStat() {
+		Log.prnc(2, "tid:"+tid);
+		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
+		Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
+		if (is_HI){
+			Log.prnc(2," isHM:"+is_HM);
+			Log.prn(2,", is_hi_preferred:"+is_hi_preferred);
+			
+		}else{
+			Log.prn(2," isDrop:"+is_dropped);
+		}
+		
+	}
+	
+	public void prnOffline() {
+		Log.prnc(2, "tid:"+tid);
+		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
+		Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
+		if (is_HI){
+			Log.prn(2,", is_hi_preferred:"+is_hi_preferred);
+			
+		}else{
+			Log.prn(2,", LO-task ");
+		}
+		
+	}
 
 
 
-//	public void prnComp(){
-//		Log.prnc(2, "cid:"+cid);
-//		Log.prnc(2, " isol:"+is_isolated+" ");
-//		prn();
-//	}
 
 }
 

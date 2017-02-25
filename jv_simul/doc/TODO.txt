@@ -1,2 +1,6 @@
 PlatformMP1
 
+
+Partitioned EDF-VD
+
+MC-Fluid도 구현해서, schedulability 비교하자. 

@@ -12,7 +12,7 @@ public class AnalEDF_VD extends Anal {
 	TaskSetInfo g_info;
 	public AnalEDF_VD() {
 		super();
-		name="VD";
+		g_name="VD";
 	}
 
 	@Override

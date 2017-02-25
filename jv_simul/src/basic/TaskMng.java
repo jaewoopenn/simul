@@ -125,32 +125,6 @@ public class TaskMng {
 
 
 
-	// prn 
-
-	public void prnShort() {
-		g_info.prnUtil();
-	}
-
-	public void prn() {
-		g_tasks.prn();
-		g_info.prn();
-	}
-	
-	public void prnHI() {
-		g_hi_tasks.prn();
-		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
-		
-	}
-
-	public void prnLoTasks() {
-		g_lo_tasks.prn();
-	}
-	public void prnStat() {
-		g_tasks.prnStat();
-	}
-	public void prnInfo() {
-		Log.prn(2, "prob:"+g_info.getProb_ms());
-	}
 
 
 
@@ -171,5 +145,30 @@ public class TaskMng {
 		}
 		return true;
 	}
+
+	// prn 
+
+	public void prnShort() {
+		g_info.prnUtil();
+	}
+
+	public void prn() {
+		g_tasks.prn();
+		g_info.prn();
+	}
+	
+	public void prnHI() {
+		g_hi_tasks.prn();
+		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
+		
+	}
+
+	public void prnLoTasks() {
+		g_lo_tasks.prn();
+	}
+	public void prnInfo() {
+		Log.prn(2, "prob:"+g_info.getProb_ms());
+	}
+	
 
 }

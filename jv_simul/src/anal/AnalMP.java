@@ -19,7 +19,7 @@ public class AnalMP extends Anal {
 	TaskSetInfo g_info;
 	public AnalMP() {
 		super();
-		name="MP";
+		g_name="MP";
 	}
 	
 	
@@ -60,6 +60,7 @@ public class AnalMP extends Anal {
 //			Log.prn(1, v_util+","+h_util);
 			if(v_util>=h_util){
 				n_hi_prefer++;
+				t.is_hi_preferred=true;
 				g_ft_lu+=t.getLoUtil();
 				g_ft_hu+=t.getHiUtil();
 			}

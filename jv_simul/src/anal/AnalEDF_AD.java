@@ -14,7 +14,7 @@ public class AnalEDF_AD extends Anal {
 	TaskSetInfo g_info;
 	public AnalEDF_AD() {
 		super();
-		name="AD";
+		g_name="AD";
 	}
 	public void prepare() {
 		load();

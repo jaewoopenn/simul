@@ -8,8 +8,8 @@ import part.CoreMng;
 import part.Partition;
 import anal.Anal;
 import anal.AnalEDF;
+import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
-import anal.AnalMP;
 import basic.TaskMng;
 import simul.SimulInfo;
 import util.FUtil;
@@ -58,8 +58,8 @@ public class PlatformMP extends Platform{
 	
 	public void simul() {
 		write_x_axis();
-		simul_in(1,new AnalMP(),1);
-		simul_in(2,new AnalMP(),2);
+		simul_in(1,new AnalEDF_AD_E(),1);
+		simul_in(2,new AnalEDF_AD_E(),2);
 	}
 	
 	public void simul_in(int algo_num,Anal an,int simul_no){
@@ -83,13 +83,16 @@ public class PlatformMP extends Platform{
 		eg.initCores(g_ncpu);
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
+			Log.prn(2,"- i:"+i+" fn:"+cfg.get_fn(j));
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
-			Log.prn(2,"i:"+i+" fn:"+cfg.get_fn(j));
 			Partition p=new Partition(an,tm.getTaskSet());
 			p.anal();
+			p.check();
 			CoreMng cm=p.getCoreMng();
 			checkPart(cm);
 			eg.loadCM(cm,an,simul_no);
+//			eg.check();
+//			eg.prnTasks();
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
 			double dmr=si.getDMR();

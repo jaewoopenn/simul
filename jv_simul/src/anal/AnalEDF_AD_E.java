@@ -15,7 +15,7 @@ public class AnalEDF_AD_E extends Anal {
 	TaskSetInfo g_info;
 	public AnalEDF_AD_E() {
 		super();
-		name="AD-E";
+		g_name="AD-E";
 	}
 	@Override
 	public void prepare() {
@@ -44,8 +44,10 @@ public class AnalEDF_AD_E extends Anal {
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
-			if(v_util>=h_util)
+			if(v_util>=h_util){
+				t.is_hi_preferred=true;
 				n_hi_prefer++;
+			}
 		}
 	}
 	
@@ -80,13 +82,15 @@ public class AnalEDF_AD_E extends Anal {
 		a.prepare();
 		return a.getX();
 	}
+	
 	@Override
 	public void prn() {
 		Log.prnc(1, "ll:"+MUtil.getStr(g_lt_lu));
 		Log.prnc(1, " hl:"+MUtil.getStr(g_ht_lu));
 		Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
 		Log.prnc(1, "x:"+glo_x);
-		Log.prn(1, "hi_prefer:"+n_hi_prefer);
+		Log.prn(1, " hi_prefer:"+n_hi_prefer);
+		g_tm.getTaskSet().prnOffline();
 		
 	}
 }

@@ -1,8 +1,9 @@
 package testMP;
 
+import anal.AnalEDF_AD_E;
+
 // simul
 
-import anal.AnalMP;
 import exp.PlatformMP;
 import gen.ConfigGen;
 import util.Log;
@@ -71,7 +72,7 @@ public class PlatformMP1 {
 	public  int test4() 
 	{
 		PlatformMP p=getP1();
-		p.simul_one(new AnalMP(),1,5,11);
+		p.simul_one(new AnalEDF_AD_E(),1,3,17);
 		return 1;
 	}
 	public  int test5() 

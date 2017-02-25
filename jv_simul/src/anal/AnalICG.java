@@ -10,7 +10,7 @@ public class AnalICG extends Anal {
 	private int[] prio;
 	public AnalICG() {
 		super();
-		name="ICG";
+		g_name="ICG";
 	}
 	@Override
 	public void prepare() {
