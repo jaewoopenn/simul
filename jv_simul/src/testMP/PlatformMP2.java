@@ -58,7 +58,7 @@ public class PlatformMP2 {
 	public int test2() 
 	{
 		PlatformMP p=getP1();
-		p.genTS(false);
+		p.genTS();
 //		p.genTS(true);
 		return 1;
 	}

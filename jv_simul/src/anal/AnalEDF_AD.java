@@ -1,7 +1,7 @@
 package anal;
 
 import basic.Task;
-import basic.TaskSetInfo;
+import basic.SysInfo;
 import util.Log;
 import util.MUtil;
 
@@ -11,7 +11,7 @@ public class AnalEDF_AD extends Anal {
 	private double g_ht_hu;
 	private double glo_x;
 	private int n_hi_prefer;
-	TaskSetInfo g_info;
+	SysInfo g_info;
 	public AnalEDF_AD() {
 		super();
 		g_name="AD";
@@ -69,5 +69,10 @@ public class AnalEDF_AD extends Anal {
 		Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
 		Log.prnc(1, "x:"+glo_x);
 		Log.prn(1, "hi_prefer:"+n_hi_prefer);
+	}
+	@Override
+	public double getExtra(int i) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

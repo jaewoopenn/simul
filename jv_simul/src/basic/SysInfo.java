@@ -3,8 +3,9 @@ package basic;
 import util.Log;
 import util.MUtil;
 
-public class TaskSetInfo {
+public class SysInfo {
 	private double lo_util;
+	private double lo_util_max;
 	private double hi_util_lm;
 	private double hi_util_hm;
 	private double x_para;
@@ -51,21 +52,31 @@ public class TaskSetInfo {
 	public double getLo_util() {
 		return lo_util;
 	}
+	public double getLo_max() {
+		return lo_util_max;
+	}
+	
 	public double getHi_util_lm() {
 		return hi_util_lm;
 	}
 	public double getHi_util_hm() {
 		return hi_util_hm;
 	}
-	public void setLo_util(double lo_util) {
-		this.lo_util = lo_util;
+	
+	public void setLo_max(double u) {
+		this.lo_util_max = u;
 	}
-	public void setHi_util_lm(double hi_util_lm) {
-		this.hi_util_lm = hi_util_lm;
+	public void setLo_util(double u) {
+		this.lo_util = u;
 	}
-	public void setHi_util_hm(double hi_util_hm) {
-		this.hi_util_hm = hi_util_hm;
+	
+	public void setHi_util_lm(double u) {
+		this.hi_util_lm = u;
 	}
+	public void setHi_util_hm(double u) {
+		this.hi_util_hm = u;
+	}
+	
 	public void prn() {
 		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(getLo_util()+getHi_util_lm()));
 		Log.prnc(2, " ll_util:"+MUtil.getStr(getLo_util()));

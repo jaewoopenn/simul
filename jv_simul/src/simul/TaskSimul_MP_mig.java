@@ -29,7 +29,8 @@ public class TaskSimul_MP_mig extends TaskSimul_MP{
 //			Log.prn(1, "RU"+ru);
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
+				Log.prn(9, "no avaiable LO-task to drop. ru:"+ru);
+				g_tm.prnRuntime();
 				System.exit(1);
 			}
 			dropTaskMP(tsk);
@@ -69,11 +70,12 @@ public class TaskSimul_MP_mig extends TaskSimul_MP{
 		TaskMng tm=cm.getTM(core);
 		double lo=tm.getLoUtil();
 		double add=tsk.getLoUtil();
-//		Log.prn(2, "lo: "+lo+" tsk:"+add);
-		if(lo+add>0.5) 
+//		Log.prn(2, "lo: "+lo+" tsk:"+add+" lo_max:"+g_tm.getInfo().getLo_max());
+		if(lo+add>g_tm.getInfo().getLo_max()+MUtil.err) 
 			return false;
 		double ru=tm.getRUtil();
-		if(ru+add>1)
+//		Log.prn(2, "ru: "+ru+" tsk:"+add);
+		if(ru+add>1+MUtil.err)
 			return false;
 		return true;
 	}

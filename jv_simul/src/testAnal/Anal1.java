@@ -35,9 +35,7 @@ public class Anal1 {
 		Anal a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
-//		a.prn();
-		double x=a.getX();
-		Log.prn(2, ""+x);
+		Log.prn(2, ""+a.getX());
 		tm.getTaskSet().prnOffline();
 		return -1;
 	}
@@ -47,9 +45,7 @@ public class Anal1 {
 		Anal a=new AnalMP();
 		a.init(tm);
 		a.prepare();
-//		a.prn();
-		double x=a.getX();
-		Log.prn(2, ""+x);
+		Log.prn(2, ""+a.getX());
 		tm.getTaskSet().prnOffline();
 		return 0;
 	}

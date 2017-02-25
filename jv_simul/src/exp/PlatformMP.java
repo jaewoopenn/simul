@@ -10,6 +10,7 @@ import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
+import anal.AnalMP;
 import basic.TaskMng;
 import simul.SimulInfo;
 import util.FUtil;
@@ -45,21 +46,27 @@ public class PlatformMP extends Platform{
 		cfg.setParam("mod", modStr);
 	}
 	
-	public void genTS(boolean b) {
+	public void genTS(Anal an) {
+		boolean bCheck=true;
+		if(an==null)
+			bCheck=false;
 		for(int i:MUtil.loop(g_size)){
+			Log.prn(3,"loop "+i);
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			cfg.readFile();
-			SimGen eg=new SimGenMP(cfg,new AnalEDF_VD(), g_ncpu);
-			eg.setCheck(b);
+			SimGen eg=new SimGenMP(cfg,an, g_ncpu);
+			eg.setCheck(bCheck);
 			eg.gen();
 		}
-		Log.prn(3, "task");
+	}
+	public void genTS() {
+		genTS(null);
 	}
 	
 	public void simul() {
 		write_x_axis();
-		simul_in(1,new AnalEDF_AD_E(),1);
-		simul_in(2,new AnalEDF_AD_E(),2);
+		simul_in(1,new AnalMP(),1);
+		simul_in(2,new AnalMP(),2);
 	}
 	
 	public void simul_in(int algo_num,Anal an,int simul_no){
@@ -87,11 +94,11 @@ public class PlatformMP extends Platform{
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
 			Partition p=new Partition(an,tm.getTaskSet());
 			p.anal();
-			p.check();
+//			p.check();
 			CoreMng cm=p.getCoreMng();
 			checkPart(cm);
 			eg.loadCM(cm,an,simul_no);
-//			eg.check();
+			eg.check();
 //			eg.prnTasks();
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);

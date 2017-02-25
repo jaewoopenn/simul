@@ -8,7 +8,7 @@ public abstract class Anal {
 	protected TaskMng g_tm;
 	protected int g_limit=10000;
 	public void init(TaskMng mng) {
-		Log.prn(2, "Algo:"+g_name);
+//		Log.prn(1, "Algo:"+g_name);
 		g_tm=mng;
 	}
 	public String getName() {
@@ -29,4 +29,6 @@ public abstract class Anal {
 	public abstract void prepare();
 	public abstract double getDtm();
 	public abstract double getX();
+	public abstract double getExtra(int i);
+	
 }

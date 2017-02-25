@@ -65,9 +65,11 @@ public class CoreMng {
 
 	private void setTS_in(TaskSet ts, int core) {
 		double x=g_tm[core].getInfo().getX();
+		double lo_max=g_tm[core].getInfo().getLo_max();
 		ts.transform_Array();
 		setTS(core,ts);
 		g_tm[core].setX(x);
+		g_tm[core].setLo_max(lo_max);
 		g_tm[core].set_cm(this);
 		if(g_tsim[core]!=null)
 			g_tsim[core].set_tm(g_tm[core]);

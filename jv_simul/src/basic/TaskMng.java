@@ -9,10 +9,10 @@ public class TaskMng {
 	private TaskSet g_tasks;
 	private TaskSet g_hi_tasks;
 	private TaskSet g_lo_tasks;
-	private TaskSetInfo g_info;
+	private SysInfo g_info;
 	private CoreMng g_cm;
 
-	public TaskMng(TaskSet tasks,TaskSet hi_tasks,TaskSet lo_tasks,TaskSetInfo info) {
+	public TaskMng(TaskSet tasks,TaskSet hi_tasks,TaskSet lo_tasks,SysInfo info) {
 		this.g_tasks=tasks;
 		this.g_hi_tasks = hi_tasks;
 		this.g_lo_tasks = lo_tasks;
@@ -42,7 +42,9 @@ public class TaskMng {
 		g_hi_tasks.setX(x);
 	}
 
-
+	public void setLo_max(double u){
+		g_info.setLo_max(u);
+	}
 	
 	
 
@@ -51,7 +53,7 @@ public class TaskMng {
 		return g_cm;
 	}
 	
-	public TaskSetInfo getInfo() {
+	public SysInfo getInfo() {
 		return g_info;
 	}
 
@@ -168,6 +170,11 @@ public class TaskMng {
 	}
 	public void prnInfo() {
 		Log.prn(2, "prob:"+g_info.getProb_ms());
+	}
+
+	public void prnRuntime() {
+		Log.prn(2, "WC:"+getWCUtil());
+		g_tasks.prnRuntime();
 	}
 	
 

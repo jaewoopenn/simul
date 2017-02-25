@@ -2,6 +2,7 @@ package exp;
 
 
 import anal.Anal;
+import basic.SysInfo;
 import basic.TaskMng;
 import basic.TaskSet;
 import basic.TaskSetFix;
@@ -45,6 +46,8 @@ public class ExpSimulMP extends ExpSimul {
 			an.prepare();
 			
 			tm.setX(an.getX());
+			Log.prn(2, "lo_max:"+an.getExtra(0));
+			tm.setLo_max(an.getExtra(0));
 			tm.set_cm(cm);
 			TaskSimul_MP tsim=TaskSimulGen.get_MP(simul_no);
 			tsim.setCore(i);
@@ -69,7 +72,8 @@ public class ExpSimulMP extends ExpSimul {
 		for(int j:MUtil.loop(g_ncpu)){
 			g_cm.getSim(j).simulStart();
 		}
-//		g_cm.getSim(0).isSchTab=false;
+		g_cm.getSim(0).isSchTab=false;
+		g_cm.getSim(0).isPrnMS=false;
 		g_cm.getSim(1).isSchTab=false;
 		g_cm.getSim(1).isPrnMS=false;
 	}
@@ -138,6 +142,12 @@ public class ExpSimulMP extends ExpSimul {
 			if(g_cm.getTM(i)==null){
 				Log.prn(9, "tm null"+i);
 				System.exit(1);
+			}
+			SysInfo info =g_cm.getTM(i).getInfo();
+			if(info.getLo_max()+MUtil.err<info.getLo_util()){
+				Log.prn(9, "core "+i+": lo max "+info.getLo_max()+" < lo util "+info.getLo_util());
+				System.exit(1);
+				
 			}
 		}
 		Log.prn(2, "check OK");

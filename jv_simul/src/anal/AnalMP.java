@@ -3,7 +3,7 @@ package anal;
 
 
 import basic.Task;
-import basic.TaskSetInfo;
+import basic.SysInfo;
 import util.Log;
 import util.MUtil;
 
@@ -16,7 +16,7 @@ public class AnalMP extends Anal {
 	private double g_ft_hu;
 	private double glo_x;
 	private int n_hi_prefer;
-	TaskSetInfo g_info;
+	SysInfo g_info;
 	public AnalMP() {
 		super();
 		g_name="MP";
@@ -102,6 +102,13 @@ public class AnalMP extends Anal {
 		Log.prnc(1, "x:"+glo_x);
 		Log.prn(1, "hi_prefer:"+n_hi_prefer);
 		
+	}
+
+
+
+	@Override
+	public double getExtra(int i) {
+		return g_lt_lu_max;
 	}
 	
 	

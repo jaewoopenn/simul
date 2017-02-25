@@ -8,9 +8,9 @@ public class TaskSetFix {
 	private TaskSet g_tasks;
 	private TaskSet g_hi_tasks;
 	private TaskSet g_lo_tasks;
-	public TaskSetInfo g_info;
+	public SysInfo g_info;
 	public TaskSetFix() {
-		g_info=new TaskSetInfo();
+		g_info=new SysInfo();
 		g_tasks=new TaskSet();
 		g_lo_tasks=new TaskSet();
 		g_hi_tasks=new TaskSet();
@@ -18,7 +18,7 @@ public class TaskSetFix {
 	
 
 	public TaskSetFix(Vector<Task> all) {
-		g_info=new TaskSetInfo();
+		g_info=new SysInfo();
 		g_tasks=new TaskSet();
 		g_lo_tasks=new TaskSet();
 		g_hi_tasks=new TaskSet();
@@ -31,7 +31,7 @@ public class TaskSetFix {
 		}
 	}
 	public TaskSetFix(TaskSet ts) {
-		g_info=new TaskSetInfo();
+		g_info=new SysInfo();
 		g_tasks=ts;
 		g_lo_tasks=new TaskSet();
 		g_hi_tasks=new TaskSet();

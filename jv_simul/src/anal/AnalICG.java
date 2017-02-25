@@ -100,5 +100,10 @@ public class AnalICG extends Anal {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public double getExtra(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

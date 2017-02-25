@@ -1,7 +1,7 @@
 package anal;
 
 import basic.TaskMng;
-import basic.TaskSetInfo;
+import basic.SysInfo;
 import util.Log;
 
 public class AnalEDF_VD extends Anal {
@@ -9,7 +9,7 @@ public class AnalEDF_VD extends Anal {
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
-	TaskSetInfo g_info;
+	SysInfo g_info;
 	public AnalEDF_VD() {
 		super();
 		g_name="VD";
@@ -57,6 +57,12 @@ public class AnalEDF_VD extends Anal {
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
 		
+	}
+
+	@Override
+	public double getExtra(int i) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

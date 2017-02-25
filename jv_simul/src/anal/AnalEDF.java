@@ -27,6 +27,11 @@ public class AnalEDF extends Anal {
 		Log.prn(1, "det:"+u);
 		
 	}
+	@Override
+	public double getExtra(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 
 

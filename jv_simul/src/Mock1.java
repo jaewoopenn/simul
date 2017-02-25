@@ -4,8 +4,6 @@ import util.TEngine;
 
 public class Mock1 {
 	public static int idx=1;
-//	public static int idx=-1;
-	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1() 
 	{
@@ -58,5 +56,6 @@ public class Mock1 {
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 }
