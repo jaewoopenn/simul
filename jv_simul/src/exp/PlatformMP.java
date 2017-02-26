@@ -64,9 +64,9 @@ public class PlatformMP extends Platform{
 	}
 	
 	public void simul() {
-//		write_x_axis();
+		write_x_axis();
 		simul_in(1,new AnalMP(),1);
-//		simul_in(2,new AnalMP(),2);
+		simul_in(2,new AnalMP(),2);
 	}
 	
 	public void simul_in(int algo_num,Anal an,int simul_no){
@@ -83,7 +83,6 @@ public class PlatformMP extends Platform{
 	public void simul_in_i(int i,Anal an,int simul_no)
 	{
 		double sum=0;
-		int sum_ms=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimulMP eg=new ExpSimulMP(cfg);
@@ -103,9 +102,8 @@ public class PlatformMP extends Platform{
 			eg.simul(0,g_dur);
 			for(int k:MUtil.loop(g_ncpu)){
 				SimulInfo si=eg.getSI(k);
-//				double dmr=si.getDMR();
-//				sum+=dmr;
-				sum+=si.mig;
+				sum+=si.getDMR();
+//				sum+=si.mig;
 			}
 			Log.prn(2, sum);
 		}

@@ -18,7 +18,7 @@ public abstract class TaskGen {
 		while(true){
 			g_tasks=new Vector<Task>();
 			genTaskSet();
-			if(g_param.check(getUtil())==1) break;
+			if(check()==1) break;
 		}
 	}
 	private void genTaskSet()
@@ -61,8 +61,12 @@ public abstract class TaskGen {
 	// file
 	public void writeFile(String file) {
 		FUtil fu=new FUtil(file);
-		for(Task t:g_tasks)
+		int tid=0;
+		for(Task t:g_tasks){
+			t.tid=tid;
 			TaskFile.writeTask(fu,t);
+			tid++;
+		}
 		fu.save();
 	}
 	

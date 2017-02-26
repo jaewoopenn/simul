@@ -44,15 +44,20 @@ public class TaskSetFix {
 	}
 
 
-	public void add(Task t){
+	public void addTID(Task t){
 		int tid=g_tasks.v_size();
 		t.tid=tid;
+		add(t);
+	}
+	
+	public void add(Task t){
 		g_tasks.add(t);
 		if(t.is_HI)
 			g_hi_tasks.add(t);
 		else
 			g_lo_tasks.add(t);
 	}
+	
 	
 	
 	public void stat(){

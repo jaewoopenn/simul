@@ -4,6 +4,7 @@ import anal.AnalEDF_AD_E;
 
 // simul
 
+import anal.AnalMP;
 import exp.PlatformMP;
 import gen.ConfigGen;
 import util.Log;
@@ -11,7 +12,7 @@ import util.TEngine;
 
 public class PlatformMP1 {
 	public static int idx=3;
-	public static int log_level=2;
+	public static int log_level=3;
 	public int isReal=0;
 	
 	
@@ -58,7 +59,7 @@ public class PlatformMP1 {
 	{
 		PlatformMP p=getP1();
 //		p.genTS();
-		p.genTS(new AnalEDF_AD_E());
+		p.genTS(new AnalMP());
 //		p.genTS(new AnalEDF_VD());
 		return 1;
 	}
