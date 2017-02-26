@@ -19,7 +19,7 @@ public class AnalEDF extends Anal {
 	}
 
 	@Override
-	public double getX() {
+	public double computeX() {
 		return 0;
 	}
 	@Override

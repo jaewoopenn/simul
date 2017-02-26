@@ -59,7 +59,7 @@ public class AnalEDF_AD extends Anal {
 	
 	
 
-	public double getX() {
+	public double computeX() {
 		return glo_x;
 	}
 	@Override

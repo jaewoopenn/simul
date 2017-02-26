@@ -11,7 +11,7 @@ import util.Log;
 import util.TEngine;
 
 public class Anal1 {
-	public static int idx=3;
+	public static int idx=4;
 	public static int log_level=1;
 
 	public int test1() 
@@ -24,7 +24,7 @@ public class Anal1 {
 		a.init(tm);
 		a.prepare();
 		a.prn();
-		double x=a.getX();
+		double x=a.computeX();
 		Log.prn(2, ""+x);
 		return -1;
 	}
@@ -35,24 +35,35 @@ public class Anal1 {
 		Anal a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
-		Log.prn(2, ""+a.getX());
+		Log.prn(2, ""+a.computeX());
 		tm.getTaskSet().prnOffline();
 		return -1;
 	}
+	
 	public int test3() 
 	{
 		TaskMng tm=TS_MC1.ts6();
 		Anal a=new AnalMP();
 		a.init(tm);
 		a.prepare();
-		Log.prn(2, ""+a.getX());
+		Log.prn(2, ""+a.computeX());
 		tm.getTaskSet().prnOffline();
 		return 0;
 	}
+	
 	public  int test4() 
 	{
+		TaskMng tm=TS_MC1.ts7();
+		Anal a=new AnalMP();
+		a.init(tm);
+		a.prepare();
+		Log.prn(2, "dtm: "+a.getDtm());
+		tm.setX(a.computeX());
+		tm.prnInfo();
+//		tm.getTaskSet().prnOffline();
 		return 0;
 	}
+	
 	public  int test5() 
 	{
 		return 0;
@@ -61,18 +72,22 @@ public class Anal1 {
 	{
 		return 0;
 	}
+	
 	public  int test7()
 	{
 		return 0;
 	}
+	
 	public  int test8()
 	{
 		return 0;
 	}
+	
 	public  int test9()
 	{
 		return 0;
 	}
+	
 	public  int test10()
 	{
 		return 0;
@@ -88,6 +103,7 @@ public class Anal1 {
 		else
 			TEngine.runOnce(m,c,aret,idx,log_level);
 	}
+	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 }

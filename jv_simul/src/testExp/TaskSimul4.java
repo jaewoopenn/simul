@@ -33,7 +33,7 @@ public class TaskSimul4 {
 			Log.prn(2, "not schedulable");
 			return;
 		}
-		tm.setX(a.getX());
+		tm.setX(a.computeX());
 		
 		tm.getInfo().setProb_ms(0.4); // set prob
 //		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);

@@ -30,18 +30,21 @@ public class AnalMP extends Anal {
 		comp_X(g_lt_lu);
 		comp_hi_prefer();
 		comp_lt_lu_max();
-		comp_X(g_lt_lu_max);
 		
 	}
 	
 	private void comp_X(double lt_lu) {
 		double cal_x=(1-g_ht_hu)/lt_lu;
 		glo_x=Math.min(1,cal_x);
+//		Log.prn(2, "x:"+glo_x);
+		
 	}
 
 	private void comp_lt_lu_max() {
 		g_lt_lu_max=(1-g_ht_hu)*(1-g_ft_hu)/(1+g_ht_lu-g_ft_lu-g_ht_hu);
+//		Log.prn(2, "lo_max:"+g_lt_lu_max);
 	}
+	
 	private void load() {
 		g_info=g_tm.getInfo();
 		g_lt_lu=g_info.getLo_util();
@@ -70,10 +73,10 @@ public class AnalMP extends Anal {
 	@Override
 	public double getDtm() {
 		if(g_ht_hu>1){
-			return g_ht_hu;
+			return 2;
 		}
 		if(g_lt_lu>1){
-			return g_lt_lu;
+			return 2;
 		}
 		double dtm=g_lt_lu;
 		for(Task t:g_tm.getHiTasks()){
@@ -90,7 +93,8 @@ public class AnalMP extends Anal {
 	
 
 	@Override
-	public double getX() {
+	public double computeX() {
+		comp_X(g_lt_lu_max);
 		return glo_x;
 	}
 	
@@ -100,7 +104,7 @@ public class AnalMP extends Anal {
 		Log.prnc(1, " hl:"+MUtil.getStr(g_ht_lu));
 		Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
 		Log.prnc(1, "x:"+glo_x);
-		Log.prn(1, "hi_prefer:"+n_hi_prefer);
+		Log.prn(1, " hi_prefer:"+n_hi_prefer);
 		
 	}
 

@@ -48,7 +48,7 @@ public class CoreMng1 {
 			Anal an=new AnalEDF_VD();
 			an.init(tm);
 			an.prepare();
-			tm.setX(an.getX());
+			tm.setX(an.computeX());
 			
 			eg.initSim(i,new TaskSimul_EDF_VD(tm));
 		}
@@ -71,7 +71,7 @@ public class CoreMng1 {
 			tm=tsf.getTM();
 			an.init(tm);
 			an.prepare();
-			tm.setX(an.getX());
+			tm.setX(an.computeX());
 			eg.initSim(i,new TaskSimul_EDF_VD(tm));
 		}
 		eg.simul(0,1000);

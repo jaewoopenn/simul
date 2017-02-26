@@ -87,7 +87,7 @@ public class PlatformTM extends Platform{
 			tm.getInfo().setProb_ms(g_prob); 
 			an.init(tm);
 			an.prepare();
-			tm.setX(an.getX());
+			tm.setX(an.computeX());
 			tsim.init_tm(tm);
 			eg.initSim(0, tsim);
 			eg.simul(0,g_dur);
@@ -127,7 +127,7 @@ public class PlatformTM extends Platform{
 		tm.getInfo().setProb_ms(g_prob); 
 		an.init(tm);
 		an.prepare();
-		tm.setX(an.getX());
+		tm.setX(an.computeX());
 		tsim.init_tm(tm);
 		eg.initSim(0, tsim);
 		eg.simul(0,g_dur);

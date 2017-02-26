@@ -36,23 +36,44 @@ public class CoreMng2 {
 		
 		eg.initCores(cpus);
 		eg.loadCM(cm,new AnalMP(),1);
+//		eg.loadCM(cm,new AnalMP(),2);
 		eg.check();
-		eg.simul(0,60);
-		eg.prn();
+//		eg.simul(0,1000);
+		eg.prnTasks();
 		return 0;
 	}
 	
 	public  int test3()	{
-		CoreMng cm=TS_MP1.core3();
-//		cm.prn();
-		int cpus=2;
 		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(2);
+		Anal an=new AnalMP(); 
 		
-		eg.initCores(cpus);
-		eg.loadCM(cm,new AnalMP(),2);
+		String fn="mp/ts/util_sim_155/taskset_25";
+		TaskMng tm=TaskMng.getFile(fn);
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		if(!p.check()){
+			Log.prn(2, "Part ERR");
+			return 0;
+		}
+		int cpu=p.size();
+		Log.prn(2, "p cpus:"+cpu);
+		CoreMng cm=p.getCoreMng();
+
+		eg.loadCM(cm,an,1);
+//		eg.loadCM(cm,an,2);
+		eg.prnTasks();
 		eg.check();
-		eg.simul(0,200);
-		eg.prn();
+		if(eg.checkTasks())
+			Log.prn(2, "Part OK");
+		else
+			Log.prn(2, "Part ERR");
+		eg.simul(0,300);
+		SimulInfo si=eg.getSI(0);
+		Log.prn(2, si.getDMR()+","+si.ms+","+si.mig);
+		si=eg.getSI(1);
+		Log.prn(2, si.getDMR()+","+si.ms+","+si.mig);
+			
 		return 0;
 		
 	}
@@ -73,8 +94,9 @@ public class CoreMng2 {
 			eg.check();
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
-			double dmr=si.getDMR();
-			Log.prnc(2, i+","+dmr+","+si.ms);
+			Log.prn(2, i+","+si.getDMR()+","+si.ms+","+si.mig);
+			si=eg.getSI(1);
+			Log.prn(2, i+","+si.getDMR()+","+si.ms+","+si.mig);
 		}
 		
 		return 0;
@@ -83,31 +105,16 @@ public class CoreMng2 {
 	public  int test5() {
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(2);
-//		Anal an=new AnalEDF_AD_E(); 
 		Anal an=new AnalMP(); 
-		
-		String fn="mp/ts/util_sim_120/taskset_13";
+		String fn="mp/ts/util_sim_155/taskset_25";
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
-		if(!p.check()){
-			Log.prn(2, "Part ERR");
-			return 0;
-		}
-		int cpu=p.size();
-		Log.prn(2, "p cpus:"+cpu);
 		CoreMng cm=p.getCoreMng();
 
 		eg.loadCM(cm,an,1);
-//		eg.loadCM(cm,an,2);
 		eg.prnTasks();
-		eg.check();
-		if(eg.checkTasks())
-			Log.prn(2, "Part OK");
-		else
-			Log.prn(2, "Part ERR");
-		eg.simul(0,1000);
-			
+//		eg.simul(0,3000);
 		
 		return 0;
 	}

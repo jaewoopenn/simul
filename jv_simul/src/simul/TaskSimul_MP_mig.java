@@ -61,6 +61,7 @@ public class TaskSimul_MP_mig extends TaskSimul_MP{
 		}
 		if(core==-1)
 			return;
+		g_si.mig++;
 		cm.move(tsk,core);
 		
 	}
@@ -70,7 +71,8 @@ public class TaskSimul_MP_mig extends TaskSimul_MP{
 		TaskMng tm=cm.getTM(core);
 		double lo=tm.getLoUtil();
 		double add=tsk.getLoUtil();
-//		Log.prn(2, "lo: "+lo+" tsk:"+add+" lo_max:"+g_tm.getInfo().getLo_max());
+		Log.prnc(2, "lo: "+lo+" tsk:"+add+" lo_max:"+g_tm.getInfo().getLo_max());
+		Log.prn(2, "yn:"+(lo+add>g_tm.getInfo().getLo_max()+MUtil.err));
 		if(lo+add>g_tm.getInfo().getLo_max()+MUtil.err) 
 			return false;
 		double ru=tm.getRUtil();

@@ -44,9 +44,12 @@ public class ExpSimulMP extends ExpSimul {
 			TaskMng tm=tsf.getTM();
 			an.init(tm);
 			an.prepare();
-			
-			tm.setX(an.getX());
-			Log.prn(2, "lo_max:"+an.getExtra(0));
+			if(an.getDtm()>1){
+				Log.prn(9, "DTM:"+an.getDtm());
+				System.exit(1);
+			}
+			tm.setX(an.computeX());
+//			Log.prn(2, "lo_max:"+an.getExtra(0));
 			tm.setLo_max(an.getExtra(0));
 			tm.set_cm(cm);
 			TaskSimul_MP tsim=TaskSimulGen.get_MP(simul_no);
@@ -74,8 +77,8 @@ public class ExpSimulMP extends ExpSimul {
 		}
 		g_cm.getSim(0).isSchTab=false;
 		g_cm.getSim(0).isPrnMS=false;
-		g_cm.getSim(1).isSchTab=false;
-		g_cm.getSim(1).isPrnMS=false;
+//		g_cm.getSim(1).isSchTab=false;
+//		g_cm.getSim(1).isPrnMS=false;
 	}
 
 	@Override
@@ -126,7 +129,11 @@ public class ExpSimulMP extends ExpSimul {
 	public void prnTasks(){
 		Log.prn(2, "cpus:"+g_ncpu);
 		for(int i:MUtil.loop(g_ncpu)){
-			g_cm.getTM(i).prn();
+			Log.prn(2, "core "+i);
+			
+//			g_cm.getTM(i).getTaskSet().prnPara();
+			
+			g_cm.getTM(i).prnOffline();
 		}
 		
 	}

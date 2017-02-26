@@ -28,7 +28,7 @@ public abstract class Anal {
 	public abstract void prn();
 	public abstract void prepare();
 	public abstract double getDtm();
-	public abstract double getX();
+	public abstract double computeX();
 	public abstract double getExtra(int i);
 	
 }

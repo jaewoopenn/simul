@@ -63,7 +63,7 @@ public class TaskSimul3 {
 			Log.prn(2, "not schedulable");
 			return;
 		}
-		tm.setX(a.getX());
+		tm.setX(a.computeX());
 		
 		tm.getInfo().setProb_ms(0.1); // set prob
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
@@ -97,7 +97,7 @@ public class TaskSimul3 {
 			Log.prn(2, "not schedulable");
 			return 1;
 		}
-		tm.setX(a.getX());
+		tm.setX(a.computeX());
 		
 		tm.getInfo().setProb_ms(0.1); // set prob
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(tm);
@@ -113,7 +113,7 @@ public class TaskSimul3 {
 		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(tm);
 		a.prepare();
-		tm.setX(a.getX());
+		tm.setX(a.computeX());
 		
 		tm.getInfo().setProb_ms(0.1); // set prob
 		TaskSimul_EDF_AD ts=new TaskSimul_EDF_AD(tm);

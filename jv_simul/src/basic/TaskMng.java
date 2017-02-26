@@ -111,7 +111,7 @@ public class TaskMng {
 	}
 
 	public double getDroppedUtil(Task t){
-		Log.prn(2, g_info.getX()+" "+t.getLoUtil());
+//		Log.prn(2, g_info.getX()+" "+t.getLoUtil());
 		return g_info.getX()*t.getLoUtil();
 	}
 
@@ -169,12 +169,21 @@ public class TaskMng {
 		g_lo_tasks.prn();
 	}
 	public void prnInfo() {
-		Log.prn(2, "prob:"+g_info.getProb_ms());
+		g_info.prn();
+//		Log.prn(2, "prob:"+g_info.getProb_ms());
 	}
 
 	public void prnRuntime() {
 		Log.prn(2, "WC:"+getWCUtil());
+		Log.prn(2, "LO:"+getLoUtil());
+		Log.prn(2, "LO_MAX:"+g_info.getLo_max());
 		g_tasks.prnRuntime();
+	}
+
+	public void prnOffline() {
+		Log.prn(2, "x:"+g_info.getX());
+		g_tasks.prnOffline();
+		
 	}
 	
 

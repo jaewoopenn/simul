@@ -103,6 +103,13 @@ public class TaskSet {
 		
 	}
 
+	public void prnPara() {
+		for(Task t:g_tasks){
+			t.prnPara();
+		}
+		
+	}
+
 
 
 

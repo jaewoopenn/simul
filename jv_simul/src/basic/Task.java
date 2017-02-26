@@ -144,6 +144,18 @@ public class Task {
 		}
 		
 	}
+	public void prnPara() {
+		Log.prnc(2, "tmp.add(new Task(0,");
+		Log.prnc(2, period);
+		if (is_HI){
+			Log.prnc(2, ", "+c_l);
+			Log.prnc(2, ", "+c_h);
+		} else {
+			Log.prnc(2, ", "+c_l);
+		}
+		Log.prn(2, "));");
+
+	}
 
 
 

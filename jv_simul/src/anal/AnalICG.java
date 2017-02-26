@@ -31,7 +31,7 @@ public class AnalICG extends Anal {
 
 
 	@Override
-	public double getX() {
+	public double computeX() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -64,9 +64,9 @@ public class PlatformMP extends Platform{
 	}
 	
 	public void simul() {
-		write_x_axis();
+//		write_x_axis();
 		simul_in(1,new AnalMP(),1);
-		simul_in(2,new AnalMP(),2);
+//		simul_in(2,new AnalMP(),2);
 	}
 	
 	public void simul_in(int algo_num,Anal an,int simul_no){
@@ -101,16 +101,16 @@ public class PlatformMP extends Platform{
 			eg.check();
 //			eg.prnTasks();
 			eg.simul(0,g_dur);
-			SimulInfo si=eg.getSI(0);
-			double dmr=si.getDMR();
-			Log.prnc(2, j+","+dmr+","+si.ms);
-			sum+=dmr;
-			sum_ms+=si.ms;
-			Log.prn(2, " "+sum);
+			for(int k:MUtil.loop(g_ncpu)){
+				SimulInfo si=eg.getSI(k);
+//				double dmr=si.getDMR();
+//				sum+=dmr;
+				sum+=si.mig;
+			}
+			Log.prn(2, sum);
 		}
 		double avg=sum/size;
-		double avg_ms=(sum_ms*1.0/size);
-		Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
+		Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+",");
 		g_fu.print(avg+"");
 		
 	}

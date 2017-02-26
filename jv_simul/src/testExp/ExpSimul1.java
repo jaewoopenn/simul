@@ -23,7 +23,7 @@ public class ExpSimul1 {
 		Anal an=new AnalEDF_VD();
 		an.init(tm);
 		an.prepare();
-		tm.setX(an.getX());
+		tm.setX(an.computeX());
 		eg.initSim(0, new TaskSimul_EDF_VD(tm));
 		eg.simul(0,1000);
 		SimulInfo si=eg.getSI(0);
@@ -40,7 +40,7 @@ public class ExpSimul1 {
 		Anal an=new AnalEDF_VD();
 		an.init(tm);
 		an.prepare();
-		tm.setX(an.getX());
+		tm.setX(an.computeX());
 
 		eg.initSim(0, new TaskSimul_EDF_VD(tm));
 		eg.simul(0,100);

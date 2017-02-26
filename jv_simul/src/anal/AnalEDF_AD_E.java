@@ -73,14 +73,14 @@ public class AnalEDF_AD_E extends Anal {
 
 	
 
-	public double getX() {
+	public double computeX() {
 		return glo_x;
 	}
 	public static double computeX(TaskMng tm) {
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
-		return a.getX();
+		return a.computeX();
 	}
 	
 	@Override

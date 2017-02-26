@@ -41,7 +41,7 @@ public class AnalEDF_VD extends Anal {
 
 
 	@Override
-	public double getX() {
+	public double computeX() {
 		return glo_x;
 	}
 	
@@ -49,7 +49,7 @@ public class AnalEDF_VD extends Anal {
 		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(tm);
 		a.prepare();
-		return a.getX();
+		return a.computeX();
 	}
 
 	@Override
