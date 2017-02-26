@@ -12,7 +12,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
-    lab=['Mig','No-Mig','x','x','x']
+    lab=['Ours','Baseline','x','x','x']
     data=[1,2,3,4,5]
 
 def load(fn):
@@ -40,7 +40,7 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(1.1,1.55)
-    mp.ylim(0, 0.5)
+    mp.ylim(-0.02, 0.5)
     mp.legendUR()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")

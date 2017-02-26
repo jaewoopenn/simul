@@ -106,7 +106,7 @@ public class CoreMng2 {
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(2);
 		Anal an=new AnalMP(); 
-		String fn="mp/ts/util_sim_155/taskset_25";
+		String fn="mp/ts/util_sim_155/taskset_14";
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
@@ -114,7 +114,7 @@ public class CoreMng2 {
 
 		eg.loadCM(cm,an,1);
 		eg.prnTasks();
-//		eg.simul(0,3000);
+		eg.simul(0,3000);
 		
 		return 0;
 	}

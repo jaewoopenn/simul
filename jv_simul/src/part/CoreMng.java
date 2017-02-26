@@ -70,6 +70,7 @@ public class CoreMng {
 		setTS(core,ts);
 		g_tm[core].setX(x);
 		g_tm[core].setLo_max(lo_max);
+//		Log.prn(2, "core:"+core+" lo max"+lo_max);
 		g_tm[core].set_cm(this);
 		if(g_tsim[core]!=null)
 			g_tsim[core].set_tm(g_tm[core]);
