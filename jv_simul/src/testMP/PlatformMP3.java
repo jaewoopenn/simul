@@ -14,7 +14,7 @@ public class PlatformMP3 {
 	public static int idx=3;
 	public static int log_level=3;
 	public int isReal=0;
-	public int[] g_r={120,140,160};
+	public int[] g_r={130,150,170};
 	
 	
 	public PlatformMP getCommmon(){
