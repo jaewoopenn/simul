@@ -14,6 +14,7 @@ public class PlatformMP3 {
 	public static int idx=3;
 	public static int log_level=3;
 	public int isReal=0;
+	public int[] g_r={120,140,160};
 	
 	
 	public PlatformMP getCommmon(){
@@ -36,13 +37,9 @@ public class PlatformMP3 {
 	
 	public PlatformMP getP1() {
 		PlatformMP p=getCommmon();
-		p.setTSName("util_sim");
-		p.setKinds(0);
-		p.setStart(110);
-		p.setStep(5);
-//		p.setStart(55);
-//		p.setStep(5);
-		p.setSize(10);
+		p.setTSName("prob_sim");
+		p.setStep(10);
+		p.setRange(g_r);
 		return p;
 	}
 

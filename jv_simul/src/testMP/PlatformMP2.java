@@ -14,7 +14,8 @@ public class PlatformMP2 {
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int isReal=0;
-	
+	public int[] g_r={110,115,120,125,130,135,140,145,150,155};
+
 	
 	public PlatformMP getCommmon(){
 		PlatformMP p=new PlatformMP(2);
@@ -36,13 +37,9 @@ public class PlatformMP2 {
 	public PlatformMP getP1() {
 		PlatformMP p=getCommmon();
 		p.setTSName("util");
-		p.setKinds(0);
+		p.setRange(g_r);
+		p.setStep(5);
 		
-		p.setStart(110);
-		p.setStep(10);
-//		p.setStart(55);
-//		p.setStep(5);
-		p.setSize(10);
 		return p;
 	}
 

@@ -83,6 +83,6 @@ public class CoreMng {
 		setTS_in(ts,core);
 	}
 
-	
+
 
 }

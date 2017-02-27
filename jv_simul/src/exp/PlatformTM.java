@@ -20,6 +20,20 @@ import util.Log;
 import util.MUtil;
 
 public class PlatformTM extends Platform{
+	protected int g_start;
+	protected int g_size;
+	protected int g_kinds;
+
+	public void setKinds(int d) {
+		this.g_kinds = d;
+	}
+	
+	public void setStart(int d) {
+		this.g_start = d;
+	}
+	public void setSize(int d) {
+		this.g_size = d;
+	}
 	
 	// task
 	public void writeCfg(ConfigGen cfg) {
@@ -56,6 +70,15 @@ public class PlatformTM extends Platform{
 		Log.prn(3, "task");
 		
 	}
+	public void write_x_axis() {
+		FUtil fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
+
+		for(int i=0;i<g_size;i++){
+			fu.print((double)(g_start+i*g_step)/100+"");
+		}		
+		fu.save();
+	}
+	
 	public void simul() {
 		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
@@ -78,13 +101,15 @@ public class PlatformTM extends Platform{
 	{
 		double sum=0;
 		int sum_ms=0;
+		SysMng sm=new SysMng();
+		sm.setProb(g_prob);
+		tsim.init_sm(sm);
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
-			tm.getInfo().setProb_ms(g_prob); 
 			an.init(tm);
 			an.prepare();
 			tm.setX(an.computeX());
@@ -119,12 +144,14 @@ public class PlatformTM extends Platform{
 	
 	public void simul_one(Anal an,
 			TaskSimul tsim, int i, int j) {
+		SysMng sm=new SysMng();
+		sm.setProb(g_prob);
+		tsim.init_sm(sm);
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
 		TaskMng tm=TaskMng.getFile(fn);
-		tm.getInfo().setProb_ms(g_prob); 
 		an.init(tm);
 		an.prepare();
 		tm.setX(an.computeX());

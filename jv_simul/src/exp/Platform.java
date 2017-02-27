@@ -5,9 +5,6 @@ import util.FUtil;
 
 
 public class Platform {
-	protected int g_kinds;
-	protected int g_start;
-	protected int g_size;
 	protected int g_step;
 	protected int g_sys_num;
 	protected String g_cfg_fn;
@@ -19,28 +16,9 @@ public class Platform {
 	protected String g_RS;
 	protected FUtil g_fu;
 	
-	// com
-	protected double g_a_l;
-	protected double g_a_u;
 	
-	public void write_x_axis() {
-		FUtil fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
-
-		for(int i=0;i<g_size;i++){
-			fu.print((double)(g_start+i*g_step)/100+"");
-		}		
-		fu.save();
-	}
 	
-	public void setKinds(int d) {
-		this.g_kinds = d;
-	}
-	public void setStart(int d) {
-		this.g_start = d;
-	}
-	public void setSize(int d) {
-		this.g_size = d;
-	}
+	
 	public void setStep(int d) {
 		this.g_step = d;
 	}
@@ -64,11 +42,6 @@ public class Platform {
 	}
 	public void setRS(String s) {
 		this.g_RS=s;
-		
-	}
-	public void setAlpha(double l,double u) {
-		this.g_a_l=l;
-		this.g_a_u=u;
 		
 	}
 }

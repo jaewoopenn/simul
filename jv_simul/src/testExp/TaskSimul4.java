@@ -1,5 +1,6 @@
 package testExp;
 
+import exp.SysMng;
 import gen.ConfigGen;
 import gen.SimGen;
 import gen.SimGenTM;
@@ -35,9 +36,11 @@ public class TaskSimul4 {
 		}
 		tm.setX(a.computeX());
 		
-		tm.getInfo().setProb_ms(0.4); // set prob
 //		TaskSimul_EDF_AT_S ts=new TaskSimul_EDF_AT_S(tm);
 		TaskSimul_EDF_AD ts=new TaskSimul_EDF_AD(tm);
+		SysMng sm=new SysMng();
+		sm.setProb(0.1);
+		ts.init_sm(sm);
 		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.isPrnEnd=false;

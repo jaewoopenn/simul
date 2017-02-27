@@ -1,7 +1,6 @@
 package anal;
 
 import basic.TaskMng;
-import util.Log;
 
 public abstract class Anal {
 	protected String g_name="";

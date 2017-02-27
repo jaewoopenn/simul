@@ -1,5 +1,6 @@
 package testExp;
 
+import exp.SysMng;
 import gen.ConfigGen;
 import gen.SimGen;
 import gen.SimGenTM;
@@ -34,18 +35,22 @@ public class TaskSimul3 {
 	public int test2() {
 		int et=36;
 		TaskMng tm=TS_MC1.ts3();
-		tm.getInfo().setProb_ms(0.6);
 		tm.setX(1.0/3);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
+		ts.init_sm(sm);
 		ts.simulEnd(0,et);
 		return -1;
 	}
 	public int test3()	{
 		int et=48;
 		TaskMng tm=TS_MC1.ts3();
-		tm.getInfo().setProb_ms(0.4); // set prob
 		tm.setX(1.0/3);
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
+		SysMng sm=new SysMng();
+		sm.setProb(0.4);
+		ts.init_sm(sm);
 		ts.simulEnd(0,et);
 		return -1;
 	}
@@ -65,8 +70,10 @@ public class TaskSimul3 {
 		}
 		tm.setX(a.computeX());
 		
-		tm.getInfo().setProb_ms(0.1); // set prob
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E(tm);
+		SysMng sm=new SysMng();
+		sm.setProb(0.1);
+		ts.init_sm(sm);
 		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);
@@ -99,8 +106,10 @@ public class TaskSimul3 {
 		}
 		tm.setX(a.computeX());
 		
-		tm.getInfo().setProb_ms(0.1); // set prob
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(tm);
+		SysMng sm=new SysMng();
+		sm.setProb(0.1);
+		ts.init_sm(sm);
 //		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);
@@ -115,8 +124,10 @@ public class TaskSimul3 {
 		a.prepare();
 		tm.setX(a.computeX());
 		
-		tm.getInfo().setProb_ms(0.1); // set prob
 		TaskSimul_EDF_AD ts=new TaskSimul_EDF_AD(tm);
+		SysMng sm=new SysMng();
+		sm.setProb(0.1);
+		ts.init_sm(sm);
 //		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.simulEnd(0,et);

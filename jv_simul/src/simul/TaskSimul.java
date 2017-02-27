@@ -3,6 +3,7 @@ package simul;
 
 import exp.Job;
 import exp.JobSimul;
+import exp.SysMng;
 import basic.Task;
 import basic.TaskMng;
 import util.Log;
@@ -10,6 +11,7 @@ import util.RUtil;
 
 public abstract class TaskSimul {
 	protected SimulInfo g_si;
+	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected JobSimul g_js;
 	protected RUtil g_rutil=new RUtil();
@@ -28,6 +30,11 @@ public abstract class TaskSimul {
 		g_si=new SimulInfo();
 		g_needRecover=false;
 	}
+	
+	public void init_sm(SysMng sm){
+		g_sm=sm;
+	}
+	
 	public void init_tm(TaskMng tm) {
 		g_tm=tm;
 		init();
@@ -99,7 +106,7 @@ public abstract class TaskSimul {
 		if(tsk==null) 
 			return;
 		double prob=g_rutil.getDbl();
-		if(prob<g_tm.getInfo().getProb_ms())
+		if(prob<g_sm.getProb())
 			isMS=true;
 		if(isMS){
 			Log.prn(isPrnMS,1, "t:"+t+" mode-switch "+tsk.tid);
