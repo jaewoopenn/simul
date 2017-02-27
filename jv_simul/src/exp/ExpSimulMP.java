@@ -121,10 +121,16 @@ public class ExpSimulMP extends ExpSimul {
 
 
 	public void prn() {
+		int rel=0;
+		int drop=0;
 		for(int i:MUtil.loop(g_ncpu)){
 			SimulInfo si=g_cm.getSim(i).getSI();
-			si.prn();
+//			si.prn();
+			rel+=si.rel;
+			drop+=si.drop;
 		}
+		double dmr=(double)drop/rel;
+		Log.prn(2, rel+","+drop+","+MUtil.getStr(dmr));
 		
 	}
 	public void prnTasks(){

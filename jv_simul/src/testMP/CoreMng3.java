@@ -6,7 +6,7 @@ import basic.TaskMng;
 import util.TEngine;
 
 public class CoreMng3 {
-	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=2;
 
 
@@ -18,6 +18,9 @@ public class CoreMng3 {
 	}
 	
 	public int test2() {
+		String fn="mp/ts/prob_sim_350/taskset_52";
+		TaskMng tm=TaskMng.getFile(fn);
+		tm.prnInfo();
 		return 0;
 	}
 	

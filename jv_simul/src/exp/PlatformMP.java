@@ -109,7 +109,7 @@ public class PlatformMP extends Platform{
 			}
 			Log.prn(2, sum);
 		}
-		double avg=sum/size;
+		double avg=sum/size/g_ncpu;
 		Log.prn(3, r+","+MUtil.getStr(g_prob)+":"+MUtil.getStr(avg)+",");
 		g_fu.print(avg+"");
 		

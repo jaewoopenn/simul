@@ -14,7 +14,7 @@ public class PlatformMP1 {
 	public static int idx=3;
 	public static int log_level=3;
 	public int isReal=0;
-	public int[] g_r={110,115,120,125,130,135,140,145,150,155};
+	private int[] g_r={110,115,120,125,130,135,140,145,150,155};
 	
 	
 	public PlatformMP getCommmon(){

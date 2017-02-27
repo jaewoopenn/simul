@@ -6,11 +6,10 @@ Created on 2015. 12. 11.
 import Util.MPlot as mp;
 class gl:
     path="mp/rs/"
-#     RS="util"
     fn="prob_sim"
-#     RS="130"
-    RS="150"
-#     RS="160"
+    RS="320"
+#     RS="340"
+#     RS="360"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
@@ -44,7 +43,7 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(0,1)
-    mp.ylim(-0.02, 0.5)
+    mp.ylim(-0.02, 0.35)
     mp.legendUL()
     mp.xlabel("The Probability of Mode Switch")
     mp.ylabel("Deadline Miss Ratio")

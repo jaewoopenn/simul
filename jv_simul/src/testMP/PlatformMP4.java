@@ -8,15 +8,15 @@ import gen.ConfigGen;
 import util.Log;
 import util.TEngine;
 
-public class PlatformMP3 {
+public class PlatformMP4 {
 	public static int idx=3;
 	public static int log_level=3;
 	public int isReal=0;
-	private int[] g_r={130,150,170};
+	private int[] g_r={320,340,360};
 	
 	
 	public PlatformMP getCommmon(){
-		PlatformMP p=new PlatformMP(2);
+		PlatformMP p=new PlatformMP(4);
 		p.setPath("mp");
 		p.setCfg_fn("cfg/");
 		if(isReal==1){
@@ -36,7 +36,7 @@ public class PlatformMP3 {
 	public PlatformMP getP1() {
 		PlatformMP p=getCommmon();
 		p.setTSName("prob_sim");
-		p.setStep(10);
+		p.setStep(20);
 		p.setRange(g_r);
 		return p;
 	}
@@ -97,9 +97,9 @@ public class PlatformMP3 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = PlatformMP3.class;
-		PlatformMP3 m=new PlatformMP3();
-		int[] aret=PlatformMP3.gret;
+		Class c = PlatformMP4.class;
+		PlatformMP4 m=new PlatformMP4();
+		int[] aret=PlatformMP4.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else
