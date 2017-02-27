@@ -7,11 +7,6 @@ import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib.backends.backend_pdf import PdfPages
 matplotlib.rcParams.update({'font.size': 15})
-def legend():
-    font= matplotlib.font_manager.FontProperties(weight="normal") 
-#     plt.legend(loc='upper right',prop=font)
-    plt.legend(loc='lower left',prop=font)
-#    plt.legend(loc='upper left',prop=font)
 
 def prepare():
     plt.figure(figsize=(8,5))
@@ -19,7 +14,12 @@ def prepare():
 def prepare2():
     plt.figure(figsize=(8,7))
         
-def legendLR():
+def legend():
+    font= matplotlib.font_manager.FontProperties(weight="normal") 
+#     plt.legend(loc='upper right',prop=font)
+    plt.legend(loc='lower left',prop=font)
+#    plt.legend(loc='upper left',prop=font)
+def legendBR():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
     plt.legend(loc='lower right',prop=font)
 def legendUL():

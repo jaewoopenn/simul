@@ -44,11 +44,11 @@ def main():
         mp.log()
         mp.xlim(0,0.10)
 #         mp.ylim(-0.01,0.65)
-        mp.legend2()
+        mp.legendBR()
     else:
         mp.xlim(0,0.10)
         mp.ylim(-0.01,0.65)
-        mp.legend3()
+        mp.legendUL()
     mp.xlabel("The probability to show HI-behavior")
     mp.ylabel("Expected Drop Ratio")
     mp.show()

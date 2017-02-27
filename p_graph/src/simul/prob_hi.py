@@ -12,7 +12,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k:']
     marker=['o','v','D','^','s']
-    lab=['EDF-VD','EDF-AD-E','EDF','ICG',]
+    lab=['EDF-AD-E','EDF-VD','EDF','ICG',]
     data=[1,2]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
@@ -36,15 +36,16 @@ def x_load():
 
 def main():
     x_load()
-    iter(0,2)
+    iter(1,2)
+    iter(0,1)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.0,1.0)
+    mp.xlim(0.05,0.95)
     mp.ylim(0, 1.05)
 #     mp.ylim(0, 0.65)
-    mp.legend3()
+    mp.legendUL()
     mp.xlabel("Probability to be a HI-task")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"

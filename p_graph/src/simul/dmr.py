@@ -47,7 +47,7 @@ def main():
     mp.xlim(0.55,1.0)
 #     mp.ylim(0, 1.05)
     mp.ylim(0, 0.65)
-    mp.legend3()
+    mp.legendUL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"
