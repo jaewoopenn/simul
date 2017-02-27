@@ -71,8 +71,8 @@ public class PlatformMP extends Platform{
 			if(isWrite)
 				g_fu=new FUtil(getRsFN(algo_num));
 			setRS(r+"");
-			for(int j:MUtil.loop(10)){
-				setProb(j*0.1+0.1);
+			for(int j:MUtil.loop(11)){
+				setProb(j*0.1);
 				simul_in_i(r,an,simul_no);
 			}
 			g_fu.save();
@@ -98,7 +98,7 @@ public class PlatformMP extends Platform{
 //			p.check();
 			CoreMng cm=p.getCoreMng();
 			checkPart(cm);
-			eg.loadCM(cm,an,simul_no);
+			eg.loadCM(cm,an,simul_no,sm);
 			eg.check();
 //			eg.prnTasks();
 			eg.simul(0,g_dur);
@@ -110,7 +110,7 @@ public class PlatformMP extends Platform{
 			Log.prn(2, sum);
 		}
 		double avg=sum/size;
-		Log.prn(3, r+":"+MUtil.getStr(avg)+",");
+		Log.prn(3, r+","+MUtil.getStr(g_prob)+":"+MUtil.getStr(avg)+",");
 		g_fu.print(avg+"");
 		
 	}
@@ -127,7 +127,9 @@ public class PlatformMP extends Platform{
 		p.anal();
 		CoreMng cm=p.getCoreMng();
 		checkPart(cm);
-		eg.loadCM(cm,an,simul_no);
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
+		eg.loadCM(cm,an,simul_no,sm);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI(0);
 		Log.prn(3, r+","+j+","+si.getDMR()+","+si.ms);
@@ -147,18 +149,26 @@ public class PlatformMP extends Platform{
 		for(int r:g_range){
 			g_RS=r+"";
 			FUtil fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
-			for(int j:MUtil.loop(10)){
-				double x=(j*0.1+0.1);
+			for(int j:MUtil.loop(11)){
+				double x=(j*0.1);
 				fu.print(x+"");
 			}
 			fu.save();
 		}		
 	}	
+	public void write_x_axis2() {
+		FUtil fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
+		for(int j:g_range){
+			fu.print((double)j/100+"");
+		}
+		fu.save();
+	}	
 	
 	public void anal() {
-		write_x_axis();
-		anal_in(1,new AnalEDF());
+		write_x_axis2();
+		anal_in(1,new AnalMP());
 		anal_in(2,new AnalEDF_VD());
+		anal_in(3,new AnalEDF());
 	}
 	public void anal_in(int algo_num,Anal an){
 		g_fu=new FUtil();

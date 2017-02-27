@@ -11,10 +11,9 @@ import util.TEngine;
 
 public class PlatformMP2 {
 	public static int idx=3;
-//	public static int idx=-1;
 	public static int log_level=3;
 	public int isReal=0;
-	public int[] g_r={110,115,120,125,130,135,140,145,150,155};
+	public int[] g_r={110,120,130,140,150,160,170,180,190,200};
 
 	
 	public PlatformMP getCommmon(){
@@ -22,10 +21,8 @@ public class PlatformMP2 {
 		p.setPath("mp");
 		p.setCfg_fn("cfg/");
 		if(isReal==1){
-			p.setDuration(10000);
 			p.setSysNum(5000);
 		} else{
-			p.setDuration(100);
 			p.setSysNum(100);
 		}
 		p.setProb(0.5);
@@ -38,7 +35,7 @@ public class PlatformMP2 {
 		PlatformMP p=getCommmon();
 		p.setTSName("util");
 		p.setRange(g_r);
-		p.setStep(5);
+		p.setStep(10);
 		
 		return p;
 	}

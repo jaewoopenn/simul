@@ -32,7 +32,7 @@ public class ExpSimulMP extends ExpSimul {
 	public void initCores(int core){
 		g_ncpu=core;
 	}
-	public void loadCM(CoreMng cm, Anal an, int simul_no) {
+	public void loadCM(CoreMng cm, Anal an, int simul_no, SysMng sm) {
 		// 1: EDF-VD
 		// 2: EDF-AD-E
 		// 3: MP
@@ -54,6 +54,7 @@ public class ExpSimulMP extends ExpSimul {
 			tm.set_cm(cm);
 			TaskSimul_MP tsim=TaskSimulGen.get_MP(simul_no);
 			tsim.setCore(i);
+			tsim.init_sm(sm);
 			tsim.init_tm(tm);
 //			tm.prn();
 			initSim(i,tsim);
