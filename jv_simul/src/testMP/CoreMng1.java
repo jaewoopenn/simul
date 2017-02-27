@@ -64,7 +64,7 @@ public class CoreMng1 {
 		Anal an=new AnalEDF_VD();
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
-		CoreMng cm=p.getCoreMng();
+		CoreMng cm=p.getCoreMng(p.size());
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(cm.size());
 		for(int i:MUtil.loop(cm.size())){
@@ -86,7 +86,7 @@ public class CoreMng1 {
 		Anal an=new AnalEDF_VD();
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
-		CoreMng cm=p.getCoreMng();
+		CoreMng cm=p.getCoreMng(p.size());
 		
 		ExpSimulMP eg=new ExpSimulMP();
 		int ncpu=2;

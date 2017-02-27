@@ -7,9 +7,9 @@ import Util.MPlot as mp;
 class gl:
     path="mp/rs/"
     fn="prob_sim"
-    RS="320"
-#     RS="340"
-#     RS="360"
+#     RS="260"
+#     RS="300"
+    RS="340"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']

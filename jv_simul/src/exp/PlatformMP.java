@@ -96,7 +96,7 @@ public class PlatformMP extends Platform{
 			Partition p=new Partition(an,tm.getTaskSet());
 			p.anal();
 //			p.check();
-			CoreMng cm=p.getCoreMng();
+			CoreMng cm=p.getCoreMng(g_ncpu);
 			checkPart(cm);
 			eg.loadCM(cm,an,simul_no,sm);
 			eg.check();
@@ -125,7 +125,7 @@ public class PlatformMP extends Platform{
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
-		CoreMng cm=p.getCoreMng();
+		CoreMng cm=p.getCoreMng(g_ncpu);
 		checkPart(cm);
 		SysMng sm=new SysMng();
 		sm.setProb(0.5);

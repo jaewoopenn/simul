@@ -61,12 +61,17 @@ public class Partition {
 	public int size() {
 		return g_part.size();
 	}
-	public CoreMng getCoreMng() {
-		CoreMng cm=new CoreMng(g_part.size());
+	public CoreMng getCoreMng(int sz) {
+		CoreMng cm=new CoreMng(sz);
 		int i=0;
 		for(TaskSet ts:g_part){
 			cm.setTS(i,ts);
 			i++;
+		}
+		for(;i<sz;i++){
+			TaskSet ts=new TaskSet();
+			ts.transform_Array();
+			cm.setTS(i, ts);
 		}
 		return cm;
 	}

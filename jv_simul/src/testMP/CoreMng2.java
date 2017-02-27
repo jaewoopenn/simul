@@ -11,13 +11,14 @@ import exp.SysMng;
 import part.CoreMng;
 import part.Partition;
 import simul.SimulInfo;
+import sysEx.TS_MC1;
 import sysEx.TS_MP1;
 import util.Log;
 import util.MUtil;
 import util.TEngine;
 
 public class CoreMng2 {
-	public static int idx=6;
+	public static int idx=7;
 	public static int log_level=2;
 
 
@@ -61,7 +62,7 @@ public class CoreMng2 {
 		}
 		int cpu=p.size();
 		Log.prn(2, "p cpus:"+cpu);
-		CoreMng cm=p.getCoreMng();
+		CoreMng cm=p.getCoreMng(p.size());
 		SysMng sm=new SysMng();
 		sm.setProb(0.5);
 		eg.loadCM(cm,an,1,sm);
@@ -95,7 +96,7 @@ public class CoreMng2 {
 			Partition p=new Partition(an,tm.getTaskSet());
 			p.anal();
 			
-			CoreMng cm=p.getCoreMng();
+			CoreMng cm=p.getCoreMng(p.size());
 			eg.loadCM(cm,an,1,sm);
 			eg.check();
 			eg.simul(0,g_dur);
@@ -116,7 +117,7 @@ public class CoreMng2 {
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
-		CoreMng cm=p.getCoreMng();
+		CoreMng cm=p.getCoreMng(p.size());
 		SysMng sm=new SysMng();
 		sm.setProb(0.5);
 
@@ -134,7 +135,7 @@ public class CoreMng2 {
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
-		CoreMng cm=p.getCoreMng();
+		CoreMng cm=p.getCoreMng(p.size());
 		SysMng sm=new SysMng();
 		sm.setProb(0.5);
 
@@ -146,6 +147,19 @@ public class CoreMng2 {
 		return -1;
 	}
 	public  int test7()	{
+		ExpSimulMP eg=new ExpSimulMP();
+		eg.initCores(3);
+		Anal an=new AnalMP(); 
+		TaskMng tm=TS_MC1.ts7();
+		Partition p=new Partition(an,tm.getTaskSet());
+		p.anal();
+		CoreMng cm=p.getCoreMng(3);
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
+
+		eg.loadCM(cm,an,1,sm);
+		eg.prnTasks();
+		eg.simul(0,3000);
 		return -1;
 	}
 	public  int test8()	{

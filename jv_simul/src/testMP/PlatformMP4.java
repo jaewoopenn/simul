@@ -12,7 +12,7 @@ public class PlatformMP4 {
 	public static int idx=3;
 	public static int log_level=3;
 	public int isReal=0;
-	private int[] g_r={320,340,360};
+	private int[] g_r={260,300,340};
 	
 	
 	public PlatformMP getCommmon(){
