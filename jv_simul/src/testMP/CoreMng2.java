@@ -7,6 +7,7 @@ import anal.Anal;
 import anal.AnalEDF_AD_E;
 import anal.AnalMP;
 import exp.ExpSimulMP;
+import exp.SysMng;
 import part.CoreMng;
 import part.Partition;
 import simul.SimulInfo;
@@ -35,8 +36,10 @@ public class CoreMng2 {
 		ExpSimulMP eg=new ExpSimulMP();
 		
 		eg.initCores(cpus);
-		eg.loadCM(cm,new AnalMP(),1);
-//		eg.loadCM(cm,new AnalMP(),2);
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
+		eg.loadCM(cm,new AnalMP(),1,sm);
+//		eg.loadCM(cm,new AnalMP(),2,sm);
 		eg.check();
 //		eg.simul(0,1000);
 		eg.prnTasks();
@@ -59,9 +62,10 @@ public class CoreMng2 {
 		int cpu=p.size();
 		Log.prn(2, "p cpus:"+cpu);
 		CoreMng cm=p.getCoreMng();
-
-		eg.loadCM(cm,an,1);
-//		eg.loadCM(cm,an,2);
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
+		eg.loadCM(cm,an,1,sm);
+//		eg.loadCM(cm,an,2,sm);
 		eg.prnTasks();
 		eg.check();
 		if(eg.checkTasks())
@@ -79,6 +83,8 @@ public class CoreMng2 {
 	}
 	
 	public  int test4()	{
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(2);
 		Anal an=new AnalEDF_AD_E(); 
@@ -90,7 +96,7 @@ public class CoreMng2 {
 			p.anal();
 			
 			CoreMng cm=p.getCoreMng();
-			eg.loadCM(cm,an,1);
+			eg.loadCM(cm,an,1,sm);
 			eg.check();
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
@@ -106,13 +112,15 @@ public class CoreMng2 {
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(2);
 		Anal an=new AnalMP(); 
-		String fn="mp/ts/util_sim_155/taskset_14";
+		String fn="mp/ts/prob_sim_170/taskset_52";
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
 		CoreMng cm=p.getCoreMng();
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
 
-		eg.loadCM(cm,an,1);
+		eg.loadCM(cm,an,1,sm);
 		eg.prnTasks();
 		eg.simul(0,3000);
 		

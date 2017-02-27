@@ -8,7 +8,9 @@ class gl:
     path="mp/rs/"
 #     RS="util"
     fn="prob_sim"
-    RS="160"
+#     RS="130"
+    RS="150"
+#     RS="160"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
@@ -43,9 +45,10 @@ def main():
         no+=1
     mp.xlim(0,1)
     mp.ylim(-0.02, 0.5)
-    mp.legendUR()
-    mp.xlabel("Utilization Bound")
+    mp.legendUL()
+    mp.xlabel("The Probability of Mode Switch")
     mp.ylabel("Deadline Miss Ratio")
+    mp.savefig("/Users/jaewoo/data/fig/"+gl.fn+"_"+gl.RS+".pdf")
     mp.show()
 
 if __name__ == '__main__':

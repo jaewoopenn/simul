@@ -6,6 +6,7 @@ import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetFix;
 import exp.ExpSimulMP;
+import exp.SysMng;
 import part.CoreMng;
 import part.Partition;
 import simul.TaskSimul_EDF_VD;
@@ -94,7 +95,9 @@ public class CoreMng1 {
 			Log.prn(9, "size not match");
 			return 0;
 		}
-		eg.loadCM(cm,an,1);
+		SysMng sm=new SysMng();
+		sm.setProb(0.5);
+		eg.loadCM(cm,an,1,sm);
 		eg.simul(0,1000);
 		eg.prn();
 		return 0;

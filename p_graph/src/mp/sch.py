@@ -11,7 +11,7 @@ class gl:
     vv=[]
     line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
-    lab=['EDF ','EDF-VD','x','x','x']
+    lab=['P-MC-ADAPT ','P-EDF-VD','P-EDF','x','x']
     data=[1,2,3,4,5]
 
 def load(fn):
@@ -33,7 +33,7 @@ def iterate(s,t):
 
 def main():
     x_load()
-    iterate(0,2)
+    iterate(0,3)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])

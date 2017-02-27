@@ -1,7 +1,5 @@
 package testMP;
 
-import anal.AnalEDF_AD_E;
-
 // simul
 
 import anal.AnalMP;
@@ -14,7 +12,7 @@ public class PlatformMP3 {
 	public static int idx=3;
 	public static int log_level=3;
 	public int isReal=0;
-	public int[] g_r={120,140,160};
+	public int[] g_r={130,150,160};
 	
 	
 	public PlatformMP getCommmon(){
@@ -55,9 +53,7 @@ public class PlatformMP3 {
 	public int test2() 
 	{
 		PlatformMP p=getP1();
-//		p.genTS();
 		p.genTS(new AnalMP());
-//		p.genTS(new AnalEDF_VD());
 		return 1;
 	}
 	public int test3() 
@@ -70,7 +66,7 @@ public class PlatformMP3 {
 	public  int test4() 
 	{
 		PlatformMP p=getP1();
-		p.simul_one(new AnalEDF_AD_E(),1,8,23);
+		p.simul_one(new AnalMP(),1,150,23);
 		return 1;
 	}
 	public  int test5() 
