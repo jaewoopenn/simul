@@ -8,14 +8,14 @@ class gl:
 #     path="final_rs/mp/"
     path="mp/rs/"
     fn="prob_sim"
-#     RS="130"
+    RS="130"
 #     RS="150"
-    RS="170"
+#     RS="170"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
-    lab=['Ours','Baseline','x','x','x']
+    lab=['OURS','BASELINE','x','x','x']
     data=[1,2,3,4,5]
 
 def load(fn):
