@@ -40,13 +40,13 @@ def main():
     x_load()
     iterate(0,2)
     no=0
-    mp.prepare2()
+    mp.prepare()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.55,1.0)
+    mp.xlim(0.5501,1.0)
 #     mp.ylim(0, 1.05)
-    mp.ylim(0, 0.65)
+    mp.ylim(-0.001, 0.65)
     mp.legendUL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")

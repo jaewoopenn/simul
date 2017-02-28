@@ -34,10 +34,12 @@ def iterate(s,t):
 def main():
     iterate(0,5)
     no=0
+    mp.prepare()
+    
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.55,1.0)
+    mp.xlim(0.5501,1.0)
 #     mp.log()
     mp.ylim(0, 1.02)
     mp.legend()

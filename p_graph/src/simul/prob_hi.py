@@ -39,11 +39,13 @@ def main():
     iter(1,2)
     iter(0,1)
     no=0
+    mp.prepare()
+
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.05,0.95)
-    mp.ylim(0, 1.05)
+    mp.xlim(0.0501,0.95)
+    mp.ylim(-0.001, 1.05)
 #     mp.ylim(0, 0.65)
     mp.legendUL()
     mp.xlabel("Probability to be a HI-task")
