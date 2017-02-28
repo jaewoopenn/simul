@@ -6,8 +6,7 @@ import util.MUtil;
 import util.TEngine;
 
 public class PlatformMP5 {
-	public static int idx=3;
-//	public static int idx=-1;
+	public static int idx=4;
 	public static int log_level=3;
 	public int test1() 
 	{
@@ -57,12 +56,36 @@ public class PlatformMP5 {
 	}
 	public  int test4() 
 	{
+//		int isReal=0;
+		int isReal=1;
+		Log.prn(9, "test4 "+isReal);
+		PlatformMP6 p3=new PlatformMP6(); // TM DMR
+		p3.isReal=isReal;
+		p3.test1();
+		p3.test2();
+		p3.test3();
+		MUtil.sendMail("DMR anal 4 OK");
 		return 0;
 	}
 	public  int test5() 
 	{
-		test3();
-		test4();
+//		int isReal=0;
+		int isReal=1;
+		Log.prn(9, "test5 "+isReal);
+
+		PlatformMP4 p2=new PlatformMP4(); // TM DMR
+		p2.isReal=isReal;
+		p2.test1();
+		p2.test2();
+		p2.test3();
+	
+		Log.prn(9, "test4 "+isReal);
+		PlatformMP6 p3=new PlatformMP6(); // TM DMR
+		p3.isReal=isReal;
+		p3.test1();
+		p3.test2();
+		p3.test3();
+		MUtil.sendMail("DMR anal 5 OK");		
 		return 0;
 	}
 	public  int test6() 
