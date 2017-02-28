@@ -44,7 +44,7 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(0.001,1)
-    mp.ylim(-0.001, 0.30)
+    mp.ylim(-0.001, 0.35)
     mp.legendUL()
     mp.xlabel("The Probability of Mode Switch")
     mp.ylabel("Deadline Miss Ratio")
