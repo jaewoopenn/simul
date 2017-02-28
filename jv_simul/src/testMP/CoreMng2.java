@@ -18,7 +18,7 @@ import util.MUtil;
 import util.TEngine;
 
 public class CoreMng2 {
-	public static int idx=7;
+	public static int idx=6;
 	public static int log_level=2;
 
 
@@ -131,7 +131,7 @@ public class CoreMng2 {
 		ExpSimulMP eg=new ExpSimulMP();
 		eg.initCores(4);
 		Anal an=new AnalMP(); 
-		String fn="mp/ts/prob_sim_350/taskset_17";
+		String fn="mp/ts/prob_sim_340/taskset_36";
 		TaskMng tm=TaskMng.getFile(fn);
 		Partition p=new Partition(an,tm.getTaskSet());
 		p.anal();
@@ -140,7 +140,7 @@ public class CoreMng2 {
 		sm.setProb(0.5);
 
 //		eg.loadCM(cm,an,1,sm);
-//		eg.loadCM(cm,an,2,sm);
+		eg.loadCM(cm,an,2,sm);
 		eg.prnTasks();
 		eg.simul(0,3000);
 		eg.prn();

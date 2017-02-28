@@ -68,9 +68,9 @@ public class PlatformMP extends Platform{
 	public void simul_in(int algo_num,Anal an,int simul_no){
 		g_fu=new FUtil();
 		for(int r:g_range){
+			setRS(r+"");
 			if(isWrite)
 				g_fu=new FUtil(getRsFN(algo_num));
-			setRS(r+"");
 			for(int j:MUtil.loop(11)){
 				setProb(j*0.1);
 				simul_in_i(r,an,simul_no);
@@ -111,7 +111,7 @@ public class PlatformMP extends Platform{
 		}
 		double avg=sum/size/g_ncpu;
 		Log.prn(3, r+","+MUtil.getStr(g_prob)+":"+MUtil.getStr(avg)+",");
-		g_fu.print(avg+"");
+		g_fu.print(MUtil.getStr(avg));
 		
 	}
 

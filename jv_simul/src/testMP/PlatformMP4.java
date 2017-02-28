@@ -23,8 +23,8 @@ public class PlatformMP4 {
 			p.setDuration(10000);
 			p.setSysNum(5000);
 		} else{
-			p.setDuration(2000);
-			p.setSysNum(1000);
+			p.setDuration(1000);
+			p.setSysNum(100);
 		}
 		p.setProb(0.5);
 		p.setRS("aa");
