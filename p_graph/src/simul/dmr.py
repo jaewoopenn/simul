@@ -7,15 +7,15 @@ import Util.MPlot as mp;
 class gl:
 #     path="exp/rs/"
     path="final_rs/"
-#     RS="util_sim_1"
+#    RS="util_sim_1"
 #     RS="util_sim_4"
     RS="util_sim_7"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']
     marker=['o','v','D','^','s']
-    lab=['EDF-VD','EDF-AD-E','EDF','ICG',]
-    data=[1,2]
+    lab=['EDF-AD-E','EDF-VD','EDF','ICG',]
+    data=[2,1]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
 def load(fn):
