@@ -5,8 +5,8 @@ Created on 2015. 12. 11.
 '''
 import Util.MPlot as mp;
 class gl:
-#     path="final_rs/mp/"
-    path="mp/rs/"
+    path="final_rs/mp/"
+#     path="mp/rs/"
     fn="prob_sim"
     RS="130"
 #     RS="150"
