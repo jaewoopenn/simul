@@ -8,8 +8,8 @@ class gl:
 #     path="exp/rs/"
     path="final_rs/"
 #    RS="util_sim_1"
-#     RS="util_sim_4"
-    RS="util_sim_7"
+    RS="util_sim_4"
+#     RS="util_sim_7"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:']

@@ -9,8 +9,8 @@ class gl:
     path="mp/rs/"
     fn="prob_sim"
 #     RS="260"
-#     RS="300"
-    RS="340"
+    RS="300"
+#     RS="340"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
