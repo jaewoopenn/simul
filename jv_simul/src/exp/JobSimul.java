@@ -77,7 +77,11 @@ public class JobSimul {
 			if(j==null)
 				return null;
 			if(j.exec==0){
-				if(j.isHI==true){
+				if(j.isHI==false){
+					g_jm.removeCur();
+				} else{
+					if(j.tsk.is_HM)
+						return null;
 					if(cur_t>j.vd){
 						Log.prn(9, "Job_simul: vd miss"+j.tsk.tid);
 						Log.prn(9, cur_t+" "+j.vd+" "+j.dl);
@@ -85,8 +89,6 @@ public class JobSimul {
 					}
 					return j.tsk;
 				}
-				else
-					g_jm.removeCur();
 				
 			}
 			else

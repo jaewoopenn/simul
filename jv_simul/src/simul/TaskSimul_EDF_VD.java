@@ -21,7 +21,7 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 		t=null;
 		for(Task tsk:g_tm.getTasks()){
 			if(tsk.is_HI){
-				g_js.getJM().modeswitch(t);
+				g_js.getJM().modeswitch(tsk);
 				tsk.ms();
 			} else {
 				dropTask_base(tsk);
