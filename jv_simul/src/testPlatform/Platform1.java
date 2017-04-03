@@ -8,7 +8,7 @@ import util.Log;
 import util.TEngine;
 
 public class Platform1 {
-	public static int idx=1;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int kind=0;

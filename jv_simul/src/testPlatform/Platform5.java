@@ -1,27 +1,27 @@
 package testPlatform;
 
 
-import util.MUtil;
 import util.TEngine;
 
 public class Platform5 {
-	public static int idx=5;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int test1() 
 	{
 		Platform1 p=new Platform1(); // TM DMR
-//		p.isReal=0;
-		p.isReal=1;
+		p.isReal=0;
+//		p.isReal=1;
 		p.kind=0;
-//		p.test1();
-//		p.test2();
+		p.test1();
+		p.test2();
 //		p.prob=1;
 //		p.test3();
 		p.prob=4;
 		p.test3();
 //		p.prob=7;
 //		p.test3();
+		
 //		p.kind=1;
 //		p.prob=4;
 //		p.test1();
@@ -34,17 +34,17 @@ public class Platform5 {
 	public int test2() 
 	{
 		Platform2 p=new Platform2();  // TM SCH
-//		p.isReal=0;
-		p.isReal=1;
+		p.isReal=0;
+//		p.isReal=1;
 		p.test1();
 		p.test2();
 		p.test3();
-		MUtil.sendMail("SCH anal OK");
+//		MUtil.sendMail("SCH anal OK");
 		return 0;
 	}
 	public int test3() 
 	{
-		Platform3 p=new Platform3();  // TM SCH
+		Platform3 p=new Platform3();  // TM DMR DUR
 		p.isReal=0;
 //		p.isReal=1;
 		p.test1();

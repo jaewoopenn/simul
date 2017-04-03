@@ -18,12 +18,13 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 	
 	@Override
 	public void modeswitch_in(Task t) {
+		t=null;
 		for(Task tsk:g_tm.getTasks()){
 			if(tsk.is_HI){
 				g_js.getJM().modeswitch(t);
-				t.ms();
+				tsk.ms();
 			} else {
-				dropTask_base(t);
+				dropTask_base(tsk);
 			}
 		}
 	}

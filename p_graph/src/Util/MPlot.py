@@ -39,7 +39,10 @@ def plot3(x,v,l,la,ma):
 
 def xlim(l,u):
     plt.xlim(l,u)
-    
+
+def xticks(x,xt):
+    plt.xticks(x,xt)
+
 def ylim(l,u):
     plt.ylim(l,u)
 def show():

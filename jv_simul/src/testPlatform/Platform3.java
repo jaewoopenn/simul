@@ -8,7 +8,7 @@ import util.Log;
 import util.TEngine;
 
 public class Platform3 {
-	public static int idx=1;
+	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int kind=0;
@@ -39,7 +39,7 @@ public class Platform3 {
 			p.setSysNum(5000);
 		} else{
 			p.setDuration(100);
-			p.setSysNum(10);
+			p.setSysNum(1000);
 		}
 		p.setProb(prob*0.1);
 		p.setRS(prob+"");
@@ -49,25 +49,33 @@ public class Platform3 {
 	
 	public int test1() 
 	{
+		ConfigGen eg=ConfigGen.getCfg();
+		eg.setParam("p_lb","50");
+		eg.setParam("p_ub","300");
+		PlatformTM p=getP();
+		p.writeCfg(eg);
+		Log.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
+		PlatformTM p=getP();
+		p.genTS(true);
 		return 1;
 	}
 	public int test3() 
 	{
 		PlatformTM p=getP();
 //		p.isWrite=false;
-		p.setDuration(1000);
-		p.simul();
-		p.setRS("3");
+//		p.setDuration(1000);
+//		p.setRS("D3");
+//		p.simul();
 		p.setDuration(10000);
+		p.setRS("D4");
 		p.simul();
-		p.setRS("4");
 		p.setDuration(100000);
+		p.setRS("D5");
 		p.simul();
-		p.setRS("5");
 		
 		return 1;
 	}
