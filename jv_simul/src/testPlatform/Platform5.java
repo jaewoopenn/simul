@@ -50,6 +50,7 @@ public class Platform5 {
 		p.test1();
 		p.test2();
 		p.test3();
+//		p.test4();
 //		MUtil.sendMail("SCH anal OK");
 		return 0;
 	}

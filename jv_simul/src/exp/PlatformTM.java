@@ -81,7 +81,7 @@ public class PlatformTM extends Platform{
 	
 	public void simul() {
 		write_x_axis();
-//		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
 		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
 	}
 	public void simul_in(int no,Anal an,TaskSimul tsim){

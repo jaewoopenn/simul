@@ -2,15 +2,19 @@ package testPlatform;
 
 
 
+import anal.AnalEDF_AD_E;
+import anal.AnalEDF_VD;
 import exp.PlatformTM;
 import gen.ConfigGen;
+import simul.TaskSimul_EDF_AD_E;
+import simul.TaskSimul_EDF_VD;
 import util.Log;
 import util.TEngine;
 
 public class Platform3 {
-	public static int idx=3;
+	public static int idx=5;
 //	public static int idx=-1;
-	public static int log_level=3;
+	public static int log_level=1;
 	public int kind=0;
 	public int isReal=0;
 //	public int prob=1;
@@ -67,34 +71,40 @@ public class Platform3 {
 	{
 		PlatformTM p=getP();
 //		p.isWrite=false;
-//		p.setDuration(1000);
-//		p.setRS("D3");
-//		p.simul();
-		p.setDuration(10000);
-		p.setRS("D4");
-		p.simul();
-		p.setDuration(100000);
-		p.setRS("D5");
-		p.simul();
-		
+		p.setDuration(20000);
+		p.setRS("D3");
+		p.simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
+//		p=getP();
+//		p.setDuration(10000);
+//		p.setRS("D4");
+//		p.simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
+//		p=getP();
+//		p.setDuration(20000);
+//		p.setRS("D5");
+//		p.simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
 		return 1;
 	}
 	public  int test4() 
 	{
 		PlatformTM p=getP();
-//		for(int i=0;i<1000;i++)
-//			p.simul_one(0,2,i);
-		p.simul_one(0,0,30);
-//		p.simul_one(1,5,999);
-//		p.simul_one(0,5,8);
-//		p.simul_one(0,9,8);
+//		p.isWrite=false;
+		p.setDuration(10000);
+		p.setRS("D3");
+		p.simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
+		p.setDuration(50000);
+		p.setRS("D4");
+		p.simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
+		p.setDuration(100000);
+		p.setRS("D5");
+		p.simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
 		return 1;
 	}
 	public  int test5() 
 	{
 		PlatformTM p=getP();
-		p.simul_vd();
-		return 0;
+		p.setDuration(200000);
+		p.simul_one(0,0,55000);
+		return 1;
 	}
 	public  int test6() 
 	{
