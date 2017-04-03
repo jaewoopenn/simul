@@ -28,7 +28,7 @@ public class Platform3 {
 		PlatformTM p=getCommmon();
 		p.setTSName("util_sim");
 		p.setKinds(0);
-		p.setStart(75);
+		p.setStart(85);
 		p.setSize(1);
 		p.setStep(5);
 		return p;
@@ -71,32 +71,25 @@ public class Platform3 {
 	{
 		PlatformTM p=getP();
 //		p.isWrite=false;
-		p.setDuration(20000);
+		p.setDuration(8000);
 		p.setRS("D3");
-		p.simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
-//		p=getP();
-//		p.setDuration(10000);
-//		p.setRS("D4");
-//		p.simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
-//		p=getP();
-//		p.setDuration(20000);
-//		p.setRS("D5");
-//		p.simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
+		p.simul();
+		p.setDuration(10000);
+		p.setRS("D4");
+		p.simul();
+		p.setDuration(30000);
+		p.setRS("D5");
+		p.simul();
+		p.setDuration(50000);
+		p.setRS("D6");
+		p.simul();
+		p.setDuration(100000);
+		p.setRS("D7");
+		p.simul();
 		return 1;
 	}
-	public  int test4() 
+	public int test4() 
 	{
-		PlatformTM p=getP();
-//		p.isWrite=false;
-		p.setDuration(10000);
-		p.setRS("D3");
-		p.simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
-		p.setDuration(50000);
-		p.setRS("D4");
-		p.simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
-		p.setDuration(100000);
-		p.setRS("D5");
-		p.simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
 		return 1;
 	}
 	public  int test5() 

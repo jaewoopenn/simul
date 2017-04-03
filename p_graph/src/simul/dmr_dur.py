@@ -31,8 +31,8 @@ def iterate(s,t):
         gl.vv[i].append(v[0])
 
 def x_load():
-    gl.x=[1,2,3]
-    gl.xticks=["10^3","10^4","10^5"]
+    gl.x=[1,2,3,4,5]
+    gl.xticks=["8000","10000","30000","50000","100000"]
 
 def main():
     x_load()
@@ -45,6 +45,10 @@ def main():
     gl.RS="util_sim_D4"
     iterate(0,2)
     gl.RS="util_sim_D5"
+    iterate(0,2)
+    gl.RS="util_sim_D6"
+    iterate(0,2)
+    gl.RS="util_sim_D7"
     iterate(0,2)
     print gl.vv
 #     return
@@ -60,8 +64,8 @@ def main():
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"
-#     mp.savefig("/Users/jaewoo/data/fig/"+gl.RS+".pdf")
     mp.xticks(gl.x,gl.xticks)
+    mp.savefig("/Users/jaewoo/data/fig/"+gl.RS+".pdf")
     mp.show()
 
 
