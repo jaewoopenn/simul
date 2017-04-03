@@ -5,7 +5,7 @@ import util.MUtil;
 import util.TEngine;
 
 public class Platform5 {
-	public static int idx=1;
+	public static int idx=5;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int test1() 
@@ -44,7 +44,13 @@ public class Platform5 {
 	}
 	public int test3() 
 	{
-
+		Platform3 p=new Platform3();  // TM SCH
+		p.isReal=0;
+//		p.isReal=1;
+		p.test1();
+		p.test2();
+		p.test3();
+//		MUtil.sendMail("SCH anal OK");
 		return 0;
 	}
 	public  int test4() 
