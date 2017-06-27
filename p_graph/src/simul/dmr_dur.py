@@ -61,7 +61,7 @@ def main():
 #     mp.ylim(0, 1.05)
     mp.ylim(-0.001, 0.65)
     mp.legendUL()
-    mp.xlabel("Utilization Bound")
+    mp.xlabel("Simulation Duration")
     mp.ylabel("Deadline Miss Ratio")
     print "hihi"
     mp.xticks(gl.x,gl.xticks)

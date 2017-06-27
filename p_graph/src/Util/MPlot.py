@@ -12,7 +12,7 @@ def prepare():
     plt.figure(figsize=(8,5))
 
 def prepare2():
-    plt.figure(figsize=(8,7))
+    plt.figure(figsize=(7,7))
         
 def legend():
     font= matplotlib.font_manager.FontProperties(weight="normal") 

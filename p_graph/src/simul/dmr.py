@@ -7,8 +7,8 @@ import Util.MPlot as mp;
 class gl:
 #     path="exp/rs/"
     path="final_rs/"
-#    RS="util_sim_1"
-    RS="util_sim_4"
+    RS="util_sim_1"
+#     RS="util_sim_4"
 #     RS="util_sim_7"
     x=[]
     vv=[]
@@ -40,7 +40,7 @@ def main():
     x_load()
     iterate(0,2)
     no=0
-    mp.prepare()
+    mp.prepare2()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1

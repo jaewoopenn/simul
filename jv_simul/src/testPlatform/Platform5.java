@@ -45,8 +45,8 @@ public class Platform5 {
 	public int test3() 
 	{
 		Platform3 p=new Platform3();  // TM DMR DUR
-		p.isReal=0;
-//		p.isReal=1;
+//		p.isReal=0;
+		p.isReal=1;
 		p.test1();
 		p.test2();
 		p.test3();
