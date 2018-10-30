@@ -3,6 +3,7 @@
 import util.TEngine;
 
 public class Mock1 {
+//	public static int idx=-1;
 	public static int idx=1;
 	public static int log_level=1;
 	public int test1() 
