@@ -1,4 +1,4 @@
-package simul;
+package sim;
 
 import basic.Task;
 import util.Log;
