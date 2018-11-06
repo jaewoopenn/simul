@@ -9,6 +9,7 @@ import java.util.Vector;
 
 
 public class FUtil {
+	public static final String g_path="D:/data/";
 	private String g_fn;
 	private Vector<String> g_v;
 	public FUtil(){
@@ -35,7 +36,7 @@ public class FUtil {
 			return;
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("/Users/jaewoo/data/"+g_fn);
+			writer = new PrintWriter(g_path+g_fn);
 			for (String s:g_v){
 				writer.println(s);
 			}
@@ -50,7 +51,7 @@ public class FUtil {
 	public void load(){
 		if(g_fn==null)
 			return;
-	    File file = new File("/Users/jaewoo/data/"+g_fn);
+	    File file = new File(g_path+g_fn);
 		g_v=new Vector<String>();
 		try {
 			FileReader fr = new FileReader(file);
@@ -76,7 +77,7 @@ public class FUtil {
 		return g_v;
 	}
 	public static void makeDir(String str) {
-		 File theDir = new File("/Users/jaewoo/data/"+str);
+		 File theDir = new File(FUtil.g_path+str);
 		if (theDir.exists()) {
 //			System.out.println("dir exist");
 			return;

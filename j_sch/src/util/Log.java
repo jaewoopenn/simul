@@ -47,4 +47,8 @@ public class Log {
 	public static void prn_nl(int lv) {
 		prn(lv,"");
 	}
+	public static void prnErr(String s) {
+		System.out.println(s);
+		
+	}
 }

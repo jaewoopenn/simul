@@ -3,6 +3,8 @@ package basic;
 import java.util.Arrays;
 import java.util.Vector;
 
+import util.Log;
+
 
 
 public class TaskSet {
@@ -11,6 +13,9 @@ public class TaskSet {
 	
 	public TaskSet(){
 		g_taskV=new Vector<Task>();
+	}
+	public TaskSet( Vector<Task> a) {
+		g_taskV=a;
 	}
 
 	public TaskSet(Task[] a) {
@@ -29,14 +34,6 @@ public class TaskSet {
 	public void removeLast(){
 		g_taskV.remove(g_taskV.size()-1);
 	}
-	public void removeCore(int core) {
-		Vector<Task> v=new Vector<Task>();
-		for(Task t:g_taskV){
-			if(!t.is_moved)
-				v.add(t);
-		}
-		g_taskV=v;
-	}
 	
 	public void transform_Array(){
 		int size=g_taskV.size();
@@ -51,6 +48,8 @@ public class TaskSet {
 		return g_tasks.length;
 	}
 	public Task[] getArr(){
+		if(g_tasks==null)
+			Log.prnErr("g_task is null");
 		return g_tasks;
 	}
 	public void sortLo() {
