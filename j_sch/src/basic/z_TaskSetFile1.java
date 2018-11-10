@@ -5,7 +5,7 @@ import basic.TaskSetFile;
 import util.TEngine;
 
 public class z_TaskSetFile1 {
-	public static int idx=2;
+	public static int idx=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1()

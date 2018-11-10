@@ -9,7 +9,7 @@ import java.util.Vector;
 
 
 public class FUtil {
-	public static final String g_path="D:/data/";
+	public static final String g_path="/data/";
 	private String g_fn;
 	private Vector<String> g_v;
 	public FUtil(){
