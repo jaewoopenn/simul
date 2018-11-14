@@ -16,8 +16,9 @@ public class SysLoad {
 		String fn=g_cfg.get_fn();
 		Log.prn(1, fn);
 		FUtil fu=new FUtil(fn);
+		
 		fu.load();
-		TaskSetFile.load(fu);
+		TaskSetFile.loadView(fu);
 		
 	}
 	

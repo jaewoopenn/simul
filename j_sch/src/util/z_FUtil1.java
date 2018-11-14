@@ -1,8 +1,8 @@
 package util;
 
 public class z_FUtil1 {
+	public static int idx=3;
 	public static int log_level=1;
-	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
@@ -14,10 +14,24 @@ public class z_FUtil1 {
 	}
 	public int test2() // load
 	{
+		FUtil f=new FUtil("test\\t\\taskset");
+		f.br_open();
+		String s=f.read();
+		Log.prn(1, s);
+		f.br_close();
 		return 0;
 	}
 	public int test3() // load one
 	{
+		FUtil f=new FUtil("test\\t\\taskset");
+		f.br_open();
+		f.readSplit("------");
+		f.view();
+		Log.prn(1, "----------");
+		
+		f.readSplit("------");
+		f.view();
+		f.br_close();
 		return 0;
 	}
 	public  int test4() // load copy\

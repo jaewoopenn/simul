@@ -23,13 +23,6 @@ public class z_SysGen1 {
 	}
 	public int test2() // load
 	{
-		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
-		cfg.readFile();
-		String fn=cfg.get_fn();
-		Log.prn(1, fn);
-		FUtil fu=new FUtil(fn);
-		fu.load();
-		TaskSetFile.load(fu);
 		return 0;
 	}
 	public int test3() // load one

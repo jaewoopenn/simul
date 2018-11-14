@@ -61,7 +61,6 @@ public class AnalEDF_VD extends Anal {
 
 	@Override
 	public double getExtra(int i) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

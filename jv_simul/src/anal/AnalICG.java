@@ -32,7 +32,6 @@ public class AnalICG extends Anal {
 
 	@Override
 	public double computeX() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -97,12 +96,10 @@ public class AnalICG extends Anal {
 	}
 	@Override
 	public void prn() {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public double getExtra(int i) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

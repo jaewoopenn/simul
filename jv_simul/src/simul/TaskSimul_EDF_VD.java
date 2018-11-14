@@ -32,7 +32,6 @@ public class TaskSimul_EDF_VD extends TaskSimul{
 
 	@Override
 	protected void recover_in() {
-		// TODO Auto-generated method stub
 		
 	}
 

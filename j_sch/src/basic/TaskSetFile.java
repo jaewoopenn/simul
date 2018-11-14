@@ -91,13 +91,6 @@ public class TaskSetFile {
 	}
 		
 	
-	// import 
-	public static TaskSetFile loadFile(String f) {
-	    FUtil fu=new FUtil(f);
-	    fu.load();
-	    Vector<Task> tasks=TaskSetFile.loadFile(fu,0,fu.size());
-	    return new TaskSetFile(tasks);
-	}
 
 
 	public TaskSet getTS() {
@@ -126,22 +119,29 @@ public class TaskSetFile {
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 		fu.print(txt);
 	}
-	public static void load(FUtil fu) {
+	public static void loadView(FUtil fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 	    	Log.prn(1,line);
 		}
 	}
+
+	// import 
+	public static TaskSetFile loadFile(String f) {
+	    FUtil fu=new FUtil(f);
+	    fu.load();
+	    return TaskSetFile.loadFile_in(fu);
+	}
 	
-	public static Vector<Task>  loadFile(FUtil fu,int st,int size) {
+	public static TaskSetFile  loadFile_in(FUtil fu) {
 	    Vector<Task> tasks=new Vector<Task>();
-	    for(int i=st;i<st+size;i++){
+		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 //	    	Log.prn(1, line);
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return tasks;
+	    return new TaskSetFile(tasks);
 	}
 	
 	public static Task loadTask(String line){

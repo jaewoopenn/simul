@@ -95,7 +95,6 @@ public class AnalEDF_AD_E extends Anal {
 	}
 	@Override
 	public double getExtra(int i) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

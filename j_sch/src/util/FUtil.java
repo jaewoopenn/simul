@@ -6,11 +6,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Vector;
+/*
+TODO Change load all to load step by step 
 
+
+*/
 
 public class FUtil {
 	public static final String g_path="/data/";
 	private String g_fn;
+	private BufferedReader g_br;
 	private Vector<String> g_v;
 	public FUtil(){
 		g_fn=null;
@@ -25,6 +30,11 @@ public class FUtil {
 	}
 	public String get(int idx){
 		return g_v.elementAt(idx);
+	}
+	public void view() {
+		for(int i=0;i<size();i++) {
+			Log.prn(1, get(i));
+		}
 	}
 	public void print(String txt){
 		if(g_fn!=null)
@@ -48,24 +58,69 @@ public class FUtil {
 		}
 		
 	}
-	public void load(){
+	public void br_open() {
 		if(g_fn==null)
 			return;
 	    File file = new File(g_path+g_fn);
-		g_v=new Vector<String>();
 		try {
 			FileReader fr = new FileReader(file);
-		    BufferedReader br = new BufferedReader(fr);
-		    String line;
-		    while((line = br.readLine()) != null){
-		    	g_v.add(line);
-		    }
-		    br.close();
-		    fr.close();	
+			g_br = new BufferedReader(fr);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		
+	}
+	public String read() {
+		String line=null;
+		try {
+			line = g_br.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+		return line;
+	}
+	public void br_close() {
+		try {
+			g_br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+	}
+	public boolean readSplit(String split) {
+		g_v=new Vector<String>();
+		try {
+		    String line;
+		    while((line =g_br.readLine()) != null){
+		    	if(line.equals(split)) {
+		    		return true;
+		    	}
+		    	g_v.add(line);
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return false;
+		
+	}
+	public void load(){
+		br_open();
+		g_v=new Vector<String>();
+		try {
+		    String line;
+		    while((line = g_br.readLine()) != null){
+		    	g_v.add(line);
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		br_close();
 	}
 	public void prn() {
 		for(String s:g_v){
