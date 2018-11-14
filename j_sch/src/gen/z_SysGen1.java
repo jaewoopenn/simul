@@ -8,21 +8,38 @@ import util.Log;
 import util.TEngine;
 
 public class z_SysGen1 {
-	public static int log_level=1;
 	public static int idx=2;
+	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
+//		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
+		ConfigGen cfg=new ConfigGen("test/t1/cfg_0.txt");
 		cfg.readFile();
 		SysGen eg=new SysGenTM(cfg);
-		eg.gen();
+		String fn=eg.get_fn();
+		eg.gen(fn);
 		return 1;
 
 	}
 	public int test2() // load
 	{
+		String path="test/t1/";
+		FUtil fu=new FUtil(path+"a_cfg_list.txt");
+		FUtil fu_ts=new FUtil(path+"a_ts_list.txt");
+		int n=fu.load();
+//		Log.prn(1, n+" ");
+		for(int i=0;i<fu.size();i++) {
+			ConfigGen cfg=new ConfigGen(fu.get(i));
+			cfg.readFile();
+			SysGen eg=new SysGenTM(cfg);
+			String fn=eg.get_fn();
+			eg.gen(fn);
+			fu_ts.write(fn);
+		}
+		fu_ts.save();
+
 		return 0;
 	}
 	public int test3() // load one

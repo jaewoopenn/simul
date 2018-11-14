@@ -1,17 +1,20 @@
 package gen;
 import gen.ConfigGen;
+import util.FUtil;
 import util.Log;
 import util.TEngine;
 
 public class z_ConfigGen2 {
-	public static int log_level=2;
-	public static int idx=5;
+	public static int idx=1;
+	public static int log_level=1;
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
 		ConfigGen eg=getCfg();
-		eg.setParam("subfix", "drop");
-		eg.setParam("num","500");
+		String path="test/t1";
+		FUtil fu=new FUtil(path+"/a_cfg_list.txt");
+		eg.setParam("subfix", path);
+		eg.setParam("num","10");
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
@@ -19,12 +22,20 @@ public class z_ConfigGen2 {
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			eg.write("cfg/cfgd_"+i+".txt");
+			String fn=path+"/cfg_"+i+".txt";
+			eg.write(fn);
+			fu.write(fn);
 		}
+		fu.save();
 		return 1;
 	}
 	public int test2() 
 	{
+		String path="test/t1";
+		FUtil fu=new FUtil(path+"/list.txt");
+		int n=fu.load();
+		Log.prn(1, n+" ");
+		fu.view();
 		return 0;
 	}
 	public int test3() 

@@ -14,6 +14,7 @@ TODO Change load all to load step by step
 
 public class FUtil {
 	public static final String g_path="/data/";
+	private boolean isWrite=true;
 	private String g_fn;
 	private BufferedReader g_br;
 	private Vector<String> g_v;
@@ -36,7 +37,11 @@ public class FUtil {
 			Log.prn(1, get(i));
 		}
 	}
-	public void print(String txt){
+	public void write(String txt){
+		if(!isWrite) {
+			Log.err("read mode, attempt write");
+			System.exit(1);
+		}
 		if(g_fn!=null)
 			g_v.add(txt);
 	}
@@ -69,9 +74,13 @@ public class FUtil {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		
+		isWrite=true;
 	}
 	public String read() {
+		if(isWrite) {
+			Log.err("write mode, attempt read");
+			System.exit(1);
+		}
 		String line=null;
 		try {
 			line = g_br.readLine();
@@ -108,7 +117,7 @@ public class FUtil {
 		return false;
 		
 	}
-	public void load(){
+	public int load(){
 		br_open();
 		g_v=new Vector<String>();
 		try {
@@ -121,12 +130,7 @@ public class FUtil {
 			System.exit(1);
 		}
 		br_close();
-	}
-	public void prn() {
-		for(String s:g_v){
-			Log.prn(1, s);
-		}
-		
+		return g_v.size();
 	}
 	public Vector<String> getVec() {
 		return g_v;

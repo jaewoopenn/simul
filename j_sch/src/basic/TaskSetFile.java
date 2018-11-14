@@ -109,7 +109,7 @@ public class TaskSetFile {
 	public static void writeTS(FUtil fu,TaskSet tasks){
 		for(Task t:tasks.getArr())
 			writeTask(fu,t);
-		fu.print("------");
+		fu.write("------");
 	}
 	
 
@@ -117,7 +117,7 @@ public class TaskSetFile {
 		int isHI=t.is_HI?1:0;
 		String txt=t.tid+","+t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
-		fu.print(txt);
+		fu.write(txt);
 	}
 	public static void loadView(FUtil fu) {
 		for(int i=0;i<fu.size();i++) {

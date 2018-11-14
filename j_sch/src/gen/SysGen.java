@@ -24,13 +24,16 @@ public abstract class SysGen {
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
-	public void gen() {
+	public String get_fn() {
+		return g_cfg.get_fn();
+		
+	}
+	public void gen(String fn) {
 		int num=prepare();
 		int i=0;
-		String fn=g_cfg.get_dir();
-		Log.prn(2, fn);
-		FUtil.makeDir(fn);
-		fn=g_cfg.get_fn();
+//		String fn=g_cfg.get_dir();
+//		Log.prn(2, fn);
+//		FUtil.makeDir(fn);
 		FUtil fu=new FUtil(fn);
 		while(i<num){
 //			Log.prn(2, i+"");

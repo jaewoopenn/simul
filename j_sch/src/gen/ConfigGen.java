@@ -46,7 +46,7 @@ public class ConfigGen {
 	public String get_fn(){
 		String subfix=readPar("subfix").trim();
 		String mod=readPar("mod").trim();
-		String fn=subfix+"/"+mod+"/taskset";
+		String fn=subfix+"/taskset_"+mod;
 		return fn;
 		
 	}
@@ -58,13 +58,13 @@ public class ConfigGen {
 		return fn;
 		
 	}
-	public String get_dir(){
-		String subfix=readPar("subfix").trim();
-		String mod=readPar("mod").trim();
-		String fn=subfix+"/"+mod;
-		return fn;
-		
-	}
+//	public String get_dir(){
+//		String subfix=readPar("subfix").trim();
+//		String mod=readPar("mod").trim();
+//		String fn=subfix+"/"+mod;
+//		return fn;
+//		
+//	}
 	
 	
 	public boolean setParam(String field, String val){
@@ -101,7 +101,7 @@ public class ConfigGen {
             	return;
 			}
 			String txt=s+":"+v;
-			fu.print(txt);
+			fu.write(txt);
 		}
 		fu.save();
 		
