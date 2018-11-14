@@ -30,25 +30,27 @@ public abstract class SysGen {
 		String fn=g_cfg.get_dir();
 		Log.prn(2, fn);
 		FUtil.makeDir(fn);
+		fn=g_cfg.get_fn();
+		FUtil fu=new FUtil(fn);
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();
 			int rs=check();
 			if(rs==0)
 				continue;
-			writeSys(i);
+			writeSys(fu);
 			i++;
 		}
+		fu.save();
 		
 	}
 	
-	public int writeSys(int i)
+	public int writeSys(FUtil fu)
 	{
-		String fn=g_cfg.get_fn(i);
 		
 		TaskSet ts=new TaskSet(g_tg.getAll());
 		ts.transform_Array();
-		TaskSetFile.writeFile(fn, ts);
+		TaskSetFile.writeTS(fu, ts);
 		
 		return 1;
 	}

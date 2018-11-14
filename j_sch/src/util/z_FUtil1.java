@@ -1,35 +1,19 @@
-package gen;
-import basic.TaskSetFile;
-import gen.ConfigGen;
-import gen.SysGen;
-import gen.SysGenTM;
-import util.FUtil;
-import util.Log;
-import util.TEngine;
+package util;
 
-public class z_SysGen1 {
+public class z_FUtil1 {
 	public static int log_level=1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
-		cfg.readFile();
-		SysGen eg=new SysGenTM(cfg);
-		eg.gen();
+		FUtil f=new FUtil("test\\t\\taskset");
+		f.load();
 		return 1;
 
 	}
 	public int test2() // load
 	{
-		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
-		cfg.readFile();
-		String fn=cfg.get_fn();
-		Log.prn(1, fn);
-		FUtil fu=new FUtil(fn);
-		fu.load();
-		TaskSetFile.load(fu);
 		return 0;
 	}
 	public int test3() // load one
@@ -67,9 +51,9 @@ public class z_SysGen1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_SysGen1.class;
-		z_SysGen1 m=new z_SysGen1();
-		int[] aret=z_SysGen1.gret;
+		Class c = z_FUtil1.class;
+		z_FUtil1 m=new z_FUtil1();
+		int[] aret=z_FUtil1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

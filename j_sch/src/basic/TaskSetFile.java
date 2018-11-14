@@ -113,6 +113,12 @@ public class TaskSetFile {
 		fu.save();
 	}
 	
+	public static void writeTS(FUtil fu,TaskSet tasks){
+		for(Task t:tasks.getArr())
+			writeTask(fu,t);
+		fu.print("------");
+	}
+	
 
 	public static void writeTask(FUtil fu, Task t) {
 		int isHI=t.is_HI?1:0;
@@ -120,7 +126,13 @@ public class TaskSetFile {
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 		fu.print(txt);
 	}
-
+	public static void load(FUtil fu) {
+		for(int i=0;i<fu.size();i++) {
+	    	String line=fu.get(i);
+	    	Log.prn(1,line);
+		}
+	}
+	
 	public static Vector<Task>  loadFile(FUtil fu,int st,int size) {
 	    Vector<Task> tasks=new Vector<Task>();
 	    for(int i=st;i<st+size;i++){
@@ -131,6 +143,7 @@ public class TaskSetFile {
 	    }
 	    return tasks;
 	}
+	
 	public static Task loadTask(String line){
         String[] words=line.split(",");
         int tid=Integer.valueOf(words[0]).intValue();
