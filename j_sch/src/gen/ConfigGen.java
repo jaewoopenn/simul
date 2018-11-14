@@ -43,9 +43,13 @@ public class ConfigGen {
 		}
 //			Log.prn(1, s+":"+readPar(s));
 	}
+	public String get_mod() {
+		return readPar("mod").trim();
+		
+	}
 	public String get_fn(){
 		String subfix=readPar("subfix").trim();
-		String mod=readPar("mod").trim();
+		String mod=get_mod();
 		String fn=subfix+"/taskset_"+mod;
 		return fn;
 		

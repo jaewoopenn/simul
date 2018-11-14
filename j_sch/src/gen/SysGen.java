@@ -28,6 +28,9 @@ public abstract class SysGen {
 		return g_cfg.get_fn();
 		
 	}
+	public String get_mod() {
+		return g_cfg.get_mod();
+	}
 	public void gen(String fn) {
 		int num=prepare();
 		int i=0;

@@ -23,11 +23,12 @@ public class z_SysGen1 {
 		return 1;
 
 	}
-	public int test2() // load
+	public int test2() 
 	{
 		String path="test/t1/";
 		FUtil fu=new FUtil(path+"a_cfg_list.txt");
 		FUtil fu_ts=new FUtil(path+"a_ts_list.txt");
+		FUtil fu_rs=new FUtil(path+"a_x_list.txt");
 		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
@@ -37,8 +38,11 @@ public class z_SysGen1 {
 			String fn=eg.get_fn();
 			eg.gen(fn);
 			fu_ts.write(fn);
+			String mod=eg.get_mod();
+			fu_rs.write(mod);
 		}
 		fu_ts.save();
+		fu_rs.save();
 
 		return 0;
 	}

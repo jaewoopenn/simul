@@ -11,11 +11,19 @@ import gen.SysLoad;
 import util.FUtil;
 import util.Log;
 
-public class Platform {
+public class DataAnal {
 	private String g_path;
 	
-	public Platform(String path) {
+	public DataAnal(String path) {
 		g_path=path;
+	}
+	public void load_x(String fn) {
+		FUtil fu=new FUtil(g_path+fn);
+		fu.load();
+		for(int i=0;i<fu.size();i++) {
+			String s=fu.get(i);
+			Log.prn(1,s);
+		}
 	}
 
 	public void gen(String cfg_list) {
