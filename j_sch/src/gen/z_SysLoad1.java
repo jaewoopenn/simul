@@ -1,4 +1,5 @@
 package gen;
+import basic.TaskMng;
 import basic.TaskSetFile;
 import gen.ConfigGen;
 import gen.SysGen;
@@ -8,7 +9,7 @@ import util.Log;
 import util.TEngine;
 
 public class z_SysLoad1 {
-	public static int idx=3;
+	public static int idx=5;
 	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
@@ -51,10 +52,21 @@ public class z_SysLoad1 {
 	}
 	public  int test4() // load copy\
 	{
+		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
+		sy.open();
+		TaskMng tm=sy.loadOne();
+		tm.prnInfo();
 		return 0;
 	}
 	public  int test5() //
 	{
+		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
+		sy.open();
+		while(true) {
+			TaskMng tm=sy.loadOne();
+			if(tm==null) break;
+			tm.prnInfo();
+		}
 		return 0;
 	}
 	public  int test6() // 
