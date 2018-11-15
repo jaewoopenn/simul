@@ -10,7 +10,7 @@ public class z_ConfigGen2 {
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getCfg();
 		String path="test/t1";
 		FUtil fu=new FUtil(path+"/a_cfg_list.txt");
 		eg.setParam("subfix", path);
@@ -70,24 +70,6 @@ public class z_ConfigGen2 {
 	{
 		return 0;
 	}
-	public ConfigGen getCfg()	{
-		ConfigGen eg=new ConfigGen("");
-		eg.setParam("u_lb","0.95");
-		eg.setParam("u_ub","1.0");
-		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","300");
-		eg.setParam("tu_lb","0.02");
-		eg.setParam("tu_ub","0.1");
-		eg.setParam("r_lb","0.05");
-		eg.setParam("r_ub","1.0");
-		eg.setParam("prob_hi","0.5");
-		eg.setParam("num","10");
-		eg.setParam("subfix","test");
-		eg.setParam("mod","t");
-		return eg;
-
-	}
-	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
 		Class c = z_ConfigGen2.class;

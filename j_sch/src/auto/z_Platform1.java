@@ -12,7 +12,7 @@ import util.Log;
 import util.TEngine;
 
 public class z_Platform1 {
-	public static int idx=2;
+	public static int idx=5;
 	public static int log_level=1;
 
 	public int test1() 
@@ -104,11 +104,32 @@ public class z_Platform1 {
 	
 	public  int test7()
 	{
-		return 0;
+		String path="test/t1/";
+		String cf="a_cfg_list.txt";
+		ConfigGen eg=ConfigGen.getCfg();
+		FUtil fu=new FUtil(path+cf);
+		eg.setParam("subfix", path);
+		eg.setParam("num","100");
+		int base=50;
+		for(int i=0;i<10;i++){
+			int lb=i*5+base;
+			Log.prn(2, lb+"");
+			eg.setParam("u_lb", (lb)*1.0/100+"");
+			eg.setParam("u_ub", (lb+5)*1.0/100+"");
+			eg.setParam("mod", (lb+5)+"");
+			String fn=path+"/cfg_"+i+".txt";
+			eg.write(fn);
+			fu.write(fn);
+		}
+		fu.save();
+		return 1;
 	}
-	
 	public  int test8()
 	{
+		String path="test/t1/";
+		String cf="a_cfg_list.txt";
+		Platform p=new Platform(path);
+		p.genConfig(cf);
 		return 0;
 	}
 	

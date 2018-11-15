@@ -6,12 +6,11 @@ Created on 2015. 12. 11.
 import Util.MPlot as mp;
 class gl:
     path="/data/test/t1/a_graph.txt"
-    raw=[]
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
-    lab=['EDF','EDF-VD','x','x','x']
+    lab=['EDF-VD','EDF','x','x','x']
     data=[1,2,3,4,5]
 
 def load():

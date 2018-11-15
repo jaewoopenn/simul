@@ -40,9 +40,9 @@ public class Platform {
 	}
 	private Anal getAnal(int sort) {
 		if(sort==0) {
-			return new AnalEDF();
-		} else if(sort==1) {
 			return new AnalEDF_VD();
+		} else if(sort==1) {
+			return new AnalEDF();
 		}
 		return null;
 	}
@@ -76,6 +76,26 @@ public class Platform {
 			}
 			fu.save();
 		}
+		
+	}
+
+	public void genConfig(String cf) {
+		ConfigGen eg=ConfigGen.getCfg();
+		FUtil fu=new FUtil(g_path+cf);
+		eg.setParam("subfix", g_path);
+		eg.setParam("num","100");
+		int base=50;
+		for(int i=0;i<10;i++){
+			int lb=i*5+base;
+			Log.prn(2, lb+"");
+			eg.setParam("u_lb", (lb)*1.0/100+"");
+			eg.setParam("u_ub", (lb+5)*1.0/100+"");
+			eg.setParam("mod", (lb+5)+"");
+			String fn=g_path+"cfg_"+i+".txt";
+			eg.write(fn);
+			fu.write(fn);
+		}
+		fu.save();
 		
 	}
 	
