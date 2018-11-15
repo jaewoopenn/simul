@@ -12,7 +12,7 @@ import util.Log;
 import util.TEngine;
 
 public class z_Platform1 {
-	public static int idx=5;
+	public static int idx=2;
 	public static int log_level=1;
 
 	public int test1() 
