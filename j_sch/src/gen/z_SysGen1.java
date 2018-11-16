@@ -1,10 +1,8 @@
 package gen;
-import basic.TaskSetFile;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenTM;
 import util.FUtil;
-import util.Log;
 import util.TEngine;
 
 public class z_SysGen1 {
@@ -29,7 +27,8 @@ public class z_SysGen1 {
 		FUtil fu=new FUtil(path+"a_cfg_list.txt");
 		FUtil fu_ts=new FUtil(path+"a_ts_list.txt");
 		FUtil fu_rs=new FUtil(path+"a_x_list.txt");
-		int n=fu.load();
+		fu.load();
+//		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));

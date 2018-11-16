@@ -4,7 +4,6 @@ import basic.TaskMng;
 import basic.TaskSet;
 import basic.TaskSetFile;
 import util.FUtil;
-import util.Log;
 
 public abstract class SysGen {
 	protected TaskGenMC g_tg;

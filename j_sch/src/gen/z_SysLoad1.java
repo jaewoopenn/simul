@@ -2,8 +2,6 @@ package gen;
 import basic.TaskMng;
 import basic.TaskSetFile;
 import gen.ConfigGen;
-import gen.SysGen;
-import gen.SysGenTM;
 import util.FUtil;
 import util.Log;
 import util.TEngine;

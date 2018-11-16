@@ -1,8 +1,7 @@
 package auto;
 
 import anal.Anal;
-import anal.AnalEDF;
-import anal.AnalEDF_VD;
+import anal.AnalSel;
 import basic.TaskMng;
 import gen.ConfigGen;
 import gen.SysGen;
@@ -23,7 +22,8 @@ public class Platform {
 		
 		FUtil fu_ts=new FUtil(g_path+"a_ts_list.txt");
 		FUtil fu_rs=new FUtil(g_path+"a_x_list.txt");
-		int n=fu.load();
+		fu.load();
+//		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
@@ -38,20 +38,12 @@ public class Platform {
 		fu_ts.save();
 		fu_rs.save();
 	}
-	private Anal getAnal(int sort) {
-		if(sort==0) {
-			return new AnalEDF_VD();
-		} else if(sort==1) {
-			return new AnalEDF();
-		}
-		return null;
-	}
 	public void anal(String ts_list,int sort) {
 		FUtil fu=new FUtil(g_path+ts_list);
 		
 		FUtil fu_rs=new FUtil(g_path+"a_rs_list."+sort+".txt");
 		fu.load();
-		Anal a=getAnal(sort);
+		Anal a=AnalSel.getAnal(sort);
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
 			String out=fn+".rs."+sort;

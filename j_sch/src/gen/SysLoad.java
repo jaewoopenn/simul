@@ -3,7 +3,6 @@ package gen;
 import basic.TaskMng;
 import basic.TaskSetFile;
 import util.FUtil;
-import util.Log;
 
 public class SysLoad {
 	private FUtil g_fu;

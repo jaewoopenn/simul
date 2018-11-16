@@ -2,16 +2,7 @@ package auto;
 
 import java.util.Vector;
 
-import anal.Anal;
-import anal.AnalEDF;
-import anal.AnalEDF_VD;
-import basic.TaskMng;
-import gen.ConfigGen;
-import gen.SysGen;
-import gen.SysGenTM;
-import gen.SysLoad;
 import util.FUtil;
-import util.Log;
 
 public class DataAnal {
 	private String g_path;
