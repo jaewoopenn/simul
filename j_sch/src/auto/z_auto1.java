@@ -20,7 +20,7 @@ public class z_auto1 {
 		String path="test/t1/";
 		String cl="a_cfg_list.txt";
 		Platform p=new Platform(path);
-		p.gen(cl);
+		p.genTS(cl);
 		return -1;	}
 	public int test3() 
 	{

@@ -11,7 +11,7 @@ import util.FUtil;
 import util.Log;
 import util.TEngine;
 
-public class z_Platform1 {
+public class z_Platform2 {
 	public static int idx=5;
 	public static int log_level=1;
 
@@ -146,9 +146,9 @@ public class z_Platform1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Platform1.class;
-		z_Platform1 m=new z_Platform1();
-		int[] aret=z_Platform1.gret;
+		Class c = z_Platform2.class;
+		z_Platform2 m=new z_Platform2();
+		int[] aret=z_Platform2.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

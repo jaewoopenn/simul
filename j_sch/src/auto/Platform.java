@@ -17,7 +17,27 @@ public class Platform {
 		g_path=path;
 	}
 
-	public void gen(String cfg_list) {
+	public void genConfig(String cf) {
+		ConfigGen eg=ConfigGen.getCfg();
+		FUtil fu=new FUtil(g_path+cf);
+		eg.setParam("subfix", g_path);
+		eg.setParam("num","100");
+		int base=50;
+		for(int i=0;i<10;i++){
+			int lb=i*5+base;
+			Log.prn(2, lb+"");
+			eg.setParam("u_lb", (lb)*1.0/100+"");
+			eg.setParam("u_ub", (lb+5)*1.0/100+"");
+			eg.setParam("mod", (lb+5)+"");
+			String fn=g_path+"cfg_"+i+".txt";
+			eg.write(fn);
+			fu.write(fn);
+		}
+		fu.save();
+		
+	}
+
+	public void genTS(String cfg_list) {
 		FUtil fu=new FUtil(g_path+cfg_list);
 		
 		FUtil fu_ts=new FUtil(g_path+"a_ts_list.txt");
@@ -38,6 +58,7 @@ public class Platform {
 		fu_ts.save();
 		fu_rs.save();
 	}
+	// analyze task set list with algorithm choice
 	public void anal(String ts_list,int sort) {
 		FUtil fu=new FUtil(g_path+ts_list);
 		
@@ -70,26 +91,12 @@ public class Platform {
 		}
 		
 	}
-
-	public void genConfig(String cf) {
-		ConfigGen eg=ConfigGen.getCfg();
-		FUtil fu=new FUtil(g_path+cf);
-		eg.setParam("subfix", g_path);
-		eg.setParam("num","100");
-		int base=50;
-		for(int i=0;i<10;i++){
-			int lb=i*5+base;
-			Log.prn(2, lb+"");
-			eg.setParam("u_lb", (lb)*1.0/100+"");
-			eg.setParam("u_ub", (lb+5)*1.0/100+"");
-			eg.setParam("mod", (lb+5)+"");
-			String fn=g_path+"cfg_"+i+".txt";
-			eg.write(fn);
-			fu.write(fn);
-		}
-		fu.save();
+	// simulate task set list with algorithm choice
+	
+	public void simul(String ts_list,int sort) {
 		
 	}
+
 	
 	
 }
