@@ -105,7 +105,7 @@ public abstract class TaskSimul {
 		if(tsk==null) 
 			return;
 		double prob=g_rutil.getDbl();
-		if(prob<g_sm.getProb())
+		if(prob<g_sm.getMS_Prob())
 			isMS=true;
 		if(isMS){
 			Log.prn(isPrnMS,1, "t:"+t+" mode-switch "+tsk.tid);

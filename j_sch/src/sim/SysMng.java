@@ -3,12 +3,12 @@ package sim;
 
 public class SysMng {
 	private double g_prob;
-	public void setProb(double p) {
+	public void setMS_Prob(double p) {
 		g_prob=p;
 		
 	}
 
-	public double getProb() {
+	public double getMS_Prob() {
 		return g_prob;
 	}
 	
