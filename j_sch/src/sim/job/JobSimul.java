@@ -9,8 +9,8 @@ public class JobSimul {
 	public JobSimul(){
 		g_jm=new JobMng();
 	}
-	public JobSimul(JobMng m){
-		g_jm=m;
+	public void setJM(JobMng jm) {
+		g_jm=jm;
 	}
 	
 	public void add(Job j){
@@ -27,23 +27,7 @@ public class JobSimul {
 		return g_jm.endCheck(et);
 	}
 
-	// deprecated 
-//	public int simulDur(int st, int et){
-//		int cur_t=st;
-//		while(cur_t<et){
-//			if (work(cur_t)==0) return 0;
-//			cur_t++;
-//		}
-//		return 1;
-//	}
-//	
-	private int work(int cur_t){
-		Log.prnc(1, cur_t+" ");
-		dlCheck(cur_t);
-		progress(cur_t,true);
-		Log.prn(1, "");
-		return 1;
-	}
+
 
 	public void simulEnd(int cur_t){
 		if(g_jm.endCheck(cur_t)==0){
@@ -52,12 +36,22 @@ public class JobSimul {
 			System.exit(1);
 		}
 	}
+	
 	public void simulEndPrn(boolean b){
 		if(!b)
 			return;
 		Log.prn(1, "*** Left Jobs  ***");
 		g_jm.prn();
 	}
+	
+	public int work(int cur_t){
+		Log.prnc(1, cur_t+" ");
+		dlCheck(cur_t);
+		progress(cur_t,true);
+		Log.prn(1, "");
+		return 1;
+	}
+	
 	
 	
 	public void dlCheck(int cur_t){
@@ -69,6 +63,28 @@ public class JobSimul {
 		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tsk.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		System.exit(1);
 	}
+	
+	public boolean progress(int cur_t, boolean b){
+		Job j=g_jm.getCur();
+		int out_type=0;
+		if(j==null)	{
+			g_jm.prnJob(true,null,out_type);
+			return false;
+		}
+		if(j.exec<=1) {
+			out_type=1;
+			j.exec=0;
+			if (!j.isHI||j.add_exec==0)
+				g_jm.removeCur();
+		} else {  // j.exec>1
+			out_type=2;
+			j.exec-=1;
+		}
+		g_jm.prnJob(b,j,out_type);
+		return true;
+	}
+	
+	
 	public Task msCheck(int cur_t) { // before dlcheck
 		Job j;
 		while(true){
@@ -96,26 +112,9 @@ public class JobSimul {
 		return null;
 	}
 	
-	public boolean progress(int cur_t, boolean b){
-		Job j=g_jm.getCur();
-		int out_type=0;
-		if(j==null)	{
-			g_jm.prnJob(true,null,out_type);
-			return false;
-		}
-		if(j.exec<=1) {
-			out_type=1;
-			j.exec=0;
-			if (!j.isHI||j.add_exec==0)
-				g_jm.removeCur();
-		} else {  // j.exec>1
-			out_type=2;
-			j.exec-=1;
-		}
-		g_jm.prnJob(b,j,out_type);
-		return true;
-	}
+	
 	public JobMng getJM() {
 		return g_jm;
 	}
+
 }
