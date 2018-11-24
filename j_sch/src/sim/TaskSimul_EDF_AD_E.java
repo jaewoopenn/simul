@@ -20,8 +20,8 @@ public class TaskSimul_EDF_AD_E extends TaskSimul{
 	
 	
 	@Override
-	public void modeswitch_in(Task t) {
-		modeswitch_in_base(t);		
+	public void modeswitch_in(int tid) {
+		modeswitch_in_base(tid);		
 		dropDecision();
 	}
 	

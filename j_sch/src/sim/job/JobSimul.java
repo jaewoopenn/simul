@@ -1,13 +1,15 @@
 package sim.job;
 
 
-import basic.Task;
 import util.Log;
 
 public class JobSimul {
-	JobMng g_jm;
+	protected JobMng g_jm;
+	protected int g_t;
+	protected boolean isVisible=true;
 	public JobSimul(){
 		g_jm=new JobMng();
+		g_t=0;
 	}
 	public void setJM(JobMng jm) {
 		g_jm=jm;
@@ -16,19 +18,22 @@ public class JobSimul {
 	public void add(Job j){
 		g_jm.add(j);
 	}
+	// all in one
 	public int simul(int et){
-		int cur_t=0;
-		while(cur_t<et){
-			if (work(cur_t)==0) return 0;
-			cur_t++;
-		}
-		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
+		simulBy(et);
+		Log.prn(1, "*** Left Jobs at time "+g_t+" ***");
 		g_jm.prn();
 		return g_jm.endCheck(et);
 	}
-
-
-
+	
+	public int simulBy(int et){
+		while(g_t<et){
+			work(g_t);
+			g_t++;
+		}
+		return 1;
+		
+	}
 	public void simulEnd(int cur_t){
 		if(g_jm.endCheck(cur_t)==0){
 			g_jm.prn();
@@ -37,34 +42,38 @@ public class JobSimul {
 		}
 	}
 	
-	public void simulEndPrn(boolean b){
-		if(!b)
+	public void simulEndPrn(){
+		if(!isVisible)
 			return;
 		Log.prn(1, "*** Left Jobs  ***");
 		g_jm.prn();
 	}
-	
-	public int work(int cur_t){
+	public boolean work(int cur_t){
 		Log.prnc(1, cur_t+" ");
-		dlCheck(cur_t);
-		progress(cur_t,true);
+		if(!dlCheck(cur_t))
+			System.exit(1);
+		boolean b=progress(cur_t);
 		Log.prn(1, "");
-		return 1;
+		return b;
 	}
+
+	
+	
+
 	
 	
 	
-	public void dlCheck(int cur_t){
+	public boolean dlCheck(int cur_t){
 		Job j=g_jm.getCur();
 		if(j==null)
-			return;
+			return true;
 		if(cur_t<j.dl) 
-			return;
-		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tsk.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
-		System.exit(1);
+			return true;
+		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		return false;
 	}
 	
-	public boolean progress(int cur_t, boolean b){
+	public boolean progress(int cur_t){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)	{
@@ -74,42 +83,13 @@ public class JobSimul {
 		if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
-			if (!j.isHI||j.add_exec==0)
-				g_jm.removeCur();
+			g_jm.removeCur();
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;
 		}
-		g_jm.prnJob(b,j,out_type);
+		g_jm.prnJob(isVisible,j,out_type);
 		return true;
-	}
-	
-	
-	public Task msCheck(int cur_t) { // before dlcheck
-		Job j;
-		while(true){
-			j=(Job)g_jm.getCur();
-			if(j==null)
-				return null;
-			if(j.exec==0){
-				if(j.isHI==false){
-					g_jm.removeCur();
-				} else{
-					if(j.tsk.is_HM)
-						return null;
-					if(cur_t>j.vd){
-						Log.prn(9, "Job_simul: vd miss"+j.tsk.tid);
-						Log.prn(9, cur_t+" "+j.vd+" "+j.dl);
-						System.exit(1);
-					}
-					return j.tsk;
-				}
-				
-			}
-			else
-				break;
-		}
-		return null;
 	}
 	
 	

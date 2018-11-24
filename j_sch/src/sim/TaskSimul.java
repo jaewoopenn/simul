@@ -4,7 +4,7 @@ package sim;
 import basic.Task;
 import basic.TaskMng;
 import sim.job.Job;
-import sim.job.JobSimul;
+import sim.job.JobSimulMC;
 import util.Log;
 import util.RUtil;
 
@@ -12,7 +12,7 @@ public abstract class TaskSimul {
 	protected SimulInfo g_si;
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
-	protected JobSimul g_js;
+	protected JobSimulMC g_js;
 	protected RUtil g_rutil=new RUtil();
 	protected boolean g_needRecover=false;
 	public boolean g_recoverOn=true;
@@ -25,7 +25,7 @@ public abstract class TaskSimul {
 		init();
 	}
 	private void init() {
-		g_js=new JobSimul();
+		g_js=new JobSimulMC();
 		g_si=new SimulInfo();
 		g_needRecover=false;
 	}
@@ -85,7 +85,7 @@ public abstract class TaskSimul {
 		Log.prn(isSchTab,1, " "+t);
 	}
 	public void simulEnd(int et) {
-		g_js.simulEndPrn(isPrnEnd);
+		g_js.simulEndPrn();
 		g_js.simulEnd(et);
 	}
 	private void recover(int t){
@@ -101,16 +101,16 @@ public abstract class TaskSimul {
 
 	private void msCheck(int t){
 		boolean isMS=false;
-		Task tsk=g_js.msCheck(t);
-		if(tsk==null) 
+		int tid=g_js.msCheck(t);
+		if(tid==-1) 
 			return;
 		double prob=g_rutil.getDbl();
 		if(prob<g_sm.getMS_Prob())
 			isMS=true;
 		if(isMS){
-			Log.prn(isPrnMS,1, "t:"+t+" mode-switch "+tsk.tid);
+			Log.prn(isPrnMS,1, "t:"+t+" mode-switch "+tid);
 			g_needRecover=true;
-			mode_switch(tsk);
+			mode_switch(tid);
 		} else {
 			g_js.getJM().removeCur();
 		}
@@ -147,14 +147,10 @@ public abstract class TaskSimul {
 	
 
 	
-	public void mode_switch(Task tsk){
+	public void mode_switch(int tid){
 		g_si.ms++;
 //		Log.prn(9, "a"+g_si.ms);
-		if(!tsk.is_HI) 	{
-			Log.prn(9, "ERROR: task "+tsk.tid+" is not HI-task, cannot mode-switch");
-			System.exit(0);
-		}
-		modeswitch_in(tsk);
+		modeswitch_in(tid);
 	}
 	
 	
@@ -172,7 +168,7 @@ public abstract class TaskSimul {
 	// abstract method
 	protected abstract void initMode_in();
 	protected abstract void recover_in();
-	protected abstract void modeswitch_in(Task tsk);
+	protected abstract void modeswitch_in(int tid);
 	
 	// base instruction
 	public void initMode_base_hi() {
@@ -206,20 +202,25 @@ public abstract class TaskSimul {
 		if(tsk.is_HI){
 //			tsk.prnStat();
 			if(tsk.is_HM){
-				return new Job(tsk, 
+				return new Job(tsk.tid, 
 						t+tsk.period,tsk.c_h,t+tsk.period,0);
 			} else {
-				return new Job(tsk, 
+				return new Job(tsk.tid, 
 						t+tsk.period,tsk.c_l,
 						t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 			}
 		}
-		return new Job(tsk,t+tsk.period,tsk.c_l);
+		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
-	protected void modeswitch_in_base(Task t){
-		Log.prn(isPrnMS,1, "ms hi "+t.tid);
-		g_js.getJM().modeswitch(t);
-		t.ms();
+	protected void modeswitch_in_base(int tid){
+		Log.prn(isPrnMS,1, "ms hi "+tid);
+		g_js.getJM().modeswitch(tid);
+		Task tsk=g_tm.getTask(tid);
+		if(!tsk.is_HI)	{
+			Log.prn(9, "ERROR: task "+tsk.tid+" is not HI-task, cannot mode switch");
+			System.exit(0);
+		}
+		tsk.ms();
 	}
 	
 	public void dropTask_base(Task tsk) {
@@ -229,7 +230,7 @@ public abstract class TaskSimul {
 		}
 		if(tsk.is_dropped)
 			return;
-		int n=g_js.getJM().drop(tsk);
+		int n=g_js.getJM().drop(tsk.tid);
 		if(n>1){
 			Log.prn(9, "drop num>1");
 			System.exit(1);
