@@ -15,12 +15,7 @@ public class TaskSimul {
 	protected JobSimul g_js;
 	protected RUtil g_rutil=new RUtil();
 	public boolean isSchTab=true;
-	public boolean isPrnEnd=true;
 
-	public TaskSimul(TaskMng tm){
-		g_tm=tm;
-		init();
-	}
 	protected void init() {
 		g_js=new JobSimul();
 		g_si=new SimulInfo();
@@ -30,16 +25,14 @@ public class TaskSimul {
 	}
 	
 	public void init_sm(SysMng sm){
+		g_tm.setX(sm.getX());
 		g_sm=sm;
+		
 	}
 	
 	public void init_tm(TaskMng tm) {
 		g_tm=tm;
 		init();
-		
-	}
-	public void set_tm(TaskMng tm) {
-		g_tm=tm;
 		
 	}
 	public void checkErr() {

@@ -8,9 +8,6 @@ import util.MUtil;
 
 public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
-	public TaskSimul_EDF_AD_E(TaskMng m) {
-		super(m);
-	}
 
 
 	@Override

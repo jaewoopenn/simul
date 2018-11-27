@@ -30,7 +30,7 @@ public class z_Platform2 {
 		tm.setX(x);
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.3);
-		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD(null);
+		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
 		tsim.init_sm(sm);
 		tsim.init_tm(tm);
 		tsim.checkErr();

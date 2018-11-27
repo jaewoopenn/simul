@@ -11,14 +11,15 @@ public class z_TaskSimul1 {
 
 
 	public int test1()	{
-		TaskSimul ts=new TaskSimul(TS_NonMC1.ts4());
-		
+		TaskSimul ts=new TaskSimul();
+		ts.init_tm(TS_NonMC1.ts4());
 		ts.simul(0,20);
 		return 0;
 	}
 	public int test2() {
 		int et=40;
-		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD(TS_NonMC1.ts2());
+		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD();
+		ts.init_tm(TS_NonMC1.ts2());
 		ts.simul(0,et);
 		return 0;
 	}

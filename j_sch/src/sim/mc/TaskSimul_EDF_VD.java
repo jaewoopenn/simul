@@ -5,9 +5,6 @@ import basic.Task;
 import basic.TaskMng;
 
 public class TaskSimul_EDF_VD extends TaskSimulMC{
-	public TaskSimul_EDF_VD(TaskMng m) {
-		super(m);
-	}
 
 
 	@Override

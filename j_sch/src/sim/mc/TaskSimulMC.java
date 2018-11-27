@@ -15,9 +15,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 	public boolean isPrnMS=true;
 	protected JobSimulMC g_jsm;
 
-	public TaskSimulMC(TaskMng tm) {
-		super(tm);
-	}
 
 	protected void init() {
 		g_jsm=new JobSimulMC();
