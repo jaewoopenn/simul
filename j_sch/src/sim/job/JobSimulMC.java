@@ -10,12 +10,13 @@ public class JobSimulMC extends JobSimul{
 	public void setJM(JobMngMC jm) {
 		g_jm=jm;
 	}
-	public boolean progress(int cur_t, boolean b){
+	
+	protected void progress(){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)	{
 			g_jm.prnJob(true,null,out_type);
-			return false;
+			return ;
 		}
 		if(j.exec<=1) {
 			out_type=1;
@@ -26,10 +27,10 @@ public class JobSimulMC extends JobSimul{
 			out_type=2;
 			j.exec-=1;
 		}
-		g_jm.prnJob(b,j,out_type);
-		return true;
+		g_jm.prnJob(isVisible,j,out_type);
 	}	
-	public int msCheck(int cur_t) { // before dlcheck
+	
+	public int msCheck() { // before dlcheck
 		Job j;
 		while(true){
 			j=(Job)g_jm.getCur();
@@ -39,9 +40,9 @@ public class JobSimulMC extends JobSimul{
 				if(j.isHI==false){
 					g_jm.removeCur();
 				} else{
-					if(cur_t>j.vd){
+					if(g_t>j.vd){
 						Log.prn(9, "Job_simul: vd miss"+j.tid);
-						Log.prn(9, cur_t+" "+j.vd+" "+j.dl);
+						Log.prn(9, g_t+" "+j.vd+" "+j.dl);
 						System.exit(1);
 					}
 					return j.tid;

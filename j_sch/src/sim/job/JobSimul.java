@@ -14,47 +14,52 @@ public class JobSimul {
 	public void setJM(JobMng jm) {
 		g_jm=jm;
 	}
+	public void setVisible(boolean b) {
+		isVisible=b;
+		
+	}
+	
 	
 	public void add(Job j){
 		g_jm.add(j);
 	}
+
 	// all in one
 	public int simul(int et){
 		simulBy(et);
-		Log.prn(1, "*** Left Jobs at time "+g_t+" ***");
-		g_jm.prn();
+		simulEnd();
 		return g_jm.endCheck(et);
+	}
+	public void simul_one() {
+		simulBy(g_t+1);
 	}
 	
 	public int simulBy(int et){
 		while(g_t<et){
-			work(g_t);
+			work();
 			g_t++;
 		}
 		return 1;
-		
 	}
-	public void simulEnd(int cur_t){
-		if(g_jm.endCheck(cur_t)==0){
+	public void simulEnd(){
+		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
-			Log.prn(9,"Deadline miss at time "+cur_t);
+			Log.prn(9,"Deadline miss at time "+g_t);
 			System.exit(1);
 		}
-	}
-	
-	public void simulEndPrn(){
 		if(!isVisible)
 			return;
-		Log.prn(1, "*** Left Jobs  ***");
+		Log.prn(1, "*** Left Jobs at time "+g_t+" ***");
 		g_jm.prn();
 	}
-	public boolean work(int cur_t){
-		Log.prnc(1, cur_t+" ");
-		if(!dlCheck(cur_t))
+	
+	private void work(){
+		Log.prnc(isVisible,1, g_t+" ");
+		if(!dlCheck(g_t))
 			System.exit(1);
-		boolean b=progress(cur_t);
-		Log.prn(1, "");
-		return b;
+		progress();
+
+		Log.prn(isVisible,1, "");
 	}
 
 	
@@ -63,7 +68,7 @@ public class JobSimul {
 	
 	
 	
-	public boolean dlCheck(int cur_t){
+	private boolean dlCheck(int cur_t){
 		Job j=g_jm.getCur();
 		if(j==null)
 			return true;
@@ -73,12 +78,12 @@ public class JobSimul {
 		return false;
 	}
 	
-	public boolean progress(int cur_t){
+	protected void progress(){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		if(j==null)	{
 			g_jm.prnJob(true,null,out_type);
-			return false;
+			return;
 		}
 		if(j.exec<=1) {
 			out_type=1;
@@ -89,12 +94,19 @@ public class JobSimul {
 			j.exec-=1;
 		}
 		g_jm.prnJob(isVisible,j,out_type);
-		return true;
 	}
 	
 	
 	public JobMng getJM() {
 		return g_jm;
+	}
+	public boolean isIdle() {
+		if(g_jm.getCur()==null)
+			return true;
+		return false;
+	}
+	public int getTime() {
+		return g_t;
 	}
 
 }

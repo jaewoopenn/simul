@@ -34,7 +34,7 @@ public class z_Platform2 {
 		tsim.init_sm(sm);
 		tsim.init_tm(tm);
 		tsim.checkErr();
-		tsim.simulEnd(0,20);		
+		tsim.simul(0,20);		
 		return -1;		
 
 	}

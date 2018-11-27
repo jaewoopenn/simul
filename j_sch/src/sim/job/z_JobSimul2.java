@@ -5,7 +5,7 @@ import util.TEngine;
 import z_ex.Job_MC1;
 
 public class z_JobSimul2 {
-	public static int idx=1;
+	public static int idx=3;
 	public static int log_level=1;
 	public static int gret[]={2,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
@@ -13,6 +13,7 @@ public class z_JobSimul2 {
 	public int test1()	{
 		JobSimul js=new JobSimul();
 		js.setJM(Job_MC1.ts3());
+//		js.setVisible(false);
 		js.simul(6);
 		return -1;
 	}
@@ -21,15 +22,24 @@ public class z_JobSimul2 {
 		js.add(new Job(1,3,1));
 		js.add(new Job(2,4,2));
 		js.add(new Job(0,5,1));
-//		js.simulDur(0,6);
+		js.simulBy(6);
 		js.add(new Job(0,8,1));
-//		js.simulDur(6,10);
-		js.simulEnd(10);
+		js.simulBy(10);
+		js.simulEnd();
 		return 0;
 	}
 	
 	public  int test3()	{
-		return -1;
+		JobSimul js=new JobSimul();
+		js.add(new Job(1,3,1));
+		js.add(new Job(2,4,2));
+		js.add(new Job(0,5,1));
+		js.simul_one();
+		js.simul_one();
+		js.simul_one();
+		js.simulEnd();
+		
+		return 0;
 	}
 	
 	public  int test4()	{

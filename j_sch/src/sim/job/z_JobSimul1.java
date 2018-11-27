@@ -27,7 +27,8 @@ public class z_JobSimul1 {
 		js.add(new Job(0,3,2));
 		js.add(new Job(1,3,2));
 		js.add(new Job(2,3,2));
-		js.simul(6);
+		js.simulBy(6);
+		js.simulEnd();
 		return 0;
 	}
 	
