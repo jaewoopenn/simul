@@ -6,8 +6,8 @@ import java.util.Vector;
 import util.Log;
 
 public class JobMng {
-	PriorityQueue<Job> g_jobs;
-	int g_task_num=0;
+	protected PriorityQueue<Job> g_jobs;
+	protected int g_task_num=0;
 	public JobMng() {
 		g_jobs=new PriorityQueue<Job>();
 	}

@@ -5,7 +5,7 @@ import anal.Anal;
 import anal.AnalSel;
 import basic.TaskMng;
 import sim.SysMng;
-import sim.TaskSimul_EDF_VD;
+import sim.mc.TaskSimul_EDF_VD;
 import gen.SysLoad;
 import util.Log;
 import util.TEngine;

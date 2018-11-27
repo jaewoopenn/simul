@@ -1,10 +1,11 @@
-package sim;
+package sim.mc;
 
 
 import basic.Task;
 import basic.TaskMng;
+import sim.SimulInfo;
+import sim.TaskSimul;
 import sim.job.Job;
-import sim.job.JobSimulMC;
 import util.Log;
 
 public abstract class TaskSimulMC extends TaskSimul {

@@ -1,6 +1,9 @@
-package sim.job;
+package sim.mc;
 
 import java.util.Vector;
+
+import sim.job.Job;
+import sim.job.JobMng;
 
 
 public class JobMngMC extends JobMng {

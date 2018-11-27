@@ -1,6 +1,8 @@
-package sim.job;
+package sim.mc;
 
 
+import sim.job.Job;
+import sim.job.JobSimul;
 import util.Log;
 
 public class JobSimulMC extends JobSimul{
