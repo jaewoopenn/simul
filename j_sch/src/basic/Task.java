@@ -17,9 +17,7 @@ public class Task {
 	public boolean is_HM=false;
 	public boolean is_hi_preferred=false;
 	public boolean is_dropped=false;
-	public boolean is_moved=false;
 
-	private int pid=-1;
 
 	public Task(int tid){
 		this.tid=tid;
@@ -73,16 +71,8 @@ public class Task {
 	}
 
 
-	public void setCPU(int id) {
-		pid=id;
-	}
-	public int getCPU(){
-		return pid;
-	}
-	
 	public Task getCopy() {
 		Task t=new Task(tid,period, c_l);
-		t.setCPU(pid);
 		return t;
 	}
 	public void prn() {
