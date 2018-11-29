@@ -1,6 +1,5 @@
 package sim.job;
 
-import basic.Task;
 import util.Log;
 
 public class Job implements Comparable<Job>{

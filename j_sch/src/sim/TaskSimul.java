@@ -25,6 +25,10 @@ public class TaskSimul {
 	}
 	
 	public void init_sm(SysMng sm){
+		if(g_tm==null) {
+			Log.prnErr("err:init tm first");
+			System.exit(1);
+		}
 		g_tm.setX(sm.getX());
 		g_sm=sm;
 		

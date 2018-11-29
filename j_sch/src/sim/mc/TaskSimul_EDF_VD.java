@@ -2,7 +2,6 @@ package sim.mc;
 
 
 import basic.Task;
-import basic.TaskMng;
 
 public class TaskSimul_EDF_VD extends TaskSimulMC{
 

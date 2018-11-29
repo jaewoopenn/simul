@@ -2,7 +2,6 @@ package sim.mc;
 
 
 import basic.Task;
-import basic.TaskMng;
 import sim.SimulInfo;
 import sim.TaskSimul;
 import sim.job.Job;

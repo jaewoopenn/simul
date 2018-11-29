@@ -17,9 +17,6 @@ public class z_Platform2 {
 
 	public int test1() 
 	{
-//		SysLoad sy=new SysLoad("test/t1/taskset_65");
-//		sy.open();
-//		TaskMng tm=sy.loadOne();
 		TaskMng tm=TS_MC1.ts1();
 		tm.prnInfo();
 		Anal a=AnalSel.getAnal(0);
@@ -27,12 +24,12 @@ public class z_Platform2 {
 		a.prepare();
 		double x=a.computeX();
 		Log.prn(1, "x:"+x);
-		tm.setX(x);
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.3);
+		sm.setX(x);
 		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
-		tsim.init_sm(sm);
 		tsim.init_tm(tm);
+		tsim.init_sm(sm);
 		tsim.checkErr();
 		tsim.simul(0,20);		
 		return -1;		
@@ -41,6 +38,10 @@ public class z_Platform2 {
 
 	public int test2() 
 	{
+		SysLoad sy=new SysLoad("test/t1/taskset_65");
+		sy.open();
+		TaskMng tm=sy.loadOne();
+		tm.prnInfo();
 		return -1;
 	}
 	
