@@ -119,7 +119,8 @@ public class z_Platform1 {
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
 			String fn=path+"/cfg_"+i+".txt";
-			eg.write(fn);
+			eg.setFile(fn);
+			eg.write();
 			fu.write(fn);
 		}
 		fu.save();

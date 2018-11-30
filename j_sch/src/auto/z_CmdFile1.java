@@ -8,7 +8,7 @@ public class z_CmdFile1 {
 	public int test1() // error config
 	{
 		CmdFile eg=getCmd();
-		eg.write("cmd/test.txt");
+		eg.write();
 		return 0;
 	}
 	public int test2() // normal config
@@ -55,7 +55,7 @@ public class z_CmdFile1 {
 		return 0;
 	}
 	public CmdFile getCmd()	{
-		CmdFile eg=new CmdFile();
+		CmdFile eg=new CmdFile("cmd/test.txt");
 		eg.setParam("auto","1");
 		eg.setParam("wad","qwe");
 		return eg;

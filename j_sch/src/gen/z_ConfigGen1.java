@@ -40,7 +40,8 @@ public class z_ConfigGen1 {
 	public  int test5() // write config
 	{
 		ConfigGen eg=getCfg();
-		eg.write("config/cfg1_copy.txt");
+		eg.setFile("config/cfg1_copy.txt");
+		eg.write();
 		return 1;
 	}
 	public  int test6() // test config
@@ -55,7 +56,8 @@ public class z_ConfigGen1 {
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			eg.write("cfg/cfgd_"+i+".txt");
+			eg.setFile("cfg/cfgd_"+i+".txt");
+			eg.write();
 		}
 		return 1;
 	}
@@ -64,7 +66,7 @@ public class z_ConfigGen1 {
 		ConfigGen eg=getCfg();
 		eg.setParam("subfix", "util");
 		eg.setParam("num","10");
-		eg.genRange("cfg/cfg",50,5,10);
+//		eg.genRange("cfg/cfg",50,5,10);
 		return 0;
 	}
 	public  int test8()

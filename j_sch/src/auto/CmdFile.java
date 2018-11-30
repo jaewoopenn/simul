@@ -1,6 +1,5 @@
 package auto;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -13,12 +12,9 @@ public class CmdFile {
 	private Vector<String> g_list;
 	private String g_fn;
 	public CmdFile(String f) {
-		this();
-		g_fn=f;
-	}
-	public CmdFile() {
 		g_param=new HashMap<String,String>();
 		g_list=new Vector<String>();
+		g_fn=f;
 	}
 	public void readFile() {
 	    FUtil fu=new FUtil(g_fn);
@@ -59,8 +55,8 @@ public class CmdFile {
 			return -1;
 		return Double.valueOf(s.trim()).doubleValue();
 	}
-	public void write(String file) {
-		FUtil fu=new FUtil(file);
+	public void write() {
+		FUtil fu=new FUtil(g_fn);
 		for (String s:g_list){
 			String v=readPar(s);
 			if(v==null){

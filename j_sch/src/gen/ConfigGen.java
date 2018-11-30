@@ -15,11 +15,8 @@ public class ConfigGen {
 	private HashMap<String,String> param;
 	private String g_fn;
 	public ConfigGen(String f) {
-		this();
-		g_fn=f;
-	}
-	public ConfigGen() {
 		param=new HashMap<String,String>();
+		g_fn=f;
 	}
 	public void readFile() {
 	    FUtil fu=new FUtil(g_fn);
@@ -96,8 +93,12 @@ public class ConfigGen {
 			return -1;
 		return Double.valueOf(s.trim()).doubleValue();
 	}
-	public void write(String file) {
-		FUtil fu=new FUtil(file);
+	public void write() {
+		if(g_fn==null) {
+			Log.prnErr("configGen filename is not set");
+			System.exit(1);
+		}
+		FUtil fu=new FUtil(g_fn);
 		for (String s:g_predefined){
 			String v=readPar(s);
 			if(v==null){
@@ -110,19 +111,11 @@ public class ConfigGen {
 		fu.save();
 		
 	}
-	public void genRange(String fn,int start, int step, int size) {
-		for(int i=0;i<size;i++){
-			setParam("u_lb", (i*step+start)*1.0/100+"");
-			setParam("u_ub", (i*step+start+5)*1.0/100+"");
-			setParam("mod", (i*step+start+5)+"");
-			write(fn+"_"+i+".txt");
-		}
-	}
 	public void prn(int lv) {
 		Log.prn(lv,readPar("u_ub")+"--");
 	}
 	public static ConfigGen getCfg()	{
-		ConfigGen eg=new ConfigGen("");
+		ConfigGen eg=new ConfigGen(null);
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
 		eg.setParam("c_lb", "0.1");
@@ -140,6 +133,10 @@ public class ConfigGen {
 		eg.setParam("subfix","exp");
 		eg.setParam("mod","t");
 		return eg;
+	}
+	public void setFile(String fn) {
+		g_fn=null;
+		
 	}
 
 }
