@@ -15,7 +15,7 @@ public class ConfigGen {
 	private HashMap<String,String> param;
 	private String g_fn;
 	public ConfigGen(String f) {
-		param=new HashMap<String,String>();
+		this();
 		g_fn=f;
 	}
 	public ConfigGen() {
