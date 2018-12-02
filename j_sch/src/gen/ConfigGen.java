@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import util.FUtil;
+import util.FUtilSp;
 import util.Log;
 import util.MUtil;
 
@@ -19,7 +20,7 @@ public class ConfigGen {
 		g_fn=f;
 	}
 	public void readFile() {
-	    FUtil fu=new FUtil(g_fn);
+		FUtilSp fu=new FUtilSp(g_fn);
 	    fu.load();
 	    for(int i:MUtil.loop(fu.size())){
 	    	String line=fu.get(i);

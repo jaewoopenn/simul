@@ -8,6 +8,7 @@ import gen.SysGen;
 import gen.SysGenTM;
 import gen.SysLoad;
 import util.FUtil;
+import util.FUtilSp;
 import util.Log;
 
 public class Platform {
@@ -39,7 +40,7 @@ public class Platform {
 	}
 
 	public void genTS(String cfg_list) {
-		FUtil fu=new FUtil(g_path+cfg_list);
+		FUtilSp fu=new FUtilSp(g_path+cfg_list);
 		
 		FUtil fu_ts=new FUtil(g_path+"a_ts_list.txt");
 		FUtil fu_rs=new FUtil(g_path+"a_x_list.txt");
@@ -61,7 +62,7 @@ public class Platform {
 	}
 	// analyze task set list with algorithm choice
 	public void anal(String ts_list,int sort) {
-		FUtil fu=new FUtil(g_path+ts_list);
+		FUtilSp fu=new FUtilSp(g_path+ts_list);
 		
 		FUtil fu_rs=new FUtil(g_path+"a_rs_list."+sort+".txt");
 		fu.load();

@@ -12,11 +12,11 @@ import java.util.Vector;
 */
 
 public class FUtil {
-	public static final String g_path="/data/";
-	private boolean isWrite=true;
-	private String g_fn;
-	private BufferedReader g_br;
-	private Vector<String> g_v;
+	protected static final String g_path="/data/";
+	protected boolean isWrite=true;
+	protected String g_fn;
+	protected BufferedReader g_br;
+	protected Vector<String> g_v;
 	public FUtil(){
 		g_fn=null;
 		g_v=new Vector<String>();
@@ -115,37 +115,6 @@ public class FUtil {
 		}
 		return false;
 		
-	}
-	public int load(){
-		br_open();
-		g_v=new Vector<String>();
-		try {
-		    String line;
-		    while((line = g_br.readLine()) != null){
-		    	g_v.add(line);
-		    }
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-		br_close();
-		return g_v.size();
-	}
-	public Vector<String> getVec() {
-		return g_v;
-	}
-	public static void makeDir(String str) {
-		 File theDir = new File(FUtil.g_path+str);
-		if (theDir.exists()) {
-//			System.out.println("dir exist");
-			return;
-		}
-		try{
-	        theDir.mkdir();
-	    } 
-	    catch(SecurityException se){
-	        se.printStackTrace();
-	    }        
 	}
 
 }

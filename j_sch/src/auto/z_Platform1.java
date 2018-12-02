@@ -8,6 +8,7 @@ import gen.SysGen;
 import gen.SysGenTM;
 import gen.SysLoad;
 import util.FUtil;
+import util.FUtilSp;
 import util.Log;
 import util.TEngine;
 
@@ -18,7 +19,7 @@ public class z_Platform1 {
 	public int test1() 
 	{
 		String path="test/t1/";
-		FUtil fu=new FUtil(path+"a_cfg_list.txt");
+		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
 		FUtil fu_ts=new FUtil(path+"a_ts_list.txt");
 		FUtil fu_rs=new FUtil(path+"a_x_list.txt");
 		fu.load();
@@ -64,7 +65,7 @@ public class z_Platform1 {
 	public  int test4() 
 	{
 		String path="test/t1/";
-		FUtil fu=new FUtil(path+"a_ts_list.txt");
+		FUtilSp fu=new FUtilSp(path+"a_ts_list.txt");
 //		FUtil fu_rs=new FUtil(path+"a_rs_list.txt");
 		fu.load();
 		for(int i=0;i<fu.size();i++) {

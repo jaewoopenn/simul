@@ -3,6 +3,7 @@ import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenTM;
 import util.FUtil;
+import util.FUtilSp;
 import util.TEngine;
 
 public class z_SysGen1 {
@@ -24,7 +25,7 @@ public class z_SysGen1 {
 	public int test2() 
 	{
 		String path="test/t1/";
-		FUtil fu=new FUtil(path+"a_cfg_list.txt");
+		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
 		FUtil fu_ts=new FUtil(path+"a_ts_list.txt");
 		FUtil fu_rs=new FUtil(path+"a_x_list.txt");
 		fu.load();

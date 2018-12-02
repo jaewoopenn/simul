@@ -2,6 +2,7 @@ package basic;
 
 import java.util.Vector;
 import util.FUtil;
+import util.FUtilSp;
 import util.Log;
 
 public class TaskSetFile {
@@ -128,7 +129,7 @@ public class TaskSetFile {
 
 	// import 
 	public static TaskSetFile loadFile(String f) {
-	    FUtil fu=new FUtil(f);
+		FUtilSp fu=new FUtilSp(f);
 	    fu.load();
 	    return TaskSetFile.loadFile_in(fu);
 	}

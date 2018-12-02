@@ -2,12 +2,8 @@ package testPlatform;
 
 
 
-import anal.AnalEDF_AD_E;
-import anal.AnalEDF_VD;
 import exp.PlatformTM;
 import gen.ConfigGen;
-import simul.TaskSimul_EDF_AD_E;
-import simul.TaskSimul_EDF_VD;
 import util.Log;
 import util.TEngine;
 

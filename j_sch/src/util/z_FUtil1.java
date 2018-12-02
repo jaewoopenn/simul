@@ -7,7 +7,7 @@ public class z_FUtil1 {
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		FUtil f=new FUtil("test\\t\\taskset");
+		FUtilSp f=new FUtilSp("test\\t\\taskset");
 		f.load();
 		return 1;
 

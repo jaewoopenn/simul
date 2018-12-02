@@ -2,12 +2,12 @@ package gen;
 
 import basic.TaskMng;
 import basic.TaskSetFile;
-import util.FUtil;
+import util.FUtilSp;
 
 public class SysLoad {
-	private FUtil g_fu;
+	private FUtilSp g_fu;
 	public SysLoad(String fn) {
-		g_fu=new FUtil(fn);
+		g_fu=new FUtilSp(fn);
 	}
 
 	public void load() {

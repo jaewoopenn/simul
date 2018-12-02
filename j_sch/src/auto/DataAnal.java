@@ -3,6 +3,7 @@ package auto;
 import java.util.Vector;
 
 import util.FUtil;
+import util.FUtilSp;
 
 public class DataAnal {
 	private String g_path;
@@ -15,7 +16,7 @@ public class DataAnal {
 		g_max=x;
 	}
 	public void load_x(String fn) {
-		FUtil fu=new FUtil(g_path+fn);
+		FUtilSp fu=new FUtilSp(g_path+fn);
 		fu.load();
 		g_xlen=fu.size();
 		for(int i=0;i<fu.size();i++) {
@@ -26,7 +27,7 @@ public class DataAnal {
 	}
 
 	public void load_rs(String fn,int idx) {
-		FUtil fu=new FUtil(g_path+fn);
+		FUtilSp fu=new FUtilSp(g_path+fn);
 		fu.load();
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
@@ -50,7 +51,7 @@ public class DataAnal {
 		
 	}
 	private double process_rs(String rs) {
-		FUtil fu=new FUtil(rs);
+		FUtilSp fu=new FUtilSp(rs);
 		fu.load();
 		int n=fu.size();
 		int p=0;
