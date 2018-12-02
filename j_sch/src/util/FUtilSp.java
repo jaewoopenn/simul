@@ -8,12 +8,10 @@ import java.util.Vector;
 */
 
 public class FUtilSp extends FUtil {
-	public FUtilSp(){
-		super();
-	}
 	public FUtilSp(String file) {
 		super(file);
 	}
+	
 	public int load(){
 		br_open();
 		g_v=new Vector<String>();
@@ -29,9 +27,8 @@ public class FUtilSp extends FUtil {
 		br_close();
 		return g_v.size();
 	}
-	public Vector<String> getVec() {
-		return g_v;
-	}
+	
+	
 	public static void makeDir(String str) {
 		 File theDir = new File(FUtilSp.g_path+str);
 		if (theDir.exists()) {

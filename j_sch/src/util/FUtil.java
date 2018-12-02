@@ -17,10 +17,6 @@ public class FUtil {
 	protected String g_fn;
 	protected BufferedReader g_br;
 	protected Vector<String> g_v;
-	public FUtil(){
-		g_fn=null;
-		g_v=new Vector<String>();
-	}
 	public FUtil(String file) {
 		g_fn=file;
 		g_v=new Vector<String>();
