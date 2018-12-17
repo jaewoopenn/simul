@@ -28,10 +28,9 @@ public class z_Platform2 {
 		sm.setMS_Prob(0.3);
 		sm.setX(x);
 		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
-		tsim.init_tm(tm);
-		tsim.init_sm(sm);
-		tsim.checkErr();
-		tsim.simul(0,20);		
+		tsim.init_sm_tm(sm,tm);
+		tsim.simulBy(0,20);
+		tsim.simulEnd();
 		return -1;		
 
 	}

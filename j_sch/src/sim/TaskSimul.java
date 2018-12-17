@@ -16,47 +16,28 @@ public class TaskSimul {
 	protected RUtil g_rutil=new RUtil();
 	public boolean isSchTab=true;
 
-	protected void init() {
-		g_js=new JobSimul();
-		g_si=new SimulInfo();
-	}
 	public void setSchView(boolean b) {
 		isSchTab=b;
 	}
 	
-	public void init_sm(SysMng sm){
-		if(g_tm==null) {
-			Log.prnErr("err:init tm first");
-			System.exit(1);
+	public void init_sm_tm(SysMng sm,TaskMng tm ){
+		if(sm!=null) {
+			g_tm.setX(sm.getX());
+			g_sm=sm;
 		}
-		g_tm.setX(sm.getX());
-		g_sm=sm;
-		
-	}
-	
-	public void init_tm(TaskMng tm) {
 		g_tm=tm;
 		init();
-		
-	}
-	public void checkErr() {
-		if(g_tm==null){
-			Log.prn(9, "ERROR: TaskMng is not set");
-			System.exit(1);
-		}
-		
+		checkErr();
 	}
 	
 
-	public void simul(int st,int et){
-		simulBy(st,et);
-		simulEnd();
-	}
+	
+
 
 	// simul interval
 	public void simulBy(int st, int et){
 		if(st==0){
-			simulStart();
+			Log.prn(isSchTab,1, "rel  / exec / t");
 		}
 		int t=st;
 		while(t<et){
@@ -65,41 +46,11 @@ public class TaskSimul {
 		}
 	}
 	
-	// simul time
-	public void simulStart()
-	{
-		Log.prn(isSchTab,1, "rel  / exec / t");
-	}
 	
-	public void simul_t(){
-		relCheck();
-		g_js.simul_one();
-		//Log.prn(isSchTab,1, " "+t);
-	}
 	public void simulEnd() {
 		g_js.simulEnd();
 	}
-	
-	
 
-
-	
-	private void relCheck(){
-		int t=g_js.getTime();
-		for(Task tsk:g_tm.getTasks()){
-			if (t%tsk.period!=0){
-				Log.prnc(isSchTab,1,"-");
-				continue;
-			}
-			Log.prnc(isSchTab,1,"+");
-			g_js.add(relJob_base(tsk,t));
-		}
-		Log.prnc(isSchTab,1, " ");
-	}
-	
-
-
-	
 	// get param
 	public SimulInfo getSI(){
 		return g_si;
@@ -110,12 +61,50 @@ public class TaskSimul {
 	public void prnInfo() {
 		
 	}
-	
-
-	
+	// ========= protected
+	protected void init() {
+		g_js=new JobSimul();
+		g_si=new SimulInfo();
+	}
 	protected Job relJob_base(Task tsk, int t) {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
+	
+	// -------------- private
+	private void checkErr() {
+		if(g_tm==null){
+			Log.prn(9, "ERROR: TaskMng is not set");
+			System.exit(1);
+		}
+	}	
+	private void simul_t(){
+		relCheck();
+		g_js.simul_one();
+		//Log.prn(isSchTab,1, " "+t);
+	}
+	
+
+
+	
+	private void relCheck(){
+		int t=g_js.getTime();
+		for(Task tsk:g_tm.getTasks()){
+			if (t%tsk.period==0){
+				Log.prnc(isSchTab,1,"+");
+				g_js.add(relJob_base(tsk,t));
+			} else {
+				Log.prnc(isSchTab,1,"-");
+			}
+		}
+		Log.prnc(isSchTab,1, " ");
+	}
+	
+
+
+	
+	
+
+	
 
 	
 }
