@@ -19,6 +19,10 @@ public class z_SysAnal1 {
 		a.init(tm);
 		a.prepare();
 		a.prn();
+		a=new AnalEDF_AD_E();
+		a.init(tm);
+		a.prepare();
+		a.prn();
 		return -1;
 	}
 
