@@ -60,11 +60,21 @@ public class Platform {
 		fu_ts.save();
 		fu_rs.save();
 	}
-	// analyze task set list with algorithm choice
-	public void anal(String ts_list,int sort) {
-		FUtilSp fu=new FUtilSp(g_path+ts_list);
+	public void anal_loop(String rs_list,String ts_list, int end) {
+		FUtil fu=new FUtil(g_path+rs_list);
+		for(int i=0;i<end;i++){
+			String rs=anal(ts_list,i);
+			fu.write(rs);
+		}
+		fu.save();
 		
-		FUtil fu_rs=new FUtil(g_path+"a_rs_list."+sort+".txt");
+	}
+	
+	// analyze task set list with algorithm choice
+	public String anal(String ts_list,int sort) {
+		FUtilSp fu=new FUtilSp(g_path+ts_list);
+		String rs_fn=g_path+"a_rs_list."+sort+".txt";
+		FUtil fu_rs=new FUtil(rs_fn);
 		fu.load();
 		Anal a=AnalSel.getAnal(sort);
 		for(int i=0;i<fu.size();i++) {
@@ -74,6 +84,7 @@ public class Platform {
 			fu_rs.write(out);
 		}		
 		fu_rs.save();
+		return rs_fn;
 	}
 	public void anal_one(String ts,String out,Anal a) {
 		SysLoad sy=new SysLoad(ts);
@@ -98,6 +109,7 @@ public class Platform {
 	public void simul(String ts_list,int sort) {
 		
 	}
+
 
 	
 	

@@ -6,10 +6,11 @@ Created on 2015. 12. 11.
 import util.MPlot as mp;
 class gl_input:
     path="/data/test/t1/a_graph.txt"
-    lab=['EDF-AD','EDF-VD','ICG','EDF','x']
+#     lab=['EDF-AD','EDF-VD','EDF','ICG','x']
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
 class gl:
+    lab=[]
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
@@ -23,12 +24,14 @@ def load():
         raw.append(val)
     itemlen=len(raw[0])
 #     print(itemlen)
-    for i in range(len(raw)):
+    for i in range(1,itemlen):
+        gl.lab.append(raw[0][i])
+    for i in range(1,len(raw)):
         gl.x.append(raw[i][0])
 #     print(gl.x)
     for i in range(1,itemlen):
         v=[]
-        for j in range(len(raw)):
+        for j in range(1,len(raw)):
             v.append(float(raw[j][i]))
 #         print(v)
         gl.vv.append(v)
@@ -39,7 +42,7 @@ def main():
     load()
     no=0
     for v in gl.vv:
-        mp.plot3(gl.x,v,gl.line[no],gl_input.lab[no],gl.marker[no])
+        mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)
     mp.legend()

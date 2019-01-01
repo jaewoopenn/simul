@@ -12,7 +12,7 @@ public class AnalEDF_VD extends Anal {
 	SysInfo g_info;
 	public AnalEDF_VD() {
 		super();
-		g_name="VD";
+		g_name="EDF-VD";
 	}
 
 	@Override

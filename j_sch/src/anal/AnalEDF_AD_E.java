@@ -15,7 +15,7 @@ public class AnalEDF_AD_E extends Anal {
 	SysInfo g_info;
 	public AnalEDF_AD_E() {
 		super();
-		g_name="AD-E";
+		g_name="EDF-AD";
 	}
 	@Override
 	public void prepare() {

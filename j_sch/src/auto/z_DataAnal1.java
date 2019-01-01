@@ -24,8 +24,8 @@ public class z_DataAnal1 {
 		String rs2="a_rs_list.1.txt";
 		DataAnal p=new DataAnal(path,2);
 		p.load_x(xl);
-		p.load_rs(rs1,0);
-		p.load_rs(rs2,1);
+		p.load(rs1,0);
+		p.load(rs2,1);
 		p.save("a_graph.txt");
 		return -1;
 	}

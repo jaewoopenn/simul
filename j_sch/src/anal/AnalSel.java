@@ -8,9 +8,9 @@ public class AnalSel {
 		} else if(sort==1) {
 			return new AnalEDF_VD();
 		} else if(sort==2) {
-			return new AnalICG();
-		} else if(sort==3) {
 			return new AnalEDF();
+		} else if(sort==3) {
+			return new AnalICG();
 		}
 		return null;
 	}

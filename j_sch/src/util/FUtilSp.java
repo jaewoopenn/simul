@@ -7,6 +7,9 @@ import java.util.Vector;
 
 */
 
+// load func
+// make dir 
+
 public class FUtilSp extends FUtil {
 	public FUtilSp(String file) {
 		super(file);

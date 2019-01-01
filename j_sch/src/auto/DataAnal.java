@@ -2,8 +2,11 @@ package auto;
 
 import java.util.Vector;
 
+import anal.Anal;
+import anal.AnalSel;
 import util.FUtil;
 import util.FUtilSp;
+import util.Log;
 
 public class DataAnal {
 	private String g_path;
@@ -25,9 +28,19 @@ public class DataAnal {
 		}
 		g_rs=new double[10][g_xlen];
 	}
-
-	public void load_rs(String fn,int idx) {
+	public void load_rs(String fn){
 		FUtilSp fu=new FUtilSp(g_path+fn);
+		fu.load();
+		int size=fu.size();
+		g_max=size;
+		for(int i=0;i<size;i++) {
+			String s=fu.get(i);
+			load(s,i);
+		}		
+	}
+	
+	public void load(String fn,int idx) {
+		FUtilSp fu=new FUtilSp(fn);
 		fu.load();
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
@@ -39,8 +52,15 @@ public class DataAnal {
 	
 	public void save(String fn) {
 		FUtil fu=new FUtil(g_path+fn);
+		String str="xx";
+
+		for(int idx=0;idx<g_max;idx++) {
+			Anal a=AnalSel.getAnal(idx);
+			str+=" "+a.getName();
+		}
+		fu.write(str);
 		for(int i=0;i<g_xlen;i++) {
-			String str=g_xl.elementAt(i);
+			str=g_xl.elementAt(i);
 			for(int idx=0;idx<g_max;idx++) {
 				str+=" "+g_rs[i][idx];
 			}
