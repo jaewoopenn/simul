@@ -32,6 +32,8 @@ public class z_auto1 {
 		Platform p=new Platform(path);
 		p.anal(ts,0);
 		p.anal(ts,1);
+		p.anal(ts,2);
+		p.anal(ts,3);
 		return -1;
 	}
 	public  int test4() 
@@ -40,10 +42,14 @@ public class z_auto1 {
 		String xl="a_x_list.txt";
 		String rs1="a_rs_list.0.txt";
 		String rs2="a_rs_list.1.txt";
-		DataAnal p=new DataAnal(path,2);
+		String rs3="a_rs_list.2.txt";
+		String rs4="a_rs_list.3.txt";
+		DataAnal p=new DataAnal(path,4);
 		p.load_x(xl);
 		p.load_rs(rs1,0);
 		p.load_rs(rs2,1);
+		p.load_rs(rs3,2);
+		p.load_rs(rs4,3);
 		p.save("a_graph.txt");
 		return -1;
 	}
