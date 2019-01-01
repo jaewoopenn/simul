@@ -4,17 +4,19 @@ Created on 2015. 12. 11.
 @author: cpslab
 '''
 import util.MPlot as mp;
-class gl:
+class gl_input:
     path="/data/test/t1/a_graph.txt"
+    lab=['EDF-VD','EDF','x','x','x']
+    xlab= "Utilization Bound"
+    ylab= "Acceptance Ratio"
+class gl:
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
-    lab=['EDF-VD','EDF','x','x','x']
-    data=[1,2,3,4,5]
 
 def load():
-    i_f = open(gl.path,"r")
+    i_f = open(gl_input.path,"r")
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
@@ -37,12 +39,12 @@ def main():
     load()
     no=0
     for v in gl.vv:
-        mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
+        mp.plot3(gl.x,v,gl.line[no],gl_input.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)
     mp.legend()
-    mp.xlabel("Utilization Bound")
-    mp.ylabel("Acceptance Ratio")
+    mp.xlabel(gl_input.xlab)
+    mp.ylabel(gl_input.ylab)
     mp.show()
 
 if __name__ == '__main__':
