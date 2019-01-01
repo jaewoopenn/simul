@@ -1,4 +1,7 @@
 package auto;
+// real use --> z_auto1 
+// this file is developing version
+
 
 
 import anal.AnalEDF;
@@ -16,6 +19,7 @@ public class z_Platform1 {
 	public static int idx=5;
 	public static int log_level=1;
 
+	// gen task set (
 	public int test1() 
 	{
 		String path="test/t1/";
@@ -41,6 +45,7 @@ public class z_Platform1 {
 		return -1;
 	}
 
+	// gen task set (
 	public int test2() 
 	{
 		String path="test/t1/";
@@ -108,7 +113,7 @@ public class z_Platform1 {
 	{
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
-		ConfigGen eg=ConfigGen.getCfg();
+		ConfigGen eg=ConfigGen.getPredefined();
 		FUtil fu=new FUtil(path+cf);
 		eg.setParam("subfix", path);
 		eg.setParam("num","100");

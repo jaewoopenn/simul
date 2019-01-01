@@ -96,7 +96,7 @@ public class ConfigGen {
 	}
 	public void write() {
 		if(g_fn==null) {
-			Log.prnErr("configGen filename is not set");
+			Log.prnErr("configGen: filename is not set");
 			System.exit(1);
 		}
 		FUtil fu=new FUtil(g_fn);
@@ -115,7 +115,7 @@ public class ConfigGen {
 	public void prn(int lv) {
 		Log.prn(lv,readPar("u_ub")+"--");
 	}
-	public static ConfigGen getCfg()	{
+	public static ConfigGen getPredefined()	{
 		ConfigGen eg=new ConfigGen(null);
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
@@ -136,7 +136,7 @@ public class ConfigGen {
 		return eg;
 	}
 	public void setFile(String fn) {
-		g_fn=null;
+		g_fn=fn;
 		
 	}
 

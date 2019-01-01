@@ -11,7 +11,7 @@ public class z_ConfigGen2 {
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
-		ConfigGen eg=ConfigGen.getCfg();
+		ConfigGen eg=ConfigGen.getPredefined();
 		String path="test/t1";
 		FUtil fu=new FUtil(path+"/a_cfg_list.txt");
 		eg.setParam("subfix", path);

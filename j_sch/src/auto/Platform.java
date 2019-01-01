@@ -19,7 +19,7 @@ public class Platform {
 	}
 
 	public void genConfig(String cf) {
-		ConfigGen eg=ConfigGen.getCfg();
+		ConfigGen eg=ConfigGen.getPredefined();
 		FUtil fu=new FUtil(g_path+cf);
 		eg.setParam("subfix", g_path);
 		eg.setParam("num","100");
