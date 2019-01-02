@@ -6,7 +6,6 @@ Created on 2015. 12. 11.
 import util.MPlot as mp;
 class gl_input:
     path="/data/test/t1/a_graph.txt"
-#     lab=['EDF-AD','EDF-VD','EDF','ICG','x']
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
 class gl:
