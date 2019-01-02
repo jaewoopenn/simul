@@ -4,7 +4,7 @@ import sim.job.Job;
 import util.TEngine;
 
 public class z_JobSimulMC1 {
-	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 	public static int gret[]={2,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
@@ -18,6 +18,9 @@ public class z_JobSimulMC1 {
 		return -1;
 	}
 	public int test2() {
+		JobSimulMCEx js=new JobSimulMCEx(0);
+		js.setJM(z_ex.Job_MC1.ts1());
+		js.simulBy(6);
 		return 0;
 	}
 	
