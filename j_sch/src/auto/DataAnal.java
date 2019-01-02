@@ -6,7 +6,6 @@ import anal.Anal;
 import anal.AnalSel;
 import util.FUtil;
 import util.FUtilSp;
-import util.Log;
 
 public class DataAnal {
 	private String g_path;
