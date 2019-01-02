@@ -13,6 +13,7 @@ import z_ex.TS_MC1;
 
 public class z_Platform2 {
 	public static int idx=1;
+//	public static int idx=2;
 	public static int log_level=1;
 
 	//
@@ -20,7 +21,7 @@ public class z_Platform2 {
 	{
 		TaskMng tm=TS_MC1.ts1();
 		tm.prnInfo();
-		Anal a=AnalSel.getAnal(0);
+		Anal a=AnalSel.getAnal(1);
 		a.init(tm);
 		a.prepare();
 		double x=a.computeX();
@@ -42,6 +43,18 @@ public class z_Platform2 {
 		sy.open();
 		TaskMng tm=sy.loadOne();
 		tm.prnInfo();
+		Anal a=AnalSel.getAnal(1);
+		a.init(tm);
+		a.prepare();
+		double x=a.computeX();
+		Log.prn(1, "x:"+x);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(0.3);
+		sm.setX(x);
+		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
+		tsim.init_sm_tm(sm,tm);
+		tsim.simulBy(0,20);
+		tsim.simulEnd();
 		return -1;
 	}
 	

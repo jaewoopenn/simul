@@ -13,16 +13,20 @@ import util.Log;
 
 public class Platform {
 	private String g_path;
-	
+	private int g_num=100;
 	public Platform(String path) {
 		g_path=path;
 	}
+	
+	public void setNum(int n) {
+		g_num=n;
+	}
 
-	public void genConfig(String cf) {
+	public void genUtil(String cf) {
 		ConfigGen eg=ConfigGen.getPredefined();
 		FUtil fu=new FUtil(g_path+cf);
 		eg.setParam("subfix", g_path);
-		eg.setParam("num","100");
+		eg.setParam("num",g_num+"");
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;

@@ -116,7 +116,7 @@ public class TaskSetFile {
 
 	public static void writeTask(FUtil fu, Task t) {
 		int isHI=t.is_HI?1:0;
-		String txt=t.tid+","+t.period+",";
+		String txt=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 		fu.write(txt);
 	}
@@ -147,15 +147,14 @@ public class TaskSetFile {
 	
 	public static Task loadTask(String line){
         String[] words=line.split(",");
-        int tid=Integer.valueOf(words[0]).intValue();
-        int p=Integer.valueOf(words[1]).intValue();
-        int l=Integer.valueOf(words[2]).intValue();
-        int h=Integer.valueOf(words[3]).intValue();
-        int isHI=Integer.valueOf(words[4]).intValue();
+        int p=Integer.valueOf(words[0]).intValue();
+        int l=Integer.valueOf(words[1]).intValue();
+        int h=Integer.valueOf(words[2]).intValue();
+        int isHI=Integer.valueOf(words[3]).intValue();
         if(isHI==1)
-        	return new Task(tid,p,l,h);
+        	return new Task(p,l,h);
         else
-        	return new Task(tid,p,l);
+        	return new Task(p,l);
 	}
 	
 

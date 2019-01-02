@@ -19,19 +19,16 @@ public class Task {
 	public boolean is_dropped=false;
 
 
-	public Task(int tid){
-		this.tid=tid;
-	}
-	public Task(int tid,int period, int c_l) {
-		this.tid=tid;
+	public Task(int period, int c_l) {
+		this.tid=TaskSeq.getID();
 		this.period = period;
 		this.vd = period;
 		this.c_l = c_l;
 		this.c_h = c_l;
 	}
 
-	public Task(int tid,int period, int c_l, int c_h) {
-		this.tid=tid;
+	public Task(int period, int c_l, int c_h) {
+		this.tid=TaskSeq.getID();
 		this.period = period;
 		this.vd = period;
 		this.c_l = c_l;
@@ -72,7 +69,7 @@ public class Task {
 
 
 	public Task getCopy() {
-		Task t=new Task(tid,period, c_l);
+		Task t=new Task(period, c_l);
 		return t;
 	}
 	public void prn() {

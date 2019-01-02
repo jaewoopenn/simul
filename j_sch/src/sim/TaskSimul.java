@@ -22,7 +22,7 @@ public class TaskSimul {
 	
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
-			g_tm.setX(sm.getX());
+			tm.setX(sm.getX());
 			g_sm=sm;
 		}
 		g_tm=tm;

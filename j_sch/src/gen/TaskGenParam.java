@@ -73,10 +73,10 @@ public class TaskGenParam {
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
-			return new Task(tid,p,l,h);
+			return new Task(p,l,h);
 		} else{
 			int e=(int)(tu*p);
-			return new Task(tid,p,e);
+			return new Task(p,e);
 		}
 	}
 

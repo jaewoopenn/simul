@@ -12,22 +12,23 @@ public class z_auto1 {
 
 	public int test1() 
 	{
-		String path="test/t1/";
+		String path="sch/t1/";
 		String cf="a_cfg_list.txt";
 		Platform p=new Platform(path);
-		p.genConfig(cf);
+		p.setNum(20);
+		p.genUtil(cf);
 		return 0;
 	}
 	public int test2() 
 	{
-		String path="test/t1/";
+		String path="sch/t1/";
 		String cl="a_cfg_list.txt";
 		Platform p=new Platform(path);
 		p.genTS(cl);
 		return -1;	}
 	public int test3() 
 	{
-		String path="test/t1/";
+		String path="sch/t1/";
 		String ts="a_ts_list.txt";
 		String rs="a_rs_list.txt";
 		Platform p=new Platform(path);
@@ -37,7 +38,7 @@ public class z_auto1 {
 	}
 	public  int test4() 
 	{
-		String path="test/t1/";
+		String path="sch/t1/";
 		String xl="a_x_list.txt";
 		String rs="a_rs_list.txt";
 		DataAnal p=new DataAnal(path,0);
