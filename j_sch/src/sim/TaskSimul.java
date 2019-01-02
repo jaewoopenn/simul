@@ -12,9 +12,9 @@ public class TaskSimul {
 	protected SimulInfo g_si;
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
-	protected JobSimul g_js;
 	protected RUtil g_rutil=new RUtil();
-	public boolean isSchTab=true;
+	protected boolean isSchTab=true;
+	private JobSimul g_js;
 
 	public void setSchView(boolean b) {
 		isSchTab=b;
@@ -61,30 +61,30 @@ public class TaskSimul {
 	public void prnInfo() {
 		
 	}
-	// ========= protected
-	protected void init() {
-		g_js=new JobSimul();
-		g_si=new SimulInfo();
-	}
+	
+	// ------------- protected
 	protected Job relJob_base(Task tsk, int t) {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
-	
-	// -------------- private
-	private void checkErr() {
+	protected void checkErr() {
 		if(g_tm==null){
 			Log.prn(9, "ERROR: TaskMng is not set");
 			System.exit(1);
 		}
 	}	
+	
+	
+	// -------------- private
+	private void init() {
+		g_js=new JobSimul();
+		g_si=new SimulInfo();
+	}
 	private void simul_t(){
 		relCheck();
 		g_js.simul_one();
 		//Log.prn(isSchTab,1, " "+t);
 	}
 	
-
-
 	
 	private void relCheck(){
 		int t=g_js.getTime();
@@ -98,12 +98,6 @@ public class TaskSimul {
 		}
 		Log.prnc(isSchTab,1, " ");
 	}
-	
-
-
-	
-	
-
 	
 
 	

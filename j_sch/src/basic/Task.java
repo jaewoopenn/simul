@@ -89,6 +89,7 @@ public class Task {
 	public void prnShort() {
 		Log.prnc(2, tid);
 		Log.prnc(2, ", "+period);
+		Log.prnc(2, ", "+vd);
 		Log.prnc(2, ", "+c_l);
 		Log.prnc(2, ", "+c_h);
 		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));

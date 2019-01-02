@@ -2,7 +2,9 @@ package sim.mc;
 
 
 import basic.Task;
+import basic.TaskMng;
 import sim.SimulInfo;
+import sim.SysMng;
 import sim.TaskSimul;
 import sim.job.Job;
 import util.Log;
@@ -13,22 +15,48 @@ public abstract class TaskSimulMC extends TaskSimul {
 	public boolean g_recoverOn=true;
 	public boolean isPrnMS=true;
 	protected JobSimulMC g_jsm;
+	
+	public void init_sm_tm(SysMng sm,TaskMng tm ){
+		if(sm!=null) {
+			tm.setX(sm.getX());
+			g_sm=sm;
+		}
+		g_tm=tm;
+		init();
+		checkErr();
+	}
 
 
-	protected void init() {
+	// simul interval
+	public void simulBy(int st, int et){
+		if(st==0){
+			Log.prn(isSchTab,1, "rel  / exec / t");
+		}
+		int t=st;
+		while(t<et){
+			simul_t();
+			t++;
+		}
+	}
+	
+	public void simulEnd() {
+		g_jsm.simulEnd();
+	}
+	
+
+	// private
+
+	private void init() {
 		g_jsm=new JobSimulMC();
-		g_js=g_jsm;
-
 		g_si=new SimulInfo();
 		g_needRecover=false;
 	}
 
-	
-	public void simul_t(){
+	private void simul_t(){
 		msCheck();
 		relCheck();
-		g_js.simul_one();
-		if(g_js.isIdle()&&g_needRecover&&g_recoverOn) {
+		g_jsm.simul_one();
+		if(g_jsm.isIdle()&&g_needRecover&&g_recoverOn) {
 			recover();
 		}
 		//Log.prn(isSchTab,1, " "+t);
@@ -54,17 +82,17 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(prob<g_sm.getMS_Prob())
 			isMS=true;
 		if(isMS){
-			Log.prn(isPrnMS,1, "t:"+g_js.getTime()+" mode-switch "+tid);
+			Log.prn(isPrnMS,1, "t:"+g_jsm.getTime()+" mode-switch "+tid);
 			g_needRecover=true;
 			mode_switch(tid);
 		} else {
-			g_js.getJM().removeCur();
+			g_jsm.getJM().removeCur();
 		}
 		
 	}
 	
 	private void relCheck(){
-		int t=g_js.getTime();
+		int t=g_jsm.getTime();
 		for(Task tsk:g_tm.getTasks()){
 			if (t%tsk.period!=0){
 				Log.prnc(isSchTab,1,"-");
@@ -82,7 +110,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 				}
 			}
 			Log.prnc(isSchTab,1,"+");
-			g_js.add(relJob_base(tsk,t));
+			g_jsm.add(relJob_base(tsk,t));
 		}
 		Log.prnc(isSchTab,1, " ");
 	}

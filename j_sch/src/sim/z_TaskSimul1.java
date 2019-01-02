@@ -1,13 +1,14 @@
 package sim;
 
+import basic.TaskMng;
 import sim.mc.TaskSimul_EDF_VD;
 import util.TEngine;
 import z_ex.TS_MC1;
 import z_ex.TS_NonMC1;
 
 public class z_TaskSimul1 {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 	public static int gret[]={1,0,1,0,-1, -1,-1,-1,-1,-1};
 
@@ -22,7 +23,12 @@ public class z_TaskSimul1 {
 	public int test2() {
 		int et=40;
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD();
-		ts.init_sm_tm(null,TS_MC1.ts1());
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(0.3);
+		sm.setX(0.2);
+//		TaskMng tm=TS_NonMC1.ts1();
+		TaskMng tm=TS_MC1.ts1();
+		ts.init_sm_tm(sm,tm);
 		ts.simulBy(0,et);
 		ts.simulEnd();
 		return 0;
