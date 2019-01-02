@@ -7,8 +7,8 @@ import z_ex.TS_MC1;
 import z_ex.TS_NonMC1;
 
 public class z_TaskSimul1 {
-//	public static int idx=1;
-	public static int idx=2;
+	public static int idx=1;
+//	public static int idx=2;
 	public static int log_level=1;
 	public static int gret[]={1,0,1,0,-1, -1,-1,-1,-1,-1};
 

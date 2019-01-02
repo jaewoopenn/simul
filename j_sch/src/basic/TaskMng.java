@@ -37,7 +37,6 @@ public class TaskMng {
 	public void setX(double x){
 		g_info.setX(x);
 		g_hi_tasks.setX(x);
-		g_hi_tasks.prn();
 	}
 
 	public void setLo_max(double u){

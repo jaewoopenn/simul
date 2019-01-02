@@ -27,32 +27,20 @@ public abstract class TaskSimulMC extends TaskSimul {
 	}
 
 
-	// simul interval
-	public void simulBy(int st, int et){
-		if(st==0){
-			Log.prn(isSchTab,1, "rel  / exec / t");
-		}
-		int t=st;
-		while(t<et){
-			simul_t();
-			t++;
-		}
-	}
-	
+
 	public void simulEnd() {
 		g_jsm.simulEnd();
 	}
 	
 
-	// private
-
-	private void init() {
-		g_jsm=new JobSimulMC();
+	// protected
+	protected void init() {
+		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
 		g_needRecover=false;
 	}
 
-	private void simul_t(){
+	protected void simul_t(){
 		msCheck();
 		relCheck();
 		g_jsm.simul_one();
@@ -61,6 +49,11 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 		//Log.prn(isSchTab,1, " "+t);
 	}
+
+	
+	// private
+
+
 
 	private void recover(){
 //		Log.prn(isPrnMS,1, "recover "+t);

@@ -7,16 +7,13 @@ public class JobSimul {
 	protected JobMng g_jm;
 	protected int g_t;
 	protected boolean isVisible=true;
-	public JobSimul(){
-		g_jm=new JobMng();
+	public JobSimul(int n){
+		if(n!=0)
+			g_jm=new JobMng(n);
 		g_t=0;
-	}
-	public void setJM(JobMng jm) {
-		g_jm=jm;
 	}
 	public void setVisible(boolean b) {
 		isVisible=b;
-		
 	}
 	
 	
@@ -24,23 +21,21 @@ public class JobSimul {
 		g_jm.add(j);
 	}
 
-	// all in one
-	public int simul(int et){
-		simulBy(et);
-		simulEnd();
-		return g_jm.endCheck(et);
-	}
+
 	public void simul_one() {
-		simulBy(g_t+1);
+		work();
+		g_t++;
+	}
+	private void work(){
+		Log.prnc(isVisible,1, String.format("%05d ", g_t));
+		if(!dlCheck(g_t))
+			System.exit(1);
+		progress();
+
+		Log.prn(isVisible,1, "");
 	}
 	
-	public int simulBy(int et){
-		while(g_t<et){
-			work();
-			g_t++;
-		}
-		return 1;
-	}
+
 	public void simulEnd(){
 		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
@@ -53,14 +48,6 @@ public class JobSimul {
 		g_jm.prn();
 	}
 	
-	private void work(){
-		Log.prnc(isVisible,1, g_t+" ");
-		if(!dlCheck(g_t))
-			System.exit(1);
-		progress();
-
-		Log.prn(isVisible,1, "");
-	}
 
 	
 	

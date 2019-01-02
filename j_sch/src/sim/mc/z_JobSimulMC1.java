@@ -1,34 +1,23 @@
-package sim.job;
+package sim.mc;
 
-import util.Log;
+import sim.job.Job;
 import util.TEngine;
 
-public class z_JobSimul1 {
+public class z_JobSimulMC1 {
 	public static int idx=1;
 	public static int log_level=1;
 	public static int gret[]={2,0,-1,-1,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
-		JobSimulEx js=new JobSimulEx(3);
-		js.add(new Job(0,5,1));
-		js.add(new Job(1,3,1));
-		js.add(new Job(2,4,2));
-		js.simulBy(3);
-		js.add(new Job(1,6,1));
-		Log.prn(1,"  ");
-		js.simulBy(4);
-		js.add(new Job(2,8,2));
-		js.simul(8);
+		JobSimulMCEx js=new JobSimulMCEx(3);
+		js.add(new Job(0,5,2));
+		js.add(new Job(1,6,1,2,2));
+		js.add(new Job(2,7,1,3,2));
+		js.simulBy(6);
 		return -1;
 	}
 	public int test2() {
-		JobSimulEx js=new JobSimulEx(3);
-		js.add(new Job(0,3,2));
-		js.add(new Job(1,3,2));
-		js.add(new Job(2,3,2));
-		js.simulBy(6);
-		js.simulEnd();
 		return 0;
 	}
 	
@@ -61,9 +50,9 @@ public class z_JobSimul1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_JobSimul1.class;
-		z_JobSimul1 m=new z_JobSimul1();
-		int[] aret=z_JobSimul1.gret;
+		Class c = z_JobSimulMC1.class;
+		z_JobSimulMC1 m=new z_JobSimulMC1();
+		int[] aret=z_JobSimulMC1.gret;
 		if(idx==-1)
 			TEngine.run(m,c,aret,10);
 		else

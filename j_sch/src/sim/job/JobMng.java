@@ -7,8 +7,9 @@ import util.Log;
 public class JobMng {
 	protected PriorityQueue<Job> g_jobs;
 	protected int g_task_num=0;
-	public JobMng() {
+	public JobMng(int n) {
 		g_jobs=new PriorityQueue<Job>();
+		g_task_num=n;
 	}
 	public void add(Job job) {
 		g_jobs.add(job);
@@ -25,8 +26,6 @@ public class JobMng {
 				Log.prnc(1, "-");
 			return;
 		} 
-		if (j.tid+1>g_task_num)
-			g_task_num=j.tid+1;
 		for (int i=0;i<g_task_num;i++)
 		{
 			if(i==j.tid){

@@ -63,6 +63,17 @@ public class TaskSimul {
 	}
 	
 	// ------------- protected
+	protected void init() {
+		g_js=new JobSimul(g_tm.size());
+		g_si=new SimulInfo();
+	}
+
+	protected void simul_t(){
+		relCheck();
+		g_js.simul_one();
+		//Log.prn(isSchTab,1, " "+t);
+	}
+	
 	protected Job relJob_base(Task tsk, int t) {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
@@ -75,15 +86,6 @@ public class TaskSimul {
 	
 	
 	// -------------- private
-	private void init() {
-		g_js=new JobSimul();
-		g_si=new SimulInfo();
-	}
-	private void simul_t(){
-		relCheck();
-		g_js.simul_one();
-		//Log.prn(isSchTab,1, " "+t);
-	}
 	
 	
 	private void relCheck(){

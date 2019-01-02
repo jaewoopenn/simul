@@ -7,13 +7,10 @@ import sim.job.JobMng;
 
 
 public class JobMngMC extends JobMng {
-	public void modeswitch() {
-		for(Job j:g_jobs){
-			j.exec=j.exec+j.add_exec;
-			j.add_exec=0;
-		}
-		
+	public JobMngMC(int n){
+		super(n);
 	}
+
 	public void modeswitch(int tid) {
 		Vector<Job> v=new Vector<Job>();
 		for(Job j:g_jobs){
@@ -24,6 +21,8 @@ public class JobMngMC extends JobMng {
 				v.add(j);
 			}
 		}
+		
+		// because java.util.ConcurrentModificationException
 		for(Job j:v){
 			g_jobs.remove(j);
 		}
