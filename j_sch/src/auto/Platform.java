@@ -108,8 +108,8 @@ public class Platform {
 			} else {
 				fu.write("0");
 			}
-			fu.save();
 		}
+		fu.save();
 		
 	}
 	
@@ -117,13 +117,19 @@ public class Platform {
 	public String simul(String ts_list,int sort) {
 		FUtilSp fu=new FUtilSp(g_path+ts_list);
 		fu.load();
+		String rs_fn=g_path+"a_sim_list."+sort+".txt";
+		FUtil fu_rs=new FUtil(rs_fn);
+		
 		Anal a=AnalSel.getAnal(sort);
 		TaskSimul s=SimulSel.getSim(sort);
 		
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
-			simul_one(fn,null,a,s);
+			String out=fn+".sim."+sort;
+			simul_one(fn,out,a,s);
+			fu_rs.write(out);
 		}		
+		fu_rs.save();
 		return null;		
 	}
 
@@ -132,6 +138,7 @@ public class Platform {
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
 		int n=0;
+		FUtil fu=new FUtil(out);
 		while(true) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
@@ -152,7 +159,9 @@ public class Platform {
 			s.init_sm_tm(sm,tm);
 			s.simulBy(0,10);
 			s.simulEnd();
+			fu.write("1");
 		}
+		fu.save();
 	}
 
 	

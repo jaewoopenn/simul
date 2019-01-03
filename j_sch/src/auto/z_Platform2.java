@@ -71,10 +71,11 @@ public class z_Platform2 {
 	{
 		String path="sch/t1/";
 		String fn="sch/t1/taskset_65";
+		String out="sch/t1/taskset_65.sim.1";
 		Anal a=AnalSel.getAnal(1);
 		TaskSimul s=SimulSel.getSim(1);
 		Platform p=new Platform(path);
-		p.simul_one(fn,null,a,s);
+		p.simul_one(fn,out,a,s);
 		return -1;
 	}
 	
