@@ -101,11 +101,7 @@ public class TaskSimul {
 		Log.prnc(isSchTab,1, " ");
 	}
 
-	public void reset() {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 
 	
 }
