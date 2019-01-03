@@ -7,6 +7,9 @@ import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenTM;
 import gen.SysLoad;
+import sim.SimulSel;
+import sim.SysMng;
+import sim.TaskSimul;
 import util.FUtil;
 import util.FUtilSp;
 import util.Log;
@@ -97,6 +100,7 @@ public class Platform {
 		while(true) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
+
 			a.init(tm);
 			a.prepare();
 			if(a.isScheduable()) {
@@ -108,12 +112,49 @@ public class Platform {
 		}
 		
 	}
-	// simulate task set list with algorithm choice
 	
-	public void simul(String ts_list,int sort) {
+	// simulate task set list with algorithm choice
+	public String simul(String ts_list,int sort) {
+		FUtilSp fu=new FUtilSp(g_path+ts_list);
+		fu.load();
+		Anal a=AnalSel.getAnal(sort);
+		TaskSimul s=SimulSel.getSim(sort);
 		
+		for(int i=0;i<fu.size();i++) {
+			String fn=fu.get(i);
+			simul_one(fn,null,a,s);
+		}		
+		return null;		
 	}
 
+	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
+		Log.prn(2, ts);
+		SysLoad sy=new SysLoad(ts);
+		sy.open();
+		int n=0;
+		while(true) {
+			TaskMng tm=sy.loadOne();
+			if(tm==null) break;
+			
+			a.init(tm);
+			a.prepare();
+			n++;
+			Log.prn(2, "n:"+n);
+			if(!a.isScheduable()) {
+				Log.prn(2, "no sch");
+				continue;
+			}
+
+			double x=a.computeX();
+			SysMng sm=new SysMng();
+			sm.setMS_Prob(0.3);
+			sm.setX(x);
+			s.reset();
+			s.init_sm_tm(sm,tm);
+			s.simulBy(0,10);
+			s.simulEnd();
+		}
+	}
 
 	
 	

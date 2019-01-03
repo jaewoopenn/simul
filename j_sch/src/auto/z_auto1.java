@@ -10,38 +10,36 @@ public class z_auto1 {
 	public static int idx=4;
 	public static int log_level=1;
 
+	private String g_path="sch/t1";
+	
 	public int test1() 
 	{
-		String path="sch/t1/";
 		String cf="a_cfg_list.txt";
-		Platform p=new Platform(path);
-		p.setNum(20);
+		Platform p=new Platform(g_path);
+		p.setNum(3);
 		p.genUtil(cf);
 		return 0;
 	}
 	public int test2() 
 	{
-		String path="sch/t1/";
 		String cl="a_cfg_list.txt";
-		Platform p=new Platform(path);
+		Platform p=new Platform(g_path);
 		p.genTS(cl);
 		return -1;	}
 	public int test3() 
 	{
-		String path="sch/t1/";
 		String ts="a_ts_list.txt";
 		String rs="a_rs_list.txt";
-		Platform p=new Platform(path);
+		Platform p=new Platform(g_path);
 		int end=3;
 		p.anal_loop(rs,ts,end);
 		return -1;
 	}
 	public  int test4() 
 	{
-		String path="sch/t1/";
 		String xl="a_x_list.txt";
 		String rs="a_rs_list.txt";
-		DataAnal p=new DataAnal(path,0);
+		DataAnal p=new DataAnal(g_path,0);
 		p.load_x(xl);
 		p.load_rs(rs);
 		p.save("a_graph.txt");

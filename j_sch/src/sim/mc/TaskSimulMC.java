@@ -38,6 +38,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
 		g_needRecover=false;
+		g_jsm.prn();
+//		Log.prn(1, "num:"+g_tm.size());
 	}
 
 	protected void simul_t(){

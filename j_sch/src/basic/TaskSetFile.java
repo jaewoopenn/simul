@@ -135,6 +135,7 @@ public class TaskSetFile {
 	}
 	
 	public static TaskSetFile  loadFile_in(FUtil fu) {
+		TaskSeq.reset();
 	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);

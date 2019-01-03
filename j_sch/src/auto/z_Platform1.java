@@ -19,13 +19,13 @@ public class z_Platform1 {
 	public static int idx=5;
 	public static int log_level=1;
 
+	private String g_path="sch/t1";
 	// gen task set (
 	public int test1() 
 	{
-		String path="test/t1/";
-		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
-		FUtil fu_ts=new FUtil(path+"a_ts_list.txt");
-		FUtil fu_rs=new FUtil(path+"a_x_list.txt");
+		FUtilSp fu=new FUtilSp(g_path+"a_cfg_list.txt");
+		FUtil fu_ts=new FUtil(g_path+"a_ts_list.txt");
+		FUtil fu_rs=new FUtil(g_path+"a_x_list.txt");
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
@@ -48,16 +48,15 @@ public class z_Platform1 {
 	// gen task set (
 	public int test2() 
 	{
-		String path="test/t1/";
 		String cl="a_cfg_list.txt";
-		Platform p=new Platform(path);
+		Platform p=new Platform(g_path);
 		p.genTS(cl);
 		return -1;
 	}
 	
 	public int test3() 
 	{
-		SysLoad sy=new SysLoad("test/t1/taskset_55");
+		SysLoad sy=new SysLoad(g_path+"taskset_55");
 		sy.open();
 		while(true) {
 			TaskMng tm=sy.loadOne();
@@ -69,8 +68,7 @@ public class z_Platform1 {
 	
 	public  int test4() 
 	{
-		String path="test/t1/";
-		FUtilSp fu=new FUtilSp(path+"a_ts_list.txt");
+		FUtilSp fu=new FUtilSp(g_path+"a_ts_list.txt");
 //		FUtil fu_rs=new FUtil(path+"a_rs_list.txt");
 		fu.load();
 		for(int i=0;i<fu.size();i++) {
@@ -92,19 +90,17 @@ public class z_Platform1 {
 	
 	public  int test5() 
 	{
-		String path="test/t1/";
 		String ts="a_ts_list.txt";
-		Platform p=new Platform(path);
+		Platform p=new Platform(g_path);
 		p.anal(ts,0);
 		p.anal(ts,1);
 		return -1;
 	}
 	public  int test6() 
 	{
-		String path="test/t1/";
 		String ts="taskset_55";
 		String out=ts+".rs";
-		Platform p=new Platform(path);
+		Platform p=new Platform(g_path);
 		p.anal_one(ts,out,new AnalEDF());
 		return -1;
 	}

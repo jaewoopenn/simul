@@ -64,6 +64,10 @@ public class JobSimulMC extends JobSimul{
 	public JobMngMC getJM() {
 		return (JobMngMC) g_jm;
 	}
+	public void prn() {
+		g_jm.prn();
+		
+	}
 	
 	
 }
