@@ -27,7 +27,7 @@ public class Platform {
 
 	public void genUtil(String cf) {
 		ConfigGen eg=ConfigGen.getPredefined();
-		FUtil fu=new FUtil(g_path+cf);
+		FUtil fu=new FUtil(g_path+"/"+cf);
 		eg.setParam("subfix", g_path);
 		eg.setParam("num",g_num+"");
 		int base=50;
@@ -37,7 +37,7 @@ public class Platform {
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			String fn=g_path+"cfg_"+i+".txt";
+			String fn=g_path+"/cfg_"+i+".txt";
 			eg.setFile(fn);
 			eg.write();
 			fu.write(fn);
@@ -47,10 +47,10 @@ public class Platform {
 	}
 
 	public void genTS(String cfg_list) {
-		FUtilSp fu=new FUtilSp(g_path+cfg_list);
+		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
 		
-		FUtil fu_ts=new FUtil(g_path+"a_ts_list.txt");
-		FUtil fu_rs=new FUtil(g_path+"a_x_list.txt");
+		FUtil fu_ts=new FUtil(g_path+"/a_ts_list.txt");
+		FUtil fu_rs=new FUtil(g_path+"/a_x_list.txt");
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
@@ -68,7 +68,7 @@ public class Platform {
 		fu_rs.save();
 	}
 	public void anal_loop(String rs_list,String ts_list, int end) {
-		FUtil fu=new FUtil(g_path+rs_list);
+		FUtil fu=new FUtil(g_path+"/"+rs_list);
 		for(int i=0;i<end;i++){
 			String rs=anal(ts_list,i);
 			fu.write(rs);
@@ -79,8 +79,8 @@ public class Platform {
 	
 	// analyze task set list with algorithm choice
 	public String anal(String ts_list,int sort) {
-		FUtilSp fu=new FUtilSp(g_path+ts_list);
-		String rs_fn=g_path+"a_rs_list."+sort+".txt";
+		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
+		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
 		FUtil fu_rs=new FUtil(rs_fn);
 		fu.load();
 		Anal a=AnalSel.getAnal(sort);

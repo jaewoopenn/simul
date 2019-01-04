@@ -5,9 +5,11 @@ Created on 2015. 12. 11.
 '''
 import util.MPlot as mp;
 class gl_input:
-    path="/data/sch/t1/a_graph.txt"
+    path="/data/sch"
+    fn="t1/a_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
+
 class gl:
     lab=[]
     x=[]
@@ -16,18 +18,21 @@ class gl:
     marker=['o','v','D','^','s']
 
 def load():
-    i_f = open(gl_input.path,"r")
+    fn=gl_input.path+"/"+gl_input.fn
+    i_f = open(fn,"r")
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
         raw.append(val)
     itemlen=len(raw[0])
 #     print(itemlen)
+
     for i in range(1,itemlen):
         gl.lab.append(raw[0][i])
     for i in range(1,len(raw)):
         gl.x.append(raw[i][0])
 #     print(gl.x)
+
     for i in range(1,itemlen):
         v=[]
         for j in range(1,len(raw)):

@@ -18,10 +18,10 @@ import util.TEngine;
 import z_ex.TS_MC1;
 
 public class z_Platform2 {
-//	public static int idx=1;
+	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-	public static int idx=4;
+//	public static int idx=4;
 //	public static int log_level=1;
 	public static int log_level=2;
 

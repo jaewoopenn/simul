@@ -18,7 +18,7 @@ public class DataAnal {
 		g_max=x;
 	}
 	public void load_x(String fn) {
-		FUtilSp fu=new FUtilSp(g_path+fn);
+		FUtilSp fu=new FUtilSp(g_path+"/"+fn);
 		fu.load();
 		g_xlen=fu.size();
 		for(int i=0;i<fu.size();i++) {
@@ -28,7 +28,7 @@ public class DataAnal {
 		g_rs=new double[10][g_xlen];
 	}
 	public void load_rs(String fn){
-		FUtilSp fu=new FUtilSp(g_path+fn);
+		FUtilSp fu=new FUtilSp(g_path+"/"+fn);
 		fu.load();
 		int size=fu.size();
 		g_max=size;
@@ -50,7 +50,7 @@ public class DataAnal {
 	}
 	
 	public void save(String fn) {
-		FUtil fu=new FUtil(g_path+fn);
+		FUtil fu=new FUtil(g_path+"/"+fn);
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {

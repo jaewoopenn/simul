@@ -5,7 +5,8 @@ import z_ex.TS_MC1;
 import util.TEngine;
 
 public class z_Anal1 {
-	public static int idx=1;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 
 	public int test1() 
@@ -24,6 +25,15 @@ public class z_Anal1 {
 
 	public int test2() 
 	{
+		TaskMng tm=TS_MC1.ts6();
+		Anal a=new AnalEDF_VD();
+		a.init(tm);
+		a.prepare();
+		a.prn();
+		a=new AnalEDF_AD_E();
+		a.init(tm);
+		a.prepare();
+		a.prn();
 		return -1;
 	}
 	
