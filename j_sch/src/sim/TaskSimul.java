@@ -5,6 +5,7 @@ import basic.Task;
 import basic.TaskMng;
 import sim.job.Job;
 import sim.job.JobSimul;
+import util.FLog;
 import util.Log;
 import util.RUtil;
 
@@ -13,12 +14,8 @@ public class TaskSimul {
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected RUtil g_rutil=new RUtil();
-	protected boolean isSchTab=true;
 	private JobSimul g_js;
 
-	public void setSchView(boolean b) {
-		isSchTab=b;
-	}
 	
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
@@ -37,7 +34,7 @@ public class TaskSimul {
 	// simul interval
 	public void simulBy(int st, int et){
 		if(st==0){
-			Log.prn(isSchTab,1, "rel  / exec / t");
+			FLog.prn("rel  / exec / t");
 		}
 		int t=st;
 		while(t<et){
@@ -90,15 +87,17 @@ public class TaskSimul {
 	
 	private void relCheck(){
 		int t=g_js.getTime();
+		String s="";
 		for(Task tsk:g_tm.getTasks()){
 			if (t%tsk.period==0){
-				Log.prnc(isSchTab,1,"+");
+				s+="+";
 				g_js.add(relJob_base(tsk,t));
 			} else {
-				Log.prnc(isSchTab,1,"-");
+				s+="-";
 			}
 		}
-		Log.prnc(isSchTab,1, " ");
+		s+=" ";
+		FLog.prnc(s);
 	}
 
 

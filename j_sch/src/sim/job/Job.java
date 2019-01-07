@@ -1,6 +1,5 @@
 package sim.job;
 
-import util.Log;
 
 public class Job implements Comparable<Job>{
 	public int tid;
@@ -25,14 +24,6 @@ public class Job implements Comparable<Job>{
 		this.vd = vd;
 	}
 
-	public void prn() {
-		Log.prnc(1,tid+","+dl+","+exec);
-		if(isHI)
-			Log.prn(1,","+vd+","+add_exec);
-		else
-			Log.prn(1,"");
-			
-	}
 
 	@Override
 	public int compareTo(Job o) {
@@ -43,5 +34,13 @@ public class Job implements Comparable<Job>{
 			return 0;
 		else
 			return -1;
+	}
+
+	public String info() {
+		String s=tid+","+dl+","+exec;
+		if(isHI)
+			s+=","+vd+","+add_exec;
+		return s;
+			
 	}
 }

@@ -2,6 +2,7 @@ package sim.mc;
 
 
 import basic.Task;
+import util.FLog;
 import util.Log;
 import util.MUtil;
 
@@ -31,8 +32,7 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 				System.exit(1);
 			}
 			dropTask_base(tsk);
-			if(isPrnMS)
-				Log.prn(1, "drop "+tsk.tid);
+			FLog.prn("drop "+tsk.tid);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
 			ru-=g_tm.getReclaimUtil(tsk);
 		}

@@ -1,19 +1,16 @@
 package sim.job;
 
 
+import util.FLog;
 import util.Log;
 
 public class JobSimul {
 	protected JobMng g_jm;
 	protected int g_t;
-	protected boolean isVisible=true;
 	public JobSimul(int n){
 		if(n!=0)
 			g_jm=new JobMng(n);
 		g_t=0;
-	}
-	public void setVisible(boolean b) {
-		isVisible=b;
 	}
 	
 	
@@ -27,12 +24,11 @@ public class JobSimul {
 		g_t++;
 	}
 	private void work(){
-		Log.prnc(isVisible,1, String.format("%05d ", g_t));
+		FLog.prnc( String.format("%05d ", g_t));
 		if(!dlCheck(g_t))
 			System.exit(1);
 		progress();
 
-		Log.prn(isVisible,1, "");
 	}
 	
 
@@ -42,10 +38,8 @@ public class JobSimul {
 			Log.prn(9,"Deadline miss at time "+g_t);
 			System.exit(1);
 		}
-		if(!isVisible)
-			return;
-		Log.prn(1, "*** Left Jobs at time "+g_t+" ***");
-		g_jm.prn();
+		FLog.prn("*** Left Jobs at time "+g_t+" ***");
+		g_jm.f_prn();
 	}
 	
 
@@ -67,12 +61,14 @@ public class JobSimul {
 	
 	protected void progress(){
 		Job j=g_jm.getCur();
-		int out_type=0;
-		if(j==null)	{
-			g_jm.prnJob(true,null,out_type);
+		if(!FLog.isON())
 			return;
+		int out_type=0;
+		String s="";
+		if(j==null)	{
+
 		}
-		if(j.exec<=1) {
+		else if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
 			g_jm.removeCur();
@@ -80,7 +76,8 @@ public class JobSimul {
 			out_type=2;
 			j.exec-=1;
 		}
-		g_jm.prnJob(isVisible,j,out_type);
+		s=g_jm.getJobArrow(j,out_type);
+		FLog.prn(s);
 	}
 	
 	

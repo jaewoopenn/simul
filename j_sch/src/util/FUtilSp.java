@@ -33,7 +33,7 @@ public class FUtilSp extends FUtil {
 	
 	
 	public static void makeDir(String str) {
-		 File theDir = new File(FUtilSp.g_path+str);
+		 File theDir = new File(FUtil.path+str);
 		if (theDir.exists()) {
 //			System.out.println("dir exist");
 			return;

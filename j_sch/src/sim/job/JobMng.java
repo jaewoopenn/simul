@@ -2,6 +2,7 @@ package sim.job;
 
 import java.util.PriorityQueue;
 
+import util.FLog;
 import util.Log;
 
 public class JobMng {
@@ -15,30 +16,26 @@ public class JobMng {
 		g_jobs.add(job);
 	}
 
-	public void prnJob(boolean b,Job j,int out_type)
+	public String getJobArrow(Job j,int out_type)
 	{
-		// out_type=0
-		if(!b)
-			return;
-//		Log.prnc(1, "cur:"+cur_t+" ");
+		String s="";
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
-				Log.prnc(1, "-");
-			return;
+				s+="-";
+			return s;
 		} 
 		for (int i=0;i<g_task_num;i++)
 		{
 			if(i==j.tid){
 				if(out_type==1)
-					Log.prnc(1, "+"); // end
+					s+="+"; // end
 				else
-					Log.prnc(1, "|"); // continue
+					s+= "|"; // continue
 			} else {
-				Log.prnc(1, "-"); // empty
+				s+= "-"; // empty
 			}
 		}
-//		Log.prn(1, " ");
-//		Log.prn(1, "  \t exec_type:"+out_type);
+		return s;
 	}
 	public Job getCur(){
 		return g_jobs.peek();
@@ -55,7 +52,7 @@ public class JobMng {
 			return;
 		}
 		for(Job j:g_jobs){
-			j.prn();
+			Log.prn(1, j.info());
 		}
 	}
 	public int endCheck(int et) {
@@ -65,6 +62,16 @@ public class JobMng {
 			}
 		}
 		return 1; // OK 
+	}
+	public void f_prn() {
+		if(g_jobs.size()==0){
+			FLog.prn("none");
+			return;
+		}
+		for(Job j:g_jobs){
+			FLog.prn(j.info());
+		}
+				
 	}
 
 }

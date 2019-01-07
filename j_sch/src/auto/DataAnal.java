@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import anal.Anal;
 import anal.AnalSel;
-import util.FUtil;
+import util.FOut;
 import util.FUtilSp;
 
 public class DataAnal {
@@ -50,7 +50,7 @@ public class DataAnal {
 	}
 	
 	public void save(String fn) {
-		FUtil fu=new FUtil(g_path+"/"+fn);
+		FOut fu=new FOut(g_path+"/"+fn);
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {

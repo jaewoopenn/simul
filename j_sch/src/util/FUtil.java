@@ -2,9 +2,7 @@ package util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.Vector;
 /*
 
@@ -12,8 +10,7 @@ import java.util.Vector;
 */
 
 public class FUtil {
-	protected static final String g_path="/data/";
-	protected boolean isWrite=true;
+	public static final String path="/data/";
 	protected String g_fn;
 	protected BufferedReader g_br;
 	protected Vector<String> g_v;
@@ -32,36 +29,10 @@ public class FUtil {
 			Log.prn(1, get(i));
 		}
 	}
-	public void write(String txt){
-		if(!isWrite) {
-			Log.err("read mode, attempt write");
-			System.exit(1);
-		}
-		if(g_fn!=null)
-			g_v.add(txt);
-	}
-	public void save()
-	{
-		if(g_fn==null)
-			return;
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(g_path+g_fn);
-			for (String s:g_v){
-				writer.println(s);
-			}
-			
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-		
-	}
 	public void br_open() {
 		if(g_fn==null)
 			return;
-	    File file = new File(g_path+g_fn);
+	    File file = new File(FUtil.path+g_fn);
 		try {
 			FileReader fr = new FileReader(file);
 			g_br = new BufferedReader(fr);
@@ -69,13 +40,8 @@ public class FUtil {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		isWrite=true;
 	}
 	public String read() {
-		if(isWrite) {
-			Log.err("write mode, attempt read");
-			System.exit(1);
-		}
 		String line=null;
 		try {
 			line = g_br.readLine();

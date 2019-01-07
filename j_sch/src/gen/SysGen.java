@@ -3,7 +3,7 @@ package gen;
 import basic.TaskMng;
 import basic.TaskSet;
 import basic.TaskSetFile;
-import util.FUtil;
+import util.FOut;
 
 public abstract class SysGen {
 	protected TaskGenMC g_tg;
@@ -36,7 +36,7 @@ public abstract class SysGen {
 //		String fn=g_cfg.get_dir();
 //		Log.prn(2, fn);
 //		FUtil.makeDir(fn);
-		FUtil fu=new FUtil(fn);
+		FOut fu=new FOut(fn);
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();
@@ -50,7 +50,7 @@ public abstract class SysGen {
 		
 	}
 	
-	public int writeSys(FUtil fu)
+	public int writeSys(FOut fu)
 	{
 		
 		TaskSet ts=new TaskSet(g_tg.getAll());

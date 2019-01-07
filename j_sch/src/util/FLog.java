@@ -1,0 +1,46 @@
+package util;
+
+import java.io.PrintWriter;
+/*
+
+
+*/
+
+public class FLog {
+	private static PrintWriter g_writer=null;
+	
+	public static boolean isON() {
+		return (g_writer!=null);
+	}
+	public static void init(String file) {
+		try {
+			g_writer = new PrintWriter(FUtil.path+file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+	}
+	public static void prn(String txt){
+		if(g_writer!=null)
+			g_writer.println(txt);
+	}
+	public static void prnc(String txt){
+		if(g_writer!=null)
+			g_writer.print(txt);
+	}
+	
+	public static void end()
+	{
+		if(g_writer!=null) {
+			g_writer.close();
+			g_writer=null;
+		}
+		else
+			Log.err("need FLOG init");
+	}
+	public static void alive() {
+		
+	}
+}

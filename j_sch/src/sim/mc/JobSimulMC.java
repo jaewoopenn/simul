@@ -3,6 +3,7 @@ package sim.mc;
 
 import sim.job.Job;
 import sim.job.JobSimul;
+import util.FLog;
 import util.Log;
 
 public class JobSimulMC extends JobSimul{
@@ -17,24 +18,24 @@ public class JobSimulMC extends JobSimul{
 	protected void progress(){
 		Job j=g_jm.getCur();
 		int out_type=0;
+		String s="";
 		if(j==null)	{
-			g_jm.prnJob(true,null,out_type);
-			return ;
+			
 		}
-		if(j.exec<=1) {
+		else if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
 			// HI task and add_exec>0 --> process in msCheck
 			if(!j.isHI||j.add_exec==0) {
 				g_jm.removeCur();
 			}
-			else {
-			}
+
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;
 		}
-		g_jm.prnJob(isVisible,j,out_type);
+		s=g_jm.getJobArrow(j,out_type);
+		FLog.prn(s);
 	}	
 	
 	public int msCheck() { // before dlcheck
@@ -63,10 +64,6 @@ public class JobSimulMC extends JobSimul{
 	
 	public JobMngMC getJM() {
 		return (JobMngMC) g_jm;
-	}
-	public void prn() {
-		g_jm.prn();
-		
 	}
 	
 	

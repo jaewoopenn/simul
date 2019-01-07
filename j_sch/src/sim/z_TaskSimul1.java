@@ -2,18 +2,21 @@ package sim;
 
 import basic.TaskMng;
 import sim.mc.TaskSimul_EDF_VD;
+import util.FLog;
 import util.TEngine;
 import z_ex.TS_MC1;
 import z_ex.TS_NonMC1;
 
 public class z_TaskSimul1 {
-	public static int idx=1;
+//	public static int idx=1;
 //	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=1;
 	public static int gret[]={1,0,1,0,-1, -1,-1,-1,-1,-1};
 
 
 	public int test1()	{
+		FLog.alive();
 		TaskSimul ts=new TaskSimul();
 		ts.init_sm_tm(null,TS_NonMC1.ts1());
 		ts.simulBy(0,20);
@@ -35,6 +38,21 @@ public class z_TaskSimul1 {
 	}
 	
 	public  int test3()	{
+		int et=1000;
+		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD();
+//		FLog.init("test/log.txt");
+		
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(0.3);
+		sm.setX(0.2);
+//		TaskMng tm=TS_NonMC1.ts1();
+		TaskMng tm=TS_MC1.ts1();
+		ts.init_sm_tm(sm,tm);
+		ts.simulBy(0,et);
+		ts.simulEnd();
+//		FLog.end();
+		SimulInfo si=ts.getSI();
+		si.prn();
 		return 0;
 	}
 	

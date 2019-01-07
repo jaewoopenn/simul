@@ -3,7 +3,7 @@ package auto;
 import java.util.HashMap;
 import java.util.Vector;
 
-import util.FUtil;
+import util.FOut;
 import util.FUtilSp;
 import util.Log;
 import util.MUtil;
@@ -57,7 +57,7 @@ public class CmdFile {
 		return Double.valueOf(s.trim()).doubleValue();
 	}
 	public void write() {
-		FUtil fu=new FUtil(g_fn);
+		FOut fu=new FOut(g_fn);
 		for (String s:g_list){
 			String v=readPar(s);
 			if(v==null){

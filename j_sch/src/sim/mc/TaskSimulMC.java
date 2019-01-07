@@ -7,13 +7,13 @@ import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
 import sim.job.Job;
+import util.FLog;
 import util.Log;
 
 public abstract class TaskSimulMC extends TaskSimul {
 
 	protected boolean g_needRecover=false;
 	public boolean g_recoverOn=true;
-	public boolean isPrnMS=true;
 	protected JobSimulMC g_jsm;
 	
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
@@ -38,7 +38,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
 		g_needRecover=false;
-		g_jsm.prn();
 //		Log.prn(1, "num:"+g_tm.size());
 	}
 
@@ -77,7 +76,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(prob<g_sm.getMS_Prob())
 			isMS=true;
 		if(isMS){
-			Log.prn(isPrnMS,1, "t:"+g_jsm.getTime()+" mode-switch "+tid);
+			FLog.prn("t:"+g_jsm.getTime()+" mode-switch "+tid);
 			g_needRecover=true;
 			mode_switch(tid);
 		} else {
@@ -88,9 +87,10 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	private void relCheck(){
 		int t=g_jsm.getTime();
+		String s="";
 		for(Task tsk:g_tm.getTasks()){
 			if (t%tsk.period!=0){
-				Log.prnc(isSchTab,1,"-");
+				s+="-";
 				continue;
 			}
 //			Log.prn(2, "rc:"+t);
@@ -100,14 +100,15 @@ public abstract class TaskSimulMC extends TaskSimul {
 				if(tsk.is_dropped){
 					g_si.drop++;
 //					Log.prn(1, "drop plus:"+tsk.tid+" "+g_si.drop);
-					Log.prnc(isSchTab,1,"-");
+					s+="-";
 					continue;
 				}
 			}
-			Log.prnc(isSchTab,1,"+");
+			s+="+";
 			g_jsm.add(relJob_base(tsk,t));
 		}
-		Log.prnc(isSchTab,1, " ");
+		s+=" ";
+		FLog.prnc(s);
 	}
 	
 
@@ -169,7 +170,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
 	protected void modeswitch_in_base(int tid){
-		Log.prn(isPrnMS,1, "ms hi "+tid);
+		FLog.prn("ms hi "+tid);
 		g_jsm.getJM().modeswitch(tid);
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI)	{

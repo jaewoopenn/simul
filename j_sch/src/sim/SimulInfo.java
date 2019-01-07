@@ -8,7 +8,6 @@ public class SimulInfo {
 	public int rel;
 	public int drop;
 	public int ms;
-	public int mig;
 	public double getDMR(){
 		if(rel==0)
 			return 0;
@@ -19,6 +18,5 @@ public class SimulInfo {
 		Log.prn(2, "rel:"+rel);
 		Log.prn(2, "drop:"+drop);
 		Log.prn(2, "ms:"+ms);
-		Log.prn(2, "mig:"+mig);
 	}
 }

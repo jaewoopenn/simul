@@ -1,6 +1,8 @@
 package basic;
 
 import java.util.Vector;
+
+import util.FOut;
 import util.FUtil;
 import util.FUtilSp;
 import util.Log;
@@ -101,20 +103,20 @@ public class TaskSetFile {
 
 	// static 
 	public static void writeFile(String fn,TaskSet tasks){
-		FUtil fu=new FUtil(fn);
+		FOut fu=new FOut(fn);
 		for(Task t:tasks.getArr())
 			writeTask(fu,t);
 		fu.save();
 	}
 	
-	public static void writeTS(FUtil fu,TaskSet tasks){
+	public static void writeTS(FOut fu,TaskSet tasks){
 		for(Task t:tasks.getArr())
 			writeTask(fu,t);
 		fu.write("------");
 	}
 	
 
-	public static void writeTask(FUtil fu, Task t) {
+	public static void writeTask(FOut fu, Task t) {
 		int isHI=t.is_HI?1:0;
 		String txt=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;

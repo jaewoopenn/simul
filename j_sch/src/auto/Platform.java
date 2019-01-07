@@ -10,7 +10,7 @@ import gen.SysLoad;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
-import util.FUtil;
+import util.FOut;
 import util.FUtilSp;
 import util.Log;
 
@@ -27,7 +27,7 @@ public class Platform {
 
 	public void genUtil(String cf) {
 		ConfigGen eg=ConfigGen.getPredefined();
-		FUtil fu=new FUtil(g_path+"/"+cf);
+		FOut fu=new FOut(g_path+"/"+cf);
 		eg.setParam("subfix", g_path);
 		eg.setParam("num",g_num+"");
 		int base=50;
@@ -49,8 +49,8 @@ public class Platform {
 	public void genTS(String cfg_list) {
 		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
 		
-		FUtil fu_ts=new FUtil(g_path+"/a_ts_list.txt");
-		FUtil fu_rs=new FUtil(g_path+"/a_x_list.txt");
+		FOut fu_ts=new FOut(g_path+"/a_ts_list.txt");
+		FOut fu_rs=new FOut(g_path+"/a_x_list.txt");
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
@@ -68,7 +68,7 @@ public class Platform {
 		fu_rs.save();
 	}
 	public void anal_loop(String rs_list,String ts_list, int end) {
-		FUtil fu=new FUtil(g_path+"/"+rs_list);
+		FOut fu=new FOut(g_path+"/"+rs_list);
 		for(int i=0;i<end;i++){
 			String rs=anal(ts_list,i);
 			fu.write(rs);
@@ -81,7 +81,7 @@ public class Platform {
 	public String anal(String ts_list,int sort) {
 		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
-		FUtil fu_rs=new FUtil(rs_fn);
+		FOut fu_rs=new FOut(rs_fn);
 		fu.load();
 		Anal a=AnalSel.getAnal(sort);
 		for(int i=0;i<fu.size();i++) {
@@ -96,7 +96,7 @@ public class Platform {
 	public void anal_one(String ts,String out,Anal a) {
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
-		FUtil fu=new FUtil(out);
+		FOut fu=new FOut(out);
 		while(true) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
@@ -118,7 +118,7 @@ public class Platform {
 		FUtilSp fu=new FUtilSp(g_path+ts_list);
 		fu.load();
 		String rs_fn=g_path+"a_sim_list."+sort+".txt";
-		FUtil fu_rs=new FUtil(rs_fn);
+		FOut fu_rs=new FOut(rs_fn);
 		
 		Anal a=AnalSel.getAnal(sort);
 		TaskSimul s=SimulSel.getSim(sort);
@@ -138,7 +138,7 @@ public class Platform {
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
 		int n=0;
-		FUtil fu=new FUtil(out);
+		FOut fu=new FOut(out);
 		while(true) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
