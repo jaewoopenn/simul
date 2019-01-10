@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import Util.MPlot as mp;
+import util.MPlot as mp;
 import math
 class gl:
 #     x=[0.01,0.03,0.05,0.07,0.09, 0.11,0.13,0.15,0.17,0.19]

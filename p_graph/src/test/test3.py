@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import Util.MPlot as mp;
+import util.MPlot as mp;
 def main():
     x=[60,70,80,90,100]
     v1=[1,1,1,0.8,0.4]

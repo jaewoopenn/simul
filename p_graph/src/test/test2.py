@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import Util.MPlot as mp;
+import util.MPlot as mp;
 
 if __name__ == '__main__':
     x=[1,2,3,4]

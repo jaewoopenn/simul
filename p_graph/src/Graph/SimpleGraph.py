@@ -3,7 +3,7 @@ Created on 2015. 12. 17.
 
 @author: jaewo
 '''
-import Util.MPlot as mp;
+import util.MPlot as mp;
 
 def main():
     x=load("graph/label.txt")

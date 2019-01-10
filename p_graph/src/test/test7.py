@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import Util.MPlot as mp;
+import util.MPlot as mp;
 class gl:
     x=[55,60,65,70,75,80,85,90,95,100]
     vv=[]

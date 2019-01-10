@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import Util.MPlot as mp;
+import util.MPlot as mp;
 def xload():
     x=[60,70,80,90,100]
     return x

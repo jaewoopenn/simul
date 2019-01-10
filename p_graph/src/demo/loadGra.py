@@ -8,7 +8,7 @@ from TaskSetU import ts
 
 import matplotlib.pyplot as plt
 import matplotlib
-import Util
+import util
 matplotlib.rcParams['font.size'] = 15
 matplotlib.rcParams['font.weight'] = "bold"
 class lc:
@@ -82,14 +82,14 @@ def draw():
 #    for i in range(len(lc.algo)):
 #        print vl[i]
     for i in range(len(lc.algo)):
-        Util.plot(xl, vl[i], lc.line[i], lc.lab[i])
+        util.plot(xl, vl[i], lc.line[i], lc.lab[i])
     plt.xlabel(xLab)
     plt.ylabel("Acceptance Ratio")
 #    plt.xlim(0.1,0.9)
     plt.xlim(xSt,xEd)
     plt.ylim(0.01,1.05)
-    Util.legend()
-    Util.show()
+    util.legend()
+    util.show()
 def readTask(algo,prefix):
     i_f = open(ts.out_path+ts.fn+"_"+algo+"_"+prefix+".out","r")
     suc=0
