@@ -46,11 +46,11 @@ public class Platform {
 		
 	}
 
-	public void genTS(String cfg_list) {
+	public void genTS(String cfg_list,String ts, String xaxis) {
 		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
 		
-		FOut fu_ts=new FOut(g_path+"/a_ts_list.txt");
-		FOut fu_rs=new FOut(g_path+"/a_x_list.txt");
+		FOut fu_ts=new FOut(g_path+"/"+ts);
+		FOut fu_rs=new FOut(g_path+"/"+xaxis);
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");

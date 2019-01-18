@@ -49,8 +49,10 @@ public class z_Platform1 {
 	public int test2() 
 	{
 		String cl="a_cfg_list.txt";
+		String ts="a_ts_list.txt";
+		String xl="a_x_list.txt";
 		Platform p=new Platform(g_path);
-		p.genTS(cl);
+		p.genTS(cl,ts,xl);
 		return -1;
 	}
 	

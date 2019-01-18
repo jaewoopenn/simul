@@ -20,13 +20,15 @@ public class z_auto1 {
 		p.genUtil(cf);
 		return 0;
 	}
-	public int test2() 
+	public int test2() // from 
 	{
 		String cl="a_cfg_list.txt";
+		String ts="a_ts_list.txt";
+		String xl="a_x_list.txt";
 		Platform p=new Platform(g_path);
-		p.genTS(cl);
+		p.genTS(cl,ts,xl);
 		return -1;	}
-	public int test3() 
+	public int test3() // task set --> results
 	{
 		String ts="a_ts_list.txt";
 		String rs="a_rs_list.txt";
@@ -35,18 +37,22 @@ public class z_auto1 {
 		p.anal_loop(rs,ts,end);
 		return -1;
 	}
-	public  int test4() 
+	public  int test4() // rs --> graph
 	{
 		String xl="a_x_list.txt";
 		String rs="a_rs_list.txt";
-		DataAnal p=new DataAnal(g_path,0);
-		p.load_x(xl);
-		p.load_rs(rs);
-		p.save("a_graph.txt");
+		DataAnal da=new DataAnal(g_path,0);
+		da.load_x(xl);
+		da.load_rs(rs);
+		da.save("a_graph.txt");
 		return -1;
 	}
 	public  int test5() 
 	{
+		String path="sch/t1/";
+		String ts="a_ts_list.txt";
+		Platform p=new Platform(path);
+		p.simul(ts,0);
 		return 0;
 	}
 	public  int test6() 
