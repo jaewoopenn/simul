@@ -8,6 +8,7 @@ package auto;
 import anal.Anal;
 import anal.AnalSel;
 import basic.TaskMng;
+import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
@@ -18,16 +19,17 @@ import util.TEngine;
 import z_ex.TS_MC1;
 
 public class z_Platform2 {
-	public static int idx=1;
+//	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-//	public static int idx=4;
+	public static int idx=4;
 //	public static int log_level=1;
 	public static int log_level=2;
 
 	//
 	public int test1() 
 	{
+		int dur=200;
 		TaskMng tm=TS_MC1.ts1();
 		tm.prnInfo();
 		Anal a=AnalSel.getAnal(1);
@@ -40,14 +42,17 @@ public class z_Platform2 {
 		sm.setX(x);
 		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
 		tsim.init_sm_tm(sm,tm);
-		tsim.simulBy(0,20);
+		tsim.simulBy(0,dur);
 		tsim.simulEnd();
+		SimulInfo si=tsim.getSI();
+		si.prn();
 		return -1;		
 
 	}
 
 	public int test2() 
 	{
+		int dur=200;
 		SysLoad sy=new SysLoad("sch/t1/taskset_65");
 		sy.open();
 		TaskMng tm=sy.loadOne();
@@ -62,14 +67,15 @@ public class z_Platform2 {
 		sm.setX(x);
 		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
 		tsim.init_sm_tm(sm,tm);
-		tsim.simulBy(0,100);
+		tsim.simulBy(0,dur);
 		tsim.simulEnd();
+		SimulInfo si=tsim.getSI();
+		si.prn();
 		return -1;
 	}
 	
 	public int test3() 
 	{
-		// TODO implement simul info
 		String path="sch/t1/";
 		String fn="sch/t1/taskset_65";
 		String out="sch/t1/taskset_65.sim.1";

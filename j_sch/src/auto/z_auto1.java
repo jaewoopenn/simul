@@ -7,7 +7,9 @@ public class z_auto1 {
 //	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-	public static int idx=4;
+//	public static int idx=4;
+//	public static int idx=5;
+	public static int idx=6;
 	public static int log_level=1;
 
 	private String g_path="sch/t1";
@@ -16,7 +18,7 @@ public class z_auto1 {
 	{
 		String cf="a_cfg_list.txt";
 		Platform p=new Platform(g_path);
-		p.setNum(3);
+		p.setNum(20);
 		p.genUtil(cf);
 		return 0;
 	}
@@ -28,7 +30,7 @@ public class z_auto1 {
 		Platform p=new Platform(g_path);
 		p.genTS(cl,ts,xl);
 		return -1;	}
-	public int test3() // task set --> results
+	public int test3() // task set --> anal rs
 	{
 		String ts="a_ts_list.txt";
 		String rs="a_rs_list.txt";
@@ -37,7 +39,7 @@ public class z_auto1 {
 		p.anal_loop(rs,ts,end);
 		return -1;
 	}
-	public  int test4() // rs --> graph
+	public  int test4() // anal rs --> graph
 	{
 		String xl="a_x_list.txt";
 		String rs="a_rs_list.txt";
@@ -47,17 +49,24 @@ public class z_auto1 {
 		da.save("a_graph.txt");
 		return -1;
 	}
-	public  int test5() 
+	public  int test5() // ts --> simul rs
 	{
 		String path="sch/t1/";
 		String ts="a_ts_list.txt";
+		String rs="a_sim_list.txt";
 		Platform p=new Platform(path);
-		p.simul(ts,0);
+		p.sim_loop(rs, ts, 2);
 		return 0;
 	}
-	public  int test6() 
+	public  int test6() // simul rs --> graph
 	{
-		return 0;
+		String xl="a_x_list.txt";
+		String rs="a_sim_list.txt";
+		DataSim ds=new DataSim(g_path,0);
+		ds.load_x(xl);
+		ds.load_rs(rs);
+		ds.save("a_sim_graph.txt");
+		return -1;
 	}
 	public  int test7()
 	{

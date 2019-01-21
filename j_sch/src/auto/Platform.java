@@ -7,6 +7,7 @@ import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenTM;
 import gen.SysLoad;
+import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
@@ -17,6 +18,7 @@ import util.Log;
 public class Platform {
 	private String g_path;
 	private int g_num=100;
+	private int g_dur=2000;
 	public Platform(String path) {
 		g_path=path;
 	}
@@ -74,7 +76,6 @@ public class Platform {
 			fu.write(rs);
 		}
 		fu.save();
-		
 	}
 	
 	// analyze task set list with algorithm choice
@@ -112,7 +113,16 @@ public class Platform {
 		fu.save();
 		
 	}
-	
+
+	public void sim_loop(String rs_list,String ts_list, int end) {
+		FOut fu=new FOut(g_path+"/"+rs_list);
+		for(int i=0;i<end;i++){
+			String rs=simul(ts_list,i);
+			fu.write(rs);
+		}
+		fu.save();
+	}
+
 	// simulate task set list with algorithm choice
 	public String simul(String ts_list,int sort) {
 		FUtilSp fu=new FUtilSp(g_path+ts_list);
@@ -130,7 +140,7 @@ public class Platform {
 			fu_rs.write(out);
 		}		
 		fu_rs.save();
-		return null;		
+		return rs_fn;		
 	}
 
 	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
@@ -157,9 +167,10 @@ public class Platform {
 			sm.setMS_Prob(0.3);
 			sm.setX(x);
 			s.init_sm_tm(sm,tm);
-			s.simulBy(0,10);
+			s.simulBy(0,g_dur);
 			s.simulEnd();
-			fu.write("1");
+			SimulInfo si=s.getSI();
+			fu.write(si.getDMR()+"");
 		}
 		fu.save();
 	}

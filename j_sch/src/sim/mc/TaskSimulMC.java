@@ -52,6 +52,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	}
 
 	
+	///////////////////////
 	// private
 
 

@@ -1,13 +1,15 @@
 '''
-Draw Acceptance Ratio
+Draw DMR
+
 Created on 2015. 12. 11.
+
 
 @author: cpslab
 '''
 import util.MPlot as mp;
 class gl_input:
     path="/data/sch"
-    fn="t1/a_graph.txt"
+    fn="t1/a_sim_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
 
