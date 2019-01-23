@@ -12,7 +12,7 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
 	@Override
 	protected void initMode_in() {
-		initMode_base_hi();
+		initMode_base();
 	}
 	
 	
@@ -28,7 +28,10 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 //			Log.prn(1, "RU"+ru);
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				Log.prnc(9, "no avaiable LO-task to drop. ru:"+ru);
+				Log.prn(9, "no available LO-task to drop. ru:"+ru);
+//				g_tm.prnLoTasks();
+				g_sm.prn();
+				g_tm.prnRuntime();
 				System.exit(1);
 			}
 			dropTask_base(tsk);

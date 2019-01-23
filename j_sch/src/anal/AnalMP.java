@@ -63,7 +63,7 @@ public class AnalMP extends Anal {
 //			Log.prn(1, v_util+","+h_util);
 			if(v_util>=h_util){
 				n_hi_prefer++;
-				t.is_hi_preferred=true;
+				t.setHI_only();
 				g_ft_lu+=t.getLoUtil();
 				g_ft_hu+=t.getHiUtil();
 			}

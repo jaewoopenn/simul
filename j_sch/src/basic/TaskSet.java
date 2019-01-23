@@ -69,6 +69,8 @@ public class TaskSet {
 	public void setX(double x) {
 		for(Task t:g_tasks){
 			t.setVD(t.period*x);
+			if(t.getHiUtil()<=t.getLoVdUtil())
+				t.setHI_only();
 		}
 		
 	}

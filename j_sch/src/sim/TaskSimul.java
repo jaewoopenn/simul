@@ -10,17 +10,21 @@ import util.Log;
 import util.RUtil;
 
 public class TaskSimul {
-	protected SimulInfo g_si;
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected RUtil g_rutil=new RUtil();
 	private JobSimul g_js;
+	protected SimulInfo g_si;
 
 	
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
 			tm.setX(sm.getX());
 			g_sm=sm;
+		}
+		else {
+			Log.prnErr("sm null");
+			System.exit(1);
 		}
 		g_tm=tm;
 		init();

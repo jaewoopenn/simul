@@ -157,7 +157,7 @@ public class TaskMng {
 	}
 
 	public void prnLoTasks() {
-		g_lo_tasks.prn();
+		g_lo_tasks.prnRuntime();
 	}
 	public void prnInfo() {
 		g_info.prn();

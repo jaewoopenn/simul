@@ -36,7 +36,7 @@ public class z_Task1 {
 		Task t=new Task(3,1,2);
 		t.setVD(2);
 		Log.prn(1," "+t.getLoUtil());
-		Log.prn(1," "+t.getLoRUtil());
+		Log.prn(1," "+t.getLoVdUtil());
 		Log.prn(1," "+t.getHiUtil());
 		return 0;
 	}

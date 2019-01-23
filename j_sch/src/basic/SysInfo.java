@@ -21,10 +21,10 @@ public class SysInfo {
 	}
 	public double computeRU(Task t) {
 		if(t.is_HI){
-			if(t.is_HM)
+			if(t.isHM())
 				return t.getHiUtil();
 			else
-				return t.getLoRUtil();
+				return t.getLoVdUtil();
 		} 
 		if(t.is_dropped)
 			return x_para*t.getLoUtil();

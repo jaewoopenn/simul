@@ -45,7 +45,7 @@ public class AnalEDF_AD_E extends Anal {
 			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
 			if(v_util>=h_util){
-				t.is_hi_preferred=true;
+				t.setHI_only();
 				n_hi_prefer++;
 			}
 		}

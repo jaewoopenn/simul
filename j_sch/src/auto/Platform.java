@@ -166,6 +166,7 @@ public class Platform {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(0.3);
 			sm.setX(x);
+//			sm.prn();
 			s.init_sm_tm(sm,tm);
 			s.simulBy(0,g_dur);
 			s.simulEnd();

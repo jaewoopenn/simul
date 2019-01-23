@@ -127,31 +127,10 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected abstract void recover_in();
 	protected abstract void modeswitch_in(int tid);
 	
-	// base instruction
-	public void initMode_base_hi() {
-		for(Task t:g_tm.getTasks()){
-			if(t.is_HI){
-//				Log.prn(2, "h:"+t.getHiUtil()+" l:"+t.getLoRUtil());
-				if(t.getHiUtil()<t.getLoRUtil())
-					t.is_HM=true;
-				else
-					t.is_HM=false;
-//				Log.prn(2, "m:"+t.is_HM);
-				
-			} else {
-				t.is_dropped=false;
-			}
-		}
-
-//		g_tm.prnHI();
-	}
 	
 	protected void initMode_base() {
 		for(Task t:g_tm.getTasks()){
-			if(!t.is_HI)
-				t.is_dropped=false;
-			else
-				t.is_HM=false;
+			t.initMode();
 		}
 
 	}
@@ -159,7 +138,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected Job relJob_base(Task tsk, int t) {
 		if(tsk.is_HI){
 //			tsk.prnStat();
-			if(tsk.is_HM){
+			if(tsk.isHM()){
 				return new Job(tsk.tid, 
 						t+tsk.period,tsk.c_h,t+tsk.period,0);
 			} else {

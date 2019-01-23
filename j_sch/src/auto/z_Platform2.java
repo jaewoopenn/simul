@@ -52,8 +52,8 @@ public class z_Platform2 {
 
 	public int test2() 
 	{
-		int dur=200;
-		SysLoad sy=new SysLoad("sch/t1/taskset_65");
+		int dur=200000;
+		SysLoad sy=new SysLoad("sch/t1/taskset_85");
 		sy.open();
 		TaskMng tm=sy.loadOne();
 //		tm.prnInfo();
@@ -76,11 +76,13 @@ public class z_Platform2 {
 	
 	public int test3() 
 	{
+		int sel=0;
+		String mod="85";
 		String path="sch/t1/";
-		String fn="sch/t1/taskset_65";
-		String out="sch/t1/taskset_65.sim.1";
-		Anal a=AnalSel.getAnal(1);
-		TaskSimul s=SimulSel.getSim(1);
+		String fn="sch/t1/taskset_"+mod;
+		String out="sch/t1/taskset_"+mod+".sim."+sel;
+		Anal a=AnalSel.getAnal(sel);
+		TaskSimul s=SimulSel.getSim(sel);
 		Platform p=new Platform(path);
 		p.simul_one(fn,out,a,s);
 		return -1;

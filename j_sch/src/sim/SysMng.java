@@ -1,5 +1,6 @@
 package sim;
 
+import util.Log;
 
 public class SysMng {
 	private double g_prob;
@@ -21,6 +22,11 @@ public class SysMng {
 
 	public void setX(double d) {
 		g_x=d;
+	}
+	public void prn() {
+//		Log.prn(2, "prob:"+g_prob);
+		Log.prn(2, "x:"+g_x);
+		
 	}
 	
 }

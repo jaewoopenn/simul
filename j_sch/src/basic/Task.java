@@ -14,10 +14,11 @@ public class Task {
 	public int c_h;
 	public double vd;
 	public boolean is_HI=false;
-	public boolean is_HM=false;
-	public boolean is_hi_preferred=false;
+	private boolean is_Hi_Mode=false;
 	public boolean is_dropped=false;
 
+	private boolean is_hi_preferred=false;
+	
 
 	public Task(int period, int c_l) {
 		this.tid=TaskSeq.getID();
@@ -36,7 +37,11 @@ public class Task {
 		this.is_HI=true;
 	}
 	public void ms(){
-		this.is_HM=true;
+		if(!is_hi_preferred)
+			is_Hi_Mode=true;
+	}
+	public boolean isHM() {
+		return is_Hi_Mode;
 	}
 	public void drop() {
 //		Log.prn(1, "drop tid:"+tid);
@@ -46,7 +51,11 @@ public class Task {
 //		System.out.println("tid:"+tid+" vd:"+vd);
 		this.vd=vd;
 	}
-	
+	public void setHI_only() {
+		 is_hi_preferred = true;
+		 is_Hi_Mode=true;
+	}
+
 	
 	public boolean check() {
 		if (period==0)
@@ -57,13 +66,14 @@ public class Task {
 			return false;
 		return true;
 	}
+	
 	public double getLoUtil(){
 		return (double)c_l/period;
 	}
 	public double getHiUtil(){
 		return (double)c_h/period;
 	}
-	public double getLoRUtil(){
+	public double getLoVdUtil(){
 		return (double)c_l/vd;
 	}
 
@@ -72,12 +82,13 @@ public class Task {
 		Task t=new Task(period, c_l);
 		return t;
 	}
+	
 	public void prn() {
 		Log.prnc(2, "tid:"+tid);
 		Log.prnc(2, " p:"+period);
 		if (is_HI){
 			Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
-			Log.prnc(2," isHM:"+is_HM);
+			Log.prnc(2," isHM:"+is_Hi_Mode);
 			
 		}else{
 			Log.prnc(2," cl:"+c_l);
@@ -103,7 +114,8 @@ public class Task {
 		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
 		Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
 		if (is_HI){
-			Log.prn(2," isHM:"+is_HM);
+			Log.prnc(2," isHM:"+is_Hi_Mode);
+			Log.prn(2," isHI_Only:"+is_hi_preferred);
 			
 		}else{
 			Log.prn(2," isDrop:"+is_dropped);
@@ -115,7 +127,7 @@ public class Task {
 		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
 		Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
 		if (is_HI){
-			Log.prnc(2," isHM:"+is_HM);
+			Log.prnc(2," isHM:"+is_Hi_Mode);
 			Log.prn(2,", is_hi_preferred:"+is_hi_preferred);
 			
 		}else{
@@ -148,6 +160,15 @@ public class Task {
 		Log.prn(2, "));");
 
 	}
+
+	public void initMode() {
+		is_dropped=false;
+		if(is_hi_preferred)
+			is_Hi_Mode=true;
+		else
+			is_Hi_Mode=false;
+	}
+
 
 
 
