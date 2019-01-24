@@ -8,8 +8,8 @@ public class z_auto1 {
 //	public static int idx=2;
 //	public static int idx=3;
 //	public static int idx=4;
-	public static int idx=5;
-//	public static int idx=6;
+//	public static int idx=5;
+	public static int idx=6;
 	public static int log_level=1;
 
 	private String g_path="sch/t1";
@@ -18,8 +18,8 @@ public class z_auto1 {
 	{
 		String cf="a_cfg_list.txt";
 		Platform p=new Platform(g_path);
-		p.setNum(20);
-		p.genUtil(cf);
+		p.setNum(200);
+		p.genUtil(cf,95);
 		return 0;
 	}
 	public int test2() // from 
@@ -55,6 +55,7 @@ public class z_auto1 {
 		String ts="a_ts_list.txt";
 		String rs="a_sim_list.txt";
 		Platform p=new Platform(path);
+		p.setProb(0.3);
 		p.sim_loop(rs, ts, 2);
 		return 0;
 	}

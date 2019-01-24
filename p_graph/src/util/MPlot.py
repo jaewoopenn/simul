@@ -14,7 +14,7 @@ def prepare():
 def prepare2():
     plt.figure(figsize=(7,7))
         
-def legend():
+def legendBL():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
 #     plt.legend(loc='upper right',prop=font)
     plt.legend(loc='lower left',prop=font)

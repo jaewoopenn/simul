@@ -7,14 +7,15 @@ import util.FUtilSp;
 import util.TEngine;
 
 public class z_SysGen1 {
-	public static int idx=2;
+	public static int idx=1;
+//	public static int idx=2;
 	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
 //		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
-		ConfigGen cfg=new ConfigGen("test/t1/cfg_0.txt");
+		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
 		cfg.readFile();
 		SysGen eg=new SysGenTM(cfg);
 		String fn=eg.get_fn();
@@ -23,6 +24,13 @@ public class z_SysGen1 {
 
 	}
 	public int test2() 
+	{
+
+		return 0;
+	}
+	
+	//TODO gen with schedulable 
+	public int test3() // gen w/ schedulable 
 	{
 		String path="test/t1/";
 		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
@@ -46,11 +54,7 @@ public class z_SysGen1 {
 
 		return 0;
 	}
-	public int test3() // load one
-	{
-		return 0;
-	}
-	public  int test4() // load copy\
+	public  int test4() // 
 	{
 		return 0;
 	}

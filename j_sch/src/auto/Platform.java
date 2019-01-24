@@ -19,6 +19,7 @@ public class Platform {
 	private String g_path;
 	private int g_num=100;
 	private int g_dur=2000;
+	private double g_prob=0.3;
 	public Platform(String path) {
 		g_path=path;
 	}
@@ -26,15 +27,23 @@ public class Platform {
 	public void setNum(int n) {
 		g_num=n;
 	}
+	public void setDur(int n) {
+		g_dur=n;
+	}
+	public void setProb(double d) {
+		g_prob=d;
+	}
 
-	public void genUtil(String cf) {
+	public void genUtil(String cf,int end) {
+		int base=50;
+		int step=5;
+		int end_i=(end-50)/step;
 		ConfigGen eg=ConfigGen.getPredefined();
 		FOut fu=new FOut(g_path+"/"+cf);
 		eg.setParam("subfix", g_path);
 		eg.setParam("num",g_num+"");
-		int base=50;
-		for(int i=0;i<10;i++){
-			int lb=i*5+base;
+		for(int i=0;i<end_i;i++){
+			int lb=i*step+base;
 			Log.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
@@ -52,7 +61,7 @@ public class Platform {
 		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
 		
 		FOut fu_ts=new FOut(g_path+"/"+ts);
-		FOut fu_rs=new FOut(g_path+"/"+xaxis);
+		FOut fu_xa=new FOut(g_path+"/"+xaxis);
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
@@ -64,10 +73,10 @@ public class Platform {
 			eg.gen(fn);
 			fu_ts.write(fn);
 			String mod=eg.get_mod();
-			fu_rs.write(mod);
+			fu_xa.write(mod);
 		}
 		fu_ts.save();
-		fu_rs.save();
+		fu_xa.save();
 	}
 	public void anal_loop(String rs_list,String ts_list, int end) {
 		FOut fu=new FOut(g_path+"/"+rs_list);
@@ -164,7 +173,7 @@ public class Platform {
 
 			double x=a.computeX();
 			SysMng sm=new SysMng();
-			sm.setMS_Prob(0.3);
+			sm.setMS_Prob(g_prob);
 			sm.setX(x);
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
@@ -175,6 +184,7 @@ public class Platform {
 		}
 		fu.save();
 	}
+
 
 	
 	

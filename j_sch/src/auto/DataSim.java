@@ -6,7 +6,6 @@ import anal.Anal;
 import anal.AnalSel;
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
 
 public class DataSim {
 	private String g_path;
@@ -81,7 +80,7 @@ public class DataSim {
 		}
 		n=Math.max(1,n);
 		double rst=(r/n);
-		Log.prn(1, rst+"");
+//		Log.prn(1, rst+"");
 		return rst;
 	}
 	
