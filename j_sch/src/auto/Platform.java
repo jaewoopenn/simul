@@ -69,10 +69,10 @@ public class Platform {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen eg=new SysGenMC(cfg);
-			String fn=eg.get_fn();
+			String fn=cfg.get_fn();
 			eg.gen(fn);
 			fu_ts.write(fn);
-			String mod=eg.get_mod();
+			String mod=cfg.get_mod();
 			fu_xa.write(mod);
 		}
 		fu_ts.save();

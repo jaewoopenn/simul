@@ -1,6 +1,5 @@
 package gen;
 
-import basic.TaskMng;
 import basic.TaskSet;
 import basic.TaskSetFile;
 import util.FOut;
@@ -16,6 +15,7 @@ public abstract class SysGen {
 	public void setCheck() {
 		g_isCheck=true;
 	}
+	
 	public int prepare(){
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
@@ -25,13 +25,6 @@ public abstract class SysGen {
 		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
-	}
-	public String get_fn() {
-		return g_cfg.get_fn();
-		
-	}
-	public String get_mod() {
-		return g_cfg.get_mod();
 	}
 	public void gen(String fn) {
 		int num=prepare();
@@ -50,7 +43,6 @@ public abstract class SysGen {
 			i++;
 		}
 		fu.save();
-		
 	}
 	
 	public int writeSys(FOut fu)
@@ -64,11 +56,5 @@ public abstract class SysGen {
 	}
 
 	protected abstract int check() ;
-	public TaskMng genOne(){
-		g_tg.generate();
-		TaskSetFile tm=new TaskSetFile(g_tg.getAll());
-		TaskMng m=tm.getTM();
-		return m;
-	}
 	
 }

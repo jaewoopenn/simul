@@ -7,8 +7,8 @@ import util.FUtilSp;
 import util.TEngine;
 
 public class z_SysGen1 {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
@@ -19,7 +19,7 @@ public class z_SysGen1 {
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
 		cfg.readFile();
 		SysGen eg=new SysGenMC(cfg);
-		String fn=eg.get_fn();
+		String fn=cfg.get_fn();
 		eg.gen(fn);
 		return 1;
 
@@ -31,7 +31,8 @@ public class z_SysGen1 {
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
 		cfg.readFile();
 		SysGen eg=new SysGenMC(cfg);
-		String fn=eg.get_fn();
+		eg.setCheck();
+		String fn=cfg.get_fn();
 		eg.gen(fn);
 		return 0;
 	}
@@ -49,10 +50,10 @@ public class z_SysGen1 {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen eg=new SysGenMC(cfg);
-			String fn=eg.get_fn();
+			String fn=cfg.get_fn();
 			eg.gen(fn);
 			fu_ts.write(fn);
-			String mod=eg.get_mod();
+			String mod=cfg.get_mod();
 			fu_rs.write(mod);
 		}
 		fu_ts.save();
