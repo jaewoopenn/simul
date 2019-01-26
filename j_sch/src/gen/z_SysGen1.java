@@ -1,7 +1,7 @@
 package gen;
 import gen.ConfigGen;
 import gen.SysGen;
-import gen.SysGenTM;
+import gen.SysGenMC;
 import util.FOut;
 import util.FUtilSp;
 import util.TEngine;
@@ -12,24 +12,30 @@ public class z_SysGen1 {
 	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
+
 	public int test1() // gen
 	{
 //		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
 		cfg.readFile();
-		SysGen eg=new SysGenTM(cfg);
+		SysGen eg=new SysGenMC(cfg);
 		String fn=eg.get_fn();
 		eg.gen(fn);
 		return 1;
 
 	}
+
+	//TODO gen with schedulable 
 	public int test2() 
 	{
-
+		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
+		cfg.readFile();
+		SysGen eg=new SysGenMC(cfg);
+		String fn=eg.get_fn();
+		eg.gen(fn);
 		return 0;
 	}
 	
-	//TODO gen with schedulable 
 	public int test3() // gen w/ schedulable 
 	{
 		String path="test/t1/";
@@ -42,7 +48,7 @@ public class z_SysGen1 {
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen eg=new SysGenTM(cfg);
+			SysGen eg=new SysGenMC(cfg);
 			String fn=eg.get_fn();
 			eg.gen(fn);
 			fu_ts.write(fn);

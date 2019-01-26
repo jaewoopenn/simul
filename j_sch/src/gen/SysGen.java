@@ -13,6 +13,9 @@ public abstract class SysGen {
 	public SysGen(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
+	public void setCheck() {
+		g_isCheck=true;
+	}
 	public int prepare(){
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
@@ -66,9 +69,6 @@ public abstract class SysGen {
 		TaskSetFile tm=new TaskSetFile(g_tg.getAll());
 		TaskMng m=tm.getTM();
 		return m;
-	}
-	public void setCheck(boolean b){
-		g_isCheck=b;
 	}
 	
 }

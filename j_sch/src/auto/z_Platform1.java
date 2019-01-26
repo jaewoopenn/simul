@@ -8,7 +8,7 @@ import anal.AnalEDF;
 import basic.TaskMng;
 import gen.ConfigGen;
 import gen.SysGen;
-import gen.SysGenTM;
+import gen.SysGenMC;
 import gen.SysLoad;
 import util.FOut;
 import util.FUtilSp;
@@ -32,7 +32,7 @@ public class z_Platform1 {
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen eg=new SysGenTM(cfg);
+			SysGen eg=new SysGenMC(cfg);
 			String fn=eg.get_fn();
 			eg.gen(fn);
 			fu_ts.write(fn);
