@@ -1,7 +1,7 @@
 package gen;
 
 import basic.TaskMng;
-import basic.TaskSetFile;
+import basic.TaskSetEx;
 import util.FUtilSp;
 
 public class SysLoad {
@@ -12,7 +12,7 @@ public class SysLoad {
 
 	public void load() {
 		g_fu.load();
-		TaskSetFile.loadView(g_fu);
+		TaskSetEx.loadView(g_fu);
 		
 	}
 
@@ -24,7 +24,7 @@ public class SysLoad {
 		boolean b=g_fu.readSplit("------");
 		if(!b) 
 			return null;
-		TaskSetFile tsf=TaskSetFile.loadFile_in(g_fu);
+		TaskSetEx tsf=TaskSetEx.loadFile_in(g_fu);
 		return tsf.getTM();
 		
 	}

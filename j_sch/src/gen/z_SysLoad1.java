@@ -1,6 +1,6 @@
 package gen;
 import basic.TaskMng;
-import basic.TaskSetFile;
+import basic.TaskSetEx;
 import gen.ConfigGen;
 import util.FUtil;
 import util.Log;
@@ -20,7 +20,7 @@ public class z_SysLoad1 {
 		FUtil f=new FUtil(fn);
 		f.br_open();
 		f.readSplit("------");
-		TaskSetFile.loadView(f);
+		TaskSetEx.loadView(f);
 
 		return 1;
 
@@ -42,7 +42,7 @@ public class z_SysLoad1 {
 		while(true) {
 			boolean b=f.readSplit("------");
 			if(!b) break;
-			TaskSetFile tsf=TaskSetFile.loadFile_in(f);
+			TaskSetEx tsf=TaskSetEx.loadFile_in(f);
 			tsf.getTM().prn();
 		}
 

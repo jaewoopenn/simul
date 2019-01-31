@@ -2,26 +2,26 @@ package z_ex;
 
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskSetFile;
+import basic.TaskSetEx;
 
 // Task Set MC
 public class TS_MC1 {
 	public static TaskMng ts1()	{
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(4,2));
 		tmp.add(new Task(6,1,5));
 		return tmp.getTM();
 	}
 	
 	public static TaskMng ts2()	{
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(4,3));
 		tmp.add(new Task(8,2,4));
 		return tmp.getTM();
 	}
 
 	public static TaskMng ts3() {
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(8,1));
 		tmp.add(new Task(8,3));
 		tmp.add(new Task(12,1,5));
@@ -30,7 +30,7 @@ public class TS_MC1 {
 	}
 	
 	public static TaskMng ts4()	{
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(4,1));
 		tmp.add(new Task(5,1));
 		tmp.add(new Task(16,2));
@@ -39,7 +39,7 @@ public class TS_MC1 {
 		return tmp.getTM();
 	}
 	public static TaskMng ts5() { // not schedulable
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(8,1));
 		tmp.add(new Task(8,4));
 		tmp.add(new Task(12,1,5));
@@ -47,7 +47,7 @@ public class TS_MC1 {
 		return tmp.getTM();
 	}
 	public static TaskMng ts6() { 
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(8,1));
 		tmp.add(new Task(8,4));
 		tmp.add(new Task(12,1,2));

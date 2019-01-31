@@ -20,7 +20,7 @@ public class z_TaskSeq1 {
 	}
 	public int test2() 
 	{
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
 		TaskMng tm=tmp.getTM();

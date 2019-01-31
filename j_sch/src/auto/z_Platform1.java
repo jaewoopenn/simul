@@ -4,7 +4,6 @@ package auto;
 
 
 
-import anal.AnalEDF;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 import gen.ConfigGen;

@@ -7,12 +7,12 @@ import util.FUtil;
 import util.FUtilSp;
 import util.Log;
 
-public class TaskSetFile {
+public class TaskSetEx {
 	private TaskSet g_tasks;
 	private TaskSet g_hi_tasks;
 	private TaskSet g_lo_tasks;
 	public SysInfo g_info;
-	public TaskSetFile() {
+	public TaskSetEx() {
 		g_info=new SysInfo();
 		g_tasks=new TaskSet();
 		g_lo_tasks=new TaskSet();
@@ -20,7 +20,7 @@ public class TaskSetFile {
 	}
 	
 
-	public TaskSetFile(Vector<Task> all) {
+	public TaskSetEx(Vector<Task> all) {
 		g_info=new SysInfo();
 		g_tasks=new TaskSet();
 		g_lo_tasks=new TaskSet();
@@ -33,25 +33,9 @@ public class TaskSetFile {
 				g_lo_tasks.add(t);
 		}
 	}
-	public TaskSetFile(TaskSet ts) {
-		g_info=new SysInfo();
-		g_tasks=ts;
-		g_lo_tasks=new TaskSet();
-		g_hi_tasks=new TaskSet();
-		for(Task t:ts.getArr()){
-			if(t.is_HI)
-				g_hi_tasks.add(t);
-			else
-				g_lo_tasks.add(t);
-		}		
-	}
 
 
-	public void addTID(Task t){
-		int tid=g_tasks.v_size();
-		t.tid=tid;
-		add(t);
-	}
+
 	
 	public void add(Task t){
 		g_tasks.add(t);
@@ -96,10 +80,6 @@ public class TaskSetFile {
 	
 
 
-	public TaskSet getTS() {
-		return g_tasks;
-	}
-	
 
 	// static 
 	public static void writeFile(String fn,TaskSet tasks){
@@ -130,13 +110,13 @@ public class TaskSetFile {
 	}
 
 	// import 
-	public static TaskSetFile loadFile(String f) {
+	public static TaskSetEx loadFile(String f) {
 		FUtilSp fu=new FUtilSp(f);
 	    fu.load();
-	    return TaskSetFile.loadFile_in(fu);
+	    return TaskSetEx.loadFile_in(fu);
 	}
 	
-	public static TaskSetFile  loadFile_in(FUtil fu) {
+	public static TaskSetEx  loadFile_in(FUtil fu) {
 		TaskSeq.reset();
 	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {
@@ -145,7 +125,7 @@ public class TaskSetFile {
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return new TaskSetFile(tasks);
+	    return new TaskSetEx(tasks);
 	}
 	
 	public static Task loadTask(String line){

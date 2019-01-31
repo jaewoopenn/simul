@@ -1,7 +1,7 @@
 package gen;
 
 import basic.TaskSet;
-import basic.TaskSetFile;
+import basic.TaskSetEx;
 import util.FOut;
 import util.Log;
 
@@ -53,7 +53,7 @@ public abstract class SysGen {
 		
 		TaskSet ts=new TaskSet(g_tg.getAll());
 		ts.transform_Array();
-		TaskSetFile.writeTS(fu, ts);
+		TaskSetEx.writeTS(fu, ts);
 		
 		return 1;
 	}

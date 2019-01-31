@@ -1,7 +1,7 @@
 package basic;
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskSetFile;
+import basic.TaskSetEx;
 import util.TEngine;
 
 public class z_TaskSetFile1 {
@@ -10,17 +10,17 @@ public class z_TaskSetFile1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		TaskSetFile tmp=new TaskSetFile();
+		TaskSetEx tmp=new TaskSetEx();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
-		TaskSetFile.writeFile("test/test.txt",tm.getTaskSet());
+		TaskSetEx.writeFile("test/test.txt",tm.getTaskSet());
 		return 1;
 	}
 	public int test2()
 	{
-		TaskSetFile tmp=TaskSetFile.loadFile("test/test.txt");
+		TaskSetEx tmp=TaskSetEx.loadFile("test/test.txt");
 		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return 0;
