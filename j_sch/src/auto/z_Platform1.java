@@ -5,6 +5,7 @@ package auto;
 
 
 import anal.AnalEDF;
+import anal.AnalEDF_VD;
 import basic.TaskMng;
 import gen.ConfigGen;
 import gen.SysGen;
@@ -16,7 +17,8 @@ import util.Log;
 import util.TEngine;
 
 public class z_Platform1 {
-	public static int idx=5;
+//	public static int idx=5;
+	public static int idx=6;
 	public static int log_level=1;
 
 	private String g_path="sch/t1";
@@ -100,10 +102,11 @@ public class z_Platform1 {
 	}
 	public  int test6() 
 	{
-		String ts="taskset_55";
-		String out=ts+".rs";
+//		String ts="taskset_55";
+		String ts="/sch/t1/taskset_100";
+		String out=ts+".rs.txt";
 		Platform p=new Platform(g_path);
-		p.anal_one(ts,out,new AnalEDF());
+		p.anal_one(ts,out,new AnalEDF_VD());
 		return -1;
 	}
 	

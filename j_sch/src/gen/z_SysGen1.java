@@ -4,6 +4,7 @@ import gen.SysGen;
 import gen.SysGenMC;
 import util.FOut;
 import util.FUtilSp;
+import util.Log;
 import util.TEngine;
 
 public class z_SysGen1 {
@@ -13,7 +14,8 @@ public class z_SysGen1 {
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 
-	public int test1() // gen
+	// gen
+	public int test1() 
 	{
 //		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
@@ -25,7 +27,7 @@ public class z_SysGen1 {
 
 	}
 
-	//TODO gen with schedulable 
+	// gen with schedulable 
 	public int test2() 
 	{
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
@@ -33,11 +35,12 @@ public class z_SysGen1 {
 		SysGen eg=new SysGenMC(cfg);
 		eg.setCheck();
 		String fn=cfg.get_fn();
+		Log.prn(1, fn);
 		eg.gen(fn);
 		return 0;
 	}
 	
-	public int test3() // gen w/ schedulable 
+	public int test3() 
 	{
 		String path="test/t1/";
 		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");

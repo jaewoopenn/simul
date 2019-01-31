@@ -3,6 +3,8 @@ package auto;
 
 import util.TEngine;
 
+// TODO done  (gen w/ schedulable) --> simul DMR from that 
+
 public class z_auto1 {
 //	public static int idx=1;
 //	public static int idx=2;

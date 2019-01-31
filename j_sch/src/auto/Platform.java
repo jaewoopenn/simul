@@ -103,6 +103,7 @@ public class Platform {
 		fu_rs.save();
 		return rs_fn;
 	}
+	
 	public void anal_one(String ts,String out,Anal a) {
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
