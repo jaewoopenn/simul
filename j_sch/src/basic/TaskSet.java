@@ -6,7 +6,9 @@ import java.util.Vector;
 import util.Log;
 
 /*
- * a set of tasks
+ * a set of tasks 
+ * Vector --> Array
+ * To make TaskMng, utilize TaskSetEx
 
 */
 
