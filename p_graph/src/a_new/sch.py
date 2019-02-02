@@ -50,7 +50,7 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)
-    mp.legend()
+    mp.legendBL()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
     mp.show()

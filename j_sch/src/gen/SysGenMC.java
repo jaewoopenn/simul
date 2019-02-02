@@ -5,7 +5,6 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import basic.TaskMng;
 import basic.TaskSetEx;
-import util.Log;
 
 public class SysGenMC extends SysGen {
 	public SysGenMC(ConfigGen cfg) {
@@ -23,10 +22,10 @@ public class SysGenMC extends SysGen {
 		a.init(tm);
 		a.prepare();
 		if(a.isScheduable()) {		
-			Log.prn(1, "check 1");
+//			Log.prn(1, "check 1");
 			return 1;
 		}
-		Log.prn(1, "check 0");
+//		Log.prn(1, "check 0");
 		return 0;
 	}
 

@@ -102,7 +102,7 @@ public class z_Platform1 {
 	public  int test6() 
 	{
 //		String ts="taskset_55";
-		String ts="/sch/t1/taskset_100";
+		String ts="/sch/t1/taskset_95";
 		String out=ts+".rs.txt";
 		Platform p=new Platform(g_path);
 		p.anal_one(ts,out,new AnalEDF_VD());
@@ -137,7 +137,7 @@ public class z_Platform1 {
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
 		Platform p=new Platform(path);
-		p.genUtil(cf,100);
+		p.genCfg_util(cf,100);
 		return 0;
 	}
 	

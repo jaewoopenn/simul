@@ -20,6 +20,7 @@ public class Platform {
 	private int g_num=100;
 	private int g_dur=2000;
 	private double g_prob=0.3;
+	private boolean g_isCheck=false;
 	public Platform(String path) {
 		g_path=path;
 	}
@@ -33,24 +34,28 @@ public class Platform {
 	public void setProb(double d) {
 		g_prob=d;
 	}
-
-	public void genUtil(String cf,int end) {
+	public void setCheck(){
+		g_isCheck=true;
+	}
+	
+	// gen CFG, TS
+	public void genCfg_util(String cf,int end) {
 		int base=50;
 		int step=5;
 		int end_i=(end-50)/step;
-		ConfigGen eg=ConfigGen.getPredefined();
+		ConfigGen cg=ConfigGen.getPredefined();
 		FOut fu=new FOut(g_path+"/"+cf);
-		eg.setParam("subfix", g_path);
-		eg.setParam("num",g_num+"");
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
 			Log.prn(2, lb+"");
-			eg.setParam("u_lb", (lb)*1.0/100+"");
-			eg.setParam("u_ub", (lb+5)*1.0/100+"");
-			eg.setParam("mod", (lb+5)+"");
+			cg.setParam("u_lb", (lb)*1.0/100+"");
+			cg.setParam("u_ub", (lb+5)*1.0/100+"");
+			cg.setParam("mod", (lb+5)+"");
 			String fn=g_path+"/cfg_"+i+".txt";
-			eg.setFile(fn);
-			eg.write();
+			cg.setFile(fn);
+			cg.write();
 			fu.write(fn);
 		}
 		fu.save();
@@ -68,9 +73,11 @@ public class Platform {
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen eg=new SysGenMC(cfg);
+			SysGen sg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
-			eg.gen(fn);
+			if(g_isCheck)
+				sg.setCheck();
+			sg.gen(fn);
 			fu_ts.write(fn);
 			String mod=cfg.get_mod();
 			fu_xa.write(mod);
@@ -78,6 +85,8 @@ public class Platform {
 		fu_ts.save();
 		fu_xa.save();
 	}
+	
+	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
 		FOut fu=new FOut(g_path+"/"+rs_list);
 		for(int i=0;i<end;i++){
@@ -123,7 +132,8 @@ public class Platform {
 		fu.save();
 		
 	}
-
+	
+	//simulation
 	public void sim_loop(String rs_list,String ts_list, int end) {
 		FOut fu=new FOut(g_path+"/"+rs_list);
 		for(int i=0;i<end;i++){

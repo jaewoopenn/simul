@@ -3,7 +3,6 @@ package gen;
 import basic.TaskSet;
 import basic.TaskSetEx;
 import util.FOut;
-import util.Log;
 
 public abstract class SysGen {
 	protected TaskGenMC g_tg;
@@ -41,7 +40,7 @@ public abstract class SysGen {
 			if(rs==0)
 				continue;
 			writeSys(fu);
-			Log.prn(1, "write");
+//			Log.prn(1, "write");
 			
 			i++;
 		}

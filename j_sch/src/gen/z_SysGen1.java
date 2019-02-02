@@ -30,7 +30,7 @@ public class z_SysGen1 {
 	// gen with schedulable 
 	public int test2() 
 	{
-		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
+		ConfigGen cfg=new ConfigGen("sch/t1/cfg_8.txt");
 		cfg.readFile();
 		SysGen eg=new SysGenMC(cfg);
 		eg.setCheck();
