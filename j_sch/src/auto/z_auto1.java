@@ -1,6 +1,5 @@
 package auto;
 
-// TODO make MC-Post scheduling algorithm in simulation
 
 import util.TEngine;
 
