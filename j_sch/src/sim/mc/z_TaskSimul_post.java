@@ -3,9 +3,13 @@ package sim.mc;
  * TODO make MC-Post scheduling algorithm in simulation
  */
 
+import anal.Anal;
+import anal.AnalSel;
 import basic.TaskMng;
 import sim.SysMng;
 import sim.mc.TaskSimul_EDF_VD;
+import util.FLog;
+import util.Log;
 import util.TEngine;
 import z_ex.TS_MC1;
 
@@ -16,17 +20,23 @@ public class z_TaskSimul_post {
 
 
 	public int test1()	{
-		int et=40;
+		int et=1000;
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.3);
-		sm.setX(0.5);
 		TaskMng tm=TS_MC1.ts1();
 		// anal 
-		
+		Anal a=AnalSel.getAnal(0);
+		a.init(tm);
+		a.prepare();
+		double x=a.computeX();
+		Log.prn(1, "x:"+x);
+		sm.setX(x);
+		FLog.init("sch/log.txt");
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD();
 		ts.init_sm_tm(sm,tm);
 		ts.simulBy(0,et);
 		ts.simulEnd();
+		FLog.end();
 		return 0;
 	}
 	public int test2() {
