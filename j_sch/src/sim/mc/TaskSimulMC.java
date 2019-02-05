@@ -15,7 +15,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected boolean g_needRecover=false;
 	public boolean g_recoverOn=true;
 	protected JobSimulMC g_jsm;
-	
+
+	// @override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
 			tm.setX(sm.getX());
@@ -27,13 +28,15 @@ public abstract class TaskSimulMC extends TaskSimul {
 	}
 
 
-
+	// @override
 	public void simulEnd() {
 		g_jsm.simulEnd();
 	}
 	
-
+	///////////////////
 	// protected
+
+	// @override
 	protected void init() {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
@@ -41,6 +44,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 //		Log.prn(1, "num:"+g_tm.size());
 	}
 
+	// @override
 	protected void simul_t(){
 		msCheck();
 		relCheck();
@@ -50,7 +54,23 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 		//Log.prn(isSchTab,1, " "+t);
 	}
-
+	
+	// @override
+	protected Job relJob_base(Task tsk, int t) {
+		if(tsk.is_HI){
+//			tsk.prnStat();
+			if(tsk.isHM()){
+				return new Job(tsk.tid, 
+						t+tsk.period,tsk.c_h,t+tsk.period,0);
+			} else {
+				return new Job(tsk.tid, 
+						t+tsk.period,tsk.c_l,
+						t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+			}
+		}
+		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
+	}
+	
 	
 	///////////////////////
 	// private
@@ -61,6 +81,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		FLog.prn( "t:"+g_jsm.getTime()+" recover ");
 		g_needRecover=false;
 		recover_in();
+		initMode_base();
 		initMode_in();
 //		System.exit(0);
 		
@@ -111,15 +132,17 @@ public abstract class TaskSimulMC extends TaskSimul {
 		s+=" ";
 		FLog.prnc(s);
 	}
-	
+	private void initMode_base() {
+		for(Task t:g_tm.getTasks()){
+			t.initMode();
+		}
+
+	}	
 
 	
-	public void mode_switch(int tid){
-		g_si.ms++;
-//		Log.prn(9, "a"+g_si.ms);
-		modeswitch_in(tid);
-	}
 	
+
+
 	
 	
 	// abstract method
@@ -128,39 +151,26 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected abstract void modeswitch_in(int tid);
 	
 	
-	protected void initMode_base() {
-		for(Task t:g_tm.getTasks()){
-			t.initMode();
-		}
-
+	
+	// MC specific 
+	protected void mode_switch(int tid){
+		g_si.ms++;
+//		Log.prn(9, "a"+g_si.ms);
+		modeswitch_in(tid);
 	}
 	
-	protected Job relJob_base(Task tsk, int t) {
-		if(tsk.is_HI){
-//			tsk.prnStat();
-			if(tsk.isHM()){
-				return new Job(tsk.tid, 
-						t+tsk.period,tsk.c_h,t+tsk.period,0);
-			} else {
-				return new Job(tsk.tid, 
-						t+tsk.period,tsk.c_l,
-						t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
-		}
-		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
-	}
-	protected void modeswitch_in_base(int tid){
-		FLog.prn("ms hi "+tid);
-		g_jsm.getJM().modeswitch(tid);
+
+	protected void modeswitch_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI)	{
-			Log.prn(9, "ERROR: task "+tsk.tid+" is not HI-task, cannot mode switch");
+			Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode switch");
 			System.exit(0);
 		}
 		tsk.ms();
+		g_jsm.getJM().modeswitch(tid);
 	}
 	
-	public void dropTask_base(Task tsk) {
+	protected void drop_task(Task tsk) {
 		if(tsk.is_HI)	{
 			Log.prn(9, "ERROR: task "+tsk.tid+" is not LO-task, cannot drop");
 			System.exit(0);

@@ -8,7 +8,7 @@ public class TaskSimul_EDF_VD extends TaskSimulMC{
 
 	@Override
 	protected void initMode_in() {
-		initMode_base();
+		
 	}
 	
 	
@@ -19,7 +19,7 @@ public class TaskSimul_EDF_VD extends TaskSimulMC{
 				g_jsm.getJM().modeswitch(tsk.tid);
 				tsk.ms();
 			} else {
-				dropTask_base(tsk);
+				drop_task(tsk);
 			}
 		}
 	}
