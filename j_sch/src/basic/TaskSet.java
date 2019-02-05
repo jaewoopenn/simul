@@ -58,6 +58,9 @@ public class TaskSet {
 			Log.prnErr("g_task is null");
 		return g_tasks;
 	}
+	public Vector<Task> getVec(){
+		return g_taskV;
+	}
 	public void sortLo() {
 		Arrays.sort(g_tasks,new ComparatorTask());
 		

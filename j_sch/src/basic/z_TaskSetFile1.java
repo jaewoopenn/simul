@@ -10,10 +10,11 @@ public class z_TaskSetFile1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		TaskSetEx tmp=new TaskSetEx();
+		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskMng tm=tmp.getTM();
+		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskMng tm=tme.getTM();
 		tm.prn();
 		TaskSetEx.writeFile("test/test.txt",tm.getTaskSet());
 		return 1;

@@ -59,9 +59,6 @@ public class TaskSimul {
 	public TaskMng getTM(){
 		return g_tm;
 	}
-	public void prnInfo() {
-		
-	}
 	
 	// ------------- protected
 	protected void init() {
@@ -69,7 +66,8 @@ public class TaskSimul {
 		g_si=new SimulInfo();
 	}
 
-	protected void simul_t(){
+	
+	protected void simul_t(){  // will be different in MC setting 
 		relCheck();
 		g_js.simul_one();
 		//Log.prn(isSchTab,1, " "+t);
@@ -78,6 +76,7 @@ public class TaskSimul {
 	protected Job relJob_base(Task tsk, int t) {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
+	
 	protected void checkErr() {
 		if(g_tm==null){
 			Log.prn(9, "ERROR: TaskMng is not set");
@@ -87,8 +86,6 @@ public class TaskSimul {
 	
 	
 	// -------------- private
-	
-	
 	private void relCheck(){
 		int t=g_js.getTime();
 		String s="";

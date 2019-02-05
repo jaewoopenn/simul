@@ -58,7 +58,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 
 	private void recover(){
-//		Log.prn(isPrnMS,1, "recover "+t);
+		FLog.prn( "t:"+g_jsm.getTime()+" recover ");
 		g_needRecover=false;
 		recover_in();
 		initMode_in();

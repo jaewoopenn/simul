@@ -18,6 +18,7 @@ public class TaskSetEx {
 	private TaskSet g_hi_tasks;
 	private TaskSet g_lo_tasks;
 	public SysInfo g_info;
+	
 	public TaskSetEx() {
 		g_info=new SysInfo();
 		g_tasks=new TaskSet();
@@ -39,19 +40,6 @@ public class TaskSetEx {
 				g_lo_tasks.add(t);
 		}
 	}
-
-
-
-	
-	public void add(Task t){
-		g_tasks.add(t);
-		if(t.is_HI)
-			g_hi_tasks.add(t);
-		else
-			g_lo_tasks.add(t);
-	}
-	
-	
 	
 	public void stat(){
 		Log.prn(2, g_tasks.v_size());

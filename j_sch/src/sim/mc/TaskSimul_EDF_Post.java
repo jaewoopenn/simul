@@ -1,7 +1,10 @@
 package sim.mc;
 
-// implement MC Post sch algo
-
+/*
+ * implement MC Post sch algo
+ * 
+ * TODO: recover implement
+ */
 import basic.Task;
 import util.FLog;
 import util.Log;

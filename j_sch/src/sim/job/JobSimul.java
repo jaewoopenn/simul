@@ -20,15 +20,13 @@ public class JobSimul {
 
 
 	public void simul_one() {
-		work();
-		g_t++;
-	}
-	private void work(){
 		FLog.prnc( String.format("%05d ", g_t));
-		if(!dlCheck(g_t))
+		if(!dlCheck(g_t)) {
+			Log.err("JobSimul ");
 			System.exit(1);
+		}
 		progress();
-
+		g_t++;
 	}
 	
 
@@ -55,14 +53,12 @@ public class JobSimul {
 			return true;
 		if(cur_t<j.dl) 
 			return true;
-		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		Log.prn(9,"DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		return false;
 	}
 	
 	protected void progress(){
 		Job j=g_jm.getCur();
-		if(!FLog.isON())
-			return;
 		int out_type=0;
 		String s="";
 		if(j==null)	{
@@ -76,6 +72,10 @@ public class JobSimul {
 			out_type=2;
 			j.exec-=1;
 		}
+		
+		// File Log
+		if(!FLog.isON())
+			return;
 		s=g_jm.getJobArrow(j,out_type);
 		FLog.prn(s);
 	}
