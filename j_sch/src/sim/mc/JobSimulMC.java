@@ -11,11 +11,15 @@ public class JobSimulMC extends JobSimul{
 		super(0);
 		g_jm=new JobMngMC(n);
 	}
-	public void setJM(JobMngMC jm) {
-		g_jm=jm;
-	}
 	
-	protected void progress(){
+	
+	//@override
+	public JobMngMC getJM() {
+		return (JobMngMC) g_jm;
+	}
+		
+	//@override
+	protected void exec_one(){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		String s="";
@@ -25,7 +29,7 @@ public class JobSimulMC extends JobSimul{
 		else if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
-			// HI task and add_exec>0 --> process in msCheck
+			// HI task and add_exec>0 --> process in ms_check
 			if(!j.isHI||j.add_exec==0) {
 				g_jm.removeCur();
 			}
@@ -38,7 +42,8 @@ public class JobSimulMC extends JobSimul{
 		FLog.prn(s);
 	}	
 	
-	public int msCheck() { // before dlcheck
+	// before dl_check
+	public int ms_check() { 
 		Job j;
 		while(true){
 			j=(Job)g_jm.getCur();
@@ -50,7 +55,7 @@ public class JobSimulMC extends JobSimul{
 					Log.prn(9, g_t+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
 					System.exit(1);
 				}
-				if(j.exec==0&&j.add_exec>0) 
+				if(j.exec==0 && j.add_exec>0) 
 					return j.tid;
 				else
 					break;
@@ -62,9 +67,6 @@ public class JobSimulMC extends JobSimul{
 		return -1;
 	}
 	
-	public JobMngMC getJM() {
-		return (JobMngMC) g_jm;
-	}
-	
+
 	
 }

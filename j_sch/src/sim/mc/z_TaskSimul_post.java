@@ -8,6 +8,7 @@ package sim.mc;
 import anal.Anal;
 import anal.AnalSel;
 import basic.TaskMng;
+import sim.SimulInfo;
 import sim.SysMng;
 import util.FLog;
 import util.Log;
@@ -22,9 +23,17 @@ public class z_TaskSimul_post {
 
 	public int test1()	{
 		int et=1000;
+//		int et=200;
+		
 		SysMng sm=new SysMng();
+		
+//		sm.setMS_Prob(1);
+//		sm.setMS_Prob(0.5);
 		sm.setMS_Prob(0.3);
-		TaskMng tm=TS_MC2.ts1();
+		
+//		TaskMng tm=TS_MC2.ts1();
+		TaskMng tm=TS_MC2.ts2();
+		
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
 		a.prepare();
@@ -35,12 +44,17 @@ public class z_TaskSimul_post {
 		double x=a.computeX();
 		Log.prn(1, "x:"+x);
 		sm.setX(x);
+//		tm.prn();
+//		System.exit(1);
 		
 		FLog.init("sch/log.txt");
+//		FLog.initScr();
 		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 		ts.init_sm_tm(sm,tm);
-		ts.simulBy(0,et);
-		ts.simulEnd();
+		ts.simul(0,et);
+		ts.simul_end();
+		SimulInfo si=ts.getSI();
+		si.prn();
 		FLog.end();
 		return 0;
 	}

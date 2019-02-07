@@ -21,16 +21,16 @@ public class JobSimul {
 
 	public void simul_one() {
 		FLog.prnc( String.format("%05d ", g_t));
-		if(!dlCheck(g_t)) {
+		if(!dl_check(g_t)) {
 			Log.err("JobSimul ");
 			System.exit(1);
 		}
-		progress();
+		exec_one();
 		g_t++;
 	}
 	
 
-	public void simulEnd(){
+	public void simul_end(){
 		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
 			Log.prn(9,"Deadline miss at time "+g_t);
@@ -47,7 +47,7 @@ public class JobSimul {
 	
 	
 	
-	private boolean dlCheck(int cur_t){
+	private boolean dl_check(int cur_t){
 		Job j=g_jm.getCur();
 		if(j==null)
 			return true;
@@ -57,7 +57,7 @@ public class JobSimul {
 		return false;
 	}
 	
-	protected void progress(){
+	protected void exec_one(){
 		Job j=g_jm.getCur();
 		int out_type=0;
 		String s="";
@@ -84,12 +84,12 @@ public class JobSimul {
 	public JobMng getJM() {
 		return g_jm;
 	}
-	public boolean isIdle() {
+	public boolean is_idle() {
 		if(g_jm.getCur()==null)
 			return true;
 		return false;
 	}
-	public int getTime() {
+	public int get_time() {
 		return g_t;
 	}
 

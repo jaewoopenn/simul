@@ -22,6 +22,16 @@ public class FLog {
 		}
 		
 	}
+	public static void initScr() {
+		try {
+			g_writer = new PrintWriter(System.out);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+	}
 	public static void prn(String txt){
 		if(g_writer!=null)
 			g_writer.println(txt);
@@ -40,7 +50,10 @@ public class FLog {
 		else
 			Log.err("need FLOG init");
 	}
+	
+	// to prevent warning
 	public static void alive() {
+	
 		
 	}
 }

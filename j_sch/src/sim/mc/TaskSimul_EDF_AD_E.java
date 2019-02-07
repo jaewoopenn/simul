@@ -11,7 +11,7 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
 
 	@Override
-	protected void initMode_in() {
+	protected void init_mode_in() {
 		
 	}
 	
@@ -44,9 +44,5 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 	}
 
 
-	@Override
-	protected void recover_in() {
-		
-	}
 
 }

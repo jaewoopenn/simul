@@ -24,13 +24,13 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 		g_tm=tm;
 		init();
-		checkErr();
+		check_err();
 	}
 
 
 	// @override
-	public void simulEnd() {
-		g_jsm.simulEnd();
+	public void simul_end() {
+		g_jsm.simul_end();
 	}
 	
 	///////////////////
@@ -45,18 +45,18 @@ public abstract class TaskSimulMC extends TaskSimul {
 	}
 
 	// @override
-	protected void simul_t(){
-		msCheck();
-		relCheck();
+	protected void simul_one(){
+		ms_check();
+		rel_check();
 		g_jsm.simul_one();
-		if(g_jsm.isIdle()&&g_needRecover&&g_recoverOn) {
+		if(g_jsm.is_idle()&&g_needRecover&&g_recoverOn) {
 			recover();
 		}
 		//Log.prn(isSchTab,1, " "+t);
 	}
 	
 	// @override
-	protected Job relJob_base(Task tsk, int t) {
+	protected Job rel_one_job(Task tsk, int t) {
 		if(tsk.is_HI){
 //			tsk.prnStat();
 			if(tsk.isHM()){
@@ -78,27 +78,26 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 
 	private void recover(){
-		FLog.prn( "t:"+g_jsm.getTime()+" recover ");
+		FLog.prn( "t:"+g_jsm.get_time()+" recover ");
 		g_needRecover=false;
-		recover_in();
 		initMode_base();
-		initMode_in();
+		init_mode_in();
 //		System.exit(0);
 		
 	}
 	
 	
 
-	private void msCheck(){
+	private void ms_check(){
 		boolean isMS=false;
-		int tid=g_jsm.msCheck();
+		int tid=g_jsm.ms_check();
 		if(tid==-1) 
 			return;
 		double prob=g_rutil.getDbl();
 		if(prob<g_sm.getMS_Prob())
 			isMS=true;
 		if(isMS){
-			FLog.prn("t:"+g_jsm.getTime()+" mode-switch "+tid);
+			FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
 			g_needRecover=true;
 			mode_switch(tid);
 		} else {
@@ -107,8 +106,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 		
 	}
 	
-	private void relCheck(){
-		int t=g_jsm.getTime();
+	private void rel_check(){
+		int t=g_jsm.get_time();
 		String s="";
 		for(Task tsk:g_tm.getTasks()){
 			if (t%tsk.period!=0){
@@ -127,7 +126,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 				}
 			}
 			s+="+";
-			g_jsm.add(relJob_base(tsk,t));
+			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
 		FLog.prnc(s);
@@ -146,8 +145,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	
 	// abstract method
-	protected abstract void initMode_in();
-	protected abstract void recover_in();
+	protected abstract void init_mode_in();
 	protected abstract void modeswitch_in(int tid);
 	
 	

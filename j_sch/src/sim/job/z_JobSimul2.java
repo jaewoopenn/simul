@@ -24,7 +24,7 @@ public class z_JobSimul2 {
 		js.simulBy(6);
 		js.add(new Job(0,8,1));
 		js.simulBy(10);
-		js.simulEnd();
+		js.simul_end();
 		return 0;
 	}
 	
@@ -36,7 +36,7 @@ public class z_JobSimul2 {
 		js.simul_one();
 		js.simul_one();
 		js.simul_one();
-		js.simulEnd();
+		js.simul_end();
 		
 		return 0;
 	}

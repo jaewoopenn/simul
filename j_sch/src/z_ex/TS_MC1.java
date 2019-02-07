@@ -52,7 +52,7 @@ public class TS_MC1 {
 		TaskSetEx tme=new TaskSetEx(tmp.getVec());
 		return tme.getTM();
 	}
-	public static TaskMng ts6() { 
+	public static TaskMng ts6() {   // Hi only test
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(8,1));
 		tmp.add(new Task(8,4));

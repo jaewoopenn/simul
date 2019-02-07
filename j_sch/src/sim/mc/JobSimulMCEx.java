@@ -12,12 +12,12 @@ public class JobSimulMCEx extends JobSimulMC {
 	// all in one
 	public int simul(int et){
 		simulBy(et);
-		simulEnd();
+		simul_end();
 		return g_jm.endCheck(et);
 	}
 	public int simulBy(int et){
 		while(g_t<et){
-			int tid=msCheck();
+			int tid=ms_check();
 			if(tid!=-1) {
 				this.getJM().modeswitch(tid);
 			}

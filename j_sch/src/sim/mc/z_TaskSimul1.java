@@ -20,8 +20,8 @@ public class z_TaskSimul1 {
 		TaskMng tm=TS_MC1.ts1();
 		TaskSimul_EDF_VD ts=new TaskSimul_EDF_VD();
 		ts.init_sm_tm(sm,tm);
-		ts.simulBy(0,et);
-		ts.simulEnd();
+		ts.simul(0,et);
+		ts.simul_end();
 		return 0;
 	}
 	public int test2() {

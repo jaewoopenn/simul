@@ -28,7 +28,7 @@ public class TaskSimul {
 		}
 		g_tm=tm;
 		init();
-		checkErr();
+		check_err();
 	}
 	
 
@@ -36,20 +36,20 @@ public class TaskSimul {
 
 
 	// simul interval
-	public void simulBy(int st, int et){
+	public void simul(int st, int et){
 		if(st==0){
 			FLog.prn("rel  / exec / t");
 		}
 		int t=st;
 		while(t<et){
-			simul_t();
+			simul_one();
 			t++;
 		}
 	}
 	
 	
-	public void simulEnd() {
-		g_js.simulEnd();
+	public void simul_end() {
+		g_js.simul_end();
 	}
 
 	// get param
@@ -67,17 +67,14 @@ public class TaskSimul {
 	}
 
 	
-	protected void simul_t(){  // will be different in MC setting 
-		relCheck();
+	protected void simul_one(){  // will be different in MC setting 
+		release_jobs();
 		g_js.simul_one();
 		//Log.prn(isSchTab,1, " "+t);
 	}
 	
-	protected Job relJob_base(Task tsk, int t) {
-		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
-	}
 	
-	protected void checkErr() {
+	protected void check_err() {
 		if(g_tm==null){
 			Log.prn(9, "ERROR: TaskMng is not set");
 			System.exit(1);
@@ -86,13 +83,13 @@ public class TaskSimul {
 	
 	
 	// -------------- private
-	private void relCheck(){
-		int t=g_js.getTime();
+	private void release_jobs(){
+		int t=g_js.get_time();
 		String s="";
 		for(Task tsk:g_tm.getTasks()){
 			if (t%tsk.period==0){
 				s+="+";
-				g_js.add(relJob_base(tsk,t));
+				g_js.add(rel_one_job(tsk,t));
 			} else {
 				s+="-";
 			}
@@ -101,6 +98,9 @@ public class TaskSimul {
 		FLog.prnc(s);
 	}
 
+	private Job rel_one_job(Task tsk, int t) {
+		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
+	}
 
 
 	

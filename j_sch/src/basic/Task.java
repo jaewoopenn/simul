@@ -105,6 +105,8 @@ public class Task {
 		Log.prnc(2, ", "+vd);
 		Log.prnc(2, ", "+c_l);
 		Log.prnc(2, ", "+c_h);
+		if (is_HI)
+			Log.prnc(2," isHM:"+is_Hi_Mode);
 		Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
 		Log.prn(2, ", "+MUtil.getStr(getHiUtil()));
 	}

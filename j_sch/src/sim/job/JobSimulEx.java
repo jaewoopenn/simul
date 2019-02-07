@@ -12,7 +12,7 @@ public class JobSimulEx extends JobSimul {
 	// all in one
 	public int simul(int et){
 		simulBy(et);
-		simulEnd();
+		simul_end();
 		return g_jm.endCheck(et);
 	}
 	public int simulBy(int et){

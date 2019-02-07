@@ -188,8 +188,8 @@ public class Platform {
 			sm.setX(x);
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
-			s.simulBy(0,g_dur);
-			s.simulEnd();
+			s.simul(0,g_dur);
+			s.simul_end();
 			SimulInfo si=s.getSI();
 			fu.write(si.getDMR()+"");
 		}

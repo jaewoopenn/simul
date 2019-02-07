@@ -5,7 +5,7 @@ package sim.mc;
  * 
  * TODO recover implement
  * 
- * FIXME why task 3 is repeatedly ms?
+ * 
  */
 import basic.Task;
 import util.FLog;
@@ -17,7 +17,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 
 
 	@Override
-	protected void initMode_in() {
+	protected void init_mode_in() {
 		
 	}
 	
@@ -25,10 +25,10 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	@Override
 	public void modeswitch_in(int tid) {
 		modeswitch_tid(tid);		
-		dropDecision();
+		task_drop_algo();
 	}
 	
-	private void dropDecision() {
+	private void task_drop_algo() {
 		double ru=g_tm.getRUtil();
 		while(ru>=1+MUtil.err){
 //			Log.prn(1, "RU"+ru);
@@ -50,9 +50,5 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	}
 
 
-	@Override
-	protected void recover_in() {
-		
-	}
 
 }
