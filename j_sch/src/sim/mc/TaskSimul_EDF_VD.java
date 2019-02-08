@@ -6,10 +6,6 @@ import basic.Task;
 public class TaskSimul_EDF_VD extends TaskSimulMC{
 
 
-	@Override
-	protected void init_mode_in() {
-		
-	}
 	
 	
 	@Override

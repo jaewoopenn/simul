@@ -81,7 +81,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 		FLog.prn( "t:"+g_jsm.get_time()+" recover ");
 		g_needRecover=false;
 		initMode_base();
-		init_mode_in();
 //		System.exit(0);
 		
 	}
@@ -145,7 +144,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	
 	// abstract method
-	protected abstract void init_mode_in();
 	protected abstract void modeswitch_in(int tid);
 	
 	

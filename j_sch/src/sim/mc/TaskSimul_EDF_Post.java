@@ -16,10 +16,6 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 
 
 
-	@Override
-	protected void init_mode_in() {
-		
-	}
 	
 	
 	@Override

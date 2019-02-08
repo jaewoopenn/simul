@@ -10,10 +10,6 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
 
 
-	@Override
-	protected void init_mode_in() {
-		
-	}
 	
 	
 	@Override
