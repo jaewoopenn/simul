@@ -1,8 +1,11 @@
+/*
+ * Static Class
+ */
 package util;
 
 import java.lang.reflect.Method;
 
-public class TEngine {
+public class S_TEngine {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void run(Object m,Class c,int[] aret, int sz) throws Exception 
 	{

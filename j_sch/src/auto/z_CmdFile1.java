@@ -1,5 +1,5 @@
 package auto;
-import util.TEngine;
+import util.S_TEngine;
 
 public class z_CmdFile1 {
 	public static int idx=3;
@@ -68,9 +68,9 @@ public class z_CmdFile1 {
 		z_CmdFile1 m=new z_CmdFile1();
 		int[] aret=z_CmdFile1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

@@ -4,7 +4,7 @@ import basic.TaskSetEx;
 import gen.ConfigGen;
 import util.FUtil;
 import util.S_Log;
-import util.TEngine;
+import util.S_TEngine;
 
 public class z_SysLoad1 {
 	public static int idx=5;
@@ -94,9 +94,9 @@ public class z_SysLoad1 {
 		z_SysLoad1 m=new z_SysLoad1();
 		int[] aret=z_SysLoad1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

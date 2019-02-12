@@ -15,7 +15,7 @@ import sim.TaskSimul;
 import sim.mc.TaskSimul_EDF_VD;
 import gen.SysLoad;
 import util.S_Log;
-import util.TEngine;
+import util.S_TEngine;
 import z_ex.TS_MC1;
 
 public class z_Platform2 {
@@ -131,9 +131,9 @@ public class z_Platform2 {
 		z_Platform2 m=new z_Platform2();
 		int[] aret=z_Platform2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

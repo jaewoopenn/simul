@@ -3,7 +3,7 @@ import gen.ConfigGen;
 import util.FOut;
 import util.FUtilSp;
 import util.S_Log;
-import util.TEngine;
+import util.S_TEngine;
 
 public class z_ConfigGen2 {
 	public static int idx=1;
@@ -78,9 +78,9 @@ public class z_ConfigGen2 {
 		z_ConfigGen2 m=new z_ConfigGen2();
 		int[] aret=z_ConfigGen2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

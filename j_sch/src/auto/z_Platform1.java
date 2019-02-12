@@ -13,7 +13,7 @@ import gen.SysLoad;
 import util.FOut;
 import util.FUtilSp;
 import util.S_Log;
-import util.TEngine;
+import util.S_TEngine;
 
 public class z_Platform1 {
 //	public static int idx=5;
@@ -157,9 +157,9 @@ public class z_Platform1 {
 		z_Platform1 m=new z_Platform1();
 		int[] aret=z_Platform1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

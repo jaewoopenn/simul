@@ -3,7 +3,7 @@ package sim.mc;
 import basic.TaskMng;
 import sim.SysMng;
 import sim.mc.TaskSimul_EDF_VD;
-import util.TEngine;
+import util.S_TEngine;
 import z_ex.TS_MC1;
 
 public class z_TaskSimul1 {
@@ -63,9 +63,9 @@ public class z_TaskSimul1 {
 		z_TaskSimul1 m=new z_TaskSimul1();
 		int[] aret=z_TaskSimul1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

@@ -4,7 +4,7 @@ import basic.TaskSetEx;
 import gen.TaskGen;
 import gen.TaskGenMC;
 import gen.TaskGenParam;
-import util.TEngine;
+import util.S_TEngine;
 
 // Simulation
 
@@ -78,9 +78,9 @@ public class z_TaskGenMC1 {
 		z_TaskGenMC1 m=new z_TaskGenMC1();
 		int[] aret=z_TaskGenMC1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

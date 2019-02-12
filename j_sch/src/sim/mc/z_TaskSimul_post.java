@@ -12,7 +12,7 @@ import sim.SimulInfo;
 import sim.SysMng;
 import util.S_FLog;
 import util.S_Log;
-import util.TEngine;
+import util.S_TEngine;
 import z_ex.TS_MC2;
 
 public class z_TaskSimul_post {
@@ -48,7 +48,7 @@ public class z_TaskSimul_post {
 //		System.exit(1);
 		
 		S_FLog.init("sch/log.txt");
-//		FLog.initScr();
+//		S_FLog.initScr();
 		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 		ts.init_sm_tm(sm,tm);
 		ts.simul(0,et);
@@ -97,9 +97,9 @@ public class z_TaskSimul_post {
 		z_TaskSimul_post m=new z_TaskSimul_post();
 		int[] aret=z_TaskSimul_post.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

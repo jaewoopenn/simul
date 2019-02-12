@@ -1,6 +1,6 @@
 package sim.job;
 
-import util.TEngine;
+import util.S_TEngine;
 import z_ex.Job_MC1;
 
 public class z_JobSimul2 {
@@ -70,9 +70,9 @@ public class z_JobSimul2 {
 		z_JobSimul2 m=new z_JobSimul2();
 		int[] aret=z_JobSimul2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

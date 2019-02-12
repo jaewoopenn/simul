@@ -63,9 +63,9 @@ public class z_FLog {
 		z_FLog m=new z_FLog();
 		int[] aret=z_FLog.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

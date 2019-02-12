@@ -69,9 +69,9 @@ public class z_FUtil1 {
 		z_FUtil1 m=new z_FUtil1();
 		int[] aret=z_FUtil1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

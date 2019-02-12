@@ -1,7 +1,7 @@
 package auto;
 
 
-import util.TEngine;
+import util.S_TEngine;
 
 
 public class z_auto1 {
@@ -102,9 +102,9 @@ public class z_auto1 {
 		z_auto1 m=new z_auto1();
 		int[] aret=z_auto1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

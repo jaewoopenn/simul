@@ -3,7 +3,7 @@ import java.util.Vector;
 
 import basic.Task;
 import util.S_Log;
-import util.TEngine;
+import util.S_TEngine;
 
 public class z_Task1 {
 	public static int log_level=1;
@@ -71,9 +71,9 @@ public class z_Task1 {
 		z_Task1 m=new z_Task1();
 		int[] aret=z_Task1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			S_TEngine.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
 
 }
