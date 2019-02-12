@@ -2,7 +2,7 @@ package basic;
 import java.util.Vector;
 
 import basic.Task;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_Task1 {
@@ -28,16 +28,16 @@ public class z_Task1 {
 	{
 		Task t=new Task(3,0);
 		t.prn();
-		Log.prn(1, " "+t.check());
+		S_Log.prn(1, " "+t.check());
 		return 0;
 	}
 	public  int test4()
 	{
 		Task t=new Task(3,1,2);
 		t.setVD(2);
-		Log.prn(1," "+t.getLoUtil());
-		Log.prn(1," "+t.getLoVdUtil());
-		Log.prn(1," "+t.getHiUtil());
+		S_Log.prn(1," "+t.getLoUtil());
+		S_Log.prn(1," "+t.getLoVdUtil());
+		S_Log.prn(1," "+t.getHiUtil());
 		return 0;
 	}
 	public  int test5()

@@ -2,7 +2,7 @@ package sim;
 
 import basic.TaskMng;
 import sim.mc.TaskSimul_EDF_VD;
-import util.FLog;
+import util.S_FLog;
 import util.TEngine;
 import z_ex.TS_MC1;
 import z_ex.TS_NonMC1;
@@ -16,7 +16,7 @@ public class z_TaskSimul1 {
 
 
 	public int test1()	{
-		FLog.alive();
+		S_FLog.alive();
 		TaskSimul ts=new TaskSimul();
 		ts.init_sm_tm(null,TS_NonMC1.ts1());
 		ts.simul(0,20);

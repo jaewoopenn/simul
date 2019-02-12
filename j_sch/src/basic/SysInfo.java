@@ -4,7 +4,7 @@ package basic;
 
 */
 
-import util.Log;
+import util.S_Log;
 import util.MUtil;
 
 public class SysInfo {
@@ -75,14 +75,14 @@ public class SysInfo {
 	}
 	
 	public void prn() {
-		Log.prnc(2, "lo_mode_util:"+MUtil.getStr(getLo_util()+getHi_util_lm()));
-		Log.prnc(2, " ll_util:"+MUtil.getStr(getLo_util()));
-		Log.prn(2, " hl_util:"+MUtil.getStr(getHi_util_lm()));
-		Log.prn(2, "hi_mode_util:"+MUtil.getStr(getHi_util_hm()));
-		Log.prn(2, "x:"+MUtil.getStr(getX()));
+		S_Log.prnc(2, "lo_mode_util:"+MUtil.getStr(getLo_util()+getHi_util_lm()));
+		S_Log.prnc(2, " ll_util:"+MUtil.getStr(getLo_util()));
+		S_Log.prn(2, " hl_util:"+MUtil.getStr(getHi_util_lm()));
+		S_Log.prn(2, "hi_mode_util:"+MUtil.getStr(getHi_util_hm()));
+		S_Log.prn(2, "x:"+MUtil.getStr(getX()));
 	}
 	public void prnUtil() {
-		Log.prn(2, " ll_util:"+MUtil.getStr(getLo_util()));
+		S_Log.prn(2, " ll_util:"+MUtil.getStr(getLo_util()));
 		
 	}
 	

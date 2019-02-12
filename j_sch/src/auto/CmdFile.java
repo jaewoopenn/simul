@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 import util.MUtil;
 
 public class CmdFile {
@@ -73,7 +73,7 @@ public class CmdFile {
 	public void prn() {
 		for (String s:g_list){
 			String v=readPar(s);
-			Log.prn(1, s+ " -- "+ v);
+			S_Log.prn(1, s+ " -- "+ v);
 		}
 		
 	}

@@ -13,7 +13,7 @@ import sim.SysMng;
 import sim.TaskSimul;
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 
 public class Platform {
 	private String g_path;
@@ -49,7 +49,7 @@ public class Platform {
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
-			Log.prn(2, lb+"");
+			S_Log.prn(2, lb+"");
 			cg.setParam("u_lb", (lb)*1.0/100+"");
 			cg.setParam("u_ub", (lb+5)*1.0/100+"");
 			cg.setParam("mod", (lb+5)+"");
@@ -164,7 +164,7 @@ public class Platform {
 	}
 
 	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
-		Log.prn(2, ts);
+		S_Log.prn(2, ts);
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
 		int n=0;
@@ -176,9 +176,9 @@ public class Platform {
 			a.init(tm);
 			a.prepare();
 			n++;
-			Log.prn(2, "n:"+n);
+			S_Log.prn(2, "n:"+n);
 			if(!a.isScheduable()) {
-				Log.prn(2, "no sch");
+				S_Log.prn(2, "no sch");
 				continue;
 			}
 

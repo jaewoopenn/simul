@@ -1,6 +1,10 @@
+/* 
+ * Static Class
+ */
+
 package util;
 
-public class Log {
+public class S_Log {
 	private static int g_lv=9;
 	public static void set_lv(int lv){
 		g_lv=lv;
@@ -9,20 +13,12 @@ public class Log {
 		return 	(g_lv<=lv);
 
 	}
-	public static void prn(boolean b,int lv,Object s) {
-		if(b) 
-			prn(lv,s);
-	}
 	public static void prn(int lv,Object s)
 	{
 		if(g_lv<=lv)
 			System.out.println(s);
 	}
 
-	public static void prnc(boolean b,int lv,Object s) {
-		if(b) 
-			prnc(lv,s);
-	}
 	public static void prnc(int lv,Object s) {
 		if(g_lv<=lv)
 			System.out.print(s);
@@ -39,16 +35,5 @@ public class Log {
 	public static void prnDblc(int lv,double f){
 		if(g_lv<=lv)
 			System.out.printf("%.3f", f);		
-	}
-	public static void prnDbl(int lv,double f){
-		if(g_lv<=lv)
-			System.out.printf("%.3f\n", f);		
-	}
-	public static void prn_nl(int lv) {
-		prn(lv,"");
-	}
-	public static void prnErr(String s) {
-		System.out.println(s);
-		
 	}
 }

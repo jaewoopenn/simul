@@ -26,7 +26,7 @@ public class FUtil {
 	}
 	public void view() {
 		for(int i=0;i<size();i++) {
-			Log.prn(1, get(i));
+			S_Log.prn(1, get(i));
 		}
 	}
 	public void br_open() {

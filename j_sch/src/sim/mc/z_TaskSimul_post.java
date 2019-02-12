@@ -10,8 +10,8 @@ import anal.AnalSel;
 import basic.TaskMng;
 import sim.SimulInfo;
 import sim.SysMng;
-import util.FLog;
-import util.Log;
+import util.S_FLog;
+import util.S_Log;
 import util.TEngine;
 import z_ex.TS_MC2;
 
@@ -22,14 +22,14 @@ public class z_TaskSimul_post {
 
 
 	public int test1()	{
-		int et=1000;
-//		int et=200;
+//		int et=1000;
+		int et=200;
 		
 		SysMng sm=new SysMng();
 		
-//		sm.setMS_Prob(1);
+		sm.setMS_Prob(1);
 //		sm.setMS_Prob(0.5);
-		sm.setMS_Prob(0.3);
+//		sm.setMS_Prob(0.3);
 		
 //		TaskMng tm=TS_MC2.ts1();
 		TaskMng tm=TS_MC2.ts2();
@@ -38,16 +38,16 @@ public class z_TaskSimul_post {
 		a.init(tm);
 		a.prepare();
 		if(!a.isScheduable()) {
-			Log.err("not schedulable");
+			S_Log.err("not schedulable");
 			return -1;
 		}
 		double x=a.computeX();
-		Log.prn(1, "x:"+x);
+		S_Log.prn(1, "x:"+x);
 		sm.setX(x);
 //		tm.prn();
 //		System.exit(1);
 		
-		FLog.init("sch/log.txt");
+		S_FLog.init("sch/log.txt");
 //		FLog.initScr();
 		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 		ts.init_sm_tm(sm,tm);
@@ -55,7 +55,7 @@ public class z_TaskSimul_post {
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn();
-		FLog.end();
+		S_FLog.end();
 		return 0;
 	}
 	public int test2() {

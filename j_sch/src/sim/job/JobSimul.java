@@ -1,8 +1,8 @@
 package sim.job;
 
 
-import util.FLog;
-import util.Log;
+import util.S_FLog;
+import util.S_Log;
 
 public class JobSimul {
 	protected JobMng g_jm;
@@ -20,10 +20,9 @@ public class JobSimul {
 
 
 	public void simul_one() {
-		FLog.prnc( String.format("%05d ", g_t));
+		S_FLog.prnc( String.format("%05d ", g_t));
 		if(!dl_check(g_t)) {
-			Log.err("JobSimul ");
-			System.exit(1);
+			S_Log.err("JobSimul ");
 		}
 		exec_one();
 		g_t++;
@@ -33,10 +32,10 @@ public class JobSimul {
 	public void simul_end(){
 		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
-			Log.prn(9,"Deadline miss at time "+g_t);
+			S_Log.prn(9,"Deadline miss at time "+g_t);
 			System.exit(1);
 		}
-		FLog.prn("*** Left Jobs at time "+g_t+" ***");
+		S_FLog.prn("*** Left Jobs at time "+g_t+" ***");
 		g_jm.f_prn();
 	}
 	
@@ -53,7 +52,7 @@ public class JobSimul {
 			return true;
 		if(cur_t<j.dl) 
 			return true;
-		Log.prn(9,"DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		S_Log.prn(9,"DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		return false;
 	}
 	
@@ -74,10 +73,10 @@ public class JobSimul {
 		}
 		
 		// File Log
-		if(!FLog.isON())
+		if(!S_FLog.isON())
 			return;
 		s=g_jm.getJobArrow(j,out_type);
-		FLog.prn(s);
+		S_FLog.prn(s);
 	}
 	
 	

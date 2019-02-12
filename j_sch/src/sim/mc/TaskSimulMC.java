@@ -7,8 +7,8 @@ import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
 import sim.job.Job;
-import util.FLog;
-import util.Log;
+import util.S_FLog;
+import util.S_Log;
 
 public abstract class TaskSimulMC extends TaskSimul {
 
@@ -78,7 +78,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 
 	private void recover(){
-		FLog.prn( "t:"+g_jsm.get_time()+" recover ");
+		S_FLog.prn( "t:"+g_jsm.get_time()+" recover ");
 		g_needRecover=false;
 		initMode_base();
 //		System.exit(0);
@@ -96,7 +96,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(prob<g_sm.getMS_Prob())
 			isMS=true;
 		if(isMS){
-			FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
+			S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
 			g_needRecover=true;
 			mode_switch(tid);
 		} else {
@@ -128,7 +128,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
-		FLog.prnc(s);
+		S_FLog.prnc(s);
 	}
 	private void initMode_base() {
 		for(Task t:g_tm.getTasks()){
@@ -159,7 +159,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected void modeswitch_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI)	{
-			Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode switch");
+			S_Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode switch");
 			System.exit(0);
 		}
 		tsk.ms();
@@ -168,14 +168,14 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	protected void drop_task(Task tsk) {
 		if(tsk.is_HI)	{
-			Log.prn(9, "ERROR: task "+tsk.tid+" is not LO-task, cannot drop");
+			S_Log.prn(9, "ERROR: task "+tsk.tid+" is not LO-task, cannot drop");
 			System.exit(0);
 		}
 		if(tsk.is_dropped)
 			return;
 		int n=g_jsm.getJM().drop(tsk.tid);
 		if(n>1){
-			Log.prn(9, "drop num>1");
+			S_Log.prn(9, "drop num>1");
 			System.exit(1);
 		}
 		g_si.drop+=n;

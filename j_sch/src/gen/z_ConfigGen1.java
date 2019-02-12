@@ -1,6 +1,6 @@
 package gen;
 import gen.ConfigGen;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_ConfigGen1 {
@@ -52,7 +52,7 @@ public class z_ConfigGen1 {
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
-			Log.prn(2, lb+"");
+			S_Log.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");

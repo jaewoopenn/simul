@@ -1,7 +1,7 @@
 package basic;
 
 import basic.Task;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_TaskSeq1 {
@@ -12,10 +12,10 @@ public class z_TaskSeq1 {
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		Log.prn(1, TaskSeq.getID()+"");
-		Log.prn(1, TaskSeq.getID()+"");
-		Log.prn(1, TaskSeq.getID()+"");
-		Log.prn(1, TaskSeq.getID()+"");
+		S_Log.prn(1, TaskSeq.getID()+"");
+		S_Log.prn(1, TaskSeq.getID()+"");
+		S_Log.prn(1, TaskSeq.getID()+"");
+		S_Log.prn(1, TaskSeq.getID()+"");
 		return 0;
 	}
 	public int test2() 

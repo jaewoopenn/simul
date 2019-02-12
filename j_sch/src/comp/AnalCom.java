@@ -1,7 +1,7 @@
 package comp;
 
 import anal.Anal;
-import util.Log;
+import util.S_Log;
 
 public class AnalCom extends Anal {
 	private double u;
@@ -25,7 +25,7 @@ public class AnalCom extends Anal {
 	}
 	@Override
 	public void prn() {
-		Log.prn(1, "det:"+u);
+		S_Log.prn(1, "det:"+u);
 		
 	}
 	@Override

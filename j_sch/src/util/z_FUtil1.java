@@ -17,7 +17,7 @@ public class z_FUtil1 {
 		FUtil f=new FUtil("test\\t\\taskset");
 		f.br_open();
 		String s=f.read();
-		Log.prn(1, s);
+		S_Log.prn(1, s);
 		f.br_close();
 		return 0;
 	}
@@ -27,7 +27,7 @@ public class z_FUtil1 {
 		f.br_open();
 		f.readSplit("------");
 		f.view();
-		Log.prn(1, "----------");
+		S_Log.prn(1, "----------");
 		
 		f.readSplit("------");
 		f.view();

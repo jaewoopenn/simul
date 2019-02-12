@@ -1,6 +1,6 @@
 package sim;
 
-import util.Log;
+import util.S_Log;
 
 
 
@@ -15,8 +15,8 @@ public class SimulInfo {
 			return (double)drop/rel;
 	}
 	public void prn() {
-		Log.prn(2, "rel:"+rel);
-		Log.prn(2, "drop:"+drop);
-		Log.prn(2, "ms:"+ms);
+		S_Log.prn(2, "rel:"+rel);
+		S_Log.prn(2, "drop:"+drop);
+		S_Log.prn(2, "ms:"+ms);
 	}
 }

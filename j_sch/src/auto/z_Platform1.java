@@ -12,7 +12,7 @@ import gen.SysGenMC;
 import gen.SysLoad;
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_Platform1 {
@@ -84,7 +84,7 @@ public class z_Platform1 {
 				if(tm==null) break;
 				n++;
 			}
-			Log.prn(1, fn+" "+n);
+			S_Log.prn(1, fn+" "+n);
 		}
 //		fu_rs.save();
 		return -1;
@@ -120,7 +120,7 @@ public class z_Platform1 {
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
-			Log.prn(2, lb+"");
+			S_Log.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");

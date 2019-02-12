@@ -1,6 +1,6 @@
 package sim.job;
 
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_JobSimul1 {
@@ -16,7 +16,7 @@ public class z_JobSimul1 {
 		js.add(new Job(2,4,2));
 		js.simulBy(3);
 		js.add(new Job(1,6,1));
-		Log.prn(1,"  ");
+		S_Log.prn(1,"  ");
 		js.simulBy(4);
 		js.add(new Job(2,8,2));
 		js.simul(8);

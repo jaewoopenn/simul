@@ -2,7 +2,7 @@ package anal;
 
 import basic.TaskMng;
 import basic.SysInfo;
-import util.Log;
+import util.S_Log;
 
 public class AnalEDF_VD extends Anal {
 	private double lotasks_loutil;
@@ -54,9 +54,9 @@ public class AnalEDF_VD extends Anal {
 
 	@Override
 	public void prn() {
-		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
-		Log.prn(1, "x:"+glo_x);
-		Log.prn(1, "det:"+getDtm());
+		S_Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
+		S_Log.prn(1, "x:"+glo_x);
+		S_Log.prn(1, "det:"+getDtm());
 		
 	}
 

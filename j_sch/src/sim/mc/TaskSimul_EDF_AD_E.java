@@ -2,8 +2,8 @@ package sim.mc;
 
 
 import basic.Task;
-import util.FLog;
-import util.Log;
+import util.S_FLog;
+import util.S_Log;
 import util.MUtil;
 
 public class TaskSimul_EDF_AD_E extends TaskSimulMC{
@@ -24,14 +24,14 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 //			Log.prn(1, "RU"+ru);
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				Log.prn(9, "no available LO-task to drop. ru:"+ru);
+				S_Log.prn(9, "no available LO-task to drop. ru:"+ru);
 //				g_tm.prnLoTasks();
 				g_sm.prn();
 				g_tm.prnRuntime();
 				System.exit(1);
 			}
 			drop_task(tsk);
-			FLog.prn("drop "+tsk.tid);
+			S_FLog.prn("drop "+tsk.tid);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
 			ru-=g_tm.getReclaimUtil(tsk);
 		}

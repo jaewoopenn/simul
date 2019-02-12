@@ -4,7 +4,7 @@ package basic;
 
 */
 
-import util.Log;
+import util.S_Log;
 
 public class TaskMng {
 	private TaskSet g_tasks;
@@ -129,11 +129,11 @@ public class TaskMng {
 
 	public boolean check() {
 		if(g_info.get_lm_util()>1){
-			Log.prn(2, "lm "+g_info.get_lm_util()+" error");
+			S_Log.prn(2, "lm "+g_info.get_lm_util()+" error");
 			return false;
 		}
 		if(g_info.get_hm_util()>1){
-			Log.prn(2, "hm "+g_info.get_hm_util()+" error");
+			S_Log.prn(2, "hm "+g_info.get_hm_util()+" error");
 			return false;
 		}
 		return true;
@@ -152,7 +152,7 @@ public class TaskMng {
 	
 	public void prnHI() {
 		g_hi_tasks.prn();
-		Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
+		S_Log.prn(2, "hi_mode_util:"+g_info.getHi_util_hm());
 		
 	}
 
@@ -165,14 +165,14 @@ public class TaskMng {
 	}
 
 	public void prnRuntime() {
-		Log.prn(2, "WC:"+getWCUtil());
-		Log.prn(2, "LO:"+getLoUtil());
-		Log.prn(2, "LO_MAX:"+g_info.getLo_max());
+		S_Log.prn(2, "WC:"+getWCUtil());
+		S_Log.prn(2, "LO:"+getLoUtil());
+		S_Log.prn(2, "LO_MAX:"+g_info.getLo_max());
 		g_tasks.prnRuntime();
 	}
 
 	public void prnOffline() {
-		Log.prn(2, "x:"+g_info.getX());
+		S_Log.prn(2, "x:"+g_info.getX());
 		g_tasks.prnOffline();
 		
 	}

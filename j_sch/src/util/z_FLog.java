@@ -7,18 +7,18 @@ public class z_FLog {
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() 
 	{
-		FLog.init("test/log.txt");
-		FLog.prn("hihi");
-		FLog.prn("hihi2");
-		FLog.end();
+		S_FLog.init("test/log.txt");
+		S_FLog.prn("hihi");
+		S_FLog.prn("hihi2");
+		S_FLog.end();
 		return 1;
 
 	}
 	public int test2()  //err
 	{
-		FLog.prn("hihi");
-		FLog.prn("hihi2");
-		FLog.end();
+		S_FLog.prn("hihi");
+		S_FLog.prn("hihi2");
+		S_FLog.end();
 		return 0;
 	}
 	public int test3() 

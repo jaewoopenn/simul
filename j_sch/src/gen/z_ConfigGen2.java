@@ -2,7 +2,7 @@ package gen;
 import gen.ConfigGen;
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_ConfigGen2 {
@@ -19,7 +19,7 @@ public class z_ConfigGen2 {
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
-			Log.prn(2, lb+"");
+			S_Log.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
@@ -36,7 +36,7 @@ public class z_ConfigGen2 {
 		String path="test/t1";
 		FUtilSp fu=new FUtilSp(path+"/list.txt");
 		int n=fu.load();
-		Log.prn(1, n+" ");
+		S_Log.prn(1, n+" ");
 		fu.view();
 		return 0;
 	}

@@ -4,7 +4,7 @@ import gen.SysGen;
 import gen.SysGenMC;
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_SysGen1 {
@@ -35,7 +35,7 @@ public class z_SysGen1 {
 		SysGen eg=new SysGenMC(cfg);
 		eg.setCheck();
 		String fn=cfg.get_fn();
-		Log.prn(1, fn);
+		S_Log.prn(1, fn);
 		eg.gen(fn);
 		return 0;
 	}

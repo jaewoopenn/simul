@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import util.FOut;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 import util.MUtil;
 
 public class ConfigGen {
@@ -96,8 +96,7 @@ public class ConfigGen {
 	}
 	public void write() {
 		if(g_fn==null) {
-			Log.prnErr("configGen: filename is not set");
-			System.exit(1);
+			S_Log.err("configGen: filename is not set");
 		}
 		FOut fu=new FOut(g_fn);
 		for (String s:g_predefined){
@@ -113,7 +112,7 @@ public class ConfigGen {
 		
 	}
 	public void prn(int lv) {
-		Log.prn(lv,readPar("u_ub")+"--");
+		S_Log.prn(lv,readPar("u_ub")+"--");
 	}
 	public static ConfigGen getPredefined()	{
 		ConfigGen eg=new ConfigGen(null);

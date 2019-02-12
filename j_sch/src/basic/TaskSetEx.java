@@ -11,7 +11,7 @@ import java.util.Vector;
 import util.FOut;
 import util.FUtil;
 import util.FUtilSp;
-import util.Log;
+import util.S_Log;
 
 public class TaskSetEx {
 	private TaskSet g_tasks;
@@ -42,7 +42,7 @@ public class TaskSetEx {
 	}
 	
 	public void stat(){
-		Log.prn(2, g_tasks.v_size());
+		S_Log.prn(2, g_tasks.v_size());
 	}
 	
 	// export 
@@ -99,7 +99,7 @@ public class TaskSetEx {
 	public static void loadView(FUtil fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
-	    	Log.prn(1,line);
+	    	S_Log.prn(1,line);
 		}
 	}
 

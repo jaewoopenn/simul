@@ -5,8 +5,8 @@ import basic.Task;
 import basic.TaskMng;
 import sim.job.Job;
 import sim.job.JobSimul;
-import util.FLog;
-import util.Log;
+import util.S_FLog;
+import util.S_Log;
 import util.RUtil;
 
 public class TaskSimul {
@@ -23,8 +23,7 @@ public class TaskSimul {
 			g_sm=sm;
 		}
 		else {
-			Log.prnErr("sm null");
-			System.exit(1);
+			S_Log.err("sm null");
 		}
 		g_tm=tm;
 		init();
@@ -38,7 +37,7 @@ public class TaskSimul {
 	// simul interval
 	public void simul(int st, int et){
 		if(st==0){
-			FLog.prn("rel  / exec / t");
+			S_FLog.prn("rel  / exec / t");
 		}
 		int t=st;
 		while(t<et){
@@ -76,7 +75,7 @@ public class TaskSimul {
 	
 	protected void check_err() {
 		if(g_tm==null){
-			Log.prn(9, "ERROR: TaskMng is not set");
+			S_Log.prn(9, "ERROR: TaskMng is not set");
 			System.exit(1);
 		}
 	}	
@@ -95,7 +94,7 @@ public class TaskSimul {
 			}
 		}
 		s+=" ";
-		FLog.prnc(s);
+		S_FLog.prnc(s);
 	}
 
 	private Job rel_one_job(Task tsk, int t) {

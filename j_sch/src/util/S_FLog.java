@@ -1,17 +1,18 @@
+/* 
+ * Static Class
+ */
+
 package util;
 
 import java.io.PrintWriter;
-/*
 
-
-*/
-
-public class FLog {
+public class S_FLog {
 	private static PrintWriter g_writer=null;
 	
 	public static boolean isON() {
 		return (g_writer!=null);
 	}
+	
 	public static void init(String file) {
 		try {
 			g_writer = new PrintWriter(FUtil.path+file);
@@ -48,7 +49,7 @@ public class FLog {
 			g_writer=null;
 		}
 		else
-			Log.err("need FLOG init");
+			S_Log.err("need FLOG init");
 	}
 	
 	// to prevent warning

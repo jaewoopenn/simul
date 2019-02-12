@@ -3,7 +3,7 @@ import basic.TaskMng;
 import basic.TaskSetEx;
 import gen.ConfigGen;
 import util.FUtil;
-import util.Log;
+import util.S_Log;
 import util.TEngine;
 
 public class z_SysLoad1 {
@@ -16,7 +16,7 @@ public class z_SysLoad1 {
 		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		cfg.readFile();
 		String fn=cfg.get_fn();
-		Log.prn(1, fn);
+		S_Log.prn(1, fn);
 		FUtil f=new FUtil(fn);
 		f.br_open();
 		f.readSplit("------");
@@ -36,7 +36,7 @@ public class z_SysLoad1 {
 		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		cfg.readFile();
 		String fn=cfg.get_fn();
-		Log.prn(1, fn);
+		S_Log.prn(1, fn);
 		FUtil f=new FUtil(fn);
 		f.br_open();
 		while(true) {

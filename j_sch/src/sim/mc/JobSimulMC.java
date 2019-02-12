@@ -3,8 +3,8 @@ package sim.mc;
 
 import sim.job.Job;
 import sim.job.JobSimul;
-import util.FLog;
-import util.Log;
+import util.S_FLog;
+import util.S_Log;
 
 public class JobSimulMC extends JobSimul{
 	public JobSimulMC(int n){
@@ -39,7 +39,7 @@ public class JobSimulMC extends JobSimul{
 			j.exec-=1;
 		}
 		s=g_jm.getJobArrow(j,out_type);
-		FLog.prn(s);
+		S_FLog.prn(s);
 	}	
 	
 	// before dl_check
@@ -51,8 +51,8 @@ public class JobSimulMC extends JobSimul{
 				return -1;
 			if(j.isHI){
 				if(g_t>j.vd){
-					Log.prn(9, "Job_simul: vd miss"+j.tid);
-					Log.prn(9, g_t+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
+					S_Log.prn(9, "Job_simul: vd miss"+j.tid);
+					S_Log.prn(9, g_t+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
 					System.exit(1);
 				}
 				if(j.exec==0 && j.add_exec>0) 
