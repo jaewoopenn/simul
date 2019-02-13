@@ -13,7 +13,7 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 	
 	
 	@Override
-	public void modeswitch_in(int tid) {
+	protected void modeswitch_in(int tid) {
 		modeswitch_tid(tid);		
 		dropDecision();
 	}

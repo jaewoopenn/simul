@@ -1,5 +1,8 @@
 package sim.mc;
 
+/*
+ * only for test
+ */
 
 
 public class JobSimulMCEx extends JobSimulMC {
@@ -15,6 +18,7 @@ public class JobSimulMCEx extends JobSimulMC {
 		simul_end();
 		return g_jm.endCheck(et);
 	}
+	
 	public int simulBy(int et){
 		while(g_t<et){
 			int tid=ms_check();

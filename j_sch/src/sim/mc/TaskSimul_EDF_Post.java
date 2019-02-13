@@ -19,7 +19,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	
 	
 	@Override
-	public void modeswitch_in(int tid) {
+	protected void modeswitch_in(int tid) {
 		modeswitch_tid(tid);		
 		task_drop_algo();
 	}

@@ -29,11 +29,8 @@ public class JobSimulMC extends JobSimul{
 		else if(j.exec<=1) {
 			out_type=1;
 			j.exec=0;
+			// removing is processing in ms_check 
 			// HI task and add_exec>0 --> process in ms_check
-			if(!j.isHI||j.add_exec==0) {
-				g_jm.removeCur();
-			}
-
 		} else {  // j.exec>1
 			out_type=2;
 			j.exec-=1;
@@ -42,27 +39,22 @@ public class JobSimulMC extends JobSimul{
 		S_FLog.prn(s);
 	}	
 	
-	// before dl_check
+	// after exec
 	public int ms_check() { 
-		Job j;
-		while(true){
-			j=(Job)g_jm.getCur();
-			if(j==null)
-				return -1;
-			if(j.isHI){
-				if(g_t>j.vd){
-					S_Log.prn(9, "Job_simul: vd miss"+j.tid);
-					S_Log.prn(9, g_t+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
-					System.exit(1);
-				}
-				if(j.exec==0 && j.add_exec>0) 
-					return j.tid;
-				else
-					break;
-				
+		Job j=(Job)g_jm.getCur();
+		if(j==null)
+			return -1;
+		
+		if(!j.isHI||j.add_exec==0) {
+			g_jm.removeCur();
+		}
+		if(j.isHI){
+			if(g_t>j.vd){
+				S_Log.err("Job_simul:"+g_t+ "vd miss"+j.tid+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
 			}
-			else
-				break;
+			if(j.exec==0 && j.add_exec>0) 
+				return j.tid;
+			
 		}
 		return -1;
 	}

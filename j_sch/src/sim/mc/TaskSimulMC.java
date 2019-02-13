@@ -46,9 +46,9 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	// @override
 	protected void simul_one(){
-		ms_check();
 		rel_check();
 		g_jsm.simul_one();
+		ms_check();
 		if(g_jsm.is_idle()&&g_needRecover&&g_recoverOn) {
 			recover();
 		}
@@ -151,7 +151,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 	// MC specific 
 	protected void mode_switch(int tid){
 		g_si.ms++;
-//		Log.prn(9, "a"+g_si.ms);
 		modeswitch_in(tid);
 	}
 	
@@ -159,8 +158,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected void modeswitch_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI)	{
-			S_Log.prn(9, "ERROR: task "+tid+" is not HI-task, cannot mode switch");
-			System.exit(0);
+			S_Log.err("task "+tid+" is not HI-task, cannot mode switch");
 		}
 		tsk.ms();
 		g_jsm.getJM().modeswitch(tid);
@@ -168,15 +166,14 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	protected void drop_task(Task tsk) {
 		if(tsk.is_HI)	{
-			S_Log.prn(9, "ERROR: task "+tsk.tid+" is not LO-task, cannot drop");
+			S_Log.err("task "+tsk.tid+" is not LO-task, cannot drop");
 			System.exit(0);
 		}
 		if(tsk.is_dropped)
 			return;
 		int n=g_jsm.getJM().drop(tsk.tid);
 		if(n>1){
-			S_Log.prn(9, "drop num>1");
-			System.exit(1);
+			S_Log.err("drop num>1");
 		}
 		g_si.drop+=n;
 		tsk.drop();
