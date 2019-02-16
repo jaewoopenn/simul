@@ -47,9 +47,9 @@ public class S_FLog {
 		if(g_writer!=null) {
 			g_writer.close();
 			g_writer=null;
-		}
-		else
+		} else {
 			S_Log.err("need FLOG init");
+		}
 	}
 	
 	// to prevent warning

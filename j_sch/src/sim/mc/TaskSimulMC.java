@@ -167,7 +167,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected void drop_task(Task tsk) {
 		if(tsk.is_HI)	{
 			S_Log.err("task "+tsk.tid+" is not LO-task, cannot drop");
-			System.exit(0);
 		}
 		if(tsk.is_dropped)
 			return;

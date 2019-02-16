@@ -39,7 +39,6 @@ public class z_TaskSimul_post {
 		a.prepare();
 		if(!a.isScheduable()) {
 			S_Log.err("not schedulable");
-			return -1;
 		}
 		double x=a.computeX();
 		S_Log.prn(1, "x:"+x);

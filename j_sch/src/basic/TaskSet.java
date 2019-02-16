@@ -54,8 +54,9 @@ public class TaskSet {
 		return g_tasks.length;
 	}
 	public Task[] getArr(){
-		if(g_tasks==null)
+		if(g_tasks==null) {
 			S_Log.err("g_task is null");
+		}
 		return g_tasks;
 	}
 	public Vector<Task> getVec(){

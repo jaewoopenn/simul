@@ -9,10 +9,7 @@ public class S_Log {
 	public static void set_lv(int lv){
 		g_lv=lv;
 	}
-	public static boolean isPrn(int lv){
-		return 	(g_lv<=lv);
 
-	}
 	public static void prn(int lv,Object s)
 	{
 		if(g_lv<=lv)
@@ -23,11 +20,12 @@ public class S_Log {
 		if(g_lv<=lv)
 			System.out.print(s);
 	}
+	
 	public static void form(int lv,String s,int v) {
 		if(g_lv<=lv)
 			System.out.format(s,v);
-		
 	}
+	
 	public static void err(String s){
 		System.out.println("ERR:"+s);
 		System.exit(1);
