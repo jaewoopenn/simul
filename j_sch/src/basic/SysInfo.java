@@ -26,7 +26,7 @@ public class SysInfo {
 			else
 				return t.getLoVdUtil();
 		} 
-		if(t.is_dropped)
+		if(t.isDrop())
 			return x_para*t.getLoUtil();
 		else
 			return t.getLoUtil();

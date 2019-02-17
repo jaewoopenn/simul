@@ -16,7 +16,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	public boolean g_recoverOn=true;
 	protected JobSimulMC g_jsm;
 
-	// @override
+	@Override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
 			tm.setX(sm.getX());
@@ -28,7 +28,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	}
 
 
-	// @override
+	@Override
 	public void simul_end() {
 		g_jsm.simul_end();
 	}
@@ -36,7 +36,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	///////////////////
 	// protected
 
-	// @override
+	@Override
 	protected void init() {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
@@ -44,9 +44,9 @@ public abstract class TaskSimulMC extends TaskSimul {
 //		Log.prn(1, "num:"+g_tm.size());
 	}
 
-	// @override
+	@Override
 	protected void simul_one(){
-		rel_check();
+		release_jobs();
 		g_jsm.simul_one();
 		ms_check();
 		if(g_jsm.is_idle()&&g_needRecover&&g_recoverOn) {
@@ -55,7 +55,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		//Log.prn(isSchTab,1, " "+t);
 	}
 	
-	// @override
+	@Override
 	protected Job rel_one_job(Task tsk, int t) {
 		if(tsk.is_HI){
 //			tsk.prnStat();
@@ -71,6 +71,32 @@ public abstract class TaskSimulMC extends TaskSimul {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
 	
+	@Override
+	protected void release_jobs(){
+		int t=g_jsm.get_time();
+		String s="";
+		for(Task tsk:g_tm.getTasks()){
+			if (t%tsk.period!=0){
+				s+="-";
+				continue;
+			}
+//			Log.prn(2, "rc:"+t);
+			if(!tsk.is_HI){
+				g_si.rel++;
+//				Log.prn(2, "rel:"+t);
+				if(tsk.isDrop()){
+					g_si.drop++;
+//					Log.prn(1, "drop plus:"+tsk.tid+" "+g_si.drop);
+					s+="X";
+					continue;
+				}
+			}
+			s+="+";
+			g_jsm.add(rel_one_job(tsk,t));
+		}
+		s+=" ";
+		S_FLog.prnc(s);
+	}	
 	
 	///////////////////////
 	// private
@@ -80,7 +106,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	private void recover(){
 		S_FLog.prn( "t:"+g_jsm.get_time()+" recover ");
 		g_needRecover=false;
-		initMode_base();
+		initMode();
 //		System.exit(0);
 		
 	}
@@ -104,33 +130,9 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 		
 	}
+
 	
-	private void rel_check(){
-		int t=g_jsm.get_time();
-		String s="";
-		for(Task tsk:g_tm.getTasks()){
-			if (t%tsk.period!=0){
-				s+="-";
-				continue;
-			}
-//			Log.prn(2, "rc:"+t);
-			if(!tsk.is_HI){
-				g_si.rel++;
-//				Log.prn(2, "rel:"+t);
-				if(tsk.is_dropped){
-					g_si.drop++;
-//					Log.prn(1, "drop plus:"+tsk.tid+" "+g_si.drop);
-					s+="-";
-					continue;
-				}
-			}
-			s+="+";
-			g_jsm.add(rel_one_job(tsk,t));
-		}
-		s+=" ";
-		S_FLog.prnc(s);
-	}
-	private void initMode_base() {
+	private void initMode() {
 		for(Task t:g_tm.getTasks()){
 			t.initMode();
 		}
@@ -168,12 +170,11 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(tsk.is_HI)	{
 			S_Log.err("task "+tsk.tid+" is not LO-task, cannot drop");
 		}
-		if(tsk.is_dropped)
+		if(tsk.isDrop())
 			return;
+		S_FLog.prn("drop "+tsk.tid);
+		
 		int n=g_jsm.getJM().drop(tsk.tid);
-		if(n>1){
-			S_Log.err("drop num>1");
-		}
 		g_si.drop+=n;
 		tsk.drop();
 	}

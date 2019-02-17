@@ -22,7 +22,7 @@ public class TaskMng {
 	
 	public Task findDropTask() {
 		for(Task t:g_lo_tasks.getArr()){
-			if (!t.is_dropped)
+			if (!t.isDrop())
 				return t;
 		}
 		return null;

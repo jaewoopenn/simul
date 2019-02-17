@@ -44,17 +44,19 @@ public class JobSimulMC extends JobSimul{
 		Job j=(Job)g_jm.getCur();
 		if(j==null)
 			return -1;
-		
-		if(!j.isHI||j.add_exec==0) {
-			g_jm.removeCur();
-		}
-		if(j.isHI){
-			if(g_t>j.vd){
-				S_Log.err("Job_simul:"+g_t+ "vd miss"+j.tid+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
+		if(j.exec==0) {
+			if(!j.isHI||j.add_exec==0) {
+				g_jm.removeCur();
 			}
-			if(j.exec==0 && j.add_exec>0) 
+			if(j.add_exec>0)
 				return j.tid;
-			
+		}
+		else {
+			if(j.isHI){
+				if(g_t>j.vd){
+					S_Log.err("Job_simul:"+g_t+ "vd miss"+j.tid+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
+				}
+			}
 		}
 		return -1;
 	}

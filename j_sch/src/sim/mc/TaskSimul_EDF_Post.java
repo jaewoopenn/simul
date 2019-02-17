@@ -6,9 +6,9 @@ package sim.mc;
  * TODO recover implement
  * 
  * 
+ * 
  */
 import basic.Task;
-import util.S_FLog;
 import util.S_Log;
 import util.MUtil;
 
@@ -37,7 +37,6 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 				System.exit(1);
 			}
 			drop_task(tsk);
-			S_FLog.prn("drop "+tsk.tid);
 //			Log.prn(1, "drop "+id+","+t.getLoUtil()+","+g_tm.getReclaimUtil(id));
 			ru-=g_tm.getReclaimUtil(tsk);
 		}

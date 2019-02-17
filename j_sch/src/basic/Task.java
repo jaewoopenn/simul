@@ -17,7 +17,7 @@ public class Task {
 	public double vd;
 	public boolean is_HI=false;
 	private boolean is_Hi_Mode=false;
-	public boolean is_dropped=false;
+	private boolean is_dropped=false;
 
 	private boolean is_hi_preferred=false;
 	
@@ -44,6 +44,9 @@ public class Task {
 	}
 	public boolean isHM() {
 		return is_Hi_Mode;
+	}
+	public boolean isDrop() {
+		return is_dropped;
 	}
 	public void drop() {
 //		Log.prn(1, "drop tid:"+tid);

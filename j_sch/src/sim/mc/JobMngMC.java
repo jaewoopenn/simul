@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import sim.job.Job;
 import sim.job.JobMng;
+import util.S_Log;
 
 
 public class JobMngMC extends JobMng {
@@ -39,7 +40,10 @@ public class JobMngMC extends JobMng {
 				d_num++;
 			}
 		}
-//		Log.prn(1, d_num);
+//		S_Log.prn(1, d_num);
+		if(d_num>1){
+			S_Log.err("JobMngMC: drop num>1");
+		}
 		return d_num;
 		
 	}

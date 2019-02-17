@@ -79,10 +79,11 @@ public class TaskSimul {
 			System.exit(1);
 		}
 	}	
+	protected Job rel_one_job(Task tsk, int t) {
+		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
+	}
 	
-	
-	// -------------- private
-	private void release_jobs(){
+	protected void release_jobs(){
 		int t=g_js.get_time();
 		String s="";
 		for(Task tsk:g_tm.getTasks()){
@@ -96,10 +97,7 @@ public class TaskSimul {
 		s+=" ";
 		S_FLog.prnc(s);
 	}
-
-	private Job rel_one_job(Task tsk, int t) {
-		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
-	}
+	
 
 
 	
