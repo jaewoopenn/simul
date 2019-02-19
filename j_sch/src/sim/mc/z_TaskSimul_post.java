@@ -27,8 +27,8 @@ public class z_TaskSimul_post {
 		
 		SysMng sm=new SysMng();
 		
-		sm.setMS_Prob(1);
-//		sm.setMS_Prob(0.5);
+//		sm.setMS_Prob(1);
+		sm.setMS_Prob(0.5);
 //		sm.setMS_Prob(0.3);
 		
 //		TaskMng tm=TS_MC2.ts1();

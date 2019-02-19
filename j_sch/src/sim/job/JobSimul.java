@@ -21,9 +21,7 @@ public class JobSimul {
 
 	public void simul_one() {
 		S_FLog.prnc( String.format("%05d ", g_t));
-		if(!dl_check(g_t)) {
-			S_Log.err("JobSimul ");
-		}
+		dl_check(g_t);
 		exec_one();
 		g_t++;
 	}
@@ -50,9 +48,17 @@ public class JobSimul {
 		Job j=g_jm.getCur();
 		if(j==null)
 			return true;
-		if(cur_t<j.dl) 
-			return true;
-		S_Log.prn(9,"DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		if(j.isHI) {
+			if(cur_t<j.vd) 
+				return true;
+			S_Log.err("Job Simul: VD miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd);
+		}else {
+			if(cur_t<j.dl) 
+				return true;
+			S_Log.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+			
+		}
+
 		return false;
 	}
 	

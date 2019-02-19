@@ -4,7 +4,6 @@ package sim.mc;
 import sim.job.Job;
 import sim.job.JobSimul;
 import util.S_FLog;
-import util.S_Log;
 
 public class JobSimulMC extends JobSimul{
 	public JobSimulMC(int n){
@@ -50,13 +49,6 @@ public class JobSimulMC extends JobSimul{
 			}
 			if(j.add_exec>0)
 				return j.tid;
-		}
-		else {
-			if(j.isHI){
-				if(g_t>j.vd){
-					S_Log.err("Job_simul:"+g_t+ "vd miss"+j.tid+" vd:"+j.vd+" dl:"+j.dl+" exec:"+j.exec);
-				}
-			}
 		}
 		return -1;
 	}
