@@ -1,6 +1,7 @@
 package anal;
 
 import basic.TaskMng;
+import util.S_Log;
 
 public abstract class Anal {
 	protected String g_name="";
@@ -13,7 +14,8 @@ public abstract class Anal {
 	public String getName() {
 		return g_name;
 	}
-	public boolean isScheduable()
+	
+	public boolean is_sch()
 	{
 		double dtm=getDtm();
 		if (dtm <=1) {
@@ -21,6 +23,13 @@ public abstract class Anal {
 			return true;
 		}
 		return false;
+	}
+	
+	public void proceed_if_sch() {
+		if(!is_sch()) {
+			S_Log.err("not schedulable");
+		}
+
 	}
 
 	// abs method

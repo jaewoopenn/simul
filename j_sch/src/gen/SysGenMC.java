@@ -21,7 +21,7 @@ public class SysGenMC extends SysGen {
 		Anal a=new AnalEDF_VD();
 		a.init(tm);
 		a.prepare();
-		if(a.isScheduable()) {		
+		if(a.is_sch()) {		
 //			Log.prn(1, "check 1");
 			return 1;
 		}

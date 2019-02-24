@@ -37,9 +37,7 @@ public class z_TaskSimul_post {
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
 		a.prepare();
-		if(!a.isScheduable()) {
-			S_Log.err("not schedulable");
-		}
+		a.proceed_if_sch();
 		double x=a.computeX();
 		S_Log.prn(1, "x:"+x);
 		sm.setX(x);

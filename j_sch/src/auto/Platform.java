@@ -123,7 +123,7 @@ public class Platform {
 
 			a.init(tm);
 			a.prepare();
-			if(a.isScheduable()) {
+			if(a.is_sch()) {
 				fu.write("1");
 			} else {
 				fu.write("0");
@@ -177,7 +177,7 @@ public class Platform {
 			a.prepare();
 			n++;
 			S_Log.prn(2, "n:"+n);
-			if(!a.isScheduable()) {
+			if(!a.is_sch()) {
 				S_Log.prn(2, "no sch");
 				continue;
 			}

@@ -36,10 +36,10 @@ public class TaskSimul {
 
 	// simul interval
 	public void simul(int st, int et){
-		if(st==0){
+		int t=st;
+		if(t==0){
 			S_FLog.prn("rel  / exec / t");
 		}
-		int t=st;
 		while(t<et){
 			simul_one();
 			t++;
@@ -59,30 +59,32 @@ public class TaskSimul {
 		return g_tm;
 	}
 	
-	// ------------- protected
+	
+	// ------------- protected, override 
 	protected void init() {
 		g_js=new JobSimul(g_tm.size());
 		g_si=new SimulInfo();
 	}
 
 	
-	protected void simul_one(){  // will be different in MC setting 
+	protected void simul_one(){   
 		release_jobs();
 		g_js.simul_one();
 		//Log.prn(isSchTab,1, " "+t);
 	}
+	protected Job rel_one_job(Task tsk, int t) {
+		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
+	}
 	
 	
+	
+	// ------------- protected
 	protected void check_err() {
 		if(g_tm==null){
 			S_Log.prn(9, "ERROR: TaskMng is not set");
 			System.exit(1);
 		}
 	}	
-	protected Job rel_one_job(Task tsk, int t) {
-		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
-	}
-	
 	protected void release_jobs(){
 		int t=g_js.get_time();
 		String s="";
