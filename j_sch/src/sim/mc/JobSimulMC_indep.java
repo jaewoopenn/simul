@@ -5,13 +5,15 @@ package sim.mc;
  */
 
 
-public class JobSimulMCEx extends JobSimulMC {
-	public JobSimulMCEx(int n){
+public class JobSimulMC_indep extends JobSimulMC {
+	public JobSimulMC_indep(int n){
 		super(n);
 	}
+	
 	public void setJM(JobMngMC jm) {
 		g_jm=jm;
 	}
+	
 	// all in one
 	public int simul(int et){
 		simulBy(et);

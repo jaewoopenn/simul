@@ -32,6 +32,7 @@ public class JobMngMC extends JobMng {
 		}
 		
 	}
+	
 	public int drop(int tid) {
 		int d_num=0;
 		for(Job j:g_jobs){

@@ -12,12 +12,12 @@ public class JobSimulMC extends JobSimul{
 	}
 	
 	
-	//@override
+	@Override
 	public JobMngMC getJM() {
 		return (JobMngMC) g_jm;
 	}
 		
-	//@override
+	@Override
 	protected void exec_one(){
 		Job j=g_jm.getCur();
 		int out_type=0;

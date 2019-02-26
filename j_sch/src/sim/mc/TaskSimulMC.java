@@ -33,8 +33,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		g_jsm.simul_end();
 	}
 	
-	///////////////////
-	// protected
+	
 
 	@Override
 	protected void init() {
@@ -98,6 +97,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		S_FLog.prnc(s);
 	}	
 	
+
 	///////////////////////
 	// private
 

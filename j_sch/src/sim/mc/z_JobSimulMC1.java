@@ -10,7 +10,7 @@ public class z_JobSimulMC1 {
 
 
 	public int test1()	{
-		JobSimulMCEx js=new JobSimulMCEx(3);
+		JobSimulMC_indep js=new JobSimulMC_indep(3);
 		js.add(new Job(0,5,2));
 		js.add(new Job(1,6,1,2,2));
 		js.add(new Job(2,7,1,3,2));
@@ -18,7 +18,7 @@ public class z_JobSimulMC1 {
 		return -1;
 	}
 	public int test2() {
-		JobSimulMCEx js=new JobSimulMCEx(0);
+		JobSimulMC_indep js=new JobSimulMC_indep(0);
 		js.setJM(z_ex.Job_MC1.ts1());
 		js.simulBy(6);
 		return 0;
