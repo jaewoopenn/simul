@@ -10,14 +10,14 @@ public class z_JobSimul2 {
 
 
 	public int test1()	{
-		JobSimulEx js=new JobSimulEx(0);
+		JobSimul_indep js=new JobSimul_indep(0);
 		js.setJM(Job_MC1.ts3());
 //		js.setVisible(false);
 		js.simul(6);
 		return -1;
 	}
 	public int test2() {
-		JobSimulEx js=new JobSimulEx(3);
+		JobSimul_indep js=new JobSimul_indep(3);
 		js.add(new Job(1,3,1));
 		js.add(new Job(2,4,2));
 		js.add(new Job(0,5,1));
@@ -29,7 +29,7 @@ public class z_JobSimul2 {
 	}
 	
 	public  int test3()	{
-		JobSimulEx js=new JobSimulEx(3);
+		JobSimul_indep js=new JobSimul_indep(3);
 		js.add(new Job(1,3,1));
 		js.add(new Job(2,4,2));
 		js.add(new Job(0,5,1));

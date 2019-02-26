@@ -2,8 +2,8 @@ package sim.job;
 
 
 
-public class JobSimulEx extends JobSimul {
-	public JobSimulEx(int n){
+public class JobSimul_indep extends JobSimul {
+	public JobSimul_indep(int n){
 		super(n);
 	}
 	public void setJM(JobMng jm) {
@@ -15,6 +15,7 @@ public class JobSimulEx extends JobSimul {
 		simul_end();
 		return g_jm.endCheck(et);
 	}
+	
 	public int simulBy(int et){
 		while(g_t<et){
 			simul_one();
