@@ -38,17 +38,20 @@ public class JobSimulMC extends JobSimul{
 		S_FLog.prn(s);
 	}	
 	
-	// after exec
+	// do ms check after exec
 	public int ms_check() { 
 		Job j=(Job)g_jm.getCur();
 		if(j==null)
 			return -1;
 		if(j.exec==0) {
+			// check return protocol after HI & add_exec=0
+			
 			if(!j.isHI||j.add_exec==0) {
 				g_jm.removeCur();
 			}
 			if(j.add_exec>0)
 				return j.tid;
+			
 		}
 		return -1;
 	}

@@ -70,6 +70,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
 	}
 	
+	
 	@Override
 	protected void release_jobs(){
 		int t=g_jsm.get_time();
@@ -79,16 +80,16 @@ public abstract class TaskSimulMC extends TaskSimul {
 				s+="-";
 				continue;
 			}
-//			Log.prn(2, "rc:"+t);
-			if(!tsk.is_HI){
-				g_si.rel++;
-//				Log.prn(2, "rel:"+t);
-				if(tsk.isDrop()){
-					g_si.drop++;
-//					Log.prn(1, "drop plus:"+tsk.tid+" "+g_si.drop);
-					s+="X";
-					continue;
-				}
+			if(tsk.is_HI) {
+				s+="+";
+				g_jsm.add(rel_one_job(tsk,t));
+				continue;
+			}
+			g_si.rel++;
+			if(tsk.isDrop()){
+				g_si.drop++;
+				s+="X";
+				continue;
 			}
 			s+="+";
 			g_jsm.add(rel_one_job(tsk,t));
