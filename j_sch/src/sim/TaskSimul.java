@@ -81,8 +81,7 @@ public class TaskSimul {
 	// ------------- protected
 	protected void check_err() {
 		if(g_tm==null){
-			S_Log.prn(9, "ERROR: TaskMng is not set");
-			System.exit(1);
+			S_Log.err("ERROR: TaskMng is not set");
 		}
 	}	
 	protected void release_jobs(){

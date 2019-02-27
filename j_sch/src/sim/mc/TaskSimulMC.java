@@ -12,8 +12,9 @@ import util.S_Log;
 
 public abstract class TaskSimulMC extends TaskSimul {
 
-	protected boolean g_needRecover=false;
-	public boolean g_recoverOn=true;
+	protected boolean g_recover_need=false;
+	public boolean g_recover_on=true;
+	
 	protected JobSimulMC g_jsm;
 
 	@Override
@@ -39,16 +40,18 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected void init() {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
-		g_needRecover=false;
+		g_recover_need=false;
 //		Log.prn(1, "num:"+g_tm.size());
 	}
 
 	@Override
 	protected void simul_one(){
+		// TODO simul one (recover implement)
+		
 		release_jobs();
 		g_jsm.simul_one();
 		ms_check();
-		if(g_jsm.is_idle()&&g_needRecover&&g_recoverOn) {
+		if(g_jsm.is_idle()&&g_recover_need&&g_recover_on) {
 			recover();
 		}
 		//Log.prn(isSchTab,1, " "+t);
@@ -106,7 +109,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	private void recover(){
 		S_FLog.prn( "t:"+g_jsm.get_time()+" recover ");
-		g_needRecover=false;
+		g_recover_need=false;
 		initMode();
 //		System.exit(0);
 		
@@ -124,7 +127,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 			isMS=true;
 		if(isMS){
 			S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
-			g_needRecover=true;
+			g_recover_need=true;
 			mode_switch(tid);
 		} else {
 			g_jsm.getJM().removeCur();
