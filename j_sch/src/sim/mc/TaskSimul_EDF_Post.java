@@ -11,6 +11,7 @@ package sim.mc;
 import basic.Task;
 import util.S_Log;
 import util.MUtil;
+import util.S_FLog;
 
 public class TaskSimul_EDF_Post extends TaskSimulMC{
 
@@ -37,6 +38,13 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 			drop_task(tsk);
 			ru-=g_tm.getReclaimUtil(tsk);
 		}
+		
+	}
+
+	@Override
+	protected void recover_in() {
+		// TODO Auto-generated method stub
+		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
 		
 	}
 

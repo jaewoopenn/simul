@@ -46,15 +46,13 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	@Override
 	protected void simul_one(){
-		// TODO simul one (recover implement)
 		
 		release_jobs();
 		g_jsm.simul_one();
 		ms_check();
 		if(g_jsm.is_idle()&&g_recover_need&&g_recover_on) {
-			recover();
+			recover_idle();
 		}
-		//Log.prn(isSchTab,1, " "+t);
 	}
 	
 	@Override
@@ -107,8 +105,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 
 
-	private void recover(){
-		S_FLog.prn( "t:"+g_jsm.get_time()+" recover ");
+	private void recover_idle(){
+		S_FLog.prn( "t:"+g_jsm.get_time()+" recover idle");
 		g_recover_need=false;
 		initMode();
 //		System.exit(0);
@@ -134,8 +132,10 @@ public abstract class TaskSimulMC extends TaskSimul {
 				g_jsm.getJM().removeCur();
 			}
 			
-		} else { // add_exec=0
-			// TODO recover implement (add_exec=0)
+		} else { // add_exec=0 : recover check
+			
+			recover_in();
+			g_jsm.getJM().removeCur();
 		}
 	}
 
@@ -155,6 +155,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	// abstract method
 	protected abstract void modeswitch_in(int tid);
+	protected abstract void recover_in();
 	
 	
 	

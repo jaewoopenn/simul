@@ -12,7 +12,12 @@ public class Job implements Comparable<Job>{
 	public double vd;
 
 	public Job(int tid,int dl, int exec) {
-		this(tid,dl,exec,dl,0);
+		this.tid=tid;
+		this.dl = dl;
+		this.exec = exec;
+		this.add_exec=0;
+		this.isHI=false;
+		this.vd = dl;
 	}
 
 	public Job(int tid,int dl, int exec,double  vd,int add) {
