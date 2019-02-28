@@ -122,17 +122,21 @@ public abstract class TaskSimulMC extends TaskSimul {
 		Job j=g_jsm.get_ms_job();
 		if(j==null) 
 			return;
-		double prob=g_rutil.getDbl();
-		if(prob<g_sm.getMS_Prob())
-			isMS=true;
-		if(isMS){
-			S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+j.tid);
-			g_recover_need=true;
-			mode_switch(j.tid);
-		} else {
-			g_jsm.getJM().removeCur();
+		if(j.add_exec>0) {
+			double prob=g_rutil.getDbl();
+			if(prob<g_sm.getMS_Prob())
+				isMS=true;
+			if(isMS){
+				S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+j.tid);
+				g_recover_need=true;
+				mode_switch(j.tid);
+			} else {
+				g_jsm.getJM().removeCur();
+			}
+			
+		} else { // add_exec=0
+			// TODO recover implement (add_exec=0)
 		}
-		
 	}
 
 	

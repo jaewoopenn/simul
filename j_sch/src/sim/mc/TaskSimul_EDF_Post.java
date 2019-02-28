@@ -3,7 +3,7 @@ package sim.mc;
 /*
  * implement MC Post sch algo
  * 
- * TODO recover implement
+ * TODO implement recover 
  * 
  * 
  * 

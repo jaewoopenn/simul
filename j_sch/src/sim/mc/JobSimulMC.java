@@ -48,10 +48,7 @@ public class JobSimulMC extends JobSimul{
 			if(!j.isHI) {
 				g_jm.removeCur();
 				return null;
-			} else if(j.add_exec==0) {  // HI and add_exec=0
-				// TODO check return protocol after HI & add_exec=0
-				return j;
-			} else { //j.add_exec>0
+			} else { //HI
 				return j;
 			}
 		}
