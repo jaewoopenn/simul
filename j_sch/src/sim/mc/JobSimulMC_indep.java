@@ -1,5 +1,7 @@
 package sim.mc;
 
+import sim.job.Job;
+
 /*
  * only for test
  */
@@ -23,9 +25,9 @@ public class JobSimulMC_indep extends JobSimulMC {
 	
 	public int simulBy(int et){
 		while(g_t<et){
-			int tid=ms_check();
-			if(tid!=-1) {
-				this.getJM().modeswitch(tid);
+			Job j=get_ms_job();
+			if(j!=null) {
+				this.getJM().modeswitch(j.tid);
 			}
 			simul_one();
 		}

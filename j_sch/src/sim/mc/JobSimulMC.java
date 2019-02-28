@@ -39,21 +39,23 @@ public class JobSimulMC extends JobSimul{
 	}	
 	
 	// do ms check after exec
-	public int ms_check() { 
+	public Job get_ms_job() { 
 		Job j=(Job)g_jm.getCur();
 		if(j==null)
-			return -1;
+			return null;
 		if(j.exec==0) {
-			// TODO check return protocol after HI & add_exec=0
 			
-			if(!j.isHI||j.add_exec==0) {
+			if(!j.isHI) {
 				g_jm.removeCur();
+				return null;
+			} else if(j.add_exec==0) {  // HI and add_exec=0
+				// TODO check return protocol after HI & add_exec=0
+				return j;
+			} else { //j.add_exec>0
+				return j;
 			}
-			if(j.add_exec>0)
-				return j.tid;
-			
 		}
-		return -1;
+		return null;
 	}
 	
 
