@@ -20,8 +20,10 @@ public class z_TaskSimul_post {
 	public static int log_level=1;
 	public static int gret[]={1,0,1,0,-1, -1,-1,-1,-1,-1};
 
-	public int g_et;
-	public double g_prob;
+	private int g_et;
+	private double g_prob;
+	private SimulInfo g_si;
+	
 	public void init_g() {
 		g_et=200;
 //		g_et=1000;
@@ -32,17 +34,20 @@ public class z_TaskSimul_post {
 
 		S_FLog.init("sch/log.txt");
 //		S_FLog.initScr();
-		
 	}
-	
+
+	public void end_g() {
+		g_si.prn();
+		S_FLog.end();
+	}
+
 	public int test1()	{
 		init_g();
+		TaskMng tm=TS_MC2.ts2();
 		
 		SysMng sm=new SysMng();
-		
 		sm.setMS_Prob(g_prob);
 		
-		TaskMng tm=TS_MC2.ts2();
 		
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
@@ -59,30 +64,28 @@ public class z_TaskSimul_post {
 		ts.init_sm_tm(sm,tm);
 		ts.simul(0,g_et);
 		ts.simul_end();
-		SimulInfo si=ts.getSI();
-		si.prn();
-		S_FLog.end();
+		
+		g_si=ts.getSI();
+		end_g();		
 		return 0;
 	}
 	
 	public int test2() {
 		init_g();
+		TaskMng tm=TS_MC2.ts2();
+		double x=0.7686274509803924;
 		
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
-		
-		TaskMng tm=TS_MC2.ts2();
-		
-		double x=0.7686274509803924;
 		sm.setX(x);
 		
 		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 		ts.init_sm_tm(sm,tm);
 		ts.simul(0,g_et);
 		ts.simul_end();
-		SimulInfo si=ts.getSI();
-		si.prn();
-		S_FLog.end();
+		
+		g_si=ts.getSI();
+		end_g();		
 		return 0;
 	}
 	

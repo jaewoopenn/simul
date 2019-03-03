@@ -3,7 +3,6 @@ package sim.mc;
 /*
  * implement MC Post sch algo
  * 
- * TODO implement recover 
  * 
  * 
  * 
@@ -30,10 +29,9 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		while(ru>=1+MUtil.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				S_Log.prn(9, "no available LO-task to drop. ru:"+ru);
 				g_sm.prn();
 				g_tm.prnRuntime();
-				System.exit(1);
+				S_Log.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
 			ru-=g_tm.getReclaimUtil(tsk);
@@ -43,7 +41,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 
 	@Override
 	protected void recover_in() {
-		// TODO Auto-generated method stub
+		// TODO implement EDF post recover
 		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
 		
 	}
