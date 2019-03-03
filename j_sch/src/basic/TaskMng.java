@@ -28,6 +28,10 @@ public class TaskMng {
 		return null;
 	}
 
+	public Task findResumeTask() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 	// set
@@ -176,6 +180,7 @@ public class TaskMng {
 		g_tasks.prnOffline();
 		
 	}
+
 	
 
 }

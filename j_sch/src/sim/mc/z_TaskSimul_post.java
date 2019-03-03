@@ -36,9 +36,10 @@ public class z_TaskSimul_post {
 //		S_FLog.initScr();
 	}
 
-	public void end_g() {
+	public int end_g() {
 		g_si.prn();
 		S_FLog.end();
+		return 0;
 	}
 
 	public int test1()	{
@@ -66,8 +67,8 @@ public class z_TaskSimul_post {
 		ts.simul_end();
 		
 		g_si=ts.getSI();
-		end_g();		
-		return 0;
+		return 	end_g();		
+
 	}
 	
 	public int test2() {
@@ -85,8 +86,7 @@ public class z_TaskSimul_post {
 		ts.simul_end();
 		
 		g_si=ts.getSI();
-		end_g();		
-		return 0;
+		return 	end_g();		
 	}
 	
 	public  int test3()	{
