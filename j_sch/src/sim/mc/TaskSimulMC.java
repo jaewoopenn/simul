@@ -187,6 +187,10 @@ public abstract class TaskSimulMC extends TaskSimul {
 		g_si.drop+=n;
 		tsk.drop();
 	}
-	
+	protected void resume_task(Task tsk) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

@@ -29,14 +29,17 @@ public class TaskMng {
 	}
 
 	public Task findResumeTask() {
-		// TODO Auto-generated method stub
+		Task [] ts=g_lo_tasks.getArr();
+		for(int i=ts.length-1;i>=0;i--){ // reverse order (from lowest util lo task)
+			Task t=ts[i];
+			if (t.isDrop()) // if task is dropped, pick this
+				return t;
+		}
 		return null;
 	}
 
 	
 	// set
-
-
 	
 	public void setX(double x){
 		g_info.setX(x);
@@ -108,6 +111,7 @@ public class TaskMng {
 		return (1-g_info.getX())*t.getLoUtil();
 	}
 
+	
 	public double getDroppedUtil(Task t){
 //		Log.prn(2, g_info.getX()+" "+t.getLoUtil());
 		return g_info.getX()*t.getLoUtil();
@@ -180,6 +184,7 @@ public class TaskMng {
 		g_tasks.prnOffline();
 		
 	}
+
 
 	
 
