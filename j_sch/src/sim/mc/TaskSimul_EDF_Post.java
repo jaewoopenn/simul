@@ -38,26 +38,31 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		}
 		
 	}
+	
 
 	@Override
 	protected void recover_in() {
-		// TODO implement EDF post recover
 		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
-//		task_resume_algo();
+		resume_algo();
 	}
 
-	// TODO implement resume algo
-	@SuppressWarnings("unused")
+	// TODO recover algo check  ..... change HI task to LO
 	private void resume_algo() {
 		
 		double ru=g_tm.getRUtil();
-		while(ru<1-MUtil.err){
+		while(true){
 			Task tsk=g_tm.findResumeTask();
 			if(tsk==null)
 				return;
-			resume_task(tsk);
-			ru-=g_tm.getDroppedUtil(tsk); //??
+			ru+=g_tm.getReclaimUtil(tsk); //??
+			S_FLog.prn( "resume tsk "+tsk.tid+" ru:"+ru);
+			if(ru<=1-MUtil.err) {
+				resume_task(tsk);
+			} else {  // ru>1
+				break;
+			}
 		}
+//		S_FLog.prn( "t:"+g_jsm.get_time()+" resume end ");
 		
 	}
 

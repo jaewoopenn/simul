@@ -8,6 +8,7 @@ Individual Task
 
 import util.S_Log;
 import util.MUtil;
+import util.S_FLog;
 
 public class Task {
 	public int tid;
@@ -49,8 +50,12 @@ public class Task {
 		return is_dropped;
 	}
 	public void drop() {
-//		Log.prn(1, "drop tid:"+tid);
+		S_FLog.prn("drop "+tid);
 		this.is_dropped=true;
+	}
+	public void resume() {
+		S_FLog.prn("resume "+tid);
+		this.is_dropped=false;
 	}
 	public void setVD(double vd){
 //		System.out.println("tid:"+tid+" vd:"+vd);
@@ -175,6 +180,7 @@ public class Task {
 		else
 			is_Hi_Mode=false;
 	}
+
 
 
 

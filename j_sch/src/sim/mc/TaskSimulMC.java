@@ -181,14 +181,18 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 		if(tsk.isDrop())
 			return;
-		S_FLog.prn("drop "+tsk.tid);
 		
 		int n=g_jsm.getJM().drop(tsk.tid);
 		g_si.drop+=n;
 		tsk.drop();
 	}
 	protected void resume_task(Task tsk) {
-		// TODO Auto-generated method stub
+		if(tsk.is_HI)	{
+			S_Log.err("task "+tsk.tid+" is not LO-task, cannot resume");
+		}
+		if(!tsk.isDrop())
+			return;
+		tsk.resume();
 		
 	}
 
