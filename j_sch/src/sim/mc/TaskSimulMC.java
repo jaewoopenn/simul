@@ -125,7 +125,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 			if(prob<g_sm.getMS_Prob())
 				isMS=true;
 			if(isMS){
-				S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+j.tid);
 				g_recover_need=true;
 				mode_switch(j.tid);
 			} else {
@@ -134,7 +133,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 			
 		} else { // add_exec=0 : recover check
 			
-			recover_in();
+			recover_in(j.tid);
 			g_jsm.getJM().removeCur();
 		}
 	}
@@ -155,18 +154,19 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	// abstract method
 	protected abstract void modeswitch_in(int tid);
-	protected abstract void recover_in();
+	protected abstract void recover_in(int tid);
 	
 	
 	
 	// MC specific 
-	protected void mode_switch(int tid){
+	protected void mode_switch(int tid){ // connect to each algo's MS
+		S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
 		g_si.ms++;
 		modeswitch_in(tid);
 	}
 	
 
-	protected void modeswitch_tid(int tid){
+	protected void modeswitch_tid(int tid){ // function
 		Task tsk=g_tm.getTask(tid);
 		if(!tsk.is_HI)	{
 			S_Log.err("task "+tid+" is not HI-task, cannot mode switch");
@@ -174,6 +174,17 @@ public abstract class TaskSimulMC extends TaskSimul {
 		tsk.ms();
 		g_jsm.getJM().modeswitch(tid);
 	}
+
+	protected void switchback_tid(int tid){
+		Task tsk=g_tm.getTask(tid);
+		if(!tsk.is_HI)	{
+			S_Log.err("task "+tid+" is not HI-task, cannot mode switch");
+		}
+		S_FLog.prn("t:"+g_jsm.get_time()+" switch back "+tid);
+		
+		tsk.initMode();
+	}
+	
 	
 	protected void drop_task(Task tsk) {
 		if(tsk.is_HI)	{

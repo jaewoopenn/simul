@@ -39,14 +39,18 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		
 	}
 	
-
 	@Override
-	protected void recover_in() {
+	protected void recover_in(int tid) {
 		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
+		switchback_tid(tid);		
 		resume_algo();
+		
 	}
 
-	// TODO recover algo check  ..... change HI task to LO
+
+	// TODO recover algo check  ..... change HI task to LO ...
+	// 1st check OK.. but keep checking 
+	
 	private void resume_algo() {
 		
 		double ru=g_tm.getRUtil();
@@ -65,6 +69,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 //		S_FLog.prn( "t:"+g_jsm.get_time()+" resume end ");
 		
 	}
+
 
 
 

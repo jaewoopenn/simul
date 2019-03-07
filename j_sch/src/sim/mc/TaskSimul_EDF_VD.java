@@ -18,7 +18,7 @@ public class TaskSimul_EDF_VD extends TaskSimulMC{
 	}
 
 	@Override
-	protected void recover_in() {
+	protected void recover_in(int tid) {
 	}
 
 
