@@ -29,7 +29,8 @@ public class z_TaskSimul_post {
 //		g_et=1000;
 		
 //		g_prob=0.3;
-		g_prob=0.5;
+//		g_prob=0.5;
+		g_prob=0.9;
 //		g_prob=1.0;
 
 		S_FLog.init("sch/log.txt");

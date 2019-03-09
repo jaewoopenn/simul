@@ -10,7 +10,6 @@ package sim.mc;
 import basic.Task;
 import util.S_Log;
 import util.MUtil;
-import util.S_FLog;
 
 public class TaskSimul_EDF_Post extends TaskSimulMC{
 
@@ -41,7 +40,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	
 	@Override
 	protected void recover_in(int tid) {
-		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
+//		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
 		switchback_tid(tid);		
 		resume_algo();
 		
@@ -58,8 +57,8 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 			Task tsk=g_tm.findResumeTask();
 			if(tsk==null)
 				return;
-			ru+=g_tm.getReclaimUtil(tsk); //??
-			S_FLog.prn( "resume tsk "+tsk.tid+" ru:"+ru);
+			ru+=g_tm.getReclaimUtil(tsk); 
+//			S_FLog.prn( "resume tsk "+tsk.tid+" ru:"+ru);
 			if(ru<=1-MUtil.err) {
 				resume_task(tsk);
 			} else {  // ru>1

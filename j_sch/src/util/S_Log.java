@@ -30,6 +30,11 @@ public class S_Log {
 		System.out.println("ERR:"+s);
 		System.exit(1);
 	}
+	public static void err_if(boolean b, String s) {
+		if(b) {
+			err(s);
+		}
+	}
 	public static void prnDblc(int lv,double f){
 		if(g_lv<=lv)
 			System.out.printf("%.3f", f);		

@@ -107,9 +107,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	private void recover_idle(){
 		S_FLog.prn( "t:"+g_jsm.get_time()+" recover idle");
-		g_recover_need=false;
 		initMode();
-//		System.exit(0);
+		g_recover_need=false;
 		
 	}
 	
@@ -168,18 +167,14 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	protected void modeswitch_tid(int tid){ // function
 		Task tsk=g_tm.getTask(tid);
-		if(!tsk.is_HI)	{
-			S_Log.err("task "+tid+" is not HI-task, cannot mode switch");
-		}
+		S_Log.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot mode switch");
 		tsk.ms();
 		g_jsm.getJM().modeswitch(tid);
 	}
 
 	protected void switchback_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
-		if(!tsk.is_HI)	{
-			S_Log.err("task "+tid+" is not HI-task, cannot mode switch");
-		}
+		S_Log.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot switch back");
 		S_FLog.prn("t:"+g_jsm.get_time()+" switch back "+tid);
 		
 		tsk.initMode();
@@ -187,9 +182,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	
 	protected void drop_task(Task tsk) {
-		if(tsk.is_HI)	{
-			S_Log.err("task "+tsk.tid+" is not LO-task, cannot drop");
-		}
+		S_Log.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot drop");
+		
 		if(tsk.isDrop())
 			return;
 		
@@ -198,9 +192,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		tsk.drop();
 	}
 	protected void resume_task(Task tsk) {
-		if(tsk.is_HI)	{
-			S_Log.err("task "+tsk.tid+" is not LO-task, cannot resume");
-		}
+		S_Log.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot resume");
 		if(!tsk.isDrop())
 			return;
 		tsk.resume();
