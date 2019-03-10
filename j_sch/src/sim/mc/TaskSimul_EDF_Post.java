@@ -48,7 +48,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 
 
 	// TODO recover algo check  ..... change HI task to LO ...
-	// 1st check OK.. but keep checking 
+	// 1st check OK.. 2nd check OK. but keep checking 
 	
 	private void resume_algo() {
 		
