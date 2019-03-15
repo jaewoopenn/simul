@@ -5,16 +5,22 @@ import util.S_TEngine;
 
 
 public class z_auto1 {
-//	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-	public static int idx=4;
-//	public static int idx=5;
-//	public static int idx=6;
-//	public static int idx=7;
-	public static int log_level=1;
-
-	private String g_path="sch/t1";
+	private static int g_idx;
+	private static int g_log_level;
+	private static String g_path;
+	
+	public static void init() {
+//		g_idx=1;
+//		g_idx=2;
+//		g_idx=3;
+//		g_idx=4;
+//		g_idx=5;
+//		g_idx=6;
+		g_idx=7;
+		
+		g_log_level=1;
+		g_path="sch/t1";
+	}
 	
 	public int test1() 
 	{
@@ -80,7 +86,7 @@ public class z_auto1 {
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(xl);
 		ds.load_rs(rs);
-		ds.save("a_sim_graph.txt");
+		ds.saveSim("a_sim_graph.txt");
 		return 0;
 	}
 	public  int test8()
@@ -98,13 +104,14 @@ public class z_auto1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_auto1.init();
 		Class c = z_auto1.class;
 		z_auto1 m=new z_auto1();
 		int[] aret=z_auto1.gret;
-		if(idx==-1)
+		if(g_idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			S_TEngine.runOnce(m,c,aret,g_idx,g_log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

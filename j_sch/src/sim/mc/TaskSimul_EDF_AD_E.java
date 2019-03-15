@@ -8,6 +8,10 @@ import util.MUtil;
 public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
 
+	public TaskSimul_EDF_AD_E() {
+		super();
+		g_name="EDF-AD";
+	}
 
 	
 	

@@ -3,20 +3,23 @@ package anal;
 
 public class AnalSel {
 	/*
-	 * 0: EDF-AD
-	 * 1: EDF-VD
-	 * 2: EDF
-	 * 3: ICG
+	 * 0: EDF-AD-p
+	 * 1: EDF-AD
+	 * 2: EDF-VD
+	 * 3: EDF
+	 * 4: ICG
 	 */
 	
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
 			return new AnalEDF_AD_E();
 		} else if(sort==1) {
-			return new AnalEDF_VD();
+			return new AnalEDF_AD_E();
 		} else if(sort==2) {
-			return new AnalEDF();
+			return new AnalEDF_VD();
 		} else if(sort==3) {
+			return new AnalEDF();
+		} else if(sort==4) {
 			return new AnalICG();
 		}
 		return null;

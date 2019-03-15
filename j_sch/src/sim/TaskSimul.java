@@ -10,11 +10,16 @@ import util.S_Log;
 import util.RUtil;
 
 public class TaskSimul {
+	protected String g_name="";
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected RUtil g_rutil=new RUtil();
 	private JobSimul g_js;
 	protected SimulInfo g_si;
+
+	public String getName() {
+		return g_name;
+	}
 
 	
 	public void init_sm_tm(SysMng sm,TaskMng tm ){

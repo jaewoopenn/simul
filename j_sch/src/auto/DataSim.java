@@ -4,6 +4,8 @@ import java.util.Vector;
 
 import anal.Anal;
 import anal.AnalSel;
+import sim.SimulSel;
+import sim.TaskSimul;
 import util.FOut;
 import util.FUtilSp;
 
@@ -82,6 +84,26 @@ public class DataSim {
 		double rst=(r/n);
 //		Log.prn(1, rst+"");
 		return rst;
+	}
+	public void saveSim(String fn) {
+		FOut fu=new FOut(g_path+"/"+fn);
+		String str="xx";
+
+		for(int idx=0;idx<g_max;idx++) {
+			TaskSimul a=SimulSel.getSim(idx);
+			str+=" "+a.getName();
+		}
+		fu.write(str);
+		for(int i=0;i<g_xlen;i++) {
+			str=g_xl.elementAt(i);
+			for(int idx=0;idx<g_max;idx++) {
+				str+=" "+g_rs[i][idx];
+			}
+			fu.write(str);
+//			Log.prn(1, str);
+		}
+		fu.save();
+		
 	}
 	
 	
