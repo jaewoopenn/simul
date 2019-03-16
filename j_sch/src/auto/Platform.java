@@ -39,10 +39,10 @@ public class Platform {
 	}
 	
 	// gen CFG, TS
-	public void genCfg_util(String cf,int end) {
+	public void genCfg_util(String cf,double ul) {
 		int base=50;
 		int step=5;
-		int end_i=(end-50)/step;
+		double end_i=(ul*100-50)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
 		FOut fu=new FOut(g_path+"/"+cf);
 		cg.setParam("subfix", g_path);
@@ -145,7 +145,7 @@ public class Platform {
 
 	// simulate task set list with algorithm choice
 	public String simul(String ts_list,int sort) {
-		FUtilSp fu=new FUtilSp(g_path+ts_list);
+		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
 		fu.load();
 		String rs_fn=g_path+"a_sim_list."+sort+".txt";
 		FOut fu_rs=new FOut(rs_fn);

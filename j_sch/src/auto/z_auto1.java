@@ -5,88 +5,116 @@ import util.S_TEngine;
 
 
 public class z_auto1 {
-	private static int g_idx;
-	private static int g_log_level;
-	private static String g_path;
+	private static int s_idx;
+	private static int s_log_level;
+	private String g_path;
+	private double g_prob;
+	private double g_util_ul;
+	private int g_num;
+	private String g_cf;
+	private String g_ts;
+	private String g_xl;
+	private String g_rs;
+	private String g_graph;
 	
-	public static void init() {
-//		g_idx=1;
-//		g_idx=2;
-//		g_idx=3;
-//		g_idx=4;
-//		g_idx=5;
-//		g_idx=6;
-		g_idx=7;
+	public static void init_s() {
+//		s_idx=1;
+//		s_idx=2;
+//		s_idx=3;
+//		s_idx=4;
 		
-		g_log_level=1;
-		g_path="sch/t1";
+//		s_idx=1;
+//		s_idx=5;
+//		s_idx=6;
+		s_idx=7;
+		
+		s_log_level=1;
 	}
 	
+	public void init_g() {
+		g_path="sch/t1";
+		g_num=100;
+		g_cf="a_cfg_list.txt";
+		g_ts="a_ts_list.txt";
+		g_xl="a_x_list.txt";
+		
+	}
+
+	public void init_anal() {
+		g_util_ul=1.0;
+		g_rs="a_rs_list.txt";
+		g_graph="a_graph.txt";
+	}
+
+	public void init_sim() {
+		g_prob=0.3;
+		g_util_ul=0.95;
+		g_rs="a_sim_list.txt";
+		g_graph="a_sim_graph.txt";
+	}
 	public int test1() 
 	{
-		String cf="a_cfg_list.txt";
+		init_g();
+		init_anal();
 		Platform p=new Platform(g_path);
-		p.setNum(100);
-		p.genCfg_util(cf,100);
+		p.setNum(g_num);
+		p.genCfg_util(g_cf,g_util_ul);
 		return 0;
 	}
 	public int test2() // from 
 	{
-		String cf="a_cfg_list.txt";
-		String ts="a_ts_list.txt";
-		String xl="a_x_list.txt";
+		init_g();
+		init_anal();
 		Platform p=new Platform(g_path);
-		p.genTS(cf,ts,xl);
+		p.genTS(g_cf,g_ts,g_xl);
 		return -1;	}
 	public int test3() // task set --> anal rs
 	{
-		String ts="a_ts_list.txt";
-		String rs="a_rs_list.txt";
+		init_g();
+		init_anal();
 		Platform p=new Platform(g_path);
 		int end=3;
-		p.anal_loop(rs,ts,end);
+		p.anal_loop(g_rs,g_ts,end);
 		return -1;
 	}
 	public  int test4() // anal rs --> graph
 	{
-		String xl="a_x_list.txt";
-		String rs="a_rs_list.txt";
+		init_g();
+		init_anal();
 		DataAnal da=new DataAnal(g_path,0);
-		da.load_x(xl);
-		da.load_rs(rs);
-		da.save("a_graph.txt");
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
 		return -1;
 	}
 	public  int test5() // gen TS w/ schedulable
 	{
-		String cf="a_cfg_list.txt";
-		String ts="a_ts_list.txt";
-		String xl="a_x_list.txt";
+		init_g();
+		init_sim();
 		Platform p=new Platform(g_path);
-		p.setNum(100);
-		p.genCfg_util(cf,95);
+		p.setNum(g_num);
+		p.genCfg_util(g_cf,g_util_ul);
 		p.setCheck();
-		p.genTS(cf,ts,xl);
+		p.genTS(g_cf,g_ts,g_xl);
 		return 0;
 	}
 	public  int test6() // ts --> simul rs
 	{
-		String path="sch/t1/";
-		String ts="a_ts_list.txt";
-		String rs="a_sim_list.txt";
-		Platform p=new Platform(path);
-		p.setProb(0.3);
-		p.sim_loop(rs, ts, 2);
+		init_g();
+		init_sim();
+		Platform p=new Platform(g_path);
+		p.setProb(g_prob);
+		p.sim_loop(g_rs, g_ts, 2);
 		return -1;
 	}
 	public  int test7()// simul rs --> graph
 	{
-		String xl="a_x_list.txt";
-		String rs="a_sim_list.txt";
+		init_g();
+		init_sim();
 		DataSim ds=new DataSim(g_path,0);
-		ds.load_x(xl);
-		ds.load_rs(rs);
-		ds.saveSim("a_sim_graph.txt");
+		ds.load_x(g_xl);
+		ds.load_rs(g_rs);
+		ds.saveSim(g_graph);
 		return 0;
 	}
 	public  int test8()
@@ -104,14 +132,14 @@ public class z_auto1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto1.init();
+		z_auto1.init_s();
 		Class c = z_auto1.class;
 		z_auto1 m=new z_auto1();
 		int[] aret=z_auto1.gret;
-		if(g_idx==-1)
+		if(s_idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,g_idx,g_log_level);
+			S_TEngine.runOnce(m,c,aret,s_idx,s_log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
