@@ -18,15 +18,16 @@ public class z_auto1 {
 	private String g_graph;
 	
 	public static void init_s() {
-//		s_idx=1;
-//		s_idx=2;
-//		s_idx=3;
-//		s_idx=4;
+//		int s=1;
+//		int s=2;
+//		int s=3;
+//		int s=4;
 		
-//		s_idx=1;
-//		s_idx=5;
-//		s_idx=6;
-		s_idx=7;
+//		int s=1;
+//		int s=5;
+//		int s=6;
+		int s=7;
+		s_idx=s;
 		
 		s_log_level=1;
 	}

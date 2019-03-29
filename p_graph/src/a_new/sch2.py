@@ -11,7 +11,7 @@ class gl_input:
     path="/data/sch"
     fn="t1/a_sim_graph.txt"
     xlab= "Utilization Bound"
-    ylab= "Acceptance Ratio"
+    ylab= "Deadline Miss Ratio"
 
 class gl:
     lab=[]
