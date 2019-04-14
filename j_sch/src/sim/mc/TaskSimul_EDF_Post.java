@@ -15,7 +15,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 
 	public TaskSimul_EDF_Post() {
 		super();
-		g_name="EDF-AD-p";
+		g_name="EDF-AD-Po";
 	}
 
 	
