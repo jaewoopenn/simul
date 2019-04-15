@@ -33,6 +33,7 @@ public abstract class SysGen {
 //		Log.prn(2, fn);
 //		FUtil.makeDir(fn);
 		FOut fu=new FOut(fn);
+		fu.write(num+"");
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();

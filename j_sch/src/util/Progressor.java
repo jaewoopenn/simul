@@ -4,8 +4,12 @@ public class Progressor {
 	private int max=0;
 	private int step=1;
 	private int cur=0;
+	private int log=1;
 	public Progressor(int n) {
 		max=n;
+	}
+	public void setLog(int n) {
+		log=n;
 	}
 	public void setPercent() {
 		int d=max/100;
@@ -24,7 +28,7 @@ public class Progressor {
 		cur=0;
 	}
 	public void prn() {
-		S_Log.prn(1,((double)cur)/max+"");
+		S_Log.prn(log,((double)cur)/max+"");
 	}
 
 }

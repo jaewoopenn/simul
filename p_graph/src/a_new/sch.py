@@ -6,8 +6,8 @@ Created on 2015. 12. 11.
 '''
 import util.MPlot as mp;
 class gl_input:
-    path="/data/sch"
     fn="t1/a_graph.txt"
+    path="/data/sch"
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
 

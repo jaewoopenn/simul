@@ -13,6 +13,7 @@ import sim.SysMng;
 import sim.TaskSimul;
 import util.FOut;
 import util.FUtilSp;
+import util.Progressor;
 import util.S_Log;
 
 public class Platform {
@@ -70,7 +71,8 @@ public class Platform {
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
-		for(int i=0;i<fu.size();i++) {
+		int max=fu.size();
+		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen sg=new SysGenMC(cfg);
@@ -115,9 +117,10 @@ public class Platform {
 	
 	public void anal_one(String ts,String out,Anal a) {
 		SysLoad sy=new SysLoad(ts);
-		sy.open();
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
 		FOut fu=new FOut(out);
-		while(true) {
+		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
 
@@ -166,17 +169,19 @@ public class Platform {
 	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
 		S_Log.prn(2, ts);
 		SysLoad sy=new SysLoad(ts);
-		sy.open();
-		int n=0;
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
+		Progressor prog=new Progressor(num);
+		prog.setLog(2);
+		prog.setPercent();
 		FOut fu=new FOut(out);
-		while(true) {
+		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
 			
 			a.init(tm);
 			a.prepare();
-			n++;
-			S_Log.prn(2, "n:"+n);
+			prog.inc();
 			if(!a.is_sch()) {
 				S_Log.prn(2, "no sch");
 				continue;

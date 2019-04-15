@@ -16,8 +16,9 @@ public class SysLoad {
 		
 	}
 
-	public void open() {
+	public String open() {
 		g_fu.br_open();
+		return g_fu.read();
 		
 	}
 	public TaskMng loadOne() {
