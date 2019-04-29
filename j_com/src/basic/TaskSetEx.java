@@ -22,9 +22,9 @@ public class TaskSetEx {
 	}
 	
 
-	public TaskSetEx(Vector<Task> all) {
+	public TaskSetEx(Vector<Task> all_tasks) {
 		g_tasks=new TaskSet();
-		for(Task t:all){
+		for(Task t:all_tasks){
 			g_tasks.add(t);
 		}
 	}
