@@ -10,7 +10,6 @@ def main():
     for i in range(2):
         v=load("graph/test"+str(i+1)+".txt")
         mp.plot(x,v)
-    print "hihi"
     mp.ylim(0,1.1)
     mp.show()
 
