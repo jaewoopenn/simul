@@ -33,6 +33,7 @@ class C_Draw:
     def draw(self):
         mp.plot(self.xl,self.vl)
         
+    def show(self):
         mp.ylim(0,11)
         mp.ylabel("Resources")
         mp.xlabel("Time")
