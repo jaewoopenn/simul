@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import com.CUtil as cut
+import com.CUtil as cu
 
 
 def u_draw(c):
@@ -22,13 +22,13 @@ def u_draw2(c):
     
     
 def main():
-    cu=cut.C_Draw()
-    u_draw(cu)
-    cu.draw()
-    cu.clear()
-    u_draw2(cu)
-    cu.draw()
-    cu.show()
+    c1=cu.C_Draw()
+    u_draw(c1)
+    c1.draw()
+    c1.clear()
+    u_draw2(c1)
+    c1.draw()
+    c1.show()
     
 
 if __name__ == '__main__':
