@@ -1,8 +1,5 @@
 package util;
 
-/*
- * TODO apply progressor into z_auto
- */
 
 public class z_Prog {
 	public static int idx=1;
