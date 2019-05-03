@@ -3,7 +3,7 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import compo.CUtil as cut
+import com.CUtil as cut
 
 
 def u_draw(c):
