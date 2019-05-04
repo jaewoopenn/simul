@@ -16,16 +16,16 @@ import com.CUtil as cu
 def u_draw(c):
     c.add_p(0,0)
     c.add_s(4,2.3)
-    c.add_s(8,4.6)
-    c.add_p(12,4.6)
+    c.add_s(8,2.3)
+    c.add_end(12)
 
 def u_draw2(c):
     c.add_p(0,0)
     c.add_d(4,2)
-    c.add_d(5,3)
-    c.add_d(8,5)
-    c.add_d(10,6)
-    c.add_p(11,6)
+    c.add_d(5,1)
+    c.add_d(8,1)
+    c.add_d(10,1)
+    c.add_end(11)
     
     
 def main():

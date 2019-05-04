@@ -19,21 +19,24 @@ class C_Draw:
         self.xl.append(x)
         self.vl.append(y)
         self.lasty=y
+        
+    def add_end(self,x):
+        self.xl.append(x)
+        self.vl.append(self.lasty)
 
-    def add_s(self,x,y):
-        inc=y-self.lasty
+    def add_s(self,x,inc):
         self.xl.append(x)
         self.vl.append(self.lasty)
         self.xl.append(x+inc)
-        self.vl.append(y)
-        self.lasty=y
+        self.lasty+=inc
+        self.vl.append(self.lasty)
 
-    def add_d(self,x,y):
+    def add_d(self,x,inc):
         self.xl.append(x-0.01)
         self.vl.append(self.lasty)
         self.xl.append(x)
-        self.vl.append(y)
-        self.lasty=y
+        self.lasty+=inc
+        self.vl.append(self.lasty)
     
     def draw(self):
         mp.plot(self.xl,self.vl)
