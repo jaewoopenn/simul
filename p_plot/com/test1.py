@@ -14,18 +14,18 @@ import com.CUtil as cu
 
 
 def u_draw(c):
-    c.add_p(0,0)
-    c.add_s(4,2.3)
-    c.add_s(8,2.3)
-    c.add_end(12)
+    c.add_st(0,0)
+    c.add_diag(4,2.3)
+    c.add_diag(8,2.3)
+    c.add_hori(12)
 
 def u_draw2(c):
-    c.add_p(0,0)
-    c.add_d(4,2)
-    c.add_d(5,1)
-    c.add_d(8,1)
-    c.add_d(10,1)
-    c.add_end(11)
+    c.add_st(0,0)
+    c.add_vert(4,2)
+    c.add_vert(5,1)
+    c.add_vert(8,1)
+    c.add_vert(10,1)
+    c.add_hori(11)
     
     
 def main():

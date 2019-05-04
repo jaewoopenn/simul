@@ -15,23 +15,23 @@ class C_Draw:
         self.xl=[]
         self.vl=[]
 
-    def add_p(self,x,y):
+    def add_st(self,x,y):
         self.xl.append(x)
         self.vl.append(y)
         self.lasty=y
         
-    def add_end(self,x):
+    def add_hori(self,x):
         self.xl.append(x)
         self.vl.append(self.lasty)
 
-    def add_s(self,x,inc):
+    def add_diag(self,x,inc):
         self.xl.append(x)
         self.vl.append(self.lasty)
         self.xl.append(x+inc)
         self.lasty+=inc
         self.vl.append(self.lasty)
 
-    def add_d(self,x,inc):
+    def add_vert(self,x,inc):
         self.xl.append(x-0.01)
         self.vl.append(self.lasty)
         self.xl.append(x)
