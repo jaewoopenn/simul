@@ -7,18 +7,28 @@ import file.MFile as mf
 
 
 def select():
-    path1()
+    path2()
 
 def path1():
-    x=mf.load(gl.path+"test/test_word.txt")
-#     print("hihi")
-    print(x)
+    lst=mf.load("test/test_word.txt")
+    for m in lst:
+        print(m)
     
+def path2():
+    lst=mf.load("test/test_word.txt")
+    for m in lst:
+        wd=m.split()
+        if wd[0]=='s':
+            print("st   ",wd[1],wd[2])
+        elif wd[0]=='d':
+            print("diag ",wd[1],wd[2])
+        elif wd[0]=='h':
+            print("hori ",wd[1])
+            
+        else:
+            print(wd)
     
 
-class gl:
-#     path="d:/data/"
-    path="/data/"
 
 def main():
     select()
