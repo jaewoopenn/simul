@@ -3,11 +3,11 @@ Created on 2015. 12. 17.
 
 @author: jaewo
 '''
-import util.MFile as mf
+import file.MFile as mf
 
 class gl:
-    path="d:/data/"
-#     path="/data/"
+#     path="d:/data/"
+    path="/data/"
 
 def main():
     x=mf.load(gl.path+"test/test.txt")
