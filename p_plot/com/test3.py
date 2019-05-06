@@ -9,9 +9,7 @@ File Input
 
 '''
 
-import com.MCom as cu
-import file.MFile as mf
-
+import com.MCom as mc
 
 
 def u_draw(c):
@@ -21,23 +19,12 @@ def u_draw(c):
     c.add_hori(12)
 
 def u_load(c):
-    lst=mf.load("test/test_word.txt")
-    for m in lst:
-        wd=m.split()
-        print(wd)
-        a=int(wd[1])
-        if wd[0]=='s':
-            b=float(wd[2])
-            c.add_st(a,b)
-        elif wd[0]=='d':
-            b=float(wd[2])
-            c.add_diag(a,b)
-        elif wd[0]=='h':
-            c.add_hori(a)
+#     mc.load_fn(c,"test/test_word.txt")
+    mc.load_fn(c,"test/test_dbf.txt")
     
     
 def main():
-    c1=cu.C_Draw()
+    c1=mc.C_Draw()
 #     u_draw(c1)
     u_load(c1)
     c1.draw()

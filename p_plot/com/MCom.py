@@ -4,6 +4,27 @@ Created on 2019. 5. 3.
 @author: JWLEE
 '''
 import util.MPlot as mp
+import file.MFile as mf
+
+
+def load_fn(c,fn):
+    lst=mf.load(fn)
+    for m in lst:
+        wd=m.split()
+        print(wd)
+        a=int(wd[1])
+        b=0
+        if(len(wd)>2):
+            b=float(wd[2])
+        if wd[0]=='s':
+            c.add_st(a,b)
+        elif wd[0]=='d':
+            c.add_diag(a,b)
+        elif wd[0]=='v':
+            c.add_vert(a,b)
+        elif wd[0]=='h':
+            c.add_hori(a)
+    
 
 class C_Draw:
     def __init__(self):

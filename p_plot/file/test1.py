@@ -10,7 +10,7 @@ class gl:
     path="/data/"
 
 def main():
-    x=mf.load(gl.path+"test/test.txt")
+    x=mf.load_fn(gl.path+"test/test.txt")
 #     print("hihi")
     print(x)
 
