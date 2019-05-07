@@ -52,8 +52,8 @@ public abstract class SysGen {
 	{
 		
 		TaskSet ts=new TaskSet(g_tg.getAll());
-		ts.transform_Array();
-		TaskSetEx.writeTS(fu, ts);
+		ts.end();
+		TaskSetEx.writeTS(fu, ts.getArr());
 		
 		return 1;
 	}

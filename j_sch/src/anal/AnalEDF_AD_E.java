@@ -90,7 +90,6 @@ public class AnalEDF_AD_E extends Anal {
 		S_Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
 		S_Log.prnc(1, "x:"+glo_x);
 		S_Log.prn(1, " hi_prefer:"+n_hi_prefer);
-		g_tm.getTaskSet().prnOffline();
 		
 	}
 	@Override

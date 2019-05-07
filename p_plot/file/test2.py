@@ -10,12 +10,12 @@ def select():
     path2()
 
 def path1():
-    lst=mf.load_fn("test/test_word.txt")
+    lst=mf.load("test/test_word.txt")
     for m in lst:
         print(m)
     
 def path2():
-    lst=mf.load_fn("test/test_word.txt")
+    lst=mf.load("test/test_word.txt")
     for m in lst:
         wd=m.split()
         if wd[0]=='s':

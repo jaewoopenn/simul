@@ -1,19 +1,19 @@
 package basic;
 
-
+import util.S_Log;
 
 public class TaskMng {
 	private TaskSet g_tasks;
 
-	public TaskMng(TaskSet tasks) {
-		this.g_tasks=tasks;
+	public TaskMng(TaskSet ts) {
+		if(ts.isEnd())
+			g_tasks=ts;
+		else
+			S_Log.err("cannot create taskmng from taskset which is not ended");
 	}
 	
-	
-	public TaskSet getTaskSet(){
-		return g_tasks;
-	}
-	public Task[] getTasks() {
+
+	public Task[] getArr() {
 		return g_tasks.getArr();
 	}
 

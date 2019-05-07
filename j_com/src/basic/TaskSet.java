@@ -21,13 +21,6 @@ public class TaskSet {
 	public TaskSet(){
 		g_taskV=new Vector<Task>();
 	}
-	public TaskSet( Vector<Task> a) {
-		g_taskV=a;
-	}
-
-	public TaskSet(Task[] a) {
-		g_tasks=a;
-	}
 	public void add(Task t){
 		g_taskV.add(t);
 	}
@@ -42,10 +35,16 @@ public class TaskSet {
 		g_taskV.remove(g_taskV.size()-1);
 	}
 	
-	public void transform_Array(){
+	public void end(){
 		int size=g_taskV.size();
 		g_tasks=new Task[size];
 		g_taskV.toArray(g_tasks);
+	}
+	public boolean isEnd() {
+		if(g_tasks!=null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Task get(int i){
@@ -75,6 +74,5 @@ public class TaskSet {
 		}
 		
 	}
-
 
 }

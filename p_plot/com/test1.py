@@ -15,17 +15,19 @@ import com.MCom as cu
 
 def u_draw(c):
     c.add_st(0,0)
-    c.add_diag(4,2.3)
-    c.add_diag(8,2.3)
-    c.add_hori(12)
+    c.add_hori(2)
+    c.add_diag(2)
+    c.add_hori(2)
+    c.add_diag(2)
+    c.add_hori(2)
 
 def u_draw2(c):
     c.add_st(0,0)
-    c.add_vert(4,2)
-    c.add_vert(5,1)
-    c.add_vert(8,1)
-    c.add_vert(10,1)
-    c.add_hori(11)
+    c.add_hori(2)
+    c.add_vert(2)
+    c.add_hori(3)
+    c.add_vert(1)
+    c.add_hori(1)
     
     
 def main():

@@ -58,9 +58,6 @@ public class TaskMng {
 		return g_info;
 	}
 
-	public TaskSet getTaskSet(){
-		return g_tasks;
-	}
 	public Task[] getTasks() {
 		return g_tasks.getArr();
 	}

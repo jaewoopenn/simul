@@ -1,10 +1,11 @@
 package basic;
+
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSetEx;
 import util.S_TEngine;
 
-public class z_TaskSetFile1 {
+public class z_TaskSetEx1 {
 	public static int idx=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -16,7 +17,7 @@ public class z_TaskSetFile1 {
 		TaskSetEx tme=new TaskSetEx(tmp.getVec());
 		TaskMng tm=tme.getTM();
 		tm.prn();
-		TaskSetEx.writeFile("test/test.txt",tm.getTasks());
+		TaskSetEx.writeFile("test/test.txt",tm.getArr());
 		return 1;
 	}
 	public int test2()
@@ -61,9 +62,9 @@ public class z_TaskSetFile1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_TaskSetFile1.class;
-		z_TaskSetFile1 m=new z_TaskSetFile1();
-		int[] aret=z_TaskSetFile1.gret;
+		Class c = z_TaskSetEx1.class;
+		z_TaskSetEx1 m=new z_TaskSetEx1();
+		int[] aret=z_TaskSetEx1.gret;
 		if(idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else

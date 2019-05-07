@@ -1,8 +1,5 @@
 package basic;
 
-import java.util.Vector;
-
-import basic.Task;
 import util.S_TEngine;
 
 public class z_Task1 {
@@ -12,12 +9,9 @@ public class z_Task1 {
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		Vector<Task> tasks=new Vector<Task>();
-		
-		tasks.add(new Task(3,1));
-		tasks.add(new Task(4,1));
-		return tasks.size();
+		return 0;
 	}
+	
 	public int test2() 
 	{
 		return 0;

@@ -27,8 +27,8 @@ public class Task {
 	
 	public void prn() {
 		S_Log.prnc(2, "tid:"+tid);
-		S_Log.prnc(2, " p:"+period);
-		S_Log.prnc(2, " p:"+exec);
+		S_Log.prnc(2, " T:"+period);
+		S_Log.prn(2, " C:"+exec);
 	}
 	
 

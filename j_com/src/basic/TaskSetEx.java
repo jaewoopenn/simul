@@ -36,8 +36,7 @@ public class TaskSetEx {
 	// export 
 	public TaskMng getTM()
 	{
-		g_tasks.transform_Array();
-				
+		g_tasks.end();
 		return new TaskMng(g_tasks);
 	}
 		
@@ -46,15 +45,15 @@ public class TaskSetEx {
 
 
 	// static 
-	public static void writeFile(String fn,TaskSet tasks){
+	public static void writeFile(String fn,Task[] tasks){
 		FOut fu=new FOut(fn);
-		for(Task t:tasks.getArr())
+		for(Task t:tasks)
 			writeTask(fu,t);
 		fu.save();
 	}
 	
-	public static void writeTS(FOut fu,TaskSet tasks){
-		for(Task t:tasks.getArr())
+	public static void writeTS(FOut fu,Task[] tasks){
+		for(Task t:tasks)
 			writeTask(fu,t);
 		fu.write("------");
 	}

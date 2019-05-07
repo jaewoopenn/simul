@@ -41,10 +41,16 @@ public class TaskSet {
 		g_taskV.remove(g_taskV.size()-1);
 	}
 	
-	public void transform_Array(){
+	public void end(){
 		int size=g_taskV.size();
 		g_tasks=new Task[size];
 		g_taskV.toArray(g_tasks);
+	}
+	public boolean isEnd() {
+		if(g_tasks!=null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Task get(int i){

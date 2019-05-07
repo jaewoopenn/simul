@@ -13,15 +13,13 @@ def load_fn(c,fn):
         wd=m.split()
         print(wd)
         a=int(wd[1])
-        b=0
-        if(len(wd)>2):
-            b=float(wd[2])
         if wd[0]=='s':
+            b=float(wd[2])
             c.add_st(a,b)
         elif wd[0]=='d':
-            c.add_diag(a,b)
+            c.add_diag(a)
         elif wd[0]=='v':
-            c.add_vert(a,b)
+            c.add_vert(a)
         elif wd[0]=='h':
             c.add_hori(a)
     
@@ -30,6 +28,7 @@ class C_Draw:
     def __init__(self):
         self.xl=[]
         self.vl=[]
+        self.lastx=0
         self.lasty=0
         
     def clear(self):
@@ -37,26 +36,26 @@ class C_Draw:
         self.vl=[]
 
     def add_st(self,x,y):
-        self.xl.append(x)
-        self.vl.append(y)
+        self.lastx=x
         self.lasty=y
+        self.xl.append(self.lastx)
+        self.vl.append(self.lasty)
         
-    def add_hori(self,x):
-        self.xl.append(x)
+    def add_hori(self,inc):
+        self.lastx+=inc
+        self.xl.append(self.lastx)
         self.vl.append(self.lasty)
 
-    def add_diag(self,x,inc):
-        self.xl.append(x)
-        self.vl.append(self.lasty)
-        self.xl.append(x+inc)
+    def add_diag(self,inc):
+        self.lastx+=inc
         self.lasty+=inc
+        self.xl.append(self.lastx)
         self.vl.append(self.lasty)
 
-    def add_vert(self,x,inc):
-        self.xl.append(x-0.01)
-        self.vl.append(self.lasty)
-        self.xl.append(x)
+    def add_vert(self,inc):
+        self.lastx+=0.01
         self.lasty+=inc
+        self.xl.append(self.lastx)
         self.vl.append(self.lasty)
     
     def draw(self):

@@ -1,6 +1,7 @@
 package basic;
 
 
+
 import util.S_TEngine;
 
 public class z_TaskMng1 {
@@ -10,6 +11,12 @@ public class z_TaskMng1 {
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
+		TaskSet ts=new TaskSet();
+		ts.add(new Task(3,1));
+		ts.add(new Task(4,1));
+		ts.end();
+		TaskMng tm=new TaskMng(ts);
+		tm.prn();
 		return 0;
 	}
 	public int test2() //vd

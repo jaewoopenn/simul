@@ -29,8 +29,8 @@ public class z_TaskGenMC1 {
 		TaskGen tg=getTG1();
 		tg.generate();
 		TaskSet ts=new TaskSet(tg.getAll());
-		ts.transform_Array();
-		TaskSetEx.writeFile("test/test.txt", ts);
+		ts.end();
+		TaskSetEx.writeFile("test/test.txt", ts.getArr());
 		return 1;
 	}
 	public int test2()
