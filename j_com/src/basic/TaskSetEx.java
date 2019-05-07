@@ -24,8 +24,8 @@ public class TaskSetEx {
 
 	public TaskSetEx(Vector<Task> all_tasks) {
 		g_tasks=new TaskSet();
-		for(Task t:all_tasks){
-			g_tasks.add(t);
+		for(int i=0;i<all_tasks.size();i++) {
+			g_tasks.add(all_tasks.get(i));
 		}
 	}
 	
