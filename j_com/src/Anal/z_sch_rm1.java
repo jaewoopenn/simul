@@ -29,7 +29,7 @@ public class z_sch_rm1 {
 		S_Log.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
 			double s=p.sbf(t);
-			double r=AUtil_RM.computeRBF(tm.getArr(),1,t);
+			double r=Util_RM.computeRBF(tm.getArr(),1,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r)
 				st+=">>>>>";
@@ -45,7 +45,7 @@ public class z_sch_rm1 {
 //		PRM p=new PRM(3,1);
 		TaskMng tm=getTM1();
 		String st="";
-		if(AUtil_RM.checkSch_ind(p,tm,1,13))
+		if(Util_RM.checkSch_ind(p,tm,1,13))
 			st+="OK";
 		else
 			st+="Not OK";
@@ -58,7 +58,7 @@ public class z_sch_rm1 {
 		PRM p=new PRM(3,2);
 		TaskMng tm=getTM1();
 		String st="";
-		if(AUtil_RM.checkSch(p,tm))
+		if(Util_RM.checkSch(p,tm))
 			st+="OK";
 		else
 			st+="Not OK";
@@ -69,7 +69,7 @@ public class z_sch_rm1 {
 	{
 		TaskMng tm=getTM1();
 		int p=3;
-		double exec=AUtil_RM.getExec(tm,p);
+		double exec=Util_RM.getExec(tm,p);
 		String st="exec:"+exec;
 		S_Log.prn(2,st );
 		

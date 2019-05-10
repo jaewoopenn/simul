@@ -6,7 +6,7 @@ import basic.Task;
 import basic.TaskMng;
 import util.S_Log;
 
-public class AUtil_RM {
+public class Util_RM {
 	public static double computeRBF(Task[] ts,int i, int t) {
 		double r=0;
 		for(int j=0;j<=i;j++) {
@@ -26,7 +26,7 @@ public class AUtil_RM {
 		S_Log.prn(log_lv, "t \t sup \t req ");
 		for(int t=0;t<=end_t;t++) {
 			double s=p.sbf(t);
-			double r=AUtil_RM.computeRBF(tm.getArr(),i,t);
+			double r=Util_RM.computeRBF(tm.getArr(),i,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r) {
 				st+=">>>>>";
