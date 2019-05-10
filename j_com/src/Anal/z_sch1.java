@@ -10,13 +10,13 @@ import util.S_Log;
 import util.S_TEngine;
 
 public class z_sch1 {
-	public static int idx=3;
+	public static int idx=4;
 	public static int log_level=1;
 
 	public TaskMng getTM1() {
 		TaskSet ts=new TaskSet();
-		ts.add(new Task(3,1));
 		ts.add(new Task(4,1));
+		ts.add(new Task(6,1));
 		ts.end();
 		return new TaskMng(ts);
 	}
@@ -29,7 +29,7 @@ public class z_sch1 {
 		S_Log.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
 			double s=p.sbf(t);
-			double r=AUtil.computeRBF(tm.getArr(),2,t);
+			double r=AUtil_RM.computeRBF(tm.getArr(),1,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r)
 				st+=">>>>>";
@@ -44,26 +44,35 @@ public class z_sch1 {
 		PRM p=new PRM(3,1.5);
 //		PRM p=new PRM(3,1);
 		TaskMng tm=getTM1();
-		if(AUtil.checkSch_ind(p,tm,2,13))
-			S_Log.prn(1, "OK");
+		String st="";
+		if(AUtil_RM.checkSch_ind(p,tm,1,13))
+			st+="OK";
 		else
-			S_Log.prn(1, "Not OK");
+			st+="Not OK";
+		S_Log.prn(2,st );
 			
 		return 0;
 	}
 	public  int test3()
 	{
-		PRM p=new PRM(3,1.5);
-//		PRM p=new PRM(3,1);
+		PRM p=new PRM(3,2);
 		TaskMng tm=getTM1();
-		if(AUtil.checkSch_ind(p,tm,2,13))
-			S_Log.prn(1, "OK");
+		String st="";
+		if(AUtil_RM.checkSch(p,tm))
+			st+="OK";
 		else
-			S_Log.prn(1, "Not OK");
+			st+="Not OK";
+		S_Log.prn(2,st );
 		return 0;
 	}
 	public  int test4()
 	{
+		TaskMng tm=getTM1();
+		int p=3;
+		double exec=AUtil_RM.getExec(tm,p);
+		String st="exec:"+exec;
+		S_Log.prn(2,st );
+		
 		return 0;
 	}
 	public  int test5()
