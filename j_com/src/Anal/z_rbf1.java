@@ -7,7 +7,7 @@ import basic.TaskSet;
 import util.S_Log;
 import util.S_TEngine;
 
-public class z_dbf1 {
+public class z_rbf1 {
 	public static int log_level=1;
 	public static int idx=1;
 	public static int total=10;
@@ -66,9 +66,9 @@ public class z_dbf1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_dbf1.class;
-		z_dbf1 m=new z_dbf1();
-		int[] aret=z_dbf1.gret;
+		Class c = z_rbf1.class;
+		z_rbf1 m=new z_rbf1();
+		int[] aret=z_rbf1.gret;
 		if(idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else

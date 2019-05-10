@@ -9,7 +9,7 @@ import basic.TaskSet;
 import util.S_Log;
 import util.S_TEngine;
 
-public class z_sch1 {
+public class z_sch_rm1 {
 	public static int idx=4;
 	public static int log_level=1;
 
@@ -102,9 +102,9 @@ public class z_sch1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_sch1.class;
-		z_sch1 m=new z_sch1();
-		int[] aret=z_sch1.gret;
+		Class c = z_sch_rm1.class;
+		z_sch_rm1 m=new z_sch_rm1();
+		int[] aret=z_sch_rm1.gret;
 		if(idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else
