@@ -21,6 +21,14 @@ public class z_sch_rm1 {
 		return new TaskMng(ts);
 	}
 	
+	public TaskMng getTM2() {
+		TaskSet ts=new TaskSet();
+		ts.add(new Task(4,1));
+		ts.add(new Task(6,1));
+		ts.end();
+		return new TaskMng(ts);
+	}
+	
 	public int test1()
 	{
 		PRM p=new PRM(3,1.5);
