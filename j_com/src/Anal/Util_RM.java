@@ -24,7 +24,7 @@ public class Util_RM {
 	public static boolean checkSch_ind(PRM p, TaskMng tm, int i, int end_t) {
 		int log_lv=1;
 		S_Log.prn(log_lv, "t \t sup \t req ");
-		for(int t=0;t<=end_t;t++) {
+		for(int t=1;t<=end_t;t++) {
 			double s=p.sbf(t);
 			double r=Util_RM.computeRBF(tm.getArr(),i,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
@@ -52,7 +52,17 @@ public class Util_RM {
 	}
 
 	public static double getExec(TaskMng tm, int p) {
-		
-		return 0;
+		double exec=0;
+		for(int i=0;i<tm.size();i++) {
+			int end_t=tm.getTask(i).period;
+			for(int t=1;t<=end_t;t++) {
+				exec=Math.max(exec,getExec(tm,p,i,t));
+			}
+		}		
+		return exec;
+	}
+
+	private static double getExec(TaskMng tm, int p, int i, int t) {
+		return 1;
 	}
 }
