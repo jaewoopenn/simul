@@ -16,7 +16,7 @@ public class SysGenMC extends SysGen {
 	protected int check() {
 		if(!g_isCheck)
 			return 1;
-		TaskSetEx tsf=new TaskSetEx(g_tg.getAll()) ;
+		TaskSetEx tsf=new TaskSetEx(g_tg.getTS()) ;
 		TaskMng tm=tsf.getTM();
 		Anal a=new AnalEDF_VD();
 		a.init(tm);

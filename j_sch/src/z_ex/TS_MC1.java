@@ -11,7 +11,7 @@ public class TS_MC1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(4,2));
 		tmp.add(new Task(6,1,5));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		return tme.getTM();
 	}
 	
@@ -19,7 +19,7 @@ public class TS_MC1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(4,3));
 		tmp.add(new Task(8,2,4));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		return tme.getTM();
 	}
 
@@ -29,7 +29,7 @@ public class TS_MC1 {
 		tmp.add(new Task(8,3));
 		tmp.add(new Task(12,1,5));
 		tmp.add(new Task(12,1,5));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		return tme.getTM();
 	}
 	
@@ -40,7 +40,7 @@ public class TS_MC1 {
 		tmp.add(new Task(16,2));
 		tmp.add(new Task(120,19));
 		tmp.add(new Task(6,1,3));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		return tme.getTM();
 	}
 	public static TaskMng ts5() { // not schedulable
@@ -49,7 +49,7 @@ public class TS_MC1 {
 		tmp.add(new Task(8,4));
 		tmp.add(new Task(12,1,5));
 		tmp.add(new Task(12,1,5));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		return tme.getTM();
 	}
 	public static TaskMng ts6() {   // Hi only test
@@ -58,7 +58,7 @@ public class TS_MC1 {
 		tmp.add(new Task(8,4));
 		tmp.add(new Task(12,1,2));
 		tmp.add(new Task(12,1,7));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		return tme.getTM();
 	}
 

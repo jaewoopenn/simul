@@ -6,7 +6,6 @@ package basic;
  * 
  */
 
-import java.util.Vector;
 
 import util.FOut;
 import util.FUtil;
@@ -27,12 +26,12 @@ public class TaskSetEx {
 	}
 	
 
-	public TaskSetEx(Vector<Task> all) {
+	public TaskSetEx(TaskSet ts) {
 		g_info=new SysInfo();
 		g_tasks=new TaskSet();
 		g_lo_tasks=new TaskSet();
 		g_hi_tasks=new TaskSet();
-		for(Task t:all){
+		for(Task t:ts.getVec()){
 			g_tasks.add(t);
 			if(t.is_HI)
 				g_hi_tasks.add(t);
@@ -113,7 +112,7 @@ public class TaskSetEx {
 	
 	public static TaskSetEx  loadFile_in(FUtil fu) {
 		TaskSeq.reset();
-	    Vector<Task> tasks=new Vector<Task>();
+		TaskSet tasks=new TaskSet();
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 //	    	Log.prn(1, line);

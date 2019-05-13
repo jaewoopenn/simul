@@ -2,7 +2,6 @@ package gen;
 import basic.TaskSet;
 import basic.TaskSetEx;
 import gen.TaskGen;
-import gen.TaskGenMC;
 import gen.TaskGenParam;
 import util.S_TEngine;
 
@@ -17,10 +16,8 @@ public class z_TaskGenMC1 {
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setPeriod(50,300);
 		tgp.setTUtil(0.02,0.3);
-		tgp.setRatioLH(0.2,0.9);
 		tgp.setUtil(0.90,0.99);
-		tgp.setProbHI(0.5);
-		TaskGenMC tg=new TaskGenMC(tgp);
+		TaskGen tg=new TaskGen(tgp);
 		return tg;
 	}
 
@@ -29,6 +26,7 @@ public class z_TaskGenMC1 {
 		TaskGen tg=getTG1();
 		tg.generate();
 		TaskSet ts=tg.getTS();
+		ts.end();
 		TaskSetEx.writeFile("test/test.txt", ts.getArr());
 		return 1;
 	}

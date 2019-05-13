@@ -5,7 +5,7 @@ import java.util.Vector;
 import basic.Task;
 import basic.TaskSet;
 
-public abstract class TaskGen {
+public class TaskGen {
 	protected TaskGenParam g_param;
 	protected Vector<Task> g_tasks;
 
@@ -26,8 +26,6 @@ public abstract class TaskGen {
 		Task t;
 		while(getUtil()<=g_param.u_ub){
 			t=genTask(tid);
-			if (!t.check())
-				continue;
 			g_tasks.add(t);
 			tid++;
 		}
@@ -35,18 +33,35 @@ public abstract class TaskGen {
 	}
 	
 
-	public abstract Task genTask(int tid);
+	public  Task genTask(int tid) {
+		Task tsk=g_param.genTask(tid,true);
+		if(!g_param.chkTask(tsk))
+			return null;
+		return tsk;		
+	}
 
 
 	public int check(){
 		return g_param.check(getUtil());
 	}
 	
-	public abstract void prn(int lv) ;
+	public  void prn(int lv) {
+		
+	}
 
 
-	protected abstract double getUtil(); 
+	protected  double getUtil() {
+		return 0;
+	}
 
+	public Vector<Task> getAll() {
+		return g_tasks;
+	}
+
+
+	public int size() {
+		return g_tasks.size();
+	}
 
 	public TaskSet getTS() {
 		TaskSet ts=new TaskSet();
@@ -55,10 +70,6 @@ public abstract class TaskGen {
 		}
 		ts.end();
 		return ts;
-	}
-	
-	public int size() {
-		return g_tasks.size();
 	}
 	
 	

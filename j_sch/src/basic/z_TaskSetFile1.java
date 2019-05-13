@@ -13,7 +13,7 @@ public class z_TaskSetFile1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
+		TaskSetEx tme=new TaskSetEx(tmp);
 		TaskMng tm=tme.getTM();
 		tm.prn();
 		TaskSetEx.writeFile("test/test.txt",tm.getTasks());

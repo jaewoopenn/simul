@@ -51,8 +51,7 @@ public abstract class SysGen {
 	public int writeSys(FOut fu)
 	{
 		
-		TaskSet ts=new TaskSet(g_tg.getAll());
-		ts.end();
+		TaskSet ts=g_tg.getTS();
 		TaskSetEx.writeTS(fu, ts.getArr());
 		
 		return 1;

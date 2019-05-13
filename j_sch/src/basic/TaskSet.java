@@ -20,9 +20,6 @@ public class TaskSet {
 	public TaskSet(){
 		g_taskV=new Vector<Task>();
 	}
-	public TaskSet( Vector<Task> a) {
-		g_taskV=a;
-	}
 
 	public TaskSet(Task[] a) {
 		g_tasks=a;

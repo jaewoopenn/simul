@@ -1,6 +1,7 @@
 package Anal;
 
 
+
 import com.PRM;
 
 import basic.TaskMng;
@@ -8,75 +9,54 @@ import sample.TS1;
 import util.S_Log;
 import util.S_TEngine;
 
-public class z_sch_rm1 {
-	public static int idx=5;
-	public static int log_level=2;
+public class z_sch_rm2 {
+	public static int idx=1;
+	public static int log_level=1;
 
 	
 	public int test1()
 	{
-		PRM p=new PRM(3,1.5);
 		TaskMng tm=TS1.getTM1();
-		
-		S_Log.prn(1, "t \t sup \t req ");
-		for(int t=0;t<12;t++) {
-			double s=p.sbf(t);
-			double r=Util_RM.computeRBF(tm,1,t);
-			String st=t+"\t"+s+"\t"+r+"\t";
-			if (s>r)
-				st+=">>>>>";
-			else
-				st+="<";
-			S_Log.prn(1,st );
-		}
+//		TaskMng tm=TS1.getTM2();
+		int p=3;
+		int end_t=5;
+		double exec=Util_RM.getExec(tm,p,1,end_t);
+		String st="exec:"+exec;
+		S_Log.prn(2,st );
 		return 0;
 	}
 	public int test2() 
 	{
-		PRM p=new PRM(3,1.5);
-//		PRM p=new PRM(3,1);
 		TaskMng tm=TS1.getTM1();
-		String st="";
-		if(Util_RM.checkSch_ind(p,tm,1,13))
-			st+="OK";
-		else
-			st+="Not OK";
+//		TaskMng tm=TS1.getTM2();
+		PRM p=new PRM(3,1.5);
+//		PRM p=new PRM(3,1.667);
+//		PRM p=new PRM(3,2.334);
+		int end_t=5;
+		double req=Util_RM.computeRBF(tm, 1, end_t);
+		double sup=p.sbf(end_t);
+		String st="t:"+end_t;
+		st+=" req:"+req;
+		st+=" sup:"+sup;
 		S_Log.prn(2,st );
-			
 		return 0;
 	}
 	public  int test3()
-	{
-		PRM p=new PRM(3,2);
-		TaskMng tm=TS1.getTM1();
-		String st="";
-		if(Util_RM.checkSch(p,tm))
-			st+="OK";
-		else
-			st+="Not OK";
-		S_Log.prn(3,st );
-		return 0;
-	}
-	public  int test4()
 	{
 		TaskMng tm=TS1.getTM1();
 		int p=3;
 		double exec=Util_RM.getExec(tm,p);
 		String st="exec:"+exec;
 		S_Log.prn(2,st );
+		return 0;
+	}
+	public  int test4()
+	{
 		
 		return 0;
 	}
 	public  int test5()
 	{
-		TaskMng tm=TS1.getTM1();
-		PRM p=new PRM(3,1.6667);
-		String st="";
-		if(Util_RM.checkSch(p,tm))
-			st+="OK";
-		else
-			st+="Not OK";
-		S_Log.prn(2,st );
 		return 0;
 	}
 	public  int test6()
@@ -102,9 +82,9 @@ public class z_sch_rm1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_sch_rm1.class;
-		z_sch_rm1 m=new z_sch_rm1();
-		int[] aret=z_sch_rm1.gret;
+		Class c = z_sch_rm2.class;
+		z_sch_rm2 m=new z_sch_rm2();
+		int[] aret=z_sch_rm2.gret;
 		if(idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else
