@@ -51,7 +51,11 @@ public class TaskGen {
 
 
 	protected  double getUtil() {
-		return 0;
+		double util=0;
+		for(Task t:g_tasks){
+			util+=t.getUtil();
+		}
+		return util;
 	}
 
 	public Vector<Task> getAll() {

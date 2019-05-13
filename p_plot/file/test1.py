@@ -5,12 +5,9 @@ Created on 2015. 12. 17.
 '''
 import file.MFile as mf
 
-class gl:
-#     path="d:/data/"
-    path="/data/"
 
 def main():
-    x=mf.load_fn(gl.path+"test/test.txt")
+    x=mf.load("test/test.txt")
 #     print("hihi")
     print(x)
 
