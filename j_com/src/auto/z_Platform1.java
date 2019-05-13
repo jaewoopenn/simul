@@ -106,7 +106,7 @@ public class z_Platform1 {
 	{
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
-		ConfigGen eg=ConfigGen.getPredefined();
+		ConfigGen eg=ConfigGen.getSample();
 		FOut fu=new FOut(path+cf);
 		eg.setParam("subfix", path);
 		eg.setParam("num","100");

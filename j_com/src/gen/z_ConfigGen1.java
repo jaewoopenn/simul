@@ -9,7 +9,7 @@ public class z_ConfigGen1 {
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
-		ConfigGen eg=ConfigGen.getPredefined();
+		ConfigGen eg=ConfigGen.getSample();
 		eg.write("com/cfg1_copy.txt");
 		return 0;
 	}
@@ -39,13 +39,13 @@ public class z_ConfigGen1 {
 	}
 	public  int test5() // write config
 	{
-		ConfigGen eg=ConfigGen.getPredefined();
+		ConfigGen eg=ConfigGen.getSample();
 		eg.write("config/cfg1_copy.txt");
 		return 1;
 	}
 	public  int test6() // test config
 	{
-		ConfigGen eg=ConfigGen.getPredefined();
+		ConfigGen eg=ConfigGen.getSample();
 		eg.setParam("subfix", "drop");
 		eg.setParam("num","500");
 		int base=50;
@@ -61,7 +61,7 @@ public class z_ConfigGen1 {
 	}
 	public  int test7()
 	{
-		ConfigGen eg=ConfigGen.getPredefined();
+		ConfigGen eg=ConfigGen.getSample();
 		eg.setParam("subfix", "util");
 		eg.setParam("num","10");
 //		eg.genRange("cfg/cfg",50,5,10);

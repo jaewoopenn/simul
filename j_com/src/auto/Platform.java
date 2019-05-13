@@ -24,7 +24,7 @@ public class Platform {
 		int base=50;
 		int step=5;
 		double end_i=(ul*100-50)/step;
-		ConfigGen cg=ConfigGen.getPredefined();
+		ConfigGen cg=ConfigGen.getSample();
 		MList fu=new MList();
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");

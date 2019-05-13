@@ -9,8 +9,8 @@ import util.MLoop;
 import util.S_Log;
 
 public class ConfigGen {
-	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","num","subfix","mod"}; 
+	private final String[] g_required={"u_lb","u_ub","p_lb","p_ub",
+			"tu_lb","tu_ub","num","fn"}; 
 	//"c_lb","c_ub",
 	//"a_lb","a_ub",
 	private HashMap<String,String> param;
@@ -31,7 +31,7 @@ public class ConfigGen {
             	System.exit(1);
             }
 		}
-		for (String s:g_predefined){
+		for (String s:g_required){
 			if(readPar(s)==null){
 				System.out.println("ERROR: required field ("+s+") is not defined");
             	System.exit(1);
@@ -68,14 +68,14 @@ public class ConfigGen {
 	
 	
 	public boolean setParam(String field, String val){
-		if(Arrays.asList(g_predefined).contains(field)){
+		if(Arrays.asList(g_required).contains(field)){
 			param.put(field, val);
 			return true;
 		}
 		return false;
 	}
 	public String readPar(String f) {
-		if(Arrays.asList(g_predefined).contains(f))
+		if(Arrays.asList(g_required).contains(f))
 			return param.get(f);
 		System.out.println("ERROR: requested field ("+f+") is not defined");
 		return null;
@@ -97,7 +97,7 @@ public class ConfigGen {
 			S_Log.err("configGen: filename is not set");
 		}
 		FOut fu=new FOut(fn);
-		for (String s:g_predefined){
+		for (String s:g_required){
 			String v=readPar(s);
 			if(v==null){
 				System.out.println("Err: required field ("+s+") is not defined");
@@ -112,23 +112,18 @@ public class ConfigGen {
 	public void prn(int lv) {
 		S_Log.prn(lv,readPar("u_ub")+"--");
 	}
-	public static ConfigGen getPredefined()	{
+	public static ConfigGen getSample()	{
 		ConfigGen eg=new ConfigGen();
-		eg.setParam("u_lb","0.95");
+		eg.setParam("u_lb","0.7");
 		eg.setParam("u_ub","1.0");
-		eg.setParam("c_lb", "0.1");
-		eg.setParam("c_ub", "0.3");
-		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","300");
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
-		eg.setParam("r_lb","0.25");
-		eg.setParam("r_ub","1.0");
+		eg.setParam("p_lb","50");
+		eg.setParam("p_ub","300");
 		eg.setParam("num","10");
 		eg.setParam("a_lb","0.0");
 		eg.setParam("a_ub","0.3");
-		eg.setParam("subfix","com");
-		eg.setParam("mod","t");
+		eg.setParam("fn","com/test1");
 		return eg;
 	}
 
