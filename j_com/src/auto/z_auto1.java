@@ -12,7 +12,7 @@ public class z_auto1 {
 	private double g_prob;
 	private double g_util_ul;
 	private int g_num;
-	private String g_cf;
+	private String g_cfg_list;
 	private String g_ts;
 	private String g_xl;
 	private String g_rs;
@@ -37,7 +37,7 @@ public class z_auto1 {
 	public void init_g() {
 		g_path="sch/t1";
 		g_num=100;
-		g_cf="a_cfg_list.txt";
+		g_cfg_list="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
 		
@@ -61,7 +61,7 @@ public class z_auto1 {
 		init_anal();
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util(g_cf,g_util_ul);
+		p.genCfg_util(g_util_ul,g_cfg_list);
 		return 0;
 	}
 	public int test2() // from 
@@ -69,7 +69,7 @@ public class z_auto1 {
 		init_g();
 		init_anal();
 		Platform p=new Platform(g_path);
-		p.genTS(g_cf,g_ts,g_xl);
+		p.genTS(g_cfg_list,g_ts,g_xl);
 		return -1;	}
 	public int test3() // task set --> anal rs
 	{

@@ -16,8 +16,8 @@ public class z_SysGen1 {
 	// gen
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("com/cfg1_copy.txt");
-		cfg.readFile();
+		ConfigGen cfg=new ConfigGen();
+		cfg.readFile("com/cfg1_copy.txt");
 		SysGen eg=new SysGen(cfg);
 		String fn=cfg.get_fn();
 		eg.gen(fn);
@@ -28,8 +28,8 @@ public class z_SysGen1 {
 	// gen with schedulable 
 	public int test2() 
 	{
-		ConfigGen cfg=new ConfigGen("sch/t1/cfg_8.txt");
-		cfg.readFile();
+		ConfigGen cfg=new ConfigGen();
+		cfg.readFile("sch/t1/cfg_8.txt");
 		SysGen eg=new SysGen(cfg);
 		eg.setCheck();
 		String fn=cfg.get_fn();
@@ -48,8 +48,8 @@ public class z_SysGen1 {
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
-			ConfigGen cfg=new ConfigGen(fu.get(i));
-			cfg.readFile();
+			ConfigGen cfg=new ConfigGen();
+			cfg.readFile(fu.get(i));
 			SysGen eg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			eg.gen(fn);

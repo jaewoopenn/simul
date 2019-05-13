@@ -2,8 +2,6 @@ package auto;
 
 import gen.ConfigGen;
 import gen.SysGen;
-import util.FOut;
-import util.FUtilSp;
 import util.S_Log;
 
 public class Platform {
@@ -22,12 +20,12 @@ public class Platform {
 	}
 	
 	// gen CFG, TS
-	public void genCfg_util(String cf,double ul) {
+	public void genCfg_util(double ul,String cfg_list) {
 		int base=50;
 		int step=5;
 		double end_i=(ul*100-50)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
-		FOut fu=new FOut(g_path+"/"+cf);
+		MList fu=new MList();
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
@@ -37,47 +35,42 @@ public class Platform {
 			cg.setParam("u_ub", (lb+5)*1.0/100+"");
 			cg.setParam("mod", (lb+5)+"");
 			String fn=g_path+"/cfg_"+i+".txt";
-			cg.setFile(fn);
-			cg.write();
-			fu.write(fn);
+			cg.write(fn);
+			fu.add(fn);
 		}
-		fu.save();
+		fu.save(g_path+"/"+cfg_list);
 		
 	}
 
 	public void genTS(String cfg_list,String ts, String xaxis) {
-		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
+		MList fu=new MList();
+		fu.load(g_path+"/"+cfg_list);
 		
-		FOut fu_ts=new FOut(g_path+"/"+ts);
-		FOut fu_xa=new FOut(g_path+"/"+xaxis);
-		fu.load();
+		MList fu_ts=new MList();
+		MList fu_xa=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
-		int max=fu.size();
-		for(int i=0;i<max;i++) {
-			ConfigGen cfg=new ConfigGen(fu.get(i));
-			cfg.readFile();
+		while(true) {
+			String cfg_fn=fu.getNext();
+			if(cfg_fn==null)
+				break;
+			ConfigGen cfg=new ConfigGen();
+			cfg.readFile(cfg_fn);
 			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
 			sg.gen(fn);
-			fu_ts.write(fn);
+			fu_ts.add(fn);
 			String mod=cfg.get_mod();
-			fu_xa.write(mod);
+			fu_xa.add(mod);
 		}
-		fu_ts.save();
-		fu_xa.save();
+		fu_ts.save(g_path+"/"+ts);
+		fu_xa.save(g_path+"/"+xaxis);
 	}
 	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
-		FOut fu=new FOut(g_path+"/"+rs_list);
-		for(int i=0;i<end;i++){
-			String rs=anal(ts_list,i);
-			fu.write(rs);
-		}
-		fu.save();
 	}
 	
 	// analyze task set list with algorithm choice

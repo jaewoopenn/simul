@@ -24,8 +24,7 @@ public class z_ConfigGen2 {
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
 			String fn=path+"/cfg_"+i+".txt";
-			eg.setFile(fn);
-			eg.write();
+			eg.write(fn);
 			fu.write(fn);
 		}
 		fu.save();

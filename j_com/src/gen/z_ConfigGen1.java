@@ -10,20 +10,19 @@ public class z_ConfigGen1 {
 	public int test1() // error config
 	{
 		ConfigGen eg=ConfigGen.getPredefined();
-		eg.setFile("com/cfg1_copy.txt");
-		eg.write();
+		eg.write("com/cfg1_copy.txt");
 		return 0;
 	}
 	public int test2() // normal config
 	{
-		ConfigGen eg=new ConfigGen("com/cfg1_copy.txt");
-		eg.readFile();
+		ConfigGen eg=new ConfigGen();
+		eg.readFile("com/cfg1_copy.txt");
 		return 0;
 	}
 	public int test3() // print config
 	{
-		ConfigGen eg=new ConfigGen("config/cfg1.txt");
-		eg.readFile();
+		ConfigGen eg=new ConfigGen();
+		eg.readFile("config/cfg1.txt");
 		String s=eg.readPar("util_err");
 		if(s==null) 
 			return 0;
@@ -32,8 +31,8 @@ public class z_ConfigGen1 {
 	}
 	public  int test4() // get config
 	{
-		ConfigGen eg=new ConfigGen("config/cfg1.txt");
-		eg.readFile();
+		ConfigGen eg=new ConfigGen();
+		eg.readFile("config/cfg1.txt");
 		String s=eg.readPar("u_lb");
 		System.out.println(s);
 		return (int)(Double.valueOf(s).doubleValue()*10);
@@ -41,8 +40,7 @@ public class z_ConfigGen1 {
 	public  int test5() // write config
 	{
 		ConfigGen eg=ConfigGen.getPredefined();
-		eg.setFile("config/cfg1_copy.txt");
-		eg.write();
+		eg.write("config/cfg1_copy.txt");
 		return 1;
 	}
 	public  int test6() // test config
@@ -57,8 +55,7 @@ public class z_ConfigGen1 {
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
-			eg.setFile("cfg/cfgd_"+i+".txt");
-			eg.write();
+			eg.write("cfg/cfgd_"+i+".txt");
 		}
 		return 1;
 	}

@@ -14,13 +14,11 @@ public class ConfigGen {
 	//"c_lb","c_ub",
 	//"a_lb","a_ub",
 	private HashMap<String,String> param;
-	private String g_fn;
-	public ConfigGen(String f) {
+	public ConfigGen() {
 		param=new HashMap<String,String>();
-		g_fn=f;
 	}
-	public void readFile() {
-		FUtilSp fu=new FUtilSp(g_fn);
+	public void readFile(String fn) {
+		FUtilSp fu=new FUtilSp(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.size())){
 	    	String line=fu.get(i);
@@ -94,11 +92,11 @@ public class ConfigGen {
 			return -1;
 		return Double.valueOf(s.trim()).doubleValue();
 	}
-	public void write() {
-		if(g_fn==null) {
+	public void write(String fn) {
+		if(fn==null) {
 			S_Log.err("configGen: filename is not set");
 		}
-		FOut fu=new FOut(g_fn);
+		FOut fu=new FOut(fn);
 		for (String s:g_predefined){
 			String v=readPar(s);
 			if(v==null){
@@ -115,7 +113,7 @@ public class ConfigGen {
 		S_Log.prn(lv,readPar("u_ub")+"--");
 	}
 	public static ConfigGen getPredefined()	{
-		ConfigGen eg=new ConfigGen(null);
+		ConfigGen eg=new ConfigGen();
 		eg.setParam("u_lb","0.95");
 		eg.setParam("u_ub","1.0");
 		eg.setParam("c_lb", "0.1");
@@ -132,10 +130,6 @@ public class ConfigGen {
 		eg.setParam("subfix","com");
 		eg.setParam("mod","t");
 		return eg;
-	}
-	public void setFile(String fn) {
-		g_fn=fn;
-		
 	}
 
 }

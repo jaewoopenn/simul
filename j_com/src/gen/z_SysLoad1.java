@@ -13,8 +13,8 @@ public class z_SysLoad1 {
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		ConfigGen cfg=new ConfigGen("com/cfg1_copy.txt");
-		cfg.readFile();
+		ConfigGen cfg=new ConfigGen();
+		cfg.readFile("com/cfg1_copy.txt");
 		String fn=cfg.get_fn();
 		S_Log.prn(1, fn);
 		FUtil f=new FUtil(fn);
@@ -33,8 +33,8 @@ public class z_SysLoad1 {
 	}
 	public int test3() // load one
 	{
-		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
-		cfg.readFile();
+		ConfigGen cfg=new ConfigGen();
+		cfg.readFile("config/cfg1_copy.txt");
 		String fn=cfg.get_fn();
 		S_Log.prn(1, fn);
 		FUtil f=new FUtil(fn);

@@ -29,8 +29,8 @@ public class z_Platform1 {
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
-			ConfigGen cfg=new ConfigGen(fu.get(i));
-			cfg.readFile();
+			ConfigGen cfg=new ConfigGen();
+			cfg.readFile(fu.get(i));
 			SysGen eg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			eg.gen(fn);
@@ -118,8 +118,7 @@ public class z_Platform1 {
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
 			String fn=path+"/cfg_"+i+".txt";
-			eg.setFile(fn);
-			eg.write();
+			eg.write(fn);
 			fu.write(fn);
 		}
 		fu.save();
@@ -130,7 +129,7 @@ public class z_Platform1 {
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
 		Platform p=new Platform(path);
-		p.genCfg_util(cf,100);
+		p.genCfg_util(100,cf);
 		return 0;
 	}
 	
