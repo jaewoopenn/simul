@@ -3,20 +3,21 @@ import basic.TaskSet;
 import basic.TaskSetEx;
 import gen.TaskGen;
 import gen.TaskGenParam;
+import util.Ranger;
 import util.S_TEngine;
 
 // Simulation
 
-public class z_TaskGenMC1 {
+public class z_TaskGen1 {
 	public static int log_level=1;
 	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
 		TaskGenParam tgp=new TaskGenParam();
-		tgp.setPeriod(50,300);
-		tgp.setTUtil(0.02,0.3);
-		tgp.setUtil(0.90,0.99);
+		tgp.setPeriod(Ranger.gen(50,300));
+		tgp.setTUtil(Ranger.gen(0.02,0.3));
+		tgp.setUtil(Ranger.gen(0.90,0.99));
 		TaskGen tg=new TaskGen(tgp);
 		return tg;
 	}
@@ -70,9 +71,9 @@ public class z_TaskGenMC1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_TaskGenMC1.class;
-		z_TaskGenMC1 m=new z_TaskGenMC1();
-		int[] aret=z_TaskGenMC1.gret;
+		Class c = z_TaskGen1.class;
+		z_TaskGen1 m=new z_TaskGen1();
+		int[] aret=z_TaskGen1.gret;
 		if(idx==-1)
 			S_TEngine.run(m,c,aret,10);
 		else

@@ -18,13 +18,6 @@ public class TaskSetEx {
 	private TaskSet g_lo_tasks;
 	public SysInfo g_info;
 	
-	public TaskSetEx() {
-		g_info=new SysInfo();
-		g_tasks=new TaskSet();
-		g_lo_tasks=new TaskSet();
-		g_hi_tasks=new TaskSet();
-	}
-	
 
 	public TaskSetEx(TaskSet ts) {
 		g_info=new SysInfo();

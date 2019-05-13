@@ -16,11 +16,7 @@ import util.S_Log;
 
 public class TaskSetEx {
 	private TaskSet g_tasks;
-	
-	public TaskSetEx() {
-		g_tasks=new TaskSet();
-	}
-	
+
 
 	public TaskSetEx(Vector<Task> all_tasks) {
 		g_tasks=new TaskSet();
