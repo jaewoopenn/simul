@@ -16,13 +16,13 @@ public class z_ConfigGen1 {
 	public int test2() // normal config
 	{
 		ConfigGen eg=new ConfigGen();
-		eg.readFile("com/cfg1_copy.txt");
+		eg.load("com/cfg1_copy.txt");
 		return 0;
 	}
 	public int test3() // print config
 	{
 		ConfigGen eg=new ConfigGen();
-		eg.readFile("config/cfg1.txt");
+		eg.load("config/cfg1.txt");
 		String s=eg.readPar("util_err");
 		if(s==null) 
 			return 0;
@@ -32,7 +32,7 @@ public class z_ConfigGen1 {
 	public  int test4() // get config
 	{
 		ConfigGen eg=new ConfigGen();
-		eg.readFile("config/cfg1.txt");
+		eg.load("config/cfg1.txt");
 		String s=eg.readPar("u_lb");
 		System.out.println(s);
 		return (int)(Double.valueOf(s).doubleValue()*10);

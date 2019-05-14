@@ -10,14 +10,68 @@ import util.S_Log;
 
 public class ConfigGen {
 	private final String[] g_required={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","num","fn"}; 
+			"tu_lb","tu_ub","num","fn","label"}; 
 	//"c_lb","c_ub",
 	//"a_lb","a_ub",
 	private HashMap<String,String> param;
 	public ConfigGen() {
 		param=new HashMap<String,String>();
 	}
-	public void readFile(String fn) {
+	public String get_fn(){
+		return readPar("fn");
+		
+	}
+
+	public String getLabel() {
+		return readPar("label");
+	}
+
+	
+	public boolean setParam(String field, String val){
+		if(Arrays.asList(g_required).contains(field)){
+			param.put(field, val);
+			return true;
+		}
+		return false;
+	}
+	
+	public String readPar(String f) {
+		if(Arrays.asList(g_required).contains(f))
+			return param.get(f).trim();
+		System.out.println("ERROR: requested field ("+f+") is not defined");
+		return null;
+	}
+	public int readInt(String f){
+		String s=readPar(f);
+		if(s==null)
+			return -1;
+		return Integer.valueOf(s.trim()).intValue();
+	}
+	public double readDbl(String f){
+		String s=readPar(f);
+		if(s==null)
+			return -1;
+		return Double.valueOf(s.trim()).doubleValue();
+	}
+	
+	public void write(String fn) {
+		if(fn==null) {
+			S_Log.err("configGen: filename is not set");
+		}
+		FOut fu=new FOut(fn);
+		for (String s:g_required){
+			String v=readPar(s);
+			if(v==null){
+				System.out.println("Err: required field ("+s+") is not defined");
+            	return;
+			}
+			String txt=s+":"+v;
+			fu.write(txt);
+		}
+		fu.save();
+		
+	}
+	public void load(String fn) {
 		FUtilSp fu=new FUtilSp(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.size())){
@@ -39,76 +93,7 @@ public class ConfigGen {
 		}
 //			Log.prn(1, s+":"+readPar(s));
 	}
-	public String get_mod() {
-		return readPar("mod").trim();
-		
-	}
-	public String get_fn(){
-		String subfix=readPar("subfix").trim();
-		String mod=get_mod();
-		String fn=subfix+"/taskset_"+mod;
-		return fn;
-		
-	}
-
-	public String get_fn(int i){
-		String subfix=readPar("subfix").trim();
-		String mod=readPar("mod").trim();
-		String fn=subfix+"/"+mod+"/taskset_"+i;
-		return fn;
-		
-	}
-//	public String get_dir(){
-//		String subfix=readPar("subfix").trim();
-//		String mod=readPar("mod").trim();
-//		String fn=subfix+"/"+mod;
-//		return fn;
-//		
-//	}
 	
-	
-	public boolean setParam(String field, String val){
-		if(Arrays.asList(g_required).contains(field)){
-			param.put(field, val);
-			return true;
-		}
-		return false;
-	}
-	public String readPar(String f) {
-		if(Arrays.asList(g_required).contains(f))
-			return param.get(f);
-		System.out.println("ERROR: requested field ("+f+") is not defined");
-		return null;
-	}
-	public int readInt(String f){
-		String s=readPar(f);
-		if(s==null)
-			return -1;
-		return Integer.valueOf(s.trim()).intValue();
-	}
-	public double readDbl(String f){
-		String s=readPar(f);
-		if(s==null)
-			return -1;
-		return Double.valueOf(s.trim()).doubleValue();
-	}
-	public void write(String fn) {
-		if(fn==null) {
-			S_Log.err("configGen: filename is not set");
-		}
-		FOut fu=new FOut(fn);
-		for (String s:g_required){
-			String v=readPar(s);
-			if(v==null){
-				System.out.println("Err: required field ("+s+") is not defined");
-            	return;
-			}
-			String txt=s+":"+v;
-			fu.write(txt);
-		}
-		fu.save();
-		
-	}
 	public void prn(int lv) {
 		S_Log.prn(lv,readPar("u_ub")+"--");
 	}
@@ -124,6 +109,7 @@ public class ConfigGen {
 		eg.setParam("a_lb","0.0");
 		eg.setParam("a_ub","0.3");
 		eg.setParam("fn","com/test1");
+		eg.setParam("label","1");
 		return eg;
 	}
 

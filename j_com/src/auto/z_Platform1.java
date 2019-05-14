@@ -30,12 +30,12 @@ public class z_Platform1 {
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen();
-			cfg.readFile(fu.get(i));
+			cfg.load(fu.get(i));
 			SysGen eg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			eg.gen(fn);
 			fu_ts.write(fn);
-			String mod=cfg.get_mod();
+			String mod=cfg.getLabel();
 			fu_rs.write(mod);
 		}
 		fu_ts.save();

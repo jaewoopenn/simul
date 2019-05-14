@@ -1,8 +1,6 @@
 package gen;
 import gen.ConfigGen;
 import gen.SysGen;
-import util.FOut;
-import util.FUtilSp;
 import util.S_Log;
 import util.S_TEngine;
 
@@ -17,7 +15,7 @@ public class z_SysGen1 {
 	public int test1() 
 	{
 		ConfigGen cfg=new ConfigGen();
-		cfg.readFile("com/cfg1_copy.txt");
+		cfg.load("com/cfg1_copy.txt");
 		SysGen eg=new SysGen(cfg);
 		String fn=cfg.get_fn();
 		eg.gen(fn);
@@ -29,7 +27,7 @@ public class z_SysGen1 {
 	public int test2() 
 	{
 		ConfigGen cfg=new ConfigGen();
-		cfg.readFile("sch/t1/cfg_8.txt");
+		cfg.load("sch/t1/cfg_8.txt");
 		SysGen eg=new SysGen(cfg);
 		eg.setCheck();
 		String fn=cfg.get_fn();
@@ -40,26 +38,6 @@ public class z_SysGen1 {
 	
 	public int test3() 
 	{
-		String path="test/t1/";
-		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
-		FOut fu_ts=new FOut(path+"a_ts_list.txt");
-		FOut fu_rs=new FOut(path+"a_x_list.txt");
-		fu.load();
-//		int n=fu.load();
-//		Log.prn(1, n+" ");
-		for(int i=0;i<fu.size();i++) {
-			ConfigGen cfg=new ConfigGen();
-			cfg.readFile(fu.get(i));
-			SysGen eg=new SysGen(cfg);
-			String fn=cfg.get_fn();
-			eg.gen(fn);
-			fu_ts.write(fn);
-			String mod=cfg.get_mod();
-			fu_rs.write(mod);
-		}
-		fu_ts.save();
-		fu_rs.save();
-
 		return 0;
 	}
 	public  int test4() // 

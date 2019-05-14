@@ -14,7 +14,7 @@ public class z_SysLoad1 {
 	public int test1() // gen
 	{
 		ConfigGen cfg=new ConfigGen();
-		cfg.readFile("com/cfg1_copy.txt");
+		cfg.load("com/cfg1_copy.txt");
 		String fn=cfg.get_fn();
 		S_Log.prn(1, fn);
 		FUtil f=new FUtil(fn);
@@ -34,7 +34,7 @@ public class z_SysLoad1 {
 	public int test3() // load one
 	{
 		ConfigGen cfg=new ConfigGen();
-		cfg.readFile("config/cfg1_copy.txt");
+		cfg.load("config/cfg1_copy.txt");
 		String fn=cfg.get_fn();
 		S_Log.prn(1, fn);
 		FUtil f=new FUtil(fn);
