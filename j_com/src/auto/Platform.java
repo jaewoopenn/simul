@@ -34,7 +34,7 @@ public class Platform {
 			cg.setParam("u_lb", (lb)*1.0/100);
 			cg.setParam("u_ub", (lb+5)*1.0/100);
 			cg.setParam("label",lab) ;
-			cg.setParam("fn", g_path+"/taskset_"+lab);
+			cg.setParam("fn", g_path+"/taskset_"+lab+".txt");
 			String fn=g_path+"/cfg_"+lab+".txt";
 			cg.write(fn);
 			fu.add(fn);
@@ -72,14 +72,32 @@ public class Platform {
 	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
+		MList fu=new MList();
+		for(int i=0;i<end;i++){
+			String rs=anal(ts_list,i);
+			fu.add(rs);
+		}
+		fu.save(g_path+"/"+rs_list);
+		
 	}
 	
 	// analyze task set list with algorithm choice
 	public String anal(String ts_list,int sort) {
-		return null;
+		MList fu=new MList();
+		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
+		MList fu_rs=new MList();
+		fu.load(g_path+"/"+ts_list);
+		String fn;
+		while((fn=fu.getNext())!=null) {
+			String out=fn+".rs."+sort;
+			anal_one(fn,out);
+			fu_rs.add(out);
+		}		
+		fu_rs.save(rs_fn);
+		return rs_fn;
 	}
 	
-//	public void anal_one(String ts,String out,Anal a) {
+	public void anal_one(String ts,String out) {
 //		SysLoad sy=new SysLoad(ts);
 //		String ret=sy.open();
 //		int num=Integer.valueOf(ret).intValue();
@@ -98,7 +116,7 @@ public class Platform {
 //		}
 //		fu.save();
 //		
-//	}
+	}
 	
 	
 	
