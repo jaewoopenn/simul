@@ -1,7 +1,6 @@
 package gen;
 import gen.ConfigGen;
 import gen.SysGen;
-import util.S_Log;
 import util.S_TEngine;
 
 public class z_SysGen1 {
@@ -26,13 +25,6 @@ public class z_SysGen1 {
 	// gen with schedulable 
 	public int test2() 
 	{
-		ConfigGen cfg=new ConfigGen();
-		cfg.load("sch/t1/cfg_8.txt");
-		SysGen eg=new SysGen(cfg);
-		eg.setCheck();
-		String fn=cfg.get_fn();
-		S_Log.prn(1, fn);
-		eg.gen(fn);
 		return 0;
 	}
 	
