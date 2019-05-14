@@ -1,4 +1,4 @@
-package Anal;
+package anal;
 
 import com.PRM;
 

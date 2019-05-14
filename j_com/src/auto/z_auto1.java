@@ -20,7 +20,7 @@ public class z_auto1 {
 	private String g_graph;
 	
 	public static void init_s() {
-//		int s=1;
+		int s=1;
 //		int s=2;
 //		int s=3;
 //		int s=4;
@@ -28,14 +28,14 @@ public class z_auto1 {
 //		int s=1;
 //		int s=5;
 //		int s=6;
-		int s=7;
+//		int s=7;
 		s_idx=s;
 		
 		s_log_level=1;
 	}
 	
 	public void init_g() {
-		g_path="sch/t1";
+		g_path="com/t1";
 		g_num=100;
 		g_cfg_list="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
@@ -49,12 +49,6 @@ public class z_auto1 {
 		g_graph="a_graph.txt";
 	}
 
-	public void init_sim() {
-		g_prob=0.3;
-		g_util_ul=0.95;
-		g_rs="a_sim_list.txt";
-		g_graph="a_sim_graph.txt";
-	}
 	public int test1() 
 	{
 		init_g();

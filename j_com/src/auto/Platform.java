@@ -26,15 +26,16 @@ public class Platform {
 		double end_i=(ul*100-50)/step;
 		ConfigGen cg=ConfigGen.getSample();
 		MList fu=new MList();
-		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
-			S_Log.prn(2, lb+"");
-			cg.setParam("u_lb", (lb)*1.0/100+"");
-			cg.setParam("u_ub", (lb+5)*1.0/100+"");
-			cg.setParam("mod", (lb+5)+"");
-			String fn=g_path+"/cfg_"+i+".txt";
+			String lab=(lb+5)+"";
+			S_Log.prn(2, lab);
+			cg.setParam("u_lb", (lb)*1.0/100);
+			cg.setParam("u_ub", (lb+5)*1.0/100);
+			cg.setParam("label",lab) ;
+			cg.setParam("fn", g_path+"/taskset_"+lab);
+			String fn=g_path+"/cfg_"+lab+".txt";
 			cg.write(fn);
 			fu.add(fn);
 		}

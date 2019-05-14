@@ -10,7 +10,7 @@ import util.S_Log;
 
 public class ConfigGen {
 	private final String[] g_required={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","num","fn"}; 
+			"tu_lb","tu_ub","num","fn","lab"}; 
 	//"c_lb","c_ub",
 	//"a_lb","a_ub",
 	private HashMap<String,String> param;
@@ -66,7 +66,12 @@ public class ConfigGen {
 //		
 //	}
 	
-	
+	public boolean setParam(String field, double val){
+		return setParam(field,val+"");
+	}
+	public boolean setParam(String field, int val){
+		return setParam(field,val+"");
+	}
 	public boolean setParam(String field, String val){
 		if(Arrays.asList(g_required).contains(field)){
 			param.put(field, val);
@@ -114,15 +119,13 @@ public class ConfigGen {
 	}
 	public static ConfigGen getSample()	{
 		ConfigGen eg=new ConfigGen();
-		eg.setParam("u_lb","0.7");
-		eg.setParam("u_ub","1.0");
-		eg.setParam("tu_lb","0.02");
-		eg.setParam("tu_ub","0.1");
-		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","300");
-		eg.setParam("num","10");
-		eg.setParam("a_lb","0.0");
-		eg.setParam("a_ub","0.3");
+		eg.setParam("u_lb",0.7);
+		eg.setParam("u_ub",1.0);
+		eg.setParam("tu_lb",0.02);
+		eg.setParam("tu_ub",0.1);
+		eg.setParam("p_lb",50);
+		eg.setParam("p_ub",300);
+		eg.setParam("num",10);
 		eg.setParam("fn","com/test1");
 		return eg;
 	}
