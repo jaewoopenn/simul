@@ -1,70 +1,45 @@
 package gen;
 import basic.TaskMng;
-import basic.TaskSetEx;
-import gen.ConfigGen;
-import util.FUtil;
-import util.S_Log;
 import util.S_TEngine;
 
 public class z_SysLoad1 {
-	public static int idx=1;
+//	public static int idx=1;
+//	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=1;
-	public static int total=10;
-	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		ConfigGen cfg=new ConfigGen();
-		cfg.readFile("com/cfg1_copy.txt");
-		String fn=cfg.get_fn();
-		S_Log.prn(1, fn);
-		FUtil f=new FUtil(fn);
-		f.br_open();
-		f.readSplit("------");
-		TaskSetEx.loadView(f);
+		SysLoad sy=new SysLoad("com/test1");
+		sy.load();
 
 		return 1;
 
 	}
 	public int test2() // load
 	{
-		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
-		sy.load();
+		SysLoad sy=new SysLoad("com/test1");
+		sy.open();
+		TaskMng tm=sy.loadOne();
+		tm.prn();
 		return 0;
 	}
 	public int test3() // load one
 	{
-		ConfigGen cfg=new ConfigGen();
-		cfg.readFile("config/cfg1_copy.txt");
-		String fn=cfg.get_fn();
-		S_Log.prn(1, fn);
-		FUtil f=new FUtil(fn);
-		f.br_open();
-		while(true) {
-			boolean b=f.readSplit("------");
-			if(!b) break;
-			TaskSetEx tsf=TaskSetEx.loadFile_in(f);
-			tsf.getTM().prn();
+		SysLoad sy=new SysLoad("com/test1");
+		sy.open();
+		TaskMng tm;
+		while((tm=sy.loadOne())!=null) {
+			tm.prnInfo();
 		}
 
 		return 0;
 	}
 	public  int test4() // load copy\
 	{
-		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
-		sy.open();
-		TaskMng tm=sy.loadOne();
-		tm.prn();
 		return 0;
 	}
 	public  int test5() //
 	{
-		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
-		sy.open();
-		while(true) {
-			TaskMng tm=sy.loadOne();
-			if(tm==null) break;
-			tm.prn();
-		}
 		return 0;
 	}
 	public  int test6() // 
@@ -98,5 +73,7 @@ public class z_SysLoad1 {
 		else
 			S_TEngine.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int total=10;
+	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 
 }

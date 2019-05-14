@@ -56,14 +56,14 @@ public class Platform {
 			if(cfg_fn==null)
 				break;
 			ConfigGen cfg=new ConfigGen();
-			cfg.readFile(cfg_fn);
+			cfg.load(cfg_fn);
 			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
 			sg.gen(fn);
 			fu_ts.add(fn);
-			String mod=cfg.get_mod();
+			String mod=cfg.getLabel();
 			fu_xa.add(mod);
 		}
 		fu_ts.save(g_path+"/"+ts);

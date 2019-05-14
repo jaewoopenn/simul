@@ -63,6 +63,11 @@ public class TaskMng {
 		g_tasks.prn();
 	}
 	
+	public void prnInfo() {
+		String st="num:"+g_tasks.size();
+		st+=" util:"+getUtil();
+		S_Log.prn(1, st);
+	}
 	
 	
 

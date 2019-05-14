@@ -10,14 +10,23 @@ import util.S_Log;
 
 public class ConfigGen {
 	private final String[] g_required={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","num","fn","lab"}; 
-	//"c_lb","c_ub",
-	//"a_lb","a_ub",
+			"tu_lb","tu_ub","num","fn","label"}; 
 	private HashMap<String,String> param;
 	public ConfigGen() {
 		param=new HashMap<String,String>();
 	}
-	public void readFile(String fn) {
+	public String get_fn(){
+		return readPar("fn");
+		
+	}
+
+	public String getLabel() {
+		return readPar("label");
+	}
+
+	
+
+	public void load(String fn) {
 		FUtilSp fu=new FUtilSp(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.size())){
@@ -39,32 +48,6 @@ public class ConfigGen {
 		}
 //			Log.prn(1, s+":"+readPar(s));
 	}
-	public String get_mod() {
-		return readPar("mod").trim();
-		
-	}
-	public String get_fn(){
-		String subfix=readPar("subfix").trim();
-		String mod=get_mod();
-		String fn=subfix+"/taskset_"+mod;
-		return fn;
-		
-	}
-
-	public String get_fn(int i){
-		String subfix=readPar("subfix").trim();
-		String mod=readPar("mod").trim();
-		String fn=subfix+"/"+mod+"/taskset_"+i;
-		return fn;
-		
-	}
-//	public String get_dir(){
-//		String subfix=readPar("subfix").trim();
-//		String mod=readPar("mod").trim();
-//		String fn=subfix+"/"+mod;
-//		return fn;
-//		
-//	}
 	
 	public boolean setParam(String field, double val){
 		return setParam(field,val+"");
@@ -127,6 +110,7 @@ public class ConfigGen {
 		eg.setParam("p_ub",300);
 		eg.setParam("num",10);
 		eg.setParam("fn","com/test1");
+		eg.setParam("label","1");
 		return eg;
 	}
 
