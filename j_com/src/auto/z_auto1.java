@@ -8,15 +8,12 @@ public class z_auto1 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	@SuppressWarnings("unused")
-	private double g_prob;
 	private double g_util_ul;
 	private int g_num;
 	private String g_cfg_list;
 	private String g_ts;
 	private String g_xl;
 	private String g_rs;
-	@SuppressWarnings("unused")
 	private String g_graph;
 	
 	public static void init_s() {
@@ -25,10 +22,6 @@ public class z_auto1 {
 //		int s=3;
 //		int s=4;
 		
-//		int s=1;
-//		int s=5;
-//		int s=6;
-//		int s=7;
 		s_idx=s;
 		
 		s_log_level=1;
@@ -76,17 +69,23 @@ public class z_auto1 {
 	}
 	public  int test4() // anal rs --> graph
 	{
+		init_g();
+		init_anal();
+		DataAnal da=new DataAnal(g_path,0);
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);		
 		return -1;
 	}
-	public  int test5() // gen TS w/ schedulable
+	public  int test5() 
 	{
 		return -1;
 	}
-	public  int test6() // ts --> simul rs
+	public  int test6() 
 	{
 		return -1;
 	}
-	public  int test7()// simul rs --> graph
+	public  int test7()
 	{
 		return -1;
 	}

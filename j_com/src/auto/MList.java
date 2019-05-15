@@ -14,7 +14,7 @@ public class MList {
 	public MList() {
 		g_list=new Vector<String>();
 	}
-	public void add(String s) {
+	public void write(String s) {
 		if(mode==1) {
 			S_Log.err("not add mode");
 		}
@@ -31,6 +31,10 @@ public class MList {
 		cur++;
 		return s;
 	}
+	public String get(int i) {
+		return g_list.get(cur);
+	}	
+	
 	public void load(String fn) {
 	    FUtilSp fu=new FUtilSp(fn);
 	    fu.load();
@@ -55,5 +59,5 @@ public class MList {
 	}
 	public int size() {
 		return g_list.size();
-	}	
+	}
 }
