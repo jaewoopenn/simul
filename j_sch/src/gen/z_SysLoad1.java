@@ -2,7 +2,7 @@ package gen;
 import basic.TaskMng;
 import basic.TaskSetEx;
 import gen.ConfigGen;
-import util.FUtil;
+import util.MFile;
 import util.S_Log;
 import util.S_TEngine;
 
@@ -17,7 +17,7 @@ public class z_SysLoad1 {
 		cfg.readFile();
 		String fn=cfg.get_fn();
 		S_Log.prn(1, fn);
-		FUtil f=new FUtil(fn);
+		MFile f=new MFile(fn);
 		f.br_open();
 		f.readSplit("------");
 		TaskSetEx.loadView(f);
@@ -37,7 +37,7 @@ public class z_SysLoad1 {
 		cfg.readFile();
 		String fn=cfg.get_fn();
 		S_Log.prn(1, fn);
-		FUtil f=new FUtil(fn);
+		MFile f=new MFile(fn);
 		f.br_open();
 		while(true) {
 			boolean b=f.readSplit("------");

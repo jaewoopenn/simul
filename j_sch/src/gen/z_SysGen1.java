@@ -3,7 +3,7 @@ import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
 import util.MOut;
-import util.FUtilSp;
+import util.MFile;
 import util.S_Log;
 import util.S_TEngine;
 
@@ -43,7 +43,7 @@ public class z_SysGen1 {
 	public int test3() 
 	{
 		String path="test/t1/";
-		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
+		MFile fu=new MFile(path+"a_cfg_list.txt");
 		MOut fu_ts=new MOut(path+"a_ts_list.txt");
 		MOut fu_rs=new MOut(path+"a_x_list.txt");
 		fu.load();

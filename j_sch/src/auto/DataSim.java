@@ -7,7 +7,7 @@ import anal.AnalSel;
 import sim.SimulSel;
 import sim.TaskSimul;
 import util.MOut;
-import util.FUtilSp;
+import util.MFile;
 
 public class DataSim {
 	private String g_path;
@@ -20,7 +20,7 @@ public class DataSim {
 		g_max=x;
 	}
 	public void load_x(String fn) {
-		FUtilSp fu=new FUtilSp(g_path+"/"+fn);
+		MFile fu=new MFile(g_path+"/"+fn);
 		fu.load();
 		g_xlen=fu.size();
 		for(int i=0;i<fu.size();i++) {
@@ -30,7 +30,7 @@ public class DataSim {
 		g_rs=new double[10][g_xlen];
 	}
 	public void load_rs(String fn){
-		FUtilSp fu=new FUtilSp(g_path+"/"+fn);
+		MFile fu=new MFile(g_path+"/"+fn);
 		fu.load();
 		int size=fu.size();
 		g_max=size;
@@ -41,7 +41,7 @@ public class DataSim {
 	}
 	
 	public void load(String fn,int idx) {
-		FUtilSp fu=new FUtilSp(fn);
+		MFile fu=new MFile(fn);
 		fu.load();
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
@@ -72,7 +72,7 @@ public class DataSim {
 		
 	}
 	private double process_rs(String rs) {
-		FUtilSp fu=new FUtilSp(rs);
+		MFile fu=new MFile(rs);
 		fu.load();
 		int n=fu.size();
 		double r=0;

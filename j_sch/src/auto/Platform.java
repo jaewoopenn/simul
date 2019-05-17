@@ -12,7 +12,7 @@ import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
 import util.MOut;
-import util.FUtilSp;
+import util.MFile;
 import util.Progressor;
 import util.S_Log;
 
@@ -64,7 +64,7 @@ public class Platform {
 	}
 
 	public void genTS(String cfg_list,String ts, String xaxis) {
-		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
+		MFile fu=new MFile(g_path+"/"+cfg_list);
 		
 		MOut fu_ts=new MOut(g_path+"/"+ts);
 		MOut fu_xa=new MOut(g_path+"/"+xaxis);
@@ -100,7 +100,7 @@ public class Platform {
 	
 	// analyze task set list with algorithm choice
 	public String anal(String ts_list,int sort) {
-		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
+		MFile fu=new MFile(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
 		MOut fu_rs=new MOut(rs_fn);
 		fu.load();
@@ -148,7 +148,7 @@ public class Platform {
 
 	// simulate task set list with algorithm choice
 	public String simul(String ts_list,int sort) {
-		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
+		MFile fu=new MFile(g_path+"/"+ts_list);
 		fu.load();
 		String rs_fn=g_path+"a_sim_list."+sort+".txt";
 		MOut fu_rs=new MOut(rs_fn);

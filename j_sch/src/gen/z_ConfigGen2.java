@@ -1,7 +1,7 @@
 package gen;
 import gen.ConfigGen;
 import util.MOut;
-import util.FUtilSp;
+import util.MFile;
 import util.S_Log;
 import util.S_TEngine;
 
@@ -34,7 +34,7 @@ public class z_ConfigGen2 {
 	public int test2() 
 	{
 		String path="test/t1";
-		FUtilSp fu=new FUtilSp(path+"/list.txt");
+		MFile fu=new MFile(path+"/list.txt");
 		int n=fu.load();
 		S_Log.prn(1, n+" ");
 		fu.view();

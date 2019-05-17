@@ -11,7 +11,7 @@ import gen.SysGen;
 import gen.SysGenMC;
 import gen.SysLoad;
 import util.MOut;
-import util.FUtilSp;
+import util.MFile;
 import util.S_Log;
 import util.S_TEngine;
 
@@ -24,7 +24,7 @@ public class z_Platform1 {
 	// gen task set (
 	public int test1() 
 	{
-		FUtilSp fu=new FUtilSp(g_path+"a_cfg_list.txt");
+		MFile fu=new MFile(g_path+"a_cfg_list.txt");
 		MOut fu_ts=new MOut(g_path+"a_ts_list.txt");
 		MOut fu_rs=new MOut(g_path+"a_x_list.txt");
 		fu.load();
@@ -71,7 +71,7 @@ public class z_Platform1 {
 	
 	public  int test4() 
 	{
-		FUtilSp fu=new FUtilSp(g_path+"a_ts_list.txt");
+		MFile fu=new MFile(g_path+"a_ts_list.txt");
 //		FUtil fu_rs=new FUtil(path+"a_rs_list.txt");
 		fu.load();
 		for(int i=0;i<fu.size();i++) {

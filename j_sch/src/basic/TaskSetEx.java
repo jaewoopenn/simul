@@ -8,8 +8,7 @@ package basic;
 
 
 import util.MOut;
-import util.FUtil;
-import util.FUtilSp;
+import util.MFile;
 import util.S_Log;
 
 public class TaskSetEx {
@@ -89,7 +88,7 @@ public class TaskSetEx {
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 		fu.write(txt);
 	}
-	public static void loadView(FUtil fu) {
+	public static void loadView(MFile fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 	    	S_Log.prn(1,line);
@@ -98,12 +97,12 @@ public class TaskSetEx {
 
 	// import 
 	public static TaskSetEx loadFile(String f) {
-		FUtilSp fu=new FUtilSp(f);
+		MFile fu=new MFile(f);
 	    fu.load();
 	    return TaskSetEx.loadFile_in(fu);
 	}
 	
-	public static TaskSetEx  loadFile_in(FUtil fu) {
+	public static TaskSetEx  loadFile_in(MFile fu) {
 		TaskSeq.reset();
 		TaskSet tasks=new TaskSet();
 		for(int i=0;i<fu.size();i++) {

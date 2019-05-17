@@ -1,6 +1,6 @@
 package anal;
 
-import util.FUtil;
+import util.MFile;
 
 
 
@@ -11,7 +11,7 @@ public class SysAnal {
 	protected String g_path;
 	protected String g_ts_name;
 	public boolean isWrite=true;
-	protected FUtil g_fu;
+	protected MFile g_fu;
 	
 	
 	
