@@ -1,10 +1,10 @@
 package sim;
 
 
-import basic.Task;
-import basic.TaskMng;
 import sim.job.Job;
 import sim.job.JobSimul;
+import task.Task;
+import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 import util.MRand;

@@ -1,7 +1,7 @@
 package anal;
 
-import basic.TaskMng;
 import z_ex.TS_MC1;
+import task.TaskMng;
 import util.SEngineT;
 
 public class z_SysAnal1 {

@@ -1,6 +1,6 @@
 package gen;
-import basic.TaskMng;
 import gen.ConfigGen;
+import task.TaskMng;
 import util.SLog;
 import util.SEngineT;
 

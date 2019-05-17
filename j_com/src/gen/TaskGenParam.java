@@ -1,8 +1,8 @@
 package gen;
 
 
-import basic.Task;
 import util.MRand;
+import task.Task;
 import util.CRange;
 
 

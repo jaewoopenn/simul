@@ -5,11 +5,11 @@ package auto;
 
 
 import anal.AnalEDF_VD;
-import basic.TaskMng;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
 import gen.SysLoad;
+import task.TaskMng;
 import util.MList;
 import util.SLog;
 import util.SEngineT;

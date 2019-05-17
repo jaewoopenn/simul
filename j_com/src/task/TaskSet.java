@@ -1,4 +1,4 @@
-package basic;
+package task;
 
 
 import java.util.Arrays;

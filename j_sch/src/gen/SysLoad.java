@@ -1,8 +1,8 @@
 package gen;
 
-import basic.TaskMng;
-import basic.TaskSetMC;
-import basic.TaskSetUtil;
+import task.TaskMng;
+import task.TaskSetMC;
+import task.TaskSetUtil;
 import util.MFile;
 import util.MList;
 

@@ -1,16 +1,25 @@
-package basic;
+package task;
 
-import util.MList;
-import util.SLog;
 
 /*
- * TaskSetUtil : loadFile saveFile
+ * TaskSetEx : different type of task sets, getTaskMng, saveFile
  * 
  * 
  */
 
+import java.util.Vector;
+
+import util.MFile;
+import util.MList;
+import util.SLog;
 
 public class TaskSetUtil {
+
+
+	
+		
+	
+
 
 
 	// static 
@@ -27,15 +36,13 @@ public class TaskSetUtil {
 		fu.add("------");
 	}
 	
-	
 
 	public static void writeTask(MList fu, Task t) {
-		int isHI=t.is_HI?1:0;
 		String txt=t.period+",";
-		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
+		txt+=(int)t.exec;
 		fu.add(txt);
 	}
-	public static void loadView(MList fu) {
+	public static void loadView(MFile fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 	    	SLog.prn(1,line);
@@ -43,33 +50,31 @@ public class TaskSetUtil {
 	}
 
 	// import 
-	public static TaskSetMC loadFile(String f) {
-	    return loadFile_in(new MList(f));
+	public static TaskSet loadFile(String f) {
+		MFile fu=new MFile(f);
+	    fu.load();
+	    return TaskSetUtil.loadFile_in(fu);
 	}
 	
-	public static TaskSetMC  loadFile_in(MList fu) {
+	public static TaskSet  loadFile_in(MFile fu) {
 		TaskSeq.reset();
-		TaskSet tasks=new TaskSet();
+	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 //	    	Log.prn(1, line);
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return new TaskSetMC(tasks);
+	    return new TaskSet(tasks);
 	}
 	
 	public static Task loadTask(String line){
         String[] words=line.split(",");
         int p=Integer.valueOf(words[0]).intValue();
-        int l=Integer.valueOf(words[1]).intValue();
-        int h=Integer.valueOf(words[2]).intValue();
-        int isHI=Integer.valueOf(words[3]).intValue();
-        if(isHI==1)
-        	return new Task(p,l,h);
-        else
-        	return new Task(p,l);
+        int c=Integer.valueOf(words[1]).intValue();
+    	return new Task(p,c);
 	}
 	
+
 
 }

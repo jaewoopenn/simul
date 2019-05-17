@@ -1,6 +1,6 @@
 package anal;
 
-import basic.TaskMng;
+import task.TaskMng;
 import util.SLog;
 
 public abstract class Anal {

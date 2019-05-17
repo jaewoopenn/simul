@@ -1,8 +1,8 @@
 package gen;
 
-import basic.TaskSet;
-import basic.TaskSetUtil;
 import util.MList;
+import task.TaskSet;
+import task.TaskSetUtil;
 import util.CRange;
 
 public  class SysGen {

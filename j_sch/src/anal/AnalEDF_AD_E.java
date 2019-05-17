@@ -1,9 +1,9 @@
 package anal;
 
-import basic.Task;
-import basic.TaskMng;
-import basic.SysInfo;
 import util.SLog;
+import task.SysInfo;
+import task.Task;
+import task.TaskMng;
 import util.MCal;
 
 public class AnalEDF_AD_E extends Anal {

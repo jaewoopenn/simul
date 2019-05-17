@@ -2,7 +2,7 @@ package anal;
 
 import java.util.Vector;
 
-import basic.Task;
+import task.Task;
 import util.SLog;
 
 public class AnalICG extends Anal {

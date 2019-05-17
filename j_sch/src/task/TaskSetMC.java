@@ -1,4 +1,4 @@
-package basic;
+package task;
 
 /*
  * TaskSetMC : different type of task sets, getTaskMng, saveFile

@@ -1,8 +1,8 @@
 package sample;
 
-import basic.Task;
-import basic.TaskMng;
-import basic.TaskSet;
+import task.Task;
+import task.TaskMng;
+import task.TaskSet;
 
 public class TS1 {
 	public static TaskMng getTM1() {

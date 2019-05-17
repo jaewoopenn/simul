@@ -1,35 +1,34 @@
-package basic;
+package task;
 
-
+import java.util.Vector;
 
 import util.SEngineT;
 
-public class z_TaskMng1 {
+public class z_Task1 {
 	public static int log_level=1;
 	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		TaskSet ts=new TaskSet();
-		ts.add(new Task(3,1));
-		ts.add(new Task(4,1));
-		ts.end();
-		TaskMng tm=new TaskMng(ts);
-		tm.prn();
-		return 0;
+		Vector<Task> tasks=new Vector<Task>();
+		
+		tasks.add(new Task(3,1));
+		tasks.add(new Task(4,1));
+		return tasks.size();
 	}
-	public int test2() //vd
+	
+	public int test2() 
 	{
 		return 0;
 	}
 	public  int test3()
 	{
-		return -1;
+		return 0;
 	}
 	public  int test4()
 	{
-		return -1;
+		return 0;
 	}
 	public  int test5()
 	{
@@ -58,9 +57,9 @@ public class z_TaskMng1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_TaskMng1.class;
-		z_TaskMng1 m=new z_TaskMng1();
-		int[] aret=z_TaskMng1.gret;
+		Class c = z_Task1.class;
+		z_Task1 m=new z_Task1();
+		int[] aret=z_Task1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

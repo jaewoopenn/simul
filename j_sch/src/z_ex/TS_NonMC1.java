@@ -1,9 +1,9 @@
 package z_ex;
 
-import basic.Task;
-import basic.TaskMng;
-import basic.TaskSet;
-import basic.TaskSetMC;
+import task.Task;
+import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetMC;
 
 // Task Set MC
 public class TS_NonMC1 {

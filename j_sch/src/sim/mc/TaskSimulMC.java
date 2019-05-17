@@ -1,12 +1,12 @@
 package sim.mc;
 
 
-import basic.Task;
-import basic.TaskMng;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
 import sim.job.Job;
+import task.Task;
+import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 

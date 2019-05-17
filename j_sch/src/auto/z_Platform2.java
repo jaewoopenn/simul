@@ -7,12 +7,12 @@ package auto;
 
 import anal.Anal;
 import anal.AnalSel;
-import basic.TaskMng;
 import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
 import sim.mc.TaskSimul_EDF_VD;
+import task.TaskMng;
 import gen.SysLoad;
 import util.SLog;
 import util.SEngineT;

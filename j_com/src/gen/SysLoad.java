@@ -1,8 +1,8 @@
 package gen;
 
-import basic.TaskMng;
-import basic.TaskSet;
-import basic.TaskSetUtil;
+import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetUtil;
 import util.MFile;
 
 public class SysLoad {

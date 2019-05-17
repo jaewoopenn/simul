@@ -1,34 +1,35 @@
-package basic;
+package task;
 
-import java.util.Vector;
-
+import gen.SysLoad;
 import util.SEngineT;
+import z_ex.TS_MC1;
 
-public class z_Task1 {
+public class z_TaskMng1 {
 	public static int log_level=1;
 	public static int idx=1;
 	public static int total=10;
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		Vector<Task> tasks=new Vector<Task>();
-		
-		tasks.add(new Task(3,1));
-		tasks.add(new Task(4,1));
-		return tasks.size();
+		SysLoad sy=new SysLoad("test/t1/taskset_65");
+		sy.open();
+		TaskMng tm=sy.loadOne();
+		tm.prnInfo();
+		return -1;
 	}
-	
-	public int test2() 
+	public int test2() //vd
 	{
-		return 0;
+		TaskMng tm=TS_MC1.ts1();
+		tm.prnInfo();
+		return -1;
 	}
 	public  int test3()
 	{
-		return 0;
+		return -1;
 	}
 	public  int test4()
 	{
-		return 0;
+		return -1;
 	}
 	public  int test5()
 	{
@@ -57,9 +58,9 @@ public class z_Task1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Task1.class;
-		z_Task1 m=new z_Task1();
-		int[] aret=z_Task1.gret;
+		Class c = z_TaskMng1.class;
+		z_TaskMng1 m=new z_TaskMng1();
+		int[] aret=z_TaskMng1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

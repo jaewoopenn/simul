@@ -1,7 +1,7 @@
 package comp;
 
 import anal.Anal;
-import basic.TaskMng;
+import task.TaskMng;
 import z_ex.TS_MC1;
 import util.SEngineT;
 

@@ -1,8 +1,8 @@
-package basic;
+package task;
 
-import gen.SysLoad;
+
+
 import util.SEngineT;
-import z_ex.TS_MC1;
 
 public class z_TaskMng1 {
 	public static int log_level=1;
@@ -11,17 +11,17 @@ public class z_TaskMng1 {
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		SysLoad sy=new SysLoad("test/t1/taskset_65");
-		sy.open();
-		TaskMng tm=sy.loadOne();
-		tm.prnInfo();
-		return -1;
+		TaskSet ts=new TaskSet();
+		ts.add(new Task(3,1));
+		ts.add(new Task(4,1));
+		ts.end();
+		TaskMng tm=new TaskMng(ts);
+		tm.prn();
+		return 0;
 	}
 	public int test2() //vd
 	{
-		TaskMng tm=TS_MC1.ts1();
-		tm.prnInfo();
-		return -1;
+		return 0;
 	}
 	public  int test3()
 	{

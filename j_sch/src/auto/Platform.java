@@ -2,7 +2,6 @@ package auto;
 
 import anal.Anal;
 import anal.AnalSel;
-import basic.TaskMng;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
@@ -11,6 +10,7 @@ import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
+import task.TaskMng;
 import util.MList;
 import util.CProg;
 import util.SLog;

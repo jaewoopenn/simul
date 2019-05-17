@@ -3,8 +3,8 @@ package gen;
 
 import anal.Anal;
 import anal.AnalEDF_VD;
-import basic.TaskMng;
-import basic.TaskSetMC;
+import task.TaskMng;
+import task.TaskSetMC;
 
 public class SysGenMC extends SysGen {
 	public SysGenMC(ConfigGen cfg) {

@@ -1,8 +1,8 @@
 package sim.mc;
 
 
-import basic.Task;
 import util.SLog;
+import task.Task;
 import util.MCal;
 
 public class TaskSimul_EDF_AD_E extends TaskSimulMC{

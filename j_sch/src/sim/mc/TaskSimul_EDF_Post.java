@@ -1,14 +1,7 @@
 package sim.mc;
 
-/*
- * implement MC Post sch algo
- * 
- * 
- * 
- * 
- */
-import basic.Task;
 import util.SLog;
+import task.Task;
 import util.MCal;
 
 public class TaskSimul_EDF_Post extends TaskSimulMC{

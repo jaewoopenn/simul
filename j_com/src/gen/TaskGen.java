@@ -2,8 +2,8 @@ package gen;
 
 import java.util.Vector;
 
-import basic.Task;
-import basic.TaskSet;
+import task.Task;
+import task.TaskSet;
 
 public class TaskGen {
 	protected TaskGenParam g_param;

@@ -1,7 +1,7 @@
 package gen;
 
 
-import basic.Task;
+import task.Task;
 import util.SLog;
 
 public class TaskGenMC extends TaskGen {

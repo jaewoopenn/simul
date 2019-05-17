@@ -1,7 +1,7 @@
 package anal;
 
-import basic.TaskMng;
-import basic.SysInfo;
+import task.SysInfo;
+import task.TaskMng;
 import util.SLog;
 
 public class AnalEDF_VD extends Anal {

@@ -1,8 +1,7 @@
-package basic;
+package task;
 
-
-import basic.Task;
 import util.SLog;
+import task.Task;
 import util.SEngineT;
 
 public class z_TaskSeq1 {
@@ -24,8 +23,9 @@ public class z_TaskSeq1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSet tme=new TaskSet(tmp.getVec());
-		tme.prn();
+		TaskSetMC tme=new TaskSetMC(tmp);
+		TaskMng tm=tme.getTM();
+		tm.prn();
 		return 0;
 		
 	}

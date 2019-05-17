@@ -1,5 +1,5 @@
 package gen;
-import basic.TaskMng;
+import task.TaskMng;
 import util.SEngineT;
 
 public class z_SysLoad1 {

@@ -2,9 +2,9 @@ package anal;
 // based on EDF-AD-E
 
 
-import basic.Task;
-import basic.SysInfo;
 import util.SLog;
+import task.SysInfo;
+import task.Task;
 import util.MCal;
 
 public class AnalMP extends Anal {
