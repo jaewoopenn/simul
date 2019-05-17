@@ -3,7 +3,7 @@ package auto;
 import java.util.Vector;
 
 import util.FOut;
-import util.FUtilSp;
+import util.MFile;
 import util.MLoop;
 import util.S_Log;
 
@@ -36,7 +36,7 @@ public class MList {
 	}	
 	
 	public void load(String fn) {
-	    FUtilSp fu=new FUtilSp(fn);
+		MFile fu=new MFile(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.size())){
 	    	String line=fu.get(i);

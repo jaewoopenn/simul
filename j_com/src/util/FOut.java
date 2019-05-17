@@ -11,7 +11,7 @@ public class FOut {
 	
 	public FOut(String file) {
 		try {
-			g_writer = new PrintWriter(FUtil.path+file);
+			g_writer = new PrintWriter(MFile.path+file);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

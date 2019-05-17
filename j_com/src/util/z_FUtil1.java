@@ -7,14 +7,14 @@ public class z_FUtil1 {
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() // gen
 	{
-		FUtilSp f=new FUtilSp("test\\t\\taskset");
+		MFile f=new MFile("test\\t\\taskset");
 		f.load();
 		return 1;
 
 	}
 	public int test2() // load
 	{
-		FUtil f=new FUtil("test\\t\\taskset");
+		MFile f=new MFile("test\\t\\taskset");
 		f.br_open();
 		String s=f.read();
 		S_Log.prn(1, s);
@@ -23,7 +23,7 @@ public class z_FUtil1 {
 	}
 	public int test3() // load one
 	{
-		FUtil f=new FUtil("test\\t\\taskset");
+		MFile f=new MFile("test\\t\\taskset");
 		f.br_open();
 		f.readSplit("------");
 		f.view();
