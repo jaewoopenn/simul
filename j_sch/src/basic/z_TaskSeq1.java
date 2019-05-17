@@ -23,7 +23,7 @@ public class z_TaskSeq1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetEx tme=new TaskSetEx(tmp);
+		TaskSetMC tme=new TaskSetMC(tmp);
 		TaskMng tm=tme.getTM();
 		tm.prn();
 		return 0;

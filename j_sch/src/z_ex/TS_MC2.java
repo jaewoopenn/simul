@@ -3,7 +3,7 @@ package z_ex;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSet;
-import basic.TaskSetEx;
+import basic.TaskSetMC;
 
 // Task Set MC
 public class TS_MC2 {
@@ -13,7 +13,7 @@ public class TS_MC2 {
 		tmp.add(new Task(8,4));
 		tmp.add(new Task(12,1,2));
 		tmp.add(new Task(13,1,7));
-		TaskSetEx tme=new TaskSetEx(tmp);
+		TaskSetMC tme=new TaskSetMC(tmp);
 		return tme.getTM();
 	}
 
@@ -23,7 +23,7 @@ public class TS_MC2 {
 		tmp.add(new Task(12,3));
 		tmp.add(new Task(20,1,6));
 		tmp.add(new Task(17,1,7));
-		TaskSetEx tme=new TaskSetEx(tmp);
+		TaskSetMC tme=new TaskSetMC(tmp);
 		return tme.getTM();
 	}
 

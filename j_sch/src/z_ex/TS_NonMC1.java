@@ -3,7 +3,7 @@ package z_ex;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSet;
-import basic.TaskSetEx;
+import basic.TaskSetMC;
 
 // Task Set MC
 public class TS_NonMC1 {
@@ -11,7 +11,7 @@ public class TS_NonMC1 {
 		TaskSet tm=new TaskSet();
 		tm.add(new Task(3,1));
 		tm.add(new Task(4,2));
-		TaskSetEx tme=new TaskSetEx(tm);
+		TaskSetMC tme=new TaskSetMC(tm);
 		return tme.getTM();
 	}
 	
@@ -19,7 +19,7 @@ public class TS_NonMC1 {
 		TaskSet tm=new TaskSet();
 		tm.add(new Task(3,1));
 		tm.add(new Task(4,3));
-		TaskSetEx tme=new TaskSetEx(tm);
+		TaskSetMC tme=new TaskSetMC(tm);
 		return tme.getTM();
 	}
 	public static TaskMng ts3()
@@ -28,7 +28,7 @@ public class TS_NonMC1 {
 		tm.add(new Task(3,1));
 		tm.add(new Task(4,1));
 		tm.add(new Task(5,1));
-		TaskSetEx tme=new TaskSetEx(tm);
+		TaskSetMC tme=new TaskSetMC(tm);
 		return tme.getTM();
 	}
 	public static TaskMng ts4()
@@ -39,14 +39,14 @@ public class TS_NonMC1 {
 		tm.add(new Task(3,1));
 		tm.add(new Task(210,18));
 		tm.add(new Task(19,3));
-		TaskSetEx tme=new TaskSetEx(tm);
+		TaskSetMC tme=new TaskSetMC(tm);
 		return tme.getTM();
 	}
 	public static TaskMng ts5()	{
 		TaskSet tm=new TaskSet();
 		tm.add(new Task(3,1));
 		tm.add(new Task(4,1));
-		TaskSetEx tme=new TaskSetEx(tm);
+		TaskSetMC tme=new TaskSetMC(tm);
 		return tme.getTM();
 	}
 }

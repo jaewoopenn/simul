@@ -21,6 +21,13 @@ public class TaskSet {
 	public TaskSet(){
 		g_taskV=new Vector<Task>();
 	}
+	public TaskSet(Vector<Task> all_tasks) {
+		g_taskV=new Vector<Task>();
+		for(Task t:all_tasks) {
+			add(t);
+		}
+	}
+	
 	public void add(Task t){
 		g_taskV.add(t);
 	}

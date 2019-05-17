@@ -1,7 +1,7 @@
 package basic;
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskSetEx;
+import basic.TaskSetMC;
 import util.SEngineT;
 
 public class z_TaskSetFile1 {
@@ -13,15 +13,15 @@ public class z_TaskSetFile1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetEx tme=new TaskSetEx(tmp);
+		TaskSetMC tme=new TaskSetMC(tmp);
 		TaskMng tm=tme.getTM();
 		tm.prn();
-		TaskSetEx.writeFile("test/test.txt",tm.getTasks());
+		TaskSetUtil.writeFile("test/test.txt",tm.getTasks());
 		return 1;
 	}
 	public int test2()
 	{
-		TaskSetEx tmp=TaskSetEx.loadFile("test/test.txt");
+		TaskSetMC tmp=TaskSetUtil.loadFile("test/test.txt");
 		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return 0;

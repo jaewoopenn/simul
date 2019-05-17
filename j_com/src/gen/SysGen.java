@@ -1,7 +1,7 @@
 package gen;
 
 import basic.TaskSet;
-import basic.TaskSetEx;
+import basic.TaskSetUtil;
 import util.MList;
 import util.CRange;
 
@@ -54,7 +54,7 @@ public  class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
-		TaskSetEx.writeTS(fu, ts.getArr());
+		TaskSetUtil.writeTS(fu, ts.getArr());
 		
 		return 1;
 	}

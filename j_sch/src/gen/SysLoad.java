@@ -1,7 +1,8 @@
 package gen;
 
 import basic.TaskMng;
-import basic.TaskSetEx;
+import basic.TaskSetMC;
+import basic.TaskSetUtil;
 import util.MFile;
 import util.MList;
 
@@ -23,7 +24,7 @@ public class SysLoad {
 			return null;
 		MList ml=new MList();
 		ml.copy(g_fu);
-		TaskSetEx tsf=TaskSetEx.loadFile_in(ml);
+		TaskSetMC tsf=TaskSetUtil.loadFile_in(ml);
 		return tsf.getTM();
 		
 	}

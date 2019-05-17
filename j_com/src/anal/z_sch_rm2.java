@@ -20,7 +20,7 @@ public class z_sch_rm2 {
 //		TaskMng tm=TS1.getTM2();
 		int p=3;
 		int end_t=5;
-		double exec=Util_RM.getExec(tm,p,1,end_t);
+		double exec=AnalRM.getExec(tm.getArr(),p,1,end_t);
 		String st="exec:"+exec;
 		SLog.prn(2,st );
 		return 0;
@@ -33,7 +33,7 @@ public class z_sch_rm2 {
 //		PRM p=new PRM(3,1.667);
 //		PRM p=new PRM(3,2.334);
 		int end_t=5;
-		double req=Util_RM.computeRBF(tm, 1, end_t);
+		double req=AnalRM.computeRBF(tm.getArr(), 1, end_t);
 		double sup=p.sbf(end_t);
 		String st="t:"+end_t;
 		st+=" req:"+req;
@@ -45,7 +45,7 @@ public class z_sch_rm2 {
 	{
 		TaskMng tm=TS1.getTM1();
 		int p=3;
-		double exec=Util_RM.getExec(tm,p);
+		double exec=AnalRM.getExec(tm.getArr(),p);
 		String st="exec:"+exec;
 		SLog.prn(2,st );
 		return 0;

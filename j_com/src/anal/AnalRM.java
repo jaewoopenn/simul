@@ -3,18 +3,16 @@ package anal;
 import com.PRM;
 
 import basic.Task;
-import basic.TaskMng;
 import util.SLog;
 
-public class Util_RM {
-	public static double computeRBF(TaskMng tm,int i, int t) {
-		Task[] ts=tm.getArr();
+public class AnalRM {
+	public static double computeRBF(Task[] tm,int i, int t) {
 		double r=0;
 		for(int j=0;j<=i;j++) {
 			if(j==i) {
-				r+=ts[j].exec;
+				r+=tm[j].exec;
 			} else {
-				r+=Math.floor(t*1.0/ts[j].period)*ts[j].exec;
+				r+=Math.floor(t*1.0/tm[j].period)*tm[j].exec;
 				
 			}
 		}
@@ -22,12 +20,12 @@ public class Util_RM {
 		return r;
 	}
 
-	public static boolean checkSch_ind(PRM p, TaskMng tm, int i, int end_t) {
+	public static boolean checkSch_ind(PRM p, Task[] tm, int i, int end_t) {
 		int log_lv=1;
 		SLog.prn(log_lv, "t \t sup \t req ");
 		for(int t=1;t<=end_t;t++) {
+			double r=computeRBF(tm,i,t);
 			double s=p.sbf(t);
-			double r=Util_RM.computeRBF(tm,i,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r) {
 				st+=">>>>>";
@@ -42,9 +40,9 @@ public class Util_RM {
 		return false;
 	}
 
-	public static boolean checkSch(PRM p, TaskMng tm) {
-		for(int i=0;i<tm.size();i++) {
-			int end_t=tm.getTask(i).period;
+	public static boolean checkSch(PRM p, Task[] tm) {
+		for(int i=0;i<tm.length;i++) {
+			int end_t=tm[i].period;
 			if(!checkSch_ind(p,tm,i,end_t))
 				return false; // 하나라도 안되면 실패
 				
@@ -52,10 +50,10 @@ public class Util_RM {
 		return true; // 모두 성공하면 OK
 	}
 
-	public static double getExec(TaskMng tm, int p) {
+	public static double getExec(Task[] tm, int p) {
 		double exec=0;
-		for(int i=0;i<tm.size();i++) {
-			int end_t=tm.getTask(i).period;
+		for(int i=0;i<tm.length;i++) {
+			int end_t=tm[i].period;
 			double exec1=p;
 			
 			for(int t=1;t<=end_t;t++) {
@@ -72,13 +70,13 @@ public class Util_RM {
 		return exec;
 	}
 
-	public static double getExec(TaskMng tm, int pi, int i, int t) {
+	public static double getExec(Task[] tm, int pi, int i, int t) {
+		double req=computeRBF(tm,i,t);
 		int kp1=t/pi;
 		int kp2=kp1-1;
 		if (kp2<0)
 			kp2=0;
 		String st="";
-		double req=Util_RM.computeRBF(tm,i,t);
 		st+="req:"+req;
 		st+=" kp1:"+kp1;
 		st+=" kp2:"+kp2;

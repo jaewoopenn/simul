@@ -21,7 +21,7 @@ public class z_rbf1 {
 		TaskMng tm=new TaskMng(ts);
 		
 		for(int t=0;t<12;t++) {
-			double r=Util_RM.computeRBF(tm,2,t);
+			double r=AnalRM.computeRBF(tm.getArr(),2,t);
 			SLog.prnc(1, "t:"+t);
 			SLog.prn(1, " r:"+r);
 		}

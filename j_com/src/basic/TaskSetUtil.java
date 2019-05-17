@@ -13,27 +13,10 @@ import util.MFile;
 import util.MList;
 import util.SLog;
 
-public class TaskSetEx {
-	private TaskSet g_tasks;
+public class TaskSetUtil {
 
 
-	public TaskSetEx(Vector<Task> all_tasks) {
-		g_tasks=new TaskSet();
-		for(int i=0;i<all_tasks.size();i++) {
-			g_tasks.add(all_tasks.get(i));
-		}
-	}
 	
-	public void stat(){
-		SLog.prn(2, g_tasks.v_size());
-	}
-	
-	// export 
-	public TaskMng getTM()
-	{
-		g_tasks.end();
-		return new TaskMng(g_tasks);
-	}
 		
 	
 
@@ -67,13 +50,13 @@ public class TaskSetEx {
 	}
 
 	// import 
-	public static TaskSetEx loadFile(String f) {
+	public static TaskSet loadFile(String f) {
 		MFile fu=new MFile(f);
 	    fu.load();
-	    return TaskSetEx.loadFile_in(fu);
+	    return TaskSetUtil.loadFile_in(fu);
 	}
 	
-	public static TaskSetEx  loadFile_in(MFile fu) {
+	public static TaskSet  loadFile_in(MFile fu) {
 		TaskSeq.reset();
 	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {
@@ -82,7 +65,7 @@ public class TaskSetEx {
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return new TaskSetEx(tasks);
+	    return new TaskSet(tasks);
 	}
 	
 	public static Task loadTask(String line){

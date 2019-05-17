@@ -2,7 +2,7 @@ package basic;
 
 import basic.Task;
 import basic.TaskMng;
-import basic.TaskSetEx;
+import basic.TaskSetUtil;
 import util.SEngineT;
 
 public class z_TaskSetEx1 {
@@ -14,16 +14,16 @@ public class z_TaskSetEx1 {
 		TaskSet tmp=new TaskSet();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetEx tme=new TaskSetEx(tmp.getVec());
-		TaskMng tm=tme.getTM();
+		TaskSet tme=new TaskSet(tmp.getVec());
+		TaskMng tm=new TaskMng(tme);
 		tm.prn();
-		TaskSetEx.writeFile("test/test.txt",tm.getArr());
+		TaskSetUtil.writeFile("test/test.txt",tm.getArr());
 		return 1;
 	}
 	public int test2()
 	{
-		TaskSetEx tmp=TaskSetEx.loadFile("test/test.txt");
-		TaskMng tm=tmp.getTM();
+		TaskSet tmp=TaskSetUtil.loadFile("test/test.txt");
+		TaskMng tm=new TaskMng(tmp);
 		tm.prn();
 		return 0;
 	}

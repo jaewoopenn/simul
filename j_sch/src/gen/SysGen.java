@@ -1,7 +1,7 @@
 package gen;
 
 import basic.TaskSet;
-import basic.TaskSetEx;
+import basic.TaskSetUtil;
 import util.MList;
 
 public abstract class SysGen {
@@ -52,7 +52,7 @@ public abstract class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
-		TaskSetEx.writeTS(fu, ts.getArr());
+		TaskSetUtil.writeTS(fu, ts.getArr());
 		
 		return 1;
 	}

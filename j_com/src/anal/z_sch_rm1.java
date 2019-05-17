@@ -21,7 +21,7 @@ public class z_sch_rm1 {
 		SLog.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
 			double s=p.sbf(t);
-			double r=Util_RM.computeRBF(tm,1,t);
+			double r=AnalRM.computeRBF(tm.getArr(),1,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r)
 				st+=">>>>>";
@@ -37,7 +37,7 @@ public class z_sch_rm1 {
 //		PRM p=new PRM(3,1);
 		TaskMng tm=TS1.getTM1();
 		String st="";
-		if(Util_RM.checkSch_ind(p,tm,1,13))
+		if(AnalRM.checkSch_ind(p,tm.getArr(),1,13))
 			st+="OK";
 		else
 			st+="Not OK";
@@ -50,7 +50,7 @@ public class z_sch_rm1 {
 		PRM p=new PRM(3,2);
 		TaskMng tm=TS1.getTM1();
 		String st="";
-		if(Util_RM.checkSch(p,tm))
+		if(AnalRM.checkSch(p,tm.getArr()))
 			st+="OK";
 		else
 			st+="Not OK";
@@ -61,7 +61,7 @@ public class z_sch_rm1 {
 	{
 		TaskMng tm=TS1.getTM1();
 		int p=3;
-		double exec=Util_RM.getExec(tm,p);
+		double exec=AnalRM.getExec(tm.getArr(),p);
 		String st="exec:"+exec;
 		SLog.prn(2,st );
 		
@@ -72,7 +72,7 @@ public class z_sch_rm1 {
 		TaskMng tm=TS1.getTM1();
 		PRM p=new PRM(3,1.6667);
 		String st="";
-		if(Util_RM.checkSch(p,tm))
+		if(AnalRM.checkSch(p,tm.getArr()))
 			st+="OK";
 		else
 			st+="Not OK";
