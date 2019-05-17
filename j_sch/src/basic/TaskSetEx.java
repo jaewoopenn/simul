@@ -7,7 +7,7 @@ package basic;
  */
 
 
-import util.FOut;
+import util.MOut;
 import util.FUtil;
 import util.FUtilSp;
 import util.S_Log;
@@ -69,13 +69,13 @@ public class TaskSetEx {
 
 	// static 
 	public static void writeFile(String fn,Task[] tasks){
-		FOut fu=new FOut(fn);
+		MOut fu=new MOut(fn);
 		for(Task t:tasks)
 			writeTask(fu,t);
 		fu.save();
 	}
 	
-	public static void writeTS(FOut fu,Task[] tasks){
+	public static void writeTS(MOut fu,Task[] tasks){
 		for(Task t:tasks)
 			writeTask(fu,t);
 		fu.write("------");
@@ -83,7 +83,7 @@ public class TaskSetEx {
 	
 	
 
-	public static void writeTask(FOut fu, Task t) {
+	public static void writeTask(MOut fu, Task t) {
 		int isHI=t.is_HI?1:0;
 		String txt=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;

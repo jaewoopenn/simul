@@ -2,6 +2,9 @@ package auto;
 
 import java.util.Vector;
 
+import util.MList;
+import util.FOut;
+
 
 public class DataAnal {
 	private String g_path;
@@ -50,7 +53,7 @@ public class DataAnal {
 	}
 	
 	public void save(String fn) {
-		MList fu=new MList();
+		FOut fu=new FOut(g_path+"/"+fn);
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
@@ -66,7 +69,7 @@ public class DataAnal {
 			fu.write(str);
 //			Log.prn(1, str);
 		}
-		fu.save(g_path+"/"+fn);
+		fu.save();
 		
 	}
 	private double process_rs(String rs) {

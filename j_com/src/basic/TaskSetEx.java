@@ -9,8 +9,8 @@ package basic;
 
 import java.util.Vector;
 
-import util.FOut;
 import util.MFile;
+import util.MList;
 import util.S_Log;
 
 public class TaskSetEx {
@@ -41,23 +41,23 @@ public class TaskSetEx {
 
 	// static 
 	public static void writeFile(String fn,Task[] tasks){
-		FOut fu=new FOut(fn);
+		MList fu=new MList();
 		for(Task t:tasks)
 			writeTask(fu,t);
-		fu.save();
+		fu.save(fn);
 	}
 	
-	public static void writeTS(FOut fu,Task[] tasks){
+	public static void writeTS(MList fu,Task[] tasks){
 		for(Task t:tasks)
 			writeTask(fu,t);
-		fu.write("------");
+		fu.add("------");
 	}
 	
 
-	public static void writeTask(FOut fu, Task t) {
+	public static void writeTask(MList fu, Task t) {
 		String txt=t.period+",";
 		txt+=(int)t.exec;
-		fu.write(txt);
+		fu.add(txt);
 	}
 	public static void loadView(MFile fu) {
 		for(int i=0;i<fu.size();i++) {

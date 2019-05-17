@@ -6,10 +6,10 @@ import java.io.PrintWriter;
 
 */
 
-public class FOut {
+public class MOut {
 	private PrintWriter g_writer=null;
 	
-	public FOut(String file) {
+	public MOut(String file) {
 		try {
 			g_writer = new PrintWriter(FUtil.path+file);
 			

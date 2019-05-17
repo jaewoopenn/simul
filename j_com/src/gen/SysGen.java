@@ -2,7 +2,7 @@ package gen;
 
 import basic.TaskSet;
 import basic.TaskSetEx;
-import util.FOut;
+import util.MList;
 import util.Ranger;
 
 public  class SysGen {
@@ -34,8 +34,8 @@ public  class SysGen {
 //		String fn=g_cfg.get_dir();
 //		Log.prn(2, fn);
 //		FUtil.makeDir(fn);
-		FOut fu=new FOut(fn);
-		fu.write(num+"");
+		MList fu=new MList();
+		fu.add(num+"");
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();
@@ -47,10 +47,10 @@ public  class SysGen {
 			
 			i++;
 		}
-		fu.save();
+		fu.save(fn);
 	}
 	
-	public int writeSys(FOut fu)
+	public int writeSys(MList fu)
 	{
 		
 		TaskSet ts=g_tg.getTS();

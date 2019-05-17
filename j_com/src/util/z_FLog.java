@@ -23,10 +23,10 @@ public class z_FLog {
 	}
 	public int test3() 
 	{
-		FOut f=new FOut("test/out.txt");
-		f.write("hihi");
-		f.write("hihi2");
-		f.save();
+		MList f=new MList();
+		f.add("hihi");
+		f.add("hihi2");
+		f.save("test/out.txt");
 		return 0;
 	}
 	public  int test4() 

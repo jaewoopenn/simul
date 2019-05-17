@@ -23,7 +23,7 @@ public class z_FLog {
 	}
 	public int test3() 
 	{
-		FOut f=new FOut("test/out.txt");
+		MOut f=new MOut("test/out.txt");
 		f.write("hihi");
 		f.write("hihi2");
 		f.save();

@@ -3,7 +3,7 @@ package gen;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import util.FOut;
+import util.MOut;
 import util.FUtilSp;
 import util.S_Log;
 import util.MUtil;
@@ -98,7 +98,7 @@ public class ConfigGen {
 		if(g_fn==null) {
 			S_Log.err("configGen: filename is not set");
 		}
-		FOut fu=new FOut(g_fn);
+		MOut fu=new MOut(g_fn);
 		for (String s:g_predefined){
 			String v=readPar(s);
 			if(v==null){

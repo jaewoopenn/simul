@@ -2,7 +2,7 @@ package gen;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
-import util.FOut;
+import util.MOut;
 import util.FUtilSp;
 import util.S_Log;
 import util.S_TEngine;
@@ -44,8 +44,8 @@ public class z_SysGen1 {
 	{
 		String path="test/t1/";
 		FUtilSp fu=new FUtilSp(path+"a_cfg_list.txt");
-		FOut fu_ts=new FOut(path+"a_ts_list.txt");
-		FOut fu_rs=new FOut(path+"a_x_list.txt");
+		MOut fu_ts=new MOut(path+"a_ts_list.txt");
+		MOut fu_rs=new MOut(path+"a_x_list.txt");
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");

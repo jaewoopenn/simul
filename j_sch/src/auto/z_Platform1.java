@@ -10,7 +10,7 @@ import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
 import gen.SysLoad;
-import util.FOut;
+import util.MOut;
 import util.FUtilSp;
 import util.S_Log;
 import util.S_TEngine;
@@ -25,8 +25,8 @@ public class z_Platform1 {
 	public int test1() 
 	{
 		FUtilSp fu=new FUtilSp(g_path+"a_cfg_list.txt");
-		FOut fu_ts=new FOut(g_path+"a_ts_list.txt");
-		FOut fu_rs=new FOut(g_path+"a_x_list.txt");
+		MOut fu_ts=new MOut(g_path+"a_ts_list.txt");
+		MOut fu_rs=new MOut(g_path+"a_x_list.txt");
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
@@ -114,7 +114,7 @@ public class z_Platform1 {
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
 		ConfigGen eg=ConfigGen.getPredefined();
-		FOut fu=new FOut(path+cf);
+		MOut fu=new MOut(path+cf);
 		eg.setParam("subfix", path);
 		eg.setParam("num","100");
 		int base=50;

@@ -2,6 +2,7 @@ package auto;
 
 import gen.ConfigGen;
 import gen.SysGen;
+import util.MList;
 import util.S_Log;
 
 public class Platform {
@@ -37,7 +38,7 @@ public class Platform {
 			cg.setParam("fn", g_path+"/taskset_"+lab+".txt");
 			String fn=g_path+"/cfg_"+lab+".txt";
 			cg.write(fn);
-			fu.write(fn);
+			fu.add(fn);
 		}
 		fu.save(g_path+"/"+cfg_list);
 		
@@ -62,9 +63,9 @@ public class Platform {
 			if(g_isCheck)
 				sg.setCheck();
 			sg.gen(fn);
-			fu_ts.write(fn);
+			fu_ts.add(fn);
 			String mod=cfg.getLabel();
-			fu_xa.write(mod);
+			fu_xa.add(mod);
 		}
 		fu_ts.save(g_path+"/"+ts);
 		fu_xa.save(g_path+"/"+xaxis);
@@ -75,7 +76,7 @@ public class Platform {
 		MList fu=new MList();
 		for(int i=0;i<end;i++){
 			String rs=anal(ts_list,i);
-			fu.write(rs);
+			fu.add(rs);
 		}
 		fu.save(g_path+"/"+rs_list);
 		
@@ -91,7 +92,7 @@ public class Platform {
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
 			anal_one(fn,out);
-			fu_rs.write(out);
+			fu_rs.add(out);
 		}		
 		fu_rs.save(rs_fn);
 		return rs_fn;

@@ -11,7 +11,7 @@ import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
-import util.FOut;
+import util.MOut;
 import util.FUtilSp;
 import util.Progressor;
 import util.S_Log;
@@ -45,7 +45,7 @@ public class Platform {
 		int step=5;
 		double end_i=(ul*100-50)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
-		FOut fu=new FOut(g_path+"/"+cf);
+		MOut fu=new MOut(g_path+"/"+cf);
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
@@ -66,8 +66,8 @@ public class Platform {
 	public void genTS(String cfg_list,String ts, String xaxis) {
 		FUtilSp fu=new FUtilSp(g_path+"/"+cfg_list);
 		
-		FOut fu_ts=new FOut(g_path+"/"+ts);
-		FOut fu_xa=new FOut(g_path+"/"+xaxis);
+		MOut fu_ts=new MOut(g_path+"/"+ts);
+		MOut fu_xa=new MOut(g_path+"/"+xaxis);
 		fu.load();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
@@ -90,7 +90,7 @@ public class Platform {
 	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
-		FOut fu=new FOut(g_path+"/"+rs_list);
+		MOut fu=new MOut(g_path+"/"+rs_list);
 		for(int i=0;i<end;i++){
 			String rs=anal(ts_list,i);
 			fu.write(rs);
@@ -102,7 +102,7 @@ public class Platform {
 	public String anal(String ts_list,int sort) {
 		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
-		FOut fu_rs=new FOut(rs_fn);
+		MOut fu_rs=new MOut(rs_fn);
 		fu.load();
 		Anal a=AnalSel.getAnal(sort);
 		for(int i=0;i<fu.size();i++) {
@@ -119,7 +119,7 @@ public class Platform {
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
-		FOut fu=new FOut(out);
+		MOut fu=new MOut(out);
 		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
@@ -138,7 +138,7 @@ public class Platform {
 	
 	//simulation
 	public void sim_loop(String rs_list,String ts_list, int end) {
-		FOut fu=new FOut(g_path+"/"+rs_list);
+		MOut fu=new MOut(g_path+"/"+rs_list);
 		for(int i=0;i<end;i++){
 			String rs=simul(ts_list,i);
 			fu.write(rs);
@@ -151,7 +151,7 @@ public class Platform {
 		FUtilSp fu=new FUtilSp(g_path+"/"+ts_list);
 		fu.load();
 		String rs_fn=g_path+"a_sim_list."+sort+".txt";
-		FOut fu_rs=new FOut(rs_fn);
+		MOut fu_rs=new MOut(rs_fn);
 		
 		Anal a=AnalSel.getAnal(sort);
 		TaskSimul s=SimulSel.getSim(sort);
@@ -174,7 +174,7 @@ public class Platform {
 		Progressor prog=new Progressor(num);
 		prog.setLog(2);
 		prog.setPercent();
-		FOut fu=new FOut(out);
+		MOut fu=new MOut(out);
 		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;

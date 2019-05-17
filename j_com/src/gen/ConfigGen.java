@@ -3,9 +3,9 @@ package gen;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import util.FOut;
 import util.MFile;
 import util.MLoop;
+import util.FOut;
 import util.S_Log;
 
 public class ConfigGen {

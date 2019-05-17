@@ -1,6 +1,6 @@
 package gen;
 import gen.ConfigGen;
-import util.FOut;
+import util.MOut;
 import util.FUtilSp;
 import util.S_Log;
 import util.S_TEngine;
@@ -13,7 +13,7 @@ public class z_ConfigGen2 {
 	{
 		ConfigGen eg=ConfigGen.getPredefined();
 		String path="test/t1";
-		FOut fu=new FOut(path+"/a_cfg_list.txt");
+		MOut fu=new MOut(path+"/a_cfg_list.txt");
 		eg.setParam("subfix", path);
 		eg.setParam("num","10");
 		int base=50;
