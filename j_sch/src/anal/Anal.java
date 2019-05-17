@@ -1,7 +1,7 @@
 package anal;
 
 import basic.TaskMng;
-import util.S_Log;
+import util.SLog;
 
 public abstract class Anal {
 	protected String g_name="";
@@ -27,7 +27,7 @@ public abstract class Anal {
 	
 	public void proceed_if_sch() {
 		if(!is_sch()) {
-			S_Log.err("not schedulable");
+			SLog.err("not schedulable");
 		}
 
 	}

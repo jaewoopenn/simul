@@ -2,8 +2,8 @@ package basic;
 import java.util.Vector;
 
 import basic.Task;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_Task1 {
 	public static int log_level=1;
@@ -28,16 +28,16 @@ public class z_Task1 {
 	{
 		Task t=new Task(3,0);
 		t.prn();
-		S_Log.prn(1, " "+t.check());
+		SLog.prn(1, " "+t.check());
 		return 0;
 	}
 	public  int test4()
 	{
 		Task t=new Task(3,1,2);
 		t.setVD(2);
-		S_Log.prn(1," "+t.getLoUtil());
-		S_Log.prn(1," "+t.getLoVdUtil());
-		S_Log.prn(1," "+t.getHiUtil());
+		SLog.prn(1," "+t.getLoUtil());
+		SLog.prn(1," "+t.getLoVdUtil());
+		SLog.prn(1," "+t.getHiUtil());
 		return 0;
 	}
 	public  int test5()
@@ -71,9 +71,9 @@ public class z_Task1 {
 		z_Task1 m=new z_Task1();
 		int[] aret=z_Task1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

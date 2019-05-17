@@ -1,6 +1,6 @@
 package gen;
 import basic.TaskMng;
-import util.S_TEngine;
+import util.SEngineT;
 
 public class z_SysLoad1 {
 //	public static int idx=1;
@@ -69,9 +69,9 @@ public class z_SysLoad1 {
 		z_SysLoad1 m=new z_SysLoad1();
 		int[] aret=z_SysLoad1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};

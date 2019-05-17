@@ -1,6 +1,6 @@
 package sim;
 
-import util.S_Log;
+import util.SLog;
 
 public class SysMng {
 	private double g_prob=-1;
@@ -9,13 +9,13 @@ public class SysMng {
 	//--- Get
 	public double getMS_Prob() {
 		if(g_prob==-1) {
-			S_Log.err("SysMng:prob is not set");
+			SLog.err("SysMng:prob is not set");
 		}
 		return g_prob;
 	}
 	public double getX() {
 		if(g_x==-1) {
-			S_Log.err("SysMng:x is not set");
+			SLog.err("SysMng:x is not set");
 		}
 		return g_x;
 	}
@@ -31,7 +31,7 @@ public class SysMng {
 	}
 	public void prn() {
 //		Log.prn(2, "prob:"+g_prob);
-		S_Log.prn(2, "x:"+g_x);
+		SLog.prn(2, "x:"+g_x);
 		
 	}
 	

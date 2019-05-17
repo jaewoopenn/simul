@@ -5,8 +5,8 @@ import com.PRM;
 
 import basic.TaskMng;
 import sample.TS1;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_sch_rm1 {
 	public static int idx=5;
@@ -18,7 +18,7 @@ public class z_sch_rm1 {
 		PRM p=new PRM(3,1.5);
 		TaskMng tm=TS1.getTM1();
 		
-		S_Log.prn(1, "t \t sup \t req ");
+		SLog.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
 			double s=p.sbf(t);
 			double r=Util_RM.computeRBF(tm,1,t);
@@ -27,7 +27,7 @@ public class z_sch_rm1 {
 				st+=">>>>>";
 			else
 				st+="<";
-			S_Log.prn(1,st );
+			SLog.prn(1,st );
 		}
 		return 0;
 	}
@@ -41,7 +41,7 @@ public class z_sch_rm1 {
 			st+="OK";
 		else
 			st+="Not OK";
-		S_Log.prn(2,st );
+		SLog.prn(2,st );
 			
 		return 0;
 	}
@@ -54,7 +54,7 @@ public class z_sch_rm1 {
 			st+="OK";
 		else
 			st+="Not OK";
-		S_Log.prn(3,st );
+		SLog.prn(3,st );
 		return 0;
 	}
 	public  int test4()
@@ -63,7 +63,7 @@ public class z_sch_rm1 {
 		int p=3;
 		double exec=Util_RM.getExec(tm,p);
 		String st="exec:"+exec;
-		S_Log.prn(2,st );
+		SLog.prn(2,st );
 		
 		return 0;
 	}
@@ -76,7 +76,7 @@ public class z_sch_rm1 {
 			st+="OK";
 		else
 			st+="Not OK";
-		S_Log.prn(2,st );
+		SLog.prn(2,st );
 		return 0;
 	}
 	public  int test6()
@@ -106,9 +106,9 @@ public class z_sch_rm1 {
 		z_sch_rm1 m=new z_sch_rm1();
 		int[] aret=z_sch_rm1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int total=10;

@@ -6,7 +6,7 @@ package util;
 
 import java.io.PrintWriter;
 
-public class S_FLog {
+public class SLogF {
 	private static PrintWriter g_writer=null;
 	
 	public static boolean isON() {
@@ -48,7 +48,7 @@ public class S_FLog {
 			g_writer.close();
 			g_writer=null;
 		} else {
-			S_Log.err("need FLOG init");
+			SLog.err("need FLOG init");
 		}
 	}
 	

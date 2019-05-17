@@ -1,7 +1,7 @@
 package auto;
 
 
-import util.S_TEngine;
+import util.SEngineT;
 
 public class z_DataAnal1 {
 	public static int idx=2;
@@ -75,9 +75,9 @@ public class z_DataAnal1 {
 		z_DataAnal1 m=new z_DataAnal1();
 		int[] aret=z_DataAnal1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

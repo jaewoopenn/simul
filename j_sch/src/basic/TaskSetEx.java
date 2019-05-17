@@ -9,7 +9,7 @@ package basic;
 
 import util.MOut;
 import util.MFile;
-import util.S_Log;
+import util.SLog;
 
 public class TaskSetEx {
 	private TaskSet g_tasks;
@@ -33,7 +33,7 @@ public class TaskSetEx {
 	}
 	
 	public void stat(){
-		S_Log.prn(2, g_tasks.v_size());
+		SLog.prn(2, g_tasks.v_size());
 	}
 	
 	// export 
@@ -91,7 +91,7 @@ public class TaskSetEx {
 	public static void loadView(MFile fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
-	    	S_Log.prn(1,line);
+	    	SLog.prn(1,line);
 		}
 	}
 

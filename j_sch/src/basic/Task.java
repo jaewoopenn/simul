@@ -6,9 +6,9 @@ Individual Task
 */
 
 
-import util.S_Log;
-import util.MUtil;
-import util.S_FLog;
+import util.SLog;
+import util.MCal;
+import util.SLogF;
 
 public class Task {
 	public int tid;
@@ -50,11 +50,11 @@ public class Task {
 		return is_dropped;
 	}
 	public void drop() {
-		S_FLog.prn("drop "+tid);
+		SLogF.prn("drop "+tid);
 		this.is_dropped=true;
 	}
 	public void resume() {
-		S_FLog.prn("resume "+tid);
+		SLogF.prn("resume "+tid);
 		this.is_dropped=false;
 	}
 	public void setVD(double vd){
@@ -94,82 +94,82 @@ public class Task {
 	}
 	
 	public void prn() {
-		S_Log.prnc(2, "tid:"+tid);
-		S_Log.prnc(2, " p:"+period);
+		SLog.prnc(2, "tid:"+tid);
+		SLog.prnc(2, " p:"+period);
 		if (is_HI){
-			S_Log.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
-			S_Log.prnc(2," isHM:"+is_Hi_Mode);
+			SLog.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
+			SLog.prnc(2," isHM:"+is_Hi_Mode);
 			
 		}else{
-			S_Log.prnc(2," cl:"+c_l);
-			S_Log.prnc(2," isDrop:"+is_dropped);
+			SLog.prnc(2," cl:"+c_l);
+			SLog.prnc(2," isDrop:"+is_dropped);
 		}
-		S_Log.prnc(2," hi-crit?"+is_HI);
-		S_Log.prn(2," util:"+getLoUtil());
+		SLog.prnc(2," hi-crit?"+is_HI);
+		SLog.prn(2," util:"+getLoUtil());
 	}
 	public void prnShort() {
-		S_Log.prnc(2, tid);
-		S_Log.prnc(2, ", "+period);
-		S_Log.prnc(2, ", "+vd);
-		S_Log.prnc(2, ", "+c_l);
-		S_Log.prnc(2, ", "+c_h);
+		SLog.prnc(2, tid);
+		SLog.prnc(2, ", "+period);
+		SLog.prnc(2, ", "+vd);
+		SLog.prnc(2, ", "+c_l);
+		SLog.prnc(2, ", "+c_h);
 		if (is_HI)
-			S_Log.prnc(2," isHM:"+is_Hi_Mode);
-		S_Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
-		S_Log.prn(2, ", "+MUtil.getStr(getHiUtil()));
+			SLog.prnc(2," isHM:"+is_Hi_Mode);
+		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
+		SLog.prn(2, ", "+MCal.getStr(getHiUtil()));
 	}
 	
 	
 	
 	public void prnRuntime() {
-		S_Log.prnc(2, "tid:"+tid);
-		S_Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
-		S_Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
+		SLog.prnc(2, "tid:"+tid);
+		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
+		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
 		if (is_HI){
-			S_Log.prnc(2," isHM:"+is_Hi_Mode);
-			S_Log.prn(2," isHI_Only:"+is_hi_preferred);
+			SLog.prnc(2," isHM:"+is_Hi_Mode);
+			SLog.prn(2," isHI_Only:"+is_hi_preferred);
 			
 		}else{
-			S_Log.prn(2," isDrop:"+is_dropped);
+			SLog.prn(2," isDrop:"+is_dropped);
 		}
 		
 	}
 	public void prnStat() {
-		S_Log.prnc(2, "tid:"+tid);
-		S_Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
-		S_Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
+		SLog.prnc(2, "tid:"+tid);
+		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
+		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
 		if (is_HI){
-			S_Log.prnc(2," isHM:"+is_Hi_Mode);
-			S_Log.prn(2,", is_hi_preferred:"+is_hi_preferred);
+			SLog.prnc(2," isHM:"+is_Hi_Mode);
+			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
 			
 		}else{
-			S_Log.prn(2," isDrop:"+is_dropped);
+			SLog.prn(2," isDrop:"+is_dropped);
 		}
 		
 	}
 	
 	public void prnOffline() {
-		S_Log.prnc(2, "tid:"+tid);
-		S_Log.prnc(2, ", "+MUtil.getStr(getLoUtil()));
-		S_Log.prnc(2, ", "+MUtil.getStr(getHiUtil()));
+		SLog.prnc(2, "tid:"+tid);
+		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
+		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
 		if (is_HI){
-			S_Log.prn(2,", is_hi_preferred:"+is_hi_preferred);
+			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
 			
 		}else{
-			S_Log.prn(2,", LO-task ");
+			SLog.prn(2,", LO-task ");
 		}
 		
 	}
 	public void prnPara() {
-		S_Log.prnc(2, "tmp.add(new Task(0,");
-		S_Log.prnc(2, period);
+		SLog.prnc(2, "tmp.add(new Task(0,");
+		SLog.prnc(2, period);
 		if (is_HI){
-			S_Log.prnc(2, ", "+c_l);
-			S_Log.prnc(2, ", "+c_h);
+			SLog.prnc(2, ", "+c_l);
+			SLog.prnc(2, ", "+c_h);
 		} else {
-			S_Log.prnc(2, ", "+c_l);
+			SLog.prnc(2, ", "+c_l);
 		}
-		S_Log.prn(2, "));");
+		SLog.prn(2, "));");
 
 	}
 

@@ -3,8 +3,8 @@ package anal;
 import basic.Task;
 import basic.TaskMng;
 import basic.SysInfo;
-import util.S_Log;
-import util.MUtil;
+import util.SLog;
+import util.MCal;
 
 public class AnalEDF_AD_E extends Anal {
 	private double g_lt_lu;
@@ -85,11 +85,11 @@ public class AnalEDF_AD_E extends Anal {
 	
 	@Override
 	public void prn() {
-		S_Log.prnc(1, "ll:"+MUtil.getStr(g_lt_lu));
-		S_Log.prnc(1, " hl:"+MUtil.getStr(g_ht_lu));
-		S_Log.prn(1, " hh:"+MUtil.getStr(g_ht_hu));
-		S_Log.prnc(1, "x:"+glo_x);
-		S_Log.prn(1, " hi_prefer:"+n_hi_prefer);
+		SLog.prnc(1, "ll:"+MCal.getStr(g_lt_lu));
+		SLog.prnc(1, " hl:"+MCal.getStr(g_ht_lu));
+		SLog.prn(1, " hh:"+MCal.getStr(g_ht_hu));
+		SLog.prnc(1, "x:"+glo_x);
+		SLog.prn(1, " hi_prefer:"+n_hi_prefer);
 		
 	}
 	@Override

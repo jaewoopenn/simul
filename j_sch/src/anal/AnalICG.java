@@ -3,7 +3,7 @@ package anal;
 import java.util.Vector;
 
 import basic.Task;
-import util.S_Log;
+import util.SLog;
 
 public class AnalICG extends Anal {
 	private int sz;
@@ -20,7 +20,7 @@ public class AnalICG extends Anal {
 	
 	@Override
 	public double getDtm() {
-		S_Log.prn(1, "OPA");
+		SLog.prn(1, "OPA");
 		if (findOPA())
 			return 0.5;
 		else
@@ -41,13 +41,13 @@ public class AnalICG extends Anal {
 		boolean b;
 		for(int p=sz;p>0;p--)
 		{
-			S_Log.prn(1, "assigning "+p);
+			SLog.prn(1, "assigning "+p);
 			Task[] ts=getUnprio();
 			b=false;
 			for(int i=0;i<sz;i++){
 				Task t=g_tm.getTask(i);
 				if(prio[i]!=0) continue;
-				S_Log.prn(1, "checking "+i+" "+ts.length);
+				SLog.prn(1, "checking "+i+" "+ts.length);
 				if(chk(t,ts)){
 					prio[i]=p;
 					b=true;

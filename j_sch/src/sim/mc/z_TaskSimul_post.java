@@ -11,9 +11,9 @@ import anal.AnalSel;
 import basic.TaskMng;
 import sim.SimulInfo;
 import sim.SysMng;
-import util.S_FLog;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLogF;
+import util.SLog;
+import util.SEngineT;
 import z_ex.TS_MC2;
 
 public class z_TaskSimul_post {
@@ -34,13 +34,13 @@ public class z_TaskSimul_post {
 		g_prob=0.9;
 //		g_prob=1.0;
 
-		S_FLog.init("sch/log.txt");
+		SLogF.init("sch/log.txt");
 //		S_FLog.initScr();
 	}
 
 	public int end_g() {
 		g_si.prn();
-		S_FLog.end();
+		SLogF.end();
 		return 0;
 	}
 
@@ -58,7 +58,7 @@ public class z_TaskSimul_post {
 		a.proceed_if_sch();
 		
 		double x=a.computeX();
-		S_Log.prn(1, "x:"+x);
+		SLog.prn(1, "x:"+x);
 		sm.setX(x);
 //		tm.prn();
 //		System.exit(1);
@@ -126,9 +126,9 @@ public class z_TaskSimul_post {
 		z_TaskSimul_post m=new z_TaskSimul_post();
 		int[] aret=z_TaskSimul_post.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

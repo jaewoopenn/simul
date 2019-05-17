@@ -7,8 +7,8 @@ import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
 import sim.job.Job;
-import util.S_FLog;
-import util.S_Log;
+import util.SLogF;
+import util.SLog;
 
 public abstract class TaskSimulMC extends TaskSimul {
 
@@ -96,7 +96,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
-		S_FLog.prnc(s);
+		SLogF.prnc(s);
 	}	
 	
 
@@ -106,7 +106,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 
 	private void recover_idle(){
-		S_FLog.prn( "t:"+g_jsm.get_time()+" recover idle");
+		SLogF.prn( "t:"+g_jsm.get_time()+" recover idle");
 		initMode();
 		g_recover_need=false;
 		
@@ -159,7 +159,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	// MC specific 
 	protected void mode_switch(int tid){ // connect to each algo's MS
-		S_FLog.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
+		SLogF.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
 		g_si.ms++;
 		modeswitch_in(tid);
 	}
@@ -167,22 +167,22 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	protected void modeswitch_tid(int tid){ // function
 		Task tsk=g_tm.getTask(tid);
-		S_Log.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot mode switch");
+		SLog.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot mode switch");
 		tsk.ms();
 		g_jsm.getJM().modeswitch(tid);
 	}
 
 	protected void switchback_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
-		S_Log.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot switch back");
-		S_FLog.prn("t:"+g_jsm.get_time()+" switch back "+tid);
+		SLog.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot switch back");
+		SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
 		
 		tsk.initMode();
 	}
 	
 	
 	protected void drop_task(Task tsk) {
-		S_Log.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot drop");
+		SLog.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot drop");
 		
 		if(tsk.isDrop())
 			return;
@@ -192,7 +192,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		tsk.drop();
 	}
 	protected void resume_task(Task tsk) {
-		S_Log.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot resume");
+		SLog.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot resume");
 		if(!tsk.isDrop())
 			return;
 		tsk.resume();

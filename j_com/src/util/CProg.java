@@ -1,11 +1,11 @@
 package util;
 
-public class Progressor {
+public class CProg {
 	private int max=0;
 	private int step=1;
 	private int cur=0;
 	private int log=1;
-	public Progressor(int n) {
+	public CProg(int n) {
 		max=n;
 	}
 	public void setLog(int n) {
@@ -28,7 +28,7 @@ public class Progressor {
 		cur=0;
 	}
 	public void prn() {
-		S_Log.prn(log,((double)cur)/max+"");
+		SLog.prn(log,((double)cur)/max+"");
 	}
 
 }

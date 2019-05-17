@@ -1,7 +1,7 @@
 package basic;
 
 import gen.SysLoad;
-import util.S_TEngine;
+import util.SEngineT;
 import z_ex.TS_MC1;
 
 public class z_TaskMng1 {
@@ -62,9 +62,9 @@ public class z_TaskMng1 {
 		z_TaskMng1 m=new z_TaskMng1();
 		int[] aret=z_TaskMng1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

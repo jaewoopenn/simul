@@ -4,7 +4,7 @@
 
 package util;
 
-public class S_Log {
+public class SLog {
 	private static int g_lv=9;
 	public static void set_lv(int lv){
 		g_lv=lv;

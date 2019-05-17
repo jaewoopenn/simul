@@ -4,7 +4,7 @@ import com.PRM;
 
 import basic.Task;
 import basic.TaskMng;
-import util.S_Log;
+import util.SLog;
 
 public class Util_RM {
 	public static double computeRBF(TaskMng tm,int i, int t) {
@@ -24,19 +24,19 @@ public class Util_RM {
 
 	public static boolean checkSch_ind(PRM p, TaskMng tm, int i, int end_t) {
 		int log_lv=1;
-		S_Log.prn(log_lv, "t \t sup \t req ");
+		SLog.prn(log_lv, "t \t sup \t req ");
 		for(int t=1;t<=end_t;t++) {
 			double s=p.sbf(t);
 			double r=Util_RM.computeRBF(tm,i,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r) {
 				st+=">>>>>";
-				S_Log.prn(log_lv,st );
+				SLog.prn(log_lv,st );
 				return true;
 			} else {
 				st+="<";
 			}
-			S_Log.prn(log_lv,st );
+			SLog.prn(log_lv,st );
 		}
 		
 		return false;
@@ -64,7 +64,7 @@ public class Util_RM {
 				st+=i+" "+t;
 				st+=" temp:"+tempExec;
 				st+=" exec1:"+exec1;
-				S_Log.prn(2, st);
+				SLog.prn(2, st);
 				exec1=Math.min(exec1,tempExec);
 			}
 			exec=Math.max(exec,exec1);
@@ -82,25 +82,25 @@ public class Util_RM {
 		st+="req:"+req;
 		st+=" kp1:"+kp1;
 		st+=" kp2:"+kp2;
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 		double temp1=getTheta1(req,pi,t,kp1);
 		double temp2=getTheta1(req,pi,t,kp2);
 		double theta1=Math.min(temp1, temp2);
 		st="t1:"+temp1;
 		st+=" t2:"+temp2;
 		st+=" theta1:"+theta1;
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 		temp1=getTheta2(req,pi,t,kp1);
 		temp2=getTheta2(req,pi,t,kp2);
 		double theta2=Math.min(temp1, temp2);
 		st="t1:"+temp1;
 		st+=" t2:"+temp2;
 		st+=" theta2:"+theta2;
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 		double theta=Math.min(theta1, theta2);
 		st=" theta:"+theta;
 		
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 		
 		return theta;
 	}
@@ -111,7 +111,7 @@ public class Util_RM {
 		double alpha=t-k*pi-(pi-theta);
 		st+=" alpha:"+alpha;
 		st+=" pi-theta:"+(pi-theta);
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 		if(alpha <pi-theta || alpha>pi)
 			return pi;
 		return theta;
@@ -128,7 +128,7 @@ public class Util_RM {
 		st+=" th:"+theta;
 		double alpha=t-k*pi-(pi-theta);
 		st+=" alpha:"+alpha;
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 		if(alpha<0 || alpha >pi-theta)
 			return pi;
 		return theta;

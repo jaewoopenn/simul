@@ -24,7 +24,7 @@ public class MList {
 	}
 	public void prn() {
 		for (String s:g_list){
-			S_Log.prn(1, s);
+			SLog.prn(1, s);
 		}
 		
 	}

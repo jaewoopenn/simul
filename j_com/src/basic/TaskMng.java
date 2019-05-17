@@ -1,6 +1,6 @@
 package basic;
 
-import util.S_Log;
+import util.SLog;
 
 public class TaskMng {
 	private TaskSet g_tasks;
@@ -9,7 +9,7 @@ public class TaskMng {
 		if(ts.isEnd())
 			g_tasks=ts;
 		else
-			S_Log.err("cannot create taskmng from taskset which is not ended");
+			SLog.err("cannot create taskmng from taskset which is not ended");
 	}
 	
 
@@ -66,7 +66,7 @@ public class TaskMng {
 	public void prnInfo() {
 		String st="num:"+g_tasks.size();
 		st+=" util:"+getUtil();
-		S_Log.prn(1, st);
+		SLog.prn(1, st);
 	}
 	
 	

@@ -1,8 +1,8 @@
 package sim.job;
 
 
-import util.S_FLog;
-import util.S_Log;
+import util.SLogF;
+import util.SLog;
 
 public class JobSimul {
 	protected JobMng g_jm;
@@ -20,7 +20,7 @@ public class JobSimul {
 
 
 	public void simul_one() {
-		S_FLog.prnc( String.format("%05d ", g_t));
+		SLogF.prnc( String.format("%05d ", g_t));
 		dl_check(g_t);
 		exec_one();
 		g_t++;
@@ -30,10 +30,10 @@ public class JobSimul {
 	public void simul_end(){
 		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
-			S_Log.prn(9,"Deadline miss at time "+g_t);
+			SLog.prn(9,"Deadline miss at time "+g_t);
 			System.exit(1);
 		}
-		S_FLog.prn("*** Left Jobs at time "+g_t+" ***");
+		SLogF.prn("*** Left Jobs at time "+g_t+" ***");
 		g_jm.f_prn();
 	}
 	
@@ -51,11 +51,11 @@ public class JobSimul {
 		if(j.isHI) {
 			if(cur_t<j.vd) 
 				return true;
-			S_Log.err("Job Simul: VD miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd);
+			SLog.err("Job Simul: VD miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd);
 		}else {
 			if(cur_t<j.dl) 
 				return true;
-			S_Log.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+			SLog.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 			
 		}
 
@@ -79,10 +79,10 @@ public class JobSimul {
 		}
 		
 		// File Log
-		if(!S_FLog.isON())
+		if(!SLogF.isON())
 			return;
 		s=g_jm.getJobArrow(j,out_type);
-		S_FLog.prn(s);
+		SLogF.prn(s);
 	}
 	
 	

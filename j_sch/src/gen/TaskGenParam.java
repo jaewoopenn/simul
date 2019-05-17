@@ -2,12 +2,12 @@ package gen;
 
 
 import basic.Task;
-import util.RUtil;
+import util.MRand;
 
 
 
 public class TaskGenParam {
-	private RUtil g_rand;
+	private MRand g_rand;
 	
 	public double u_ub;
 	public double u_lb;
@@ -20,7 +20,7 @@ public class TaskGenParam {
 	public double prob_HI;
 	
 	public TaskGenParam(){
-		g_rand=new RUtil();
+		g_rand=new MRand();
 		
 	}
 

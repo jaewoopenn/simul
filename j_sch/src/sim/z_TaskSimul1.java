@@ -2,8 +2,8 @@ package sim;
 
 import basic.TaskMng;
 import sim.mc.TaskSimul_EDF_VD;
-import util.S_FLog;
-import util.S_TEngine;
+import util.SLogF;
+import util.SEngineT;
 import z_ex.TS_MC1;
 import z_ex.TS_NonMC1;
 
@@ -16,7 +16,7 @@ public class z_TaskSimul1 {
 
 
 	public int test1()	{
-		S_FLog.alive();
+		SLogF.alive();
 		TaskSimul ts=new TaskSimul();
 		ts.init_sm_tm(null,TS_NonMC1.ts1());
 		ts.simul(0,20);
@@ -87,9 +87,9 @@ public class z_TaskSimul1 {
 		z_TaskSimul1 m=new z_TaskSimul1();
 		int[] aret=z_TaskSimul1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

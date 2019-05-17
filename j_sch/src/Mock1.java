@@ -1,6 +1,6 @@
 
 
-import util.S_TEngine;
+import util.SEngineT;
 
 public class Mock1 {
 //	public static int idx=-1;
@@ -53,9 +53,9 @@ public class Mock1 {
 		Mock1 m=new Mock1();
 		int[] aret=Mock1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 

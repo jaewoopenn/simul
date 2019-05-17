@@ -1,8 +1,8 @@
 package basic;
 
 import basic.Task;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_TaskSeq1 {
 //	public static int idx=1;
@@ -12,10 +12,10 @@ public class z_TaskSeq1 {
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		S_Log.prn(1, TaskSeq.getID()+"");
-		S_Log.prn(1, TaskSeq.getID()+"");
-		S_Log.prn(1, TaskSeq.getID()+"");
-		S_Log.prn(1, TaskSeq.getID()+"");
+		SLog.prn(1, TaskSeq.getID()+"");
+		SLog.prn(1, TaskSeq.getID()+"");
+		SLog.prn(1, TaskSeq.getID()+"");
+		SLog.prn(1, TaskSeq.getID()+"");
 		return 0;
 	}
 	public int test2() 
@@ -68,9 +68,9 @@ public class z_TaskSeq1 {
 		z_TaskSeq1 m=new z_TaskSeq1();
 		int[] aret=z_TaskSeq1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

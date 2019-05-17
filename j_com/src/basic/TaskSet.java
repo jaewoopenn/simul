@@ -4,7 +4,7 @@ package basic;
 import java.util.Arrays;
 import java.util.Vector;
 
-import util.S_Log;
+import util.SLog;
 
 /*
  * a set of tasks 
@@ -55,7 +55,7 @@ public class TaskSet {
 	}
 	public Task[] getArr(){
 		if(g_tasks==null) {
-			S_Log.err("g_task is null");
+			SLog.err("g_task is null");
 		}
 		return g_tasks;
 	}

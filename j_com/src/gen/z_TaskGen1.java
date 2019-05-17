@@ -3,8 +3,8 @@ import basic.TaskSet;
 import basic.TaskSetEx;
 import gen.TaskGen;
 import gen.TaskGenParam;
-import util.Ranger;
-import util.S_TEngine;
+import util.CRange;
+import util.SEngineT;
 
 // Simulation
 
@@ -15,9 +15,9 @@ public class z_TaskGen1 {
 	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
 		TaskGenParam tgp=new TaskGenParam();
-		tgp.setPeriod(Ranger.gen(50,300));
-		tgp.setTUtil(Ranger.gen(0.02,0.3));
-		tgp.setUtil(Ranger.gen(0.90,0.99));
+		tgp.setPeriod(CRange.gen(50,300));
+		tgp.setTUtil(CRange.gen(0.02,0.3));
+		tgp.setUtil(CRange.gen(0.90,0.99));
 		TaskGen tg=new TaskGen(tgp);
 		return tg;
 	}
@@ -75,9 +75,9 @@ public class z_TaskGen1 {
 		z_TaskGen1 m=new z_TaskGen1();
 		int[] aret=z_TaskGen1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

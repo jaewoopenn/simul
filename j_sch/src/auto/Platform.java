@@ -13,8 +13,8 @@ import sim.SysMng;
 import sim.TaskSimul;
 import util.MOut;
 import util.MFile;
-import util.Progressor;
-import util.S_Log;
+import util.CProg;
+import util.SLog;
 
 public class Platform {
 	private String g_path;
@@ -50,7 +50,7 @@ public class Platform {
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
-			S_Log.prn(2, lb+"");
+			SLog.prn(2, lb+"");
 			cg.setParam("u_lb", (lb)*1.0/100+"");
 			cg.setParam("u_ub", (lb+5)*1.0/100+"");
 			cg.setParam("mod", (lb+5)+"");
@@ -167,11 +167,11 @@ public class Platform {
 	}
 
 	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
-		S_Log.prn(2, ts);
+		SLog.prn(2, ts);
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
-		Progressor prog=new Progressor(num);
+		CProg prog=new CProg(num);
 		prog.setLog(2);
 		prog.setPercent();
 		MOut fu=new MOut(out);
@@ -183,7 +183,7 @@ public class Platform {
 			a.prepare();
 			prog.inc();
 			if(!a.is_sch()) {
-				S_Log.prn(2, "no sch");
+				SLog.prn(2, "no sch");
 				continue;
 			}
 

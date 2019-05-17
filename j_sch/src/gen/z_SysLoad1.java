@@ -3,8 +3,8 @@ import basic.TaskMng;
 import basic.TaskSetEx;
 import gen.ConfigGen;
 import util.MFile;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_SysLoad1 {
 	public static int idx=5;
@@ -16,7 +16,7 @@ public class z_SysLoad1 {
 		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		cfg.readFile();
 		String fn=cfg.get_fn();
-		S_Log.prn(1, fn);
+		SLog.prn(1, fn);
 		MFile f=new MFile(fn);
 		f.br_open();
 		f.readSplit("------");
@@ -36,7 +36,7 @@ public class z_SysLoad1 {
 		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		cfg.readFile();
 		String fn=cfg.get_fn();
-		S_Log.prn(1, fn);
+		SLog.prn(1, fn);
 		MFile f=new MFile(fn);
 		f.br_open();
 		while(true) {
@@ -94,9 +94,9 @@ public class z_SysLoad1 {
 		z_SysLoad1 m=new z_SysLoad1();
 		int[] aret=z_SysLoad1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

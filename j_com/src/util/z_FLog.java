@@ -7,18 +7,18 @@ public class z_FLog {
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 	public int test1() 
 	{
-		S_FLog.init("test/log.txt");
-		S_FLog.prn("hihi");
-		S_FLog.prn("hihi2");
-		S_FLog.end();
+		SLogF.init("test/log.txt");
+		SLogF.prn("hihi");
+		SLogF.prn("hihi2");
+		SLogF.end();
 		return 1;
 
 	}
 	public int test2()  //err
 	{
-		S_FLog.prn("hihi");
-		S_FLog.prn("hihi2");
-		S_FLog.end();
+		SLogF.prn("hihi");
+		SLogF.prn("hihi2");
+		SLogF.end();
 		return 0;
 	}
 	public int test3() 
@@ -63,9 +63,9 @@ public class z_FLog {
 		z_FLog m=new z_FLog();
 		int[] aret=z_FLog.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

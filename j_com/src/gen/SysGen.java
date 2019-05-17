@@ -3,7 +3,7 @@ package gen;
 import basic.TaskSet;
 import basic.TaskSetEx;
 import util.MList;
-import util.Ranger;
+import util.CRange;
 
 public  class SysGen {
 	protected TaskGen g_tg;
@@ -19,11 +19,11 @@ public  class SysGen {
 	
 	public int prepare(){
 		TaskGenParam tgp=new TaskGenParam();
-		Ranger r=Ranger.gen(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		CRange r=CRange.gen(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		tgp.setUtil(r);
-		r=Ranger.gen(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
+		r=CRange.gen(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tgp.setPeriod(r);
-		r=Ranger.gen(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
+		r=CRange.gen(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
 		tgp.setTUtil(r);
 		g_tg=new TaskGen(tgp);
 		return g_cfg.readInt("num");

@@ -2,8 +2,8 @@ package sim.job;
 
 import java.util.PriorityQueue;
 
-import util.S_FLog;
-import util.S_Log;
+import util.SLogF;
+import util.SLog;
 
 public class JobMng {
 	protected PriorityQueue<Job> g_jobs;
@@ -48,11 +48,11 @@ public class JobMng {
 	}
 	public void prn(){
 		if(g_jobs.size()==0){
-			S_Log.prn(1, "none");
+			SLog.prn(1, "none");
 			return;
 		}
 		for(Job j:g_jobs){
-			S_Log.prn(1, j.info());
+			SLog.prn(1, j.info());
 		}
 	}
 	public int endCheck(int et) {
@@ -65,11 +65,11 @@ public class JobMng {
 	}
 	public void f_prn() {
 		if(g_jobs.size()==0){
-			S_FLog.prn("none");
+			SLogF.prn("none");
 			return;
 		}
 		for(Job j:g_jobs){
-			S_FLog.prn(j.info());
+			SLogF.prn(j.info());
 		}
 				
 	}

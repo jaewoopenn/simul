@@ -6,7 +6,7 @@ import java.util.HashMap;
 import util.MFile;
 import util.MLoop;
 import util.MOut;
-import util.S_Log;
+import util.SLog;
 
 public class ConfigGen {
 	private final String[] g_required={"u_lb","u_ub","p_lb","p_ub",
@@ -82,7 +82,7 @@ public class ConfigGen {
 	}
 	public void write(String fn) {
 		if(fn==null) {
-			S_Log.err("configGen: filename is not set");
+			SLog.err("configGen: filename is not set");
 		}
 		MOut fu=new MOut(fn);
 		for (String s:g_required){
@@ -98,7 +98,7 @@ public class ConfigGen {
 		
 	}
 	public void prn(int lv) {
-		S_Log.prn(lv,readPar("u_ub")+"--");
+		SLog.prn(lv,readPar("u_ub")+"--");
 	}
 	public static ConfigGen getSample()	{
 		ConfigGen eg=new ConfigGen();

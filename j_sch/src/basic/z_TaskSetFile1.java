@@ -2,7 +2,7 @@ package basic;
 import basic.Task;
 import basic.TaskMng;
 import basic.TaskSetEx;
-import util.S_TEngine;
+import util.SEngineT;
 
 public class z_TaskSetFile1 {
 	public static int idx=1;
@@ -65,9 +65,9 @@ public class z_TaskSetFile1 {
 		z_TaskSetFile1 m=new z_TaskSetFile1();
 		int[] aret=z_TaskSetFile1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

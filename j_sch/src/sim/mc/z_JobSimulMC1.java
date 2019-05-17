@@ -1,7 +1,7 @@
 package sim.mc;
 
 import sim.job.Job;
-import util.S_TEngine;
+import util.SEngineT;
 
 public class z_JobSimulMC1 {
 	public static int idx=2;
@@ -57,9 +57,9 @@ public class z_JobSimulMC1 {
 		z_JobSimulMC1 m=new z_JobSimulMC1();
 		int[] aret=z_JobSimulMC1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

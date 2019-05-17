@@ -26,7 +26,7 @@ public class MFile {
 	}
 	public void view() {
 		for(int i=0;i<size();i++) {
-			S_Log.prn(1, get(i));
+			SLog.prn(1, get(i));
 		}
 	}
 	public void br_open() {

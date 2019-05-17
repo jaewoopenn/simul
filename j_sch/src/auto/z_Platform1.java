@@ -12,8 +12,8 @@ import gen.SysGenMC;
 import gen.SysLoad;
 import util.MOut;
 import util.MFile;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_Platform1 {
 //	public static int idx=5;
@@ -84,7 +84,7 @@ public class z_Platform1 {
 				if(tm==null) break;
 				n++;
 			}
-			S_Log.prn(1, fn+" "+n);
+			SLog.prn(1, fn+" "+n);
 		}
 //		fu_rs.save();
 		return -1;
@@ -120,7 +120,7 @@ public class z_Platform1 {
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
-			S_Log.prn(2, lb+"");
+			SLog.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
@@ -157,9 +157,9 @@ public class z_Platform1 {
 		z_Platform1 m=new z_Platform1();
 		int[] aret=z_Platform1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

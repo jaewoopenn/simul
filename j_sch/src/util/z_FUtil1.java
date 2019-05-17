@@ -17,7 +17,7 @@ public class z_FUtil1 {
 		MFile f=new MFile("test\\t\\taskset");
 		f.br_open();
 		String s=f.read();
-		S_Log.prn(1, s);
+		SLog.prn(1, s);
 		f.br_close();
 		return 0;
 	}
@@ -27,7 +27,7 @@ public class z_FUtil1 {
 		f.br_open();
 		f.readSplit("------");
 		f.view();
-		S_Log.prn(1, "----------");
+		SLog.prn(1, "----------");
 		
 		f.readSplit("------");
 		f.view();
@@ -69,9 +69,9 @@ public class z_FUtil1 {
 		z_FUtil1 m=new z_FUtil1();
 		int[] aret=z_FUtil1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

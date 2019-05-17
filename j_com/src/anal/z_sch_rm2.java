@@ -6,8 +6,8 @@ import com.PRM;
 
 import basic.TaskMng;
 import sample.TS1;
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_sch_rm2 {
 	public static int idx=1;
@@ -22,7 +22,7 @@ public class z_sch_rm2 {
 		int end_t=5;
 		double exec=Util_RM.getExec(tm,p,1,end_t);
 		String st="exec:"+exec;
-		S_Log.prn(2,st );
+		SLog.prn(2,st );
 		return 0;
 	}
 	public int test2() 
@@ -38,7 +38,7 @@ public class z_sch_rm2 {
 		String st="t:"+end_t;
 		st+=" req:"+req;
 		st+=" sup:"+sup;
-		S_Log.prn(2,st );
+		SLog.prn(2,st );
 		return 0;
 	}
 	public  int test3()
@@ -47,7 +47,7 @@ public class z_sch_rm2 {
 		int p=3;
 		double exec=Util_RM.getExec(tm,p);
 		String st="exec:"+exec;
-		S_Log.prn(2,st );
+		SLog.prn(2,st );
 		return 0;
 	}
 	public  int test4()
@@ -86,9 +86,9 @@ public class z_sch_rm2 {
 		z_sch_rm2 m=new z_sch_rm2();
 		int[] aret=z_sch_rm2.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int total=10;

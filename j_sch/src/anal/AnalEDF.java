@@ -1,6 +1,6 @@
 package anal;
 
-import util.S_Log;
+import util.SLog;
 
 public class AnalEDF extends Anal {
 	private double u;
@@ -24,7 +24,7 @@ public class AnalEDF extends Anal {
 	}
 	@Override
 	public void prn() {
-		S_Log.prn(1, "det:"+u);
+		SLog.prn(1, "det:"+u);
 		
 	}
 	@Override

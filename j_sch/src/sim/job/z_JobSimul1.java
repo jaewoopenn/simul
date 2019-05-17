@@ -1,7 +1,7 @@
 package sim.job;
 
-import util.S_Log;
-import util.S_TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class z_JobSimul1 {
 	public static int idx=1;
@@ -16,7 +16,7 @@ public class z_JobSimul1 {
 		js.add(new Job(2,4,2));
 		js.simulBy(3);
 		js.add(new Job(1,6,1));
-		S_Log.prn(1,"  ");
+		SLog.prn(1,"  ");
 		js.simulBy(4);
 		js.add(new Job(2,8,2));
 		js.simul(8);
@@ -65,9 +65,9 @@ public class z_JobSimul1 {
 		z_JobSimul1 m=new z_JobSimul1();
 		int[] aret=z_JobSimul1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

@@ -4,8 +4,8 @@ package basic;
 
 */
 
-import util.S_Log;
-import util.MUtil;
+import util.SLog;
+import util.MCal;
 
 public class SysInfo {
 	private double lo_util;
@@ -75,14 +75,14 @@ public class SysInfo {
 	}
 	
 	public void prn() {
-		S_Log.prnc(2, "lo_mode_util:"+MUtil.getStr(getLo_util()+getHi_util_lm()));
-		S_Log.prnc(2, " ll_util:"+MUtil.getStr(getLo_util()));
-		S_Log.prn(2, " hl_util:"+MUtil.getStr(getHi_util_lm()));
-		S_Log.prn(2, "hi_mode_util:"+MUtil.getStr(getHi_util_hm()));
-		S_Log.prn(2, "x:"+MUtil.getStr(getX()));
+		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(getLo_util()+getHi_util_lm()));
+		SLog.prnc(2, " ll_util:"+MCal.getStr(getLo_util()));
+		SLog.prn(2, " hl_util:"+MCal.getStr(getHi_util_lm()));
+		SLog.prn(2, "hi_mode_util:"+MCal.getStr(getHi_util_hm()));
+		SLog.prn(2, "x:"+MCal.getStr(getX()));
 	}
 	public void prnUtil() {
-		S_Log.prn(2, " ll_util:"+MUtil.getStr(getLo_util()));
+		SLog.prn(2, " ll_util:"+MCal.getStr(getLo_util()));
 		
 	}
 	

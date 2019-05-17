@@ -2,13 +2,13 @@ package gen;
 
 
 import basic.Task;
-import util.RUtil;
-import util.Ranger;
+import util.MRand;
+import util.CRange;
 
 
 
 public class TaskGenParam {
-	private RUtil g_rand;
+	private MRand g_rand;
 	
 	public double u_ub;
 	public double u_lb;
@@ -18,7 +18,7 @@ public class TaskGenParam {
 	public int p_lb;
 	
 	public TaskGenParam(){
-		g_rand=new RUtil();
+		g_rand=new MRand();
 		
 	}
 
@@ -26,20 +26,20 @@ public class TaskGenParam {
 	{
 		return g_rand.getInt(max);
 	}
-	public void setUtil(Ranger r) {
+	public void setUtil(CRange r) {
 		u_lb=r.getDblL();
 		u_ub=r.getDblU();
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
 
-	public void setTUtil(Ranger r) {
+	public void setTUtil(CRange r) {
 		tu_ub=r.getDblL();
 		tu_lb=r.getDblU();
 	}
 
 
-	public void setPeriod(Ranger r) {
+	public void setPeriod(CRange r) {
 		p_ub=r.getIntU();
 		p_lb=r.getIntL();
 		
@@ -73,9 +73,9 @@ public class TaskGenParam {
 
 	public static TaskGenParam getDefault(){
 		TaskGenParam tgp=new TaskGenParam();
-		tgp.setUtil(new Ranger(0.45,0.5));
-		tgp.setPeriod(new Ranger(300,500));
-		tgp.setTUtil(new Ranger(0.01,0.1));
+		tgp.setUtil(new CRange(0.45,0.5));
+		tgp.setPeriod(new CRange(300,500));
+		tgp.setTUtil(new CRange(0.01,0.1));
 		return tgp;
 		
 	}

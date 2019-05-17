@@ -3,7 +3,7 @@ package auto;
 import gen.ConfigGen;
 import gen.SysGen;
 import util.MList;
-import util.S_Log;
+import util.SLog;
 
 public class Platform {
 	private String g_path;
@@ -31,7 +31,7 @@ public class Platform {
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
 			String lab=(lb+5)+"";
-			S_Log.prn(2, lab);
+			SLog.prn(2, lab);
 			cg.setParam("u_lb", (lb)*1.0/100);
 			cg.setParam("u_ub", (lb+5)*1.0/100);
 			cg.setParam("label",lab) ;

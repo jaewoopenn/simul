@@ -5,15 +5,15 @@ import basic.Task;
 import basic.TaskMng;
 import sim.job.Job;
 import sim.job.JobSimul;
-import util.S_FLog;
-import util.S_Log;
-import util.RUtil;
+import util.SLogF;
+import util.SLog;
+import util.MRand;
 
 public class TaskSimul {
 	protected String g_name="";
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
-	protected RUtil g_rutil=new RUtil();
+	protected MRand g_rutil=new MRand();
 	private JobSimul g_js;
 	protected SimulInfo g_si;
 
@@ -28,7 +28,7 @@ public class TaskSimul {
 			g_sm=sm;
 		}
 		else {
-			S_Log.err("sm null");
+			SLog.err("sm null");
 		}
 		g_tm=tm;
 		init();
@@ -43,7 +43,7 @@ public class TaskSimul {
 	public void simul(int st, int et){
 		int t=st;
 		if(t==0){
-			S_FLog.prn("rel  / exec / t");
+			SLogF.prn("rel  / exec / t");
 		}
 		while(t<et){
 			simul_one();
@@ -86,7 +86,7 @@ public class TaskSimul {
 	// ------------- protected
 	protected void check_err() {
 		if(g_tm==null){
-			S_Log.err("ERROR: TaskMng is not set");
+			SLog.err("ERROR: TaskMng is not set");
 		}
 	}	
 	protected void release_jobs(){
@@ -101,7 +101,7 @@ public class TaskSimul {
 			}
 		}
 		s+=" ";
-		S_FLog.prnc(s);
+		SLogF.prnc(s);
 	}
 	
 

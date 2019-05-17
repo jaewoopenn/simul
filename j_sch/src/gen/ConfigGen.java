@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 import util.MOut;
 import util.MFile;
-import util.S_Log;
-import util.MUtil;
+import util.SLog;
+import util.MCal;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
@@ -22,7 +22,7 @@ public class ConfigGen {
 	public void readFile() {
 		MFile fu=new MFile(g_fn);
 	    fu.load();
-	    for(int i:MUtil.loop(fu.size())){
+	    for(int i:MCal.loop(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
             if(words.length<2) 
@@ -96,7 +96,7 @@ public class ConfigGen {
 	}
 	public void write() {
 		if(g_fn==null) {
-			S_Log.err("configGen: filename is not set");
+			SLog.err("configGen: filename is not set");
 		}
 		MOut fu=new MOut(g_fn);
 		for (String s:g_predefined){
@@ -112,7 +112,7 @@ public class ConfigGen {
 		
 	}
 	public void prn(int lv) {
-		S_Log.prn(lv,readPar("u_ub")+"--");
+		SLog.prn(lv,readPar("u_ub")+"--");
 	}
 	public static ConfigGen getPredefined()	{
 		ConfigGen eg=new ConfigGen(null);

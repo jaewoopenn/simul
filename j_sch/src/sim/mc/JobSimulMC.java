@@ -3,7 +3,7 @@ package sim.mc;
 
 import sim.job.Job;
 import sim.job.JobSimul;
-import util.S_FLog;
+import util.SLogF;
 
 public class JobSimulMC extends JobSimul{
 	public JobSimulMC(int n){
@@ -35,7 +35,7 @@ public class JobSimulMC extends JobSimul{
 			j.exec-=1;
 		}
 		s=g_jm.getJobArrow(j,out_type);
-		S_FLog.prn(s);
+		SLogF.prn(s);
 	}	
 	
 	// do ms check after exec

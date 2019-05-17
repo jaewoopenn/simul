@@ -2,7 +2,7 @@ package anal;
 
 import basic.TaskMng;
 import z_ex.TS_MC1;
-import util.S_TEngine;
+import util.SEngineT;
 
 public class z_SysAnal1 {
 	public static int idx=1;
@@ -76,9 +76,9 @@ public class z_SysAnal1 {
 		z_SysAnal1 m=new z_SysAnal1();
 		int[] aret=z_SysAnal1.gret;
 		if(idx==-1)
-			S_TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			S_TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};

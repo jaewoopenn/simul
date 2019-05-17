@@ -2,7 +2,7 @@ package basic;
 
 
 
-import util.S_Log;
+import util.SLog;
 
 public class Task {
 	public int tid;
@@ -26,9 +26,9 @@ public class Task {
 	}
 	
 	public void prn() {
-		S_Log.prnc(2, "tid:"+tid);
-		S_Log.prnc(2, " T:"+period);
-		S_Log.prn(2, " C:"+exec);
+		SLog.prnc(2, "tid:"+tid);
+		SLog.prnc(2, " T:"+period);
+		SLog.prn(2, " C:"+exec);
 	}
 	
 
