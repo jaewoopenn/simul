@@ -3,8 +3,7 @@ package gen;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import util.MOut;
-import util.MFile;
+import util.MList;
 import util.SLog;
 import util.MCal;
 
@@ -20,8 +19,7 @@ public class ConfigGen {
 		g_fn=f;
 	}
 	public void readFile() {
-		MFile fu=new MFile(g_fn);
-	    fu.load();
+		MList fu=new MList(g_fn);
 	    for(int i:MCal.loop(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
@@ -98,7 +96,7 @@ public class ConfigGen {
 		if(g_fn==null) {
 			SLog.err("configGen: filename is not set");
 		}
-		MOut fu=new MOut(g_fn);
+		MList fu=new MList();
 		for (String s:g_predefined){
 			String v=readPar(s);
 			if(v==null){
@@ -106,9 +104,9 @@ public class ConfigGen {
             	return;
 			}
 			String txt=s+":"+v;
-			fu.write(txt);
+			fu.add(txt);
 		}
-		fu.save();
+		fu.save(g_fn);
 		
 	}
 	public void prn(int lv) {

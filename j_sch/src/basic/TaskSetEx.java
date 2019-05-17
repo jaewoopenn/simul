@@ -7,8 +7,7 @@ package basic;
  */
 
 
-import util.MOut;
-import util.MFile;
+import util.MList;
 import util.SLog;
 
 public class TaskSetEx {
@@ -68,27 +67,27 @@ public class TaskSetEx {
 
 	// static 
 	public static void writeFile(String fn,Task[] tasks){
-		MOut fu=new MOut(fn);
+		MList fu=new MList();
 		for(Task t:tasks)
 			writeTask(fu,t);
-		fu.save();
+		fu.save(fn);
 	}
 	
-	public static void writeTS(MOut fu,Task[] tasks){
+	public static void writeTS(MList fu,Task[] tasks){
 		for(Task t:tasks)
 			writeTask(fu,t);
-		fu.write("------");
+		fu.add("------");
 	}
 	
 	
 
-	public static void writeTask(MOut fu, Task t) {
+	public static void writeTask(MList fu, Task t) {
 		int isHI=t.is_HI?1:0;
 		String txt=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
-		fu.write(txt);
+		fu.add(txt);
 	}
-	public static void loadView(MFile fu) {
+	public static void loadView(MList fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 	    	SLog.prn(1,line);
@@ -97,12 +96,10 @@ public class TaskSetEx {
 
 	// import 
 	public static TaskSetEx loadFile(String f) {
-		MFile fu=new MFile(f);
-	    fu.load();
-	    return TaskSetEx.loadFile_in(fu);
+	    return TaskSetEx.loadFile_in(new MList(f));
 	}
 	
-	public static TaskSetEx  loadFile_in(MFile fu) {
+	public static TaskSetEx  loadFile_in(MList fu) {
 		TaskSeq.reset();
 		TaskSet tasks=new TaskSet();
 		for(int i=0;i<fu.size();i++) {

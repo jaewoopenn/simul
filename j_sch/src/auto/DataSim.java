@@ -6,8 +6,7 @@ import anal.Anal;
 import anal.AnalSel;
 import sim.SimulSel;
 import sim.TaskSimul;
-import util.MOut;
-import util.MFile;
+import util.MList;
 
 public class DataSim {
 	private String g_path;
@@ -20,8 +19,7 @@ public class DataSim {
 		g_max=x;
 	}
 	public void load_x(String fn) {
-		MFile fu=new MFile(g_path+"/"+fn);
-		fu.load();
+		MList fu=new MList(g_path+"/"+fn);
 		g_xlen=fu.size();
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
@@ -30,8 +28,7 @@ public class DataSim {
 		g_rs=new double[10][g_xlen];
 	}
 	public void load_rs(String fn){
-		MFile fu=new MFile(g_path+"/"+fn);
-		fu.load();
+		MList fu=new MList(g_path+"/"+fn);
 		int size=fu.size();
 		g_max=size;
 		for(int i=0;i<size;i++) {
@@ -41,8 +38,7 @@ public class DataSim {
 	}
 	
 	public void load(String fn,int idx) {
-		MFile fu=new MFile(fn);
-		fu.load();
+		MList fu=new MList(fn);
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
 			double r=process_rs(s);
@@ -52,28 +48,27 @@ public class DataSim {
 	}
 	
 	public void save(String fn) {
-		MOut fu=new MOut(g_path+"/"+fn);
+		MList fu=new MList();
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
 			Anal a=AnalSel.getAnal(idx);
 			str+=" "+a.getName();
 		}
-		fu.write(str);
+		fu.add(str);
 		for(int i=0;i<g_xlen;i++) {
 			str=g_xl.elementAt(i);
 			for(int idx=0;idx<g_max;idx++) {
 				str+=" "+g_rs[i][idx];
 			}
-			fu.write(str);
+			fu.add(str);
 //			Log.prn(1, str);
 		}
-		fu.save();
+		fu.save(g_path+"/"+fn);
 		
 	}
 	private double process_rs(String rs) {
-		MFile fu=new MFile(rs);
-		fu.load();
+		MList fu=new MList(rs);
 		int n=fu.size();
 		double r=0;
 		for(int i=0;i<n;i++) {
@@ -86,23 +81,23 @@ public class DataSim {
 		return rst;
 	}
 	public void saveSim(String fn) {
-		MOut fu=new MOut(g_path+"/"+fn);
+		MList fu=new MList();
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
 			TaskSimul a=SimulSel.getSim(idx);
 			str+=" "+a.getName();
 		}
-		fu.write(str);
+		fu.add(str);
 		for(int i=0;i<g_xlen;i++) {
 			str=g_xl.elementAt(i);
 			for(int idx=0;idx<g_max;idx++) {
 				str+=" "+g_rs[i][idx];
 			}
-			fu.write(str);
+			fu.add(str);
 //			Log.prn(1, str);
 		}
-		fu.save();
+		fu.save(g_path+"/"+fn);
 		
 	}
 	

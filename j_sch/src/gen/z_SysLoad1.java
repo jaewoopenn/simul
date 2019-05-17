@@ -1,13 +1,11 @@
 package gen;
 import basic.TaskMng;
-import basic.TaskSetEx;
 import gen.ConfigGen;
-import util.MFile;
 import util.SLog;
 import util.SEngineT;
 
 public class z_SysLoad1 {
-	public static int idx=5;
+	public static int idx=4;
 	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
@@ -17,40 +15,23 @@ public class z_SysLoad1 {
 		cfg.readFile();
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
-		MFile f=new MFile(fn);
-		f.br_open();
-		f.readSplit("------");
-		TaskSetEx.loadView(f);
+
 
 		return 1;
 
 	}
 	public int test2() // load
 	{
-		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
-		sy.load();
 		return 0;
 	}
 	public int test3() // load one
 	{
-		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
-		cfg.readFile();
-		String fn=cfg.get_fn();
-		SLog.prn(1, fn);
-		MFile f=new MFile(fn);
-		f.br_open();
-		while(true) {
-			boolean b=f.readSplit("------");
-			if(!b) break;
-			TaskSetEx tsf=TaskSetEx.loadFile_in(f);
-			tsf.getTM().prn();
-		}
 
 		return 0;
 	}
 	public  int test4() // load copy\
 	{
-		SysLoad sy=new SysLoad("config/cfg1_copy.txt");
+		SysLoad sy=new SysLoad("sch/t1/taskset_65");
 		sy.open();
 		TaskMng tm=sy.loadOne();
 		tm.prnInfo();

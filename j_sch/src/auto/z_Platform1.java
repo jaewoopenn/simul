@@ -10,8 +10,7 @@ import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
 import gen.SysLoad;
-import util.MOut;
-import util.MFile;
+import util.MList;
 import util.SLog;
 import util.SEngineT;
 
@@ -24,10 +23,9 @@ public class z_Platform1 {
 	// gen task set (
 	public int test1() 
 	{
-		MFile fu=new MFile(g_path+"a_cfg_list.txt");
-		MOut fu_ts=new MOut(g_path+"a_ts_list.txt");
-		MOut fu_rs=new MOut(g_path+"a_x_list.txt");
-		fu.load();
+		MList fu=new MList(g_path+"a_cfg_list.txt");
+		MList fu_ts=new MList();
+		MList fu_rs=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
@@ -36,12 +34,12 @@ public class z_Platform1 {
 			SysGen eg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
 			eg.gen(fn);
-			fu_ts.write(fn);
+			fu_ts.add(fn);
 			String mod=cfg.get_mod();
-			fu_rs.write(mod);
+			fu_rs.add(mod);
 		}
-		fu_ts.save();
-		fu_rs.save();
+		fu_ts.save(g_path+"a_ts_list.txt");
+		fu_rs.save(g_path+"a_x_list.txt");
 		
 		return -1;
 	}
@@ -71,9 +69,8 @@ public class z_Platform1 {
 	
 	public  int test4() 
 	{
-		MFile fu=new MFile(g_path+"a_ts_list.txt");
+		MList fu=new MList(g_path+"a_ts_list.txt");
 //		FUtil fu_rs=new FUtil(path+"a_rs_list.txt");
-		fu.load();
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
 			int n=0;
@@ -114,7 +111,7 @@ public class z_Platform1 {
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
 		ConfigGen eg=ConfigGen.getPredefined();
-		MOut fu=new MOut(path+cf);
+		MList fu=new MList();
 		eg.setParam("subfix", path);
 		eg.setParam("num","100");
 		int base=50;
@@ -127,9 +124,9 @@ public class z_Platform1 {
 			String fn=path+"/cfg_"+i+".txt";
 			eg.setFile(fn);
 			eg.write();
-			fu.write(fn);
+			fu.add(fn);
 		}
-		fu.save();
+		fu.save(path+cf);
 		return 1;
 	}
 	public  int test8()

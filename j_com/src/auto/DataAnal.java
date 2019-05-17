@@ -3,7 +3,6 @@ package auto;
 import java.util.Vector;
 
 import util.MList;
-import util.MOut;
 
 
 public class DataAnal {
@@ -17,8 +16,7 @@ public class DataAnal {
 		g_max=x;
 	}
 	public void load_x(String fn) {
-		MList fu=new MList();
-		fu.load(g_path+"/"+fn);
+		MList fu=new MList(g_path+"/"+fn);
 		g_xlen=fu.size();
 		String s;
 		while((s=fu.getNext())!=null) {
@@ -27,8 +25,7 @@ public class DataAnal {
 		g_rs=new double[10][g_xlen];
 	}
 	public void load_rs(String fn){
-		MList fu=new MList();
-		fu.load(g_path+"/"+fn);
+		MList fu=new MList(g_path+"/"+fn);
 		int size=fu.size();
 		g_max=size;
 		String s;
@@ -40,8 +37,7 @@ public class DataAnal {
 	}
 	
 	public void load(String fn,int idx) {
-		MList fu=new MList();
-		fu.load(fn);
+		MList fu=new MList(fn);
 		String s;
 		int i=0;
 		while((s=fu.getNext())!=null) {
@@ -53,28 +49,27 @@ public class DataAnal {
 	}
 	
 	public void save(String fn) {
-		MOut fu=new MOut(g_path+"/"+fn);
+		MList fu=new MList();
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
 			// TODO algo name 
 			str+=" test";
 		}
-		fu.write(str);
+		fu.add(str);
 		for(int i=0;i<g_xlen;i++) {
 			str=g_xl.elementAt(i);
 			for(int idx=0;idx<g_max;idx++) {
 				str+=" "+g_rs[i][idx];
 			}
-			fu.write(str);
+			fu.add(str);
 //			Log.prn(1, str);
 		}
-		fu.save();
+		fu.save(g_path+"/"+fn);
 		
 	}
 	private double process_rs(String rs) {
-		MList fu=new MList();
-		fu.load(rs);
+		MList fu=new MList(rs);
 		int n=fu.size();
 		int p=0;
 		for(int i=0;i<n;i++) {

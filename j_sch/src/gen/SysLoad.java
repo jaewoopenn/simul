@@ -3,6 +3,7 @@ package gen;
 import basic.TaskMng;
 import basic.TaskSetEx;
 import util.MFile;
+import util.MList;
 
 public class SysLoad {
 	private MFile g_fu;
@@ -10,11 +11,6 @@ public class SysLoad {
 		g_fu=new MFile(fn);
 	}
 
-	public void load() {
-		g_fu.load();
-		TaskSetEx.loadView(g_fu);
-		
-	}
 
 	public String open() {
 		g_fu.br_open();
@@ -25,7 +21,9 @@ public class SysLoad {
 		boolean b=g_fu.readSplit("------");
 		if(!b) 
 			return null;
-		TaskSetEx tsf=TaskSetEx.loadFile_in(g_fu);
+		MList ml=new MList();
+		ml.copy(g_fu);
+		TaskSetEx tsf=TaskSetEx.loadFile_in(ml);
 		return tsf.getTM();
 		
 	}

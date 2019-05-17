@@ -2,8 +2,7 @@ package gen;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
-import util.MOut;
-import util.MFile;
+import util.MList;
 import util.SLog;
 import util.SEngineT;
 
@@ -43,10 +42,9 @@ public class z_SysGen1 {
 	public int test3() 
 	{
 		String path="test/t1/";
-		MFile fu=new MFile(path+"a_cfg_list.txt");
-		MOut fu_ts=new MOut(path+"a_ts_list.txt");
-		MOut fu_rs=new MOut(path+"a_x_list.txt");
-		fu.load();
+		MList fu=new MList(path+"a_cfg_list.txt");
+		MList fu_ts=new MList();
+		MList fu_rs=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		for(int i=0;i<fu.size();i++) {
@@ -55,12 +53,12 @@ public class z_SysGen1 {
 			SysGen eg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
 			eg.gen(fn);
-			fu_ts.write(fn);
+			fu_ts.add(fn);
 			String mod=cfg.get_mod();
-			fu_rs.write(mod);
+			fu_rs.add(mod);
 		}
-		fu_ts.save();
-		fu_rs.save();
+		fu_ts.save(path+"a_ts_list.txt");
+		fu_rs.save(path+"a_x_list.txt");
 
 		return 0;
 	}

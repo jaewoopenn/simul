@@ -1,7 +1,6 @@
 package gen;
 import gen.ConfigGen;
-import util.MOut;
-import util.MFile;
+import util.MList;
 import util.SLog;
 import util.SEngineT;
 
@@ -13,7 +12,7 @@ public class z_ConfigGen2 {
 	{
 		ConfigGen eg=ConfigGen.getPredefined();
 		String path="test/t1";
-		MOut fu=new MOut(path+"/a_cfg_list.txt");
+		MList fu=new MList();
 		eg.setParam("subfix", path);
 		eg.setParam("num","10");
 		int base=50;
@@ -26,18 +25,13 @@ public class z_ConfigGen2 {
 			String fn=path+"/cfg_"+i+".txt";
 			eg.setFile(fn);
 			eg.write();
-			fu.write(fn);
+			fu.add(fn);
 		}
-		fu.save();
+		fu.save(path+"/a_cfg_list.txt");
 		return 1;
 	}
 	public int test2() 
 	{
-		String path="test/t1";
-		MFile fu=new MFile(path+"/list.txt");
-		int n=fu.load();
-		SLog.prn(1, n+" ");
-		fu.view();
 		return 0;
 	}
 	public int test3() 

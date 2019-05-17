@@ -11,8 +11,7 @@ import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
-import util.MOut;
-import util.MFile;
+import util.MList;
 import util.CProg;
 import util.SLog;
 
@@ -45,7 +44,7 @@ public class Platform {
 		int step=5;
 		double end_i=(ul*100-50)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
-		MOut fu=new MOut(g_path+"/"+cf);
+		MList fu=new MList();
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
@@ -57,18 +56,17 @@ public class Platform {
 			String fn=g_path+"/cfg_"+i+".txt";
 			cg.setFile(fn);
 			cg.write();
-			fu.write(fn);
+			fu.add(fn);
 		}
-		fu.save();
+		fu.save(g_path+"/"+cf);
 		
 	}
 
 	public void genTS(String cfg_list,String ts, String xaxis) {
-		MFile fu=new MFile(g_path+"/"+cfg_list);
+		MList fu=new MList(g_path+"/"+cfg_list);
 		
-		MOut fu_ts=new MOut(g_path+"/"+ts);
-		MOut fu_xa=new MOut(g_path+"/"+xaxis);
-		fu.load();
+		MList fu_ts=new MList();
+		MList fu_xa=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
@@ -80,38 +78,37 @@ public class Platform {
 			if(g_isCheck)
 				sg.setCheck();
 			sg.gen(fn);
-			fu_ts.write(fn);
+			fu_ts.add(fn);
 			String mod=cfg.get_mod();
-			fu_xa.write(mod);
+			fu_xa.add(mod);
 		}
-		fu_ts.save();
-		fu_xa.save();
+		fu_ts.save(g_path+"/"+ts);
+		fu_xa.save(g_path+"/"+xaxis);
 	}
 	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
-		MOut fu=new MOut(g_path+"/"+rs_list);
+		MList fu=new MList();
 		for(int i=0;i<end;i++){
 			String rs=anal(ts_list,i);
-			fu.write(rs);
+			fu.add(rs);
 		}
-		fu.save();
+		fu.save(g_path+"/"+rs_list);
 	}
 	
 	// analyze task set list with algorithm choice
 	public String anal(String ts_list,int sort) {
-		MFile fu=new MFile(g_path+"/"+ts_list);
+		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
-		MOut fu_rs=new MOut(rs_fn);
-		fu.load();
+		MList fu_rs=new MList();
 		Anal a=AnalSel.getAnal(sort);
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
 			String out=fn+".rs."+sort;
 			anal_one(fn,out,a);
-			fu_rs.write(out);
+			fu_rs.add(out);
 		}		
-		fu_rs.save();
+		fu_rs.save(rs_fn);
 		return rs_fn;
 	}
 	
@@ -119,7 +116,7 @@ public class Platform {
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
-		MOut fu=new MOut(out);
+		MList fu=new MList();
 		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
@@ -127,31 +124,30 @@ public class Platform {
 			a.init(tm);
 			a.prepare();
 			if(a.is_sch()) {
-				fu.write("1");
+				fu.add("1");
 			} else {
-				fu.write("0");
+				fu.add("0");
 			}
 		}
-		fu.save();
+		fu.save(out);
 		
 	}
 	
 	//simulation
 	public void sim_loop(String rs_list,String ts_list, int end) {
-		MOut fu=new MOut(g_path+"/"+rs_list);
+		MList fu=new MList();
 		for(int i=0;i<end;i++){
 			String rs=simul(ts_list,i);
-			fu.write(rs);
+			fu.add(rs);
 		}
-		fu.save();
+		fu.save(g_path+"/"+rs_list);
 	}
 
 	// simulate task set list with algorithm choice
 	public String simul(String ts_list,int sort) {
-		MFile fu=new MFile(g_path+"/"+ts_list);
-		fu.load();
+		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"a_sim_list."+sort+".txt";
-		MOut fu_rs=new MOut(rs_fn);
+		MList fu_rs=new MList();
 		
 		Anal a=AnalSel.getAnal(sort);
 		TaskSimul s=SimulSel.getSim(sort);
@@ -160,9 +156,9 @@ public class Platform {
 			String fn=fu.get(i);
 			String out=fn+".sim."+sort;
 			simul_one(fn,out,a,s);
-			fu_rs.write(out);
+			fu_rs.add(out);
 		}		
-		fu_rs.save();
+		fu_rs.save(rs_fn);
 		return rs_fn;		
 	}
 
@@ -174,7 +170,7 @@ public class Platform {
 		CProg prog=new CProg(num);
 		prog.setLog(2);
 		prog.setPercent();
-		MOut fu=new MOut(out);
+		MList fu=new MList();
 		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
@@ -196,9 +192,9 @@ public class Platform {
 			s.simul(0,g_dur);
 			s.simul_end();
 			SimulInfo si=s.getSI();
-			fu.write(si.getDMR()+"");
+			fu.add(si.getDMR()+"");
 		}
-		fu.save();
+		fu.save(out);
 	}
 
 

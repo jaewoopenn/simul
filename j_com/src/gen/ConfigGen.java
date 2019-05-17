@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import util.MFile;
+import util.MList;
 import util.MLoop;
-import util.MOut;
 import util.SLog;
 
 public class ConfigGen {
@@ -84,7 +84,7 @@ public class ConfigGen {
 		if(fn==null) {
 			SLog.err("configGen: filename is not set");
 		}
-		MOut fu=new MOut(fn);
+		MList fu=new MList();
 		for (String s:g_required){
 			String v=readPar(s);
 			if(v==null){
@@ -92,9 +92,9 @@ public class ConfigGen {
             	return;
 			}
 			String txt=s+":"+v;
-			fu.write(txt);
+			fu.add(txt);
 		}
-		fu.save();
+		fu.save(fn);
 		
 	}
 	public void prn(int lv) {

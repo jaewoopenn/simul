@@ -45,8 +45,7 @@ public class Platform {
 	}
 
 	public void genTS(String cfg_list,String ts, String xaxis) {
-		MList fu=new MList();
-		fu.load(g_path+"/"+cfg_list);
+		MList fu=new MList(g_path+"/"+cfg_list);
 		
 		MList fu_ts=new MList();
 		MList fu_xa=new MList();
@@ -86,8 +85,7 @@ public class Platform {
 	public String anal(String ts_list,int sort) {
 		MList fu=new MList();
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
-		MList fu_rs=new MList();
-		fu.load(g_path+"/"+ts_list);
+		MList fu_rs=new MList(g_path+"/"+ts_list);
 		String fn;
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
