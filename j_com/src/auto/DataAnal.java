@@ -3,7 +3,7 @@ package auto;
 import java.util.Vector;
 
 import util.MList;
-import util.FOut;
+import util.MOut;
 
 
 public class DataAnal {
@@ -53,7 +53,7 @@ public class DataAnal {
 	}
 	
 	public void save(String fn) {
-		FOut fu=new FOut(g_path+"/"+fn);
+		MOut fu=new MOut(g_path+"/"+fn);
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {

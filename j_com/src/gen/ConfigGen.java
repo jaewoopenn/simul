@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import util.MFile;
 import util.MLoop;
-import util.FOut;
+import util.MOut;
 import util.S_Log;
 
 public class ConfigGen {
@@ -84,7 +84,7 @@ public class ConfigGen {
 		if(fn==null) {
 			S_Log.err("configGen: filename is not set");
 		}
-		FOut fu=new FOut(fn);
+		MOut fu=new MOut(fn);
 		for (String s:g_required){
 			String v=readPar(s);
 			if(v==null){

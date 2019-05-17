@@ -27,6 +27,7 @@ public class MOut {
 	{
 		g_writer.close();
 	}
+	
 	public static void makeDir(String str) {
 		 File theDir = new File(MFile.path+str);
 		if (theDir.exists()) {
