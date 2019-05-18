@@ -1,4 +1,11 @@
 package auto;
+/*
+ * 1. gen config
+ * 2. gen task set
+ * 3. gen prm for task set
+ * 3-2. check sch for task set and its prm 
+ */
+
 
 import gen.ConfigGen;
 import gen.SysGen;
