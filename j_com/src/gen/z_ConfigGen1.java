@@ -8,20 +8,17 @@ public class z_ConfigGen1 {
 	public static int idx=3;
 	public static int log_level=2;
 	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
-	public int test1() // error config
-	{
+	public int test1() { // error config
 		ConfigGen eg=ConfigGen.getSample();
 		eg.write("com/cfg1_copy.txt");
 		return 0;
 	}
-	public int test2() // normal config
-	{
+	public int test2() {// normal config
 		ConfigGen eg=new ConfigGen();
 		eg.load("com/cfg1_copy.txt");
 		return 0;
 	}
-	public int test3() // print config
-	{
+	public int test3() { // print config
 		ConfigGen eg=new ConfigGen();
 		eg.load("com/cfg1_copy.txt");
 		String s=eg.readPar("util_err");
@@ -30,32 +27,25 @@ public class z_ConfigGen1 {
 		System.out.println(s);
 		return 1;
 	}
-	public  int test4() 
-	{
+	public  int test4() {
 		return 1;
 	}
-	public  int test5() 
-	{
+	public  int test5() {
 		return 1;
 	}
-	public  int test6() 
-	{
+	public  int test6() {
 		return 1;
 	}
-	public  int test7()
-	{
+	public  int test7() {
 		return 1;
 	}
-	public  int test8()
-	{
+	public  int test8() {
 		return 0;
 	}
-	public  int test9()
-	{
+	public  int test9() {
 		return 0;
 	}
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
 	}
 	

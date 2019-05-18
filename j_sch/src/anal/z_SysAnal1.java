@@ -26,47 +26,31 @@ public class z_SysAnal1 {
 		return -1;
 	}
 
-	public int test2() 
-	{
+	public int test2() {
 		return -1;
 	}
-	
-	public int test3() 
-	{
-		return -1;
-	}
-	
-	public  int test4() 
-	{
-		return -1;
-	}
-	
-	public  int test5() 
-	{
+	public int test3() {
 		return 0;
 	}
-	public  int test6() 
-	{
+	public  int test4() {
+		return 1;
+	}
+	public  int test5() {
+		return 1;
+	}
+	public  int test6() {
+		return 1;
+	}
+	public  int test7() {
+		return 1;
+	}
+	public  int test8() {
 		return 0;
 	}
-	
-	public  int test7()
-	{
+	public  int test9() {
 		return 0;
 	}
-	
-	public  int test8()
-	{
-		return 0;
-	}
-	
-	public  int test9()
-	{
-		return 0;
-	}
-	
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
 	}
 	

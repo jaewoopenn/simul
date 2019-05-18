@@ -1,4 +1,5 @@
 package gen;
+import comp.z_Anal1;
 import gen.ConfigGen;
 import util.SLog;
 import util.SEngineT;
@@ -6,7 +7,6 @@ import util.SEngineT;
 public class z_ConfigGen1 {
 	public static int log_level=2;
 	public static int idx=5;
-	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() // error config
 	{
 		ConfigGen eg=new ConfigGen("config/err_cfg1.txt");
@@ -39,14 +39,14 @@ public class z_ConfigGen1 {
 	}
 	public  int test5() // write config
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getPredefined();
 		eg.setFile("config/cfg1_copy.txt");
 		eg.write();
 		return 1;
 	}
 	public  int test6() // test config
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getPredefined();
 		eg.setParam("subfix", "drop");
 		eg.setParam("num","500");
 		int base=50;
@@ -63,51 +63,33 @@ public class z_ConfigGen1 {
 	}
 	public  int test7()
 	{
-		ConfigGen eg=getCfg();
+		ConfigGen eg=ConfigGen.getPredefined();
 		eg.setParam("subfix", "util");
 		eg.setParam("num","10");
 //		eg.genRange("cfg/cfg",50,5,10);
 		return 0;
 	}
-	public  int test8()
-	{
+	public  int test8() {
 		return 0;
 	}
-	public  int test9()
-	{
+	public  int test9() {
 		return 0;
 	}
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
-	}
-	public ConfigGen getCfg()	{
-		ConfigGen eg=new ConfigGen("");
-		eg.setParam("u_lb","0.95");
-		eg.setParam("u_ub","1.0");
-		eg.setParam("p_lb","50");
-		eg.setParam("p_ub","300");
-		eg.setParam("tu_lb","0.02");
-		eg.setParam("tu_ub","0.1");
-		eg.setParam("r_lb","0.05");
-		eg.setParam("r_ub","1.0");
-		eg.setParam("prob_hi","0.5");
-		eg.setParam("num","10");
-		eg.setParam("subfix","test");
-		eg.setParam("mod","t");
-		return eg;
-
 	}
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_ConfigGen1.class;
-		z_ConfigGen1 m=new z_ConfigGen1();
-		int[] aret=z_ConfigGen1.gret;
+		Class c = z_Anal1.class;
+		z_Anal1 m=new z_Anal1();
+		int[] aret=z_Anal1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 }

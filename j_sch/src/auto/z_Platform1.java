@@ -138,13 +138,11 @@ public class z_Platform1 {
 		return 0;
 	}
 	
-	public  int test9()
-	{
+	public  int test9() {
 		return 0;
 	}
 	
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
 	}
 	

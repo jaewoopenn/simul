@@ -1,4 +1,5 @@
 package gen;
+import comp.z_Anal1;
 import gen.TaskGen;
 import gen.TaskGenMC;
 import gen.TaskGenParam;
@@ -11,8 +12,6 @@ import util.SEngineT;
 public class z_TaskGen1 {
 	public static int log_level=1;
 	public static int idx=1;
-	public static int total=10;
-	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setPeriod(50,300);
@@ -32,54 +31,45 @@ public class z_TaskGen1 {
 		TaskSetUtil.writeFile("test/test.txt", ts.getArr());
 		return 1;
 	}
-	public int test2()
-	{
-		return 1;
-
+	public int test2() {
+		return -1;
 	}
-	public  int test3()
-	{
-		return 1;
-	}
-	public  int test4()
-	{
-		return 1;
-		
-	}
-	public  int test5()
-	{
-		return 1;
-	}
-	public  int test6()
-	{
-		return 1;
-	}
-	public  int test7()
-	{
-		return 1;
-	}
-	public  int test8()
-	{
+	public int test3() {
 		return 0;
 	}
-	public  int test9()
-	{
+	public  int test4() {
+		return 1;
+	}
+	public  int test5() {
+		return 1;
+	}
+	public  int test6() {
+		return 1;
+	}
+	public  int test7() {
+		return 1;
+	}
+	public  int test8() {
 		return 0;
 	}
-	public  int test10()
-	{
+	public  int test9() {
+		return 0;
+	}
+	public  int test10() {
 		return 0;
 	}
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_TaskGen1.class;
-		z_TaskGen1 m=new z_TaskGen1();
-		int[] aret=z_TaskGen1.gret;
+		Class c = z_Anal1.class;
+		z_Anal1 m=new z_Anal1();
+		int[] aret=z_Anal1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int total=10;
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 }

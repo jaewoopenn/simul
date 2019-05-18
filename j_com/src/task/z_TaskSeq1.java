@@ -29,36 +29,28 @@ public class z_TaskSeq1 {
 		return 0;
 		
 	}
-	public int test3() 
-	{
+	public int test3() {
 		return 0;
 	}
-	public  int test4() 
-	{
+	public  int test4() {
+		return 1;
+	}
+	public  int test5() {
+		return 1;
+	}
+	public  int test6() {
+		return 1;
+	}
+	public  int test7() {
+		return 1;
+	}
+	public  int test8() {
 		return 0;
 	}
-	public  int test5() 
-	{
+	public  int test9() {
 		return 0;
 	}
-	public  int test6() 
-	{
-		return 0;
-	}
-	public  int test7()
-	{
-		return 0;
-	}
-	public  int test8()
-	{
-		return 0;
-	}
-	public  int test9()
-	{
-		return 0;
-	}
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
 	}
 	

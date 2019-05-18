@@ -118,16 +118,13 @@ public class z_auto1 {
 		ds.saveSim(g_graph);
 		return 0;
 	}
-	public  int test8()
-	{
+	public  int test8() {
 		return 0;
 	}
-	public  int test9()
-	{
+	public  int test9() {
 		return 0;
 	}
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
 	}
 	

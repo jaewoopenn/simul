@@ -30,9 +30,7 @@ public class z_Platform1 {
 	}
 
 	// gen task set (
-	public int test2() 
-	{
-		
+	public int test2() {
 		return -1;
 	}
 	
@@ -48,8 +46,7 @@ public class z_Platform1 {
 		return -1;		
 	}
 	
-	public  int test4() 
-	{
+	public  int test4() {
 
 		return -1;
 		

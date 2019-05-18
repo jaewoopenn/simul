@@ -97,31 +97,22 @@ public class z_Platform2 {
 		return -1;
 	}
 	
-	public  int test5() 
-	{
-		return -1;
+	public  int test5() {
+		return 1;
 	}
-	public  int test6() 
-	{
-		return -1;
+	public  int test6() {
+		return 1;
 	}
-	
-	public  int test7()
-	{
-		return -1;
+	public  int test7() {
+		return 1;
 	}
-	public  int test8()
-	{
-		return -1;
-	}
-	
-	public  int test9()
-	{
+	public  int test8() {
 		return 0;
 	}
-	
-	public  int test10()
-	{
+	public  int test9() {
+		return 0;
+	}
+	public  int test10() {
 		return 0;
 	}
 	

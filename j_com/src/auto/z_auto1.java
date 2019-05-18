@@ -42,8 +42,7 @@ public class z_auto1 {
 		g_graph="a_graph.txt";
 	}
 
-	public int test1() 
-	{
+	public int test1()  {// config gen
 		init_g();
 		init_anal();
 		Platform p=new Platform(g_path);
@@ -51,15 +50,15 @@ public class z_auto1 {
 		p.genCfg_util(g_util_ul,g_cfg_list);
 		return 0;
 	}
-	public int test2() // from 
-	{
+	public int test2() {// task set gen
 		init_g();
 		init_anal();
 		Platform p=new Platform(g_path);
 		p.genTS(g_cfg_list,g_ts,g_xl);
-		return -1;	}
-	public int test3() // task set --> anal rs
-	{
+		return -1;	
+	}
+	
+	public int test3() { // anal 
 		init_g();
 		init_anal();
 		Platform p=new Platform(g_path);
@@ -67,8 +66,7 @@ public class z_auto1 {
 		p.anal_loop(g_rs,g_ts,end);
 		return -1;
 	}
-	public  int test4() // anal rs --> graph
-	{
+	public  int test4() { // anal rs --> graph
 		init_g();
 		init_anal();
 		DataAnal da=new DataAnal(g_path,0);
@@ -77,28 +75,22 @@ public class z_auto1 {
 		da.save(g_graph);		
 		return -1;
 	}
-	public  int test5() 
-	{
+	public  int test5() {
 		return -1;
 	}
-	public  int test6() 
-	{
+	public  int test6() {
 		return -1;
 	}
-	public  int test7()
-	{
+	public  int test7() {
 		return -1;
 	}
-	public  int test8()
-	{
+	public  int test8() {
 		return 0;
 	}
-	public  int test9()
-	{
+	public  int test9() {
 		return 0;
 	}
-	public  int test10()
-	{
+	public  int test10() {
 		return 0;
 	}
 	
