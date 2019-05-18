@@ -5,26 +5,20 @@ import com.PRM;
 import task.Task;
 import util.SLog;
 
-public class AnalRM {
-	public static double computeRBF(Task[] tm,int i, int t) {
-		double r=0;
-		for(int j=0;j<=i;j++) {
-			if(j==i) {
-				r+=tm[j].exec;
-			} else {
-				r+=Math.floor(t*1.0/tm[j].period)*tm[j].exec;
-				
-			}
-		}
-		
-		return r;
-	}
+public class AnalRM extends Anal{
+	public AnalRM() {
+		super();
+		g_name="RM";
+	}	@Override
+	public boolean is_sch() {
+		return checkSch(g_prm);
+	}	
 
-	public static boolean checkSch_ind(PRM p, Task[] tm, int i, int end_t) {
+	public boolean checkSch_ind(PRM p, int i, int end_t) {
 		int log_lv=1;
 		SLog.prn(log_lv, "t \t sup \t req ");
 		for(int t=1;t<=end_t;t++) {
-			double r=computeRBF(tm,i,t);
+			double r=MAnal.computeRBF(g_tm.getArr(),i,t);
 			double s=p.sbf(t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r) {
@@ -40,24 +34,26 @@ public class AnalRM {
 		return false;
 	}
 
-	public static boolean checkSch(PRM p, Task[] tm) {
+	public boolean checkSch(PRM p) {
+		Task[] tm=g_tm.getArr();
 		for(int i=0;i<tm.length;i++) {
 			int end_t=tm[i].period;
-			if(!checkSch_ind(p,tm,i,end_t))
+			if(!checkSch_ind(p,i,end_t))
 				return false; // 하나라도 안되면 실패
 				
 		}
 		return true; // 모두 성공하면 OK
 	}
 
-	public static double getExec(Task[] tm, int p) {
+	public double getExec(int p) {
+		Task[] tm=g_tm.getArr();
 		double exec=0;
 		for(int i=0;i<tm.length;i++) {
 			int end_t=tm[i].period;
 			double exec1=p;
 			
 			for(int t=1;t<=end_t;t++) {
-				double tempExec=getExec(tm,p,i,t);
+				double tempExec=getExec(p,i,t);
 				String st="";
 				st+=i+" "+t;
 				st+=" temp:"+tempExec;
@@ -70,8 +66,9 @@ public class AnalRM {
 		return exec;
 	}
 
-	public static double getExec(Task[] tm, int pi, int i, int t) {
-		double req=computeRBF(tm,i,t);
+	public double getExec(int pi, int i, int t) {
+		Task[] tm=g_tm.getArr();
+		double req=MAnal.computeRBF(tm,i,t);
 		int kp1=t/pi;
 		int kp2=kp1-1;
 		if (kp2<0)
@@ -103,7 +100,7 @@ public class AnalRM {
 		return theta;
 	}
 	// compute theta1,  r mod theta !=0
-	private static double getTheta1(double req, int pi,  int t,int k) {
+	private  double getTheta1(double req, int pi,  int t,int k) {
 		double theta=pi-(t-req)/(k+2);
 		String st=" th:"+theta;
 		double alpha=t-k*pi-(pi-theta);
@@ -115,7 +112,7 @@ public class AnalRM {
 		return theta;
 	}
 	// compute theta2,  r mod theta ==0
-	private static double getTheta2(double req, int pi,  int t,int k) {
+	private double getTheta2(double req, int pi,  int t,int k) {
 		if(k==0)
 			return pi;
 		String st="";
@@ -130,6 +127,7 @@ public class AnalRM {
 		if(alpha<0 || alpha >pi-theta)
 			return pi;
 		return theta;
-	}	
+	}
+
 }
 	

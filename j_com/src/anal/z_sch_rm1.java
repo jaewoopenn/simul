@@ -16,12 +16,12 @@ public class z_sch_rm1 {
 	public int test1()
 	{
 		PRM p=new PRM(3,1.5);
-		TaskMng tm=TS1.getTM1();
+		TaskMng tm=TS1.tm1();
 		
 		SLog.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
 			double s=p.sbf(t);
-			double r=AnalRM.computeRBF(tm.getArr(),1,t);
+			double r=MAnal.computeRBF(tm.getArr(),1,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r)
 				st+=">>>>>";
@@ -35,9 +35,11 @@ public class z_sch_rm1 {
 	{
 		PRM p=new PRM(3,1.5);
 //		PRM p=new PRM(3,1);
-		TaskMng tm=TS1.getTM1();
+		TaskMng tm=TS1.tm1();
 		String st="";
-		if(AnalRM.checkSch_ind(p,tm.getArr(),1,13))
+		AnalRM a=new AnalRM();
+		a.init(tm);
+		if(a.checkSch_ind(p,1,13))
 			st+="OK";
 		else
 			st+="Not OK";
@@ -48,9 +50,11 @@ public class z_sch_rm1 {
 	public  int test3()
 	{
 		PRM p=new PRM(3,2);
-		TaskMng tm=TS1.getTM1();
+		TaskMng tm=TS1.tm1();
 		String st="";
-		if(AnalRM.checkSch(p,tm.getArr()))
+		AnalRM a=new AnalRM();
+		a.init(tm);
+		if(a.checkSch(p))
 			st+="OK";
 		else
 			st+="Not OK";
@@ -59,9 +63,11 @@ public class z_sch_rm1 {
 	}
 	public  int test4()
 	{
-		TaskMng tm=TS1.getTM1();
+		TaskMng tm=TS1.tm1();
 		int p=3;
-		double exec=AnalRM.getExec(tm.getArr(),p);
+		AnalRM a=new AnalRM();
+		a.init(tm);
+		double exec=a.getExec(p);
 		String st="exec:"+exec;
 		SLog.prn(2,st );
 		
@@ -69,10 +75,12 @@ public class z_sch_rm1 {
 	}
 	public  int test5()
 	{
-		TaskMng tm=TS1.getTM1();
+		TaskMng tm=TS1.tm1();
 		PRM p=new PRM(3,1.6667);
 		String st="";
-		if(AnalRM.checkSch(p,tm.getArr()))
+		AnalRM a=new AnalRM();
+		a.init(tm);
+		if(a.checkSch(p))
 			st+="OK";
 		else
 			st+="Not OK";

@@ -2,6 +2,8 @@ package auto;
 
 import java.util.Vector;
 
+import anal.Anal;
+import anal.AnalSel;
 import util.MList;
 
 
@@ -53,8 +55,8 @@ public class DataAnal {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			// TODO algo name 
-			str+=" test";
+			Anal a=AnalSel.getAnal(idx);
+			str+=" "+a.getName();
 		}
 		fu.add(str);
 		for(int i=0;i<g_xlen;i++) {
