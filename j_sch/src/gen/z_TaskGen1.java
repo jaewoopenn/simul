@@ -12,6 +12,7 @@ import util.SEngineT;
 public class z_TaskGen1 {
 	public static int log_level=1;
 	public static int idx=1;
+	
 	public TaskGen getTG1(){
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setPeriod(50,300);
