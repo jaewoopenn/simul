@@ -1,25 +1,23 @@
 package sample;
 
 import task.Task;
-import task.TaskMng;
 import task.TaskSet;
+import task.TaskVec;
 
 public class TS1 {
-	public static TaskMng tm1() {
-		TaskSet ts=new TaskSet();
+	public static TaskSet tm1() {
+		TaskVec ts=new TaskVec();
 		ts.add(new Task(4,1));
 		ts.add(new Task(6,1));
-		ts.end();
-		return new TaskMng(ts);
+		return new TaskSet(ts);
 	}
 	
-	public static TaskMng tm2() {
-		TaskSet ts=new TaskSet();
+	public static TaskSet tm2() {
+		TaskVec ts=new TaskVec();
 		ts.add(new Task(4,1));
 		ts.add(new Task(5,1));
 		ts.add(new Task(7,2));
-		ts.end();
-		return new TaskMng(ts);
+		return new TaskSet(ts);
 	}
 	
 }

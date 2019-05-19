@@ -3,7 +3,7 @@ package anal;
 import com.PRM;
 
 import sample.TS1;
-import task.TaskMng;
+import task.TaskSet;
 import util.SEngineT;
 import util.SLog;
 
@@ -14,7 +14,7 @@ public class z_Anal1 {
 
 	public int test1() 
 	{
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		Anal a=new AnalRM();
 //		PRM p=new PRM(3,1.5);
 		PRM p=new PRM(3,1.667);

@@ -1,7 +1,7 @@
 package auto;
 
-import task.TaskMng;
 import task.TaskSet;
+import task.TaskVec;
 import task.TaskSetUtil;
 import util.MFile;
 import util.MList;
@@ -18,14 +18,14 @@ public class SysLoad {
 		return g_fu.read();
 		
 	}
-	public TaskMng loadOne() {
+	public TaskSet loadOne() {
 		boolean b=g_fu.readSplit("------");
 		if(!b) 
 			return null;
 		MList ml=new MList();
 		ml.copy(g_fu);
-		TaskSet tsf=TaskSetUtil.loadFile_in(ml);
-		return new TaskMng(tsf);
+		TaskVec tsf=TaskSetUtil.loadFile(ml);
+		return new TaskSet(tsf);
 		
 	}
 	

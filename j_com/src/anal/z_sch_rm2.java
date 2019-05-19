@@ -5,7 +5,7 @@ package anal;
 import com.PRM;
 
 import sample.TS1;
-import task.TaskMng;
+import task.TaskSet;
 import util.SLog;
 import util.SEngineT;
 
@@ -16,7 +16,7 @@ public class z_sch_rm2 {
 	
 	public int test1()
 	{
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 //		TaskMng tm=TS1.getTM2();
 		int p=3;
 		int end_t=5;
@@ -29,7 +29,7 @@ public class z_sch_rm2 {
 	}
 	public int test2() 
 	{
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 //		TaskMng tm=TS1.getTM2();
 		PRM p=new PRM(3,1.5);
 //		PRM p=new PRM(3,1.667);
@@ -46,7 +46,7 @@ public class z_sch_rm2 {
 	}
 	public  int test3()
 	{
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		int p=3;
 		AnalRM a=new AnalRM();
 		a.init(tm);

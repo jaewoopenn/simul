@@ -2,6 +2,7 @@ package gen;
 import gen.TaskGen;
 import gen.TaskGenParam;
 import task.TaskSet;
+import task.TaskVec;
 import task.TaskSetUtil;
 import util.CRange;
 import util.SEngineT;
@@ -24,8 +25,9 @@ public class z_TaskGen1 {
 	{
 		TaskGen tg=getTG1();
 		tg.generate();
-		TaskSet ts=tg.getTS();
-		TaskSetUtil.writeFile("com/test.txt", ts.getArr());
+		TaskVec ts=tg.getTS();
+		TaskSet tm=new TaskSet(ts);
+		TaskSetUtil.writeFile("com/test.txt", tm.getArr());
 		return 1;
 	}
 	public int test2() {

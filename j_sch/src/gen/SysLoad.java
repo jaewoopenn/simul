@@ -24,7 +24,7 @@ public class SysLoad {
 			return null;
 		MList ml=new MList();
 		ml.copy(g_fu);
-		TaskSetMC tsf=TaskSetUtil.loadFile_in(ml);
+		TaskSetMC tsf=TaskSetUtil.loadFile(ml);
 		return tsf.getTM();
 		
 	}

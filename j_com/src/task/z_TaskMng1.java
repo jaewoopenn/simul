@@ -9,11 +9,10 @@ public class z_TaskMng1 {
 	public static int idx=1;
 	public int test1()
 	{
-		TaskSet ts=new TaskSet();
+		TaskVec ts=new TaskVec();
 		ts.add(new Task(3,1));
 		ts.add(new Task(4,1));
-		ts.end();
-		TaskMng tm=new TaskMng(ts);
+		TaskSet tm=new TaskSet(ts);
 		tm.prn();
 		return 0;
 	}

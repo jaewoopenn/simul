@@ -4,7 +4,7 @@ package anal;
 import com.PRM;
 
 import sample.TS1;
-import task.TaskMng;
+import task.TaskSet;
 import util.SLog;
 import util.SEngineT;
 
@@ -16,7 +16,7 @@ public class z_sch_rm1 {
 	public int test1()
 	{
 		PRM p=new PRM(3,1.5);
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		
 		SLog.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
@@ -35,7 +35,7 @@ public class z_sch_rm1 {
 	{
 		PRM p=new PRM(3,1.5);
 //		PRM p=new PRM(3,1);
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		String st="";
 		AnalRM a=new AnalRM();
 		a.init(tm);
@@ -50,7 +50,7 @@ public class z_sch_rm1 {
 	public  int test3()
 	{
 		PRM p=new PRM(3,2);
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		String st="";
 		AnalRM a=new AnalRM();
 		a.init(tm);
@@ -63,7 +63,7 @@ public class z_sch_rm1 {
 	}
 	public  int test4()
 	{
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		int p=3;
 		AnalRM a=new AnalRM();
 		a.init(tm);
@@ -75,7 +75,7 @@ public class z_sch_rm1 {
 	}
 	public  int test5()
 	{
-		TaskMng tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
 		PRM p=new PRM(3,1.6667);
 		String st="";
 		AnalRM a=new AnalRM();

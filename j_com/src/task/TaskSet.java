@@ -1,84 +1,81 @@
 package task;
 
-
 import java.util.Arrays;
 import java.util.Vector;
 
 import util.SLog;
 
-/*
- * a set of tasks 
- * Vector --> Array
- * To make TaskMng, utilize TaskSetEx
-
-*/
-
-
 public class TaskSet {
-	private Vector<Task> g_taskV;
 	private Task[] g_tasks;
-	
-	public TaskSet(){
-		g_taskV=new Vector<Task>();
-	}
-	public TaskSet(Vector<Task> all_tasks) {
-		g_taskV=new Vector<Task>();
-		for(Task t:all_tasks) {
-			add(t);
-		}
-	}
-	
-	public void add(Task t){
-		g_taskV.add(t);
-	}
-	public int v_size(){
-		return g_taskV.size();
-	}
-	
-	public void remove(Task t) {
-		g_taskV.remove(t);
-	}
-	public void removeLast(){
-		g_taskV.remove(g_taskV.size()-1);
-	}
-	
-	public void end(){
-		int size=g_taskV.size();
+
+	public TaskSet(TaskVec ts) {
+		Vector<Task> task_V=ts.getVec();
+		int size=task_V.size();
 		g_tasks=new Task[size];
-		g_taskV.toArray(g_tasks);
-	}
-	public boolean isEnd() {
-		if(g_tasks!=null) {
-			return true;
-		}
-		return false;
+		task_V.toArray(g_tasks);
 	}
 	
-	public Task get(int i){
-		return g_tasks[i];
-	}
-	public int size(){
-		return g_tasks.length;
-	}
-	public Task[] getArr(){
-		if(g_tasks==null) {
-			SLog.err("g_task is null");
-		}
+
+	public Task[] getArr() {
 		return g_tasks;
 	}
-	public Vector<Task> getVec(){
-		return g_taskV;
+
+
+	public Task getTask(int i) {
+		return g_tasks[i];
 	}
-	public void sort() {
-		Arrays.sort(g_tasks,new ComparatorTask());
-		
+	
+
+
+	public double getUtil() {
+		double util=0;
+		for(Task t:g_tasks)	{
+			util+=t.getUtil();
+		}
+		return util;
 	}
+
+
+	public int size() {
+		return g_tasks.length;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public boolean check() {
+		return true;
+	}
+
+	// prn 
 
 
 	public void prn() {
-		for(Task t:g_tasks){
+		for(Task t:g_tasks)	{
 			t.prn();
 		}
+		
+	}
+	
+	public void prnInfo() {
+		String st="num:"+g_tasks.length;
+		st+=" util:"+getUtil();
+		SLog.prn(1, st);
+	}
+	
+	
+	public void sort() {
+		Arrays.sort(g_tasks,new ComparatorTask());
 		
 	}
 

@@ -3,8 +3,8 @@ package anal;
 
 import util.SLog;
 import task.Task;
-import task.TaskMng;
 import task.TaskSet;
+import task.TaskVec;
 import util.SEngineT;
 
 public class z_rbf1 {
@@ -12,11 +12,10 @@ public class z_rbf1 {
 	public static int idx=1;
 	public int test1()
 	{
-		TaskSet ts=new TaskSet();
+		TaskVec ts=new TaskVec();
 		ts.add(new Task(3,1));
 		ts.add(new Task(4,1));
-		ts.end();
-		TaskMng tm=new TaskMng(ts);
+		TaskSet tm=new TaskSet(ts);
 		
 		for(int t=0;t<12;t++) {
 			double r=MAnal.computeRBF(tm.getArr(),2,t);

@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import task.Task;
 import task.TaskSet;
+import task.TaskVec;
 
 public abstract class TaskGen {
 	protected TaskGenParam g_param;
@@ -49,12 +50,11 @@ public abstract class TaskGen {
 
 
 	public TaskSet getTS() {
-		TaskSet ts=new TaskSet();
+		TaskVec ts=new TaskVec();
 		for(Task t:g_tasks) {
 			ts.add(t);
 		}
-		ts.end();
-		return ts;
+		return new TaskSet(ts);
 	}
 	
 	public int size() {

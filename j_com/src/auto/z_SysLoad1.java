@@ -1,16 +1,18 @@
-package gen;
-import auto.SysLoad;
-import task.TaskMng;
+package auto;
+import task.TaskSet;
 import util.SEngineT;
 
 public class z_SysLoad1 {
-//	public static int idx=1;
+	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
+//	public static int idx=3;
 	public static int log_level=1;
 	public int test1() // gen
 	{
-
+		SysLoad sy=new SysLoad("com/t1/taskset_55.txt");
+		sy.open();
+		TaskSet tm=sy.loadOne();
+		tm.prn();
 		return 1;
 
 	}
@@ -18,18 +20,15 @@ public class z_SysLoad1 {
 	{
 		SysLoad sy=new SysLoad("com/test1");
 		sy.open();
-		TaskMng tm=sy.loadOne();
-		tm.prn();
+		TaskSet tm;
+		while((tm=sy.loadOne())!=null) {
+			tm.prnInfo();
+		}
 		return 0;
 	}
 	public int test3() // load one
 	{
-		SysLoad sy=new SysLoad("com/test1");
-		sy.open();
-		TaskMng tm;
-		while((tm=sy.loadOne())!=null) {
-			tm.prnInfo();
-		}
+
 
 		return 0;
 	}

@@ -9,7 +9,6 @@ package task;
 
 import java.util.Vector;
 
-import util.MFile;
 import util.MList;
 import util.SLog;
 
@@ -50,12 +49,8 @@ public class TaskSetUtil {
 	}
 
 	// import 
-	public static TaskSet loadFile(String f) {
-		MList fu=new MList(f);
-	    return TaskSetUtil.loadFile_in(fu);
-	}
 	
-	public static TaskSet  loadFile_in(MList fu) {
+	public static TaskVec  loadFile(MList fu) {
 		TaskSeq.reset();
 	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {
@@ -64,7 +59,7 @@ public class TaskSetUtil {
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return new TaskSet(tasks);
+	    return new TaskVec(tasks);
 	}
 	
 	public static Task loadTask(String line){

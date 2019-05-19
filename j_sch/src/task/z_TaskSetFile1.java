@@ -3,6 +3,7 @@ import comp.z_Anal1;
 import task.Task;
 import task.TaskMng;
 import task.TaskSetMC;
+import util.MList;
 import util.SEngineT;
 
 public class z_TaskSetFile1 {
@@ -10,10 +11,10 @@ public class z_TaskSetFile1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		TaskSet tmp=new TaskSet();
+		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetMC tme=new TaskSetMC(tmp);
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		TaskMng tm=tme.getTM();
 		tm.prn();
 		TaskSetUtil.writeFile("test/test.txt",tm.getTasks());
@@ -21,7 +22,7 @@ public class z_TaskSetFile1 {
 	}
 	public int test2()
 	{
-		TaskSetMC tmp=TaskSetUtil.loadFile("test/test.txt");
+		TaskSetMC tmp=TaskSetUtil.loadFile(new MList("test/test.txt"));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return 0;

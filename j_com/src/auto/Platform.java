@@ -11,7 +11,7 @@ import anal.Anal;
 import anal.AnalRM;
 import gen.ConfigGen;
 import gen.SysGen;
-import task.TaskMng;
+import task.TaskSet;
 import util.MList;
 import util.SLog;
 
@@ -113,7 +113,7 @@ public class Platform {
 		int num=Integer.valueOf(ret).intValue();
 		MList fu=new MList(out);
 		for(int i=0;i<num;i++) {
-			TaskMng tm=sy.loadOne();
+			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
 
 			a.init(tm);

@@ -1,8 +1,9 @@
 package task;
 
 import task.Task;
-import task.TaskMng;
+import task.TaskSet;
 import task.TaskSetUtil;
+import util.MList;
 import util.SEngineT;
 
 public class z_TaskSetEx1 {
@@ -10,19 +11,19 @@ public class z_TaskSetEx1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		TaskSet tmp=new TaskSet();
+		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSet tme=new TaskSet(tmp.getVec());
-		TaskMng tm=new TaskMng(tme);
+		TaskVec tme=new TaskVec(tmp.getVec());
+		TaskSet tm=new TaskSet(tme);
 		tm.prn();
 		TaskSetUtil.writeFile("test/test.txt",tm.getArr());
 		return 1;
 	}
 	public int test2()
 	{
-		TaskSet tmp=TaskSetUtil.loadFile("test/test.txt");
-		TaskMng tm=new TaskMng(tmp);
+		TaskVec tmp=TaskSetUtil.loadFile(new MList("test/test.txt"));
+		TaskSet tm=new TaskSet(tmp);
 		tm.prn();
 		return 0;
 	}

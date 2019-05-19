@@ -7,7 +7,6 @@ package task;
  */
 
 
-import util.SLog;
 
 public class TaskSetMC {
 	private TaskSet g_tasks;
@@ -16,29 +15,26 @@ public class TaskSetMC {
 	
 
 	public TaskSetMC(TaskSet ts) {
-		g_tasks=new TaskSet();
-		g_lo_tasks=new TaskSet();
-		g_hi_tasks=new TaskSet();
-		for(Task t:ts.getVec()){
-			g_tasks.add(t);
+		TaskVec tasks=new TaskVec();
+		TaskVec hi_tasks=new TaskVec();
+		TaskVec lo_tasks=new TaskVec();
+		for(Task t:ts.getArr()){
+			tasks.add(t);
 			if(t.is_HI)
-				g_hi_tasks.add(t);
+				hi_tasks.add(t);
 			else
-				g_lo_tasks.add(t);
+				lo_tasks.add(t);
 		}
+		g_tasks=new TaskSet(tasks);
+		g_hi_tasks=new TaskSet(hi_tasks);
+		g_lo_tasks=new TaskSet(lo_tasks);
 	}
 	
-	public void stat(){
-		SLog.prn(2, g_tasks.v_size());
-	}
 	
 	// export 
 	public TaskMng getTM()
 	{
 
-		g_tasks.end();
-		g_hi_tasks.end();
-		g_lo_tasks.end();
 				
 		double loutil=0;
 		double hiutil_lm=0;

@@ -2,6 +2,7 @@ package gen;
 
 import util.MList;
 import task.TaskSet;
+import task.TaskVec;
 import task.TaskSetUtil;
 import util.CRange;
 
@@ -53,8 +54,9 @@ public  class SysGen {
 	public int writeSys(MList fu)
 	{
 		
-		TaskSet ts=g_tg.getTS();
-		TaskSetUtil.writeTS(fu, ts.getArr());
+		TaskVec ts=g_tg.getTS();
+		TaskSet tm=new TaskSet(ts);
+		TaskSetUtil.writeTS(fu, tm.getArr());
 		
 		return 1;
 	}

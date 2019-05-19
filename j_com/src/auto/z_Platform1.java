@@ -4,7 +4,7 @@ package auto;
 
 
 
-import task.TaskMng;
+import task.TaskSet;
 import util.SEngineT;
 
 public class z_Platform1 {
@@ -38,7 +38,7 @@ public class z_Platform1 {
 		SysLoad sy=new SysLoad(g_path+"taskset_55");
 		sy.open();
 		while(true) {
-			TaskMng tm=sy.loadOne();
+			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
 			tm.prn();
 		}

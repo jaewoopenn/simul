@@ -3,7 +3,7 @@ package gen;
 import java.util.Vector;
 
 import task.Task;
-import task.TaskSet;
+import task.TaskVec;
 
 public class TaskGen {
 	protected TaskGenParam g_param;
@@ -67,12 +67,11 @@ public class TaskGen {
 		return g_tasks.size();
 	}
 
-	public TaskSet getTS() {
-		TaskSet ts=new TaskSet();
+	public TaskVec getTS() {
+		TaskVec ts=new TaskVec();
 		for(Task t:g_tasks) {
 			ts.add(t);
 		}
-		ts.end();
 		return ts;
 	}
 	

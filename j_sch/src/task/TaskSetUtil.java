@@ -43,20 +43,17 @@ public class TaskSetUtil {
 	}
 
 	// import 
-	public static TaskSetMC loadFile(String f) {
-	    return loadFile_in(new MList(f));
-	}
 	
-	public static TaskSetMC  loadFile_in(MList fu) {
+	public static TaskSetMC  loadFile(MList fu) {
 		TaskSeq.reset();
-		TaskSet tasks=new TaskSet();
+		TaskVec tasks=new TaskVec();
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 //	    	Log.prn(1, line);
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return new TaskSetMC(tasks);
+	    return new TaskSetMC(new TaskSet(tasks));
 	}
 	
 	public static Task loadTask(String line){

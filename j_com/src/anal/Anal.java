@@ -2,23 +2,23 @@ package anal;
 
 import com.PRM;
 
-import task.TaskMng;
+import task.TaskSet;
 import util.SLog;
 
 public abstract class Anal {
 	protected String g_name="";
-	protected TaskMng g_tm;
+	protected TaskSet g_tm;
 	protected PRM g_prm;
 	
 	protected int g_limit=10000;
 	public String getName() {
 		return g_name;
 	}
-	public void init(TaskMng mng) {
+	public void init(TaskSet mng) {
 		g_tm=mng;
 	}
 	
-	public void init(TaskMng mng, PRM p) {
+	public void init(TaskSet mng, PRM p) {
 		g_tm=mng;
 		g_prm=p;
 	}

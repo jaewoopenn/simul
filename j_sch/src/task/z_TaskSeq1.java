@@ -19,10 +19,10 @@ public class z_TaskSeq1 {
 	}
 	public int test2() 
 	{
-		TaskSet tmp=new TaskSet();
+		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetMC tme=new TaskSetMC(tmp);
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		TaskMng tm=tme.getTM();
 		tm.prn();
 		return 0;
