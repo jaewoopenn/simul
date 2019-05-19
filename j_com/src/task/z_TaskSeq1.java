@@ -8,9 +8,7 @@ import util.SEngineT;
 public class z_TaskSeq1 {
 //	public static int idx=1;
 	public static int idx=2;
-	public static int total=10;
 	public static int log_level=1;
-	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
 		SLog.prn(1, TaskSeq.getID()+"");
@@ -64,5 +62,6 @@ public class z_TaskSeq1 {
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 
 }

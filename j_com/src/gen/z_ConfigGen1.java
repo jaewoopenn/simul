@@ -7,7 +7,6 @@ public class z_ConfigGen1 {
 //	public static int idx=2;
 	public static int idx=3;
 	public static int log_level=2;
-	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 	public int test1() { // error config
 		ConfigGen eg=ConfigGen.getSample();
 		eg.write("com/cfg1_copy.txt");
@@ -59,5 +58,6 @@ public class z_ConfigGen1 {
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={0,1,0,9,1, 1,0,0,0,0};
 
 }

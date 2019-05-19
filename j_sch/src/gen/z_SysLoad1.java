@@ -8,7 +8,7 @@ import util.SEngineT;
 public class z_SysLoad1 {
 	public static int idx=4;
 	public static int log_level=1;
-	public static int total=10;
+
 	public int test1() // gen
 	{
 		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");

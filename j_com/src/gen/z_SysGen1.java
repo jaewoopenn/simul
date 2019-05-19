@@ -7,8 +7,6 @@ public class z_SysGen1 {
 	public static int idx=1;
 //	public static int idx=2;
 	public static int log_level=1;
-	public static int total=10;
-	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 
 	// gen
 	public int test1() 
@@ -61,5 +59,6 @@ public class z_SysGen1 {
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={1,0,0,1,1, 1,0,0,0,0};
 
 }

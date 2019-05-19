@@ -11,8 +11,6 @@ import util.SEngineT;
 public class z_TaskGen1 {
 	public static int log_level=1;
 	public static int idx=1;
-	public static int total=10;
-	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 	public TaskGen getTG1(){
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setPeriod(CRange.gen(50,300));
@@ -68,5 +66,6 @@ public class z_TaskGen1 {
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={1,1,1,1,1,1,-1,-1,-1,-1};
 
 }

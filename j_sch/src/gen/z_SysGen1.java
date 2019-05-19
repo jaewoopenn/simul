@@ -11,7 +11,6 @@ public class z_SysGen1 {
 //	public static int idx=1;
 	public static int idx=2;
 	public static int log_level=1;
-	public static int total=10;
 
 	// gen
 	public int test1() 

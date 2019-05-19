@@ -7,7 +7,6 @@ import util.SEngineT;
 
 public class z_TaskSetEx1 {
 	public static int idx=1;
-	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1()
 	{
@@ -62,5 +61,6 @@ public class z_TaskSetEx1 {
 		else
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
+	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
 }
