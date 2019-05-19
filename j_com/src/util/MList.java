@@ -9,11 +9,11 @@ public class MList {
 		g_list=new Vector<String>();
 	}
 	public MList(String fn) {
+		g_list=new Vector<String>();
 		MFile fu=new MFile(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.size())){
-	    	String line=fu.get(i);
-	    	g_list.add(line);
+	    	g_list.add(fu.get(i));
 		}		
 	}
 	public String getNext() {

@@ -1,9 +1,10 @@
-package gen;
+package auto;
 
 import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetUtil;
 import util.MFile;
+import util.MList;
 
 public class SysLoad {
 	private MFile g_fu;
@@ -11,11 +12,6 @@ public class SysLoad {
 		g_fu=new MFile(fn);
 	}
 
-	public void load() {
-		g_fu.load();
-		TaskSetUtil.loadView(g_fu);
-		
-	}
 
 	public String open() {
 		g_fu.br_open();
@@ -26,8 +22,9 @@ public class SysLoad {
 		boolean b=g_fu.readSplit("------");
 		if(!b) 
 			return null;
-		TaskSet tsf=TaskSetUtil.loadFile_in(g_fu);
-		
+		MList ml=new MList();
+		ml.copy(g_fu);
+		TaskSet tsf=TaskSetUtil.loadFile_in(ml);
 		return new TaskMng(tsf);
 		
 	}

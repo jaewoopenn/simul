@@ -7,14 +7,6 @@ import util.SEngineT;
 public class z_auto1 {
 	private static int s_idx;
 	private static int s_log_level;
-	private String g_path;
-	private double g_util_ul;
-	private int g_num;
-	private String g_cfg_list;
-	private String g_ts;
-	private String g_xl;
-	private String g_rs;
-	private String g_graph;
 	
 	public static void init_s() {
 //		int s=1;
@@ -22,53 +14,49 @@ public class z_auto1 {
 //		int s=3;
 //		int s=4;
 		
-		s_idx=s;
+		int log=1;
+//		int log=2;
 		
-		s_log_level=1;
+		s_idx=s;
+		s_log_level=log;
 	}
 	
-	public void init_g() {
+	public void init() {
 		g_path="com/t1";
 		g_num=100;
 		g_cfg_list="_cfg_list.txt";
 		g_ts="_ts_list.txt";
 		g_xl="_x_list.txt";
+		g_util_ul=1.0;
+		g_rs="_rs_list.txt";
+		g_graph="_graph.txt";
+		g_anal_end=1;
 		
 	}
 
-	public void init_anal() {
-		g_util_ul=1.0;
-		g_rs="a_rs_list.txt";
-		g_graph="a_graph.txt";
-	}
 
 	public int test1()  {// config gen
-		init_g();
-		init_anal();
+		init();
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
 		p.genCfg_util(g_util_ul,g_cfg_list);
 		return 0;
 	}
 	public int test2() {// task set gen
-		init_g();
-		init_anal();
+		init();
 		Platform p=new Platform(g_path);
 		p.genTS(g_cfg_list,g_ts,g_xl);
 		return -1;	
 	}
 	
 	public int test3() { // anal 
-		init_g();
-		init_anal();
+		init();
 		Platform p=new Platform(g_path);
-		int end=3;
-		p.anal_loop(g_rs,g_ts,end);
+		p.anal_loop(g_rs,g_ts,g_anal_end);
 		return -1;
 	}
 	public  int test4() { // anal rs --> graph
-		init_g();
-		init_anal();
+		init();
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);
@@ -107,5 +95,14 @@ public class z_auto1 {
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private String g_path;
+	private double g_util_ul;
+	private int g_num;
+	private int g_anal_end;
+	private String g_cfg_list;
+	private String g_ts;
+	private String g_xl;
+	private String g_rs;
+	private String g_graph;
 
 }

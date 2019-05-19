@@ -1,4 +1,5 @@
 package gen;
+import auto.SysLoad;
 import task.TaskMng;
 import util.SEngineT;
 
@@ -9,8 +10,6 @@ public class z_SysLoad1 {
 	public static int log_level=1;
 	public int test1() // gen
 	{
-		SysLoad sy=new SysLoad("com/test1");
-		sy.load();
 
 		return 1;
 

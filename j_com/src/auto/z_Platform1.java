@@ -4,7 +4,6 @@ package auto;
 
 
 
-import gen.SysLoad;
 import task.TaskMng;
 import util.SEngineT;
 

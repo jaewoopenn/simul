@@ -42,7 +42,7 @@ public class TaskSetUtil {
 		txt+=(int)t.exec;
 		fu.add(txt);
 	}
-	public static void loadView(MFile fu) {
+	public static void loadView(MList fu) {
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
 	    	SLog.prn(1,line);
@@ -51,12 +51,11 @@ public class TaskSetUtil {
 
 	// import 
 	public static TaskSet loadFile(String f) {
-		MFile fu=new MFile(f);
-	    fu.load();
+		MList fu=new MList(f);
 	    return TaskSetUtil.loadFile_in(fu);
 	}
 	
-	public static TaskSet  loadFile_in(MFile fu) {
+	public static TaskSet  loadFile_in(MList fu) {
 		TaskSeq.reset();
 	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {

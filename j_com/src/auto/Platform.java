@@ -7,8 +7,11 @@ package auto;
  */
 
 
+import anal.Anal;
+import anal.AnalRM;
 import gen.ConfigGen;
 import gen.SysGen;
+import task.TaskMng;
 import util.MList;
 import util.SLog;
 
@@ -94,34 +97,34 @@ public class Platform {
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
 		MList fu_rs=new MList(g_path+"/"+ts_list);
 		String fn;
+		Anal a=new AnalRM();
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
-			anal_one(fn,out);
+			anal_one(fn,out,a);
 			fu_rs.add(out);
 		}		
 		fu_rs.save(rs_fn);
 		return rs_fn;
 	}
 	
-	public void anal_one(String ts,String out) {
-//		SysLoad sy=new SysLoad(ts);
-//		String ret=sy.open();
-//		int num=Integer.valueOf(ret).intValue();
-//		FOut fu=new FOut(out);
-//		for(int i=0;i<num;i++) {
-//			TaskMng tm=sy.loadOne();
-//			if(tm==null) break;
-//
-//			a.init(tm);
-//			a.prepare();
-//			if(a.is_sch()) {
-//				fu.write("1");
-//			} else {
-//				fu.write("0");
-//			}
-//		}
-//		fu.save();
-//		
+	public void anal_one(String ts,String out,Anal a) {
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
+		MList fu=new MList(out);
+		for(int i=0;i<num;i++) {
+			TaskMng tm=sy.loadOne();
+			if(tm==null) break;
+
+			a.init(tm);
+			if(a.is_sch()) {
+				fu.add("1");
+			} else {
+				fu.add("0");
+			}
+		}
+		fu.save(out);
+		
 	}
 	
 	
