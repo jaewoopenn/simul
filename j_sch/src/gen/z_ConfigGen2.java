@@ -1,5 +1,4 @@
 package gen;
-import comp.z_Anal1;
 import gen.ConfigGen;
 import util.MList;
 import util.SLog;
@@ -60,9 +59,9 @@ public class z_ConfigGen2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_ConfigGen2.class;
+		z_ConfigGen2 m=new z_ConfigGen2();
+		int[] aret=z_ConfigGen2.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

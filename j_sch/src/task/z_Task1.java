@@ -1,7 +1,6 @@
 package task;
 import java.util.Vector;
 
-import comp.z_Anal1;
 import task.Task;
 import util.SLog;
 import util.SEngineT;
@@ -61,9 +60,9 @@ public class z_Task1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_Task1.class;
+		z_Task1 m=new z_Task1();
+		int[] aret=z_Task1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

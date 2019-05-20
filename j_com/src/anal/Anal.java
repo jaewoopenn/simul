@@ -20,7 +20,10 @@ public abstract class Anal {
 	
 	public void init(TaskSet mng, PRM p) {
 		g_tm=mng;
+	}
+	public void setPRM(PRM p) {
 		g_prm=p;
+		
 	}
 	
 	

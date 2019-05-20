@@ -5,7 +5,7 @@ import task.TaskMng;
 import z_ex.TS_MC1;
 import util.SEngineT;
 
-public class z_Anal1 {
+public class z_Anal2 {
 	public static int idx=1;
 	public static int log_level=1;
 
@@ -49,9 +49,9 @@ public class z_Anal1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_Anal2.class;
+		z_Anal2 m=new z_Anal2();
+		int[] aret=z_Anal2.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

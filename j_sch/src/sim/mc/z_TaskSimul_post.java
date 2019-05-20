@@ -8,7 +8,6 @@ package sim.mc;
 
 import anal.Anal;
 import anal.AnalSel;
-import comp.z_Anal1;
 import sim.SimulInfo;
 import sim.SysMng;
 import task.TaskMng;
@@ -119,9 +118,9 @@ public class z_TaskSimul_post {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_TaskSimul_post.class;
+		z_TaskSimul_post m=new z_TaskSimul_post();
+		int[] aret=z_TaskSimul_post.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

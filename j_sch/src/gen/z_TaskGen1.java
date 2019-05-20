@@ -1,5 +1,4 @@
 package gen;
-import comp.z_Anal1;
 import gen.TaskGen;
 import gen.TaskGenMC;
 import gen.TaskGenParam;
@@ -62,9 +61,9 @@ public class z_TaskGen1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_TaskGen1.class;
+		z_TaskGen1 m=new z_TaskGen1();
+		int[] aret=z_TaskGen1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

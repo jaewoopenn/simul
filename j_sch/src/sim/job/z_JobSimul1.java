@@ -1,7 +1,6 @@
 package sim.job;
 
 import util.SLog;
-import comp.z_Anal1;
 import util.SEngineT;
 
 public class z_JobSimul1 {
@@ -59,9 +58,9 @@ public class z_JobSimul1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_JobSimul1.class;
+		z_JobSimul1 m=new z_JobSimul1();
+		int[] aret=z_JobSimul1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

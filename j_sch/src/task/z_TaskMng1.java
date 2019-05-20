@@ -1,6 +1,5 @@
 package task;
 
-import comp.z_Anal1;
 import gen.SysLoad;
 import util.SEngineT;
 import z_ex.TS_MC1;
@@ -50,9 +49,9 @@ public class z_TaskMng1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_TaskMng1.class;
+		z_TaskMng1 m=new z_TaskMng1();
+		int[] aret=z_TaskMng1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

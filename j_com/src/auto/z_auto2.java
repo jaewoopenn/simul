@@ -4,7 +4,7 @@ package auto;
 import util.SEngineT;
 
 
-public class z_auto1 {
+public class z_auto2 {
 	private static int s_idx;
 	private static int s_log_level;
 	
@@ -35,32 +35,17 @@ public class z_auto1 {
 	}
 
 
-	public int test1()  {// config gen
-		init();
-		Platform p=new Platform(g_path);
-		p.setNum(g_num);
-		p.genCfg_util(g_util_ul,g_cfg_list);
+	public int test1()  {
 		return 0;
 	}
-	public int test2() {// task set gen
-		init();
-		Platform p=new Platform(g_path);
-		p.genTS(g_cfg_list,g_ts,g_xl);
+	public int test2() {
 		return -1;	
 	}
 	
-	public int test3() { // anal 
-		init();
-		Platform p=new Platform(g_path);
-		p.anal_loop(g_rs,g_ts,g_anal_end);
+	public int test3() { 
 		return -1;
 	}
-	public  int test4() { // anal rs --> graph
-		init();
-		DataAnal da=new DataAnal(g_path,0);
-		da.load_x(g_xl);
-		da.load_rs(g_rs);
-		da.save(g_graph);		
+	public  int test4() { 
 		return -1;
 	}
 	public  int test5() {
@@ -84,10 +69,10 @@ public class z_auto1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto1.init_s();
-		Class c = z_auto1.class;
-		z_auto1 m=new z_auto1();
-		int[] aret=z_auto1.gret;
+		z_auto2.init_s();
+		Class c = z_auto2.class;
+		z_auto2 m=new z_auto2();
+		int[] aret=z_auto2.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

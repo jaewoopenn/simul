@@ -1,6 +1,5 @@
 package sim;
 
-import comp.z_Anal1;
 import sim.mc.TaskSimul_EDF_VD;
 import task.TaskMng;
 import util.SLogF;
@@ -80,9 +79,9 @@ public class z_TaskSimul1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_TaskSimul1.class;
+		z_TaskSimul1 m=new z_TaskSimul1();
+		int[] aret=z_TaskSimul1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

@@ -1,7 +1,6 @@
 package task;
 
 import util.SLog;
-import comp.z_Anal1;
 import task.Task;
 import util.SEngineT;
 
@@ -56,9 +55,9 @@ public class z_TaskSeq1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Anal1.class;
-		z_Anal1 m=new z_Anal1();
-		int[] aret=z_Anal1.gret;
+		Class c = z_TaskSeq1.class;
+		z_TaskSeq1 m=new z_TaskSeq1();
+		int[] aret=z_TaskSeq1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
