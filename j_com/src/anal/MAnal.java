@@ -10,7 +10,7 @@ public class MAnal {
 			if(j==i) {
 				r+=tm[j].exec;
 			} else {
-				r+=Math.floor(t*1.0/tm[j].period)*tm[j].exec;
+				r+=Math.ceil(t*1.0/tm[j].period)*tm[j].exec;
 				
 			}
 		}

@@ -67,10 +67,10 @@ public class TaskSet {
 		
 	}
 	
-	public void prnInfo() {
+	public void prnInfo(int l) {
 		String st="num:"+g_tasks.length;
 		st+=" util:"+getUtil();
-		SLog.prn(1, st);
+		SLog.prn(l, st);
 	}
 	
 	

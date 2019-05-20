@@ -16,20 +16,23 @@ public class AnalRM extends Anal{
 
 	public boolean checkSch_ind(PRM p, int i, int end_t) {
 		int log_lv=1;
+		SLog.prn(log_lv, "i:"+i+" end_t:"+end_t);
 		SLog.prn(log_lv, "t \t sup \t req ");
+		String st="";
 		for(int t=1;t<=end_t;t++) {
 			double r=MAnal.computeRBF(g_tm.getArr(),i,t);
 			double s=p.sbf(t);
-			String st=t+"\t"+s+"\t"+r+"\t";
-			if (s>r) {
+			st=t+"\t"+s+"\t"+r+"\t";
+			if (s+g_error>r) {
 				st+=">>>>>";
 				SLog.prn(log_lv,st );
 				return true;
 			} else {
 				st+="<";
 			}
-			SLog.prn(log_lv,st );
+//			SLog.prn(log_lv,st );
 		}
+		SLog.prn(log_lv,st );
 		
 		return false;
 	}
@@ -127,6 +130,16 @@ public class AnalRM extends Anal{
 		if(alpha<0 || alpha >pi-theta)
 			return pi;
 		return theta;
+	}
+	public void prnReq(int i) {
+		Task[] tm=g_tm.getArr();
+
+		for(int t=1;t<tm[i].period;t++) {
+			double req=MAnal.computeRBF(tm,i,t);
+			String st=t+":"+req+" "+req/t;
+			SLog.prn(1, st);
+		}
+		
 	}
 
 }

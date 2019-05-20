@@ -9,9 +9,9 @@ import java.util.Comparator;
 
 public class ComparatorTask implements Comparator<Task>{
 	public int compare(Task a, Task b) {
-		if(a.getUtil()> b.getUtil())
+		if(a.period< b.period)
 			return -1;
-		else if (a.getUtil()==b.getUtil())
+		else if (a.period==b.period)
 			return 0;
 		else
 			return 1;

@@ -24,10 +24,12 @@ public class TaskGen {
 	{
 		int tid=0;
 		Task t;
+//		SLog.prn(2, "===");
 		while(getUtil()<=g_param.u_ub){
 			t=genTask(tid);
 			g_tasks.add(t);
 			tid++;
+//			SLog.prn(2, ""+getUtil());
 		}
 		g_tasks.remove(g_tasks.size()-1);
 	}

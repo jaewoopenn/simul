@@ -12,10 +12,9 @@ public class z_SysGen1 {
 	public int test1() 
 	{
 		ConfigGen cfg=new ConfigGen();
-		cfg.load("com/cfg1_copy.txt");
+		cfg.load("com/t1/cfg_55.txt");
 		SysGen eg=new SysGen(cfg);
-		String fn=cfg.get_fn();
-		eg.gen(fn);
+		eg.gen();
 		return 1;
 
 	}

@@ -24,7 +24,7 @@ public class MList {
 		return s;
 	}
 	public String get(int i) {
-		return g_list.get(cur);
+		return g_list.get(i);
 	}	
 	
 	public void add(String s) {

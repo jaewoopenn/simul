@@ -24,9 +24,21 @@ public class SysLoad {
 			return null;
 		MList ml=new MList();
 		ml.copy(g_fu);
+//		ml.prn();
 		TaskVec tsf=TaskSetUtil.loadFile(ml);
 		return new TaskSet(tsf);
 		
 	}
-	
+	public TaskSet loadOne(int n) {
+		for(int i=0;i<n;i++) {
+			boolean b=g_fu.readSplit("------");
+			if(!b) 
+				return null;
+		}
+		MList ml=new MList();
+		ml.copy(g_fu);
+		TaskVec tsf=TaskSetUtil.loadFile(ml);
+		return new TaskSet(tsf);
+		
+	}	
 }

@@ -9,7 +9,7 @@ import util.SLog;
 import util.SEngineT;
 
 public class z_sch_rm1 {
-	public static int idx=5;
+	public static int idx=4;
 	public static int log_level=2;
 
 	
@@ -63,13 +63,15 @@ public class z_sch_rm1 {
 	}
 	public  int test4()
 	{
-		TaskSet tm=TS1.tm1();
+//		TaskSet tm=TS1.tm1();
+		TaskSet tm=TS1.tm3();
 		int p=3;
 		AnalRM a=new AnalRM();
 		a.init(tm);
 		double exec=a.getExec(p);
 		String st="exec:"+exec;
 		SLog.prn(2,st );
+		tm.prnInfo(2);
 		
 		return 0;
 	}
@@ -80,7 +82,8 @@ public class z_sch_rm1 {
 		String st="";
 		AnalRM a=new AnalRM();
 		a.init(tm);
-		if(a.checkSch(p))
+		a.setPRM(p);
+		if(a.is_sch())
 			st+="OK";
 		else
 			st+="Not OK";
@@ -114,7 +117,6 @@ public class z_sch_rm1 {
 			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	
-	public static int total=10;
 	public static int gret[]={0,0,0,0,0,0,0,0,0,0};
 
 }

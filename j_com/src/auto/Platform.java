@@ -18,16 +18,12 @@ import util.SLog;
 public class Platform {
 	private String g_path;
 	private int g_num=100;
-	private boolean g_isCheck=false;
 	public Platform(String path) {
 		g_path=path;
 	}
 	
 	public void setNum(int n) {
 		g_num=n;
-	}
-	public void setCheck(){
-		g_isCheck=true;
 	}
 	
 	// gen CFG, TS
@@ -68,10 +64,7 @@ public class Platform {
 			ConfigGen cfg=new ConfigGen();
 			cfg.load(cfg_fn);
 			SysGen sg=new SysGen(cfg);
-			String fn=cfg.get_fn();
-			if(g_isCheck)
-				sg.setCheck();
-			sg.gen(fn);
+			String fn=sg.gen();
 			fu_ts.add(fn);
 			String mod=cfg.getLabel();
 			fu_xa.add(mod);

@@ -1,5 +1,7 @@
 package com;
 
+import util.SLog;
+
 public class PRM {
 	private int period;
 	private double exec;
@@ -18,6 +20,10 @@ public class PRM {
 		double k=Math.floor((t-l)/period);
 		double s=k*exec+Math.max(0, t-2*l-k*period);
 		return Math.max(0, s); 
+	}
+	public void prn() {
+		SLog.prn(2, period+","+exec);
+		
 	}
 	
 }

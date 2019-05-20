@@ -11,6 +11,8 @@ public abstract class Anal {
 	protected PRM g_prm;
 	
 	protected int g_limit=10000;
+	protected double g_error=0.001;
+
 	public String getName() {
 		return g_name;
 	}
@@ -20,6 +22,7 @@ public abstract class Anal {
 	
 	public void init(TaskSet mng, PRM p) {
 		g_tm=mng;
+		g_prm=p;
 	}
 	public void setPRM(PRM p) {
 		g_prm=p;

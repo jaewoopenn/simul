@@ -13,9 +13,11 @@ public class z_SysLoad1 {
 //		int s=2;
 		int s=3;
 //		int s=4;
+//		int s=5;
 		
 //		int log=1;
-		int log=2;
+//		int log=2;
+		int log=3;
 		
 		s_idx=s;
 		s_log_level=log;
@@ -36,7 +38,7 @@ public class z_SysLoad1 {
 		sy.open();
 		TaskSet tm;
 		while((tm=sy.loadOne())!=null) {
-			tm.prnInfo();
+			tm.prnInfo(2);
 		}
 		return 0;
 	}
@@ -44,35 +46,71 @@ public class z_SysLoad1 {
 	{
 		String ts="com/t1/taskset_55.txt";
 		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
+		sy.open();
 //		int num=Integer.valueOf(ret).intValue();
 		Anal a=new AnalRM();
 		int p=10;
 		while(true) {
 			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
+			tm.sort();
 
 			a.init(tm);
 			double e=a.getExec(p);
-			SLog.prn(3, p+","+e);
+			String st=p+","+e;
+//			PRM prm=new PRM(p,e-0.001);
 			PRM prm=new PRM(p,e);
 			a.setPRM(prm);
 			if(a.is_sch()) {
-				SLog.prn(3, "OK");
+				st+=" OK";
 				
 			} else {
-				SLog.prn(3, "Not OK");
+				st+=" Not OK";
 			}
-			break;
+			SLog.prn(3, st);
+//			break;
 		}
 
 
 		return 0;
 	}
 	public  int test4() {
+		String ts="com/t1/taskset_55.txt";
+		SysLoad sy=new SysLoad(ts);
+		sy.open();
+//		int num=Integer.valueOf(ret).intValue();
+		AnalRM a=new AnalRM();
+		int p=10;
+		TaskSet tm=sy.loadOne(4);
+		tm.sort();
+		tm.prnInfo(2);
+		a.init(tm);
+		a.prnReq(3);
+		double e=a.getExec(p);
+		String st=p+","+e;
+		PRM prm=new PRM(p,e);
+		a.setPRM(prm);
+		if(a.is_sch()) {
+			st+=" OK";
+			
+		} else {
+			st+=" Not OK";
+		}
+		SLog.prn(3, st);
 		return 1;
 	}
 	public  int test5() {
+		String ts="com/t1/taskset_55.txt";
+		SysLoad sy=new SysLoad(ts);
+		sy.open();
+//		int num=Integer.valueOf(ret).intValue();
+		while(true) {
+			TaskSet tm=sy.loadOne();
+			
+			if(tm==null) break;
+//			tm.prn();
+			tm.prnInfo(2);
+		}		
 		return 1;
 	}
 	public  int test6() {

@@ -55,7 +55,7 @@ public class TaskSetUtil {
 	    Vector<Task> tasks=new Vector<Task>();
 		for(int i=0;i<fu.size();i++) {
 	    	String line=fu.get(i);
-//	    	Log.prn(1, line);
+//	    	SLog.prn(1, line);
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }

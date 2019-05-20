@@ -50,5 +50,9 @@ public class TaskVec {
 		}
 		
 	}
+	public void addTask(int i, int j) {
+		g_taskV.add(new Task(i,j));
+		
+	}
 
 }

@@ -29,12 +29,9 @@ public  class SysGen {
 		g_tg=new TaskGen(tgp);
 		return g_cfg.readInt("num");
 	}
-	public void gen(String fn) {
+	public String gen() {
 		int num=prepare();
 		int i=0;
-//		String fn=g_cfg.get_dir();
-//		Log.prn(2, fn);
-//		FUtil.makeDir(fn);
 		MList fu=new MList();
 		fu.add(num+"");
 		while(i<num){
@@ -48,7 +45,8 @@ public  class SysGen {
 			
 			i++;
 		}
-		fu.save(fn);
+		fu.save(g_cfg.get_fn());
+		return g_cfg.get_fn();
 	}
 	
 	public int writeSys(MList fu)
