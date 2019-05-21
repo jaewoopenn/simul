@@ -73,7 +73,7 @@ public class z_Platform1 {
 		String path="test/t1/";
 		String cf="a_cfg_list.txt";
 		Platform p=new Platform(path);
-		p.genCfg_util(100,cf);
+		p.genCfg_util(25,70,5,cf);
 		return 0;
 	}
 	

@@ -73,13 +73,12 @@ public class DataAnal {
 	private double process_rs(String rs) {
 		MList fu=new MList(rs);
 		int n=fu.size();
-		int p=0;
+		double sum=0;
 		for(int i=0;i<n;i++) {
 			String s=fu.get(i);
-			if(s.equals("1"))
-				p++;
+			sum+=Double.valueOf(s).doubleValue();
 		}
-		return (p*1.0/n);
+		return (sum/n);
 	}
 	
 	

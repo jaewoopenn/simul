@@ -49,7 +49,7 @@ public class z_SysLoad1 {
 		sy.open();
 //		int num=Integer.valueOf(ret).intValue();
 		Anal a=new AnalRM();
-		int p=10;
+		int p=15;
 		while(true) {
 			TaskSet tm=sy.loadOne();
 			if(tm==null) break;

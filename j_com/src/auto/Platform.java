@@ -27,19 +27,16 @@ public class Platform {
 	}
 	
 	// gen CFG, TS
-	public void genCfg_util(double ul,String cfg_list) {
-		int base=50;
-		int step=5;
-		double end_i=(ul*100-50)/step;
+	public void genCfg_util(int base, int top,int step,String cfg_list) {
 		ConfigGen cg=ConfigGen.getSample();
 		MList fu=new MList();
 		cg.setParam("num",g_num+"");
-		for(int i=0;i<end_i;i++){
-			int lb=i*step+base;
-			String lab=(lb+5)+"";
+		for(int i=base;i<=top;i+=step){
+			int ub=i;
+			String lab=ub+"";
 			SLog.prn(2, lab);
-			cg.setParam("u_lb", (lb)*1.0/100);
-			cg.setParam("u_ub", (lb+5)*1.0/100);
+			cg.setParam("u_lb", (ub-5)*1.0/100);
+			cg.setParam("u_ub", (ub+5)*1.0/100);
 			cg.setParam("label",lab) ;
 			cg.setParam("fn", g_path+"/taskset_"+lab+".txt");
 			String fn=g_path+"/cfg_"+lab+".txt";
@@ -86,16 +83,17 @@ public class Platform {
 	
 	// analyze task set list with algorithm choice
 	public String anal(String ts_list,int sort) {
-		MList fu=new MList();
-		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
-		MList fu_rs=new MList(g_path+"/"+ts_list);
+		MList fu=new MList(g_path+"/"+ts_list);
+		MList fu_rs=new MList();
 		String fn;
 		Anal a=new AnalRM();
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
-			anal_one(fn,out,a);
+			anal_one2(fn,out,a);
 			fu_rs.add(out);
+			SLog.prn(3, out);
 		}		
+		String rs_fn=g_path+"/_rs_list."+sort+".txt";
 		fu_rs.save(rs_fn);
 		return rs_fn;
 	}
@@ -115,6 +113,25 @@ public class Platform {
 			} else {
 				fu.add("0");
 			}
+		}
+		fu.save(out);
+		
+	}
+	public void anal_one2(String ts,String out,Anal a) {
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
+		MList fu=new MList();
+		int p=10;
+		for(int i=0;i<num;i++) {
+			TaskSet tm=sy.loadOne();
+			if(tm==null) break;
+			tm.sort();
+
+			a.init(tm);
+			double e=a.getExec(p);
+			double ov=e/p-tm.getUtil();
+			fu.add(ov+"");
 		}
 		fu.save(out);
 		

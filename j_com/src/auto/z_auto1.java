@@ -11,11 +11,12 @@ public class z_auto1 {
 	public static void init_s() {
 //		int s=1;
 //		int s=2;
-		int s=3;
-//		int s=4;
+//		int s=3;
+		int s=4;
 		
-		int log=1;
+//		int log=1;
 //		int log=2;
+		int log=3;
 		
 		s_idx=s;
 		s_log_level=log;
@@ -27,7 +28,6 @@ public class z_auto1 {
 		g_cfg_list="_cfg_list.txt";
 		g_ts="_ts_list.txt";
 		g_xl="_x_list.txt";
-		g_util_ul=1.0;
 		g_rs="_rs_list.txt";
 		g_graph="_graph.txt";
 		g_anal_end=1;
@@ -39,7 +39,7 @@ public class z_auto1 {
 		init();
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util(g_util_ul,g_cfg_list);
+		p.genCfg_util(20,60,5,g_cfg_list);
 		return 0;
 	}
 	public int test2() {// task set gen
@@ -52,6 +52,7 @@ public class z_auto1 {
 	public int test3() { // anal 
 		init();
 		Platform p=new Platform(g_path);
+//		p.anal(g_ts, 0);
 		p.anal_loop(g_rs,g_ts,g_anal_end);
 		return -1;
 	}
@@ -96,7 +97,6 @@ public class z_auto1 {
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	private String g_path;
-	private double g_util_ul;
 	private int g_num;
 	private int g_anal_end;
 	private String g_cfg_list;
