@@ -28,7 +28,7 @@ public class z_auto1 {
 		g_xaxis="_x.txt";
 		g_rs="_rs.txt";
 		g_graph="_graph.txt";
-		g_anal_end=1;
+		g_anal_end=2;
 		
 	}
 

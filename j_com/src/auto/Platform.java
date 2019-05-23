@@ -8,7 +8,7 @@ package auto;
 
 
 import anal.Anal;
-import anal.AnalRM;
+import anal.AnalSel;
 import gen.ConfigGen;
 import gen.SysGen;
 import task.TaskSet;
@@ -86,7 +86,7 @@ public class Platform {
 		MList fu=new MList(g_path+"/"+ts_list);
 		MList fu_rs=new MList();
 		String fn;
-		Anal a=new AnalRM();
+		Anal a=AnalSel.getAnal(sort);
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
 			anal_one2(fn,out,a);

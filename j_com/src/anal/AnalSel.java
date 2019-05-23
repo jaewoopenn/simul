@@ -11,7 +11,7 @@ public class AnalSel {
 		if(sort==0) { 
 			return new AnalRM();
 		} else if(sort==1) {
-			return new AnalRM();
+			return new AnalRM_int();
 		}
 		return null;
 	}

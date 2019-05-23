@@ -9,7 +9,9 @@ public class AnalRM extends Anal{
 	public AnalRM() {
 		super();
 		g_name="RM";
-	}	@Override
+	}	
+	
+	@Override
 	public boolean is_sch() {
 		return checkSch(g_prm);
 	}	
