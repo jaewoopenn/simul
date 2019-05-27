@@ -22,7 +22,7 @@ public class AnalRM extends Anal{
 		SLog.prn(log_lv, "t \t sup \t req ");
 		String st="";
 		for(int t=1;t<=end_t;t++) {
-			double r=MAnal.computeRBF(g_tm.getArr(),i,t);
+			double r=g_ts.computeRBF(i,t);
 			double s=p.sbf(t);
 			st=t+"\t"+s+"\t"+r+"\t";
 			if (s+g_error>r) {
@@ -40,7 +40,7 @@ public class AnalRM extends Anal{
 	}
 
 	public boolean checkSch(PRM p) {
-		Task[] tm=g_tm.getArr();
+		Task[] tm=g_ts.getArr();
 		for(int i=0;i<tm.length;i++) {
 			int end_t=tm[i].period;
 			if(!checkSch_ind(p,i,end_t))
@@ -51,7 +51,7 @@ public class AnalRM extends Anal{
 	}
 
 	public double getExec(int p) {
-		Task[] tm=g_tm.getArr();
+		Task[] tm=g_ts.getArr();
 		double exec=0;
 		for(int i=0;i<tm.length;i++) {
 			int end_t=tm[i].period;
@@ -72,8 +72,7 @@ public class AnalRM extends Anal{
 	}
 
 	public double getExec(int pi, int i, int t) {
-		Task[] tm=g_tm.getArr();
-		double req=MAnal.computeRBF(tm,i,t);
+		double req=g_ts.computeRBF(i,t);
 		int kp1=t/pi;
 		int kp2=kp1-1;
 		if (kp2<0)
@@ -134,10 +133,10 @@ public class AnalRM extends Anal{
 		return theta;
 	}
 	public void prnReq(int i) {
-		Task[] tm=g_tm.getArr();
+		Task[] tm=g_ts.getArr();
 
 		for(int t=1;t<tm[i].period;t++) {
-			double req=MAnal.computeRBF(tm,i,t);
+			double req=g_ts.computeRBF(i,t);
 			String st=t+":"+req+" "+req/t;
 			SLog.prn(1, st);
 		}

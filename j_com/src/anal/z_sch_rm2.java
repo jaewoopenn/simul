@@ -36,7 +36,7 @@ public class z_sch_rm2 {
 //		PRM p=new PRM(3,2.334);
 		int end_t=5;
 		
-		double req=MAnal.computeRBF(tm.getArr(), 1, end_t);
+		double req=tm.computeRBF( 1, end_t);
 		double sup=p.sbf(end_t);
 		String st="t:"+end_t;
 		st+=" req:"+req;

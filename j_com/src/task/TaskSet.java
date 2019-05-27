@@ -3,6 +3,7 @@ package task;
 import java.util.Arrays;
 import java.util.Vector;
 
+import util.MCal;
 import util.SLog;
 
 public class TaskSet {
@@ -34,7 +35,18 @@ public class TaskSet {
 		}
 		return util;
 	}
-
+	public  double computeRBF(int i, double t) {
+		double r=0;
+		for(int j=0;j<=i;j++) {
+			if(j==i) {
+				r+=g_tasks[j].exec;
+			} else {
+				r+=Math.ceil((t+MCal.err)/g_tasks[j].period)*g_tasks[j].exec;
+			}
+		}
+		
+		return r;
+	}
 
 	public int size() {
 		return g_tasks.length;

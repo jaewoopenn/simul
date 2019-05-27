@@ -14,9 +14,9 @@ public class TS1 {
 	
 	public static TaskSet tm2() {
 		TaskVec ts=new TaskVec();
-		ts.add(new Task(17,7));
-		ts.add(new Task(14,1));
-		ts.add(new Task(15,4));
+		ts.add(new Task(40,3));
+		ts.add(new Task(24,1));
+		ts.add(new Task(8,1));
 		return new TaskSet(ts);
 	}
 	public static TaskSet tm3() {

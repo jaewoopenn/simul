@@ -10,14 +10,14 @@ public class AnalRM_int extends Anal{
 	@Override
 	public boolean is_sch() {
 		AnalRM a=new AnalRM();
-		a.init(g_tm,g_prm);
+		a.init(g_ts,g_prm);
 		return a.is_sch();
 	}	
 
 	@Override
 	public double getExec(int p) {
 		AnalRM a=new AnalRM();
-		a.init(g_tm);
+		a.init(g_ts);
 		double e=a.getExec(p);
 		return Math.ceil(e);
 	}

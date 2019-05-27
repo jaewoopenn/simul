@@ -18,7 +18,7 @@ public class z_rbf1 {
 		TaskSet tm=new TaskSet(ts);
 		
 		for(int t=0;t<12;t++) {
-			double r=MAnal.computeRBF(tm.getArr(),2,t);
+			double r=tm.computeRBF(2,t);
 			SLog.prnc(1, "t:"+t);
 			SLog.prn(1, " r:"+r);
 		}

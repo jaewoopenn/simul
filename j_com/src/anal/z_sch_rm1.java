@@ -21,7 +21,7 @@ public class z_sch_rm1 {
 		SLog.prn(1, "t \t sup \t req ");
 		for(int t=0;t<12;t++) {
 			double s=p.sbf(t);
-			double r=MAnal.computeRBF(tm.getArr(),1,t);
+			double r=tm.computeRBF(1,t);
 			String st=t+"\t"+s+"\t"+r+"\t";
 			if (s>r)
 				st+=">>>>>";
