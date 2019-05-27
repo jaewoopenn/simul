@@ -14,8 +14,8 @@ public class z_draw1 {
 	public static void init_s() {
 //		int s=1;
 //		int s=2;
-		int s=3;
-//		int s=4;
+//		int s=3;
+		int s=4;
 		
 //		int log=1;
 		int log=2;
@@ -99,6 +99,11 @@ public class z_draw1 {
 		SLog.prn(2, st);
 	}
 	public  int test4() {
+		TaskSet tm=TS1.tm2();
+		tm.sort();
+		PRM prm=new PRM(3,1.4);
+		AnalDraw a=new AnalDraw(tm,prm);
+		a.make("com/test_g.txt", 2, 30);
 		return 1;
 	}
 	public  int test5() {
