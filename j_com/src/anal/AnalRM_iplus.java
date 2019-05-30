@@ -1,76 +1,27 @@
 package anal;
 
-import com.PRM;
-
-import task.Task;
 import util.SLog;
 
-public class AnalRM extends Anal{
-	public AnalRM() {
+public class AnalRM_iplus extends Anal{
+	public AnalRM_iplus() {
 		super();
-		g_name="RM";
+		g_name="RM_iplus";
 	}	
 	
 	@Override
 	public boolean is_sch() {
-		return checkSch(g_prm);
+		AnalRM a=new AnalRM();
+		a.init(g_ts,g_prm);
+		return a.is_sch();
 	}	
 
-	public boolean checkSch_ind(PRM p, int i, int end_t) {
-		int log_lv=1;
-		SLog.prn(log_lv, "i:"+i+" end_t:"+end_t);
-		SLog.prn(log_lv, "t \t sup \t req ");
-		String st="";
-		for(int t=1;t<=end_t;t++) {
-			double r=g_ts.computeRBF(i,t);
-			double s=p.sbf(t);
-			st=t+"\t"+s+"\t"+r+"\t";
-			if (s+g_error>r) {
-				st+=">>>>>";
-				SLog.prn(log_lv,st );
-				return true;
-			} else {
-				st+="<";
-			}
-//			SLog.prn(log_lv,st );
-		}
-		SLog.prn(log_lv,st );
-		
-		return false;
-	}
-
-	public boolean checkSch(PRM p) {
-		Task[] tm=g_ts.getArr();
-		for(int i=0;i<tm.length;i++) {
-			int end_t=tm[i].period;
-			if(!checkSch_ind(p,i,end_t))
-				return false; // 하나라도 안되면 실패
-				
-		}
-		return true; // 모두 성공하면 OK
-	}
-
+	@Override
 	public double getExec(int p) {
-		Task[] tm=g_ts.getArr();
-		double exec=0;
-		for(int i=0;i<tm.length;i++) {
-			int end_t=tm[i].period;
-			double exec1=p;
-			
-			for(int t=1;t<=end_t;t++) {
-				double tempExec=getExec(p,i,t);
-				String st="";
-				st+=i+" "+t;
-				st+=" temp:"+tempExec;
-				st+=" exec1:"+exec1;
-				SLog.prn(2, st);
-				exec1=Math.min(exec1,tempExec);
-			}
-			exec=Math.max(exec,exec1);
-		}		
-		return exec;
+		AnalRM a=new AnalRM();
+		a.init(g_ts);
+		double e=a.getExec(p);
+		return Math.ceil(e);
 	}
-
 	public double getExec(int pi, int i, int t) {
 		double req=g_ts.computeRBF(i,t);
 		int kp1=t/pi;
@@ -135,16 +86,7 @@ public class AnalRM extends Anal{
 			return pi;
 		return theta;
 	}
-	public void prnReq(int i) {
-		Task[] tm=g_ts.getArr();
 
-		for(int t=1;t<tm[i].period;t++) {
-			double req=g_ts.computeRBF(i,t);
-			String st=t+":"+req+" "+req/t;
-			SLog.prn(1, st);
-		}
-		
-	}
 
 }
 	

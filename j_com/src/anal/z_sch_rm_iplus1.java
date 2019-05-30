@@ -9,7 +9,7 @@ import task.TaskSet;
 import util.SLog;
 import util.SEngineT;
 
-public class z_sch_rm2 {
+public class z_sch_rm_iplus1 {
 	public static int idx=1;
 	public static int log_level=1;
 
@@ -20,11 +20,13 @@ public class z_sch_rm2 {
 //		TaskMng tm=TS1.getTM2();
 		int p=3;
 		int end_t=5;
-		AnalRM a=new AnalRM();
+		AnalRM_iplus a=new AnalRM_iplus();
 		a.init(tm);
 		double exec=a.getExec(p,1,end_t);
 		String st="exec:"+exec;
 		SLog.prn(2,st );
+		// verification prm p,exec sbf_prm(t=5)
+		
 		return 0;
 	}
 	public int test2() 
@@ -79,9 +81,9 @@ public class z_sch_rm2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_sch_rm2.class;
-		z_sch_rm2 m=new z_sch_rm2();
-		int[] aret=z_sch_rm2.gret;
+		Class c = z_sch_rm_iplus1.class;
+		z_sch_rm_iplus1 m=new z_sch_rm_iplus1();
+		int[] aret=z_sch_rm_iplus1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
