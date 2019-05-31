@@ -12,6 +12,8 @@ public class AnalSel {
 			return new AnalRM();
 		} else if(sort==1) {
 			return new AnalRM_int();
+		} else if(sort==2) {
+			return new AnalRM_iplus();
 		}
 		return null;
 	}

@@ -28,7 +28,7 @@ public class z_auto1 {
 		g_xaxis="_x.txt";
 		g_rs="_rs.txt";
 		g_graph="_graph.txt";
-		g_anal_end=2;
+		g_anal_end=3;
 		
 	}
 
@@ -37,7 +37,7 @@ public class z_auto1 {
 		init();
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util(20,60,5,g_cfg);
+		p.genCfg_util(30,60,5,g_cfg);
 		return 0;
 	}
 	public int test2() {// task set gen

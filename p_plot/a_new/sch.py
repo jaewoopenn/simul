@@ -49,7 +49,7 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.ylim(0, 0.5)
+    mp.ylim(0.025, 0.2)
 #     mp.legendBL()
     mp.legendUL()
     mp.xlabel(gl_input.xlab)

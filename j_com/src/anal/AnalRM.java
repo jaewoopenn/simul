@@ -73,6 +73,9 @@ public class AnalRM extends Anal{
 
 	public double getExec(int pi, int i, int t) {
 		double req=g_ts.computeRBF(i,t);
+		return getExecReq(pi,t,req);
+	}
+	public double getExecReq(int pi, int t,double req) {
 		int kp1=t/pi;
 		int kp2=kp1-1;
 		if (kp2<0)

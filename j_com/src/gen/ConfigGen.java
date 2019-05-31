@@ -106,8 +106,8 @@ public class ConfigGen {
 		eg.setParam("u_ub",1.0);
 		eg.setParam("tu_lb",0.02);
 		eg.setParam("tu_ub",0.1);
-		eg.setParam("p_lb",50);
-		eg.setParam("p_ub",300);
+		eg.setParam("p_lb",100);
+		eg.setParam("p_ub",400);
 		eg.setParam("num",10);
 		eg.setParam("fn","com/test1");
 		eg.setParam("label","1");

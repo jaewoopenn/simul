@@ -7,6 +7,8 @@ package auto;
  */
 
 
+import com.PRM;
+
 import anal.Anal;
 import anal.AnalSel;
 import gen.ConfigGen;
@@ -89,9 +91,9 @@ public class Platform {
 		Anal a=AnalSel.getAnal(sort);
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
+			SLog.prn(3, out);
 			anal_one2(fn,out,a);
 			fu_rs.add(out);
-			SLog.prn(3, out);
 		}		
 		String rs_fn=g_path+"/_rs_list."+sort+".txt";
 		fu_rs.save(rs_fn);
@@ -122,7 +124,7 @@ public class Platform {
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
 		MList fu=new MList();
-		int p=10;
+		int p=25;
 		for(int i=0;i<num;i++) {
 			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
@@ -130,6 +132,11 @@ public class Platform {
 
 			a.init(tm);
 			double e=a.getExec(p);
+			PRM prm=new PRM(p,e);
+			a.setPRM(prm);
+			if(!a.is_sch()) {
+				SLog.err("not sch");
+			}
 			double ov=e/p-tm.getUtil();
 			fu.add(ov+"");
 		}
