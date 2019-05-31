@@ -9,8 +9,8 @@ public class z_auto1 {
 	public static void init_s() {
 //		int s=1;
 //		int s=2;
-//		int s=3;
-		int s=4;
+		int s=3;
+//		int s=4;
 		
 //		int log=1;
 //		int log=2;
@@ -28,7 +28,9 @@ public class z_auto1 {
 		g_xaxis="_x.txt";
 		g_rs="_rs.txt";
 		g_graph="_graph.txt";
-		g_anal_end=3;
+//		int anal[]= {0,1,2};
+		int anal[]= {2};
+		g_anal=anal;
 		
 	}
 
@@ -50,7 +52,7 @@ public class z_auto1 {
 	public int test3() { // anal 
 		init();
 		Platform p=new Platform(g_path);
-		p.anal_loop(g_rs,g_ts,g_anal_end);
+		p.anal_loop(g_rs,g_ts,g_anal);
 		return -1;
 	}
 	public  int test4() { // anal rs --> graph
@@ -97,7 +99,7 @@ public class z_auto1 {
 	private static int s_log_level;
 	private String g_path;
 	private int g_num;
-	private int g_anal_end;
+	private int[] g_anal;
 	private String g_cfg;
 	private String g_ts;
 	private String g_xaxis;

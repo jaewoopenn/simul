@@ -13,8 +13,8 @@ public class AnalRM_iplus extends Anal{
 	
 	@Override
 	public boolean is_sch() {
-		return true;
-//		return checkSch(g_prm);
+//		return true;
+		return checkSch(g_prm);
 	}
 	public boolean checkSch(PRM p) {
 		Task[] tm=g_ts.getArr();

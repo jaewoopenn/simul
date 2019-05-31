@@ -73,9 +73,9 @@ public class Platform {
 	}
 	
 	// anal
-	public void anal_loop(String rs_list,String ts_list, int end) {
+	public void anal_loop(String rs_list,String ts_list, int[] anal) {
 		MList fu=new MList();
-		for(int i=0;i<end;i++){
+		for(int i:anal){
 			String rs=anal(ts_list,i);
 			fu.add(rs);
 		}
