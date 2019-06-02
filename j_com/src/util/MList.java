@@ -42,6 +42,8 @@ public class MList {
 	
 
 	public void save(String fn) {
+		if(fn==null)
+			return;
 		MOut fu=new MOut(fn);
 		for(String s:g_list) {
 			fu.write(s);

@@ -133,15 +133,36 @@ public class Platform {
 			a.init(tm);
 			double e=a.getExec(p);
 			PRM prm=new PRM(p,e);
+			prm.prn();
 			a.setPRM(prm);
 			if(!a.is_sch()) {
-				SLog.err("not sch");
+				SLog.err("not sch "+i);
 			}
 			double ov=e/p-tm.getUtil();
 			fu.add(ov+"");
 		}
 		fu.save(out);
 		
+	}
+	public void anal_one3(String ts,Anal a,int num) {
+		SysLoad sy=new SysLoad(ts);
+		sy.open();
+		int p=25;
+		TaskSet tm=null;
+		for(int i=0;i<=num;i++) {
+			tm=sy.loadOne();
+		}
+		tm.sort();
+
+		a.init(tm);
+		double e=a.getExec(p);
+		PRM prm=new PRM(p,e);
+//		prm.prn();
+		a.setPRM(prm);
+		if(!a.is_sch()) {
+			SLog.err("not sch ");
+		}
+	
 	}
 	
 	

@@ -62,15 +62,20 @@ public class AnalRM_iplus extends Anal{
 				st+=i+" "+t;
 				st+=" temp:"+tempExec;
 				st+=" exec1:"+exec1;
-				SLog.prn(2, st);
+//				if(t==end_t)
+					SLog.prn(2, st);
 				exec1=Math.min(exec1,tempExec);
 			}
 			exec=Math.max(exec,exec1);
+			String st=i+" ";
+			st+=" exec:"+exec;
+			SLog.prn(2, st);
 		}		
 		return exec;
 	}
 	public double getExec(int pi, int i, int t) {
 		double req=g_ts.computeRBF(i,t);
+		SLog.prn(2, t+" "+req);
 		return getExecReq(pi,t,req);
 	}
 	public double getExecReq(int pi,int t,double req) {
@@ -117,7 +122,7 @@ public class AnalRM_iplus extends Anal{
 	private  double getThetaNormal(double req, int pi, int t,int k) {
 //		if(k==-1)
 //			return pi;
-		double theta=pi-(t-req-1)/(k+2);
+		double theta=pi-(t-req-2)/(k+2);
 		double init_d=pi-Math.floor(theta);
 		String st=" theta:"+theta;
 		st+=" init_d:"+init_d;
@@ -133,7 +138,7 @@ public class AnalRM_iplus extends Anal{
 	// compute theta2,  r mod theta ==0
 	// alpha <= pi-theta
 	private double getThetaMultiple(double req, int pi,  int t,int k) {
-		if(k==0)
+		if(k<=0)
 			return pi;
 		String st="";
 		

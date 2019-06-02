@@ -20,7 +20,7 @@ public class PRM {
 		double l=period-exec;
 		double tprime=t-l+MCal.err;
 		double k=Math.floor(tprime/period);
-		double s=k*exec+Math.max(0, t-2*l-k*period);
+		double s=k*exec+MCal.err+Math.max(0, t-2*l-k*period);
 		return Math.max(0, s); 
 	}
 
@@ -31,7 +31,7 @@ public class PRM {
 		double cur_d=period-(Math.floor((k+1)*exec)-Math.floor(k*exec));
 //		SLog.prn(1, "k:"+k);
 //		SLog.prn(1, "cur_d:"+cur_d);
-		double s=Math.floor(k*exec)+Math.max(0, tprime-k*period-cur_d);
+		double s=Math.floor(k*exec+MCal.err)+Math.max(0, tprime-k*period-cur_d);
 		s=Math.round(s*1000)*1.0/1000;
 		return Math.max(0, s); 
 	}

@@ -76,8 +76,8 @@ public class AnalRM extends Anal{
 		return getExecReq(pi,t,req);
 	}
 	public double getExecReq(int pi, int t,double req) {
-		int kp1=t/pi;
-		int kp2=kp1-1;
+		int kp2=t/pi;
+		int kp1=kp2-1;
 		if (kp2<0)
 			kp2=0;
 		String st="";
@@ -123,7 +123,7 @@ public class AnalRM extends Anal{
 	}
 	// compute theta2,  r mod theta ==0
 	private double getThetaMultiple(double req, int pi,  int t,int k) {
-		if(k==0)
+		if(k<=0)
 			return pi;
 		String st="";
 		
