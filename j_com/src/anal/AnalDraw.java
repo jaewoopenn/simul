@@ -9,11 +9,11 @@ import util.MList;
 public class AnalDraw {
 	private TaskSet g_ts;
 	private PRM g_prm;
-	private MList g_l;
+	private MList g_ml;
 	public AnalDraw(TaskSet ts,PRM p) {
 		g_ts=ts;
 		g_prm=p;
-		g_l=new MList();
+		g_ml=new MList();
 	}
 	public void make(String fn,int i, int end_t) {
 		double t=0;
@@ -32,7 +32,7 @@ public class AnalDraw {
 				prn(next_t,i);
 			}
 		}
-		g_l.save(fn);
+		g_ml.save(fn);
 		
 	}
 	public void prn2(double t,int i) {
@@ -46,6 +46,6 @@ public class AnalDraw {
 		st+=t;
 		st+=" "+g_prm.sbf_d(t);
 		st+=" "+g_ts.computeRBF(i, t-0.001);
-		g_l.add(st);
+		g_ml.add(st);
 	}
 }
