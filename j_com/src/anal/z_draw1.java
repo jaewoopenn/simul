@@ -103,7 +103,7 @@ public class z_draw1 {
 		tm.sort();
 		PRM prm=new PRM(3,1.4);
 		AnalDraw a=new AnalDraw(tm,prm);
-		a.make("com/test_g.txt", 2, 30);
+		a.make_rbf_sbf("com/test_g.txt", 2, 30);
 		return 1;
 	}
 	public  int test5() {

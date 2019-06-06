@@ -13,8 +13,8 @@ import util.SEngineT;
 public class z_draw2 {
 
 	public static void init_s() {
-		int s=1;
-//		int s=2;
+//		int s=1;
+		int s=2;
 //		int s=3;
 //		int s=4;
 		
@@ -30,11 +30,16 @@ public class z_draw2 {
 		tm.sort();
 		PRM prm=new PRM(3,1.4);
 		AnalDraw a=new AnalDraw(tm,prm);
-		a.make("com/test_g.txt", 2, 30);
+		a.make_rbf_sbf("com/test_g.txt", 2, 30);
 		return 1;
 	}
 	public int test2() {
-		return 0;
+		TaskSet tm=TS1.tm2();
+		tm.sort();
+		PRM prm=new PRM(1,1);
+		AnalDraw a=new AnalDraw(tm,prm);
+		a.make_rbf_sbf("com/test_g.txt", 2, 30);
+		return 1;
 	}
 	public  int test3() {
 		return 0;

@@ -26,7 +26,7 @@ def path2():
         gl.xl.append(float(wd[0]))
         gl.vl.append(float(wd[1]))
         gl.vl2.append(float(wd[2]))
-#     mp.plot(gl.xl,gl.vl)  # sbf
+    mp.plot(gl.xl,gl.vl)  # sbf
     mp.plot(gl.xl,gl.vl2)   # rbf
     mp.xlim(0,25)
     mp.ylim(0,13)

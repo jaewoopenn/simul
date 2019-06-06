@@ -15,7 +15,7 @@ public class AnalDraw {
 		g_prm=p;
 		g_ml=new MList();
 	}
-	public void make(String fn,int i, int end_t) {
+	public void make_rbf_sbf(String fn,int i, int end_t) {
 		double t=0;
 		double next_t=0;
 //		int i=0;
