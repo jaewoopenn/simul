@@ -99,11 +99,6 @@ public class z_draw1 {
 		SLog.prn(2, st);
 	}
 	public  int test4() {
-		TaskSet tm=TS1.tm2();
-		tm.sort();
-		PRM prm=new PRM(3,1.4);
-		AnalDraw a=new AnalDraw(tm,prm);
-		a.make_rbf_sbf("com/test_g.txt", 2, 30);
 		return 1;
 	}
 	public  int test5() {

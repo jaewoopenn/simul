@@ -7,7 +7,6 @@ import com.PRM;
 
 import sample.TS1;
 import task.TaskSet;
-import util.SLog;
 import util.SEngineT;
 
 public class z_draw2 {
@@ -26,19 +25,19 @@ public class z_draw2 {
 	}
 	
 	public int test1() {
-		TaskSet tm=TS1.tm2();
-		tm.sort();
-		PRM prm=new PRM(3,1.4);
-		AnalDraw a=new AnalDraw(tm,prm);
-		a.make_rbf_sbf("com/test_g.txt", 2, 30);
+		TaskSet ts=TS1.tm2();
+		ts.sort();
+		AnalDraw a=new AnalDraw();
+		a.draw_rbf(ts, 2, 30);
+		a.save("com/test_g.txt");
 		return 1;
 	}
 	public int test2() {
-		TaskSet tm=TS1.tm2();
-		tm.sort();
-		PRM prm=new PRM(1,1);
-		AnalDraw a=new AnalDraw(tm,prm);
-		a.make_rbf_sbf("com/test_g.txt", 2, 30);
+		PRM prm=new PRM(3,1.4);
+		AnalDraw a=new AnalDraw();
+		a.draw_sbf(prm, 30);
+		a.save("com/test_g.txt");
+
 		return 1;
 	}
 	public  int test3() {
