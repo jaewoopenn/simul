@@ -30,6 +30,7 @@ public class AnalDraw {
 				old_d=d;
 			}
 		}
+		g_ml.add("---");
 		
 	}
 	public void draw_sbf(PRM prm, int end_t) {
@@ -42,6 +43,7 @@ public class AnalDraw {
 				prn3(next_t);
 			}
 		}
+		g_ml.add("---");
 		
 	}
 	public void prn2(double t,int i) {

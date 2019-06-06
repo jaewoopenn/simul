@@ -6,25 +6,41 @@ Created on 2015. 12. 17.
 import file.MFile as mf
 import util.MPlot as mp
 
+class gl_inp:
+    fn="com/test_g.txt"
+    
 class gl:
     xl=[]
     vl=[]
     vl2=[]
 
 def select():
-    path2()
+    path1()
+#     path2()
 
 def path1():
-    lst=mf.load("com/test_g.txt")
+    lst=mf.load(gl_inp.fn)
+    lst2=[]
+    temp=[]
     for m in lst:
-        print(m)
-    
-def path2():
-    lst=mf.load("com/test_g.txt")
+        if m=="---":
+            lst2.append(temp)
+            temp=[]
+        else:
+            temp.append(m)
+    for l in lst2:
+        print(l)
+
+def load(): 
+    lst=mf.load(gl_inp.fn)
+        
     for m in lst:
         wd=m.split()
         gl.xl.append(float(wd[0]))
         gl.vl.append(float(wd[1]))
+       
+def path2():
+    load()
     mp.plot(gl.xl,gl.vl)  # sbf
 #     mp.plot(gl.xl,gl.vl2)   # rbf
     mp.xlim(0,25)

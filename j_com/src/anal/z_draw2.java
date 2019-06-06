@@ -13,8 +13,8 @@ public class z_draw2 {
 
 	public static void init_s() {
 //		int s=1;
-		int s=2;
-//		int s=3;
+//		int s=2;
+		int s=3;
 //		int s=4;
 		
 //		int log=1;
@@ -41,6 +41,13 @@ public class z_draw2 {
 		return 1;
 	}
 	public  int test3() {
+		TaskSet ts=TS1.tm2();
+		ts.sort();
+		PRM prm=new PRM(3,1.4);
+		AnalDraw a=new AnalDraw();
+		a.draw_rbf(ts, 2, 30);
+		a.draw_sbf(prm, 30);
+		a.save("com/test_g.txt");
 		return 0;
 	}
 	public  int test4() {
