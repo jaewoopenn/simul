@@ -10,7 +10,7 @@ import java.util.Vector;
 */
 
 public class MFile {
-	public static final String path="/data/";
+	public static final String path=System.getProperty ( "user.home" )+"/data/";
 	protected String g_fn;
 	protected BufferedReader g_br;
 	protected Vector<String> g_v;

@@ -7,16 +7,16 @@ import file.MFile as mf
 import util.MPlot as mp
 
 class gl_inp:
-    fn="com/test_g.txt"
-    
+#     fn="com/test_g.txt"
+    fn="com/cfg1_copy.txt"    
 class gl:
     xl=[]
     vl=[]
     vl2=[]
 
 def select():
-#     path1()
-    path2()
+    path1()
+#     path2()
 
 def path1():
     lst=mf.load(gl_inp.fn)
@@ -30,7 +30,7 @@ def path1():
             temp.append(m)
     for l in lst2:
         print(l)
-
+    print(lst)
 def load(): 
     lst=mf.load(gl_inp.fn)
     lst2=[]
