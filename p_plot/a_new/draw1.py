@@ -7,8 +7,8 @@ import file.MFile as mf
 import util.MPlot as mp
 
 class gl_inp:
-#     fn="com/test_g.txt"
-    fn="com/cfg1_copy.txt"    
+    fn="com/test_g.txt"
+
 class gl:
     xl=[]
     vl=[]
