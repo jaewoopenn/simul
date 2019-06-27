@@ -15,8 +15,8 @@ class gl:
     vl2=[]
 
 def select():
-    path1()
-#     path2()
+#     path1()
+    path2()
 
 def path1():
     lst=mf.load(gl_inp.fn)
@@ -58,8 +58,8 @@ def path2():
 #         print(gl.xl[i])
 #         print(gl.vl[i])
         mp.plot(gl.xl[i],gl.vl[i]) 
-    mp.xlim(0,25)
-    mp.ylim(0,13)
+    mp.xlim(0,20)
+    mp.ylim(0,15)
     mp.ylabel("Resources")
     mp.xlabel("Time")
     mp.show()

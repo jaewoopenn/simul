@@ -5,7 +5,7 @@ package anal;
 
 import com.PRM;
 
-import sample.TS1;
+import sample.TS2;
 import task.TaskSet;
 import util.SEngineT;
 
@@ -25,7 +25,7 @@ public class z_draw2 {
 	}
 	
 	public int test1() {
-		TaskSet ts=TS1.tm2();
+		TaskSet ts=TS2.tm1();
 		ts.sort();
 		AnalDraw a=new AnalDraw();
 		a.draw_rbf(ts, 2, 30);
@@ -33,7 +33,7 @@ public class z_draw2 {
 		return 1;
 	}
 	public int test2() {
-		PRM prm=new PRM(3,1.4);
+		PRM prm=new PRM(3,2.4);
 		AnalDraw a=new AnalDraw();
 		a.draw_sbf(prm, 30);
 		a.save("com/test_g.txt");
@@ -41,9 +41,9 @@ public class z_draw2 {
 		return 1;
 	}
 	public  int test3() {
-		TaskSet ts=TS1.tm2();
+		TaskSet ts=TS2.tm1();
 		ts.sort();
-		PRM prm=new PRM(3,1.4);
+		PRM prm=new PRM(3,2.2);
 		AnalDraw a=new AnalDraw();
 		a.draw_rbf(ts, 2, 30);
 		a.draw_sbf(prm, 30);
