@@ -4,9 +4,10 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
+import file.MFile as mf
 import util.MPlot as mp;
-class gl_input:
-    fn="t1/_graph.txt"
+class gl_inp:
+    fn="com/t1/_graph.txt"
     path="/data/com"
     xlab= "Utilization Bound"
     ylab= "Overheads"
@@ -19,8 +20,7 @@ class gl:
     marker=['o','v','D','^','s']
 
 def load():
-    fn=gl_input.path+"/"+gl_input.fn
-    i_f = open(fn,"r")
+    i_f=mf.load(gl_inp.fn)
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
@@ -52,8 +52,8 @@ def main():
     mp.ylim(0.025, 0.2)
 #     mp.legendBL()
     mp.legendUL()
-    mp.xlabel(gl_input.xlab)
-    mp.ylabel(gl_input.ylab)
+    mp.xlabel(gl_inp.xlab)
+    mp.ylabel(gl_inp.ylab)
     mp.show()
 
 if __name__ == '__main__':
