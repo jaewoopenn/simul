@@ -63,6 +63,7 @@ public class Platform {
 	}
 
 	public void genTS(String cfg_list,String ts, String xaxis) {
+		SLog.prn(3, g_path+"/"+cfg_list);
 		MList fu=new MList(g_path+"/"+cfg_list);
 		
 		MList fu_ts=new MList();

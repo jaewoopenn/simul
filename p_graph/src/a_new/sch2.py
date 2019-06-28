@@ -6,9 +6,10 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
+import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    fn="t1/a_sim_graph.txt"
+    fn="sch/t1/a_sim_graph.txt"
     path="/data/sch"
     xlab= "Utilization Bound"
     ylab= "Deadline Miss Ratio"
@@ -21,8 +22,7 @@ class gl:
     marker=['o','v','D','^','s']
 
 def load():
-    fn=gl_input.path+"/"+gl_input.fn
-    i_f = open(fn,"r")
+    i_f = mf.load(gl_input.fn)
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")

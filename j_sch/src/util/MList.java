@@ -9,11 +9,11 @@ public class MList {
 		g_list=new Vector<String>();
 	}
 	public MList(String fn) {
+		g_list=new Vector<String>();
 		MFile fu=new MFile(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.size())){
-	    	String line=fu.get(i);
-	    	g_list.add(line);
+	    	g_list.add(fu.get(i));
 		}		
 	}
 	public String getNext() {
@@ -24,7 +24,7 @@ public class MList {
 		return s;
 	}
 	public String get(int i) {
-		return g_list.get(cur);
+		return g_list.get(i);
 	}	
 	
 	public void add(String s) {
@@ -42,6 +42,8 @@ public class MList {
 	
 
 	public void save(String fn) {
+		if(fn==null)
+			return;
 		MOut fu=new MOut(fn);
 		for(String s:g_list) {
 			fu.write(s);

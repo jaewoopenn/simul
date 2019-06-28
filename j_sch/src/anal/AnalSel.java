@@ -14,7 +14,7 @@ public class AnalSel {
 		if(sort==0) { 
 			return new AnalEDF_AD_E();
 		} else if(sort==1) {
-			return new AnalEDF_AD_E();
+			return new AnalEDF_AD_E("EDF-AD-p");
 		} else if(sort==2) {
 			return new AnalEDF_VD();
 		} else if(sort==3) {

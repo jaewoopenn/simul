@@ -13,9 +13,13 @@ public class AnalEDF_AD_E extends Anal {
 	private double glo_x;
 	private int n_hi_prefer;
 	SysInfo g_info;
+	public AnalEDF_AD_E(String name) {
+		super();
+		g_name=name;
+	}
 	public AnalEDF_AD_E() {
 		super();
-		g_name="EDF-AD";
+		g_name="EDF-AD-E";
 	}
 	@Override
 	public void prepare() {
