@@ -16,47 +16,18 @@ public class AnalRM extends Anal{
 		return checkSch(g_prm);
 	}	
 
-	public boolean checkSch_ind(PRM p, int i, int end_t) {
-		int log_lv=1;
-		SLog.prn(log_lv, "i:"+i+" end_t:"+end_t);
-		SLog.prn(log_lv, "t \t sup \t req ");
-		String st="";
-		for(int t=1;t<=end_t;t++) {
-			double r=g_ts.computeRBF(i,t);
-			double s=p.sbf(t);
-			st=t+"\t"+s+"\t"+r+"\t";
-			if (s+g_error>r) {
-				st+=">>>>>";
-				SLog.prn(log_lv,st );
-				return true;
-			} else {
-				st+="<";
-			}
-//			SLog.prn(log_lv,st );
-		}
-		SLog.prn(log_lv,st );
-		
-		return false;
-	}
 
-	public boolean checkSch(PRM p) {
-		Task[] tm=g_ts.getArr();
-		for(int i=0;i<tm.length;i++) {
-			int end_t=tm[i].period;
-			if(!checkSch_ind(p,i,end_t))
-				return false; // 하나라도 안되면 실패
-				
-		}
-		return true; // 모두 성공하면 OK
-	}
 
+	// period를 주면, exec를 계산 
 	public double getExec(int p) {
 		Task[] tm=g_ts.getArr();
 		double exec=0;
 		for(int i=0;i<tm.length;i++) {
+			// 태스크마다 
 			int end_t=tm[i].period;
 			double exec1=p;
 			
+			// 태스크 period까지 t를 증가 
 			for(int t=1;t<=end_t;t++) {
 				double tempExec=getExec(p,i,t);
 				String st="";
@@ -75,6 +46,8 @@ public class AnalRM extends Anal{
 		double req=g_ts.computeRBF(i,t);
 		return getExecReq(pi,t,req);
 	}
+	
+	// pi: period, t: time, req: required rbf 
 	public double getExecReq(int pi, int t,double req) {
 		int kp2=t/pi;
 		int kp1=kp2-1;
@@ -121,6 +94,7 @@ public class AnalRM extends Anal{
 			return pi;
 		return theta;
 	}
+	
 	// compute theta2,  r mod theta ==0
 	private double getThetaMultiple(double req, int pi,  int t,int k) {
 		if(k<=0)
@@ -138,6 +112,41 @@ public class AnalRM extends Anal{
 			return pi;
 		return theta;
 	}
+
+	public boolean checkSch(PRM p) {
+		Task[] tm=g_ts.getArr();
+		for(int i=0;i<tm.length;i++) {
+			int end_t=tm[i].period;
+			if(!checkSch_ind(p,i,end_t))
+				return false; // 하나라도 안되면 실패
+				
+		}
+		return true; // 모두 성공하면 OK
+	}
+
+	public boolean checkSch_ind(PRM p, int i, int end_t) {
+		int log_lv=1;
+		SLog.prn(log_lv, "i:"+i+" end_t:"+end_t);
+		SLog.prn(log_lv, "t \t sup \t req ");
+		String st="";
+		for(int t=1;t<=end_t;t++) {
+			double r=g_ts.computeRBF(i,t);
+			double s=p.sbf(t);
+			st=t+"\t"+s+"\t"+r+"\t";
+			if (s+g_error>r) {
+				st+=">>>>>";
+				SLog.prn(log_lv,st );
+				return true;
+			} else {
+				st+="<";
+			}
+//			SLog.prn(log_lv,st );
+		}
+		SLog.prn(log_lv,st );
+		
+		return false;
+	}
+	
 	public void prnReq(int i) {
 		Task[] tm=g_ts.getArr();
 
