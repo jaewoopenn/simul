@@ -5,6 +5,7 @@ package task;
 */
 
 import util.SLog;
+import util.SLogF;
 
 public class TaskMng {
 	private TaskSet g_tasks;
@@ -80,6 +81,7 @@ public class TaskMng {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
 			util+=g_info.computeRU(t);
+//			SLogF.prn("ru:"+util);			
 		}
 		return util;
 	}

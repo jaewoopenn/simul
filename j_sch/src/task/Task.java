@@ -16,10 +16,10 @@ public class Task {
 	public int c_l;
 	public int c_h;
 	public double vd;
-	public boolean is_HI=false;
-	private boolean is_Hi_Mode=false;
+	public int sb_tm=0; // switch back time
+	private boolean is_HC=false;
+	private boolean is_HI_Mode=false;
 	private boolean is_dropped=false;
-
 	private boolean is_hi_preferred=false;
 	
 
@@ -37,17 +37,11 @@ public class Task {
 		this.vd = period;
 		this.c_l = c_l;
 		this.c_h = c_h;
-		this.is_HI=true;
+		this.is_HC=true;
 	}
 	public void ms(){
 		if(!is_hi_preferred)
-			is_Hi_Mode=true;
-	}
-	public boolean isHM() {
-		return is_Hi_Mode;
-	}
-	public boolean isDrop() {
-		return is_dropped;
+			is_HI_Mode=true;
 	}
 	public void drop() {
 		SLogF.prn("drop "+tid);
@@ -63,7 +57,7 @@ public class Task {
 	}
 	public void setHI_only() {
 		 is_hi_preferred = true;
-		 is_Hi_Mode=true;
+		 is_HI_Mode=true;
 	}
 
 	
@@ -96,15 +90,15 @@ public class Task {
 	public void prn() {
 		SLog.prnc(2, "tid:"+tid);
 		SLog.prnc(2, " p:"+period);
-		if (is_HI){
+		if (is_HC){
 			SLog.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
-			SLog.prnc(2," isHM:"+is_Hi_Mode);
+			SLog.prnc(2," isHM:"+is_HI_Mode);
 			
 		}else{
 			SLog.prnc(2," cl:"+c_l);
 			SLog.prnc(2," isDrop:"+is_dropped);
 		}
-		SLog.prnc(2," hi-crit?"+is_HI);
+		SLog.prnc(2," hi-crit?"+is_HC);
 		SLog.prn(2," util:"+getLoUtil());
 	}
 	public void prnShort() {
@@ -113,8 +107,8 @@ public class Task {
 		SLog.prnc(2, ", "+vd);
 		SLog.prnc(2, ", "+c_l);
 		SLog.prnc(2, ", "+c_h);
-		if (is_HI)
-			SLog.prnc(2," isHM:"+is_Hi_Mode);
+		if (is_HC)
+			SLog.prnc(2," isHM:"+is_HI_Mode);
 		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
 		SLog.prn(2, ", "+MCal.getStr(getHiUtil()));
 	}
@@ -125,8 +119,8 @@ public class Task {
 		SLog.prnc(2, "tid:"+tid);
 		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
 		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
-		if (is_HI){
-			SLog.prnc(2," isHM:"+is_Hi_Mode);
+		if (is_HC){
+			SLog.prnc(2," isHM:"+is_HI_Mode);
 			SLog.prn(2," isHI_Only:"+is_hi_preferred);
 			
 		}else{
@@ -138,8 +132,8 @@ public class Task {
 		SLog.prnc(2, "tid:"+tid);
 		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
 		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
-		if (is_HI){
-			SLog.prnc(2," isHM:"+is_Hi_Mode);
+		if (is_HC){
+			SLog.prnc(2," isHM:"+is_HI_Mode);
 			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
 			
 		}else{
@@ -152,7 +146,7 @@ public class Task {
 		SLog.prnc(2, "tid:"+tid);
 		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
 		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
-		if (is_HI){
+		if (is_HC){
 			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
 			
 		}else{
@@ -163,7 +157,7 @@ public class Task {
 	public void prnPara() {
 		SLog.prnc(2, "tmp.add(new Task(0,");
 		SLog.prnc(2, period);
-		if (is_HI){
+		if (is_HC){
 			SLog.prnc(2, ", "+c_l);
 			SLog.prnc(2, ", "+c_h);
 		} else {
@@ -176,9 +170,24 @@ public class Task {
 	public void initMode() {
 		is_dropped=false;
 		if(is_hi_preferred)
-			is_Hi_Mode=true;
+			is_HI_Mode=true;
 		else
-			is_Hi_Mode=false;
+			is_HI_Mode=false;
+	}
+	
+	// get Param
+	public boolean isHC() {
+		return is_HC;
+	}
+	public boolean isHM() {
+		return is_HI_Mode;
+	}
+	public boolean isDrop() {
+		return is_dropped;
+	}
+
+	public boolean isHI_Preferred() {
+		return is_hi_preferred;
 	}
 
 

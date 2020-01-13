@@ -1,5 +1,10 @@
 package sim;
 
+/*
+ * test edf VD
+ */
+
+
 import sim.mc.TaskSimul_EDF_VD;
 import task.TaskMng;
 import util.SLogF;
@@ -42,7 +47,7 @@ public class z_TaskSimul1 {
 //		FLog.init("test/log.txt");
 		
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.3);
+		sm.setMS_Prob(0.5);
 		sm.setX(0.2);
 //		TaskMng tm=TS_NonMC1.ts1();
 		TaskMng tm=TS_MC1.ts1();

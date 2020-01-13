@@ -1,6 +1,7 @@
 package sim.mc;
 
 import util.SLog;
+import util.SLogF;
 import task.Task;
 import util.MCal;
 
@@ -19,6 +20,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		drop_algo();
 	}
 	
+	// TODO need to consider sw_tm
 	private void drop_algo() {
 		double ru=g_tm.getRUtil();
 		while(ru>=1+MCal.err){
@@ -50,19 +52,20 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	private void resume_algo() {
 		
 		double ru=g_tm.getRUtil();
+//		SLogF.prn( "ru:"+ru);
 		while(true){
 			Task tsk=g_tm.findResumeTask();
 			if(tsk==null)
 				return;
 			ru+=g_tm.getReclaimUtil(tsk); 
-//			S_FLog.prn( "resume tsk "+tsk.tid+" ru:"+ru);
-			if(ru<=1-MCal.err) {
+//			SLogF.prn( "resume tsk "+tsk.tid+" ru:"+ru);
+			if(ru<=1+MCal.err) {
 				resume_task(tsk);
 			} else {  // ru>1
 				break;
 			}
 		}
-//		S_FLog.prn( "t:"+g_jsm.get_time()+" resume end ");
+//		SLogF.prn( "t:"+g_jsm.get_time()+" resume end ");
 		
 	}
 

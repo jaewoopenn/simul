@@ -70,7 +70,7 @@ public class AnalICG extends Anal {
 				Task hp=ts[i];
 				if(t==hp)
 					continue;
-				if(t.is_HI)
+				if(t.isHC())
 					exec=hp.c_h;
 				else
 					exec=hp.c_l;

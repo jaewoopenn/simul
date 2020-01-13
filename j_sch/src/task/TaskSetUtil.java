@@ -30,7 +30,7 @@ public class TaskSetUtil {
 	
 
 	public static void writeTask(MList fu, Task t) {
-		int isHI=t.is_HI?1:0;
+		int isHI=t.isHC()?1:0;
 		String txt=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 		fu.add(txt);

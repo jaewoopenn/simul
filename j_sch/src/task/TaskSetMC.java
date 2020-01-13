@@ -20,7 +20,7 @@ public class TaskSetMC {
 		TaskVec lo_tasks=new TaskVec();
 		for(Task t:ts.getArr()){
 			tasks.add(t);
-			if(t.is_HI)
+			if(t.isHC())
 				hi_tasks.add(t);
 			else
 				lo_tasks.add(t);
@@ -42,7 +42,7 @@ public class TaskSetMC {
 		for(Task t:g_tasks.getArr())
 		{
 			double tu=t.getHiUtil();
-			if(t.is_HI){
+			if(t.isHC()){
 				hiutil_lm+=t.getLoUtil();
 				hiutil_hm+=tu;
 			} else {

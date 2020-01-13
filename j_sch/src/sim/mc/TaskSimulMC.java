@@ -57,7 +57,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	@Override
 	protected Job rel_one_job(Task tsk, int t) {
-		if(tsk.is_HI){
+		if(tsk.isHC()){
 //			tsk.prnStat();
 			if(tsk.isHM()){
 				return new Job(tsk.tid, 
@@ -81,7 +81,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 				s+="-";
 				continue;
 			}
-			if(tsk.is_HI) {
+			if(tsk.isHC()) {
 				s+="+";
 				g_jsm.add(rel_one_job(tsk,t));
 				continue;
@@ -167,22 +167,23 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	protected void modeswitch_tid(int tid){ // function
 		Task tsk=g_tm.getTask(tid);
-		SLog.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot mode switch");
+		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot mode switch");
 		tsk.ms();
 		g_jsm.getJM().modeswitch(tid);
 	}
 
 	protected void switchback_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
-		SLog.err_if(!tsk.is_HI,"task "+tid+" is not HI-task, cannot switch back");
+		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot switch back");
 		SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
-		
+		tsk.sb_tm=g_jsm.get_time();
 		tsk.initMode();
+//		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
 	}
 	
 	
 	protected void drop_task(Task tsk) {
-		SLog.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot drop");
+		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot drop");
 		
 		if(tsk.isDrop())
 			return;
@@ -192,7 +193,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		tsk.drop();
 	}
 	protected void resume_task(Task tsk) {
-		SLog.err_if(tsk.is_HI,"task "+tsk.tid+" is not LO-task, cannot resume");
+		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot resume");
 		if(!tsk.isDrop())
 			return;
 		tsk.resume();

@@ -20,7 +20,7 @@ public class SysInfo {
 		this.x_para = x_para;
 	}
 	public double computeRU(Task t) {
-		if(t.is_HI){
+		if(t.isHC()){
 			if(t.isHM())
 				return t.getHiUtil();
 			else
