@@ -1,7 +1,6 @@
 package sim.mc;
 
 import util.SLog;
-import util.SLogF;
 import task.Task;
 import util.MCal;
 
@@ -66,6 +65,27 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 			}
 		}
 //		SLogF.prn( "t:"+g_jsm.get_time()+" resume end ");
+		
+	}
+
+
+	// vir mode를 적용해야 하는데.. 지금은 real mode로 하고 있다. 
+	@Override
+	protected void vir_check() {
+		int tm=g_jsm.get_time();
+		int d=g_sm.getDelay();
+		for(Task t:g_tm.getTasks()){
+			if(t.isHC()||t.sb_tm==-1)
+				continue;
+			if(tm==t.sb_tm+d) {
+				resume_algo();
+				t.sb_tm=-1;
+				
+			}
+				
+				
+		}
+		
 		
 	}
 

@@ -50,6 +50,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		release_jobs();
 		g_jsm.simul_one();
 		ms_check();
+		vir_check();
 		if(g_jsm.is_idle()&&g_recover_need&&g_recover_on) {
 			recover_idle();
 		}
@@ -107,11 +108,9 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	private void recover_idle(){
 		SLogF.prn( "t:"+g_jsm.get_time()+" recover idle");
-		initMode();
+		initModeAll();
 		g_recover_need=false;
-		
 	}
-	
 	
 
 	private void ms_check(){
@@ -138,7 +137,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	}
 
 	
-	private void initMode() {
+	private void initModeAll() {
 		for(Task t:g_tm.getTasks()){
 			t.initMode();
 		}
@@ -154,6 +153,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	// abstract method
 	protected abstract void modeswitch_in(int tid);
 	protected abstract void recover_in(int tid);
+	protected abstract void vir_check();
 	
 	
 	

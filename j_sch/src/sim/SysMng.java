@@ -5,7 +5,7 @@ import util.SLog;
 public class SysMng {
 	private double g_prob=-1;
 	private double g_x=-1;
-
+	private int g_delay=2;
 	//--- Get
 	public double getMS_Prob() {
 		if(g_prob==-1) {
@@ -18,6 +18,9 @@ public class SysMng {
 			SLog.err("SysMng:x is not set");
 		}
 		return g_x;
+	}
+	public int getDelay() {
+		return g_delay;
 	}
 
 	

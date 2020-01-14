@@ -5,7 +5,6 @@ package task;
 */
 
 import util.SLog;
-import util.SLogF;
 
 public class TaskMng {
 	private TaskSet g_tasks;
