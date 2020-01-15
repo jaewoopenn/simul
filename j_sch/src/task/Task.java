@@ -16,7 +16,7 @@ public class Task {
 	public int c_l;
 	public int c_h;
 	public double vd;
-	public int sb_tm=0; // switch back time
+	public int sb_tm=-1; // switch back time
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
 	private boolean is_dropped=false;
@@ -104,13 +104,12 @@ public class Task {
 	public void prnShort() {
 		SLog.prnc(2, tid);
 		SLog.prnc(2, ", "+period);
-		SLog.prnc(2, ", "+vd);
 		SLog.prnc(2, ", "+c_l);
 		SLog.prnc(2, ", "+c_h);
 		if (is_HC)
-			SLog.prnc(2," isHM:"+is_HI_Mode);
-		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
-		SLog.prn(2, ", "+MCal.getStr(getHiUtil()));
+			SLog.prn(2,",H");
+		else
+			SLog.prn(2,",L");
 	}
 	
 	
@@ -173,6 +172,7 @@ public class Task {
 			is_HI_Mode=true;
 		else
 			is_HI_Mode=false;
+		sb_tm=-1;
 	}
 	
 	// get Param

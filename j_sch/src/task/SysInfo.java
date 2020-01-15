@@ -32,6 +32,19 @@ public class SysInfo {
 			return t.getLoUtil();
 		
 	}
+	public double computeVU(Task t) {
+		if(t.isHC()){
+			if(t.isHM()||t.sb_tm!=-1)
+				return t.getHiUtil();
+			else
+				return t.getLoVdUtil();
+		} 
+		if(t.isDrop())
+			return x_para*t.getLoUtil();
+		else
+			return t.getLoUtil();
+		
+	}
 	
 	public double getUtil() {
 		return lo_util+hi_util_hm;

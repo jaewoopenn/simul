@@ -13,7 +13,7 @@ import util.SLog;
 public abstract class TaskSimulMC extends TaskSimul {
 
 	protected boolean g_recover_need=false;
-	public boolean g_recover_on=true;
+	private  boolean g_recover_idle_on=true;
 	
 	protected JobSimulMC g_jsm;
 
@@ -48,12 +48,12 @@ public abstract class TaskSimulMC extends TaskSimul {
 	protected void simul_one(){
 		
 		release_jobs();
+		if(g_jsm.is_idle()&&g_recover_need&&g_recover_idle_on) {
+			recover_idle();
+		}
 		g_jsm.simul_one();
 		ms_check();
 		vir_check();
-		if(g_jsm.is_idle()&&g_recover_need&&g_recover_on) {
-			recover_idle();
-		}
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 			}
 			g_si.rel++;
 			if(tsk.isDrop()){
-				g_si.drop++;
+				g_si.nrel++;
 				s+="X";
 				continue;
 			}
@@ -100,6 +100,9 @@ public abstract class TaskSimulMC extends TaskSimul {
 		SLogF.prnc(s);
 	}	
 	
+	public void setRecoverIdle(boolean b) {
+		g_recover_idle_on=b;
+	}
 
 	///////////////////////
 	// private
@@ -107,7 +110,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 
 	private void recover_idle(){
-		SLogF.prn( "t:"+g_jsm.get_time()+" recover idle");
+		SLogF.prnc( "R ");
 		initModeAll();
 		g_recover_need=false;
 	}
@@ -176,8 +179,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 		Task tsk=g_tm.getTask(tid);
 		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot switch back");
 		SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
-		tsk.sb_tm=g_jsm.get_time();
 		tsk.initMode();
+		tsk.sb_tm=g_jsm.get_time();
 //		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
 	}
 	
@@ -188,8 +191,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(tsk.isDrop())
 			return;
 		
-		int n=g_jsm.getJM().drop(tsk.tid);
-		g_si.drop+=n;
+		g_si.drop+=g_jsm.getJM().drop(tsk.tid);
 		tsk.drop();
 	}
 	protected void resume_task(Task tsk) {

@@ -5,7 +5,8 @@ import util.SLog;
 public class SysMng {
 	private double g_prob=-1;
 	private double g_x=-1;
-	private int g_delay=2;
+	private int g_delay;
+	private int g_et;
 	//--- Get
 	public double getMS_Prob() {
 		if(g_prob==-1) {
@@ -22,6 +23,9 @@ public class SysMng {
 	public int getDelay() {
 		return g_delay;
 	}
+	public int getEnd() {
+		return g_et;
+	}
 
 	
 	//--- Set
@@ -33,8 +37,17 @@ public class SysMng {
 		g_x=d;
 	}
 	public void prn() {
-//		Log.prn(2, "prob:"+g_prob);
+		SLog.prn(2, "prob:"+g_prob);
 		SLog.prn(2, "x:"+g_x);
+		SLog.prn(2, "delay:"+g_delay);
+		
+	}
+	public void setDelay(double t) {
+		g_delay=(Double.valueOf(t+0.5)).intValue();
+		
+	}
+	public void setEnd(int i) {
+		g_et=i;
 		
 	}
 	

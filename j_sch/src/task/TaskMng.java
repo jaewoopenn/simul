@@ -84,6 +84,15 @@ public class TaskMng {
 		}
 		return util;
 	}
+	public double getVUtil() {
+		double util=0;
+		for(Task t:g_tasks.getArr())	{
+			util+=g_info.computeVU(t);
+//			SLogF.prn("ru:"+util);			
+		}
+		return util;
+		
+	}
 
 	public double getWCUtil() {
 		double util=0;
@@ -153,7 +162,7 @@ public class TaskMng {
 
 	public void prn() {
 		g_tasks.prn();
-		g_info.prn();
+//		g_info.prn();
 	}
 	
 	public void prnHI() {
@@ -183,6 +192,31 @@ public class TaskMng {
 		
 	}
 
+	public int getLongPeriod() {
+		int l=0;
+		for(Task t:g_hi_tasks.getArr()){
+			if(t.period>l)
+				l=t.period;
+		}
+		return l;
+	}
+
+	public int getShortPeriod() {
+		int l=-1;
+		for(Task t:g_hi_tasks.getArr()){
+			if(l==-1)
+				l=t.period;
+			if(t.period<l)
+				l=t.period;
+		}
+		return l;
+	}
+
+	public void init() {
+		for(Task t:g_tasks.getArr()){
+			t.initMode();
+		}
+	}
 
 	
 

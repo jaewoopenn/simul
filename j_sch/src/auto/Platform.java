@@ -188,6 +188,10 @@ public class Platform {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_prob);
 			sm.setX(x);
+			// TODO set delay in platform  
+//			sm.setDelay(x*tm.getLongPeriod());
+			sm.setDelay(x*tm.getShortPeriod());
+//			sm.setDelay(0);
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
 			s.simul(0,g_dur);

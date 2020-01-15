@@ -1,6 +1,8 @@
 package sim.mc;
 
 import util.SLog;
+import util.SLogF;
+//import util.SLogF;
 import task.Task;
 import util.MCal;
 
@@ -22,6 +24,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	// TODO need to consider sw_tm
 	private void drop_algo() {
 		double ru=g_tm.getRUtil();
+//		double ru=g_tm.getVUtil();
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
@@ -38,7 +41,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	//TODO implement switch back algo (longest task VD)
 	@Override
 	protected void recover_in(int tid) {
-//		S_FLog.prn( "t:"+g_jsm.get_time()+" recover in ");
+//		SLogF.prn( "t:"+g_jsm.get_time()+" recover in ");
 		switchback_tid(tid);		
 		resume_algo();
 		
@@ -50,7 +53,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	
 	private void resume_algo() {
 		
-		double ru=g_tm.getRUtil();
+		double ru=g_tm.getVUtil();
 //		SLogF.prn( "ru:"+ru);
 		while(true){
 			Task tsk=g_tm.findResumeTask();
@@ -75,15 +78,15 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		int tm=g_jsm.get_time();
 		int d=g_sm.getDelay();
 		for(Task t:g_tm.getTasks()){
-			if(t.isHC()||t.sb_tm==-1)
+			if(!t.isHC()||t.sb_tm==-1)
 				continue;
+//			SLogF.prn("resume"+tm+" "+t.sb_tm);
+			
 			if(tm==t.sb_tm+d) {
-				resume_algo();
+//				SLogF.prn("resume");
 				t.sb_tm=-1;
-				
+//				resume_algo();
 			}
-				
-				
 		}
 		
 		

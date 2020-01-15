@@ -21,12 +21,10 @@ public class z_auto1 {
 //		int s=1;
 //		int s=2;
 //		int s=3;
-//		int s=4;
 		
 //		int s=1;
 //		int s=5;
-//		int s=6;
-		int s=7;
+		int s=6;
 		s_idx=s;
 		
 		s_log_level=1;
@@ -34,7 +32,7 @@ public class z_auto1 {
 	
 	public void init_g() {
 		g_path="sch/t1";
-		g_num=100;
+		g_num=500;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -76,6 +74,10 @@ public class z_auto1 {
 		Platform p=new Platform(g_path);
 		int end=3;
 		p.anal_loop(g_rs,g_ts,end);
+		DataAnal da=new DataAnal(g_path,0);
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
 		return -1;
 	}
 	public  int test4() // anal rs --> graph
@@ -106,6 +108,10 @@ public class z_auto1 {
 		Platform p=new Platform(g_path);
 		p.setProb(g_prob);
 		p.sim_loop(g_rs, g_ts, 2);
+		DataSim ds=new DataSim(g_path,0);
+		ds.load_x(g_xl);
+		ds.load_rs(g_rs);
+		ds.saveSim(g_graph);
 		return -1;
 	}
 	public  int test7()// simul rs --> graph

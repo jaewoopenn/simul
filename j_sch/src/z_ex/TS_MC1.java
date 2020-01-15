@@ -8,6 +8,7 @@ import task.TaskVec;
 
 // Task Set MC
 public class TS_MC1 {
+	
 	public static TaskMng ts1()	{
 		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(4,2));
@@ -62,5 +63,6 @@ public class TS_MC1 {
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
 	}
+
 
 }
