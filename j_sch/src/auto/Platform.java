@@ -147,7 +147,7 @@ public class Platform {
 	// simulate task set list with algorithm choice
 	public String simul(String ts_list,int sort) {
 		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_path+"a_sim_list."+sort+".txt";
+		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
 		MList fu_rs=new MList();
 		
 		Anal a=AnalSel.getAnal(sort);

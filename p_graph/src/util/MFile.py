@@ -14,4 +14,6 @@ def load(fn):
     for line in i_f:
         val=line.strip()
         v.append(val)
-    return v        
+    return v    
+def filepath(fn):
+    return gl.path+fn;    

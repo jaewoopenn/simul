@@ -9,7 +9,12 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    path="sch/p2"
+    savename="sch/p"
+    path="sch/p"
+#     savename="sch/h"
+#     path="sch/h"
+#     savename="sch/r"
+#     path="sch/r"
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Deadline Miss Ratio"
@@ -21,8 +26,12 @@ class gl:
     line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
 
-def load():
-    i_f = mf.load(gl_input.path+"/"+gl_input.fn)
+def load(i):
+    gl.lab=[]
+    gl.x=[]
+    gl.vv=[]
+    
+    i_f = mf.load(gl_input.path+str(i)+"/"+gl_input.fn)
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
@@ -45,8 +54,8 @@ def load():
         
         
 
-def main():
-    load()
+def loop(i):
+    load(i)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
@@ -55,7 +64,12 @@ def main():
     mp.legendUL()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.show()
+    mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
+    
+def main():
+    loop(0)
+    loop(1)
+    loop(2)
 
 if __name__ == '__main__':
     main()
