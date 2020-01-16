@@ -19,8 +19,12 @@ public class Platform {
 	private String g_path;
 	private int g_num=100;
 	private int g_dur=2000;
-	private double g_prob=0.3;
+	private double g_p_ms=0.3;
+	private double g_p_hc=0.5;
+	private double g_ratio=-1;
 	private boolean g_isCheck=false;
+	private int g_dur_set[]= {4000,8000,10000,30000,50000};
+	
 	public Platform(String path) {
 		g_path=path;
 	}
@@ -31,8 +35,14 @@ public class Platform {
 	public void setDur(int n) {
 		g_dur=n;
 	}
-	public void setProb(double d) {
-		g_prob=d;
+	public void setP_MS(double d) {
+		g_p_ms=d;
+	}
+	public void setP_HC(double d) {
+		g_p_hc=d;
+	}
+	public void setRatio(double d) {
+		g_ratio=d;
 	}
 	public void setCheck(){
 		g_isCheck=true;
@@ -53,6 +63,11 @@ public class Platform {
 			cg.setParam("u_lb", (lb)*1.0/100+"");
 			cg.setParam("u_ub", (lb+5)*1.0/100+"");
 			cg.setParam("mod", (lb+5)+"");
+			cg.setParam("prob_hi",g_p_hc+"");
+			if(g_ratio!=-1) {
+				cg.setParam("r_lb",(g_ratio-0.1)+"");
+				cg.setParam("r_ub",(g_ratio+0.1)+"");
+			}
 			String fn=g_path+"/cfg_"+i+".txt";
 			cg.setFile(fn);
 			cg.write();
@@ -61,7 +76,47 @@ public class Platform {
 		fu.save(g_path+"/"+cf);
 		
 	}
+	public void genCfg_util_one(String cf,double util) {
+		ConfigGen cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		cg.setParam("u_lb", (util)+"");
+		cg.setParam("u_ub", (util+0.05)+"");
+		cg.setParam("mod", "0");
+		String fn=g_path+"/cfg_0.txt";
+		cg.setFile(fn);
+		cg.write();
+		fu.add(fn);
+		fu.save(g_path+"/"+cf);
+		
+	}
+	
+	public void genCfg_hc(String cf,double util) {
+		ConfigGen cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		for(int i=0;i<10;i++){
+			int p_hc=i+1;
+			cg.setParam("u_lb", (util)+"");
+			cg.setParam("u_ub", (util+0.05)+"");
+			cg.setParam("mod", "0."+(p_hc));
+			cg.setParam("prob_hi",(p_hc*0.1)+"");
+			String fn=g_path+"/cfg_"+i+".txt";
+			cg.setFile(fn);
+			cg.write();
+			fu.add(fn);
+		}
+		fu.save(g_path+"/"+cf);
+		
+	}
+	public void genCfg_ratio(String cf,double util) {
 
+		
+	}
+
+	
 	public void genTS(String cfg_list,String ts, String xaxis) {
 		SLog.prn(3, g_path+"/"+cfg_list);
 		MList fu=new MList(g_path+"/"+cfg_list);
@@ -86,7 +141,16 @@ public class Platform {
 		fu_ts.save(g_path+"/"+ts);
 		fu_xa.save(g_path+"/"+xaxis);
 	}
-	
+//	public int getDur(int i) {
+//		return i*3000+2000;
+//	}
+	public void genXA(String xaxis) {
+		MList fu_xa=new MList();
+		for(int i=0;i<g_dur_set.length;i++) {
+			fu_xa.add((g_dur_set[i]/1000)+"");
+		}
+		fu_xa.save(g_path+"/"+xaxis);
+	}	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
 		MList fu=new MList();
@@ -144,6 +208,17 @@ public class Platform {
 		fu.save(g_path+"/"+rs_list);
 	}
 
+	//simulation
+	public void sim_loop_dur(String rs_list,String ts_list, int end) {
+		MList fu=new MList();
+		for(int i=0;i<end;i++){
+			String rs=simul_dur(ts_list,i);
+			fu.add(rs);
+		}
+		fu.save(g_path+"/"+rs_list);
+	}
+	
+	
 	// simulate task set list with algorithm choice
 	public String simul(String ts_list,int sort) {
 		MList fu=new MList(g_path+"/"+ts_list);
@@ -162,7 +237,28 @@ public class Platform {
 		fu_rs.save(rs_fn);
 		return rs_fn;		
 	}
+	
+	// simulate task set list with algorithm choice (duration)
+	public String simul_dur(String ts_list,int sort) {
+		MList fu=new MList(g_path+"/"+ts_list);
+		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
+		MList fu_rs=new MList();
+		
+		String fn=fu.get(0);
+		Anal a=AnalSel.getAnal(sort);
+		TaskSimul s=SimulSel.getSim(sort);
+		
+		for(int i=0;i<g_dur_set.length;i++) {
+			String out=fn+"_"+i+".sim."+sort;
+			g_dur=g_dur_set[i];
+			simul_one(fn,out,a,s);
+			fu_rs.add(out);
+		}		
+		fu_rs.save(rs_fn);
+		return rs_fn;		
+	}
 
+	
 	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
 		SLog.prn(2, ts);
 		SysLoad sy=new SysLoad(ts);
@@ -186,7 +282,7 @@ public class Platform {
 
 			double x=a.computeX();
 			SysMng sm=new SysMng();
-			sm.setMS_Prob(g_prob);
+			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
 			// TODO set delay in platform  
 //			sm.setDelay(x*tm.getLongPeriod());
