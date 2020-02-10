@@ -1,7 +1,8 @@
 '''
-Draw DMR
+Draw DMR varying probability of TC or Ratio 
 
 Created on 2015. 12. 11.
+
 
 
 @author: cpslab
