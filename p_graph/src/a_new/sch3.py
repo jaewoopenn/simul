@@ -1,5 +1,5 @@
 '''
-Draw DMR
+Draw DMR varying utilization
 
 Created on 2015. 12. 11.
 
