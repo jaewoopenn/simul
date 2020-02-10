@@ -10,15 +10,15 @@ import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
     
-#     savename="sch/hc"
-#     path="sch/h"
-#     ylim=0.09
-#     xlab= "Probility of task criticality"
-
-    savename="sch/ratio"
-    path="sch/r"
+    savename="sch/hc"
+    path="sch/h"
     ylim=0.09
-    xlab= "Ratio"
+    xlab= "Probility of task criticality"
+
+#     savename="sch/ratio"
+#     path="sch/r"
+#     ylim=0.09
+#     xlab= "Ratio"
 
     fn="a_sim_graph.txt"
     ylab= "Deadline Miss Ratio"

@@ -23,7 +23,7 @@ public class Platform {
 	private double g_p_hc=0.5;
 	private double g_ratio=-1;
 	private boolean g_isCheck=false;
-	private int g_dur_set[]= {4000,8000,10000,30000,50000};
+	private int g_dur_set[]= {4000,8000,10000,30000,50000,100000};
 	
 	public Platform(String path) {
 		g_path=path;
@@ -285,8 +285,8 @@ public class Platform {
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
 			// TODO set delay in platform  
-//			sm.setDelay(x*tm.getLongPeriod());
-			sm.setDelay(x*tm.getShortPeriod());
+			sm.setDelay(x*tm.getLongPeriod());
+//			sm.setDelay(x*tm.getShortPeriod());
 //			sm.setDelay(0);
 //			sm.prn();
 			s.init_sm_tm(sm,tm);

@@ -8,8 +8,6 @@ public class z_auto4 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	private double g_p_hc;
-	private double g_ratio;
 	private int g_num;
 	private int g_dur;
 	private String g_cf;
@@ -31,7 +29,7 @@ public class z_auto4 {
 	
 	public void init_g() {
 		g_path="sch/dur";
-		g_num=100;
+		g_num=500;
 		g_dur=4000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
@@ -40,21 +38,19 @@ public class z_auto4 {
 	}
 
 	public void init_sim() {
-		g_p_hc=0.5;
-		g_ratio=-1;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
 	public void loop_util() {
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util_one(g_cf,0.8);
+		p.genCfg_util_one(g_cf,0.85);
 		p.setCheck();
 		p.genTS(g_cf,g_ts,g_xl);
 		p.genXA(g_xl);
 		p.setDur(g_dur);
 		p.setP_MS(0.4);
-		p.sim_loop_dur(g_rs, g_ts, 3);
+		p.sim_loop_dur(g_rs, g_ts, 2);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
