@@ -19,6 +19,9 @@ public class TaskMng {
 		this.g_info = info;
 		g_lo_tasks.sortLo();
 	}
+	public void sortMinJobDrop() {
+		g_lo_tasks.sortLo2();
+	}
 	
 	public Task findDropTask() {
 		for(Task t:g_lo_tasks.getArr()){

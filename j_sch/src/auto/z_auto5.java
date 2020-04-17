@@ -2,7 +2,7 @@ package auto;
 
 
 import util.SEngineT;
-// h 
+// compare task drop method (impl: refer auto4 with dur) 
 
 public class z_auto5 {
 	private static int s_idx;

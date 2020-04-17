@@ -44,6 +44,10 @@ public class TaskSet {
 		Arrays.sort(g_tasks,new ComparatorTask());
 		
 	}
+	public void sortLo2() {
+		Arrays.sort(g_tasks,new ComparatorTask2());
+		
+	}
 
 	public void sortHi() {
 		Arrays.sort(g_tasks,new ComparatorHighTask());

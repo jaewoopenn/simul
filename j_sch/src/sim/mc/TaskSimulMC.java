@@ -27,6 +27,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		init();
 		check_err();
 	}
+	public abstract void initSimul();
 
 
 	@Override
@@ -42,6 +43,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		g_si=new SimulInfo();
 		g_recover_need=false;
 //		Log.prn(1, "num:"+g_tm.size());
+		initSimul();
 	}
 
 	@Override

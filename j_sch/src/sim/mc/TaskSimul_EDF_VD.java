@@ -31,6 +31,11 @@ public class TaskSimul_EDF_VD extends TaskSimulMC{
 		
 	}
 
+	@Override
+	public void initSimul() {
+		
+	}
+
 
 
 }
