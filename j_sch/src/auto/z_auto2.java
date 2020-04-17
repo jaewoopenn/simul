@@ -2,7 +2,7 @@ package auto;
 
 
 import util.SEngineT;
-
+// h r
 
 public class z_auto2 {
 	private static int s_idx;
