@@ -65,7 +65,7 @@ public class z_auto2 {
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
-		p.sim_loop(g_rs, g_ts, 2);
+		p.sim_loop(g_rs, g_ts,1,3);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);

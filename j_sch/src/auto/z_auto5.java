@@ -3,6 +3,9 @@ package auto;
 
 import util.SEngineT;
 // compare task drop method (impl: refer auto4 with dur) 
+// item 1: minTaskDrop , item2: minJobDrop
+// x축은 util이고, y축은 DMR 
+
 
 public class z_auto5 {
 	private static int s_idx;
@@ -21,8 +24,8 @@ public class z_auto5 {
 	private String g_graph;
 	
 	public static void init_s() {
-//		int s=1;
-		int s=2;
+		int s=1;
+//		int s=2;
 //		int s=3;
 		
 		s_idx=s;
@@ -31,19 +34,13 @@ public class z_auto5 {
 	}
 	
 	public void init_g() {
-		g_path="sch/t1";
+		g_path="sch/cmp";
 		g_num=500;
-		g_dur=3000;
+		g_dur=5000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
 		
-	}
-
-	public void init_anal() {
-		g_util_ul=1.0;
-		g_rs="a_rs_list.txt";
-		g_graph="a_graph.txt";
 	}
 
 	public void init_sim() {
@@ -57,14 +54,14 @@ public class z_auto5 {
 	public void loop_other() {
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_hc(g_cf,g_util_ul);
+		p.genCfg_util(g_cf,g_util_ul);
 		p.setCheck();
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.setDur(g_dur);
-		p.sim_loop(g_rs, g_ts, 2);
+		p.sim_loop(g_rs, g_ts,0,3);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -74,20 +71,11 @@ public class z_auto5 {
 	{
 		init_g();
 		init_sim();
-		g_path="sch/t2";
 		loop_other();
 		return 0;
 	}
 	public int test2() // hc
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.8,0.85,0.9};
-		for(int i=0;i<3;i++) {
-			g_path="sch/h"+i;
-			g_util_ul=a[i];
-			loop_other();
-		}
 		return 0;
 	}
 	public int test3() // ratio

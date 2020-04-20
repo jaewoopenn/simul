@@ -107,7 +107,7 @@ public class z_auto1 {
 		init_sim();
 		Platform p=new Platform(g_path);
 		p.setP_MS(g_prob);
-		p.sim_loop(g_rs, g_ts, 2);
+		p.sim_loop(g_rs, g_ts,0, 2);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);

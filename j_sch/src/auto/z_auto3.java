@@ -64,7 +64,7 @@ public class z_auto3 {
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.setDur(g_dur);
-		p.sim_loop(g_rs, g_ts, 2);
+		p.sim_loop(g_rs, g_ts, 1,3);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);

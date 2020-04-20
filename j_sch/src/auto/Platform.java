@@ -199,9 +199,9 @@ public class Platform {
 	}
 	
 	//simulation
-	public void sim_loop(String rs_list,String ts_list, int end) {
+	public void sim_loop(String rs_list,String ts_list, int start, int end) {
 		MList fu=new MList();
-		for(int i=0;i<end;i++){
+		for(int i=start;i<end;i++){
 			String rs=simul(ts_list,i);
 			fu.add(rs);
 		}
