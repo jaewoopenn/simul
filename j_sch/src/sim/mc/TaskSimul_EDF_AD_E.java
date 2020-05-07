@@ -10,7 +10,11 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
 	public TaskSimul_EDF_AD_E() {
 		super();
-		g_name="EDF-AD";
+		g_name="MC-ADAPT";
+	}
+	@Override
+	public void initSimul() {
+		
 	}
 
 	
@@ -51,10 +55,6 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 
 
 
-	@Override
-	public void initSimul() {
-		
-	}
 
 
 

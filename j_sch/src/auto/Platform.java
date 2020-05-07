@@ -23,7 +23,7 @@ public class Platform {
 	private double g_p_hc=0.5;
 	private double g_ratio=-1;
 	private boolean g_isCheck=false;
-	private int g_dur_set[]= {4000,8000,10000,30000,50000,100000};
+	private int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	
 	public Platform(String path) {
 		g_path=path;

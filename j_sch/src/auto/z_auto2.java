@@ -2,7 +2,7 @@ package auto;
 
 
 import util.SEngineT;
-// h r
+//MC-FLEX p hc ratio
 
 public class z_auto2 {
 	private static int s_idx;
@@ -21,10 +21,10 @@ public class z_auto2 {
 	private String g_graph;
 	
 	public static void init_s() {
-		int s=1;
-//		int s=2;
-//		int s=3;
-//		int s=4;
+//		int s=1;
+//		int s=2; //p
+//		int s=3; //hc
+		int s=4; //ratio
 		
 		s_idx=s;
 		
@@ -65,7 +65,7 @@ public class z_auto2 {
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
-		p.sim_loop(g_rs, g_ts,1,3);
+		p.sim_loop(g_rs, g_ts,0,3);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -79,7 +79,7 @@ public class z_auto2 {
 		loop_util();
 		return 0;
 	}
-	public int test2() // ms
+	public int test2() // p
 	{
 		init_g();
 		init_sim();
@@ -115,15 +115,15 @@ public class z_auto2 {
 		}
 		return 0;		
 	}
-	public  int test5() // ratio
+	public  int test5() 
 	{
 		return 0;
 	}
-	public  int test6() // ts --> simul rs
+	public  int test6() 
 	{
 		return 0;
 	}
-	public  int test7()// simul rs --> graph
+	public  int test7()
 	{
 		return 0;
 	}

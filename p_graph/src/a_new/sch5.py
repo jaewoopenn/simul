@@ -3,7 +3,8 @@ Draw DMR
 
 Created on 2015. 12. 11.
 
-
+ DUR 
+ 
 @author: cpslab
 '''
 import util.MFile as mf
@@ -55,7 +56,7 @@ def main():
     mp.legendUR()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(0,0.1)
+    mp.ylim(0,0.12)
     mp.show()
 
 if __name__ == '__main__':

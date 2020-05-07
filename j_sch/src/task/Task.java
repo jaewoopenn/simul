@@ -75,7 +75,6 @@ public class Task {
 		return (double)c_l/period;
 	}
 	public double getLoUtil2(){
-//		return (double)c_l/period/period;
 		return (double)c_l;
 	}
 	public double getHiUtil(){

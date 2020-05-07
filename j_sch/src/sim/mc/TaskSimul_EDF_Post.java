@@ -9,7 +9,7 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 
 	public TaskSimul_EDF_Post() {
 		super();
-		g_name="MC-SUS";
+		g_name="MC-FLEX-C1";
 	}
 
 	
