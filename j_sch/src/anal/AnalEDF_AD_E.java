@@ -19,7 +19,7 @@ public class AnalEDF_AD_E extends Anal {
 	}
 	public AnalEDF_AD_E() {
 		super();
-		g_name="EDF-AD";
+		g_name="MC-ADAPT";
 	}
 	@Override
 	public void prepare() {

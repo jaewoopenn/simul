@@ -20,11 +20,11 @@ public class z_auto1 {
 	public static void init_s() {
 //		int s=1;
 //		int s=2;
-//		int s=3;
+		int s=3;
 		
 //		int s=1;
 //		int s=5;
-		int s=6;
+//		int s=6;
 		s_idx=s;
 		
 		s_log_level=1;
@@ -32,7 +32,7 @@ public class z_auto1 {
 	
 	public void init_g() {
 		g_path="sch/t1";
-		g_num=500;
+		g_num=5000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -40,7 +40,7 @@ public class z_auto1 {
 	}
 
 	public void init_anal() {
-		g_util_ul=1.0;
+		g_util_ul=1.00;
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}

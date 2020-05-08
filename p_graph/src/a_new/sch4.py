@@ -1,5 +1,5 @@
 '''
-Draw DMR varying probability of TC or Ratio 
+Draw DMR varying probability of TC or Ratio ...
 
 Created on 2015. 12. 11.
 

@@ -29,7 +29,7 @@ public class z_auto4 {
 	
 	public void init_g() {
 		g_path="sch/dur";
-		g_num=500;
+		g_num=5000;
 		g_dur=4000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";

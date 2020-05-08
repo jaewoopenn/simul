@@ -208,6 +208,7 @@ public class Platform {
 		fu.save(g_path+"/"+rs_list);
 	}
 
+	
 	//simulation
 	public void sim_loop_dur(String rs_list,String ts_list, int end) {
 		MList fu=new MList();
@@ -225,7 +226,7 @@ public class Platform {
 		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
 		MList fu_rs=new MList();
 		
-		Anal a=AnalSel.getAnal(sort);
+		Anal a=AnalSel.getAnal(0);
 		TaskSimul s=SimulSel.getSim(sort);
 		
 		for(int i=0;i<fu.size();i++) {
@@ -237,7 +238,15 @@ public class Platform {
 		fu_rs.save(rs_fn);
 		return rs_fn;		
 	}
-	
+	public String simul_a(String fn,int sort) {
+		
+		Anal a=AnalSel.getAnal(0);
+		TaskSimul s=SimulSel.getSim(sort);
+		String out=fn+".sim."+sort;
+		simul_one(fn,out,a,s);
+		return "OK";		
+		
+	}
 	// simulate task set list with algorithm choice (duration)
 	public String simul_dur(String ts_list,int sort) {
 		MList fu=new MList(g_path+"/"+ts_list);
@@ -245,7 +254,7 @@ public class Platform {
 		MList fu_rs=new MList();
 		
 		String fn=fu.get(0);
-		Anal a=AnalSel.getAnal(sort);
+		Anal a=AnalSel.getAnal(0);
 		TaskSimul s=SimulSel.getSim(sort);
 		
 		for(int i=0;i<g_dur_set.length;i++) {
@@ -261,6 +270,8 @@ public class Platform {
 	
 	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
 		SLog.prn(2, ts);
+		SLog.prn(2, g_dur);
+		SLog.prn(2, s.getName());
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
@@ -284,7 +295,7 @@ public class Platform {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
-			// TODO set delay in platform  
+			// TODO set delay in platform  OK!
 			sm.setDelay(x*tm.getLongPeriod());
 //			sm.setDelay(x*tm.getShortPeriod());
 //			sm.setDelay(0);

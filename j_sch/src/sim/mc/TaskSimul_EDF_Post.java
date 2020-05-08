@@ -20,7 +20,6 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		drop_algo();
 	}
 	
-	// TODO need to consider sw_tm
 	private void drop_algo() {
 		double ru=g_tm.getRUtil();
 //		double ru=g_tm.getVUtil();
@@ -37,7 +36,6 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 		
 	}
 	
-	//TODO implement switch back algo (longest task VD)
 	@Override
 	protected void recover_in(int tid) {
 //		SLogF.prn( "t:"+g_jsm.get_time()+" recover in ");
@@ -47,8 +45,6 @@ public class TaskSimul_EDF_Post extends TaskSimulMC{
 	}
 
 
-	// TODO recover algo check  ..... change HI task to LO ...
-	// 1st check OK.. 2nd check OK. but keep checking 
 	
 	private void resume_algo() {
 		

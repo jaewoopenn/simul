@@ -23,12 +23,15 @@ public class CProg {
 		if(cur%step==0) {
 			prn();
 		}
+		if(cur%(step*10)==0) {
+			SLog.prn(log,"");
+		}
 	}
 	public void reset() {
 		cur=0;
 	}
 	public void prn() {
-		SLog.prn(log,((double)cur)/max+"");
+		SLog.prnc(log,((double)cur)/max+" ");
 	}
 
 }

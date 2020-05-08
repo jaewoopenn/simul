@@ -2,7 +2,6 @@ package sim.mc;
 /*
  * MC-Post scheduling algorithm in simulation
  * 
- * TODO integrate MC-Post into random task set simulation 
  * 
  */
 
