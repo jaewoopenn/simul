@@ -82,7 +82,8 @@ public class z_auto6 {
 		init_sim();
 		g_path="sch/p2";
 		g_p_ms=0.5;
-		for(int i=55;i<100;i+=5) {
+		int st=55;
+		for(int i=st;i<100;i+=5) {
 			Platform p=new Platform(g_path);
 			p.setP_MS(g_p_ms);
 			p.setDur(g_dur);
