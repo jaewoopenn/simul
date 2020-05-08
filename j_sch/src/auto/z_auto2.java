@@ -22,9 +22,9 @@ public class z_auto2 {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
+//		int s=2; //p
 //		int s=3; //hc
-//		int s=4; //ratio
+		int s=4; //ratio
 //		int s=5; //all in one.
 		
 		s_idx=s;
