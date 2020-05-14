@@ -22,9 +22,9 @@ public class z_auto2 {
 	
 	public static void init_s() {
 //		int s=1;
-//		int s=2; //p
+		int s=2; //p
 //		int s=3; //hc
-		int s=4; //ratio
+//		int s=4; //ratio
 //		int s=5; //all in one.
 		
 		s_idx=s;
@@ -37,7 +37,7 @@ public class z_auto2 {
 		g_num=5000;
 		g_dur=30000;
 //		g_num=500;
-//		g_dur=5000;
+//		g_dur=30000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";

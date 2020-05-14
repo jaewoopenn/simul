@@ -2,7 +2,7 @@ package gen;
 
 
 import anal.Anal;
-import anal.AnalEDF_VD;
+import anal.AnalEDF_AD_E;
 import task.TaskMng;
 import task.TaskSetMC;
 
@@ -18,7 +18,7 @@ public class SysGenMC extends SysGen {
 			return 1;
 		TaskSetMC tsf=new TaskSetMC(g_tg.getTS()) ;
 		TaskMng tm=tsf.getTM();
-		Anal a=new AnalEDF_VD();
+		Anal a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
 		if(a.is_sch()) {		
