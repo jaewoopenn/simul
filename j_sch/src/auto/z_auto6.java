@@ -32,48 +32,20 @@ public class z_auto6 {
 	public void init_sim() {
 		g_p_ms=0.3;
 	}
-	public void loop_util() {
-	}
 	public int test1() 
 	{
-		init_g();
-		init_sim();
-		g_path="sch/t2";
-		loop_util();
 		return 0;
 	}
 	public int test2() // p
 	{
-		init_g();
-		init_sim();
-		g_path="sch/p2";
-		g_p_ms=0.5;
-		Platform p=new Platform(g_path);
-		p.setP_MS(g_p_ms);
-		p.setDur(g_dur);
-		p.simul_a("sch/p2/taskset_95", 1);
 		return 0;
 	}
 	public int test3() // hc
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.25,0.5,0.75};
-		for(int i=0;i<3;i++) {
-			g_path="sch/h"+i;
-			loop_util();
-		}
 		return 0;
 	}
 	public  int test4() // ratio
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.4,0.6,0.8};
-		for(int i=0;i<3;i++) {
-			g_path="sch/r"+i;
-			loop_util();
-		}
 		return 0;		
 	}
 	public  int test5() 
@@ -83,11 +55,12 @@ public class z_auto6 {
 		g_path="sch/p2";
 		g_p_ms=0.5;
 		int st=55;
+		int item=2;
 		for(int i=st;i<100;i+=5) {
 			Platform p=new Platform(g_path);
 			p.setP_MS(g_p_ms);
 			p.setDur(g_dur);
-			p.simul_a("sch/p2/taskset_"+i, 2);
+			p.simul_a("sch/p2/taskset_"+i, item);
 		}
 		return 0;
 	}
