@@ -43,7 +43,7 @@ public class SysMng {
 		
 	}
 	public void setDelay(double t) {
-		g_delay=(Double.valueOf(t+0.5)).intValue();
+		g_delay=(Double.valueOf(t+1.0)).intValue();
 		
 	}
 	public void setEnd(int i) {

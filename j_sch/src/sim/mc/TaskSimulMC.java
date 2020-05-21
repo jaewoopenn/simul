@@ -14,9 +14,13 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	protected boolean g_recover_need=false;
 	private  boolean g_recover_idle_on=true;
+	protected boolean g_best_effort=false;
 	
 	protected JobSimulMC g_jsm;
 
+	public void setBE() {
+		g_best_effort=true;
+	}
 	@Override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
@@ -32,7 +36,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 
 	@Override
 	public void simul_end() {
-		g_jsm.simul_end();
+		g_si.drop+=g_jsm.simul_end();
 	}
 	
 	
@@ -53,7 +57,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(g_jsm.is_idle()&&g_recover_need&&g_recover_idle_on) {
 			recover_idle();
 		}
-		g_jsm.simul_one();
+		g_si.drop+=g_jsm.simul_one();
 		ms_check();
 		vir_check();
 	}
@@ -91,8 +95,14 @@ public abstract class TaskSimulMC extends TaskSimul {
 			}
 			g_si.rel++;
 			if(tsk.isDrop()){
-				g_si.nrel++;
-				s+="X";
+				if(this.g_best_effort) {
+					s+="X";
+					Job j=rel_one_job(tsk,t);
+					j.drop();
+					g_jsm.add(j);
+				} else {
+					g_si.nrel++;
+				}
 				continue;
 			}
 			s+="+";
@@ -193,9 +203,11 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(tsk.isDrop())
 			return;
 		
-		g_si.drop+=g_jsm.getJM().drop(tsk.tid);
+//		g_si.drop+=g_jsm.getJM().drop(tsk.tid);
+		g_jsm.getJM().drop(tsk.tid);
 		tsk.drop();
 	}
+	
 	protected void resume_task(Task tsk) {
 		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot resume");
 		if(!tsk.isDrop())

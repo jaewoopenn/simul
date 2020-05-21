@@ -1,5 +1,7 @@
 package sim.job;
 
+import util.SLog;
+import util.SLogF;
 
 public class Job implements Comparable<Job>{
 	public int tid;
@@ -7,9 +9,8 @@ public class Job implements Comparable<Job>{
 	public int exec;
 	public int add_exec;
 	public boolean isHI;
-
-
 	public double vd;
+	private boolean isDrop;
 
 	public Job(int tid,int dl, int exec) {
 		this.tid=tid;
@@ -17,6 +18,7 @@ public class Job implements Comparable<Job>{
 		this.exec = exec;
 		this.add_exec=0;
 		this.isHI=false;
+		this.isDrop=false;
 		this.vd = dl;
 	}
 
@@ -26,10 +28,19 @@ public class Job implements Comparable<Job>{
 		this.exec = exec;
 		this.add_exec=add;
 		this.isHI=true;
+		this.isDrop=false;
 		this.vd = vd;
 	}
 
-
+	public void drop() {
+		if(isHI) 
+			SLog.err("Job:cannot drop HC task");
+		if(isDrop)
+			return;
+		isDrop=true;
+		this.vd+=500;
+//		SLogF.prn("drop "+this.tid+","+this.exec+","+this.vd);
+	}
 	@Override
 	public int compareTo(Job o) {
 		double o_vd = o.vd;  
@@ -42,10 +53,13 @@ public class Job implements Comparable<Job>{
 	}
 
 	public String info() {
-		String s=tid+","+dl+","+exec;
-		if(isHI)
-			s+=","+vd+","+add_exec;
+		String s="tid:"+tid+",isHI:"+isHI+",dl:"+dl+",exec:"+exec;
+		s+=",vd:"+vd+",add:"+add_exec;
 		return s;
 			
+	}
+
+	public boolean isDrop() {
+		return isDrop;
 	}
 }

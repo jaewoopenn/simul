@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import sim.job.Job;
 import sim.job.JobMng;
-import util.SLog;
 
 
 public class JobMngMC extends JobMng {
@@ -33,20 +32,35 @@ public class JobMngMC extends JobMng {
 		
 	}
 	
-	public int drop(int tid) {
-		int d_num=0;
-		for(Job j:g_jobs){
-			if(j.tid==tid&&j.exec>0) {
-				j.exec=0;
-				d_num++;
+	public void drop(int tid) {
+//		int d_num=0;
+		while(true) {
+			Job t_j=null;
+			for(Job j:g_jobs){
+				if(j.isDrop())
+					continue;
+				if(j.tid==tid&&j.exec>0) {
+					t_j=j;
+	//				j.exec=0;
+	//				d_num++;
+					
+				}
 			}
+			if(t_j==null)
+				break;
+			t_j.drop();
+			g_jobs.remove(t_j);
+			g_jobs.add(t_j);
 		}
+		
 //		S_Log.prn(1, d_num);
-		if(d_num>1){
-			SLog.err("JobMngMC: drop num>1");
-		}
-		return d_num;
+//		if(d_num>1){
+//			SLog.err("JobMngMC: drop num>1");
+//		}
+//		return d_num;
 		
 	}
-
+	
+	
+	
 }

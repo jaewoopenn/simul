@@ -5,11 +5,15 @@ public class CProg {
 	private int step=1;
 	private int cur=0;
 	private int log=1;
+	private int sort=0;
 	public CProg(int n) {
 		max=n;
 	}
 	public void setLog(int n) {
 		log=n;
+	}
+	public void setSort(int n) {
+		sort=n;
 	}
 	public void setPercent() {
 		int d=max/100;
@@ -31,7 +35,10 @@ public class CProg {
 		cur=0;
 	}
 	public void prn() {
-		SLog.prnc(log,((double)cur)/max+" ");
+		if(sort==0)
+			SLog.prnc(log,(int)(((double)cur)/max*100)+" ");
+		else
+			SLog.prnc(log,cur+" ");
 	}
 
 }

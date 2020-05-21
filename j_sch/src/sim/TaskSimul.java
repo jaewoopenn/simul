@@ -64,7 +64,6 @@ public class TaskSimul {
 		return g_tm;
 	}
 	
-	
 	// ------------- protected, override 
 	protected void init() {
 		g_js=new JobSimul(g_tm.size());
@@ -74,7 +73,7 @@ public class TaskSimul {
 	
 	protected void simul_one(){   
 		release_jobs();
-		g_js.simul_one();
+		g_si.drop+=g_js.simul_one();
 		//Log.prn(isSchTab,1, " "+t);
 	}
 	protected Job rel_one_job(Task tsk, int t) {

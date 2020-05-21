@@ -97,6 +97,13 @@ public class TaskSet {
 		
 	}
 
+	public void prnTxt() {
+		for(Task t:g_tasks){
+			t.prnTxt();
+		}
+		
+	}
+
 
 
 

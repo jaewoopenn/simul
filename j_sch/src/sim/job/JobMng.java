@@ -37,6 +37,21 @@ public class JobMng {
 		}
 		return s;
 	}
+	public boolean isIdle(int t) {  // idle except dropped job
+		Job j=getCur();
+		if(j==null)
+			return true;
+		if(j.isDrop()) {
+			if(t<j.dl)
+				return false;
+			else //t>=j.dl
+				return true;
+		}
+		return false;
+	}
+	public boolean isIdle2() {  // Real Idle
+		return getCur()==null;
+	}
 	public Job getCur(){
 		return g_jobs.peek();
 	}
@@ -55,8 +70,22 @@ public class JobMng {
 			SLog.prn(1, j.info());
 		}
 	}
+	public int endDL(int et) {
+		int dm=0;
+		for(Job j:g_jobs){
+			if(j.isHI)
+				continue;
+			if(j.dl<=et){
+				dm++;
+			}
+		}
+		return dm;
+	}
+	
 	public int endCheck(int et) {
 		for(Job j:g_jobs){
+			if(!j.isHI)
+				continue;
 			if(j.dl<=et){
 				return 0; // dl miss
 			}

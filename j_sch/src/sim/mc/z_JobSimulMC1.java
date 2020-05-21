@@ -2,9 +2,11 @@ package sim.mc;
 
 import sim.job.Job;
 import util.SEngineT;
+import util.SLog;
+import util.SLogF;
 
 public class z_JobSimulMC1 {
-	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=1;
 
 
@@ -25,7 +27,20 @@ public class z_JobSimulMC1 {
 	
 	
 	public int test3() {
-		return 0;
+		SLogF.init("test.txt");
+		JobSimulMC_indep js=new JobSimulMC_indep(3);
+		Job j=new Job(3,2,1);
+		j.drop();
+		js.add(j);
+		js.add(new Job(1,3,1));
+		js.add(new Job(2,3,1));
+		js.add(new Job(0,2,2));
+		for(int i=0;i<5;i++) {
+			int dm=js.simul_one();
+			SLog.prn(1, i+":"+dm);
+		}
+		SLogF.end();
+		return 1;	
 	}
 	public  int test4() {
 		return 1;

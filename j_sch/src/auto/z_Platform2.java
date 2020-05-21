@@ -11,6 +11,7 @@ import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
 import sim.mc.TaskSimul_EDF_VD;
 import task.TaskMng;
 import gen.SysLoad;
@@ -82,7 +83,7 @@ public class z_Platform2 {
 		String fn="sch/t1/taskset_"+mod;
 		String out="sch/t1/taskset_"+mod+".sim."+sel;
 		Anal a=AnalSel.getAnal(sel);
-		TaskSimul s=SimulSel.getSim(sel);
+		TaskSimulMC s=SimulSel.getSim(sel);
 		Platform p=new Platform(path);
 		p.simul_one(fn,out,a,s);
 		return -1;

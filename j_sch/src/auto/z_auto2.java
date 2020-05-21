@@ -22,8 +22,8 @@ public class z_auto2 {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
-//		int s=3; //hc
+//		int s=2; //p
+		int s=3; //hc
 //		int s=4; //ratio
 //		int s=5; //all in one.
 		
@@ -37,7 +37,7 @@ public class z_auto2 {
 		g_num=5000;
 		g_dur=30000;
 //		g_num=500;
-//		g_dur=30000;
+//		g_dur=10000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -63,6 +63,7 @@ public class z_auto2 {
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
+		p.setBE();
 		p.sim_loop(g_rs, g_ts,0,3);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);

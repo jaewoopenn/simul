@@ -10,6 +10,7 @@ import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
 import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import util.MList;
 import util.CProg;
@@ -24,6 +25,7 @@ public class Platform {
 	private double g_ratio=-1;
 	private boolean g_isCheck=false;
 	private int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
+	private boolean g_be=false;
 	
 	public Platform(String path) {
 		g_path=path;
@@ -227,7 +229,9 @@ public class Platform {
 		MList fu_rs=new MList();
 		
 		Anal a=AnalSel.getAnal(0);
-		TaskSimul s=SimulSel.getSim(sort);
+		TaskSimulMC s=SimulSel.getSim(sort);
+		if(g_be)
+			s.setBE();
 		
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
@@ -241,7 +245,7 @@ public class Platform {
 	public String simul_a(String fn,int sort) {
 		
 		Anal a=AnalSel.getAnal(0);
-		TaskSimul s=SimulSel.getSim(sort);
+		TaskSimulMC s=SimulSel.getSim(sort);
 		String out=fn+".sim."+sort;
 		simul_one(fn,out,a,s);
 		return "OK";		
@@ -255,7 +259,7 @@ public class Platform {
 		
 		String fn=fu.get(0);
 		Anal a=AnalSel.getAnal(0);
-		TaskSimul s=SimulSel.getSim(sort);
+		TaskSimulMC s=SimulSel.getSim(sort);
 		
 		for(int i=0;i<g_dur_set.length;i++) {
 			String out=fn+"_"+i+".sim."+sort;
@@ -268,7 +272,7 @@ public class Platform {
 	}
 
 	
-	public void simul_one(String ts,String out,Anal a,TaskSimul s) {
+	public void simul_one(String ts,String out,Anal a,TaskSimulMC s) {
 		SLog.prn(2, ts);
 		SLog.prn(2, g_dur);
 		SLog.prn(2, s.getName());
@@ -277,6 +281,8 @@ public class Platform {
 		int num=Integer.valueOf(ret).intValue();
 		CProg prog=new CProg(num);
 		prog.setLog(2);
+//		prog.setSort(1);
+//		prog.setStep(1);
 		prog.setPercent();
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
@@ -307,6 +313,12 @@ public class Platform {
 			fu.add(si.getDMR()+"");
 		}
 		fu.save(out);
+	}
+
+	public void setBE() {
+		SLog.prn(2, "BE");
+		this.g_be=true;
+		
 	}
 
 

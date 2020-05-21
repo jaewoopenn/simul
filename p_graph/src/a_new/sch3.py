@@ -9,17 +9,17 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="sch/pms"
-#     path="sch/p"
-#     ylim=0.12
+    savename="sch/pms"
+    path="sch/p"
+    ylim=0.10
       
 #     savename="sch/hc"
 #     path="sch/h"
 #     ylim=0.10
 
-    savename="sch/ratio"
-    path="sch/r"
-    ylim=0.10
+#     savename="sch/ratio"
+#     path="sch/r"
+#     ylim=0.10
 
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
@@ -48,7 +48,7 @@ def load(i):
     for i in range(1,itemlen):
         gl.lab.append(raw[0][i])
     for i in range(1,len(raw)):
-        gl.x.append(raw[i][0])
+        gl.x.append(str(int(raw[i][0])/100))
 #     print(gl.x)
 
     for i in range(1,itemlen):

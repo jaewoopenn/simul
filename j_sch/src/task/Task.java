@@ -115,6 +115,15 @@ public class Task {
 			SLog.prn(2,",L");
 	}
 	
+	public void prnTxt() {
+		SLog.prnc(2, ""+period);
+		SLog.prnc(2, ","+c_l);
+		SLog.prnc(2, ","+c_h);
+		if (is_HC)
+			SLog.prn(2,",1");
+		else
+			SLog.prn(2,",0");
+	}
 	
 	
 	public void prnRuntime() {

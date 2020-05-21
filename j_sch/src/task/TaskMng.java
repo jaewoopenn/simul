@@ -220,6 +220,10 @@ public class TaskMng {
 			t.initMode();
 		}
 	}
+	public void prnTxt() {
+		g_tasks.prnTxt();
+		
+	}
 
 	
 

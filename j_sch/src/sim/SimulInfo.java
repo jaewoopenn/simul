@@ -21,5 +21,6 @@ public class SimulInfo {
 		SLog.prn(2, "drop:"+drop);
 		SLog.prn(2, "nr+drop:"+(nrel+drop));
 		SLog.prn(2, "ms:"+ms);
+		SLog.prn(2, "dmr:"+getDMR());
 	}
 }

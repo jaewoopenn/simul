@@ -3,13 +3,15 @@ Draw DMR
 
 Created on 2015. 12. 11.
 
+test
+
 
 @author: cpslab
 '''
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    path="sch/p2"
+    path="sch/t2"
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Deadline Miss Ratio"
@@ -51,7 +53,7 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-#     mp.ylim(0, 1.02)
+    mp.ylim(-0.003, 0.07)
     mp.legendUL()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)

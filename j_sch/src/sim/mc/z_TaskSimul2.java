@@ -1,12 +1,7 @@
-package sim;
+package sim.mc;
 
-import sim.mc.TaskSimul_EDF_AD_E;
-
-/*
- * test edf post
- */
-
-import sim.mc.TaskSimul_EDF_Post;
+import sim.SimulInfo;
+import sim.SysMng;
 import task.TaskMng;
 import util.SEngineT;
 import util.SLog;
