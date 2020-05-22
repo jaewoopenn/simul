@@ -11,7 +11,7 @@ import util.MPlot as mp;
 class gl_input:
     savename="sch/pms"
     path="sch/p"
-    ylim=0.10
+    ylim=0.12
       
 #     savename="sch/hc"
 #     path="sch/h"

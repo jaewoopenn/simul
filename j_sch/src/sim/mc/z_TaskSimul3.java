@@ -20,10 +20,10 @@ public class z_TaskSimul3 {
 
 	public SysMng getSM() {
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.5);
+		sm.setMS_Prob(0.75);
 //		sm.setX(1.0/3);
-		sm.setEnd(3000);
-//		sm.setEnd(30000);
+//		sm.setEnd(3000);
+		sm.setEnd(30000);
 		return sm;
 	}
 	
@@ -49,6 +49,7 @@ public class z_TaskSimul3 {
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
 		a.prepare();
+		
 		sm.setX(a.computeX());
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
@@ -62,23 +63,29 @@ public class z_TaskSimul3 {
 	}
 	public int test2() {
 		SLogF.init("test/log2.txt");
-		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E();
+		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 
 		SysMng sm=getSM();
 
 		
-		SysLoad sy=new SysLoad("sch/t2/taskset_90");
-//		SysLoad sy=new SysLoad("sch/t3/taskset.txt");
+//		SysLoad sy=new SysLoad("sch/p2/taskset_95");
+		SysLoad sy=new SysLoad("sch/t3/taskset.txt");
 		sy.open();
-		int num=92;
+		int num=1;
+//		int num=3160;
 		TaskMng tm=null;
 		for(int i=0;i<num;i++) {
 			tm=sy.loadOne();
 		}
+//		tm.prnTxt();
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
 		a.prepare();
-		sm.setX(a.computeX());
+//		a.prn();
+//		SLog.prn(1, a.computeX());
+		double x=a.computeX();
+		sm.setX(x);
+		sm.setDelay(x*tm.getLongPeriod());
 		ts.setBE();
 		ts.init_sm_tm(sm,tm);
 		ts.simul(0,sm.getEnd());

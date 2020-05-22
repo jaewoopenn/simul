@@ -34,6 +34,8 @@ public class SysInfo {
 	}
 	public double computeVU(Task t) {
 		if(t.isHC()){
+			if(t.isHI_Preferred())
+				return t.getHiUtil();
 			if(t.isHM()||t.sb_tm!=-1)
 				return t.getHiUtil();
 			else

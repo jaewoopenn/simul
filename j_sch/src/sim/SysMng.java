@@ -44,6 +44,7 @@ public class SysMng {
 	}
 	public void setDelay(double t) {
 		g_delay=(Double.valueOf(t+1.0)).intValue();
+//		SLog.prn(2, "delay:"+g_delay);
 		
 	}
 	public void setEnd(int i) {

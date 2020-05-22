@@ -27,7 +27,7 @@ public class CProg {
 		if(cur%step==0) {
 			prn();
 		}
-		if(cur%(step*10)==0) {
+		if(cur%(step*20)==0) {
 			SLog.prn(log,"");
 		}
 	}

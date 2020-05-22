@@ -13,8 +13,8 @@ public class z_auto6 {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=4; 
-//		int s=5; 
+//		int s=4; 
+		int s=5; 
 		
 		s_idx=s;
 		
@@ -23,7 +23,7 @@ public class z_auto6 {
 	
 	public void init_g() {
 		g_path="sch/t1";
-		g_dur=50000;
+		g_dur=30000;
 	}
 
 
@@ -52,17 +52,17 @@ public class z_auto6 {
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
 //		p.simul_a("sch/t3/taskset.txt", 0);
-		p.simul_a("sch/t2/taskset_85", 0);
+		p.simul_a("sch/p2/taskset_90", 0);
 		return 0;
 	}
 	public  int test5() 
 	{
 		init_g();
 		init_sim();
-		g_path="sch/t2";
+		g_path="sch/r2";
 		g_p_ms=0.5;
-		int st=55;
-		int item=2;
+		int st=90;
+		int item=1;
 		for(int i=st;i<100;i+=5) {
 			Platform p=new Platform(g_path);
 			p.setP_MS(g_p_ms);

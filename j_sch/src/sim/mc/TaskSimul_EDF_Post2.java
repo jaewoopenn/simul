@@ -1,6 +1,7 @@
 package sim.mc;
 
 import util.SLog;
+import util.SLogF;
 //import util.SLogF;
 import task.Task;
 import util.MCal;
@@ -28,8 +29,7 @@ public class TaskSimul_EDF_Post2 extends TaskSimulMC{
 	}
 	
 	private void drop_algo() {
-		double ru=g_tm.getRUtil();
-//		double ru=g_tm.getVUtil();
+		double ru=g_tm.getVUtil();
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
@@ -74,7 +74,6 @@ public class TaskSimul_EDF_Post2 extends TaskSimulMC{
 	}
 
 
-	// vir mode를 적용해야 하는데.. 지금은 real mode로 하고 있다. 
 	@Override
 	protected void vir_check() {
 		int tm=g_jsm.get_time();
@@ -85,14 +84,17 @@ public class TaskSimul_EDF_Post2 extends TaskSimulMC{
 //			SLogF.prn("resume"+tm+" "+t.sb_tm);
 			
 			if(tm==t.sb_tm+d) {
-//				SLogF.prn("resume");
+				SLogF.prn("t:"+tm+" ************* vir sw back "+t.tid);
 				t.sb_tm=-1;
-//				resume_algo();
+				resume_algo();
 			}
 		}
 		
 		
 	}
+
+
+
 
 
 

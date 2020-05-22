@@ -303,8 +303,6 @@ public class Platform {
 			sm.setX(x);
 			// TODO set delay in platform  OK!
 			sm.setDelay(x*tm.getLongPeriod());
-//			sm.setDelay(x*tm.getShortPeriod());
-//			sm.setDelay(0);
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
 			s.simul(0,g_dur);

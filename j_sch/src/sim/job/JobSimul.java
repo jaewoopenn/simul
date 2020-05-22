@@ -56,15 +56,18 @@ public class JobSimul {
 				if(cur_t<j.vd) 
 					break;
 //				SLogF.end();
-				SLog.err("Job Simul: VD miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd);
+				SLog.err("Job Simul: VD miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
 			}else {
 				if(cur_t<j.dl) 
 					break;
 				// cur>=j.dl
-				dm++;
-				SLogF.prn("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
-				g_jm.removeCur();
-	//			SLog.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+				if(j.isDrop()) {
+					dm++;
+					SLogF.prn("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
+					g_jm.removeCur();
+				} else {
+					SLog.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
+				}
 				
 			}
 		}

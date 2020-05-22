@@ -184,15 +184,18 @@ public abstract class TaskSimulMC extends TaskSimul {
 		Task tsk=g_tm.getTask(tid);
 		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot mode switch");
 		tsk.ms();
+		tsk.sb_tm=g_jsm.get_time();
 		g_jsm.getJM().modeswitch(tid);
 	}
 
 	protected void switchback_tid(int tid){
 		Task tsk=g_tm.getTask(tid);
 		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot switch back");
-		SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
-		tsk.initMode();
-		tsk.sb_tm=g_jsm.get_time();
+		if(!tsk.isHI_Preferred()) {
+			SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
+			tsk.initMode();
+			tsk.sb_tm=g_jsm.get_time();
+		}
 //		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
 	}
 	
