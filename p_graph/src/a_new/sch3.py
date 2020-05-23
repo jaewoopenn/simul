@@ -9,17 +9,31 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    savename="sch/pms"
-    path="sch/p"
-    ylim=0.12
+    savename="sch_b/pms"
+    path="sch_b/p"
+    ylim=0.10
       
-#     savename="sch/hc"
-#     path="sch/h"
+#     savename="sch_b/hc"
+#     path="sch_b/h"
 #     ylim=0.10
 
-#     savename="sch/ratio"
-#     path="sch/r"
+#     savename="sch_b/ratio"
+#     path="sch_b/r"
 #     ylim=0.10
+
+
+#     savename="sch_nb/pms"
+#     path="sch_nb/p"
+#     ylim=0.12
+      
+#     savename="sch_nb/hc"
+#     path="sch_nb/h"
+#     ylim=0.10
+
+#     savename="sch_nb/ratio"
+#     path="sch_nb/r"
+#     ylim=0.10
+
 
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
