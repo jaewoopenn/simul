@@ -30,6 +30,7 @@ public class z_auto4 {
 	public void init_g() {
 		g_path="sch/dur";
 		g_num=5000;
+//		g_num=300;
 		g_dur=4000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
@@ -44,7 +45,8 @@ public class z_auto4 {
 	public void loop_util() {
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util_one(g_cf,0.85);
+		p.setP_HC(0.5);
+		p.genCfg_util_one(g_cf,0.85); //0.9
 		p.setCheck();
 		p.genTS(g_cf,g_ts,g_xl);
 		p.genXA(g_xl);
@@ -61,7 +63,6 @@ public class z_auto4 {
 	{
 		init_g();
 		init_sim();
-		g_path="sch/dur";
 		loop_util();
 		return 0;
 	}

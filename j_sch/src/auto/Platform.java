@@ -86,6 +86,7 @@ public class Platform {
 		cg.setParam("u_lb", (util)+"");
 		cg.setParam("u_ub", (util+0.05)+"");
 		cg.setParam("mod", "0");
+		cg.setParam("prob_hi",g_p_hc+"");
 		String fn=g_path+"/cfg_0.txt";
 		cg.setFile(fn);
 		cg.write();
@@ -95,22 +96,22 @@ public class Platform {
 	}
 	
 	public void genCfg_hc(String cf,double util) {
-		ConfigGen cg=ConfigGen.getPredefined();
-		MList fu=new MList();
-		cg.setParam("subfix", g_path);
-		cg.setParam("num",g_num+"");
-		for(int i=0;i<10;i++){
-			int p_hc=i+1;
-			cg.setParam("u_lb", (util)+"");
-			cg.setParam("u_ub", (util+0.05)+"");
-			cg.setParam("mod", "0."+(p_hc));
-			cg.setParam("prob_hi",(p_hc*0.1)+"");
-			String fn=g_path+"/cfg_"+i+".txt";
-			cg.setFile(fn);
-			cg.write();
-			fu.add(fn);
-		}
-		fu.save(g_path+"/"+cf);
+//		ConfigGen cg=ConfigGen.getPredefined();
+//		MList fu=new MList();
+//		cg.setParam("subfix", g_path);
+//		cg.setParam("num",g_num+"");
+//		for(int i=0;i<10;i++){
+//			int p_hc=i+1;
+//			cg.setParam("u_lb", (util)+"");
+//			cg.setParam("u_ub", (util+0.05)+"");
+//			cg.setParam("mod", "0."+(p_hc));
+//			cg.setParam("prob_hi",(p_hc*0.1)+"");
+//			String fn=g_path+"/cfg_"+i+".txt";
+//			cg.setFile(fn);
+//			cg.write();
+//			fu.add(fn);
+//		}
+//		fu.save(g_path+"/"+cf);
 		
 	}
 	public void genCfg_ratio(String cf,double util) {
@@ -246,6 +247,8 @@ public class Platform {
 		
 		Anal a=AnalSel.getAnal(0);
 		TaskSimulMC s=SimulSel.getSim(sort);
+		if(g_be)
+			s.setBE();
 		String out=fn+".sim."+sort;
 		simul_one(fn,out,a,s);
 		return "OK";		
@@ -260,6 +263,8 @@ public class Platform {
 		String fn=fu.get(0);
 		Anal a=AnalSel.getAnal(0);
 		TaskSimulMC s=SimulSel.getSim(sort);
+		if(g_be)
+			s.setBE();
 		
 		for(int i=0;i<g_dur_set.length;i++) {
 			String out=fn+"_"+i+".sim."+sort;

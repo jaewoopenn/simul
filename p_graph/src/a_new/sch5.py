@@ -10,7 +10,7 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    path="sch/dur"
+    path="sch_b/dur"
     fn="a_sim_graph.txt"
     xlab= "Duration (x1000)"
     ylab= "Deadline Miss Ratio"
@@ -56,7 +56,7 @@ def main():
     mp.legendUR()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(0,0.12)
+    mp.ylim(0,0.06)
     mp.show()
 
 if __name__ == '__main__':
