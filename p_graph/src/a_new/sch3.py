@@ -9,17 +9,17 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    savename="sch_b/pms"
-    path="sch_b/p"
-    ylim=0.12
+#     savename="sch_b/pms"
+#     path="sch_b/p"
+#     ylim=0.12
       
 #     savename="sch_b/hc"
 #     path="sch_b/h"
-#     ylim=0.08
+#     ylim=0.05
 
-#     savename="sch_b/ratio"
-#     path="sch_b/r"
-#     ylim=0.08
+    savename="sch_b/ratio"
+    path="sch_b/r"
+    ylim=0.065
 
 
 #     savename="sch_nb/pms"
