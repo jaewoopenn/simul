@@ -11,20 +11,20 @@ import util.MPlot as mp;
 class gl_input:
 #     savename="sch_b/pms"
 #     path="sch_b/p"
-#     ylim=0.12
+#     ylim=0.11
       
 #     savename="sch_b/hc"
 #     path="sch_b/h"
 #     ylim=0.05
 
-    savename="sch_b/ratio"
-    path="sch_b/r"
-    ylim=0.065
+#     savename="sch_b/ratio"
+#     path="sch_b/r"
+#     ylim=0.065
 
 
-#     savename="sch_nb/pms"
-#     path="sch_nb/p"
-#     ylim=0.12
+    savename="sch_nb/pms"
+    path="sch_nb/p"
+    ylim=0.11
       
 #     savename="sch_nb/hc"
 #     path="sch_nb/h"
