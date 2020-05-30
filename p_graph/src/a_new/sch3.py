@@ -9,9 +9,9 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="sch_b/pms"
-#     path="sch_b/p"
-#     ylim=0.11
+    savename="sch_b/pms"
+    path="sch_b/p"
+    ylim=0.112
       
 #     savename="sch_b/hc"
 #     path="sch_b/h"
@@ -22,9 +22,9 @@ class gl_input:
 #     ylim=0.065
 
 
-    savename="sch_nb/pms"
-    path="sch_nb/p"
-    ylim=0.11
+#     savename="sch_nb/pms"
+#     path="sch_nb/p"
+#     ylim=0.112
       
 #     savename="sch_nb/hc"
 #     path="sch_nb/h"
