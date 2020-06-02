@@ -14,7 +14,7 @@ import com.MCom as mc
 
 
 def u_load(c):
-    mc.load_fn(c,"com/ex1.txt")
+    mc.load_fn(c,"com/ex2.txt")
 #     mc.load_fn(c,"test/test_dbf.txt")
     
     

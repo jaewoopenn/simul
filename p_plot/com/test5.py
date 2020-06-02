@@ -13,15 +13,17 @@ import com.MCom as mc
 
 
 
-def u_load(c):
-    mc.load_fn(c,"com/ex1.txt")
-#     mc.load_fn(c,"test/test_dbf.txt")
+def u_load(c,fn):
+    mc.load_fn(c,fn )
     
     
 def main():
     c1=mc.C_Draw()
-    u_load(c1)
+    u_load(c1,"com/ex1.txt")
     c1.draw()
+    c2=mc.C_Draw()
+    u_load(c2,"com/ex2.txt")
+    c2.draw()
     c1.lim(21,13)
     c1.show()
     

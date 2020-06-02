@@ -60,9 +60,13 @@ class C_Draw:
     
     def draw(self):
         mp.plot(self.xl,self.vl)
+
+    def lim(self,x,y):
+        mp.xlim(0,x)
+        mp.ylim(0,y)
+        
         
     def show(self):
-        mp.ylim(0,11)
         mp.ylabel("Resources")
         mp.xlabel("Time")
         mp.show()
