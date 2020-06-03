@@ -24,7 +24,7 @@ def main():
     c2=mc.C_Draw()
     u_load(c2,"com/ex2.txt")
     c2.draw()
-    c1.lim(21,13)
+    c1.lim(21,15)
     c1.show()
     
 
