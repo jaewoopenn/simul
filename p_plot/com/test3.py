@@ -21,7 +21,7 @@ def u_load(c):
 def main():
     c1=mc.C_Draw()
     u_load(c1)
-    c1.draw()
+    c1.draw2('r-')
     c1.lim(21,13)
     c1.show()
     

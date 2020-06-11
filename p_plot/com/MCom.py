@@ -60,6 +60,8 @@ class C_Draw:
     
     def draw(self):
         mp.plot(self.xl,self.vl)
+    def draw2(self, l):
+        mp.plot4(self.xl,self.vl,l)
 
     def lim(self,x,y):
         mp.xlim(0,x)

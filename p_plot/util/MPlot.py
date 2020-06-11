@@ -37,6 +37,8 @@ def plot2(x,v,l,la):
 def plot3(x,v,l,la,ma):
     plt.plot(x,v, l,marker=ma, drawstyle='default',label=la )
 
+def plot4(x,v,l):
+    plt.plot(x,v,l)
 def xlim(l,u):
     plt.xlim(l,u)
 
