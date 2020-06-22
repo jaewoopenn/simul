@@ -2,6 +2,7 @@ package com;
 
 
 import util.SLog;
+import util.MCal;
 import util.SEngineT;
 
 public class z_sbf1 {
@@ -16,7 +17,7 @@ public class z_sbf1 {
 		for(int t=0;t<12;t++) {
 			double r=p.sbf(t);
 			SLog.prnc(1, "t: "+t);
-			SLog.prn(1, " r: "+r);
+			SLog.prn(1, " r: "+MCal.getStr(r));
 		}
 		return 0;
 	}

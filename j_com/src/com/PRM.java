@@ -20,8 +20,11 @@ public class PRM {
 		double l=period-exec;
 		double tprime=t-l+MCal.err;
 		double k=Math.floor(tprime/period);
-		double s=k*exec+MCal.err+Math.max(0, t-2*l-k*period);
-		return Math.max(0, s); 
+//		double s=k*exec+MCal.err+Math.max(0, t-2*l-k*period);
+		double kp=Math.max(0, k);
+		double sp=kp*exec+MCal.err+Math.max(0, t-2*l-kp*period);
+//		SLog.prn(1, k+","+s+","+sp);
+		return Math.max(0, sp); 
 	}
 
 	public double sbf_i(double t) {

@@ -12,7 +12,7 @@ def load_fn(c,fn):
     for m in lst:
         wd=m.split()
         print(wd)
-        a=int(wd[1])
+        a=float(wd[1])
         if wd[0]=='s':
             b=float(wd[2])
             c.add_st(a,b)
