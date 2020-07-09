@@ -2,7 +2,7 @@ package gen;
 
 import util.MList;
 import task.TaskSet;
-import task.TaskSetUtil;
+import task.TaskUtil;
 import util.CRange;
 
 public  class HSysGen {
@@ -30,8 +30,8 @@ public  class HSysGen {
 		r=CRange.gen(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
 		cgp.setUtil(r);
 		g_cg=new ComGen(cgp,tg);
-		tgp.prn();
-		cgp.prn();
+//		tgp.prn();
+//		cgp.prn();
 		
 		return g_cfg.readInt("num");
 	}
@@ -59,7 +59,7 @@ public  class HSysGen {
 	{
 		for(int i=0;i<g_cg.getCNum();i++) {
 			TaskSet ts=g_cg.getTS(i);
-			TaskSetUtil.writeCom(fu, ts.getArr());
+			TaskUtil.writeCom(fu, ts.getArr());
 		}
 		fu.add("------");
 		return 1;

@@ -2,7 +2,7 @@ package task;
 
 import task.Task;
 import task.TaskSet;
-import task.TaskSetUtil;
+import task.TaskUtil;
 import util.MList;
 import util.SEngineT;
 
@@ -17,12 +17,12 @@ public class z_TaskSetEx1 {
 		TaskVec tme=new TaskVec(tmp.getVec());
 		TaskSet tm=new TaskSet(tme);
 		tm.prn();
-		TaskSetUtil.writeFile("test/test.txt",tm.getArr());
+		TaskUtil.writeFile("test/test.txt",tm.getArr());
 		return 1;
 	}
 	public int test2()
 	{
-		TaskVec tmp=TaskSetUtil.loadFile(new MList("test/test.txt"));
+		TaskVec tmp=TaskUtil.loadML(new MList("test/test.txt"));
 		TaskSet tm=new TaskSet(tmp);
 		tm.prn();
 		return 0;

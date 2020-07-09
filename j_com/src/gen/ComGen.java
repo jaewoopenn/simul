@@ -1,16 +1,14 @@
 package gen;
 
-import java.util.Vector;
-
 import task.Comp;
+import task.CompSet;
 import task.TaskSet;
-import task.TaskVec;
 import util.SLog;
 
 public class ComGen {
 	protected ComGenParam g_param;
 	protected TaskGen g_tg;
-	private Vector<Comp> g_com;
+	private CompSet g_cs;
 	public ComGen(ComGenParam cgp, TaskGen tg) {
 		g_param=cgp;
 		g_tg=tg;
@@ -22,7 +20,7 @@ public class ComGen {
 
 	public void generate() {
 		while(true){
-			g_com=new Vector<Comp>();
+			g_cs=new CompSet();
 			genComs();
 			if(check()==1) break;
 		}
@@ -35,10 +33,10 @@ public class ComGen {
 //		SLog.prn(2, "===");
 		while(u<g_param.u_ub){
 			c=genCom(cid,g_param.u_ub-u);
-			g_com.add(c);
+			g_cs.add(c);
 			cid++;
-			u=getUtil();
-			SLog.prn(2, ""+u);
+			u=g_cs.getUtil();
+//			SLog.prn(2, ""+u);
 			if(u>g_param.u_lb) break;
 		}
 	}
@@ -50,25 +48,17 @@ public class ComGen {
 		return c;
 	}
 	public int check(){
-		return g_param.check(getUtil());
+		return g_param.check(g_cs.getUtil());
 	}
 	
 	
 
 
-	protected  double getUtil() {
-		double util=0;
-		for(Comp c:g_com){
-			util+=c.getUtil();
-		}
-//		SLog.prn(1, util+"");
-		return util;
-	}
 	public TaskSet getTS(int i) {
-		return g_com.get(i).getTS();
+		return g_cs.getTS(i);
 	}
 	public int getCNum() {
-		return g_com.size();
+		return g_cs.size();
 	}
 	
 	

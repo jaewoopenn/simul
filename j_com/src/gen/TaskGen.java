@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import task.Task;
 import task.TaskVec;
-import util.SLog;
 
 public class TaskGen {
 	protected TaskGenParam g_param;
@@ -19,7 +18,7 @@ public class TaskGen {
 			g_ub=u;
 		else
 			g_ub=1.0;
-		SLog.prn(1, g_ub+"");
+//		SLog.prn(1, g_ub+"");
 	}
 	public void generate() {
 		while(true){

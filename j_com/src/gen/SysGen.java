@@ -3,7 +3,7 @@ package gen;
 import util.MList;
 import task.TaskSet;
 import task.TaskVec;
-import task.TaskSetUtil;
+import task.TaskUtil;
 import util.CRange;
 
 public  class SysGen {
@@ -54,7 +54,7 @@ public  class SysGen {
 		
 		TaskVec ts=g_tg.getTV();
 		TaskSet tm=new TaskSet(ts);
-		TaskSetUtil.writeTS(fu, tm.getArr());
+		TaskUtil.writeTS(fu, tm.getArr());
 		
 		return 1;
 	}

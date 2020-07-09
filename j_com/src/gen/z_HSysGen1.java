@@ -14,8 +14,8 @@ public class z_HSysGen1 {
 		ConfigGen cfg=ConfigGen.getHSample();
 
 		HSysGen eg=new HSysGen(cfg);
-		eg.prepare();
-//		eg.gen();
+//		eg.prepare();
+		eg.gen();
 		return 1;
 
 	}

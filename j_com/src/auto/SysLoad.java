@@ -2,7 +2,7 @@ package auto;
 
 import task.TaskSet;
 import task.TaskVec;
-import task.TaskSetUtil;
+import task.TaskUtil;
 import util.MFile;
 import util.MList;
 
@@ -25,7 +25,7 @@ public class SysLoad {
 		MList ml=new MList();
 		ml.copy(g_fu);
 //		ml.prn();
-		TaskVec tsf=TaskSetUtil.loadFile(ml);
+		TaskVec tsf=TaskUtil.loadML(ml);
 		return new TaskSet(tsf);
 		
 	}
@@ -37,7 +37,7 @@ public class SysLoad {
 		}
 		MList ml=new MList();
 		ml.copy(g_fu);
-		TaskVec tsf=TaskSetUtil.loadFile(ml);
+		TaskVec tsf=TaskUtil.loadML(ml);
 		return new TaskSet(tsf);
 		
 	}	

@@ -12,15 +12,17 @@ import com.PRM;
 import anal.Anal;
 import anal.AnalSel;
 import gen.ConfigGen;
-import gen.SysGen;
+import gen.HSysGen;
+import task.Comp;
+import task.CompSet;
 import task.TaskSet;
 import util.MList;
 import util.SLog;
 
-public class Platform {
+public class HPlatform {
 	private String g_path;
 	private int g_num=100;
-	public Platform(String path) {
+	public HPlatform(String path) {
 		g_path=path;
 	}
 	
@@ -30,7 +32,7 @@ public class Platform {
 	
 	// gen CFG, TS
 	public void genCfg_util(int base, int top,int step,String cfg_list) {
-		ConfigGen cg=ConfigGen.getSample();
+		ConfigGen cg=ConfigGen.getHSample();
 		MList fu=new MList();
 		cg.setParam("num",g_num+"");
 		for(int i=base;i<=top;i+=step){
@@ -48,7 +50,7 @@ public class Platform {
 		fu.save(g_path+"/"+cfg_list);
 		
 	}
-
+	
 	public void genTS(String cfg_list,String ts, String xaxis) {
 		MList fu=new MList(g_path+"/"+cfg_list);
 		
@@ -62,7 +64,7 @@ public class Platform {
 				break;
 			ConfigGen cfg=new ConfigGen();
 			cfg.load(cfg_fn);
-			SysGen sg=new SysGen(cfg);
+			HSysGen sg=new HSysGen(cfg);
 			String fn=sg.gen();
 			fu_ts.add(fn);
 			String mod=cfg.get_lab();
@@ -92,7 +94,7 @@ public class Platform {
 		while((fn=fu.getNext())!=null) {
 			String out=fn+".rs."+sort;
 			SLog.prn(3, out);
-			anal_one2(fn,out,a);
+			anal_one(fn,out,a);
 			fu_rs.add(out);
 		}		
 		String rs_fn=g_path+"/_rs_list."+sort+".txt";
@@ -100,56 +102,33 @@ public class Platform {
 		return rs_fn;
 	}
 	
-	public void anal_one(String ts,String out,Anal a) {
-		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		int num=Integer.valueOf(ret).intValue();
-		MList fu=new MList(out);
-		for(int i=0;i<num;i++) {
-			TaskSet tm=sy.loadOne();
-			if(tm==null) break;
-
-			a.init(tm);
-			if(a.is_sch()) {
-				fu.add("1");
-			} else {
-				fu.add("0");
-			}
-		}
-		fu.save(out);
-		
-	}
-	public void anal_one2(String ts,String out,Anal a) {
-		SysLoad sy=new SysLoad(ts);
+	public void anal_one(String f_in,String f_out,Anal anal) {
+		HSysLoad sy=new HSysLoad(f_in);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
-			TaskSet tm=sy.loadOne();
-			if(tm==null) break;
-			double r=anal_tasks(tm,a);
+			CompSet cm=sy.loadOne();
+			if(cm==null) break;
+//			cm.prn();
+			double r=analComSet(cm,anal);
 			fu.add(r+"");
 		}
-		fu.save(out);
-		
+		fu.save(f_out);
 	}
-
-	public void anal_one3(String ts,Anal a,int num) {
-		SysLoad sy=new SysLoad(ts);
-		sy.open();
-		TaskSet tm=null;
-		for(int i=0;i<=num;i++) {
-			tm=sy.loadOne();
+	private double analComSet(CompSet cs,Anal anal) {
+		double r=0;
+		for(int i=0;i<cs.size();i++) {
+			Comp c=cs.get(i);
+			r+=analCom(c,anal);
 		}
-		double r=anal_tasks(tm,a);
-		SLog.prn(3, r+"");
+		return r;
 	}
 
-	
-	private double anal_tasks(TaskSet tm, Anal a) {
+	private double analCom(Comp c,Anal a) {
 		int p=25;  // TODO change period
+		TaskSet tm=c.getTS();
 		tm.sort();
-
 		a.init(tm);
 		double e=a.getExec(p);
 		PRM prm=new PRM(p,e);
@@ -158,10 +137,12 @@ public class Platform {
 		if(!a.is_sch()) {
 			SLog.err("not sch ");
 		}
+		SLog.prnc(3, c.cid+" ");
+		SLog.prn(3, p+" "+e);
 		return e/p;
-
-//		double ov=e/p-tm.getUtil();
-//		return ov;
 	}
 
+
+	
+	
 }

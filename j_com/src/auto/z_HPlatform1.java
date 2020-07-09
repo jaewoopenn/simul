@@ -4,44 +4,44 @@ package auto;
 
 
 
-import task.TaskSet;
 import util.SEngineT;
 
-public class z_Platform1 {
-	public static int idx=1;
+public class z_HPlatform1 {
+//	public static int idx=1;
 //	public static int idx=2;
-//	public static int idx=3;
+	public static int idx=3;
 //	public static int idx=4;
-	public static int log_level=1;
+//	public static int log_level=1;
+//	public static int log_level=2;
+	public static int log_level=3;
 
-	private String g_path="com/t1";
+	private String g_path="com/t2";
 	
-	// gen task set 
+	// gen cfg
 	public int test1() 
 	{
 		String cl="a_cfg_list.txt";
-		String ts="a_ts_list.txt";
-		String xl="a_x_list.txt";
-		Platform p=new Platform(g_path);
-		p.genTS(cl,ts,xl);
+		HPlatform p=new HPlatform(g_path);
+		p.setNum(10);
+		p.genCfg_util(30,70,5,cl);
 		return -1;
-		
 	}
 
 	// gen task set (
 	public int test2() {
+		String cl="a_cfg_list.txt";
+		String ts="a_ts_list.txt";
+		String xl="a_x_list.txt";
+		HPlatform p=new HPlatform(g_path);
+		p.genTS(cl,ts,xl);		
 		return -1;
 	}
 	
 	public int test3() 
 	{
-		SysLoad sy=new SysLoad(g_path+"taskset_55");
-		sy.open();
-		while(true) {
-			TaskSet tm=sy.loadOne();
-			if(tm==null) break;
-			tm.prn();
-		}
+		String ts="a_ts_list.txt";
+		HPlatform p=new HPlatform(g_path);
+		p.anal(ts,0);
 		return -1;		
 	}
 	
@@ -53,10 +53,6 @@ public class z_Platform1 {
 	
 	public  int test5() 
 	{
-		String ts="a_ts_list.txt";
-		Platform p=new Platform(g_path);
-		p.anal(ts,0);
-		p.anal(ts,1);
 		return -1;
 	}
 	public  int test6() 
@@ -89,9 +85,9 @@ public class z_Platform1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Platform1.class;
-		z_Platform1 m=new z_Platform1();
-		int[] aret=z_Platform1.gret;
+		Class c = z_HPlatform1.class;
+		z_HPlatform1 m=new z_HPlatform1();
+		int[] aret=z_HPlatform1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

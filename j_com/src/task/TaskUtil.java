@@ -12,7 +12,7 @@ import java.util.Vector;
 import util.MList;
 import util.SLog;
 
-public class TaskSetUtil {
+public class TaskUtil {
 
 
 	
@@ -55,11 +55,11 @@ public class TaskSetUtil {
 
 	// import 
 	
-	public static TaskVec  loadFile(MList fu) {
+	public static TaskVec  loadML(MList ml) {
 		TaskSeq.reset();
 	    Vector<Task> tasks=new Vector<Task>();
-		for(int i=0;i<fu.size();i++) {
-	    	String line=fu.get(i);
+		for(int i=0;i<ml.size();i++) {
+	    	String line=ml.get(i);
 //	    	SLog.prn(1, line);
 	    	Task t=loadTask(line);
         	tasks.add(t);
@@ -73,7 +73,22 @@ public class TaskSetUtil {
         int c=Integer.valueOf(words[1]).intValue();
     	return new Task(p,c);
 	}
+	public static Vector<MList>  loadComML(MList o_ml) {
+		Vector<MList> mlv=new Vector<MList>();
+		MList tml=new MList();
+		for(int i=0;i<o_ml.size();i++) {
+	    	String line=o_ml.get(i);
+	    	if(line.equals("+++++")) {
+	    		mlv.add(tml);
+	    		tml=new MList();
+	    	} else {
+	    		tml.add(line);
+	    	}
+	    }
+	    return mlv;
+	}
 	
 
+	
 
 }

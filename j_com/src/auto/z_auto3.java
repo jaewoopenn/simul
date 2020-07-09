@@ -1,12 +1,12 @@
 package auto;
 
 
-// auto task level 
+// auto comp level 
 
 import util.SEngineT;
 
 
-public class z_auto1 {
+public class z_auto3 {
 	
 	public static void init_s() {
 //		int s=1;
@@ -86,10 +86,10 @@ public class z_auto1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto1.init_s();
-		Class c = z_auto1.class;
-		z_auto1 m=new z_auto1();
-		int[] aret=z_auto1.gret;
+		z_auto3.init_s();
+		Class c = z_auto3.class;
+		z_auto3 m=new z_auto3();
+		int[] aret=z_auto3.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

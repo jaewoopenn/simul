@@ -10,6 +10,10 @@ public class Comp {
 	public int exec;
 	private TaskSet ts;
 	
+	public Comp(int id,TaskVec tv) {
+		this.cid=id;
+		ts=new TaskSet(tv);
+	}
 
 	public Comp(int id,int period, int c) {
 		this.cid=id;
@@ -29,9 +33,10 @@ public class Comp {
 
 	
 	public void prn() {
-		SLog.prnc(2, "cid:"+cid);
+		SLog.prnc(2, "=== cid:"+cid);
 		SLog.prnc(2, " T:"+period);
 		SLog.prn(2, " C:"+exec);
+		ts.prn();
 	}
 	public double getUtil() {
 		double u=0;

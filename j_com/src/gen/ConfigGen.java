@@ -21,7 +21,7 @@ public class ConfigGen {
 		
 	}
 
-	public String getLabel() {
+	public String get_lab() {
 		return readPar("label");
 	}
 
@@ -57,11 +57,7 @@ public class ConfigGen {
 		return setParam(field,val+"");
 	}
 	public boolean setParam(String field, String val){
-		if(Arrays.asList(g_required).contains(field)){
-			param.put(field, val);
-			return true;
-		} else if(Arrays.asList(g_opt).contains(field)){
-//			SLog.prn(1, "opt");
+		if(Arrays.asList(g_required).contains(field)||Arrays.asList(g_opt).contains(field)) {
 			param.put(field, val);
 			return true;
 		}
@@ -72,6 +68,7 @@ public class ConfigGen {
 		if(Arrays.asList(g_required).contains(f)||Arrays.asList(g_opt).contains(f))
 			return param.get(f);
 		System.out.println("ERROR: requested field ("+f+") is not defined");
+		
 		return null;
 	}
 	public int readInt(String f){
@@ -100,8 +97,15 @@ public class ConfigGen {
 			String txt=s+":"+v;
 			fu.add(txt);
 		}
+		for (String s:g_opt){
+			String v=readPar(s);
+			if(v==null){
+            	continue;
+			}
+			String txt=s+":"+v;
+			fu.add(txt);
+		}
 		fu.save(fn);
-		
 	}
 	public void prn(int lv) {
 		SLog.prn(lv,readPar("u_ub")+"--");

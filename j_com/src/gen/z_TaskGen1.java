@@ -3,7 +3,7 @@ import gen.TaskGen;
 import gen.TaskGenParam;
 import task.TaskSet;
 import task.TaskVec;
-import task.TaskSetUtil;
+import task.TaskUtil;
 import util.CRange;
 import util.SEngineT;
 
@@ -27,7 +27,7 @@ public class z_TaskGen1 {
 		tg.generate();
 		TaskVec ts=tg.getTV();
 		TaskSet tm=new TaskSet(ts);
-		TaskSetUtil.writeFile("com/test.txt", tm.getArr());
+		TaskUtil.writeFile("com/test.txt", tm.getArr());
 		return 1;
 	}	
 	public int test2() {
