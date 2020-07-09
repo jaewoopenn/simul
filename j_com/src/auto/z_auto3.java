@@ -9,10 +9,10 @@ import util.SEngineT;
 public class z_auto3 {
 	
 	public static void init_s() {
-//		int s=1;
+		int s=1;
 //		int s=2;
 //		int s=3;
-		int s=4;
+//		int s=4;
 		
 //		int log=1;
 //		int log=2;
@@ -36,33 +36,43 @@ public class z_auto3 {
 		
 	}
 
-
-	public int test1()  {// config gen
-		init();
+	public void loop_util() {
 		Platform p=new Platform(g_path);
+		p.setTU(g_t_lb,g_t_ub);
 		p.setNum(g_num);
-		p.genCfg_util(30,70,5,g_cfg);
-		return 0;
-	}
-	public int test2() {// task set gen
-		init();
-		Platform p=new Platform(g_path);
+		p.genCfg_util(30,65,5,g_cfg);
 		p.genTS(g_cfg,g_ts,g_xaxis);
-		return -1;	
-	}
-	
-	public int test3() { // anal 
-		init();
-		Platform p=new Platform(g_path);
 		p.anal_loop(g_rs,g_ts,g_anal);
-		return -1;
-	}
-	public  int test4() { // anal rs --> graph
-		init();
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xaxis);
 		da.load_rs(g_rs);
 		da.save(g_graph);		
+		
+	}
+
+	public int test1()  {// config gen
+		init();
+		double lb[]= {0.02,0.01,0.03,0.05};
+		double ub[]= {0.1,0.04,0.06,0.1};
+		int st=0;
+		for(int i=st;i<4;i++) {
+			g_path="com/u"+i;
+			g_t_lb=lb[i];
+			g_t_ub=ub[i];
+			loop_util();
+		}
+		
+		return 0;
+	}
+	public int test2() {// task set gen
+		return -1;	
+	}
+	
+	public int test3() { // anal 
+		return -1;
+	}
+	public  int test4() { // anal rs --> graph
+		init();
 		return -1;
 	}
 	public  int test5() {
@@ -107,5 +117,6 @@ public class z_auto3 {
 	private String g_xaxis;
 	private String g_rs;
 	private String g_graph;
-
+	private double g_t_ub;
+	private double g_t_lb;
 }

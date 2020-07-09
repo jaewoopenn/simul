@@ -10,7 +10,6 @@ import anal.AnalSel;
 import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
-import sim.TaskSimul;
 import sim.mc.TaskSimulMC;
 import sim.mc.TaskSimul_EDF_VD;
 import task.TaskMng;

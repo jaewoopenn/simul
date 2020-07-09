@@ -20,6 +20,8 @@ import util.SLog;
 public class Platform {
 	private String g_path;
 	private int g_num=100;
+	private double g_t_lb=0.02;
+	private double g_t_ub=0.1;
 	public Platform(String path) {
 		g_path=path;
 	}
@@ -27,12 +29,17 @@ public class Platform {
 	public void setNum(int n) {
 		g_num=n;
 	}
-	
+	public void setTU(double lb,double ub) {
+		g_t_lb=lb;
+		g_t_ub=ub;
+	}
 	// gen CFG, TS
 	public void genCfg_util(int base, int top,int step,String cfg_list) {
 		ConfigGen cg=ConfigGen.getSample();
 		MList fu=new MList();
 		cg.setParam("num",g_num+"");
+		cg.setParam("tu_lb",g_t_lb);
+		cg.setParam("tu_ub",g_t_ub);
 		for(int i=base;i<=top;i+=step){
 			int ub=i;
 			String lab=ub+"";
@@ -158,10 +165,10 @@ public class Platform {
 		if(!a.is_sch()) {
 			SLog.err("not sch ");
 		}
-		return e/p;
+//		return e/p;
 
-//		double ov=e/p-tm.getUtil();
-//		return ov;
+		double ov=e/p-tm.getUtil();
+		return ov;
 	}
 
 }

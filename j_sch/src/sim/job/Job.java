@@ -1,7 +1,6 @@
 package sim.job;
 
 import util.SLog;
-import util.SLogF;
 
 public class Job implements Comparable<Job>{
 	public int tid;

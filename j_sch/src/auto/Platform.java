@@ -9,7 +9,6 @@ import gen.SysLoad;
 import sim.SimulInfo;
 import sim.SimulSel;
 import sim.SysMng;
-import sim.TaskSimul;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import util.MList;

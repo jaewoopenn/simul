@@ -7,9 +7,7 @@ import sim.SimulInfo;
 import sim.SysMng;
 import task.TaskMng;
 import util.SEngineT;
-import util.SLog;
 import util.SLogF;
-import z_ex.TS_MC3;
 
 public class z_TaskSimul3 {
 //	public static int idx=1;
