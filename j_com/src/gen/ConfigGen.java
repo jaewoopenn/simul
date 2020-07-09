@@ -11,6 +11,7 @@ import util.SLog;
 public class ConfigGen {
 	private final String[] g_required={"u_lb","u_ub","p_lb","p_ub",
 			"tu_lb","tu_ub","num","fn","label"}; 
+	private final String[] g_opt={"cu_lb","cu_ub"}; 
 	private HashMap<String,String> param;
 	public ConfigGen() {
 		param=new HashMap<String,String>();
@@ -59,11 +60,16 @@ public class ConfigGen {
 		if(Arrays.asList(g_required).contains(field)){
 			param.put(field, val);
 			return true;
+		} else if(Arrays.asList(g_opt).contains(field)){
+//			SLog.prn(1, "opt");
+			param.put(field, val);
+			return true;
 		}
+//		SLog.prn(1, "none");
 		return false;
 	}
 	public String readPar(String f) {
-		if(Arrays.asList(g_required).contains(f))
+		if(Arrays.asList(g_required).contains(f)||Arrays.asList(g_opt).contains(f))
 			return param.get(f);
 		System.out.println("ERROR: requested field ("+f+") is not defined");
 		return null;
@@ -109,9 +115,25 @@ public class ConfigGen {
 		eg.setParam("p_lb",100);
 		eg.setParam("p_ub",400);
 		eg.setParam("num",10);
-		eg.setParam("fn","com/test1");
+		eg.setParam("fn","com/test1.txt");
+		eg.setParam("label","1");
+		return eg;
+	}
+	public static ConfigGen getHSample()	{
+		ConfigGen eg=new ConfigGen();
+		eg.setParam("u_lb",0.5);
+		eg.setParam("u_ub",0.7);
+		eg.setParam("tu_lb",0.02);
+		eg.setParam("tu_ub",0.1);
+		eg.setParam("cu_lb",0.1);
+		eg.setParam("cu_ub",0.3);
+		eg.setParam("p_lb",100);
+		eg.setParam("p_ub",400);
+		eg.setParam("num",2);
+		eg.setParam("fn","com/test1.txt");
 		eg.setParam("label","1");
 		return eg;
 	}
 
+	
 }

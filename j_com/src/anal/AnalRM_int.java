@@ -4,7 +4,7 @@ package anal;
 public class AnalRM_int extends Anal{
 	public AnalRM_int() {
 		super();
-		g_name="RM_int";
+		g_name="nPRM";
 	}	
 	
 	@Override

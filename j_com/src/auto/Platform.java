@@ -138,8 +138,10 @@ public class Platform {
 			if(!a.is_sch()) {
 				SLog.err("not sch "+i);
 			}
-			double ov=e/p-tm.getUtil();
-			fu.add(ov+"");
+			fu.add(e/p+"");
+
+//			double ov=e/p-tm.getUtil();
+//			fu.add(ov+"");
 		}
 		fu.save(out);
 		

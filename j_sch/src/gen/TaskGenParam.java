@@ -42,16 +42,15 @@ public class TaskGenParam {
 		if(l>u){
 			System.out.println("Error setTUtil");
 		}
-		tu_ub=u;
 		tu_lb=l;
+		tu_ub=u;
 	}
 	public void setRatioLH(double l, double u) {
 		if(l>u){
 			System.out.println("Error setRatioLH");
 		}
-		ratio_ub=u;
 		ratio_lb=l;
-		
+		ratio_ub=u;
 	}
 
 
@@ -59,8 +58,8 @@ public class TaskGenParam {
 		if(l>u){
 			System.out.println("Error setPeriod");
 		}
-		p_ub=u;
 		p_lb=l;
+		p_ub=u;
 		
 	}
 

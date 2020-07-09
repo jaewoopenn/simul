@@ -1,35 +1,19 @@
 package gen;
-import gen.TaskGen;
-import gen.TaskGenParam;
-import task.TaskSet;
-import task.TaskVec;
-import task.TaskSetUtil;
-import util.CRange;
 import util.SEngineT;
 
 // Simulation
 
-public class z_TaskGen1 {
+public class z_ComGen1 {
 	public static int log_level=1;
 	public static int idx=1;
-	public TaskGen getTG1(){
-		TaskGenParam tgp=new TaskGenParam();
-		tgp.setPeriod(CRange.gen(50,300));
-		tgp.setTUtil(CRange.gen(0.02,0.3));
-		tgp.setUtil(CRange.gen(0.90,0.99));
-		TaskGen tg=new TaskGen(tgp);
-		return tg;
-	}
-
 	public int test1()
 	{
-		TaskGen tg=getTG1();
-		tg.generate();
-		TaskVec ts=tg.getTV();
-		TaskSet tm=new TaskSet(ts);
-		TaskSetUtil.writeFile("com/test.txt", tm.getArr());
+//		ComGen t=new ComGen();
+//		t.generate();
+//		t.prn();
 		return 1;
-	}	
+	}
+
 	public int test2() {
 		return 0;
 	}
@@ -60,9 +44,9 @@ public class z_TaskGen1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_TaskGen1.class;
-		z_TaskGen1 m=new z_TaskGen1();
-		int[] aret=z_TaskGen1.gret;
+		Class c = z_ComGen1.class;
+		z_ComGen1 m=new z_ComGen1();
+		int[] aret=z_ComGen1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

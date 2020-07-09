@@ -9,8 +9,9 @@ import util.MPlot as mp;
 class gl_inp:
     fn="com/t1/_graph.txt"
     path="/data/com"
-    xlab= "Utilization Bound"
-    ylab= "Overheads"
+    xlab= "Utilization Bound(%)"
+    ylab= "Util. of Res. Model"
+#     ylab= "Overheads"
 
 class gl:
     lab=[]
@@ -49,7 +50,7 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.ylim(0.025, 0.2)
+#     mp.ylim(0.025, 0.2)
 #     mp.legendBL()
     mp.legendUL()
     mp.xlabel(gl_inp.xlab)

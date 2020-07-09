@@ -2,16 +2,15 @@ package gen;
 
 import util.MList;
 import task.TaskSet;
-import task.TaskVec;
 import task.TaskSetUtil;
 import util.CRange;
 
-public  class SysGen {
-	protected TaskGen g_tg;
+public  class HSysGen {
+	protected ComGen g_cg;
 	private ConfigGen g_cfg;
 	protected boolean g_isCheck=false;
 
-	public SysGen(ConfigGen cfg) {
+	public HSysGen(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
 	public void setCheck() {
@@ -20,13 +19,20 @@ public  class SysGen {
 	
 	public int prepare(){
 		TaskGenParam tgp=new TaskGenParam();
-		CRange r=CRange.gen(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		CRange r=CRange.gen(g_cfg.readDbl("cu_lb"),g_cfg.readDbl("cu_ub"));
 		tgp.setUtil(r);
 		r=CRange.gen(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
 		tgp.setPeriod(r);
 		r=CRange.gen(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
 		tgp.setTUtil(r);
-		g_tg=new TaskGen(tgp);
+		TaskGen tg=new TaskGen(tgp);
+		ComGenParam cgp=new ComGenParam();
+		r=CRange.gen(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
+		cgp.setUtil(r);
+		g_cg=new ComGen(cgp,tg);
+		tgp.prn();
+		cgp.prn();
+		
 		return g_cfg.readInt("num");
 	}
 	public String gen() {
@@ -36,7 +42,7 @@ public  class SysGen {
 		fu.add(num+"");
 		while(i<num){
 //			Log.prn(2, i+"");
-			g_tg.generate();
+			g_cg.generate();
 			int rs=check();
 			if(rs==0)
 				continue;
@@ -51,11 +57,11 @@ public  class SysGen {
 	
 	public int writeSys(MList fu)
 	{
-		
-		TaskVec ts=g_tg.getTV();
-		TaskSet tm=new TaskSet(ts);
-		TaskSetUtil.writeTS(fu, tm.getArr());
-		
+		for(int i=0;i<g_cg.getCNum();i++) {
+			TaskSet ts=g_cg.getTS(i);
+			TaskSetUtil.writeCom(fu, ts.getArr());
+		}
+		fu.add("------");
 		return 1;
 	}
 

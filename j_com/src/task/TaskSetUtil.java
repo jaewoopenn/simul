@@ -34,6 +34,11 @@ public class TaskSetUtil {
 			writeTask(fu,t);
 		fu.add("------");
 	}
+	public static void writeCom(MList fu,Task[] tasks){
+		for(Task t:tasks)
+			writeTask(fu,t);
+		fu.add("+++++");
+	}
 	
 
 	public static void writeTask(MList fu, Task t) {

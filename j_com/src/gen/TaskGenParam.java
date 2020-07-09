@@ -2,6 +2,7 @@ package gen;
 
 
 import util.MRand;
+import util.SLog;
 import task.Task;
 import util.CRange;
 
@@ -34,8 +35,8 @@ public class TaskGenParam {
 
 
 	public void setTUtil(CRange r) {
-		tu_ub=r.getDblL();
-		tu_lb=r.getDblU();
+		tu_lb=r.getDblL();
+		tu_ub=r.getDblU();
 	}
 
 
@@ -77,6 +78,12 @@ public class TaskGenParam {
 		tgp.setPeriod(new CRange(300,500));
 		tgp.setTUtil(new CRange(0.01,0.1));
 		return tgp;
+		
+	}
+
+	public void prn() {
+		SLog.prn(1, u_lb+"");
+		SLog.prn(1, u_ub+"");
 		
 	}
 	
