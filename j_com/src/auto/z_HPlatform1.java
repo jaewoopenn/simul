@@ -23,7 +23,7 @@ public class z_HPlatform1 {
 		String cl="a_cfg_list.txt";
 		HPlatform p=new HPlatform(g_path);
 		p.setNum(10);
-		p.genCfg_util(30,70,5,cl);
+		p.genCfg_util(50,100,10,cl);
 		return -1;
 	}
 
@@ -41,6 +41,7 @@ public class z_HPlatform1 {
 	{
 		String ts="a_ts_list.txt";
 		HPlatform p=new HPlatform(g_path);
+		p.setPeriod(50);
 		p.anal(ts,0);
 		return -1;		
 	}

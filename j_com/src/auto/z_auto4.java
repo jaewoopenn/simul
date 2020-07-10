@@ -1,16 +1,16 @@
 package auto;
 
 
-// auto task level 
+// auto comp level 
 
 import util.SEngineT;
 
 
-public class z_auto3 {
+public class z_auto4 {
 	
 	public static void init_s() {
-		int s=1;
-//		int s=2;
+//		int s=1;
+		int s=2;
 //		int s=3;
 //		int s=4;
 		
@@ -35,38 +35,34 @@ public class z_auto3 {
 	}
 
 	public void loop_util() {
-		Platform p=new Platform(g_path);
-		p.setTU(g_t_lb,g_t_ub);
+		HPlatform p=new HPlatform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util(30,70,5,g_cfg);
+		p.genCfg_util(65,95,5,g_cfg);
 		p.genTS(g_cfg,g_ts,g_xaxis);
+		p.setPeriod(g_period);
 		p.anal_loop(g_rs,g_ts,g_anal);
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xaxis);
 		da.load_rs(g_rs);
 		da.save("_graph.txt");
-		da=new DataAnal(g_path,1);
-		da.load_x(g_xaxis);
-		da.load_rs(g_rs);
-		da.save("_graph2.txt");		
 		
 	}
 
 	public int test1()  {// config gen
 		init();
-		double lb[]= {0.02,0.01,0.03,0.05};
-		double ub[]= {0.1,0.04,0.06,0.1};
-		int st=0;
-		for(int i=st;i<4;i++) {
-			g_path="com/u"+i;
-			g_t_lb=lb[i];
-			g_t_ub=ub[i];
-			loop_util();
-		}
-		
+		g_path="com/t2";
+		loop_util();
 		return 0;
 	}
 	public int test2() {// task set gen
+		init();
+		int p[]= {10,25,50};
+		int st=0;
+		for(int i=st;i<3;i++) {
+			g_path="com/c"+i;
+			g_period=p[i];
+			loop_util();
+		}
 		return -1;	
 	}
 	
@@ -98,10 +94,10 @@ public class z_auto3 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto3.init_s();
-		Class c = z_auto3.class;
-		z_auto3 m=new z_auto3();
-		int[] aret=z_auto3.gret;
+		z_auto4.init_s();
+		Class c = z_auto4.class;
+		z_auto4 m=new z_auto4();
+		int[] aret=z_auto4.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
@@ -118,6 +114,5 @@ public class z_auto3 {
 	private String g_ts;
 	private String g_xaxis;
 	private String g_rs;
-	private double g_t_ub;
-	private double g_t_lb;
+	private int g_period;
 }

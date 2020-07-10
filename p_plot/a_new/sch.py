@@ -7,11 +7,12 @@ Created on 2015. 12. 11.
 import file.MFile as mf
 import util.MPlot as mp;
 class gl_inp:
-    fn="com/t1/_graph.txt"
+    fn="com/t2/_graph.txt"
     path="/data/com"
     xlab= "Utilization Bound(%)"
-    ylab= "Util. of Res. Model"
+#     ylab= "Util. of Res. Model"
 #     ylab= "Overheads"
+    ylab= "Acceptance Ratio"
 
 class gl:
     lab=[]
@@ -52,7 +53,8 @@ def main():
         no+=1
 #     mp.ylim(0.025, 0.2)
 #     mp.legendBL()
-    mp.legendUL()
+#     mp.legendUL()
+    mp.legendUR()
     mp.xlabel(gl_inp.xlab)
     mp.ylabel(gl_inp.ylab)
     mp.show()

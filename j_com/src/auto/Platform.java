@@ -19,7 +19,7 @@ import util.SLog;
 
 public class Platform {
 	private String g_path;
-	private int g_num=100;
+	private int g_num=10;
 	private double g_t_lb=0.02;
 	private double g_t_ub=0.1;
 	public Platform(String path) {
@@ -45,7 +45,7 @@ public class Platform {
 			String lab=ub+"";
 			SLog.prn(2, lab);
 			cg.setParam("u_lb", (ub-5)*1.0/100);
-			cg.setParam("u_ub", (ub+5)*1.0/100);
+			cg.setParam("u_ub", (ub)*1.0/100);
 			cg.setParam("label",lab) ;
 			cg.setParam("fn", g_path+"/taskset_"+lab+".txt");
 			String fn=g_path+"/cfg_"+lab+".txt";
@@ -134,8 +134,8 @@ public class Platform {
 		for(int i=0;i<num;i++) {
 			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
-			double r=anal_tasks(tm,a);
-			fu.add(r+"");
+			String res=anal_tasks(tm,a);
+			fu.add(res);
 		}
 		fu.save(out);
 		
@@ -148,12 +148,12 @@ public class Platform {
 		for(int i=0;i<=num;i++) {
 			tm=sy.loadOne();
 		}
-		double r=anal_tasks(tm,a);
-		SLog.prn(3, r+"");
+		String res=anal_tasks(tm,a);
+		SLog.prn(3, res);
 	}
 
 	
-	private double anal_tasks(TaskSet tm, Anal a) {
+	private String anal_tasks(TaskSet tm, Anal a) {
 		int p=25;  // TODO change period
 		tm.sort();
 
@@ -165,10 +165,10 @@ public class Platform {
 		if(!a.is_sch()) {
 			SLog.err("not sch ");
 		}
-//		return e/p;
 
-		double ov=e/p-tm.getUtil();
-		return ov;
+		double ru=e/p;
+		return ru+" "+tm.getUtil();
+
 	}
 
 }

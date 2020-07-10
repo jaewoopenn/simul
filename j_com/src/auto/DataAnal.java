@@ -8,14 +8,16 @@ import util.MList;
 
 
 public class DataAnal {
+	private int g_sort;
+	
 	private String g_path;
 	private Vector<String> g_xl=new Vector<String>();
 	private double[][] g_rs;
 	private int g_max=0;
 	private int g_xlen=0;
-	public DataAnal(String path,int x) {
+	public DataAnal(String path, int s) {
 		g_path=path;
-		g_max=x;
+		g_sort=s;
 	}
 	public void load_x(String fn) {
 		MList fu=new MList(g_path+"/"+fn);
@@ -76,7 +78,14 @@ public class DataAnal {
 		double sum=0;
 		for(int i=0;i<n;i++) {
 			String s=fu.get(i);
-			sum+=Double.valueOf(s).doubleValue();
+			String[] st=s.split(" ");
+			double res=Double.valueOf(st[0]).doubleValue();
+			if(g_sort==0) {
+				sum+=res;
+			} else {
+				double util=Double.valueOf(st[1]).doubleValue();
+				sum+=res-util;
+			}
 		}
 		return (sum/n);
 	}

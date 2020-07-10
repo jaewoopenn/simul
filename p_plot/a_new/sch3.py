@@ -1,5 +1,6 @@
 '''
-Task level four graph
+Comp level four graph
+
 Created on 2015. 12. 11.
 
 @author: cpslab
@@ -11,16 +12,11 @@ class gl_inp:
     xlab= "Utilization Bound(%)"
 
     fn="_graph.txt"
-    savename="com/res"
-    path="com/u"
+    savename="com/csf"
+    path="com/c"
     ylim=1.0
-    ylab= "Util. of Res. Model"
+    ylab= "Acceptance Ratio"
     
-#     fn="_graph2.txt"
-#     savename="com/ov"
-#     path="com/u"
-#     ylim=0.23
-#     ylab= "Overheads"
 
 class gl:
     lab=[]
@@ -65,7 +61,8 @@ def loop(i):
         no+=1
     mp.ylim(0,gl_inp.ylim)
 #     mp.legendBL()
-    mp.legendUL()
+#     mp.legendUL()
+    mp.legendUR()
     mp.xlabel(gl_inp.xlab)
     mp.ylabel(gl_inp.ylab)
     mp.savefig(mf.filepath(gl_inp.savename+str(i)+".pdf"))
@@ -75,7 +72,6 @@ def main():
     loop(0)
     loop(1)
     loop(2)
-    loop(3)
 
 if __name__ == '__main__':
     main()

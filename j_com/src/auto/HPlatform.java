@@ -22,12 +22,16 @@ import util.SLog;
 public class HPlatform {
 	private String g_path;
 	private int g_num=100;
+	private int g_period=25;
 	public HPlatform(String path) {
 		g_path=path;
 	}
 	
 	public void setNum(int n) {
 		g_num=n;
+	}
+	public void setPeriod(int p) {
+		g_period=p;
 	}
 	
 	// gen CFG, TS
@@ -40,7 +44,7 @@ public class HPlatform {
 			String lab=ub+"";
 			SLog.prn(2, lab);
 			cg.setParam("u_lb", (ub-5)*1.0/100);
-			cg.setParam("u_ub", (ub+5)*1.0/100);
+			cg.setParam("u_ub", (ub)*1.0/100);
 			cg.setParam("label",lab) ;
 			cg.setParam("fn", g_path+"/taskset_"+lab+".txt");
 			String fn=g_path+"/cfg_"+lab+".txt";
@@ -111,35 +115,37 @@ public class HPlatform {
 			CompSet cm=sy.loadOne();
 			if(cm==null) break;
 //			cm.prn();
-			double r=analComSet(cm,anal);
-			fu.add(r+"");
+			String res=analComSet(cm,anal);
+			fu.add(res);
 		}
 		fu.save(f_out);
 	}
-	private double analComSet(CompSet cs,Anal anal) {
+	private String analComSet(CompSet cs,Anal anal) {
 		double r=0;
 		for(int i=0;i<cs.size();i++) {
 			Comp c=cs.get(i);
 			r+=analCom(c,anal);
 		}
-		return r;
+		if(r<=1)
+			return "1";
+		else
+			return "0";
 	}
 
 	private double analCom(Comp c,Anal a) {
-		int p=25;  // TODO change period
 		TaskSet tm=c.getTS();
 		tm.sort();
 		a.init(tm);
-		double e=a.getExec(p);
-		PRM prm=new PRM(p,e);
+		double e=a.getExec(g_period);
+		PRM prm=new PRM(g_period,e);
 		prm.prn();
 		a.setPRM(prm);
 		if(!a.is_sch()) {
 			SLog.err("not sch ");
 		}
-		SLog.prnc(3, c.cid+" ");
-		SLog.prn(3, p+" "+e);
-		return e/p;
+//		SLog.prnc(3, c.cid+" ");
+//		SLog.prn(3, g_period+" "+e);
+		return e/g_period;
 	}
 
 
