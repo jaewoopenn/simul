@@ -19,12 +19,12 @@ def u_load(c,fn):
     
 def main():
     c1=mc.C_Draw()
-    u_load(c1,"com/ex1.txt")
+    u_load(c1,"com/draw/ex1.txt")
     c1.draw2('b-')
     c2=mc.C_Draw()
-    u_load(c2,"com/ex2.txt")
+    u_load(c2,"com/draw/ex2.txt")
     c2.draw2('r-')
-    c1.lim(21,15)
+    c1.lim(21,14)
     c1.show()
     
 
