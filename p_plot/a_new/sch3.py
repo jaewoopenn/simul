@@ -22,7 +22,7 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','b--','m-.','g:','k--']
+    line=['r-','m--','b-.','g:','k--']
     marker=['o','v','D','^','s']
 
 def load(i):

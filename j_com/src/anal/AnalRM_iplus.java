@@ -123,7 +123,7 @@ public class AnalRM_iplus extends Anal{
 //		if(k==-1)
 //			return pi;
 		double theta=pi-(t-req-2)/(k+2);
-		double init_d=pi-Math.floor(theta);
+		double init_d=pi-Math.floor(theta+0.5);
 		String st=" theta:"+theta;
 		st+=" init_d:"+init_d;
 		double alpha=t-init_d-k*pi;
@@ -146,7 +146,7 @@ public class AnalRM_iplus extends Anal{
 		if(theta>pi)
 			return pi;
 		st+=" theta:"+theta;
-		double init_d=pi-Math.floor(theta);
+		double init_d=pi-Math.floor(theta+0.5);
 		st+=" init_d:"+init_d;
 		double alpha=t-init_d-k*pi;
 		st+=" alpha:"+alpha;

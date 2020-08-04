@@ -1,5 +1,5 @@
 '''
-Task level four graph
+Draw Acceptance Ratio
 Created on 2015. 12. 11.
 
 @author: cpslab
@@ -7,34 +7,22 @@ Created on 2015. 12. 11.
 import file.MFile as mf
 import util.MPlot as mp;
 class gl_inp:
-    path="com/u"
-    xlab= "Utilization Bound(%)"
-
-#     fn="_graph.txt"
-#     savename="com/res"
-#     path="com/u"
-#     ylim=1.0
+    fn="com/draw/compare.txt"
+    path="/data/com"
+    xlab= "Time"
 #     ylab= "Util. of Res. Model"
-    
-    fn="_graph2.txt"
-    savename="com/ov"
-    path="com/u"
-    ylim=0.23
-    ylab= "Overheads"
+#     ylab= "Overheads"
+    ylab= "Resource"
 
 class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','m--','b-.','g:','k--']
+    line=['r-','b--','m-.','g:','k--']
     marker=['o','v','D','^','s']
 
-def load(i):
-    gl.lab=[]
-    gl.x=[]
-    gl.vv=[]
-
-    i_f=mf.load(gl_inp.path+str(i)+"/"+gl_inp.fn)
+def load():
+    i_f=mf.load(gl_inp.fn)
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
@@ -56,26 +44,20 @@ def load(i):
         gl.vv.append(v)
         
         
-def loop(i):
-    load(i)
+
+def main():
+    load()
     no=0
-    mp.prepare()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.ylim(0,gl_inp.ylim)
+    mp.ylim(-0.25,5)
 #     mp.legendBL()
-    mp.legendUL()
+#     mp.legendUL()
+    mp.legendUR()
     mp.xlabel(gl_inp.xlab)
     mp.ylabel(gl_inp.ylab)
-    mp.savefig(mf.filepath(gl_inp.savename+str(i)+".pdf"))
-#     mp.show()
-
-def main():
-    loop(0)
-    loop(1)
-    loop(2)
-    loop(3)
+    mp.show()
 
 if __name__ == '__main__':
     main()

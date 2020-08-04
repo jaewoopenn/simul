@@ -24,6 +24,7 @@ public class z_auto4 {
 	
 	public void init() {
 		g_num=2000;
+//		g_num=100;
 		g_cfg="_cfg.txt";
 		g_ts="_ts.txt";
 		g_xaxis="_x.txt";
