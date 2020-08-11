@@ -19,8 +19,8 @@ def u_load(c,fn):
     
 def main():
     c1=mc.C_Draw()
-#     u_load(c1,"com/draw/rbf2_ex1.txt")
-    u_load(c1,"com/draw/rbf3_ex1.txt")
+    u_load(c1,"com/draw/rbf2_ex1.txt")
+#     u_load(c1,"com/draw/rbf3_ex1.txt")
     c1.draw3('b-',"SBF")
     c2=mc.C_Draw()
     u_load(c2,"com/draw/isbf_ex1.txt")
