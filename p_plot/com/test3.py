@@ -14,7 +14,8 @@ import com.MCom as mc
 
 
 def u_load(c):
-    mc.load_fn(c,"com/draw/ex1.txt")
+    mc.load_fn(c,"com/draw/rbf2_ex1.txt")
+#     mc.load_fn(c,"com/draw/rbf3_ex1.txt")
 #     mc.load_fn(c,"test/test_dbf.txt")
     
     

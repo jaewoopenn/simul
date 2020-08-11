@@ -14,6 +14,8 @@ public class AnalSel {
 			return new AnalRM_int();
 		} else if(sort==2) {
 			return new AnalRM_iplus();
+		} else if(sort==3) {
+			return new AnalRM_dprm();
 		}
 		return null;
 	}

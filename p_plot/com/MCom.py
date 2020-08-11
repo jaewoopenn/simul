@@ -62,6 +62,8 @@ class C_Draw:
         mp.plot(self.xl,self.vl)
     def draw2(self, l):
         mp.plot4(self.xl,self.vl,l)
+    def draw3(self, l,lab):
+        mp.plot2(self.xl,self.vl,l,lab)
 
     def lim(self,x,y):
         mp.xlim(0,x)
@@ -71,5 +73,11 @@ class C_Draw:
     def show(self):
         mp.ylabel("Resources")
         mp.xlabel("Time")
+        mp.show()
+
+    def show2(self):
+        mp.ylabel("Resources")
+        mp.xlabel("Time")
+        mp.legendUL()
         mp.show()
         

@@ -8,7 +8,6 @@ import file.MFile as mf
 import util.MPlot as mp;
 class gl_inp:
     fn="com/draw/compare.txt"
-    path="/data/com"
     xlab= "Time"
 #     ylab= "Util. of Res. Model"
 #     ylab= "Overheads"

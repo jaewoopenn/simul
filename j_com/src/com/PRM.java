@@ -72,5 +72,8 @@ public class PRM {
 			return (k+1)*period+l;
 		}
 	}
+	public double getUtil() {
+		return exec/period;
+	}
 	
 }

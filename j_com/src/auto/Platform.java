@@ -10,6 +10,8 @@ package auto;
 import com.PRM;
 
 import anal.Anal;
+import anal.AnalRM_dprm;
+import anal.AnalRM_int;
 import anal.AnalSel;
 import gen.ConfigGen;
 import gen.SysGen;
@@ -155,19 +157,36 @@ public class Platform {
 	
 	private String anal_tasks(TaskSet tm, Anal a) {
 		int p=25;  // TODO change period
+		int p2=50;  
 		tm.sort();
-
-		a.init(tm);
-		double e=a.getExec(p);
-		PRM prm=new PRM(p,e);
-		prm.prn();
-		a.setPRM(prm);
-		if(!a.is_sch()) {
-			SLog.err("not sch ");
+		if(a.getName().equals("DPRM")) {
+			AnalRM_int a2=new AnalRM_int();
+			a2.init(tm);
+			double exec=a2.getExec(p);
+			double u1=exec/p;
+			AnalRM_dprm a3=new AnalRM_dprm();
+			a3.init(tm);
+			PRM r=new PRM(p,exec-1);
+			double exec2=a3.getExec(p2,r);
+			double u2=r.getUtil()+exec2/p2;
+			if(u1<u2)
+				u2=u1;
+			return u2+" "+tm.getUtil();
+			
+		} else {
+			a.init(tm);
+			double e=a.getExec(p);
+			PRM prm=new PRM(p,e);
+			prm.prn();
+			a.setPRM(prm);
+			if(!a.is_sch()) {
+				SLog.err("not sch ");
+			}
+	
+			double ru=e/p;
+			return ru+" "+tm.getUtil();
+			
 		}
-
-		double ru=e/p;
-		return ru+" "+tm.getUtil();
 
 	}
 

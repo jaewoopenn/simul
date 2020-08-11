@@ -6,13 +6,13 @@ import util.MCal;
 import util.SEngineT;
 
 public class z_sbf2 {
-	public static int log_level=1;
 	public static int idx=1;
+	public static int log_level=1;
 	public static int total=10;
 	public static int gret[]={2,23,0,0,0,0,0,0,0,0};
 	public int test1()
 	{
-		PRM p=new PRM(3,1.3);
+		PRM p=new PRM(3,1.6);
 		double r=0;
 		SLog.prn(1, "xxx nSBF iSBF");
 		for(int t=0;t<20;t++) {
@@ -28,10 +28,27 @@ public class z_sbf2 {
 	}
 	public int test2() 
 	{
+		PRM p=new PRM(3,1.6);
+		double r=0;
+		SLog.prn(1, "xxx nSBF iSBF");
+		for(int t=0;t<20;t++) {
+			SLog.prnc(1, ""+t);
+			r=p.sbf(t);
+			SLog.prnc(1, " "+MCal.getStr(r));
+			r=p.sbf_n(t);
+			SLog.prnc(1, " "+MCal.getStr(r));
+			r=p.sbf_i(t);
+			SLog.prn(1, " "+MCal.getStr(r));
+		}
 		return 0;
 	}
 	public  int test3()
 	{
+		PRM p=new PRM(3,1.3);
+		double r=0;
+		int t=4;
+		r=p.sbf(t);
+		SLog.prn(1, " "+MCal.getStr(r));
 		return 0;
 	}
 	public  int test4()
