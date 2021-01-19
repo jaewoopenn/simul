@@ -4,15 +4,15 @@ import task.SysInfo;
 import task.TaskMng;
 import util.SLog;
 
-public class AnalEDF_DQ extends Anal {
+public class AnalFMC extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
 	SysInfo g_info;
-	public AnalEDF_DQ() {
+	public AnalFMC() {
 		super();
-		g_name="EDF-DQ";
+		g_name="EDF-VD";
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class AnalEDF_DQ extends Anal {
 	}
 	
 	public static double computeX(TaskMng tm) {
-		AnalEDF_DQ a=new AnalEDF_DQ();
+		AnalFMC a=new AnalFMC();
 		a.init(tm);
 		a.prepare();
 		return a.computeX();
