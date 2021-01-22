@@ -34,7 +34,7 @@ public class z_auto5 {
 	}
 	
 	public void init_g() {
-		g_path="sch/cmp";
+		g_path="sch/t1";
 		g_num=500;
 		g_dur=5000;
 		g_cf="a_cfg_list.txt";
@@ -61,7 +61,7 @@ public class z_auto5 {
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.setDur(g_dur);
-		p.sim_loop(g_rs, g_ts,0,3);
+		p.sim_loop(g_rs, g_ts,3,4);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);

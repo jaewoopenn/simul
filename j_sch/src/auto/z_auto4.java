@@ -53,7 +53,7 @@ public class z_auto4 {
 		p.setDur(g_dur);
 		p.setBE();
 		p.setP_MS(0.3);
-		p.sim_loop_dur(g_rs, g_ts, 3);
+		p.sim_loop_dur(g_rs, g_ts, 4);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);

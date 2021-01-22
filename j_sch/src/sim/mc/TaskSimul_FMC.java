@@ -10,7 +10,7 @@ public class TaskSimul_FMC extends TaskSimulMC{
 
 	public TaskSimul_FMC() {
 		super();
-		g_name="MC-ADAPT";
+		g_name="FMC";
 	}
 	@Override
 	public void initSimul() {
@@ -26,8 +26,9 @@ public class TaskSimul_FMC extends TaskSimulMC{
 	}
 	
 	private void drop_algo() {
-		double ru=g_tm.getRUtil();
-		while(ru>=1+MCal.err){
+		double ru=g_tm.getRUtilFMC();
+//		SLog.prn(1,"ru:"+ru);
+		while(ru>=0+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
 				g_sm.prn();
@@ -35,7 +36,9 @@ public class TaskSimul_FMC extends TaskSimulMC{
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-			ru-=g_tm.getReclaimUtil(tsk);
+			// LC task util minus
+			ru-=tsk.getLoUtil();
+//			ru-=g_tm.getReclaimUtil(tsk);
 		}
 		
 	}

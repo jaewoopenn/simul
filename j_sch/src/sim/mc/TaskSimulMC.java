@@ -64,6 +64,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	@Override
 	protected Job rel_one_job(Task tsk, int t) {
+//		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.period)+" "+tsk.c_l+" "+tsk.isHC());
 		if(tsk.isHC()){
 //			tsk.prnStat();
 			if(tsk.isHM()){

@@ -228,7 +228,7 @@ public class Platform {
 		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
 		MList fu_rs=new MList();
 		
-		Anal a=AnalSel.getAnal(0);
+		Anal a=AnalSel.getAnal(sort);
 		TaskSimulMC s=SimulSel.getSim(sort);
 		if(g_be)
 			s.setBE();
@@ -244,7 +244,7 @@ public class Platform {
 	}
 	public String simul_a(String fn,int sort) {
 		
-		Anal a=AnalSel.getAnal(0);
+		Anal a=AnalSel.getAnal(sort);
 		TaskSimulMC s=SimulSel.getSim(sort);
 		if(g_be)
 			s.setBE();
@@ -260,7 +260,7 @@ public class Platform {
 		MList fu_rs=new MList();
 		
 		String fn=fu.get(0);
-		Anal a=AnalSel.getAnal(0);
+		Anal a=AnalSel.getAnal(sort);
 		TaskSimulMC s=SimulSel.getSim(sort);
 		if(g_be)
 			s.setBE();
@@ -302,6 +302,7 @@ public class Platform {
 			}
 
 			double x=a.computeX();
+			
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);

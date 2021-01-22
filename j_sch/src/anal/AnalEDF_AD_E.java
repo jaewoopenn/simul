@@ -36,9 +36,9 @@ public class AnalEDF_AD_E extends Anal {
 
 	private void load() {
 		g_info=g_tm.getInfo();
-		g_lt_lu=g_info.getLo_util();
-		g_ht_lu=g_info.getHi_util_lm();
-		g_ht_hu=g_info.getHi_util_hm();
+		g_lt_lu=g_info.getUtil_LC();
+		g_ht_lu=g_info.getUtil_HC_LO();
+		g_ht_hu=g_info.getUtil_HC_HI();
 	}
 
 	
@@ -94,6 +94,7 @@ public class AnalEDF_AD_E extends Anal {
 		SLog.prn(1, " hh:"+MCal.getStr(g_ht_hu));
 		SLog.prnc(1, "x:"+glo_x);
 		SLog.prn(1, " hi_prefer:"+n_hi_prefer);
+		SLog.prn(1, "det:"+getDtm());
 		
 	}
 	@Override

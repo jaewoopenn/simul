@@ -16,7 +16,7 @@ public class JobMngMC extends JobMng {
 		for(Job j:g_jobs){
 			if(j.tid==tid) {
 				j.exec=j.exec+j.add_exec;
-				((Job)j).vd=j.dl;
+				j.setVD(j.dl);
 				j.add_exec=0;
 				v.add(j);
 			}

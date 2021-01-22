@@ -47,9 +47,9 @@ public class AnalMP extends Anal {
 	
 	private void load() {
 		g_info=g_tm.getInfo();
-		g_lt_lu=g_info.getLo_util();
-		g_ht_lu=g_info.getHi_util_lm();
-		g_ht_hu=g_info.getHi_util_hm();
+		g_lt_lu=g_info.getUtil_LC();
+		g_ht_lu=g_info.getUtil_HC_LO();
+		g_ht_hu=g_info.getUtil_HC_HI();
 	}
 
 	

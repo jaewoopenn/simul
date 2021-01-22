@@ -61,17 +61,17 @@ public class SysInfo {
 		return hi_util_hm;
 	}
 	
-	public double getLo_util() {
+	public double getUtil_LC() {
 		return lo_util;
 	}
 	public double getLo_max() {
 		return lo_util_max;
 	}
 	
-	public double getHi_util_lm() {
+	public double getUtil_HC_LO() {
 		return hi_util_lm;
 	}
-	public double getHi_util_hm() {
+	public double getUtil_HC_HI() {
 		return hi_util_hm;
 	}
 	
@@ -82,22 +82,22 @@ public class SysInfo {
 		this.lo_util = u;
 	}
 	
-	public void setHi_util_lm(double u) {
+	public void setUtil_HC_LO(double u) {
 		this.hi_util_lm = u;
 	}
-	public void setHi_util_hm(double u) {
+	public void setUtil_HC_HI(double u) {
 		this.hi_util_hm = u;
 	}
 	
 	public void prn() {
-		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(getLo_util()+getHi_util_lm()));
-		SLog.prnc(2, " ll_util:"+MCal.getStr(getLo_util()));
-		SLog.prn(2, " hl_util:"+MCal.getStr(getHi_util_lm()));
-		SLog.prn(2, "hi_mode_util:"+MCal.getStr(getHi_util_hm()));
+		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(getUtil_LC()+getUtil_HC_LO()));
+		SLog.prnc(2, " ll_util:"+MCal.getStr(getUtil_LC()));
+		SLog.prn(2, " hl_util:"+MCal.getStr(getUtil_HC_LO()));
+		SLog.prn(2, "hi_mode_util:"+MCal.getStr(getUtil_HC_HI()));
 		SLog.prn(2, "x:"+MCal.getStr(getX()));
 	}
 	public void prnUtil() {
-		SLog.prn(2, " ll_util:"+MCal.getStr(getLo_util()));
+		SLog.prn(2, " ll_util:"+MCal.getStr(getUtil_LC()));
 		
 	}
 	

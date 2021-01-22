@@ -10,7 +10,7 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    path="sch_b/dur"
+    path="sch/dur"
     fn="a_sim_graph.txt"
     xlab= "Duration (x1000)"
     ylab= "Deadline Miss Ratio"

@@ -1,7 +1,9 @@
 package anal;
 
 import task.SysInfo;
+import task.Task;
 import task.TaskMng;
+import util.MCal;
 import util.SLog;
 
 public class AnalFMC extends Anal {
@@ -12,33 +14,40 @@ public class AnalFMC extends Anal {
 	SysInfo g_info;
 	public AnalFMC() {
 		super();
-		g_name="EDF-VD";
+		g_name="FMC";
 	}
 
 	@Override
 	public void prepare() {
 		g_info=g_tm.getInfo();
-		lotasks_loutil=g_info.getLo_util();
-		hitasks_loutil=g_info.getHi_util_lm();
-		hitasks_hiutil=g_info.getHi_util_hm();
+		lotasks_loutil=g_info.getUtil_LC();
+		hitasks_loutil=g_info.getUtil_HC_LO();
+		hitasks_hiutil=g_info.getUtil_HC_HI();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
 	}
 	
 	@Override
 	public double getDtm() {
-		return getScore();
+		if(getScore()>=0)
+			return 1;
+		else 
+			return 2;
 	}
 
 	public double getScore() {
 		if (hitasks_hiutil>1) return 2;
 		if (lotasks_loutil>1) return 2;
 		
+		
 		double dtm=0;
-		double lotasks_hiutil=lotasks_loutil*0.1;
-		dtm+=glo_x*lotasks_loutil;
-		dtm+=(1-glo_x)*lotasks_hiutil;
-		dtm+=hitasks_hiutil;
-		return dtm;
+		for(Task t:g_tm.getHiTasks()){
+			double pi=t.getLoUtil()/hitasks_loutil*(1-lotasks_loutil)-t.getHiUtil();
+			if(pi<0)
+				dtm+=pi;
+//			SLog.prn(1, "pi:"+pi);
+		}
+		dtm+=(1-glo_x)*lotasks_loutil;
+		return dtm+MCal.err;
 	}
 	
 
@@ -60,6 +69,7 @@ public class AnalFMC extends Anal {
 	public void prn() {
 		SLog.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		SLog.prn(1, "x:"+glo_x);
+		SLog.prn(1, "score:"+getScore());
 		SLog.prn(1, "det:"+getDtm());
 		
 	}

@@ -22,16 +22,16 @@ class gl_input:
 #     ylim=0.065
 
 
-#     savename="sch_nb/pms"
-#     path="sch_nb/p"
+#     savename="sch/pms"
+#     path="sch/p"
 #     ylim=0.112
       
-#     savename="sch_nb/hc"
-#     path="sch_nb/h"
+#     savename="sch/hc"
+#     path="sch/h"
 #     ylim=0.10
 
-    savename="sch_nb/ratio"
-    path="sch_nb/r"
+    savename="sch/ratio"
+    path="sch/r"
     ylim=0.10
 
 

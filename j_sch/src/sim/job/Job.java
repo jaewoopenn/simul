@@ -2,6 +2,8 @@ package sim.job;
 
 import util.SLog;
 
+// Drop is +2000 VD
+
 public class Job implements Comparable<Job>{
 	public int tid;
 	public int dl;
@@ -37,7 +39,7 @@ public class Job implements Comparable<Job>{
 		if(isDrop)
 			return;
 		isDrop=true;
-		this.vd+=500;
+		this.vd+=2000;   
 //		SLogF.prn("drop "+this.tid+","+this.exec+","+this.vd);
 	}
 	@Override
@@ -61,4 +63,10 @@ public class Job implements Comparable<Job>{
 	public boolean isDrop() {
 		return isDrop;
 	}
+
+	public void setVD(int d) {
+		this.vd=d;
+	}
+
+
 }

@@ -51,8 +51,8 @@ public class TaskSetMC {
 		}
 		SysInfo info=new SysInfo();
 		info.setLo_util(loutil);
-		info.setHi_util_hm(hiutil_hm);
-		info.setHi_util_lm(hiutil_lm);
+		info.setUtil_HC_HI(hiutil_hm);
+		info.setUtil_HC_LO(hiutil_lm);
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,info);
 	}
 		
