@@ -20,6 +20,8 @@ public class z_auto2 {
 	private String g_rs;
 	private String g_graph;
 	
+	//  DRE (comment out), BRE (setBE) 
+	
 	public static void init_s() {
 //		int s=1;
 //		int s=2; //p
@@ -46,7 +48,7 @@ public class z_auto2 {
 
 
 	public void init_sim() {
-		g_p_ms=0.3;
+		g_p_ms=0.2;
 		g_p_hc=0.5;
 		g_ratio=-1;
 		g_util_ul=0.95;
@@ -63,8 +65,8 @@ public class z_auto2 {
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
-//		p.setBE();
-		p.sim_loop(g_rs, g_ts,0,4);
+		p.setBE();
+		p.sim_loop(g_rs, g_ts,0,5);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -82,7 +84,7 @@ public class z_auto2 {
 	{
 		init_g();
 		init_sim();
-		double a[]= {0.1,0.3,0.5};
+		double a[]= {0.05,0.2,0.5};
 		int st=0;
 		for(int i=st;i<3;i++) {
 			g_path="sch/p"+i;
@@ -108,7 +110,7 @@ public class z_auto2 {
 	{
 		init_g();
 		init_sim();
-		double a[]= {0.4,0.6,0.8};
+		double a[]= {0.2,0.4,0.6};
 		int st=0;
 		for(int i=st;i<3;i++) {
 			g_path="sch/r"+i;

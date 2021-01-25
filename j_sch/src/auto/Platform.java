@@ -24,7 +24,7 @@ public class Platform {
 	private double g_ratio=-1;
 	private boolean g_isCheck=false;
 	private int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
-	private boolean g_be=false;
+	private boolean g_be=false; // best effort 
 	
 	public Platform(String path) {
 		g_path=path;
@@ -227,8 +227,8 @@ public class Platform {
 		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
 		MList fu_rs=new MList();
-		
-		Anal a=AnalSel.getAnal(sort);
+		int anal_sort=Math.min(sort, 3);
+		Anal a=AnalSel.getAnal(anal_sort);
 		TaskSimulMC s=SimulSel.getSim(sort);
 		if(g_be)
 			s.setBE();
@@ -243,8 +243,9 @@ public class Platform {
 		return rs_fn;		
 	}
 	public String simul_a(String fn,int sort) {
+		int anal_sort=Math.min(sort, 3);
 		
-		Anal a=AnalSel.getAnal(sort);
+		Anal a=AnalSel.getAnal(anal_sort);
 		TaskSimulMC s=SimulSel.getSim(sort);
 		if(g_be)
 			s.setBE();
@@ -260,7 +261,9 @@ public class Platform {
 		MList fu_rs=new MList();
 		
 		String fn=fu.get(0);
-		Anal a=AnalSel.getAnal(sort);
+		int anal_sort=Math.min(sort, 3);
+		
+		Anal a=AnalSel.getAnal(anal_sort);
 		TaskSimulMC s=SimulSel.getSim(sort);
 		if(g_be)
 			s.setBE();

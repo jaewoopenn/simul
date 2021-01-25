@@ -25,14 +25,14 @@ class gl_input:
 #     savename="sch/pms"
 #     path="sch/p"
 #     ylim=0.112
-      
-#     savename="sch/hc"
-#     path="sch/h"
-#     ylim=0.10
-
-    savename="sch/ratio"
-    path="sch/r"
+       
+    savename="sch/hc"
+    path="sch/h"
     ylim=0.10
+
+#     savename="sch/ratio"
+#     path="sch/r"
+#     ylim=0.05
 
 
     fn="a_sim_graph.txt"
@@ -43,7 +43,7 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','b--','m-.','g:','k--']
+    line=['r-','k--','b-','g:','m-.']
     marker=['o','v','D','^','s']
 
 def load(i):
