@@ -2,12 +2,16 @@ package auto;
 
 
 import util.SEngineT;
-// DUR
+//MC-FLEX p hc ratio (DRE)
 
-public class z_auto4 {
+public class z_auto7 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
+	private double g_p_ms;
+	private double g_p_hc;
+	private double g_ratio;
+	private double g_util_ul;
 	private int g_num;
 	private int g_dur;
 	private String g_cf;
@@ -16,11 +20,14 @@ public class z_auto4 {
 	private String g_rs;
 	private String g_graph;
 	
+	//  DRE (comment out)
+	
 	public static void init_s() {
-		int s=1;
-//		int s=2;
-//		int s=3;
-//		int s=4;
+//		int s=1;
+		int s=2; //p
+//		int s=3; //hc
+//		int s=4; //ratio
+//		int s=5; //all in one.
 		
 		s_idx=s;
 		
@@ -28,32 +35,38 @@ public class z_auto4 {
 	}
 	
 	public void init_g() {
-		g_path="sch/dur";
+		g_path="schd/t2";
 		g_num=5000;
-//		g_num=300;
-		g_dur=4000;
+		g_dur=32000;
+//		g_num=500;
+//		g_dur=10000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
 		
 	}
 
+
 	public void init_sim() {
+		g_p_ms=0.2;
+		g_p_hc=0.5;
+		g_ratio=-1;
+		g_util_ul=0.95;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
 	public void loop_util() {
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.setP_HC(0.5);
-		p.genCfg_util_one(g_cf,0.85); //0.9
+		p.setP_HC(g_p_hc);
+		p.setRatio(g_ratio);
+		p.genCfg_util(g_cf,g_util_ul);
 		p.setCheck();
 		p.genTS(g_cf,g_ts,g_xl);
-		p.genXA(g_xl);
+		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
-		p.setBE();
-		p.setP_MS(0.2);
-		p.sim_loop_dur(g_rs, g_ts, 5);
+//		p.setBE();
+		p.sim_loop(g_rs, g_ts,0,5);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -63,30 +76,61 @@ public class z_auto4 {
 	{
 		init_g();
 		init_sim();
+		g_path="sch/t2";
 		loop_util();
 		return 0;
 	}
-	public int test2() // ms
+	public int test2() // p
 	{
+		init_g();
+		init_sim();
+		double a[]= {0.05,0.2,0.5};
+		int st=0;
+		for(int i=st;i<3;i++) {
+			g_path="schd/p"+i;
+			g_p_ms=a[i];
+			loop_util();
+		}
 		return 0;
 	}
 	public int test3() // hc
 	{
+		init_g();
+		init_sim();
+		double a[]= {0.25,0.5,0.75};
+		int st=0;
+		for(int i=st;i<3;i++) {
+			g_path="sch/h"+i;
+			g_p_hc=a[i];
+			loop_util();
+		}
 		return 0;
 	}
 	public  int test4() // ratio
 	{
+		init_g();
+		init_sim();
+		double a[]= {0.2,0.4,0.6};
+		int st=0;
+		for(int i=st;i<3;i++) {
+			g_path="sch/r"+i;
+			g_ratio=a[i];
+			loop_util();
+		}
 		return 0;		
 	}
-	public  int test5() // ratio
+	public  int test5() 
+	{
+		test2();
+		test3();
+		test4();
+		return 0;
+	}
+	public  int test6() 
 	{
 		return 0;
 	}
-	public  int test6() // ts --> simul rs
-	{
-		return 0;
-	}
-	public  int test7()// simul rs --> graph
+	public  int test7()
 	{
 		return 0;
 	}
@@ -102,10 +146,10 @@ public class z_auto4 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto4.init_s();
-		Class c = z_auto4.class;
-		z_auto4 m=new z_auto4();
-		int[] aret=z_auto4.gret;
+		z_auto7.init_s();
+		Class c = z_auto7.class;
+		z_auto7 m=new z_auto7();
+		int[] aret=z_auto7.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

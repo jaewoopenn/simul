@@ -2,7 +2,7 @@ package auto;
 
 
 import util.SEngineT;
-//MC-FLEX p hc ratio
+//MC-FLEX p hc ratio (BRE)
 
 public class z_auto2 {
 	private static int s_idx;

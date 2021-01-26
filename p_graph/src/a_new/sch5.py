@@ -19,7 +19,7 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','b--','m-.','g:','k--']
+    line=['r--','k-','b-.','g--','m:']
     marker=['o','v','D','^','s']
 
 def load():
@@ -32,15 +32,17 @@ def load():
 #     print(itemlen)
 
     for i in range(1,itemlen):
-        gl.lab.append(raw[0][i])
+        z=itemlen-i
+        gl.lab.append(raw[0][z])
     for i in range(1,len(raw)):
         gl.x.append(raw[i][0])
 #     print(gl.x)
 
     for i in range(1,itemlen):
+        z=itemlen-i
         v=[]
         for j in range(1,len(raw)):
-            v.append(float(raw[j][i]))
+            v.append(float(raw[j][z]))
 #         print(v)
         gl.vv.append(v)
         
@@ -56,7 +58,7 @@ def main():
     mp.legendUR()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(0,0.045)
+    mp.ylim(0,0.11)
     mp.show()
 
 if __name__ == '__main__':

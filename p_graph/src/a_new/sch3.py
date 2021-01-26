@@ -9,30 +9,23 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="sch_b/pms"
-#     path="sch_b/p"
-#     ylim=0.112
+#     savename="schd/pms"
+#     path="schd/p"
+#     ylim=0.150
       
-#     savename="sch_b/hc"
-#     path="sch_b/h"
-#     ylim=0.05
-
-#     savename="sch_b/ratio"
-#     path="sch_b/r"
-#     ylim=0.065
 
 
 #     savename="sch/pms"
 #     path="sch/p"
 #     ylim=0.112
        
-    savename="sch/hc"
-    path="sch/h"
-    ylim=0.10
-
-#     savename="sch/ratio"
-#     path="sch/r"
+#     savename="sch/hc"
+#     path="sch/h"
 #     ylim=0.05
+
+    savename="sch/ratio"
+    path="sch/r"
+    ylim=0.05
 
 
     fn="a_sim_graph.txt"
@@ -43,7 +36,7 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','k--','b-','g:','m-.']
+    line=['r--','k-','b-.','g--','m:']
     marker=['o','v','D','^','s']
 
 def load(i):
@@ -60,15 +53,17 @@ def load(i):
 #     print(itemlen)
 
     for i in range(1,itemlen):
-        gl.lab.append(raw[0][i])
+        z=itemlen-i
+        gl.lab.append(raw[0][z])
     for i in range(1,len(raw)):
         gl.x.append(str(int(raw[i][0])/100))
 #     print(gl.x)
 
     for i in range(1,itemlen):
+        z=itemlen-i
         v=[]
         for j in range(1,len(raw)):
-            v.append(float(raw[j][i]))
+            v.append(float(raw[j][z]))
 #         print(v)
         gl.vv.append(v)
         
