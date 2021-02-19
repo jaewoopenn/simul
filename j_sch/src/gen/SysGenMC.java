@@ -1,11 +1,13 @@
 package gen;
 
 
+
 import anal.Anal;
-import anal.AnalEDF_AD_E;
+//import anal.AnalEDF_AD_E;
 import anal.AnalFMC;
 import task.TaskMng;
 import task.TaskSetMC;
+import util.SLog;
 
 public class SysGenMC extends SysGen {
 	public SysGenMC(ConfigGen cfg) {
@@ -17,7 +19,7 @@ public class SysGenMC extends SysGen {
 	protected int check() {
 		if(!g_isCheck)
 			return 1;
-		TaskSetMC tsf=new TaskSetMC(g_tg.getTS()) ;
+		TaskSetMC tsf=new TaskSetMC(g_tg.getTS());
 		TaskMng tm=tsf.getTM();
 		Anal a=new AnalFMC();
 		a.init(tm);

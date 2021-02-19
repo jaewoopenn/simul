@@ -120,8 +120,10 @@ public class ConfigGen {
 		eg.setParam("p_ub","150");
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.2");
-		eg.setParam("r_lb","0.333");
-		eg.setParam("r_ub","0.5");
+//		eg.setParam("r_lb","0.333");
+//		eg.setParam("r_ub","0.5");
+		eg.setParam("r_lb","0.25");
+		eg.setParam("r_ub","1.0");
 		eg.setParam("prob_hi","0.5");
 		eg.setParam("num","10");
 		eg.setParam("subfix","exp");

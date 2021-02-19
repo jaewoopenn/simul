@@ -2,9 +2,9 @@ package auto;
 
 
 import util.SEngineT;
-//MC-FLEX p hc ratio (BRE)
+//MC-FLEX hc (BRE)
 
-public class z_auto2 {
+public class z_auto8 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
@@ -24,8 +24,8 @@ public class z_auto2 {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
-//		int s=3; //hc
+//		int s=2; //p
+		int s=3; //hc
 //		int s=4; //ratio
 //		int s=5; //all in one.
 		
@@ -146,10 +146,10 @@ public class z_auto2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto2.init_s();
-		Class c = z_auto2.class;
-		z_auto2 m=new z_auto2();
-		int[] aret=z_auto2.gret;
+		z_auto8.init_s();
+		Class c = z_auto8.class;
+		z_auto8 m=new z_auto8();
+		int[] aret=z_auto8.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

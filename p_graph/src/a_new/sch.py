@@ -6,7 +6,7 @@ Draw Acceptance Ratio //// MC-FLEX
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    fn="sch/t1/a_graph.txt"
+    fn="mcf/t1/a_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
 
@@ -27,18 +27,16 @@ def load():
 #     print(itemlen)
 
     for i in range(1,itemlen):
-        z=itemlen-i;
-        gl.lab.append(raw[0][z])
+        gl.lab.append(raw[0][i])
     for i in range(1,len(raw)):
         gl.x.append(str(int(raw[i][0])/100))
 #         gl.x.append(raw[i][0])
 #     print(gl.x)
 
     for i in range(1,itemlen):
-        z=itemlen-i;
         v=[]
         for j in range(1,len(raw)):
-            v.append(float(raw[j][z]))
+            v.append(float(raw[j][i]))
 #         print(v)
         gl.vv.append(v)
         
@@ -48,6 +46,7 @@ def main():
     load()
     no=0
     for v in gl.vv:
+        print(v)
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)

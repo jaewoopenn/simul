@@ -9,9 +9,9 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="schd/pms"
-#     path="schd/p"
-#     ylim=0.150
+    savename="schd/pms"
+    path="schd/p"
+    ylim=0.150
       
 
 
@@ -23,9 +23,9 @@ class gl_input:
 #     path="sch/h"
 #     ylim=0.05
 
-    savename="sch/ratio"
-    path="sch/r"
-    ylim=0.05
+#     savename="sch/ratio"
+#     path="sch/r"
+#     ylim=0.05
 
 
     fn="a_sim_graph.txt"

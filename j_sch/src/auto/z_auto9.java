@@ -2,15 +2,16 @@ package auto;
 
 
 import util.SEngineT;
-//MC-FLEX p hc ratio (BRE)
+//MC-FLEX ratio (BRE)
 
-public class z_auto2 {
+public class z_auto9 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
 	private double g_p_ms;
 	private double g_p_hc;
 	private double g_ratio;
+	private double g_ratio_hi;
 	private double g_util_ul;
 	private int g_num;
 	private int g_dur;
@@ -23,11 +24,7 @@ public class z_auto2 {
 	//  DRE (comment out), BRE (setBE) 
 	
 	public static void init_s() {
-//		int s=1;
-		int s=2; //p
-//		int s=3; //hc
-//		int s=4; //ratio
-//		int s=5; //all in one.
+		int s=4; //ratio
 		
 		s_idx=s;
 		
@@ -60,6 +57,7 @@ public class z_auto2 {
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
+		p.setRatio_hi(g_ratio_hi);
 		p.genCfg_util(g_cf,g_util_ul);
 		p.setCheck();
 		p.genTS(g_cf,g_ts,g_xl);
@@ -74,56 +72,33 @@ public class z_auto2 {
 	}
 	public int test1() 
 	{
-		init_g();
-		init_sim();
-		g_path="sch/t2";
-		loop_util();
 		return 0;
 	}
 	public int test2() // p
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.05,0.2,0.5};
-		int st=0;
-		for(int i=st;i<3;i++) {
-			g_path="sch/p"+i;
-			g_p_ms=a[i];
-			loop_util();
-		}
 		return 0;
 	}
 	public int test3() // hc
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.25,0.5,0.75};
-		int st=0;
-		for(int i=st;i<3;i++) {
-			g_path="sch/h"+i;
-			g_p_hc=a[i];
-			loop_util();
-		}
 		return 0;
 	}
 	public  int test4() // ratio
 	{
 		init_g();
 		init_sim();
-		double a[]= {0.2,0.4,0.6};
+		double a[]= {0.5,0.33,0.25};
+		double b[]= {1.0,0.5,0.33};
 		int st=0;
 		for(int i=st;i<3;i++) {
 			g_path="sch/r"+i;
 			g_ratio=a[i];
+			g_ratio_hi=b[i];
 			loop_util();
 		}
 		return 0;		
 	}
 	public  int test5() 
 	{
-		test2();
-		test3();
-		test4();
 		return 0;
 	}
 	public  int test6() 
@@ -146,10 +121,10 @@ public class z_auto2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto2.init_s();
-		Class c = z_auto2.class;
-		z_auto2 m=new z_auto2();
-		int[] aret=z_auto2.gret;
+		z_auto9.init_s();
+		Class c = z_auto9.class;
+		z_auto9 m=new z_auto9();
+		int[] aret=z_auto9.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

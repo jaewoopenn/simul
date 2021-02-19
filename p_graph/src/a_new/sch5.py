@@ -58,7 +58,7 @@ def main():
     mp.legendUR()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(0,0.11)
+    mp.ylim(0,0.07)
     mp.show()
 
 if __name__ == '__main__':

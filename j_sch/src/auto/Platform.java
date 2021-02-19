@@ -22,6 +22,7 @@ public class Platform {
 	private double g_p_ms=0.3;
 	private double g_p_hc=0.5;
 	private double g_ratio=-1;
+	private double g_ratio_hi=-1;
 	private boolean g_isCheck=false;
 	private int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	private boolean g_be=false; // best effort 
@@ -45,6 +46,10 @@ public class Platform {
 	public void setRatio(double d) {
 		g_ratio=d;
 	}
+	public void setRatio_hi(double d) {
+		g_ratio_hi=d;
+		
+	}
 	public void setCheck(){
 		g_isCheck=true;
 	}
@@ -66,8 +71,8 @@ public class Platform {
 			cg.setParam("mod", (lb+5)+"");
 			cg.setParam("prob_hi",g_p_hc+"");
 			if(g_ratio!=-1) {
-				cg.setParam("r_lb",(g_ratio-0.1)+"");
-				cg.setParam("r_ub",(g_ratio+0.1)+"");
+				cg.setParam("r_lb",(g_ratio)+"");
+				cg.setParam("r_ub",(g_ratio_hi)+"");
 			}
 			String fn=g_path+"/cfg_"+i+".txt";
 			cg.setFile(fn);
@@ -169,6 +174,8 @@ public class Platform {
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
 		MList fu_rs=new MList();
 		Anal a=AnalSel.getAnal(sort);
+		
+		SLog.prn(1, "a:"+a.getName());
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
 			String out=fn+".rs."+sort;
@@ -190,6 +197,7 @@ public class Platform {
 
 			a.init(tm);
 			a.prepare();
+//			a.prn();
 			if(a.is_sch()) {
 				fu.add("1");
 			} else {
@@ -326,6 +334,7 @@ public class Platform {
 		this.g_be=true;
 		
 	}
+
 
 
 	

@@ -11,7 +11,7 @@ test
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    path="sch/t1"
+    path="sch/t2"
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Deadline Miss Ratio"
