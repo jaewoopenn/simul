@@ -10,17 +10,17 @@ class gl_inp:
     path="com/u"
     xlab= "Utilization Bound(%)"
 
-#     fn="_graph.txt"
-#     savename="com/res"
-#     path="com/u"
-#     ylim=1.0
-#     ylab= "Util. of Res. Model"
-    
-    fn="_graph2.txt"
-    savename="com/ov"
+    fn="_graph.txt"
+    savename="com/res"
     path="com/u"
-    ylim=0.23
-    ylab= "Overheads"
+    ylim=1.0
+    ylab= "Util. of Res. Model"
+    
+#     fn="_graph2.txt"
+#     savename="com/ov"
+#     path="com/u"
+#     ylim=0.23
+#     ylab= "Overheads"
 
 class gl:
     lab=[]
