@@ -1,12 +1,12 @@
 package auto;
 
 
-// auto task level ... varying tu
+// auto task level ... varying period 
 
 import util.SEngineT;
 
 
-public class z_auto_n1 {
+public class z_auto_n2 {
 	
 	public static void init_s() {
 		int s=1;
@@ -101,10 +101,10 @@ public class z_auto_n1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto_n1.init_s();
-		Class c = z_auto_n1.class;
-		z_auto_n1 m=new z_auto_n1();
-		int[] aret=z_auto_n1.gret;
+		z_auto_n2.init_s();
+		Class c = z_auto_n2.class;
+		z_auto_n2 m=new z_auto_n2();
+		int[] aret=z_auto_n2.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
