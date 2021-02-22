@@ -24,6 +24,8 @@ public class Platform {
 	private int g_num=10;
 	private double g_t_lb=0.02;
 	private double g_t_ub=0.1;
+	private int g_p_lb=50;
+	private int g_p_ub=200;
 	public Platform(String path) {
 		g_path=path;
 	}
@@ -35,6 +37,11 @@ public class Platform {
 		g_t_lb=lb;
 		g_t_ub=ub;
 	}
+	public void setPeriod(int lb, int ub) {
+		g_p_lb=lb;
+		g_p_ub=ub;
+		
+	}
 	// gen CFG, TS
 	public void genCfg_util(int base, int top,int step,String cfg_list) {
 		ConfigGen cg=ConfigGen.getSample();
@@ -42,6 +49,8 @@ public class Platform {
 		cg.setParam("num",g_num+"");
 		cg.setParam("tu_lb",g_t_lb);
 		cg.setParam("tu_ub",g_t_ub);
+		cg.setParam("p_lb",g_p_lb);
+		cg.setParam("p_ub",g_p_ub);
 		for(int i=base;i<=top;i+=step){
 			int ub=i;
 			String lab=ub+"";
@@ -156,7 +165,7 @@ public class Platform {
 
 	
 	private String anal_tasks(TaskSet tm, Anal a) {
-		int p=25;  // TODO change period
+		int p=20;  // TODO change period
 		int p2=50;  
 		tm.sort();
 		if(a.getName().equals("DPRM")) {
@@ -172,7 +181,6 @@ public class Platform {
 			if(u1<u2)
 				u2=u1;
 			return u2+" "+tm.getUtil();
-			
 		} else {
 			a.init(tm);
 			double e=a.getExec(p);
@@ -189,5 +197,6 @@ public class Platform {
 		}
 
 	}
+
 
 }

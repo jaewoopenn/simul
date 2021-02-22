@@ -1,6 +1,5 @@
 '''
-Comp level four graph
-
+Task level four graph (period)
 Created on 2015. 12. 11.
 
 @author: cpslab
@@ -8,15 +7,20 @@ Created on 2015. 12. 11.
 import file.MFile as mf
 import util.MPlot as mp;
 class gl_inp:
-    path="com/c"
+    path="com/p"
     xlab= "Utilization Bound(%)"
 
-    fn="_graph.txt"
-    savename="com/csf"
-    path="com/c"
-    ylim=1.05
-    ylab= "Acceptance Ratio"
+#     fn="_graph.txt"
+#     savename="com/p_res"
+#     path="com/p"
+#     ylim=1.0
+#     ylab= "Util. of Res. Model"
     
+    fn="_graph2.txt"
+    savename="com/p_ov"
+    path="com/p"
+    ylim=0.23
+    ylab= "Overheads"
 
 class gl:
     lab=[]
@@ -61,17 +65,17 @@ def loop(i):
         no+=1
     mp.ylim(0,gl_inp.ylim)
 #     mp.legendBL()
-#     mp.legendUL()
-    mp.legendUR()
+    mp.legendUL()
     mp.xlabel(gl_inp.xlab)
     mp.ylabel(gl_inp.ylab)
     mp.savefig(mf.filepath(gl_inp.savename+str(i)+".pdf"))
 #     mp.show()
+
 def main():
     loop(0)
     loop(1)
-#     loop(2)
-    print("OK")
+    loop(2)
+    loop(3)
 
 if __name__ == '__main__':
     main()

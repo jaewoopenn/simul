@@ -23,9 +23,9 @@ public class z_auto_n2 {
 	}
 	
 	public void init() {
-//		g_num=5000;
-//		g_num=2000;
 		g_num=100;
+//		g_num=2000;
+//		g_num=5000;
 		g_cfg="_cfg.txt";
 		g_ts="_ts.txt";
 		g_xaxis="_x.txt";
@@ -39,11 +39,11 @@ public class z_auto_n2 {
 
 	public int test1()  {  // varying tu 
 		init();
-		double lb[]= {0.02,0.01,0.03,0.05};
-		double ub[]= {0.1,0.04,0.06,0.1};
+		int lb[]= {50,40,50,100};
+		int ub[]= {300,100,200,300};
 		int st=0;
 		for(int i=st;i<4;i++) {
-			g_path="com/u"+i;
+			g_path="com/p"+i;
 			g_t_lb=lb[i];
 			g_t_ub=ub[i];
 			loop_util();
@@ -83,7 +83,7 @@ public class z_auto_n2 {
 
 	public void loop_util() {
 		Platform p=new Platform(g_path);
-		p.setTU(g_t_lb,g_t_ub);
+		p.setPeriod(g_t_lb,g_t_ub);
 		p.setNum(g_num);
 		p.genCfg_util(30,70,5,g_cfg);
 		p.genTS(g_cfg,g_ts,g_xaxis);
@@ -121,6 +121,6 @@ public class z_auto_n2 {
 	private String g_ts;
 	private String g_xaxis;
 	private String g_rs;
-	private double g_t_ub;
-	private double g_t_lb;
+	private int g_t_ub;
+	private int g_t_lb;
 }

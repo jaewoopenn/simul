@@ -10,21 +10,27 @@ package auto;
 import com.PRM;
 
 import anal.Anal;
+import anal.AnalRM;
 import anal.AnalSel;
 import gen.ConfigGen;
 import gen.HSysGen;
 import task.Comp;
 import task.CompSet;
+import task.Task;
 import task.TaskSet;
+import task.TaskVec;
 import util.MList;
+import util.MRand;
 import util.SLog;
 
 public class HPlatform {
 	private String g_path;
 	private int g_num=100;
-	private int g_period=25;
+	private int g_period=0;
+	private MRand g_ran;
 	public HPlatform(String path) {
 		g_path=path;
+		g_ran=new MRand();
 	}
 	
 	public void setNum(int n) {
@@ -121,31 +127,47 @@ public class HPlatform {
 		fu.save(f_out);
 	}
 	private String analComSet(CompSet cs,Anal anal) {
-		double r=0;
+		int e=0;
+		AnalRM a=new AnalRM();
+		PRM pr=new PRM(12,12);
+		TaskVec tv=new TaskVec();
+		int p=0;
 		for(int i=0;i<cs.size();i++) {
 			Comp c=cs.get(i);
-			r+=analCom(c,anal);
+			if(g_period==-1) {
+				p=g_ran.getInt(25, 75);
+			} else {
+				p=g_period;
+			}
+			e=analCom(c,anal,p);
+			tv.add(new Task(p,e));
+			SLog.prn(3, p+","+e);
 		}
-		if(r<=1)
+		TaskSet tm=new TaskSet(tv);
+		tm.sort();
+		tm.prnInfo(3);
+		a.init(tm);
+		if(a.checkSch(pr))
 			return "1";
 		else
 			return "0";
 	}
 
-	private double analCom(Comp c,Anal a) {
+	private int analCom(Comp c,Anal a,int p) {
 		TaskSet tm=c.getTS();
 		tm.sort();
+//		tm.prnInfo(3);
 		a.init(tm);
-		double e=a.getExec(g_period);
-		PRM prm=new PRM(g_period,e);
+		double e=a.getExec(p);
+		PRM prm=new PRM(p,e);
 		prm.prn();
 		a.setPRM(prm);
 		if(!a.is_sch()) {
 			SLog.err("not sch ");
 		}
 //		SLog.prnc(3, c.cid+" ");
-//		SLog.prn(3, g_period+" "+e);
-		return e/g_period;
+		SLog.prn(3, p+" "+e);
+		return (int)Math.ceil(e);
 	}
 
 
