@@ -7,11 +7,11 @@ import util.SLog;
 public class Task {
 	public int tid;
 	public int period;
-	public int exec;
+	public double exec;
 
 	
 
-	public Task(int period, int c) {
+	public Task(int period, double c) {
 		this.tid=TaskSeq.getID();
 		this.period = period;
 		this.exec=c;

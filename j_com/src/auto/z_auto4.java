@@ -23,10 +23,10 @@ public class z_auto4 {
 	}
 	
 	public void init() {
-		g_num=5;
+//		g_num=5;
 //		g_num=100;
 //		g_num=500;
-//		g_num=2000;
+		g_num=3000;
 		g_cfg="_cfg.txt";
 		g_ts="_ts.txt";
 		g_xaxis="_x.txt";
@@ -40,15 +40,14 @@ public class z_auto4 {
 	public void loop_util() {
 		HPlatform p=new HPlatform(g_path);
 		p.setNum(g_num);
-//		p.genCfg_util(55,85,5,g_cfg);
-		p.genCfg_util(65,70,5,g_cfg);
+		p.genCfg_util(55,90,5,g_cfg);
 		p.genTS(g_cfg,g_ts,g_xaxis);
 		p.setPeriod(g_period);
 		p.anal_loop(g_rs,g_ts,g_anal);
-//		DataAnal da=new DataAnal(g_path,0);
-//		da.load_x(g_xaxis);
-//		da.load_rs(g_rs);
-//		da.save("_graph.txt");
+		DataAnal da=new DataAnal(g_path,0);
+		da.load_x(g_xaxis);
+		da.load_rs(g_rs);
+		da.save("_graph.txt");
 		
 	}
 
@@ -60,8 +59,9 @@ public class z_auto4 {
 	}
 	public int test2() {// task set gen
 		init();
-//		int p[]= {50,-1};
-		int p[]= {50};
+		int p[]= {13,25,-1};
+//		int p[]= {12,25,-1,-2};
+//		int p[]= {50};
 		int st=0;
 		for(int i=st;i<p.length;i++) {
 			g_path="com/c"+i;

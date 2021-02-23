@@ -70,7 +70,7 @@ def loop(i):
 def main():
     loop(0)
     loop(1)
-#     loop(2)
+    loop(2)
     print("OK")
 
 if __name__ == '__main__':

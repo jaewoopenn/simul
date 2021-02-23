@@ -19,7 +19,7 @@ class gl_inp:
     fn="_graph2.txt"
     savename="com/p_ov"
     path="com/p"
-    ylim=0.23
+    ylim=0.27
     ylab= "Overheads"
 
 class gl:
@@ -76,6 +76,7 @@ def main():
     loop(1)
     loop(2)
     loop(3)
-
+    print("OK")
+    
 if __name__ == '__main__':
     main()

@@ -127,7 +127,7 @@ public class HPlatform {
 		fu.save(f_out);
 	}
 	private String analComSet(CompSet cs,Anal anal) {
-		int e=0;
+		double e=0;
 		AnalRM a=new AnalRM();
 		PRM pr=new PRM(12,12);
 		TaskVec tv=new TaskVec();
@@ -135,17 +135,19 @@ public class HPlatform {
 		for(int i=0;i<cs.size();i++) {
 			Comp c=cs.get(i);
 			if(g_period==-1) {
-				p=g_ran.getInt(25, 75);
+				p=g_ran.getInt(12,60);
+			}else if(g_period==-2) {
+				p=12+g_ran.getInt(0,6)*8;
 			} else {
 				p=g_period;
 			}
 			e=analCom(c,anal,p);
 			tv.add(new Task(p,e));
-			SLog.prn(3, p+","+e);
+//			SLog.prn(3, p+","+e);
 		}
 		TaskSet tm=new TaskSet(tv);
 		tm.sort();
-		tm.prnInfo(3);
+//		tm.prnInfo(3);
 		a.init(tm);
 		if(a.checkSch(pr))
 			return "1";
@@ -153,7 +155,7 @@ public class HPlatform {
 			return "0";
 	}
 
-	private int analCom(Comp c,Anal a,int p) {
+	private double analCom(Comp c,Anal a,int p) {
 		TaskSet tm=c.getTS();
 		tm.sort();
 //		tm.prnInfo(3);
@@ -166,8 +168,9 @@ public class HPlatform {
 			SLog.err("not sch ");
 		}
 //		SLog.prnc(3, c.cid+" ");
-		SLog.prn(3, p+" "+e);
-		return (int)Math.ceil(e);
+//		SLog.prn(3, p+" "+e);
+		return e;
+//		return (int)Math.ceil(e);
 	}
 
 

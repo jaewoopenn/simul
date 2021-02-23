@@ -25,7 +25,7 @@ public class Platform {
 	private double g_t_lb=0.02;
 	private double g_t_ub=0.1;
 	private int g_p_lb=50;
-	private int g_p_ub=200;
+	private int g_p_ub=300;
 	public Platform(String path) {
 		g_path=path;
 	}
