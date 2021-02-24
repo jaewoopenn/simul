@@ -9,17 +9,20 @@ import util.MPlot as mp;
 class gl_inp:
     path="com/u"
     xlab= "Utilization Bound(%)"
+    
 
     fn="_graph.txt"
     savename="com/u_res"
     path="com/u"
-    ylim=1.0
+    ylim=0.92
+    ybase=0.3
     ylab= "Util. of Res. Model"
     
 #     fn="_graph2.txt"
 #     savename="com/u_ov"
 #     path="com/u"
 #     ylim=0.23
+#     ybase=0
 #     ylab= "Overheads"
 
 class gl:
@@ -63,7 +66,7 @@ def loop(i):
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.ylim(0,gl_inp.ylim)
+    mp.ylim(gl_inp.ybase,gl_inp.ylim)
 #     mp.legendBL()
     mp.legendUL()
     mp.xlabel(gl_inp.xlab)
