@@ -10,17 +10,19 @@ class gl_inp:
     path="com/p"
     xlab= "Utilization Bound(%)"
 
-#     fn="_graph.txt"
-#     savename="com/p_res"
-#     path="com/p"
-#     ylim=1.0
-#     ylab= "Util. of Res. Model"
-    
-    fn="_graph2.txt"
-    savename="com/p_ov"
+    fn="_graph.txt"
+    savename="com/p_res"
     path="com/p"
-    ylim=0.27
-    ylab= "Overheads"
+    ylim=0.93
+    ybase=0.3
+    ylab= "Util. of Res. Model"
+    
+#     fn="_graph2.txt"
+#     savename="com/p_ov"
+#     path="com/p"
+#     ylim=0.27
+#     ybase=0.0
+#     ylab= "Overheads"
 
 class gl:
     lab=[]
@@ -63,7 +65,7 @@ def loop(i):
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.ylim(0,gl_inp.ylim)
+    mp.ylim(gl_inp.ybase,gl_inp.ylim)
 #     mp.legendBL()
     mp.legendUL()
     mp.xlabel(gl_inp.xlab)
