@@ -8,7 +8,7 @@ import util.SLog;
 public class AnalRM_iplus extends Anal{
 	public AnalRM_iplus() {
 		super();
-		g_name="iPRM";
+		g_name="Q-CSF";
 	}	
 	
 	@Override

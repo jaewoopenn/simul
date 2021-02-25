@@ -8,7 +8,7 @@ import util.SLog;
 public class AnalRM extends Anal{
 	public AnalRM() {
 		super();
-		g_name="PRM";
+		g_name="CSF";
 	}	
 	
 	@Override

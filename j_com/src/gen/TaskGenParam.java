@@ -48,9 +48,41 @@ public class TaskGenParam {
 
 	public Task genTask(int tid, boolean isMC){
 //		Log.prn(2, p_lb+" "+p_ub);
-		int p=g_rand.getInt(p_lb,p_ub);
-		double tu=g_rand.getDbl(tu_lb,tu_ub);
-		int e=(int)(tu*p);
+		int p=0,e=0;
+		double tu=0;
+		p=g_rand.getInt(p_lb,p_ub);
+		double r=g_rand.getDbl();
+		double lb1=0.002;
+		double ub1=0.05;
+		double lb2=0.05;
+		double ub2=0.1;
+		if(tu_lb==-1) { // light
+			if(r<=8.0/9) {
+				tu=g_rand.getDbl(lb1,ub1);
+//				SLog.prn(3, "l");
+			} else {
+				tu=g_rand.getDbl(lb2,ub2);
+			}
+//			SLog.prn(3, tu+"-1 "+r);
+		} else if(tu_lb==-2) { // medium
+			if(r<=6.0/9) {
+				tu=g_rand.getDbl(lb1,ub1);
+			} else {
+				tu=g_rand.getDbl(lb2,ub2);
+			}
+//			SLog.prn(3, tu+"-2 "+r);
+		} else if(tu_lb==-3) { // heavy
+			if(r<=4.0/9) {
+				tu=g_rand.getDbl(lb1,ub1);
+			} else {
+				tu=g_rand.getDbl(lb2,ub2);
+			}
+//			SLog.prn(3, tu+"-3 "+r);
+		} else {
+			tu=g_rand.getDbl(tu_lb,tu_ub);
+//			SLog.prn(3, tu+"___");
+		}
+		e=(int)(tu*p);
 		return new Task(p,e);
 	}
 
@@ -58,6 +90,8 @@ public class TaskGenParam {
 	
 	
 	public boolean chkTask(Task t) {
+		if(t.exec==0)
+			return false;
 		return true;
 	}
 

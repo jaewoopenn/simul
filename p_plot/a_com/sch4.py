@@ -10,19 +10,19 @@ class gl_inp:
     path="com/p"
     xlab= "Utilization Bound(%)"
 
-    fn="_graph.txt"
-    savename="com/p_res"
-    path="com/p"
-    ylim=0.93
-    ybase=0.3
-    ylab= "Util. of Res. Model"
-    
-#     fn="_graph2.txt"
-#     savename="com/p_ov"
+#     fn="_graph.txt"
+#     savename="com/p_res"
 #     path="com/p"
-#     ylim=0.27
-#     ybase=0.0
-#     ylab= "Overheads"
+#     ylim=0.93
+#     ybase=0.3
+#     ylab= "Util. of Res. Model"
+    
+    fn="_graph2.txt"
+    savename="com/p_ov"
+    path="com/p"
+    ylim=0.27
+    ybase=0.0
+    ylab= "Overheads"
 
 class gl:
     lab=[]
@@ -77,7 +77,7 @@ def main():
     loop(0)
     loop(1)
     loop(2)
-    loop(3)
+#     loop(3)
     print("OK")
     
 if __name__ == '__main__':

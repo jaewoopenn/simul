@@ -135,7 +135,7 @@ public class HPlatform {
 		for(int i=0;i<cs.size();i++) {
 			Comp c=cs.get(i);
 			if(g_period==-1) {
-				p=g_ran.getInt(12,60);
+				p=g_ran.getInt(25,75);
 			}else if(g_period==-2) {
 				p=12+g_ran.getInt(0,6)*8;
 			} else {

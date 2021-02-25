@@ -34,6 +34,8 @@ public class TaskGen {
 //		SLog.prn(2, "===");
 		while(getUtil()<=Math.min(g_ub, g_param.u_ub)){
 			t=genTask(tid);
+			if(t==null)
+				continue;
 			g_tasks.add(t);
 			tid++;
 //			SLog.prn(2, ""+getUtil());
