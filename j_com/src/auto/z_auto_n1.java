@@ -40,10 +40,11 @@ public class z_auto_n1 {
 	public int test1()  {  // varying tu 
 		init();
 //		double lb[]= {-1,-1,-2,-3};
-		double lb[]= {0.02,-1,-2,-3};
+		double lb[]= {0.002,-1,-2,-3};
 		double ub[]= {0.1,0.04,0.06,0.1};
 		int st=0;
-		for(int i=st;i<4;i++) {
+		for(int i=st;i<1;i++) {
+//		for(int i=st;i<4;i++) {
 			g_path="com/u"+i;
 			g_t_lb=lb[i];
 			g_t_ub=ub[i];
@@ -83,12 +84,12 @@ public class z_auto_n1 {
 	}
 
 	public void loop_util() {
-//		Platform p=new Platform(g_path);
-//		p.setTU(g_t_lb,g_t_ub);
-//		p.setNum(g_num);
-//		p.genCfg_util(30,70,5,g_cfg);
-//		p.genTS(g_cfg,g_ts,g_xaxis);
-//		p.anal_loop(g_rs,g_ts,g_anal);
+		Platform p=new Platform(g_path);
+		p.setTU(g_t_lb,g_t_ub);
+		p.setNum(g_num);
+		p.genCfg_util(30,70,5,g_cfg);
+		p.genTS(g_cfg,g_ts,g_xaxis);
+		p.anal_loop(g_rs,g_ts,g_anal);
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xaxis);
 		da.load_rs(g_rs);

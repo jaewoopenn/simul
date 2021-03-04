@@ -22,7 +22,7 @@ import util.SLog;
 public class Platform {
 	private String g_path;
 	private int g_num=10;
-	private double g_t_lb=0.02;
+	private double g_t_lb=0.002;
 	private double g_t_ub=0.1;
 	private int g_p_lb=100;
 	private int g_p_ub=1000;

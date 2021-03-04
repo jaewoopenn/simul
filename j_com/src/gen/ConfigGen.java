@@ -114,7 +114,7 @@ public class ConfigGen {
 		ConfigGen eg=new ConfigGen();
 		eg.setParam("u_lb",0.7);
 		eg.setParam("u_ub",1.0);
-		eg.setParam("tu_lb",0.02);
+		eg.setParam("tu_lb",0.002);
 		eg.setParam("tu_ub",0.1);
 		eg.setParam("p_lb",100);
 		eg.setParam("p_ub",1000);
@@ -127,7 +127,7 @@ public class ConfigGen {
 		ConfigGen eg=new ConfigGen();
 		eg.setParam("u_lb",0.5);
 		eg.setParam("u_ub",0.7);
-		eg.setParam("tu_lb",0.02);
+		eg.setParam("tu_lb",0.002);
 		eg.setParam("tu_ub",0.1);
 		eg.setParam("cu_lb",0.1);
 		eg.setParam("cu_ub",0.3);
