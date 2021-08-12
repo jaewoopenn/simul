@@ -1,5 +1,5 @@
 '''
-Comp level four graph
+Sys level four graph (c..)
 
 Created on 2015. 12. 11.
 
@@ -14,7 +14,7 @@ class gl_inp:
     fn="_graph.txt"
     savename="com/csf"
     path="com/c"
-    ylim=1.05
+    ylim=1.01
     ylab= "Acceptance Ratio"
     
 
@@ -22,8 +22,8 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','m--','b-.','g:','k--']
-    marker=['o','v','D','^','s']
+    line=['r:','m--','b-','g-.','k--']
+    marker=['s','x','o','s','D']
 
 def load(i):
     gl.lab=[]
@@ -55,14 +55,14 @@ def load(i):
 def loop(i):
     load(i)
     no=0
-    mp.prepare()
+    mp.prepare2()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.ylim(0,gl_inp.ylim)
-#     mp.legendBL()
+    mp.legendBL()
 #     mp.legendUL()
-    mp.legendUR()
+#     mp.legendUR()
     mp.xlabel(gl_inp.xlab)
     mp.ylabel(gl_inp.ylab)
     mp.savefig(mf.filepath(gl_inp.savename+str(i)+".pdf"))

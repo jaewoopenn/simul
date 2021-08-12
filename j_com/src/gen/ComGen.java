@@ -6,11 +6,11 @@ import task.TaskSet;
 import util.SLog;
 
 public class ComGen {
-	protected ComGenParam g_param;
+	protected ComGenParam gsys_param;
 	protected TaskGen g_tg;
 	private CompSet g_cs;
 	public ComGen(ComGenParam cgp, TaskGen tg) {
-		g_param=cgp;
+		gsys_param=cgp;
 		g_tg=tg;
 //		tg.prn();
 	}
@@ -31,13 +31,13 @@ public class ComGen {
 		double u=0;
 		Comp c;
 //		SLog.prn(2, "===");
-		while(u<g_param.u_ub){
-			c=genCom(cid,g_param.u_ub-u);
+		while(u<gsys_param.u_ub){
+			c=genCom(cid,gsys_param.u_ub-u);
 			g_cs.add(c);
 			cid++;
 			u=g_cs.getUtil();
 //			SLog.prn(2, ""+u);
-			if(u>g_param.u_lb) break;
+			if(u>gsys_param.u_lb) break;
 		}
 	}
 	private Comp genCom(int cid,double ub) {
@@ -48,7 +48,7 @@ public class ComGen {
 		return c;
 	}
 	public int check(){
-		return g_param.check(g_cs.getUtil());
+		return gsys_param.check(g_cs.getUtil());
 	}
 	
 	

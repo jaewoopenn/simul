@@ -1,5 +1,5 @@
 '''
-Task level four graph
+Task level four graph (u...)
 Created on 2015. 12. 11.
 
 @author: cpslab
@@ -11,26 +11,26 @@ class gl_inp:
     xlab= "Utilization Bound(%)"
     
 
-    fn="_graph.txt"
-    savename="com/u_res"
-    path="com/u"
-    ylim=0.92
-    ybase=0.3
-    ylab= "Util. of Res. Model"
-    
-#     fn="_graph2.txt"
-#     savename="com/u_ov"
+#     fn="_graph.txt"
+#     savename="com/u_res"
 #     path="com/u"
-#     ylim=0.23
-#     ybase=0
-#     ylab= "Overheads"
+#     ylim=0.92
+#     ybase=0.3
+#     ylab= "Util. of Res. Model"
+    
+    fn="_graph2.txt"
+    savename="com/u_ov"
+    path="com/u"
+    ylim=0.22
+    ybase=0.04
+    ylab= "Overheads"
 
 class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r-','m--','b-.','g:','k--']
-    marker=['o','v','D','^','s']
+    line=['r:','m--','b-','g-.','k--']
+    marker=['s','x','o','s','D']
 
 def load(i):
     gl.lab=[]
@@ -62,7 +62,7 @@ def load(i):
 def loop(i):
     load(i)
     no=0
-    mp.prepare()
+    mp.prepare2()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1

@@ -6,13 +6,13 @@ Created on 2015. 12. 11.
 import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib.backends.backend_pdf import PdfPages
-matplotlib.rcParams.update({'font.size': 15})
+matplotlib.rcParams.update({'font.size': 19})
 
 def prepare():
     plt.figure(figsize=(8,5))
 
 def prepare2():
-    plt.figure(figsize=(7,7))
+    plt.figure(figsize=(8,8))
         
 def legendBL():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
@@ -35,7 +35,7 @@ def plot(x,v):
 def plot2(x,v,l,la):
     plt.plot(x,v, l, drawstyle='default',label=la )
 def plot3(x,v,l,la,ma):
-    plt.plot(x,v, l,marker=ma, drawstyle='default',label=la )
+    plt.plot(x,v, l,marker=ma, drawstyle='default',label=la,markersize=12)
 
 def plot4(x,v,l):
     plt.plot(x,v,l)
