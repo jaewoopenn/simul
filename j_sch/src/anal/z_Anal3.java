@@ -6,6 +6,7 @@ package anal;
 
 import z_ex.TS_MC1;
 import z_ex.TS_MC3;
+import z_ex.TS_MC4;
 import task.TaskMng;
 import util.SEngineT;
 
@@ -16,12 +17,13 @@ public class z_Anal3 {
 
 	public int test1() 
 	{
-		TaskMng tm=TS_MC1.ts1();
+		TaskMng tm=TS_MC4.ts1();
 //		TaskMng tm=TS_MC1.ts6();
 //		TaskMng tm=TS_MC1.ts1();
 //		TaskMng tm=TS_MC3.ts3();
 //		TaskMng tm=TS_MC3.ts4();
-		Anal a=new AnalEDF_IV();
+//		Anal a=new AnalEDF_IV();
+		Anal a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
 		a.prn();
