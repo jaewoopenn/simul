@@ -27,7 +27,8 @@ public class z_Anal3 {
 
 	public int test2() 
 	{
-		TaskMng tm=TS_MC4.ts1();
+//		TaskMng tm=TS_MC4.ts1();
+		TaskMng tm=TS_MC4.ts2();
 		Anal a=new AnalEDF_IV();
 		a.init(tm);
 		a.prepare();

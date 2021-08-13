@@ -18,6 +18,14 @@ public class TS_MC4 {
 		return tme.getTM();
 	}
 	
+	public static TaskMng ts2()	{
+		TaskVec tmp=new TaskVec();
+		tmp.add(new Task(6,1));
+		tmp.add(new Task(8,2,3));
+		tmp.add(new Task(10,3,4));
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
+		return tme.getTM();
+	}
 
 
 }

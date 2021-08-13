@@ -32,24 +32,28 @@ public class AnalEDF_IV extends Anal {
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
-			double delta=compDeriv(h,l,1);
-			double delta2=compDeriv(h,l,0.95);
 			SLog.prn(1,h+" "+l);
-			SLog.prn(1,"derivate 1.00 "+delta);
-			SLog.prn(1,"derivate 0.95 "+delta2);
-			SLog.prn(1,"h rate 1.00 "+h);
-			SLog.prn(1,"h rate 0.95 "+h/0.95);
-			SLog.prn(1,"h rate 0.90 "+h/0.9);
-			SLog.prn(1,"l rate 1.00 "+comp_lrate(h,l,1));
-			SLog.prn(1,"l rate 0.95 "+comp_lrate(h,l,0.95));
-			SLog.prn(1,"l rate 0.90 "+comp_lrate(h,l,0.90));
-			double x,y;
-			y=h/1 / comp_lrate(h,l,1);
-			x=h/0.95/comp_lrate(h,l,0.95);
-			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
-			y=h/0.95 / comp_lrate(h,l,0.95);
-			x=h/0.90/comp_lrate(h,l,0.90);
-			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
+			for(int i=0;i<10;i++) {
+				double z=1-0.01*i;
+				double delta=compDeriv(h,l,z);
+				SLog.prn(1,"derivate "+z+" "+delta);
+//				SLog.prn(1,"h rate "+z+" "+h/z);
+//				SLog.prn(1,"l rate "+z+" "+comp_lrate(h,l,z));
+//				SLog.prn(1,"delta "+z+" "+h/z/comp_lrate(h,l,z));
+			}
+//			SLog.prn(1,"h rate 1.00 "+h);
+//			SLog.prn(1,"h rate 0.95 "+h/0.95);
+//			SLog.prn(1,"h rate 0.90 "+h/0.9);
+//			SLog.prn(1,"l rate 1.00 "+comp_lrate(h,l,1));
+//			SLog.prn(1,"l rate 0.95 "+comp_lrate(h,l,0.95));
+//			SLog.prn(1,"l rate 0.90 "+comp_lrate(h,l,0.90));
+//			double x,y;
+//			y=h/1 / comp_lrate(h,l,1);
+//			x=h/0.95/comp_lrate(h,l,0.95);
+//			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
+//			y=h/0.95 / comp_lrate(h,l,0.95);
+//			x=h/0.90/comp_lrate(h,l,0.90);
+//			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
 		}
 		
 	}
