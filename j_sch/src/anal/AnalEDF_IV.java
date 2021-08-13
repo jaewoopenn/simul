@@ -25,13 +25,39 @@ public class AnalEDF_IV extends Anal {
 	public void prepare() {
 		load();
 		comp_X();
-		comp_hi_prefer();
 	}
 	
 	private void comp_X() {
-//		Log.prn(2, g_ht_hu+","+g_lt_lu);
-		double cal_x=(1-g_ht_hu)/g_lt_lu;
-		glo_x=Math.min(1,cal_x);
+		// delta_zi 
+		for(Task t:g_tm.getHiTasks()){
+			double l=t.getLoUtil();
+			double h=t.getHiUtil();
+			double delta=compDeriv(h,l,1);
+			double delta2=compDeriv(h,l,0.95);
+			SLog.prn(1,h+" "+l);
+			SLog.prn(1,"derivate 1.00 "+delta);
+			SLog.prn(1,"derivate 0.95 "+delta2);
+			SLog.prn(1,"h rate 1.00 "+h);
+			SLog.prn(1,"h rate 0.95 "+h/0.95);
+			SLog.prn(1,"h rate 0.90 "+h/0.9);
+			SLog.prn(1,"l rate 1.00 "+comp_lrate(h,l,1));
+			SLog.prn(1,"l rate 0.95 "+comp_lrate(h,l,0.95));
+			SLog.prn(1,"l rate 0.90 "+comp_lrate(h,l,0.90));
+			double x,y;
+			y=h/1 / comp_lrate(h,l,1);
+			x=h/0.95/comp_lrate(h,l,0.95);
+			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
+			y=h/0.95 / comp_lrate(h,l,0.95);
+			x=h/0.90/comp_lrate(h,l,0.90);
+			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
+		}
+		
+	}
+	private double compDeriv(double h,double l,double z) {
+		return -h/l/z/z;
+	}
+	private double comp_lrate(double h,double l,double z) {
+		return h*l/(h-(h-l)*z);
 	}
 
 	private void load() {

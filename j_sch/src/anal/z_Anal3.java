@@ -11,18 +11,13 @@ import task.TaskMng;
 import util.SEngineT;
 
 public class z_Anal3 {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 
 	public int test1() 
 	{
 		TaskMng tm=TS_MC4.ts1();
-//		TaskMng tm=TS_MC1.ts6();
-//		TaskMng tm=TS_MC1.ts1();
-//		TaskMng tm=TS_MC3.ts3();
-//		TaskMng tm=TS_MC3.ts4();
-//		Anal a=new AnalEDF_IV();
 		Anal a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
@@ -32,16 +27,10 @@ public class z_Anal3 {
 
 	public int test2() 
 	{
-//		TaskMng tm=TS_MC1.ts6();
-		TaskMng tm=TS_MC1.ts1();
-		Anal a=new AnalEDF_VD();
+		TaskMng tm=TS_MC4.ts1();
+		Anal a=new AnalEDF_IV();
 		a.init(tm);
 		a.prepare();
-		a.prn();
-		a=new AnalEDF_AD_E();
-		a.init(tm);
-		a.prepare();
-		a.prn();
 		return -1;
 	}
 	
