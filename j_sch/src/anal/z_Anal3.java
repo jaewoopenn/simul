@@ -32,6 +32,8 @@ public class z_Anal3 {
 //		int no=2;
 		int no=3;
 		
+		
+		
 		TaskMng tm=TS_MC4.getTS(no);
 		Anal a=new AnalEDF_IV();
 		a.init(tm);
