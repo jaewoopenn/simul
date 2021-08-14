@@ -37,8 +37,8 @@ public class AnalEDF_IV extends Anal {
 				double z=1-0.02*i;
 				double delta=compDeriv(h,l,z);
 				SLog.prn(1,"derivate "+z+" "+delta);
-				SLog.prn(1,"h rate "+z+" "+h/z);
-				SLog.prn(1,"l rate "+z+" "+comp_lrate(h,l,z));
+//				SLog.prn(1,"h rate "+z+" "+h/z);
+//				SLog.prn(1,"l rate "+z+" "+comp_lrate(h,l,z)); 
 				SLog.prn(1,"delta "+z+" "+h/z/comp_lrate(h,l,z));
 				SLog.prn(1,"----------------");
 			}
