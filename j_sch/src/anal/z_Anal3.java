@@ -2,6 +2,7 @@ package anal;
 
 /*
  * EDF-IV
+ * 
  */
 
 import z_ex.TS_MC1;
@@ -27,8 +28,11 @@ public class z_Anal3 {
 
 	public int test2() 
 	{
-//		TaskMng tm=TS_MC4.ts1();
-		TaskMng tm=TS_MC4.ts2();
+//		int no=1;
+//		int no=2;
+		int no=3;
+		
+		TaskMng tm=TS_MC4.getTS(no);
 		Anal a=new AnalEDF_IV();
 		a.init(tm);
 		a.prepare();

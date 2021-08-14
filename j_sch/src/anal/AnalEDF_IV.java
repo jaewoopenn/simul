@@ -33,13 +33,14 @@ public class AnalEDF_IV extends Anal {
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			SLog.prn(1,h+" "+l);
-			for(int i=0;i<10;i++) {
-				double z=1-0.01*i;
+			for(int i=0;i<5;i++) {
+				double z=1-0.02*i;
 				double delta=compDeriv(h,l,z);
 				SLog.prn(1,"derivate "+z+" "+delta);
-//				SLog.prn(1,"h rate "+z+" "+h/z);
-//				SLog.prn(1,"l rate "+z+" "+comp_lrate(h,l,z));
-//				SLog.prn(1,"delta "+z+" "+h/z/comp_lrate(h,l,z));
+				SLog.prn(1,"h rate "+z+" "+h/z);
+				SLog.prn(1,"l rate "+z+" "+comp_lrate(h,l,z));
+				SLog.prn(1,"delta "+z+" "+h/z/comp_lrate(h,l,z));
+				SLog.prn(1,"----------------");
 			}
 //			SLog.prn(1,"h rate 1.00 "+h);
 //			SLog.prn(1,"h rate 0.95 "+h/0.95);
