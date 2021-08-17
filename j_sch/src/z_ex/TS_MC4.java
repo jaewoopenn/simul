@@ -28,9 +28,9 @@ public class TS_MC4 {
 	}
 	public static TaskMng ts3()	{
 		TaskVec tmp=new TaskVec();
-		tmp.add(new Task(6,1));
-		tmp.add(new Task(9,2,3));
+		tmp.add(new Task(11,5));
 		tmp.add(new Task(10,2,3));
+		tmp.add(new Task(9,2,3));
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
 	}

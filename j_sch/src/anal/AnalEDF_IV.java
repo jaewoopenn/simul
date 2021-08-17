@@ -33,36 +33,42 @@ public class AnalEDF_IV extends Anal {
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			SLog.prn(1,h+" "+l);
-			for(int i=0;i<5;i++) {
-				double z=1-0.02*i;
+			for(int i=0;i<10;i++) {
+				double z=h+(1-h)*i/20;
 				double delta=compDeriv(h,l,z);
 				SLog.prn(1,"derivate "+z+" "+delta);
-				SLog.prn(1,"h rate "+z+" "+h/z);
-				SLog.prn(1,"l rate "+z+" "+comp_lrate(h,l,z));
-				SLog.prn(1,"delta "+z+" "+h/z/comp_lrate(h,l,z));
+				SLog.prn(1,"l rate "+l/(1-(h-l)/z));
+				SLog.prn(1,"h rate "+z);
 				SLog.prn(1,"----------------");
 			}
-//			SLog.prn(1,"h rate 1.00 "+h);
-//			SLog.prn(1,"h rate 0.95 "+h/0.95);
-//			SLog.prn(1,"h rate 0.90 "+h/0.9);
-//			SLog.prn(1,"l rate 1.00 "+comp_lrate(h,l,1));
-//			SLog.prn(1,"l rate 0.95 "+comp_lrate(h,l,0.95));
-//			SLog.prn(1,"l rate 0.90 "+comp_lrate(h,l,0.90));
-//			double x,y;
-//			y=h/1 / comp_lrate(h,l,1);
-//			x=h/0.95/comp_lrate(h,l,0.95);
-//			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
-//			y=h/0.95 / comp_lrate(h,l,0.95);
-//			x=h/0.90/comp_lrate(h,l,0.90);
-//			SLog.prn(1,"delta "+y+" "+x+" "+(y-x));
 		}
-		
 	}
+//	private void comp_X2() {
+//		// delta_zi 
+//		for(Task t:g_tm.getHiTasks()){
+//			double l=t.getLoUtil();
+//			double h=t.getHiUtil();
+//			SLog.prn(1,h+" "+l);
+////			double x=l/h;
+////			double delta=compDeriv(h,l,x);
+////			SLog.prn(1,"derivate "+x+" "+delta);
+//			for(int i=0;i<10;i++) {
+//				double x=l/h+(1-h+l-l/h)*i/20;
+//				double delta=compDeriv(h,l,x);
+//				SLog.prn(1,"derivate "+x+" "+delta);
+//				SLog.prn(1,"l rate "+l/x);
+//				SLog.prn(1,"h rate "+(h-l)/(1-x));
+//				SLog.prn(1,"----------------");
+//			}
+//		}
+//	}
+	
+//	private double compDeriv2(double h,double l,double x) {
+//		return -l/x/x+(h-l)/(1-x)/(1-x);
+//	}
+	
 	private double compDeriv(double h,double l,double z) {
-		return -h/l/z/z;
-	}
-	private double comp_lrate(double h,double l,double z) {
-		return h*l/(h-(h-l)*z);
+		return -l*(h-l)/Math.pow(z-h+l,2);
 	}
 
 	private void load() {
@@ -73,18 +79,6 @@ public class AnalEDF_IV extends Anal {
 	}
 
 	
-	private void comp_hi_prefer() {
-		n_hi_prefer=0;
-		for(Task t:g_tm.getHiTasks()){
-			double v_util=t.getLoUtil()/glo_x;
-			double h_util=t.getHiUtil();
-//			Log.prn(1, v_util+","+h_util);
-			if(v_util>=h_util){
-				t.setHI_only();
-				n_hi_prefer++;
-			}
-		}
-	}
 	
 	@Override
 	public double getDtm() {

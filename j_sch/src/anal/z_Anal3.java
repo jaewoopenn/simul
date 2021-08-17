@@ -28,14 +28,19 @@ public class z_Anal3 {
 
 	public int test2() 
 	{
-//		int no=1;
+		int no=1;
 //		int no=2;
-		int no=3;
+//		int no=3;
 		
 		
 		
 		TaskMng tm=TS_MC4.getTS(no);
-		Anal a=new AnalEDF_IV();
+		Anal a=new AnalEDF_AD_E();
+		a.init(tm);
+		a.prepare();
+		a.prn();
+		
+		a=new AnalEDF_IV();
 		a.init(tm);
 		a.prepare();
 		return -1;
