@@ -37,8 +37,6 @@ public class AnalEDF_IV extends Anal {
 				double z=h+(1-h)*i/20;
 				double delta=compDeriv(h,l,z);
 				SLog.prn(1,"derivate "+z+" "+delta);
-				SLog.prn(1,"l rate "+l/(1-(h-l)/z));
-				SLog.prn(1,"h rate "+z);
 				SLog.prn(1,"----------------");
 			}
 		}
