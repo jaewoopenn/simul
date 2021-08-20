@@ -9,8 +9,8 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    savename="schd/pms"
-    path="schd/p"
+    savename="ind/pms"
+    path="ind/p"
     ylim=0.150
       
 
@@ -67,7 +67,6 @@ def load(i):
 #         print(v)
         gl.vv.append(v)
         
-        
 
 def loop(i):
     load(i)
@@ -88,6 +87,7 @@ def main():
     loop(0)
     loop(1)
     loop(2)
+    print("end")
 
 if __name__ == '__main__':
     main()

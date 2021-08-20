@@ -60,7 +60,6 @@ public class TaskSet {
 			if(t.getHiUtil()<=t.getLoVdUtil())
 				t.setHI_only();
 		}
-		
 	}
 
 	public void prn() {

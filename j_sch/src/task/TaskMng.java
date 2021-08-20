@@ -116,7 +116,15 @@ public class TaskMng {
 		return util;
 		
 	}
+	public double getIV_Util() {
+		double util=0;
+		for(Task t:g_tasks.getArr())	{
+			util+=g_info.computeIV_U(t);
+		}
+		return util;
+	}
 
+	
 	public double getWCUtil() {
 		double util=0;
 		for(Task t:g_hi_tasks.getArr())	{

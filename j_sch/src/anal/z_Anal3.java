@@ -31,18 +31,25 @@ public class z_Anal3 {
 		int no=1;
 //		int no=2;
 //		int no=3;
+//		int no=4;
+//		int no=5;
+//		int no=6;
+//		int no=7;
 		
 		
 		
 		TaskMng tm=TS_MC4.getTS(no);
-		Anal a=new AnalEDF_AD_E();
-		a.init(tm);
-		a.prepare();
-		a.prn();
+		Anal a;
+
+//		a=new AnalEDF_AD_E();
+//		a.init(tm);
+//		a.prepare();
+//		a.prn();
 		
 		a=new AnalEDF_IV();
 		a.init(tm);
 		a.prepare();
+		a.prn();
 		return -1;
 	}
 	

@@ -1,5 +1,4 @@
 package gen;
-import gen.ConfigGen;
 import task.TaskMng;
 import util.SLog;
 import util.SEngineT;

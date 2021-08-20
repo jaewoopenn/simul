@@ -1,7 +1,4 @@
 package gen;
-import gen.ConfigGen;
-import gen.SysGen;
-import gen.SysGenMC;
 import util.MList;
 import util.SLog;
 import util.SEngineT;

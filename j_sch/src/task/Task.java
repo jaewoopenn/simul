@@ -83,6 +83,9 @@ public class Task {
 	public double getLoVdUtil(){
 		return (double)c_l/vd;
 	}
+	public double getMsUtil(){
+		return (double)(c_h-c_l)/(period-vd);
+	}
 
 
 	public Task getCopy() {
@@ -117,6 +120,7 @@ public class Task {
 	
 	public void prnTxt() {
 		SLog.prnc(2, ""+period);
+		SLog.prnc(2, ","+vd);
 		SLog.prnc(2, ","+c_l);
 		SLog.prnc(2, ","+c_h);
 		if (is_HC)

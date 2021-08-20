@@ -20,7 +20,6 @@ public class z_auto2 {
 	private String g_rs;
 	private String g_graph;
 	
-	//  DRE (comment out), BRE (setBE) 
 	
 	public static void init_s() {
 //		int s=1;
@@ -31,15 +30,15 @@ public class z_auto2 {
 		
 		s_idx=s;
 		
-		s_log_level=1;
+		s_log_level=2;
 	}
 	
 	public void init_g() {
-		g_path="sch/t1";
-		g_num=5000;
-		g_dur=32000;
-//		g_num=500;
-//		g_dur=1000;
+		g_path="ind/t1";
+//		g_num=5000;
+//		g_dur=32000;
+		g_num=500;
+		g_dur=2000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -65,8 +64,12 @@ public class z_auto2 {
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
+
+//  DRE (comment out), BRE (setBE) 
+		
 		p.setBE();
-		p.sim_loop(g_rs, g_ts,0,5);
+//		p.sim_loop(g_rs, g_ts,0,5);
+		p.sim_loop(g_rs, g_ts,0,4);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -82,12 +85,12 @@ public class z_auto2 {
 	}
 	public int test2() // p
 	{
+		int st=2;
 		init_g();
 		init_sim();
 		double a[]= {0.05,0.2,0.5};
-		int st=0;
 		for(int i=st;i<3;i++) {
-			g_path="sch/p"+i;
+			g_path="ind/p"+i;
 			g_p_ms=a[i];
 			loop_util();
 		}

@@ -202,6 +202,7 @@ public class Platform {
 				fu.add("1");
 			} else {
 				fu.add("0");
+//				a.prn();
 			}
 		}
 		fu.save(out);
