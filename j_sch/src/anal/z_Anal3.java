@@ -46,10 +46,10 @@ public class z_Anal3 {
 //		a.prepare();
 //		a.prn();
 		
-		a=new AnalEDF_IV();
+		a=new AnalEDF_IV2();
 		a.init(tm);
 		a.prepare();
-		a.prn();
+//		a.prn();
 		return -1;
 	}
 	

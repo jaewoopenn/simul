@@ -10,22 +10,39 @@ import task.Task;
 import task.TaskMng;
 import util.MCal;
 
-public class AnalEDF_IV extends Anal {
+public class AnalEDF_IV2 extends Anal {
 	private double g_lt_lu;
 	private double g_ht_lu;
 	private double g_ht_hu;
 	SysInfo g_info;
-	public AnalEDF_IV(String name) {
+	public AnalEDF_IV2(String name) {
 		super();
 		g_name=name;
 	}
-	public AnalEDF_IV() {
+	public AnalEDF_IV2() {
 		super();
 		g_name="MC-IndVD";
 	}
 	@Override
 	public void prepare() {
 		load();
+		comp();
+	}
+	private void comp() {
+		ArrayList<Double> delta=new ArrayList<Double>();
+		for(Task t:g_tm.getHiTasks()){
+			double l=t.getLoUtil();
+			double h=t.getHiUtil();
+			double d=compDeriv(h,l,h);
+			delta.add(d);
+		}
+		Collections.sort(delta);
+
+		for(double d:delta) {
+			SLog.prn(1,"d "+d);
+		}
+		SLog.prn(1,"----- ");
+		
 	}
 	private double getLSum() {
 		ArrayList<Double> delta=new ArrayList<Double>();
@@ -119,8 +136,9 @@ public class AnalEDF_IV extends Anal {
 		return ret;
 	}
 	private double compDeriv(double h,double l,double z) {
-		return -l*(h-l)/Math.pow(z-h+l,2);
+		return (1-z)*(h-l)/Math.pow(z-l,2);
 	}
+	
 	private double compDtoZ(double h,double l,double d) {
 		return Math.sqrt(-l*(h-l)/d)+h-l;
 	}
