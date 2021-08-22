@@ -26,9 +26,8 @@ public class AnalEDF_IV2 extends Anal {
 	@Override
 	public void prepare() {
 		load();
-		comp();
 	}
-	private void comp() {
+	private double getHSum() {
 		ArrayList<Double> delta=new ArrayList<Double>();
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
@@ -36,6 +35,7 @@ public class AnalEDF_IV2 extends Anal {
 			double d=compDeriv(h,l,h);
 			delta.add(d);
 		}
+		delta.add(0.0000);
 		Collections.sort(delta);
 
 		for(double d:delta) {
@@ -43,48 +43,32 @@ public class AnalEDF_IV2 extends Anal {
 		}
 		SLog.prn(1,"----- ");
 		
-	}
-	private double getLSum() {
-		ArrayList<Double> delta=new ArrayList<Double>();
-		for(Task t:g_tm.getHiTasks()){
-			double l=t.getLoUtil();
-			double h=t.getHiUtil();
-			double d=compDeriv(h,l,h);
-			delta.add(d);
-		}
-		Collections.sort(delta);
-
-		for(double d:delta) {
-			SLog.prn(1,"d "+d);
-		}
-		SLog.prn(1,"----- ");
-
 		double old_d=0;
 		for(double d:delta) {
 			SLog.prn(1,"d "+d);
 			
-			double z_sum=0;
+			double z_sum=g_tm.getLoUtil();
 			for(Task t:g_tm.getHiTasks()){
 				double l=t.getLoUtil();
 				double h=t.getHiUtil();
 				double z=compDtoZ(h,l,d);
-				if(z<h)
+				if(z>h)
 					z=h;
-				SLog.prn(1,"rate "+(l/(1-(h-l)/z))+" "+z);
+				SLog.prn(1,"rate "+z+" "+((h-l)/(1-l/z)));
 				z_sum+=z;
 			}
 			SLog.prn(1,"z sum "+z_sum);
-			if(z_sum>1)
-				break;
 			old_d=d;
+			if(z_sum<1)
+				break;
 		}
 		SLog.prn(1,"init d "+old_d);
-		double slack=1;
+		double slack=1-g_tm.getLoUtil();
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,old_d);
-			if(z<h)
+			if(z>h)
 				z=h;
 			slack-=z;
 		}
@@ -92,22 +76,22 @@ public class AnalEDF_IV2 extends Anal {
 		SLog.prn(1,"s: "+slack);
 		double d_opt=compute_d_opt(d_prime,slack);
 		SLog.prn(1,"d_opt: "+d_opt);
-		double z_sum=0,l_sum=g_tm.getLoUtil();
+		double z_sum=g_tm.getLoUtil(),h_sum=0;
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,d_opt);
-			if(z<h) {
+			if(z>h) {
 				z=h;
 			}
-			double x=1-(h-l)/z;
+			double x=l/z;
 			t.setVD(x*t.period);
-			double l_r=l/x;
-			SLog.prn(1,"rate "+l_r+" "+z);
-			l_sum+=l_r;
+			double h_r=(h-l)/(1-x);
+			SLog.prn(1,"rate "+z+" "+h_r);
+			h_sum+=h_r;
 			z_sum+=z;
 		}
-		SLog.prn(1,"sum: "+l_sum+" "+z_sum);
+		SLog.prn(1,"sum: "+z_sum+" "+h_sum);
 		for(Task t:g_tm.getHiTasks()){
 			SLog.prn(1,"vd "+t.vd+" "+t.period);
 		}
@@ -116,7 +100,7 @@ public class AnalEDF_IV2 extends Anal {
 			SLog.err("z_sum:"+z_sum);
 			
 		}
-		return l_sum;
+		return h_sum;
 	}
 	
 	private double compute_d_opt(double d_prime, double slack) {
@@ -126,13 +110,13 @@ public class AnalEDF_IV2 extends Anal {
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,d_prime);
 			SLog.prn(1,"z h: "+z+" "+h);
-			if(z+MCal.err<h)
+			if(z+MCal.err>h)
 				continue;
 			alpha+=Math.sqrt(l*(h-l));
 		}
 		SLog.prn(1,"alpha: "+alpha);
-		double temp=alpha/(alpha/Math.sqrt(-d_prime)+slack);
-		double ret=-Math.pow(temp, 2);
+		double temp=alpha/(alpha/Math.sqrt(d_prime)+slack);
+		double ret=Math.pow(temp, 2);
 		return ret;
 	}
 	private double compDeriv(double h,double l,double z) {
@@ -140,7 +124,7 @@ public class AnalEDF_IV2 extends Anal {
 	}
 	
 	private double compDtoZ(double h,double l,double d) {
-		return Math.sqrt(-l*(h-l)/d)+h-l;
+		return Math.sqrt(l*(h-l)/d)+l;
 	}
 
 
@@ -161,7 +145,10 @@ public class AnalEDF_IV2 extends Anal {
 		if(g_lt_lu>1){
 			return g_lt_lu;
 		}
-		double dtm=getLSum();
+		if(g_lt_lu+g_ht_hu<=1) {
+			return g_lt_lu+g_ht_hu;
+		}
+		double dtm=getHSum();
 		return dtm;
 	}
 

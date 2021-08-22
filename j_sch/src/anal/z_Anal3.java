@@ -10,6 +10,7 @@ import z_ex.TS_MC3;
 import z_ex.TS_MC4;
 import task.TaskMng;
 import util.SEngineT;
+import util.SLog;
 
 public class z_Anal3 {
 //	public static int idx=1;
@@ -28,17 +29,19 @@ public class z_Anal3 {
 
 	public int test2() 
 	{
-		int no=1;
+//		int no=1;
 //		int no=2;
 //		int no=3;
 //		int no=4;
 //		int no=5;
 //		int no=6;
-//		int no=7;
+		int no=7;
 		
 		
 		
 		TaskMng tm=TS_MC4.getTS(no);
+		tm.prnTxt();
+		tm.prnOffline();
 		Anal a;
 
 //		a=new AnalEDF_AD_E();
@@ -49,6 +52,9 @@ public class z_Anal3 {
 		a=new AnalEDF_IV2();
 		a.init(tm);
 		a.prepare();
+		double d=a.getDtm();
+		SLog.prn(1, "det:"+d);
+		
 //		a.prn();
 		return -1;
 	}

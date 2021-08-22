@@ -32,7 +32,8 @@ public class AnalEDF_VD extends Anal {
 	public double getScore() {
 		if (hitasks_hiutil>1) return 2;
 		if (lotasks_loutil>1) return 2;
-		
+		if (hitasks_hiutil+lotasks_loutil<=1)
+			return hitasks_hiutil+lotasks_loutil;
 		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
 		return dtm;
 	}

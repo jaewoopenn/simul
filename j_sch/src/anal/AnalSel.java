@@ -12,7 +12,7 @@ public class AnalSel {
 
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_IV();
+			return new AnalEDF_IV2();
 		} else if(sort==1) {
 			return new AnalEDF_AD_E("MC-FLEX");
 		} else if(sort==2) {

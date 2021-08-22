@@ -143,6 +143,10 @@ public class AnalEDF_IV extends Anal {
 		if(g_lt_lu>1){
 			return g_lt_lu;
 		}
+		if(g_lt_lu+g_ht_hu<=1) {
+			return g_lt_lu+g_ht_hu;
+		}
+
 		double dtm=getLSum();
 		return dtm;
 	}

@@ -54,7 +54,7 @@ public class z_auto1 {
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_util_ul);
 		p.genTS(g_cf,g_ts,g_xl);
-		int end=3;
+		int end=4;
 		p.anal_loop(g_rs,g_ts,end);
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xl);
