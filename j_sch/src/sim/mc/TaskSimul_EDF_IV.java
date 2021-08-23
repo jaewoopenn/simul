@@ -33,8 +33,8 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				g_sm.prn();
 				g_tm.prnRuntime();
+				g_tm.prnPara();
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);

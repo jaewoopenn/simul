@@ -78,8 +78,22 @@ public class TS_MC4 {
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
 	}
+
+	public static TaskMng ts8()	{
+		TaskVec tmp=new TaskVec();
+		tmp.add(new Task(78, 1, 2));
+		tmp.add(new Task(120, 8, 14));
+		tmp.add(new Task(91, 7));
+		tmp.add(new Task(116, 5));
+		tmp.add(new Task(119, 18));
+		tmp.add(new Task(107, 1, 4));
+		tmp.add(new Task(116, 5, 10));
+		tmp.add(new Task(32, 4, 6));
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
+		return tme.getTM();
+	}
 	
-	
+
 	public static TaskMng getTS(int no) {
 		if(no==1)
 			return ts1();
@@ -95,6 +109,8 @@ public class TS_MC4 {
 			return ts6();
 		else if(no==7)
 			return ts7();
+		else if(no==8)
+			return ts8();
 		else
 			return null;
 	}

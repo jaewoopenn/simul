@@ -107,6 +107,7 @@ public class Task {
 		SLog.prnc(2," hi-crit?"+is_HC);
 		SLog.prn(2," util:"+getLoUtil());
 	}
+	
 	public void prnShort() {
 		SLog.prnc(2, tid);
 		SLog.prnc(2, ", "+period);
@@ -170,7 +171,7 @@ public class Task {
 		
 	}
 	public void prnPara() {
-		SLog.prnc(2, "tmp.add(new Task(0,");
+		SLog.prnc(2, "tmp.add(new Task(");
 		SLog.prnc(2, period);
 		if (is_HC){
 			SLog.prnc(2, ", "+c_l);

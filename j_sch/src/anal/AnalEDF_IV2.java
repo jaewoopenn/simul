@@ -7,7 +7,6 @@ import java.util.Collections;
 
 import task.SysInfo;
 import task.Task;
-import task.TaskMng;
 import util.MCal;
 
 public class AnalEDF_IV2 extends Anal {
@@ -146,6 +145,9 @@ public class AnalEDF_IV2 extends Anal {
 			return g_lt_lu;
 		}
 		if(g_lt_lu+g_ht_hu<=1) {
+			for(Task t:g_tm.getHiTasks()){
+				t.setHI_only();
+			}
 			return g_lt_lu+g_ht_hu;
 		}
 		double dtm=getHSum();

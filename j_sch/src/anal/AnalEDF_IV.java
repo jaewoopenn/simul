@@ -144,6 +144,9 @@ public class AnalEDF_IV extends Anal {
 			return g_lt_lu;
 		}
 		if(g_lt_lu+g_ht_hu<=1) {
+			for(Task t:g_tm.getHiTasks()){
+				t.setHI_only();
+			}
 			return g_lt_lu+g_ht_hu;
 		}
 

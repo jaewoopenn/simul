@@ -1,4 +1,6 @@
 package gen;
+import anal.Anal;
+import anal.AnalEDF_VD;
 import util.MList;
 import util.SLog;
 import util.SEngineT;
@@ -16,7 +18,8 @@ public class z_SysGen1 {
 		cfg.readFile();
 		SysGen eg=new SysGenMC(cfg);
 		String fn=cfg.get_fn();
-		eg.gen(fn);
+		Anal a=new AnalEDF_VD();
+		eg.gen(fn,a);
 		return 1;
 
 	}
@@ -30,7 +33,8 @@ public class z_SysGen1 {
 		eg.setCheck();
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
-		eg.gen(fn);
+		Anal a=new AnalEDF_VD();
+		eg.gen(fn,a);
 		return 0;
 	}
 	
@@ -42,12 +46,13 @@ public class z_SysGen1 {
 		MList fu_rs=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
+		Anal a=new AnalEDF_VD();
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen eg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
-			eg.gen(fn);
+			eg.gen(fn,a);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_rs.add(mod);

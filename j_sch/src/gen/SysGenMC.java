@@ -16,12 +16,11 @@ public class SysGenMC extends SysGen {
 
 	
 	@Override
-	protected int check() {
+	protected int check(Anal a) {
 		if(!g_isCheck)
 			return 1;
 		TaskSetMC tsf=new TaskSetMC(g_tg.getTS());
 		TaskMng tm=tsf.getTM();
-		Anal a=new AnalFMC();
 		a.init(tm);
 		a.prepare();
 		if(a.is_sch()) {		

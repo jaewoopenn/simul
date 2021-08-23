@@ -14,12 +14,14 @@ import z_ex.TS_MC4;
 
 public class z_TaskSimul6 {
 //	public static int idx=1;
-	public static int idx=2;
+//	public static int idx=2;
+//	public static int idx=3;
+	public static int idx=4;
 	public static int log_level=2;
 
 
 	public int test1()	{
-		double prob=0.5;
+		double prob=0.7;
 		int et=10000;
 		
 		
@@ -115,10 +117,86 @@ public class z_TaskSimul6 {
 		return 0;
 	}
 	public int test3() {
+		SysLoad sy=new SysLoad("ind/p2/taskset_55");
+		sy.open();
+		int num=500;
+		TaskMng tm=null;
+		double r1s=0,r2s=0;
+		for(int i=0;i<num;i++) {
+			tm=sy.loadOne();
+			Anal a;
+			double d;
+		
+			
+			a=new AnalEDF_AD_E();
+			a.init(tm);
+			a.prepare();
+			d=a.getDtm();
+			SLog.prn(2, " post2:"+d);
+			
+			
+		}
 		return 0;
 	}
 	public  int test4() {
-		return 1;
+		double prob=0.7;
+		int et=1000;
+		
+		
+		SysLoad sy=new SysLoad("ind/p2/taskset_95");
+		sy.open();
+		int num=500;
+		int no=69;
+		TaskMng tm=null;
+		SLogF.init("test.txt");
+		for(int i=0;i<num;i++) {
+			tm=sy.loadOne();
+			if (i!=no)
+				continue;
+			Anal a;
+			SysMng sm;
+			double d,x;
+			SimulInfo si;
+			double r1,r2;
+//			a=new AnalEDF_IV();
+//			a.init(tm);
+//			a.prepare();
+//			d=a.getDtm();
+//			sm=new SysMng();
+//			sm.setMS_Prob(prob);
+//			x=a.computeX();
+//			sm.setX(x);
+//			TaskSimul_EDF_IV ts=new TaskSimul_EDF_IV();
+//			ts.init_sm_tm(sm,tm);
+//			ts.setBE();
+//			ts.simul(0,et);
+//			ts.simul_end();
+//			si=ts.getSI();
+//			r1=si.getDMR();
+
+			a=new AnalEDF_AD_E();
+			a.init(tm);
+			a.prepare();
+			d=a.getDtm();
+			sm=new SysMng();
+			sm.setMS_Prob(prob);
+			x=a.computeX();
+			sm.setDelay(x*tm.getLongPeriod());		
+			sm.setX(x);
+			TaskSimul_EDF_Post2 ts2=new TaskSimul_EDF_Post2();
+			ts2.init_sm_tm(sm,tm);
+			ts2.setBE();
+			ts2.simul(0,et);
+			ts2.simul_end();
+			si=ts2.getSI();
+			r1=si.getDMR();
+			
+			SLog.prnc(2, "no:"+i);
+			SLog.prn(2, " iv:"+r1);
+		}
+		SLogF.end();
+		
+		return 0;
 	}
 	public  int test5() {
 		return 1;

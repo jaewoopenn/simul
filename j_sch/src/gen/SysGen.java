@@ -1,5 +1,6 @@
 package gen;
 
+import anal.Anal;
 import task.TaskSet;
 import task.TaskSetUtil;
 import util.MList;
@@ -26,7 +27,7 @@ public abstract class SysGen {
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
-	public void gen(String fn) {
+	public void gen(String fn,Anal a) {
 		int num=prepare();
 		int i=0;
 //		String fn=g_cfg.get_dir();
@@ -37,7 +38,7 @@ public abstract class SysGen {
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();
-			int rs=check();
+			int rs=check(a);
 			if(rs==0)
 				continue;
 			writeSys(fu);
@@ -57,6 +58,6 @@ public abstract class SysGen {
 		return 1;
 	}
 
-	protected abstract int check() ;
+	protected abstract int check(Anal a) ;
 	
 }

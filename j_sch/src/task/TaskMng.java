@@ -252,6 +252,10 @@ public class TaskMng {
 		g_tasks.prnTxt();
 		
 	}
+	public void prnPara() {
+		g_tasks.prnPara();
+		
+	}
 
 	
 

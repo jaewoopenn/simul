@@ -1,6 +1,7 @@
 package auto;
 
 import anal.Anal;
+import anal.AnalEDF_VD;
 import anal.AnalSel;
 import gen.ConfigGen;
 import gen.SysGen;
@@ -58,7 +59,7 @@ public class Platform {
 	public void genCfg_util(String cf,double ul) {
 		int base=50;
 		int step=5;
-		double end_i=(ul*100-50)/step;
+		double end_i=(ul*100-base)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
 		MList fu=new MList();
 		cg.setParam("subfix", g_path);
@@ -133,6 +134,8 @@ public class Platform {
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
+//		Anal a=new AnalFMC();
+		Anal a=new AnalEDF_VD();
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
@@ -140,7 +143,7 @@ public class Platform {
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
-			sg.gen(fn);
+			sg.gen(fn, a);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_xa.add(mod);
@@ -302,6 +305,7 @@ public class Platform {
 		prog.setPercent();
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
+//			SLog.prn(2, "no:"+i);
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
 			
@@ -318,7 +322,6 @@ public class Platform {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
-			// TODO set delay in platform  OK!
 			sm.setDelay(x*tm.getLongPeriod());
 //			sm.prn();
 			s.init_sm_tm(sm,tm);

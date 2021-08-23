@@ -38,7 +38,7 @@ public class z_auto2 {
 //		g_num=5000;
 //		g_dur=32000;
 		g_num=500;
-		g_dur=2000;
+		g_dur=10000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -88,7 +88,8 @@ public class z_auto2 {
 		int st=2;
 		init_g();
 		init_sim();
-		double a[]= {0.05,0.2,0.5};
+//		double a[]= {0.05,0.2,0.5};
+		double a[]= {0.05,0.2,0.7};
 		for(int i=st;i<3;i++) {
 			g_path="ind/p"+i;
 			g_p_ms=a[i];

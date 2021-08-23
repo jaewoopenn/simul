@@ -55,7 +55,7 @@ public class z_Anal3 {
 		double d=a.getDtm();
 		SLog.prn(1, "det:"+d);
 		
-//		a.prn();
+		a.prn();
 		return -1;
 	}
 	

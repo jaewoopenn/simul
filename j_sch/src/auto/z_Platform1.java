@@ -4,6 +4,7 @@ package auto;
 
 
 
+import anal.Anal;
 import anal.AnalEDF_VD;
 import gen.ConfigGen;
 import gen.SysGen;
@@ -28,12 +29,13 @@ public class z_Platform1 {
 		MList fu_rs=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
+		Anal a=new AnalEDF_VD();
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen eg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
-			eg.gen(fn);
+			eg.gen(fn,a);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_rs.add(mod);
