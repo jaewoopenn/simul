@@ -142,7 +142,7 @@ public class HPlatform {
 				p=g_period;
 			}
 			e=analCom(c,anal,p);
-			tv.add(new Task(p,e));
+			tv.add(new Task(p,e,p));
 //			SLog.prn(3, p+","+e);
 		}
 		TaskSet tm=new TaskSet(tv);

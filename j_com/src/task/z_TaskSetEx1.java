@@ -12,8 +12,8 @@ public class z_TaskSetEx1 {
 	public int test1()
 	{
 		TaskVec tmp=new TaskVec();
-		tmp.add(new Task(3,1));
-		tmp.add(new Task(4,1));
+		tmp.add(new Task(3,1,3));
+		tmp.add(new Task(4,1,4));
 		TaskVec tme=new TaskVec(tmp.getVec());
 		TaskSet tm=new TaskSet(tme);
 		tm.prn();

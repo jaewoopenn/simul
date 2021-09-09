@@ -11,8 +11,8 @@ public class z_Task1 {
 	{
 		Vector<Task> tasks=new Vector<Task>();
 		
-		tasks.add(new Task(3,1));
-		tasks.add(new Task(4,1));
+		tasks.add(new Task(3,1,3));
+		tasks.add(new Task(4,1,4));
 		return tasks.size();
 	}
 	

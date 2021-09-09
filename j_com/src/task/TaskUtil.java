@@ -43,7 +43,8 @@ public class TaskUtil {
 
 	public static void writeTask(MList fu, Task t) {
 		String txt=t.period+",";
-		txt+=(int)t.exec;
+		txt+=(int)t.exec+",";
+		txt+=(int)t.deadline;
 		fu.add(txt);
 	}
 	public static void loadView(MList fu) {
@@ -71,7 +72,8 @@ public class TaskUtil {
         String[] words=line.split(",");
         int p=Integer.valueOf(words[0]).intValue();
         int c=Integer.valueOf(words[1]).intValue();
-    	return new Task(p,c);
+        int d=Integer.valueOf(words[2]).intValue();
+    	return new Task(p,c,d);
 	}
 	public static Vector<MList>  loadComML(MList o_ml) {
 		Vector<MList> mlv=new Vector<MList>();

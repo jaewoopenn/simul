@@ -50,8 +50,8 @@ public class TaskVec {
 		}
 		
 	}
-	public void addTask(int i, int j) {
-		g_taskV.add(new Task(i,j));
+	public void addTask(int p, double e,int d) {
+		g_taskV.add(new Task(p,e,d));
 		
 	}
 

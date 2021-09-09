@@ -83,7 +83,8 @@ public class TaskGenParam {
 //			SLog.prn(3, tu+"___");
 		}
 		e=(int)(tu*p);
-		return new Task(p,e);
+		int d=(int) (p*g_rand.getDbl(0.8, 1)+0.5);
+		return new Task(p,e,d);
 	}
 
 

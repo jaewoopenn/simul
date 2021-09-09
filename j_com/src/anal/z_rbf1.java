@@ -13,8 +13,8 @@ public class z_rbf1 {
 	public int test1()
 	{
 		TaskVec ts=new TaskVec();
-		ts.add(new Task(3,1));
-		ts.add(new Task(4,1));
+		ts.add(new Task(3,1,3));
+		ts.add(new Task(4,1,4));
 		TaskSet tm=new TaskSet(ts);
 		
 		for(int t=0;t<12;t++) {
