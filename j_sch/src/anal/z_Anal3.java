@@ -29,13 +29,13 @@ public class z_Anal3 {
 
 	public int test2() 
 	{
-//		int no=1;
+		int no=1;
 //		int no=2;
 //		int no=3;
 //		int no=4;
 //		int no=5;
 //		int no=6;
-		int no=7;
+//		int no=7;
 		
 		
 		
