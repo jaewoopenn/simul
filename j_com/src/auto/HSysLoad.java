@@ -10,6 +10,7 @@ import util.MList;
 
 public class HSysLoad {
 	private MFile g_fu;
+	private int g_period=0;
 	public HSysLoad(String fn) {
 		g_fu=new MFile(fn);
 	}
@@ -26,9 +27,14 @@ public class HSysLoad {
 			return null;
 		MList ml=new MList();
 		ml.copy(g_fu);
+    	String line=ml.get(0);
+    	g_period=Integer.valueOf(line).intValue();
 //		ml.prn();
 		Vector<MList> mlv=TaskUtil.loadComML(ml);
 		CompSet cs=new CompSet(mlv);
 		return cs;
+	}
+	public int getPeriod() {
+		return g_period;
 	}
 }

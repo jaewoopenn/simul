@@ -44,6 +44,7 @@ public class z_auto_n2 {
 		int lb[]= {50,200,500};
 		int ub[]= {200,500,1000};
 		int st=0;
+//		for(int i=st;i<1;i++) {
 		for(int i=st;i<lb.length;i++) {
 			g_path="com/p"+i;
 			g_t_lb=lb[i];

@@ -1,11 +1,13 @@
 package gen;
 
 import util.MList;
+import util.MRand;
 import task.TaskSet;
 import task.TaskUtil;
 import util.CRange;
 
 public  class HSysGen {
+	private MRand g_ran=new MRand();
 	protected ComGen g_cg;
 	private ConfigGen g_cfg;
 	protected boolean g_isCheck=false;
@@ -57,6 +59,8 @@ public  class HSysGen {
 	
 	public int writeSys(MList fu)
 	{
+		int p=g_ran.getInt(25,75);
+		fu.add(p+"");
 		for(int i=0;i<g_cg.getCNum();i++) {
 			TaskSet ts=g_cg.getTS(i);
 			TaskUtil.writeCom(fu, ts.getArr());

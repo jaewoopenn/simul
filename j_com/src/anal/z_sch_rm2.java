@@ -16,7 +16,8 @@ public class z_sch_rm2 {
 	
 	public int test1()
 	{
-		TaskSet tm=TS1.tm1();
+//		TaskSet tm=TS1.tm1();
+		TaskSet tm=TS1.tm5();
 //		TaskMng tm=TS1.getTM2();
 		int p=3;
 		int end_t=5;

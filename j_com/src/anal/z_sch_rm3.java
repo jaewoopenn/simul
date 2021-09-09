@@ -12,8 +12,8 @@ import util.SEngineT;
 public class z_sch_rm3 {
 
 	public static void init_s() {
-//		int s=1;
-		int s=2;
+		int s=1;
+//		int s=2;
 //		int s=3;
 //		int s=4;
 		
@@ -26,9 +26,10 @@ public class z_sch_rm3 {
 	
 	public int test1()
 	{
-//		TaskSet tm=TS1.tm1();
+		TaskSet tm=TS1.tm1();
+//		TaskSet tm=TS1.tm5();
 //		TaskSet tm=TS1.tm2();
-		TaskSet tm=TS1.tm3();
+//		TaskSet tm=TS1.tm3();
 		tm.sort();
 		int p=3;
 		AnalRM a=new AnalRM();

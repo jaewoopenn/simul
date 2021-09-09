@@ -120,13 +120,15 @@ public class HPlatform {
 		for(int i=0;i<num;i++) {
 			CompSet cm=sy.loadOne();
 			if(cm==null) break;
+			int period=sy.getPeriod();
+//			SLog.prn(3, "p:"+period);
 //			cm.prn();
-			String res=analComSet(cm,anal);
+			String res=analComSet(cm,anal,period);
 			fu.add(res);
 		}
 		fu.save(f_out);
 	}
-	private String analComSet(CompSet cs,Anal anal) {
+	private String analComSet(CompSet cs,Anal anal,int period) {
 		double e=0;
 		AnalRM a=new AnalRM();
 		PRM pr=new PRM(12,12);
@@ -135,7 +137,7 @@ public class HPlatform {
 		for(int i=0;i<cs.size();i++) {
 			Comp c=cs.get(i);
 			if(g_period==-1) {
-				p=g_ran.getInt(25,75);
+				p=period;
 			}else if(g_period==-2) {
 				p=12+g_ran.getInt(0,6)*8;
 			} else {

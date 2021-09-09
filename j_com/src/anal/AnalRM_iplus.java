@@ -19,7 +19,7 @@ public class AnalRM_iplus extends Anal{
 	public boolean checkSch(PRM p) {
 		Task[] tm=g_ts.getArr();
 		for(int i=0;i<tm.length;i++) {
-			int end_t=tm[i].period;
+			int end_t=tm[i].deadline;
 			if(!checkSch_ind(p,i,end_t))
 				return false; // 하나라도 안되면 실패
 				
@@ -53,7 +53,7 @@ public class AnalRM_iplus extends Anal{
 		Task[] tm=g_ts.getArr();
 		double exec=0;
 		for(int i=0;i<tm.length;i++) {
-			int end_t=tm[i].period;
+			int end_t=tm[i].deadline;
 			double exec1=p;
 			
 			for(int t=1;t<=end_t;t++) {

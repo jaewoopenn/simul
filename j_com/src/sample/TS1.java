@@ -45,5 +45,13 @@ public class TS1 {
 		ts.addTask(230,13,230);		
 		return new TaskSet(ts);
 	}
+
+	public static TaskSet tm5() {
+		TaskVec ts=new TaskVec();
+		ts.add(new Task(6,1,5));
+		ts.add(new Task(4,1,3));
+		return new TaskSet(ts);
+	}
 	
+
 }

@@ -24,7 +24,7 @@ public class AnalRM extends Anal{
 		double exec=0;
 		for(int i=0;i<tm.length;i++) {
 			// 태스크마다 
-			int end_t=tm[i].period;
+			int end_t=tm[i].deadline;
 			double exec1=p;
 			
 			// 태스크 period까지 t를 증가 
@@ -116,7 +116,7 @@ public class AnalRM extends Anal{
 	public boolean checkSch(PRM p) {
 		Task[] tm=g_ts.getArr();
 		for(int i=0;i<tm.length;i++) {
-			int end_t=tm[i].period;
+			int end_t=tm[i].deadline;
 			if(!checkSch_ind(p,i,end_t))
 				return false; // 하나라도 안되면 실패
 				

@@ -78,7 +78,7 @@ public class TaskUtil {
 	public static Vector<MList>  loadComML(MList o_ml) {
 		Vector<MList> mlv=new Vector<MList>();
 		MList tml=new MList();
-		for(int i=0;i<o_ml.size();i++) {
+		for(int i=1;i<o_ml.size();i++) {
 	    	String line=o_ml.get(i);
 	    	if(line.equals("+++++")) {
 	    		mlv.add(tml);

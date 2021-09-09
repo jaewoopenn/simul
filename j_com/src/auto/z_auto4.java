@@ -24,9 +24,9 @@ public class z_auto4 {
 	
 	public void init() {
 //		g_num=5;
-//		g_num=100;
+		g_num=100;
 //		g_num=500;
-		g_num=3000;
+//		g_num=3000;
 		g_cfg="_cfg.txt";
 		g_ts="_ts.txt";
 		g_xaxis="_x.txt";
@@ -62,7 +62,8 @@ public class z_auto4 {
 		int p[]= {25,50,-1};
 //		int p[]= {12,25,-1,-2};
 //		int p[]= {50};
-		int st=0;
+//		int st=0;
+		int st=2;
 		for(int i=st;i<p.length;i++) {
 			g_path="com/c"+i;
 			g_period=p[i];
