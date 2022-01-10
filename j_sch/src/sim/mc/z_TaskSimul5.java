@@ -115,14 +115,14 @@ public class z_TaskSimul5 {
 //		int no=1;
 //		int no=2;
 //		int no=3;
-//		int no=4;
+		int no=4;
 //		int no=5;
 //		int no=6;
 //		int no=7;
-		int no=8;
+//		int no=8;
 		TaskMng tm=TS_MC4.getTS(no);
 		
-		int et=1000;
+		int et=2000;
 		
 		Anal a;
 		double d;

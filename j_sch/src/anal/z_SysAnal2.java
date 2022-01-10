@@ -7,13 +7,13 @@ import task.TaskMng;
 import util.SEngineT;
 
 public class z_SysAnal2 {
-	public static int idx=2;
+	public static int idx=1;
 	public static int log_level=1;
 
 	public int test1() 
 	{
-		TaskMng tm=TS_MC4.ts8();
-		Anal a=new AnalEDF_IV2();
+		TaskMng tm=TS_MC4.ts1();
+		Anal a=new AnalEDF_IV();
 		a.init(tm);
 		a.prepare();
 		a.prn();
@@ -29,7 +29,7 @@ public class z_SysAnal2 {
 		return -1;
 	}
 	public int test3() {
-		TaskMng tm=TS_MC2.ts3();
+		TaskMng tm=TS_MC2.ts2();
 		Anal a=new AnalEDF_IV2();
 		a.init(tm);
 		a.prepare();

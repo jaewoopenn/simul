@@ -13,10 +13,10 @@ import util.SLogF;
 import z_ex.TS_MC4;
 
 public class z_TaskSimul6 {
-//	public static int idx=1;
+	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-	public static int idx=4;
+//	public static int idx=4;
 	public static int log_level=2;
 
 

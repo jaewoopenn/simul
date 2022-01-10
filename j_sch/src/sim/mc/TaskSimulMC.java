@@ -73,6 +73,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(tsk.isHC()){
 //			tsk.prnStat();
 			if(tsk.isHM()){
+				tsk.rel();
 				return new Job(tsk.tid, 
 						t+tsk.period,tsk.c_h,t+tsk.period,0);
 			} else {

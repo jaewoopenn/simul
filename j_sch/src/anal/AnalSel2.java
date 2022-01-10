@@ -11,7 +11,8 @@ public class AnalSel2 {
 
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_IV2();
+//			return new AnalEDF_IV();  //HI MAX
+			return new AnalEDF_IV2();  //LO MAX
 		} else if(sort==1) {
 			return new AnalEDF_AD_E();
 		} else if(sort==2) {

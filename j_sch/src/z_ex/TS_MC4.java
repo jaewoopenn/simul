@@ -41,7 +41,8 @@ public class TS_MC4 {
 		tmp.add(new Task(13,2,6));
 		tmp.add(new Task(17,1,2));
 		tmp.add(new Task(15,3,4));
-		tmp.add(new Task(150,44));
+		tmp.add(new Task(15,3));
+		tmp.add(new Task(20,1));
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
 	}

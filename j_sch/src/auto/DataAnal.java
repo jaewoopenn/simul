@@ -3,7 +3,7 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel;
+import anal.AnalSel2;
 import util.MList;
 
 public class DataAnal {
@@ -50,7 +50,7 @@ public class DataAnal {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			Anal a=AnalSel.getAnal(idx);
+			Anal a=AnalSel2.getAnal(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);

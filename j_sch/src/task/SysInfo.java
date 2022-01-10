@@ -49,12 +49,15 @@ public class SysInfo {
 	}
 	public double computeIV_U(Task t) {
 		if(t.isHC()){
-			if(t.isHM())
-				return t.getMsUtil();
+			if(t.isHM()) {
+				if(t.isMS())
+					return t.getMsUtil();
+				else
+					return t.getHiUtil();
+			}
 			else
 				return t.getLoVdUtil();
-		} 
-		if(t.isDrop())
+		} else if(t.isDrop())
 			return 0;
 		else
 			return t.getLoUtil();
