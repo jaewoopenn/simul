@@ -3,8 +3,8 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel;
-import sim.SimulSel;
+import anal.AnalSel2;
+import sim.SimulSel2;
 import sim.TaskSimul;
 import util.MList;
 
@@ -52,7 +52,7 @@ public class DataSim {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			Anal a=AnalSel.getAnal(idx);
+			Anal a=AnalSel2.getAnal(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);
@@ -85,7 +85,7 @@ public class DataSim {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			TaskSimul a=SimulSel.getSim(idx);
+			TaskSimul a=SimulSel2.getSim(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);

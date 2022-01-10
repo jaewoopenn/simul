@@ -8,7 +8,7 @@ import java.util.Collections;
 import task.SysInfo;
 import task.Task;
 import util.MCal;
-
+// inverse 
 public class AnalEDF_IV2 extends Anal {
 	private double g_lt_lu;
 	private double g_ht_lu;
@@ -20,7 +20,7 @@ public class AnalEDF_IV2 extends Anal {
 	}
 	public AnalEDF_IV2() {
 		super();
-		g_name="MC-IndVD";
+		g_name="MC-RUN";
 	}
 	@Override
 	public void prepare() {
@@ -32,6 +32,8 @@ public class AnalEDF_IV2 extends Anal {
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double d=compDeriv(h,l,h);
+			delta.add(d);
+			d=compDeriv(h,l,0);
 			delta.add(d);
 		}
 		delta.add(0.0000);
@@ -53,7 +55,7 @@ public class AnalEDF_IV2 extends Anal {
 				double z=compDtoZ(h,l,d);
 				if(z>h)
 					z=h;
-				SLog.prn(1,"rate "+z+" "+((h-l)/(1-l/z)));
+				SLog.prn(1,t.tid+" rate "+z+" "+((h-l)/(1-l/z)));
 				z_sum+=z;
 			}
 			SLog.prn(1,"z sum "+z_sum);
@@ -86,11 +88,11 @@ public class AnalEDF_IV2 extends Anal {
 			double x=l/z;
 			t.setVD(x*t.period);
 			double h_r=(h-l)/(1-x);
-			SLog.prn(1,"rate "+z+" "+h_r);
+			SLog.prn(1,t.tid+" rate "+z+" "+h_r);
 			h_sum+=h_r;
 			z_sum+=z;
 		}
-		SLog.prn(1,"sum: "+z_sum+" "+h_sum);
+		SLog.prn(1,"z_sum, h_sum: "+z_sum+","+h_sum);
 		for(Task t:g_tm.getHiTasks()){
 			SLog.prn(1,"vd "+t.vd+" "+t.period);
 		}

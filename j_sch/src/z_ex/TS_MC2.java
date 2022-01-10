@@ -27,5 +27,14 @@ public class TS_MC2 {
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
 	}
+	public static TaskMng ts3()	{ // Hi only test
+		TaskVec tmp=new TaskVec();
+		tmp.add(new Task(10,1));
+		tmp.add(new Task(17,2));
+		tmp.add(new Task(12,4,5));
+		tmp.add(new Task(12,1,7));
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
+		return tme.getTM();
+	}
 
 }

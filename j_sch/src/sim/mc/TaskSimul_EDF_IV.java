@@ -12,7 +12,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 
 	public TaskSimul_EDF_IV() {
 		super();
-		g_name="MC-EDF-IV";
+		g_name="MC-RUN";
 	}
 
 	
@@ -46,8 +46,8 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 	@Override
 	protected void recover_in(int tid) {
 //		SLogF.prn( "t:"+g_jsm.get_time()+" recover in ");
-		switchback_tid(tid);		
-		resume_algo();
+//		switchback_tid(tid);		
+//		resume_algo();
 		
 	}
 

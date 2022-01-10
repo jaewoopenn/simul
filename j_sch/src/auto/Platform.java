@@ -2,13 +2,13 @@ package auto;
 
 import anal.Anal;
 import anal.AnalEDF_VD;
-import anal.AnalSel;
+import anal.AnalSel2;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
 import gen.SysLoad;
 import sim.SimulInfo;
-import sim.SimulSel;
+import sim.SimulSel2;
 import sim.SysMng;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
@@ -176,7 +176,7 @@ public class Platform {
 		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
 		MList fu_rs=new MList();
-		Anal a=AnalSel.getAnal(sort);
+		Anal a=AnalSel2.getAnal(sort);
 		
 		SLog.prn(1, "a:"+a.getName());
 		for(int i=0;i<fu.size();i++) {
@@ -239,9 +239,9 @@ public class Platform {
 		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
 		MList fu_rs=new MList();
-		int anal_sort=Math.min(sort, 3);
-		Anal a=AnalSel.getAnal(anal_sort);
-		TaskSimulMC s=SimulSel.getSim(sort);
+		Anal a=AnalSel2.getAnal(sort);
+		SLog.prn(2, "Anal:"+a.getName());
+		TaskSimulMC s=SimulSel2.getSim(sort);
 		if(g_be)
 			s.setBE();
 		
@@ -257,8 +257,8 @@ public class Platform {
 	public String simul_a(String fn,int sort) {
 		int anal_sort=Math.min(sort, 3);
 		
-		Anal a=AnalSel.getAnal(anal_sort);
-		TaskSimulMC s=SimulSel.getSim(sort);
+		Anal a=AnalSel2.getAnal(anal_sort);
+		TaskSimulMC s=SimulSel2.getSim(sort);
 		if(g_be)
 			s.setBE();
 		String out=fn+".sim."+sort;
@@ -275,8 +275,8 @@ public class Platform {
 		String fn=fu.get(0);
 		int anal_sort=Math.min(sort, 3);
 		
-		Anal a=AnalSel.getAnal(anal_sort);
-		TaskSimulMC s=SimulSel.getSim(sort);
+		Anal a=AnalSel2.getAnal(anal_sort);
+		TaskSimulMC s=SimulSel2.getSim(sort);
 		if(g_be)
 			s.setBE();
 		

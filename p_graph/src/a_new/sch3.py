@@ -74,6 +74,9 @@ def loop(i):
     mp.prepare()
 #     mp.prepare2()
     for v in gl.vv:
+#         if no==2:
+#             no+=1
+#             continue
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)

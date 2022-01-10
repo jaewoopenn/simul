@@ -2,6 +2,7 @@ package auto;
 
 
 import util.SEngineT;
+import util.SLog;
 //MC-FLEX p hc ratio (BRE)
 
 public class z_auto2 {
@@ -63,13 +64,14 @@ public class z_auto2 {
 		p.setCheck();
 		p.genTS(g_cf,g_ts,g_xl);
 		p.setP_MS(g_p_ms);
+		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 
-//  DRE (comment out), BRE (setBE) 
+//  DRE (comment out), BRE (setBE)  best effort 하지 말자 
 		
-		p.setBE();
+//		p.setBE();
 //		p.sim_loop(g_rs, g_ts,0,5);
-		p.sim_loop(g_rs, g_ts,0,4);
+		p.sim_loop(g_rs, g_ts,0,3);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -85,11 +87,12 @@ public class z_auto2 {
 	}
 	public int test2() // p
 	{
+//		int st=0;
 		int st=2;
 		init_g();
 		init_sim();
-//		double a[]= {0.05,0.2,0.5};
-		double a[]= {0.05,0.2,0.7};
+		double a[]= {0.05,0.2,0.5};
+//		double a[]= {0.05,0.2,0.7};
 		for(int i=st;i<3;i++) {
 			g_path="ind/p"+i;
 			g_p_ms=a[i];

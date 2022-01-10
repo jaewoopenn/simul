@@ -53,7 +53,7 @@ public class AnalEDF_IV extends Anal {
 				double z=compDtoZ(h,l,d);
 				if(z<h)
 					z=h;
-				SLog.prn(1,"rate "+(l/(1-(h-l)/z))+" "+z);
+				SLog.prn(1,t.tid+" rate "+(l/(1-(h-l)/z))+" "+z);
 				z_sum+=z;
 			}
 			SLog.prn(1,"z sum "+z_sum);
@@ -86,11 +86,11 @@ public class AnalEDF_IV extends Anal {
 			double x=1-(h-l)/z;
 			t.setVD(x*t.period);
 			double l_r=l/x;
-			SLog.prn(1,"rate "+l_r+" "+z);
+			SLog.prn(1,t.tid+" rate "+l_r+" "+z);
 			l_sum+=l_r;
 			z_sum+=z;
 		}
-		SLog.prn(1,"sum: "+l_sum+" "+z_sum);
+		SLog.prn(1,"l_sum, z_sum: "+l_sum+", "+z_sum);
 		for(Task t:g_tm.getHiTasks()){
 			SLog.prn(1,"vd "+t.vd+" "+t.period);
 		}
