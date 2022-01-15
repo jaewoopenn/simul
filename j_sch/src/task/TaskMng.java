@@ -125,10 +125,10 @@ public class TaskMng {
 		return util;
 	}
 
-	public double getRUN_Util() {
+	public double getRUN_Util(double x) {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeRUN_U(t);
+			util+=g_info.computeRUN_U(t,x);
 		}
 		return util;
 	}
@@ -264,14 +264,14 @@ public class TaskMng {
 		g_tasks.prnPara();
 		
 	}
-	public void prnRUN() {
+	public void prnRun(double x) {
+		SLog.prn(2, "x:"+x);
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
-			double u=g_info.computeRUN_U(t);
+			double u=g_info.computeRUN_U(t,x);
 			util+=u;
-			SLog.prn(1, util+","+u+","+t.ms_rem+","+(t.period-t.vd)+","+t.vd);
+			SLog.prn(2, u+","+util);
 		}
-		
 	}
 
 	

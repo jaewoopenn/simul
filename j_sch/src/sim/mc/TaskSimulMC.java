@@ -142,7 +142,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		if(j.add_exec>0) {
 			if(g_rutil.getDbl()<g_sm.getMS_Prob()) { // generated prob < ms_prob
 				g_recover_need=true;
-				mode_switch(j.tid,j.dl-g_jsm.get_time());
+				mode_switch(j.tid);
 			} else {
 				g_jsm.getJM().removeCur();
 			}
@@ -176,10 +176,9 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	
 	// MC specific 
-	protected void mode_switch(int tid,double ms_rem){ // connect to each algo's MS
+	protected void mode_switch(int tid){ // connect to each algo's MS
 		Task tsk=g_tm.getTask(tid);
-		tsk.ms_rem=ms_rem;
-		SLogF.prn("t:"+g_jsm.get_time()+" mode-switch "+tid+" ,"+ms_rem+","+(tsk.period-tsk.vd)+","+tsk.period+","+tsk.vd);
+		SLogF.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
 		g_si.ms++;
 		modeswitch_in(tsk);
 	}

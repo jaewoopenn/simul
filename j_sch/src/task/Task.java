@@ -15,8 +15,8 @@ public class Task {
 	public int period;
 	public int c_l;
 	public int c_h;
-	public double ms_rem;
 	public double vd;
+	public double x;
 	public int sb_tm=-1; // switch back time
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
@@ -55,9 +55,9 @@ public class Task {
 		SLogF.prn("resume "+tid);
 		this.is_dropped=false;
 	}
-	public void setVD(double vd){
-//		System.out.println("tid:"+tid+" vd:"+vd);
-		this.vd=vd;
+	public void setX(double x){
+		this.x=x;
+		this.vd=x*this.period;
 	}
 	public void setHI_only() {
 		 is_hi_preferred = true;
@@ -95,10 +95,6 @@ public class Task {
 		return (double)(c_h-c_l)/(period-vd);
 	}
 	
-	public double getRunUtil(){
-		return (double)(c_h-c_l)/(ms_rem);
-	}
-
 
 	public Task getCopy() {
 		Task t=new Task(period, c_l);
@@ -148,8 +144,8 @@ public class Task {
 		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
 		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
 		if (is_HC){
-			SLog.prnc(2," isHM:"+is_HI_Mode);
-			SLog.prn(2," isHI_Only:"+is_hi_preferred);
+			SLog.prn(2," isHM:"+is_HI_Mode);
+//			SLog.prn(2," isHI_Only:"+is_hi_preferred);
 			
 		}else{
 			SLog.prn(2," isDrop:"+is_dropped);

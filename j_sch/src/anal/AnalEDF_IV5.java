@@ -159,7 +159,7 @@ public class AnalEDF_IV5 extends Anal {
 				z=h;
 			}
 			double x=l/z;
-			t.setVD(x*t.period);
+			t.setX(x);
 			z_sum+=z;
 		}
 		return z_sum;

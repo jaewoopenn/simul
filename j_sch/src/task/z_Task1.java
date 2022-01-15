@@ -19,7 +19,7 @@ public class z_Task1 {
 	public int test2() //vd
 	{
 		Task t=new Task(3,1);
-		t.setVD(2.33);
+		t.setX(0.3);
 		return (int)(t.vd*10);
 	}
 	public  int test3()
@@ -32,7 +32,7 @@ public class z_Task1 {
 	public  int test4()
 	{
 		Task t=new Task(3,1,2);
-		t.setVD(2);
+		t.setX(2/3);
 		SLog.prn(1," "+t.getLoUtil());
 		SLog.prn(1," "+t.getLoVdUtil());
 		SLog.prn(1," "+t.getHiUtil());

@@ -88,7 +88,7 @@ public class AnalEDF_IV extends Anal {
 				z=h;
 			}
 			double x=1-(h-l)/z;
-			t.setVD(x*t.period);
+			t.setX(x);
 			double l_r=l/x;
 			SLog.prn(1,t.tid+" rate "+l_r+" "+z);
 			l_sum+=l_r;

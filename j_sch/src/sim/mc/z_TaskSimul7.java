@@ -16,11 +16,12 @@ import util.SEngineT;
 import util.SLog;
 import util.SLogF;
 import z_ex.TS_MC4;
+import z_ex.TS_MC5;
 
 public class z_TaskSimul7 {
 //	public static int idx=1;
-	public static int idx=2;
-//	public static int idx=3;
+//	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=2;
 
 
@@ -85,7 +86,47 @@ public class z_TaskSimul7 {
 		return 0;
 	}
 	public int test3() {
+		
+		int et=10000;
+		
+		
+		TaskMng tm=TS_MC5.ts6();
+		tm.prnInfo();
+
+//		.... 0.779*0.4818+0.6327=1.0008
+//		... 0.762*0.4818+0.6327=0.9998
+		
+//		Anal a;
+//		TaskSimulMC ts;
+//		SLogF.init("test_RU.txt");
+//		a=new AnalEDF_IV4();
+//		ts=new TaskSimul_MC_RUN();
+//		simul(a, ts,tm,et);
+//		SLogF.end();
+
+
 		return 0;
+	}
+	private void simul(Anal a, TaskSimulMC ts,TaskMng tm,int et) {
+		SLog.prn(2, "--!!!----------");
+		a.init(tm);
+		a.prepare();
+		double d=a.getDtm();
+		SLog.prn(2, "det:"+d);
+		SysMng sm=new SysMng();
+//		SLogF.init("test.txt");
+		sm.setMS_Prob(0.3);
+		double x=a.computeX();
+		sm.setX(x);
+//		ts=new TaskSimul_EDF_AD_E();
+		ts.init_sm_tm(sm,tm);
+		tm.prnTxt();
+		ts.simul(0,et);
+		ts.simul_end();
+		SimulInfo si=ts.getSI();
+		si.prn();
+//		SLogF.end();
+		
 	}
 	public  int test4() {
 		return 1;

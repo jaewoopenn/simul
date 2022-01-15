@@ -25,21 +25,21 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 	@Override
 	protected void modeswitch_in(Task tsk) {
 		modeswitch_after(tsk);		
-		drop_algo();
+		drop_algo(tsk.x);
 	}
 	
-	private void drop_algo() {
-		double ru=g_tm.getRUN_Util();
+	private void drop_algo(double x) {
+		double ru=g_tm.getRUN_Util(x);
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
 				g_tm.prnRuntime();
-				g_tm.prnRUN();
 //				g_tm.prnPara();
+				g_tm.prnRun(x);
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-			ru=g_tm.getRUN_Util();
+			ru=g_tm.getRUN_Util(x);
 		}
 		
 	}

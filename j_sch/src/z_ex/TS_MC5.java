@@ -91,7 +91,20 @@ public class TS_MC5 {
 	}	
 
 	public static TaskMng ts6()	{
-		return null;
+		TaskVec tmp=new TaskVec();
+		tmp.add(new Task(36, 2));
+		tmp.add(new Task(102, 4, 19));
+		tmp.add(new Task(65, 3, 4));
+		tmp.add(new Task(38, 1, 4));
+		tmp.add(new Task(24, 1));
+		tmp.add(new Task(92, 3, 9));
+		tmp.add(new Task(127, 6));
+		tmp.add(new Task(134, 20));
+		tmp.add(new Task(22, 1, 4));
+		tmp.add(new Task(117, 19));
+		tmp.add(new Task(78, 2));
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
+		return tme.getTM();
 	}	
 
 	public static TaskMng ts7()	{

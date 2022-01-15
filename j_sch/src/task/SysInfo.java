@@ -62,18 +62,15 @@ public class SysInfo {
 		else
 			return t.getLoUtil();
 	}
-	public double computeRUN_U(Task t) {
+	public double computeRUN_U(Task t,double x) {
 		if(t.isHC()){
 			if(t.isHM()) {
-				if(t.isMS())
-					return t.getRunUtil();
-				else
-					return t.getHiUtil();
-			}
-			else
+				return t.getHiUtil();
+			} else {
 				return t.getLoVdUtil();
+			}
 		} else if(t.isDrop())
-			return 0;
+			return x*t.getLoUtil();
 		else
 			return t.getLoUtil();
 	}

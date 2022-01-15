@@ -163,7 +163,7 @@ public class AnalEDF_IV3 extends Anal {
 			if(t.isHI_Preferred()) 
 				z=h;
 			double x=l/z;
-			t.setVD(x*t.period);
+			t.setX(x);
 			double h_r=(h-l)/(1-x);
 			SLog.prn(1,t.tid+" rate "+z+" "+h_r);
 			h_sum+=h_r;
