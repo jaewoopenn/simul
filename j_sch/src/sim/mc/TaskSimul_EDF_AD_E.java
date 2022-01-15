@@ -20,8 +20,8 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 	
 	
 	@Override
-	protected void modeswitch_in(int tid) {
-		modeswitch_tid(tid);		
+	protected void modeswitch_in(Task tsk) {
+		modeswitch_after(tsk);		
 		drop_algo();
 	}
 	
@@ -35,7 +35,7 @@ public class TaskSimul_EDF_AD_E extends TaskSimulMC{
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-			ru-=g_tm.getReclaimUtil(tsk);
+			ru=g_tm.getRUtil();
 		}
 		
 	}

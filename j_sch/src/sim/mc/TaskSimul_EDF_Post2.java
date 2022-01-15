@@ -23,8 +23,8 @@ public class TaskSimul_EDF_Post2 extends TaskSimulMC{
 	}
 	
 	@Override
-	protected void modeswitch_in(int tid) {
-		modeswitch_tid(tid);		
+	protected void modeswitch_in(Task tsk) {
+		modeswitch_after(tsk);		
 		drop_algo();
 	}
 	
@@ -38,7 +38,8 @@ public class TaskSimul_EDF_Post2 extends TaskSimulMC{
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-			ru-=g_tm.getReclaimUtil(tsk);
+//			ru-=g_tm.getReclaimUtil(tsk);
+			ru=g_tm.getRUtil();
 		}
 		
 	}
@@ -61,7 +62,8 @@ public class TaskSimul_EDF_Post2 extends TaskSimulMC{
 			Task tsk=g_tm.findResumeTask();
 			if(tsk==null)
 				return;
-			ru+=g_tm.getReclaimUtil(tsk); 
+			ru=g_tm.getVUtil();
+//			ru+=g_tm.getReclaimUtil(tsk); 
 //			SLogF.prn( "resume tsk "+tsk.tid+" ru:"+ru);
 			if(ru<=1+MCal.err) {
 				resume_task(tsk);

@@ -9,27 +9,24 @@ import task.SysInfo;
 import task.Task;
 import util.MCal;
 // inverse 
-public class AnalEDF_IV2 extends Anal {
+public class AnalEDF_IV5 extends Anal {
 	private double g_lt_lu;
 	private double g_ht_lu;
 	private double g_ht_hu;
 	SysInfo g_info;
-	public AnalEDF_IV2(String name) {
+	public AnalEDF_IV5(String name) {
 		super();
 		g_name=name;
 	}
-	public AnalEDF_IV2() {
+	public AnalEDF_IV5() {
 		super();
-		g_name="MC-RUN";
+		g_name="MC-RUN-BAL";
 	}
 	@Override
 	public void prepare() {
 		load();
 	}
-	private double getHSum() {
-//		g_tm.prn();
-		g_tm.prnInfo();
-		
+	private ArrayList<Double> getDelta(){
 		ArrayList<Double> delta=new ArrayList<Double>();
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
@@ -41,33 +38,94 @@ public class AnalEDF_IV2 extends Anal {
 		}
 		delta.add(0.0000);
 		Collections.sort(delta);
-
-		for(double d:delta) {
-			SLog.prn(1,"d "+d);
+		
+//		for(double d:delta) {
+//			SLog.prn(1,"d "+d);
+//		}
+		
+		return delta;
+	}
+	
+	private double getHSum() {
+		double dest_z=1.0;
+		double step=0.01;
+//		g_tm.prn();
+//		g_tm.prnInfo();
+		double old_hsum=1.0;
+		double old_zsum=1.0;
+		while(true) {
+//			SLog.prn(1,"st:"+step);
+//			SLog.prn(1,"dest_z:"+dest_z);
+			double hsum=getHSum_ind(dest_z);
+			double zsum=getZSum();
+			SLog.prn(1,"zs:"+zsum);
+			if(hsum>dest_z+MCal.err) {
+				dest_z+=step;
+				step/=10;
+			} else if(zsum>1+MCal.err) {
+				dest_z+=step;
+				step/=10;
+				
+			}
+			if(step<0.0001)
+				break;
+			old_hsum=hsum;
+			old_zsum=zsum;
+			dest_z-=step;
 		}
+		return getHSum_ind(dest_z);
+	}
+		
+	private double getZSum() {
+		double z=g_tm.getLoUtil();
+		for(Task t:g_tm.getHiTasks()){
+			z+=t.getLoUtil()/(t.vd/t.period);
+//			SLog.prn(1,z+" rate "+MCal.getStr(t.getLoUtil())+" "+MCal.getStr(t.vd));			
+		}
+		return z;
+	}
+	private double getHSum_ind(double dest_z) {
+		ArrayList<Double> delta=getDelta();
 		SLog.prn(1,"----- ");
-		double dest_z=1;
-//		double dest_z=0.952;
 		double old_d=0;
 		for(double d:delta) {
-			SLog.prn(1,"d "+d);
+//			SLog.prn(1,"d "+d);
 			
 			double z_sum=g_tm.getLoUtil();
+			double h_sum=0;
 			for(Task t:g_tm.getHiTasks()){
 				double l=t.getLoUtil();
 				double h=t.getHiUtil();
 				double z=compDtoZ(h,l,d);
 				if(z>h)
 					z=h;
-				SLog.prn(1,t.tid+" rate "+z+" "+((h-l)/(1-l/z)));
+				double x=l/z;
+				double h_r=(h-l)/(1-x);
+//				SLog.prn(1,t.tid+" rate "+MCal.getStr(z)+" "+MCal.getStr(h_r));
+				h_sum+=h_r;
 				z_sum+=z;
 			}
-			SLog.prn(1,"z sum "+z_sum);
+//			SLog.prn(1,"z sum "+MCal.getStr(z_sum)+" h sum "+MCal.getStr(h_sum));
 			old_d=d;
 			if(z_sum<dest_z)
 				break;
 		}
-		SLog.prn(1,"init d "+old_d);
+//		SLog.prn(1,"init d "+MCal.getStr(old_d));
+		
+		double slack=computeSlack(dest_z,old_d);
+//		SLog.prn(1,"s: "+MCal.getStr(slack));
+		
+		double d_prime=old_d;
+		double d_opt=compute_d_opt(d_prime,slack);
+//		SLog.prn(1,"d_opt: "+MCal.getStr(d_opt));
+		
+		double z_sum=setVD(d_opt);
+		double h_sum=computeH();
+//		showVD();
+		errCheck(z_sum,h_sum);
+		return h_sum;
+	}
+	private double computeSlack(double dest_z,double old_d) {
 		double slack=dest_z-g_tm.getLoUtil();
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
@@ -77,11 +135,22 @@ public class AnalEDF_IV2 extends Anal {
 				z=h;
 			slack-=z;
 		}
-		double d_prime=old_d;
-		SLog.prn(1,"s: "+slack);
-		double d_opt=compute_d_opt(d_prime,slack);
-		SLog.prn(1,"d_opt: "+d_opt);
-		double z_sum=g_tm.getLoUtil(),h_sum=0;
+		return slack;
+	}
+
+	private double computeH() {
+		double h_sum=0;
+		for(Task t:g_tm.getHiTasks()){
+			double x=t.vd/t.period;
+			double l=t.getLoUtil();
+			double h=t.getHiUtil();
+			double h_r=(h-l)/(1-x);
+			h_sum+=h_r;
+		}
+		return h_sum;
+	}
+	private double setVD(double d_opt) {
+		double z_sum=g_tm.getLoUtil();
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
@@ -91,21 +160,26 @@ public class AnalEDF_IV2 extends Anal {
 			}
 			double x=l/z;
 			t.setVD(x*t.period);
-			double h_r=(h-l)/(1-x);
-			SLog.prn(1,t.tid+" rate "+z+" "+h_r);
-			h_sum+=h_r;
 			z_sum+=z;
 		}
-		SLog.prn(1,"z_sum, h_sum: "+z_sum+","+h_sum);
+		return z_sum;
+	}
+	
+	private void showVD() {
 		for(Task t:g_tm.getHiTasks()){
-			SLog.prn(1,"vd "+t.vd+" "+t.period);
+			SLog.prn(1,"vd "+MCal.getStr(t.vd)+" "+t.period);
 		}
+		
+	}
+	private void errCheck(double z_sum,double h_sum) {
+		SLog.prn(1,"z_sum, h_sum: "+MCal.getStr(z_sum)+","+MCal.getStr(h_sum));
 		if(z_sum>1+MCal.err) {
-			g_tm.prnTxt();
-			SLog.err("z_sum:"+z_sum);
+//			g_tm.prnTxt();
+			g_tm.prnPara();
+			SLog.err("z_sum:"+z_sum+" h_sum:"+h_sum);
 			
 		}
-		return h_sum;
+		
 	}
 	
 	private double compute_d_opt(double d_prime, double slack) {
@@ -157,7 +231,7 @@ public class AnalEDF_IV2 extends Anal {
 			return g_lt_lu+g_ht_hu;
 		}
 		double dtm=getHSum();
-		getDtm2();
+//		getDtm2();
 		return dtm;
 	}
 
@@ -171,23 +245,18 @@ public class AnalEDF_IV2 extends Anal {
 		SLog.prn(2, "l_sum22:"+lsum);
 		double hsum=g_ht_hu;
 		double x=0;
-		SLog.prn(2, "x':"+(1-g_ht_hu)/g_lt_lu);
 		for(Task t:g_tm.getHiTasks()){
 			double tempx=t.vd/t.period;
-			double tempxm=t.getLoUtil()/t.getHiUtil();
-			SLog.prn(2, "x11:"+tempx+" xx:"+tempxm);
+			SLog.prn(2, "x11:"+tempx);
 
 			x=Math.max(x,tempx);
 		}
-
 		hsum+=x*g_lt_lu;
 		SLog.prn(2, "x22:"+x);
 		SLog.prn(2, "h_sum22:"+hsum);
 		return 0;
 		
 	}
-
-
 
 
 	

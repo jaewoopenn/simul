@@ -73,7 +73,8 @@ public class z_auto2 {
 //		p.setBE();
 		
 //		p.sim_loop(g_rs, g_ts,0,5);
-		p.sim_loop(g_rs, g_ts,0,3);
+//		p.sim_loop(g_rs, g_ts,0,3);
+		p.sim_loop(g_rs, g_ts,0,2);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -89,13 +90,14 @@ public class z_auto2 {
 	}
 	public int test2() // p
 	{
-//		int st=0;
-		int st=2;
+//		int st=0,et=3;
+		int st=1,et=2;
+//		int st=2,et=3;
 		init_g();
 		init_sim();
 		double a[]= {0.05,0.2,0.5};
-//		double a[]= {0.05,0.2,0.7};
-		for(int i=st;i<3;i++) {
+//		double a[]= {0.2,0.5,0.7};
+		for(int i=st;i<et;i++) {
 			g_path="ind/p"+i;
 			g_p_ms=a[i];
 			loop_util();

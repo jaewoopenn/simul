@@ -116,6 +116,7 @@ public class TaskMng {
 		return util;
 		
 	}
+	
 	public double getIV_Util() {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
@@ -124,6 +125,13 @@ public class TaskMng {
 		return util;
 	}
 
+	public double getRUN_Util() {
+		double util=0;
+		for(Task t:g_tasks.getArr())	{
+			util+=g_info.computeRUN_U(t);
+		}
+		return util;
+	}
 	
 	public double getWCUtil() {
 		double util=0;
@@ -145,9 +153,9 @@ public class TaskMng {
 
 	
 
-	public double getReclaimUtil(Task t){
-		return (1-g_info.getX())*t.getLoUtil();
-	}
+//	public double getReclaimUtil(Task t){
+//		return (1-g_info.getX())*t.getLoUtil();
+//	}
 
 	
 	public double getDroppedUtil(Task t){
@@ -254,6 +262,15 @@ public class TaskMng {
 	}
 	public void prnPara() {
 		g_tasks.prnPara();
+		
+	}
+	public void prnRUN() {
+		double util=0;
+		for(Task t:g_tasks.getArr())	{
+			double u=g_info.computeRUN_U(t);
+			util+=u;
+			SLog.prn(1, util+","+u+","+t.ms_rem+","+(t.period-t.vd)+","+t.vd);
+		}
 		
 	}
 

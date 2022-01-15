@@ -20,8 +20,8 @@ public class TaskSimul_FMC extends TaskSimulMC{
 	
 	
 	@Override
-	protected void modeswitch_in(int tid) {
-		modeswitch_tid(tid);		
+	protected void modeswitch_in(Task tsk) {
+		modeswitch_after(tsk);		
 		drop_algo();
 	}
 	

@@ -182,6 +182,7 @@ public class Platform {
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
 			String out=fn+".rs."+sort;
+//			SLog.prn(2, out);
 			anal_one(fn,out,a);
 			fu_rs.add(out);
 		}		
@@ -313,7 +314,7 @@ public class Platform {
 			a.prepare();
 			prog.inc();
 			if(!a.is_sch()) {
-				SLog.prn(2, "no sch");
+				SLog.prn(2, "no sch "+i);
 				continue;
 			}
 

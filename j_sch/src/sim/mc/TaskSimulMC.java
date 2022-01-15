@@ -136,17 +136,13 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 
 	private void ms_check(){
-		boolean isMS=false;
 		Job j=g_jsm.get_ms_job();
 		if(j==null) 
 			return;
 		if(j.add_exec>0) {
-			double prob=g_rutil.getDbl();
-			if(prob<g_sm.getMS_Prob())
-				isMS=true;
-			if(isMS){
+			if(g_rutil.getDbl()<g_sm.getMS_Prob()) { // generated prob < ms_prob
 				g_recover_need=true;
-				mode_switch(j.tid);
+				mode_switch(j.tid,j.dl-g_jsm.get_time());
 			} else {
 				g_jsm.getJM().removeCur();
 			}
@@ -173,27 +169,29 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	
 	// abstract method
-	protected abstract void modeswitch_in(int tid);
+	protected abstract void modeswitch_in(Task tsk);
 	protected abstract void recover_in(int tid);
 	protected abstract void vir_check();
 	
 	
 	
 	// MC specific 
-	protected void mode_switch(int tid){ // connect to each algo's MS
-		SLogF.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
-		g_si.ms++;
-		modeswitch_in(tid);
-	}
-	
-
-	protected void modeswitch_tid(int tid){ // function
+	protected void mode_switch(int tid,double ms_rem){ // connect to each algo's MS
 		Task tsk=g_tm.getTask(tid);
-		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot mode switch");
+		tsk.ms_rem=ms_rem;
+		SLogF.prn("t:"+g_jsm.get_time()+" mode-switch "+tid+" ,"+ms_rem+","+(tsk.period-tsk.vd)+","+tsk.period+","+tsk.vd);
+		g_si.ms++;
+		modeswitch_in(tsk);
+	}
+
+	protected void modeswitch_after(Task tsk){ // function
+		SLog.err_if(!tsk.isHC(),"task "+tsk.tid+" is not HI-task, cannot mode switch");
 
 		tsk.ms();
-		tsk.sb_tm=g_jsm.get_time();
-		g_jsm.getJM().modeswitch(tid);
+		int t=g_jsm.get_time();
+		tsk.sb_tm=t;
+		
+		g_jsm.getJM().modeswitch(tsk.tid);
 	}
 
 	protected void switchback_tid(int tid){

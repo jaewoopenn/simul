@@ -15,6 +15,7 @@ public class Task {
 	public int period;
 	public int c_l;
 	public int c_h;
+	public double ms_rem;
 	public double vd;
 	public int sb_tm=-1; // switch back time
 	private boolean is_HC=false;
@@ -62,6 +63,10 @@ public class Task {
 		 is_hi_preferred = true;
 		 is_HI_Mode=true;
 	}
+	public void setNormal() {
+		 is_hi_preferred = false;
+		 is_HI_Mode=false;
+	}
 
 	
 	public boolean check() {
@@ -77,7 +82,7 @@ public class Task {
 	public double getLoUtil(){
 		return (double)c_l/period;
 	}
-	public double getLoUtil2(){
+	public double getLoExec(){
 		return (double)c_l;
 	}
 	public double getHiUtil(){
@@ -88,6 +93,10 @@ public class Task {
 	}
 	public double getMsUtil(){
 		return (double)(c_h-c_l)/(period-vd);
+	}
+	
+	public double getRunUtil(){
+		return (double)(c_h-c_l)/(ms_rem);
 	}
 
 
