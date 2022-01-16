@@ -33,10 +33,11 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				g_tm.prnRuntime();
-//				g_tm.prnPara();
-				g_tm.prnRun(x);
-				SLog.err("no available LO-task to drop. ru:"+ru);
+				break;
+//				g_tm.prnRuntime();
+////				g_tm.prnPara();
+//				g_tm.prnRun(x);
+//				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
 			ru=g_tm.getRUN_Util(x);

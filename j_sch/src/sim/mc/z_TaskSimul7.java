@@ -96,13 +96,13 @@ public class z_TaskSimul7 {
 //		.... 0.779*0.4818+0.6327=1.0008
 //		... 0.762*0.4818+0.6327=0.9998
 		
-//		Anal a;
-//		TaskSimulMC ts;
-//		SLogF.init("test_RU.txt");
-//		a=new AnalEDF_IV4();
-//		ts=new TaskSimul_MC_RUN();
-//		simul(a, ts,tm,et);
-//		SLogF.end();
+		Anal a;
+		TaskSimulMC ts;
+		SLogF.init("test_RU.txt");
+		a=new AnalEDF_IV4();
+		ts=new TaskSimul_MC_RUN();
+		simul(a, ts,tm,et);
+		SLogF.end();
 
 
 		return 0;
