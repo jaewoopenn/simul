@@ -70,19 +70,19 @@ public abstract class TaskSimulMC extends TaskSimul {
 	@Override
 	protected Job rel_one_job(Task tsk, int t) {
 //		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
-		if(tsk.isHC()){
-//			tsk.prnStat();
-			if(tsk.isHM()){
-				tsk.rel();
-				return new Job(tsk.tid, 
-						t+tsk.period,tsk.c_h,t+tsk.period,0);
-			} else {
-				return new Job(tsk.tid, 
-						t+tsk.period,tsk.c_l,
-						t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			}
+		int dl=t+tsk.period;
+		if(!tsk.isHC()) {
+			return new Job(tsk.tid,dl,tsk.c_l);
 		}
-		return new Job(tsk.tid,t+tsk.period,tsk.c_l);
+
+		// HC task 
+		Job j;
+		if(tsk.isHM()){ // HI-mode
+			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
+		} else { // LO-mode
+			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+		}
+		return j;
 	}
 	
 	

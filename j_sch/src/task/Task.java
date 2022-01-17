@@ -20,7 +20,6 @@ public class Task {
 	public int sb_tm=-1; // switch back time
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
-	private boolean is_MS_Mode=false;
 	private boolean is_dropped=false;
 	private boolean is_hi_preferred=false;
 	
@@ -44,7 +43,6 @@ public class Task {
 	public void ms(){
 		if(is_hi_preferred) 
 			return;
-		is_MS_Mode=true;
 		is_HI_Mode=true;
 	}
 	public void drop() {
@@ -207,9 +205,6 @@ public class Task {
 	public boolean isHM() {
 		return is_HI_Mode;
 	}
-	public boolean isMS() {
-		return is_MS_Mode;
-	}
 	public boolean isDrop() {
 		return is_dropped;
 	}
@@ -218,9 +213,6 @@ public class Task {
 		return is_hi_preferred;
 	}
 
-	public void rel() {
-		is_MS_Mode=false;
-	}
 
 
 
