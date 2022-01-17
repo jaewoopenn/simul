@@ -11,8 +11,8 @@ public class SimulSel2 {
 	
 	public static TaskSimulMC getSim(int sort) {
 		if(sort==0) {
-			return new TaskSimul_MC_RUN();
-//			return new TaskSimul_EDF_IV();
+//			return new TaskSimul_MC_RUN();
+			return new TaskSimul_EDF_IV();
 		} else if(sort==1) {
 			return new TaskSimul_EDF_AD_E();
 //			return new TaskSimul_EDF_Post2();

@@ -90,8 +90,8 @@ public class z_auto2 {
 	}
 	public int test2() // p
 	{
-//		int st=0,et=3;
-		int st=1,et=2;
+		int st=0,et=3;
+//		int st=1,et=2;
 //		int st=2,et=3;
 		init_g();
 		init_sim();

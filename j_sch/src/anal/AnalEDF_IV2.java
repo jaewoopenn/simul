@@ -20,7 +20,7 @@ public class AnalEDF_IV2 extends Anal {
 	}
 	public AnalEDF_IV2() {
 		super();
-		g_name="MC-RUN";
+		g_name="MC-RUN-LO-MAX";
 	}
 	@Override
 	public void prepare() {
