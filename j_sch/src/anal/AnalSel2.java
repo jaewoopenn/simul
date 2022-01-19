@@ -13,12 +13,14 @@ public class AnalSel2 {
 		if(sort==0) { 
 //			return new AnalEDF_IV();  //HI MAX
 //			return new AnalEDF_IV2();  //LO MAX
-//			return new AnalEDF_IV3();  //hi-only
-			return new AnalEDF_IV4();  //HI MAX
+//			return new AnalEDF_IV3();  //hi-mode-only
+			return new AnalEDF_IV4();  //HI-MAX
 		} else if(sort==1) {
+			return new AnalEDF_IV4();  //HI-MAX
+		} else if(sort==2) {
 			return new AnalEDF_AD_E();
 //			return new AnalEDF_AD_E("MC-FLEX");
-		} else if(sort==2) {
+		} else if(sort==3) {
 			return new AnalEDF_VD();
 		} 
 		return null;

@@ -12,7 +12,7 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 
 	public TaskSimul_MC_RUN() {
 		super();
-		g_name="MC-RUN";
+		g_name="MC-RUN-E";
 	}
 
 	

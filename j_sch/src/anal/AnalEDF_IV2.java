@@ -157,35 +157,35 @@ public class AnalEDF_IV2 extends Anal {
 			return g_lt_lu+g_ht_hu;
 		}
 		double dtm=getHSum();
-		getDtm2();
+//		getDtm2();
 		return dtm;
 	}
 
 
 
-	public double getDtm2() {
-		double lsum=g_lt_lu;
-		for(Task t:g_tm.getHiTasks()){
-			lsum+=t.getLoVdUtil();
-		}
-		SLog.prn(2, "l_sum22:"+lsum);
-		double hsum=g_ht_hu;
-		double x=0;
-		SLog.prn(2, "x':"+(1-g_ht_hu)/g_lt_lu);
-		for(Task t:g_tm.getHiTasks()){
-			double tempx=t.vd/t.period;
-			double tempxm=t.getLoUtil()/t.getHiUtil();
-			SLog.prn(2, "x11:"+tempx+" xx:"+tempxm);
-
-			x=Math.max(x,tempx);
-		}
-
-		hsum+=x*g_lt_lu;
-		SLog.prn(2, "x22:"+x);
-		SLog.prn(2, "h_sum22:"+hsum);
-		return 0;
-		
-	}
+//	public double getDtm2() {
+//		double lsum=g_lt_lu;
+//		for(Task t:g_tm.getHiTasks()){
+//			lsum+=t.getLoVdUtil();
+//		}
+//		SLog.prn(2, "l_sum22:"+lsum);
+//		double hsum=g_ht_hu;
+//		double x=0;
+//		SLog.prn(2, "x':"+(1-g_ht_hu)/g_lt_lu);
+//		for(Task t:g_tm.getHiTasks()){
+//			double tempx=t.vd/t.period;
+//			double tempxm=t.getLoUtil()/t.getHiUtil();
+//			SLog.prn(2, "x11:"+tempx+" xx:"+tempxm);
+//
+//			x=Math.max(x,tempx);
+//		}
+//
+//		hsum+=x*g_lt_lu;
+//		SLog.prn(2, "x22:"+x);
+//		SLog.prn(2, "h_sum22:"+hsum);
+//		return 0;
+//		
+//	}
 
 
 

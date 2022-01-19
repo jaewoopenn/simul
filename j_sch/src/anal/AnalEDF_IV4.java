@@ -16,7 +16,7 @@ public class AnalEDF_IV4 extends Anal {
 	SysInfo g_info;
 	public AnalEDF_IV4() {
 		super();
-		g_name="MC-RUN-LO-MAX";
+		g_name="MC-RUN-HI-MAX";
 	}
 	@Override
 	public void prepare() {
@@ -78,7 +78,7 @@ public class AnalEDF_IV4 extends Anal {
 		double z_sum=setVD(d_opt);
 		double l_sum=computeL();
 //		showVD();
-		errCheck(z_sum,l_sum);
+		errCheck(l_sum,z_sum);
 		return l_sum;
 	}
 	
@@ -129,12 +129,12 @@ public class AnalEDF_IV4 extends Anal {
 		}
 		
 	}
-	private void errCheck(double z_sum,double h_sum) {
-		SLog.prn(1,"z_sum, h_sum: "+MCal.getStr(z_sum)+","+MCal.getStr(h_sum));
+	private void errCheck(double l_sum,double z_sum) {
+		SLog.prn(1,"l_sum, z_sum: "+MCal.getStr(l_sum)+","+MCal.getStr(z_sum));
 		if(z_sum>1+MCal.err) {
 //			g_tm.prnTxt();
 			g_tm.prnPara();
-			SLog.err("z_sum:"+z_sum+" h_sum:"+h_sum);
+			SLog.err("z_sum:"+l_sum+" h_sum:"+z_sum);
 			
 		}
 		

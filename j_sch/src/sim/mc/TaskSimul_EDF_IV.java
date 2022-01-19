@@ -12,7 +12,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 
 	public TaskSimul_EDF_IV() {
 		super();
-		g_name="MC-RUN-NAIVE";
+		g_name="MC-RUN-B";
 	}
 
 	
