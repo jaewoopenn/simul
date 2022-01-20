@@ -33,8 +33,8 @@ public class z_auto1 {
 	
 	public void init_g() {
 		g_path="ind/t1";
-//		g_num=5000;
-		g_num=100;
+		g_num=5000;
+//		g_num=100;
 //		g_num=5;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
@@ -56,12 +56,12 @@ public class z_auto1 {
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_util_ul);
 		p.genTS(g_cf,g_ts,g_xl);
-		int end=3;
+		int end=4;
 		p.anal_loop(g_rs,g_ts,end);
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);
-		da.save(g_graph);
+		da.save2(g_graph);
 		return 0;
 	}
 	public int test2() // from 

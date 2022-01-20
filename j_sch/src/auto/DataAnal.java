@@ -60,11 +60,29 @@ public class DataAnal {
 				str+=" "+g_rs[i][idx];
 			}
 			fu.add(str);
-//			Log.prn(1, str);
 		}
 		fu.save(g_path+"/"+fn);
-		
 	}
+
+	public void save2(String fn) {
+		MList fu=new MList();
+		String str="xx";
+
+		for(int idx=0;idx<g_max;idx++) {
+			Anal a=AnalSel2.getAnal2(idx);
+			str+=" "+a.getName();
+		}
+		fu.add(str);
+		for(int i=0;i<g_xlen;i++) {
+			str=g_xl.elementAt(i);
+			for(int idx=0;idx<g_max;idx++) {
+				str+=" "+g_rs[i][idx];
+			}
+			fu.add(str);
+		}
+		fu.save(g_path+"/"+fn);
+	}
+	
 	private double process_rs(String rs) {
 		MList fu=new MList(rs);
 		int n=fu.size();

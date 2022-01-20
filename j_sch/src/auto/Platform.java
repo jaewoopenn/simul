@@ -57,8 +57,8 @@ public class Platform {
 	
 	// gen CFG, TS
 	public void genCfg_util(String cf,double ul) {
-		int base=50;
-		int step=5;
+		int base=60;
+		int step=4;
 		double end_i=(ul*100-base)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
 		MList fu=new MList();
@@ -68,8 +68,8 @@ public class Platform {
 			int lb=i*step+base;
 			SLog.prn(2, lb+"");
 			cg.setParam("u_lb", (lb)*1.0/100+"");
-			cg.setParam("u_ub", (lb+5)*1.0/100+"");
-			cg.setParam("mod", (lb+5)+"");
+			cg.setParam("u_ub", (lb+step)*1.0/100+"");
+			cg.setParam("mod", (lb+step)+"");
 			cg.setParam("prob_hi",g_p_hc+"");
 			if(g_ratio!=-1) {
 				cg.setParam("r_lb",(g_ratio)+"");
@@ -176,7 +176,7 @@ public class Platform {
 		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_rs_list."+sort+".txt";
 		MList fu_rs=new MList();
-		Anal a=AnalSel2.getAnal(sort);
+		Anal a=AnalSel2.getAnal2(sort);
 		
 		SLog.prn(1, "a:"+a.getName());
 		for(int i=0;i<fu.size();i++) {

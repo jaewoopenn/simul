@@ -26,4 +26,16 @@ public class AnalSel2 {
 		return null;
 	}
 
+	public static Anal getAnal2(int sort) {
+		if(sort==0) { 
+			return new AnalEDF_IV4();  //HI-MAX
+		} else if(sort==1) {
+			return new AnalEDF_AD_E();
+		} else if(sort==2) {
+			return new AnalEDF_VD();
+		} else if(sort==3) {
+			return new AnalFMC();		
+		} 
+		return null;
+	}	
 }
