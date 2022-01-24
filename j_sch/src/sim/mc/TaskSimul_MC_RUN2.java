@@ -8,11 +8,11 @@ import util.MCal;
 
 // for minJobDrop
 
-public class TaskSimul_MC_RUN extends TaskSimulMC{
+public class TaskSimul_MC_RUN2 extends TaskSimulMC{
 
-	public TaskSimul_MC_RUN() {
+	public TaskSimul_MC_RUN2() {
 		super();
-		g_name="MC-RUN-E";
+		g_name="MC-RUN-E2";
 	}
 
 	
@@ -29,19 +29,18 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 	}
 	
 	private void drop_algo(double x) {
-//		double ru=g_tm.getRUN_Util(x);
-		double ru=g_tm.getRUN_Util2(x);
+		double ru=g_tm.getRUN_Util(x);
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
-				g_tm.prnRuntime();
-//				g_tm.prnPara();
-				g_tm.prnRun(x);
-				SLog.err("no available LO-task to drop. ru:"+ru);
+				break;
+//				g_tm.prnRuntime();
+////				g_tm.prnPara();
+//				g_tm.prnRun(x);
+//				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-//			ru=g_tm.getRUN_Util(x);
-			ru=g_tm.getRUN_Util2(x);
+			ru=g_tm.getRUN_Util(x);
 		}
 		
 	}

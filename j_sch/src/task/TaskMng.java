@@ -4,6 +4,7 @@ package task;
 
 */
 
+import util.MCal;
 import util.SLog;
 
 public class TaskMng {
@@ -131,6 +132,14 @@ public class TaskMng {
 			util+=g_info.computeRUN_U(t,x);
 		}
 		return util;
+	}
+	public double getRUN_Util2(double x) {
+		double util1=getRUN_Util(x);
+		double util2=getIV_Util();
+//		if(util2<util1) {
+//			SLog.prn(2,MCal.getStr(util2)+"<"+MCal.getStr(util1)+"!!");
+//		}
+		return Math.min(util1, util2);
 	}
 	
 	public double getWCUtil() {
