@@ -3,15 +3,16 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel2;
+import anal.AnalSel_ori;
+import anal_imc.AnalSel_IMC;
 import util.MList;
 
 public class DataAnal {
-	private String g_path;
-	private Vector<String> g_xl=new Vector<String>();
-	private double[][] g_rs;
-	private int g_max=0;
-	private int g_xlen=0;
+	protected String g_path;
+	protected Vector<String> g_xl=new Vector<String>();
+	protected double[][] g_rs;
+	protected int g_max=0;
+	protected int g_xlen=0;
 	public DataAnal(String path,int x) {
 		g_path=path;
 		g_max=x;
@@ -50,7 +51,7 @@ public class DataAnal {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			Anal a=AnalSel2.getAnal(idx);
+			Anal a=getAnal(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);
@@ -63,25 +64,11 @@ public class DataAnal {
 		}
 		fu.save(g_path+"/"+fn);
 	}
-
-	public void save2(String fn) {
-		MList fu=new MList();
-		String str="xx";
-
-		for(int idx=0;idx<g_max;idx++) {
-			Anal a=AnalSel2.getAnal2(idx);
-			str+=" "+a.getName();
-		}
-		fu.add(str);
-		for(int i=0;i<g_xlen;i++) {
-			str=g_xl.elementAt(i);
-			for(int idx=0;idx<g_max;idx++) {
-				str+=" "+g_rs[i][idx];
-			}
-			fu.add(str);
-		}
-		fu.save(g_path+"/"+fn);
+	public Anal getAnal(int i) {
+		return AnalSel_ori.getAnal(i);
 	}
+
+
 	
 	private double process_rs(String rs) {
 		MList fu=new MList(rs);

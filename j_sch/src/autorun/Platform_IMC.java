@@ -1,10 +1,10 @@
-package auto;
+package autorun;
 
 import anal.Anal;
 import anal.AnalEDF_VD;
-import anal.AnalSel;
 import anal.AnalSel_ori;
 import anal_imc.AnalSel_IMC;
+import auto.Platform_base;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
@@ -18,14 +18,10 @@ import util.MList;
 import util.CProg;
 import util.SLog;
 
-public class Platform extends Platform_base{
-	
-	public Platform(String path) {
+public class Platform_IMC extends Platform_base {
+	public Platform_IMC(String path) {
 		g_path=path;
-	}
-	
-	
-	// gen CFG, TS
+	}	// gen CFG, TS
 	public void genCfg_util(String cf,double ul) {
 		int base=60;
 		int step=4;
@@ -70,30 +66,6 @@ public class Platform extends Platform_base{
 		
 	}
 	
-	public void genCfg_hc(String cf,double util) {
-//		ConfigGen cg=ConfigGen.getPredefined();
-//		MList fu=new MList();
-//		cg.setParam("subfix", g_path);
-//		cg.setParam("num",g_num+"");
-//		for(int i=0;i<10;i++){
-//			int p_hc=i+1;
-//			cg.setParam("u_lb", (util)+"");
-//			cg.setParam("u_ub", (util+0.05)+"");
-//			cg.setParam("mod", "0."+(p_hc));
-//			cg.setParam("prob_hi",(p_hc*0.1)+"");
-//			String fn=g_path+"/cfg_"+i+".txt";
-//			cg.setFile(fn);
-//			cg.write();
-//			fu.add(fn);
-//		}
-//		fu.save(g_path+"/"+cf);
-		
-	}
-	public void genCfg_ratio(String cf,double util) {
-
-		
-	}
-
 	
 	public void genTS(String cfg_list,String ts, String xaxis) {
 		SLog.prn(3, g_path+"/"+cfg_list);
@@ -104,7 +76,6 @@ public class Platform extends Platform_base{
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
-//		Anal a=new AnalFMC();
 		Anal a=new AnalEDF_VD();
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
@@ -121,9 +92,7 @@ public class Platform extends Platform_base{
 		fu_ts.save(g_path+"/"+ts);
 		fu_xa.save(g_path+"/"+xaxis);
 	}
-//	public int getDur(int i) {
-//		return i*3000+2000;
-//	}
+	
 	public void genXA(String xaxis) {
 		MList fu_xa=new MList();
 		for(int i=0;i<g_dur_set.length;i++) {
@@ -131,13 +100,12 @@ public class Platform extends Platform_base{
 		}
 		fu_xa.save(g_path+"/"+xaxis);
 	}	
-
+	
 	
 	public Anal getAnal(int sort) {
-		return AnalSel_ori.getAnal(sort);
+		return AnalSel_IMC.getAnal(sort);
 	}
-
-
+	
 	
 	//simulation
 	public void sim_loop(String rs_list,String ts_list, int start, int end) {
@@ -181,6 +149,7 @@ public class Platform extends Platform_base{
 		fu_rs.save(rs_fn);
 		return rs_fn;		
 	}
+	
 	public String simul_a(String fn,int sort) {
 		int anal_sort=Math.min(sort, 3);
 		
@@ -261,6 +230,5 @@ public class Platform extends Platform_base{
 	}
 
 
-	
 	
 }
