@@ -30,7 +30,7 @@ public class z_auto1 {
 	}
 	
 	public void init_g() {
-		g_path="ind/t1";
+		g_path="run/mc1";
 		g_num=5000;
 //		g_num=100;
 //		g_num=5;

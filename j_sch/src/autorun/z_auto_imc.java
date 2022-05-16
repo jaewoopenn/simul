@@ -30,7 +30,7 @@ public class z_auto_imc {
 	}
 	
 	public void init_g() {
-		g_path="imc/t1";
+		g_path="run/imc1";
 		g_num=5000;
 //		g_num=100;
 //		g_num=5;
