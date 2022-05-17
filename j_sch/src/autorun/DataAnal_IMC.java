@@ -4,8 +4,8 @@ import java.util.Vector;
 
 import anal.Anal;
 import anal.AnalSel_ori;
-import anal_imc.AnalSel_IMC;
 import auto.DataAnal;
+import imc.AnalSel_IMC;
 import util.MList;
 
 public class DataAnal_IMC extends DataAnal {

@@ -28,7 +28,7 @@ public class AnalEDF_IV2 extends Anal {
 	}
 	private double getHSum() {
 //		g_tm.prn();
-		g_tm.prnInfo();
+//		g_tm.prnInfo();
 		
 		ArrayList<Double> delta=new ArrayList<Double>();
 		for(Task t:g_tm.getHiTasks()){

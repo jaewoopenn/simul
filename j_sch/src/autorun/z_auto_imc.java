@@ -56,7 +56,7 @@ public class z_auto_imc {
 		p.genTS(g_cf,g_ts,g_xl);
 		int end=3;
 		p.anal_loop(g_rs,g_ts,end);
-		DataAnal da=new DataAnal(g_path,0);
+		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);
 		da.save(g_graph);

@@ -4,11 +4,11 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import anal.AnalSel;
 import anal.AnalSel_ori;
-import anal_imc.AnalSel_IMC;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
 import gen.SysLoad;
+import imc.AnalSel_IMC;
 import sim.SimulInfo;
 import sim.SimulSel2;
 import sim.SysMng;
@@ -166,7 +166,7 @@ public class Platform extends Platform_base{
 		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
 		MList fu_rs=new MList();
-		Anal a=AnalSel_IMC.getAnal(sort);
+		Anal a=AnalSel.getAnal(sort);
 		SLog.prn(2, "Anal:"+a.getName());
 		TaskSimulMC s=SimulSel2.getSim(sort);
 		if(g_be)
@@ -184,7 +184,7 @@ public class Platform extends Platform_base{
 	public String simul_a(String fn,int sort) {
 		int anal_sort=Math.min(sort, 3);
 		
-		Anal a=AnalSel_IMC.getAnal(anal_sort);
+		Anal a=AnalSel.getAnal(anal_sort);
 		TaskSimulMC s=SimulSel2.getSim(sort);
 		if(g_be)
 			s.setBE();
@@ -202,7 +202,7 @@ public class Platform extends Platform_base{
 		String fn=fu.get(0);
 		int anal_sort=Math.min(sort, 3);
 		
-		Anal a=AnalSel_IMC.getAnal(anal_sort);
+		Anal a=AnalSel.getAnal(anal_sort);
 		TaskSimulMC s=SimulSel2.getSim(sort);
 		if(g_be)
 			s.setBE();

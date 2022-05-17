@@ -1,4 +1,4 @@
-package anal_imc;
+package imc;
 
 import anal.Anal;
 import task.SysInfo;
