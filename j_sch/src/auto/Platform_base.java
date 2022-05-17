@@ -2,7 +2,11 @@ package auto;
 
 import anal.Anal;
 import gen.SysLoad;
+import sim.SimulInfo;
+import sim.SysMng;
+import sim.mc.TaskSimulMC;
 import task.TaskMng;
+import util.CProg;
 import util.MList;
 import util.SLog;
 
@@ -99,5 +103,134 @@ public abstract class Platform_base {
 		}
 		fu.save(out);
 	}
+	
+	public abstract Anal getAnalSim(int sort) ;
+	public abstract TaskSimulMC getSim(int sort) ;
+	
+	//simulation
+	public void sim_loop(String rs_list,String ts_list, int start, int end) {
+		MList fu=new MList();
+		for(int i=start;i<end;i++){
+			String rs=simul(ts_list,i);
+			fu.add(rs);
+		}
+		fu.save(g_path+"/"+rs_list);
+	}
+
+	
+	//simulation
+	public void sim_loop_dur(String rs_list,String ts_list, int end) {
+		MList fu=new MList();
+		for(int i=0;i<end;i++){
+			String rs=simul_dur(ts_list,i);
+			fu.add(rs);
+		}
+		fu.save(g_path+"/"+rs_list);
+	}
+	
+
+
+	// simulate task set list with algorithm choice
+	public String simul(String ts_list,int sort) {
+		MList fu=new MList(g_path+"/"+ts_list);
+		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
+		MList fu_rs=new MList();
+		Anal a=getAnalSim(sort);
+		SLog.prn(2, "Anal:"+a.getName());
+		TaskSimulMC s=getSim(sort);
+		if(g_be)
+			s.setBE();
+		
+		for(int i=0;i<fu.size();i++) {
+			String fn=fu.get(i);
+			String out=fn+".sim."+sort;
+			simul_one(fn,out,a,s);
+			fu_rs.add(out);
+		}		
+		fu_rs.save(rs_fn);
+		return rs_fn;		
+	}
+	
+	public void simul_one(String ts,String out,Anal a,TaskSimulMC s) {
+		SLog.prn(2, ts);
+		SLog.prn(2, g_dur);
+		SLog.prn(2, s.getName());
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
+		CProg prog=new CProg(num);
+		prog.setLog(2);
+//		prog.setSort(1);
+//		prog.setStep(1);
+		prog.setPercent();
+		MList fu=new MList();
+		for(int i=0;i<num;i++) {
+//			SLog.prn(2, "no:"+i);
+			TaskMng tm=sy.loadOne();
+			if(tm==null) break;
+			
+			a.init(tm);
+			a.prepare();
+			prog.inc();
+			if(!a.is_sch()) {
+				SLog.prn(2, "no sch "+i);
+				continue;
+			}
+
+			double x=a.computeX();
+			
+			SysMng sm=new SysMng();
+			sm.setMS_Prob(g_p_ms);
+			sm.setX(x);
+			sm.setDelay(x*tm.getLongPeriod());
+//			sm.prn();
+			s.init_sm_tm(sm,tm);
+			s.simul(0,g_dur);
+			s.simul_end();
+			SimulInfo si=s.getSI();
+			fu.add(si.getDMR()+"");
+		}
+		fu.save(out);
+	}
+
+
+	// one 
+	public String simul_a(String fn,int sort) {
+		int anal_sort=Math.min(sort, 3);
+		
+		Anal a=getAnalSim(anal_sort);
+		TaskSimulMC s=getSim(sort);
+		if(g_be)
+			s.setBE();
+		String out=fn+".sim."+sort;
+		simul_one(fn,out,a,s);
+		return "OK";		
+		
+	}
+	// simulate task set list with algorithm choice (duration)
+	public String simul_dur(String ts_list,int sort) {
+		MList fu=new MList(g_path+"/"+ts_list);
+		String rs_fn=g_path+"/a_sim_list."+sort+".txt";
+		MList fu_rs=new MList();
+		
+		String fn=fu.get(0);
+		int anal_sort=Math.min(sort, 3);
+		
+		Anal a=getAnalSim(anal_sort);
+		TaskSimulMC s=getSim(sort);
+		if(g_be)
+			s.setBE();
+		
+		for(int i=0;i<g_dur_set.length;i++) {
+			String out=fn+"_"+i+".sim."+sort;
+			g_dur=g_dur_set[i];
+			simul_one(fn,out,a,s);
+			fu_rs.add(out);
+		}		
+		fu_rs.save(rs_fn);
+		return rs_fn;		
+	}
+
+	
 
 }

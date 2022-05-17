@@ -1,20 +1,20 @@
-package auto;
+package autorun;
 
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel_run;
-import sim.SimulSel_run;
+import imc.AnalSel_IMC;
+import imc.SimulSel_IMC;
 import sim.TaskSimul;
 import util.MList;
 
-public class DataSim {
+public class DataSim_IMC {
 	private String g_path;
 	private Vector<String> g_xl=new Vector<String>();
 	private double[][] g_rs;
 	private int g_max=0;
 	private int g_xlen=0;
-	public DataSim(String path,int x) {
+	public DataSim_IMC(String path,int x) {
 		g_path=path;
 		g_max=x;
 	}
@@ -46,7 +46,6 @@ public class DataSim {
 			g_rs[i][idx]=r;
 		}
 	}
-	
 
 	private double process_rs(String rs) {
 		MList fu=new MList(rs);
@@ -66,7 +65,7 @@ public class DataSim {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			TaskSimul a=SimulSel_run.getSim(idx);
+			TaskSimul a=SimulSel_IMC.getSim(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);

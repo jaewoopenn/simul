@@ -3,7 +3,7 @@ package autorun;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel_ori;
+import anal.AnalSel_run;
 import auto.DataAnal;
 import imc.AnalSel_IMC;
 import util.MList;

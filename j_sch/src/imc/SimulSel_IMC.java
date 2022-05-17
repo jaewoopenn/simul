@@ -2,7 +2,7 @@ package imc;
 
 import sim.mc.*;
 
-public class SimulSel2 {
+public class SimulSel_IMC {
 	/*
 	 * 0: EDF-IV
 	 * 1: EDF-AD
