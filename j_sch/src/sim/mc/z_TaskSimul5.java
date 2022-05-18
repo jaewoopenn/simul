@@ -8,6 +8,9 @@ import anal.AnalEDF_IV4;
 import anal.AnalEDF_VD;
 import gen.SysLoad;
 import imc.AnalEDF_RUN;
+import imc.TaskSimulIMC;
+import imc.TaskSimul_MC_RUN;
+import imc.TaskSimul_MC_RUN2;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
@@ -21,7 +24,7 @@ public class z_TaskSimul5 {
 	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-	public static int log_level=1;
+	public static int log_level=2;
 
 
 	public int test1()	{
@@ -29,24 +32,26 @@ public class z_TaskSimul5 {
 		int et=10000;
 		
 		
-		SysLoad sy=new SysLoad("run/pi0/taskset_80");
+		SysLoad sy=new SysLoad("run/pi0/taskset_92");
 		sy.open();
-		int num=2;
+		int num=11;
 		TaskMng tm=null;
 		for(int i=0;i<num;i++) {
 			tm=sy.loadOne();
 		}
 		Anal a;
-		TaskSimulMC ts;
-//		SLogF.init("test_RU.txt");
-//		a=new AnalEDF_RUN();
-//		ts=new TaskSimul_MC_RUN();
-//		simul(a, ts,tm,et);
-//		SLogF.end();
-
+		TaskSimulIMC ts;
+		SLogF.init("test_RU.txt");
+		a=new AnalEDF_RUN();
+		ts=new TaskSimul_MC_RUN();
+//		ts.setRecoverIdle(false);
+		simul(a, ts,tm,et);
+		SLogF.end();
+		
 		SLogF.init("test_RU2.txt");
 		a=new AnalEDF_RUN();
 		ts=new TaskSimul_MC_RUN2();
+//		ts.setRecoverIdle(false);
 		simul(a, ts,tm,et);
 		SLogF.end();
 		
@@ -59,7 +64,7 @@ public class z_TaskSimul5 {
 
 		return 0;
 	}
-	private void simul(Anal a, TaskSimulMC ts,TaskMng tm,int et) {
+	private void simul(Anal a, TaskSimulIMC ts,TaskMng tm,int et) {
 		SLog.prn(2, "--!!!----------");
 		a.init(tm);
 		a.prepare();
@@ -67,12 +72,13 @@ public class z_TaskSimul5 {
 		SLog.prn(2, "det:"+d);
 		SysMng sm=new SysMng();
 //		SLogF.init("test.txt");
-		sm.setMS_Prob(0.3);
+		sm.setMS_Prob(0.5);
 		double x=a.computeX();
 		sm.setX(x);
+		sm.setLife(2);
 //		ts=new TaskSimul_EDF_AD_E();
 		ts.init_sm_tm(sm,tm);
-		tm.prnTxt();
+//		tm.prnTxt();
 		ts.simul(0,et);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();

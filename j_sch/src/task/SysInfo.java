@@ -9,7 +9,7 @@ import util.MCal;
 
 public class SysInfo {
 	private double lo_util;
-	private double lo_util_max;
+	private double lo_de_util;
 	private double hi_util_lm;
 	private double hi_util_hm;
 	private double x_para;
@@ -106,9 +106,11 @@ public class SysInfo {
 	public double getUtil_LC() {
 		return lo_util;
 	}
-	public double getLo_max() {
-		return lo_util_max;
+	public double getUtil_DeLC() {
+		return lo_de_util;
 	}
+	
+
 	
 	public double getUtil_HC_LO() {
 		return hi_util_lm;
@@ -117,8 +119,8 @@ public class SysInfo {
 		return hi_util_hm;
 	}
 	
-	public void setLo_max(double u) {
-		this.lo_util_max = u;
+	public void setLo_de_util(double u) {
+		this.lo_de_util = u;
 	}
 	public void setLo_util(double u) {
 		this.lo_util = u;

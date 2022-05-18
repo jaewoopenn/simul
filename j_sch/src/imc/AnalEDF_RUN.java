@@ -12,6 +12,7 @@ import util.MCal;
 // inverse 
 public class AnalEDF_RUN extends Anal {
 	private double g_lt_lu;
+	private double g_lt_hu;
 	private double g_ht_lu;
 	private double g_ht_hu;
 	SysInfo g_info;
@@ -51,7 +52,7 @@ public class AnalEDF_RUN extends Anal {
 		for(double d:delta) {
 			SLog.prn(1,"d "+d);
 			
-			double z_sum=0;
+			double z_sum=g_lt_hu;
 			for(Task t:g_tm.getHiTasks()){
 				double l=t.getLoUtil();
 				double h=t.getHiUtil();
@@ -84,7 +85,7 @@ public class AnalEDF_RUN extends Anal {
 	}
 	
 	private double computeSlack(double old_d) {
-		double slack=1;
+		double slack=1-g_lt_hu;
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
@@ -107,7 +108,7 @@ public class AnalEDF_RUN extends Anal {
 		return sum;
 	}
 	private double setVD(double d_opt) {
-		double z_sum=0;
+		double z_sum=g_lt_hu;
 		for(Task t:g_tm.getHiTasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
@@ -167,6 +168,7 @@ public class AnalEDF_RUN extends Anal {
 	private void load() {
 		g_info=g_tm.getInfo();
 		g_lt_lu=g_info.getUtil_LC();
+		g_lt_hu=g_info.getUtil_DeLC();
 		g_ht_lu=g_info.getUtil_HC_LO();
 		g_ht_hu=g_info.getUtil_HC_HI();
 	}
@@ -188,32 +190,11 @@ public class AnalEDF_RUN extends Anal {
 			return g_lt_lu+g_ht_hu;
 		}
 		double dtm=getHSum();
-//		getDtm2();
 		return dtm;
 	}
 
 
 
-	public double getDtm2() {
-		double lsum=g_lt_lu;
-		for(Task t:g_tm.getHiTasks()){
-			lsum+=t.getLoVdUtil();
-		}
-		SLog.prn(2, "l_sum22:"+lsum);
-		double hsum=g_ht_hu;
-		double x=0;
-		for(Task t:g_tm.getHiTasks()){
-			double tempx=t.vd/t.period;
-			SLog.prn(2, "x11:"+tempx);
-
-			x=Math.max(x,tempx);
-		}
-		hsum+=x*g_lt_lu;
-		SLog.prn(2, "x22:"+x);
-		SLog.prn(2, "h_sum22:"+hsum);
-		return 0;
-		
-	}
 
 
 	

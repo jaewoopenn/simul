@@ -18,6 +18,7 @@ public class Task {
 	public double vd;
 	public double x;
 	public int sb_tm=-1; // switch back time
+	public int life=0;
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
 	private boolean is_MS_Mode=false;
@@ -30,7 +31,7 @@ public class Task {
 		this.period = period;
 		this.vd = period;
 		this.c_l = c_l;
-		this.c_h = c_l;
+		this.c_h = 0;
 	}
 
 	public Task(int period, int c_l, int c_h) {
@@ -41,12 +42,18 @@ public class Task {
 		this.c_h = c_h;
 		this.is_HC=true;
 	}
+	public Task(int period, int c_l, int c_h,boolean is_HC) {
+		this.tid=TaskSeq.getID();
+		this.period = period;
+		this.vd = period;
+		this.c_l = c_l;
+		this.c_h = c_h;
+		this.is_HC=is_HC;
+	}
 
 	
 	public boolean check() {
 		if (period==0)
-			return false;
-		if (c_h==0)
 			return false;
 		if (c_l==0)
 			return false;
@@ -168,6 +175,7 @@ public class Task {
 			is_HI_Mode=true;
 		else
 			is_HI_Mode=false;
+		is_MS_Mode=false;
 		sb_tm=-1;
 	}
 

@@ -69,7 +69,7 @@ public class z_auto_sim_imc {
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
-
+		p.setLife(2);
 //.......................................  DRE (comment out), BRE (setBE)  best effort 하지 말자 
 //		p.setBE();
 		
@@ -94,7 +94,7 @@ public class z_auto_sim_imc {
 //		int st=2,et=3;
 		init_g();
 		init_sim();
-		double a[]= {0.05,0.2,0.5};
+		double a[]= {0.05,0.1,0.25};
 //		double a[]= {0.2,0.5,0.7};
 		for(int i=st;i<et;i++) {
 			g_path="run/pi"+i;

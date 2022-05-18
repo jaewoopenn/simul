@@ -11,7 +11,7 @@ import util.MPlot as mp;
 class gl_input:
     savename="run/pmsi"
     path="run/pi"
-    ylim=0.130
+    ylim=0.30
       
 
 

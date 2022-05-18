@@ -22,7 +22,12 @@ public abstract class Platform_base {
 	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	protected boolean g_be=false; // best effort 
 	
-
+	private boolean g_recoverIdle=true;
+	private int g_life=0;
+	
+	public void setRecoverIdle(boolean b) {
+		g_recoverIdle=b;
+	}
 	
 	public void setNum(int n) {
 		g_num=n;
@@ -52,6 +57,11 @@ public abstract class Platform_base {
 		this.g_be=true;
 		
 	}
+	public void setLife(int i) {
+		g_life=i;
+		
+	}
+	
 
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
@@ -140,6 +150,7 @@ public abstract class Platform_base {
 		TaskSimulMC s=getSim(sort);
 		if(g_be)
 			s.setBE();
+		s.setRecoverIdle(g_recoverIdle);
 		
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
@@ -182,6 +193,7 @@ public abstract class Platform_base {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
+			sm.setLife(g_life);
 			sm.setDelay(x*tm.getLongPeriod());
 //			sm.prn();
 			s.init_sm_tm(sm,tm);

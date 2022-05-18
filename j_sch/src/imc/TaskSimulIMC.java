@@ -1,26 +1,23 @@
-package sim.mc;
+package imc;
 
 
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
 import sim.job.Job;
+import sim.mc.JobSimulMC;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 
-public abstract class TaskSimulMC extends TaskSimul {
+public abstract class TaskSimulIMC extends TaskSimul {
 
 	protected boolean g_ms_happen=false;
 	private  boolean g_recover_idle_on=true;
-	protected boolean g_best_effort=false;
 	private int g_life=0;
 	protected JobSimulMC g_jsm;
 
-	public void setBE() {
-		g_best_effort=true;
-	}
 	
 	@Override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
@@ -67,7 +64,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 		g_si.drop+=g_jsm.simul_one();
 		ms_check();
-		vir_check();
 	}
 	
 	@Override
@@ -113,14 +109,10 @@ public abstract class TaskSimulMC extends TaskSimul {
 			}
 			g_si.rel++;
 			if(tsk.isDrop()){
-				if(this.g_best_effort) {
-					s+="X";
-					Job j=rel_one_job(tsk,t);
-					j.drop();
-					g_jsm.add(j);
-				} else {
-					g_si.nrel++;
-				}
+				s+="X";
+				Job j=rel_one_job(tsk,t);
+				j.drop();
+				g_jsm.add(j);
 				continue;
 			}
 			s+="+";
@@ -166,7 +158,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 			
 		} else { // add_exec=0 : recover check
 			
-			recover_in(j.tid);
 			g_jsm.getJM().removeCur();
 		}
 	}
@@ -187,8 +178,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 	
 	// abstract method
 	protected abstract void modeswitch_in(Task tsk);
-	protected abstract void recover_in(int tid);
-	protected abstract void vir_check();
 	
 	
 	
@@ -210,18 +199,7 @@ public abstract class TaskSimulMC extends TaskSimul {
 		g_jsm.getJM().modeswitch(tsk.tid);
 	}
 
-	protected void switchback_tid(int tid){
-		Task tsk=g_tm.getTask(tid);
-		SLog.err_if(!tsk.isHC(),"task "+tid+" is not HI-task, cannot switch back");
 
-		if(!tsk.isHI_Preferred()) {
-			SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
-			tsk.initMode();
-			tsk.sb_tm=g_jsm.get_time();
-		}
-//		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
-	}
-	
 	
 	protected void drop_task(Task tsk) {
 		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot drop");
@@ -234,14 +212,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 		tsk.drop();
 	}
 	
-	protected void resume_task(Task tsk) {
-		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot resume");
-		
-		if(!tsk.isDrop())
-			return;
-		tsk.resume();
-		
-	}
 
 	
 }

@@ -37,20 +37,22 @@ public class TaskSetMC {
 
 				
 		double loutil=0;
+		double loutil_de=0;
 		double hiutil_lm=0;
 		double hiutil_hm=0;
 		for(Task t:g_tasks.getArr())
 		{
-			double tu=t.getHiUtil();
 			if(t.isHC()){
 				hiutil_lm+=t.getLoUtil();
-				hiutil_hm+=tu;
+				hiutil_hm+=t.getHiUtil();
 			} else {
-				loutil+=tu;
+				loutil+=t.getLoUtil();
+				loutil_de+=t.getHiUtil();
 			}
 		}
 		SysInfo info=new SysInfo();
 		info.setLo_util(loutil);
+		info.setLo_de_util(loutil_de);
 		info.setUtil_HC_HI(hiutil_hm);
 		info.setUtil_HC_LO(hiutil_lm);
 		return new TaskMng(g_tasks,g_hi_tasks,g_lo_tasks,info);

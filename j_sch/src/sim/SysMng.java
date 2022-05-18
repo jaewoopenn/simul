@@ -7,6 +7,7 @@ public class SysMng {
 	private double g_x=-1;
 	private int g_delay;
 	private int g_et;
+	private int g_life=0;
 	//--- Get
 	public double getMS_Prob() {
 		if(g_prob==-1) {
@@ -25,6 +26,9 @@ public class SysMng {
 	}
 	public int getEnd() {
 		return g_et;
+	}
+	public int getLife() {
+		return g_life;
 	}
 
 	
@@ -51,5 +55,9 @@ public class SysMng {
 		g_et=i;
 		
 	}
-	
+	public void setLife(int i) {
+		g_life=i;
+		
+	}
+		
 }

@@ -50,10 +50,6 @@ public class TaskMng {
 		g_hi_tasks.setX(x);
 	}
 
-	public void setLo_max(double u){
-		g_info.setLo_max(u);
-	}
-	
 	
 
 	// get
@@ -167,11 +163,15 @@ public class TaskMng {
 		return util;
 	}
 
+	public double getDeLoUtil() {
+		double util=0;
+		for(Task t:g_lo_tasks.getArr())	{
+			util+=t.getHiUtil();
+		}
+		return util;
+	}
 	
 
-//	public double getReclaimUtil(Task t){
-//		return (1-g_info.getX())*t.getLoUtil();
-//	}
 
 	
 	public double getDroppedUtil(Task t){
@@ -237,7 +237,6 @@ public class TaskMng {
 	public void prnRuntime() {
 		SLog.prn(2, "WC:"+getWCUtil());
 		SLog.prn(2, "LO:"+getLoUtil());
-		SLog.prn(2, "LO_MAX:"+g_info.getLo_max());
 		g_tasks.prnRuntime();
 	}
 

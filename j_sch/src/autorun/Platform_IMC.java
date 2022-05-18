@@ -9,6 +9,7 @@ import gen.SysGenMC;
 import imc.AnalSel_IMC;
 import imc.AnalSel_run;
 import imc.SimulSel_IMC;
+import imc.TaskSimulIMC;
 import sim.mc.TaskSimulMC;
 import util.MList;
 import util.SLog;
@@ -106,7 +107,6 @@ public class Platform_IMC extends Platform_base {
 	public TaskSimulMC getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
-	
 
 
 	

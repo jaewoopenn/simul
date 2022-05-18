@@ -1,14 +1,15 @@
-package sim.mc;
+package imc;
 
 import util.SLog;
 import util.SLogF;
+import sim.mc.TaskSimulMC;
 //import util.SLogF;
 import task.Task;
 import util.MCal;
 
 // for minJobDrop
 
-public class TaskSimul_MC_RUN2 extends TaskSimulMC{
+public class TaskSimul_MC_RUN2 extends TaskSimulIMC{
 
 	public TaskSimul_MC_RUN2() {
 		super();
@@ -46,24 +47,6 @@ public class TaskSimul_MC_RUN2 extends TaskSimulMC{
 		
 	}
 	
-	@Override
-	protected void recover_in(int tid) {
-//		SLogF.prn( "t:"+g_jsm.get_time()+" recover in ");
-//		switchback_tid(tid);		
-//		resume_algo();
-		
-	}
-
-
-	
-
-
-	@Override
-	protected void vir_check() {
-
-		
-		
-	}
 
 
 
