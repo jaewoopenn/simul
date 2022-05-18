@@ -13,9 +13,9 @@ public class SimulSel_IMC {
 		if(sort==0) {
 			return new TaskSimul_MC_RUN();
 		} else if(sort==1) {
-//			return new TaskSimul_MC_RUN2();
+			return new TaskSimul_MC_RUN2();
+		} else if(sort==2) {
 			return new TaskSimul_EDF_VD();
-//			return new TaskSimul_EDF_Post2();
 		}
 		return null;
 	}

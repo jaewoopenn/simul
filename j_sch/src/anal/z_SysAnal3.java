@@ -3,11 +3,13 @@ package anal;
 import z_ex.TS_MC2;
 import z_ex.TS_MC3;
 import z_ex.TS_MC5;
+import imc.AnalEDF_RUN;
 import task.TaskMng;
 import util.SEngineT;
 
 public class z_SysAnal3 {
-	public static int idx=1;
+//	public static int idx=1;
+	public static int idx=4;
 	public static int log_level=1;
 
 	public int test1() 
@@ -44,7 +46,12 @@ public class z_SysAnal3 {
 		return -1;
 	}
 	public  int test4() {
-		return 1;
+		TaskMng tm=TS_MC2.ts2();
+		Anal a=new AnalEDF_RUN();
+		a.init(tm);
+		a.prepare();
+		a.prn();
+		return -1;
 	}
 	public  int test5() {
 		return 1;

@@ -29,7 +29,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 	}
 	
 	private void drop_algo() {
-		double ru=g_tm.getIV_Util();
+		double ru=g_tm.getRUN_Util();
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
@@ -38,7 +38,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-			ru=g_tm.getIV_Util();
+			ru=g_tm.getRUN_Util();
 		}
 		
 	}
@@ -55,7 +55,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 	
 	private void resume_algo() {
 		
-		double ru=g_tm.getIV_Util();
+		double ru=g_tm.getRUN_Util();
 //		SLogF.prn( "ru:"+ru);
 		while(true){
 			Task tsk=g_tm.findResumeTask();
@@ -66,7 +66,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 				break;
 			}
 			resume_task(tsk);
-			ru=g_tm.getIV_Util();
+			ru=g_tm.getRUN_Util();
 		}
 //		SLogF.prn( "t:"+g_jsm.get_time()+" resume end ");
 		

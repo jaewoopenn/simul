@@ -7,6 +7,7 @@ import anal.AnalEDF_IV2;
 import anal.AnalEDF_IV4;
 import anal.AnalEDF_VD;
 import gen.SysLoad;
+import imc.AnalEDF_RUN;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
@@ -28,7 +29,7 @@ public class z_TaskSimul5 {
 		int et=10000;
 		
 		
-		SysLoad sy=new SysLoad("ind/p2/taskset_85");
+		SysLoad sy=new SysLoad("run/pi0/taskset_80");
 		sy.open();
 		int num=2;
 		TaskMng tm=null;
@@ -37,11 +38,18 @@ public class z_TaskSimul5 {
 		}
 		Anal a;
 		TaskSimulMC ts;
-		SLogF.init("test_RU.txt");
-		a=new AnalEDF_IV4();
-		ts=new TaskSimul_MC_RUN();
+//		SLogF.init("test_RU.txt");
+//		a=new AnalEDF_RUN();
+//		ts=new TaskSimul_MC_RUN();
+//		simul(a, ts,tm,et);
+//		SLogF.end();
+
+		SLogF.init("test_RU2.txt");
+		a=new AnalEDF_RUN();
+		ts=new TaskSimul_MC_RUN2();
 		simul(a, ts,tm,et);
 		SLogF.end();
+		
 		
 //		SLogF.init("test_AD.txt");
 //		a=new AnalEDF_AD_E();

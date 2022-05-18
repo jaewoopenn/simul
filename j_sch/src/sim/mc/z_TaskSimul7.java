@@ -29,7 +29,7 @@ public class z_TaskSimul7 {
 		
 	
 		
-		SysLoad sy=new SysLoad("ind/p0/taskset_90");
+		SysLoad sy=new SysLoad("run/pi0/taskset_90");
 		sy.open();
 		int num=20;
 		TaskMng tm=null;

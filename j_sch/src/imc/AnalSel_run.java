@@ -1,5 +1,10 @@
-package anal;
+package imc;
 
+import anal.Anal;
+import anal.AnalEDF_AD_E;
+import anal.AnalEDF_IV4;
+import anal.AnalEDF_VD;
+import anal.AnalFMC;
 
 public class AnalSel_run {
 
@@ -11,7 +16,7 @@ public class AnalSel_run {
 
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_IV4();  //HI-MAX
+			return new AnalEDF_RUN();  //HI-MAX
 		} else if(sort==1) {
 			return new AnalEDF_AD_E();
 		} else if(sort==2) {
@@ -23,12 +28,10 @@ public class AnalSel_run {
 	}
 	public static Anal getAnalSim(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_IV4();  //HI-MAX
+			return new AnalEDF_RUN();  //HI-MAX
 		} else if(sort==1) {
 			return new AnalEDF_AD_E();
 		} else if(sort==2) {
-			return new AnalEDF_AD_E();
-		} else if(sort==3) {
 			return new AnalEDF_VD();
 		} 
 		return null;

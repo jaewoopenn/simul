@@ -62,7 +62,22 @@ public class z_TaskSimul4 {
 		return -1;
 	}
 	public int test3() {
-		return 0;
+		SLogF.init("test/log2.txt");
+		TaskSimul_FMC ts=new TaskSimul_FMC();
+//		ts.setRecoverIdle(false);
+		
+//		TaskMng tm=TS_MC3.ts3();
+		TaskMng tm=TS_MC3.ts4();
+		SysMng sm=getSM();
+//		sm.prn();
+		ts.init_sm_tm(sm,tm);
+		ts.simul(0,sm.getEnd());
+		ts.simul_end();
+		
+		SimulInfo si=ts.getSI();
+		si.prn();
+		SLogF.end();
+		return -1;
 	}
 	public  int test4() {
 		return 1;

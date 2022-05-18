@@ -12,7 +12,7 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 
 	public TaskSimul_MC_RUN() {
 		super();
-		g_name="MC-RUN-E";
+		g_name="MC-RUN";
 	}
 
 	
@@ -29,8 +29,7 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 	}
 	
 	private void drop_algo(double x) {
-//		double ru=g_tm.getRUN_Util(x);
-		double ru=g_tm.getRUN_Util2(x);
+		double ru=g_tm.getRUN_Util();
 		while(ru>=1+MCal.err){
 			Task tsk=g_tm.findDropTask();
 			if(tsk==null){
@@ -40,8 +39,7 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
 			drop_task(tsk);
-//			ru=g_tm.getRUN_Util(x);
-			ru=g_tm.getRUN_Util2(x);
+			ru=g_tm.getRUN_Util();
 		}
 		
 	}
@@ -55,25 +53,6 @@ public class TaskSimul_MC_RUN extends TaskSimulMC{
 	}
 
 
-	
-	private void resume_algo() {
-		
-		double ru=g_tm.getIV_Util();
-//		SLogF.prn( "ru:"+ru);
-		while(true){
-			Task tsk=g_tm.findResumeTask();
-			if(tsk==null)
-				break;
-//			SLogF.prn("ru:"+(ru+tsk.getLoUtil()));
-			if(ru+tsk.getLoUtil()>1+MCal.err) {
-				break;
-			}
-			resume_task(tsk);
-			ru=g_tm.getIV_Util();
-		}
-//		SLogF.prn( "t:"+g_jsm.get_time()+" resume end ");
-		
-	}
 
 
 	@Override

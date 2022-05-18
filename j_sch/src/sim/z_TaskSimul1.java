@@ -13,16 +13,18 @@ import z_ex.TS_MC1;
 import z_ex.TS_NonMC1;
 
 public class z_TaskSimul1 {
-//	public static int idx=1;
+	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
+//	public static int idx=3;
 	public static int log_level=1;
 
 
 	public int test1()	{
 		SLogF.alive();
-		TaskSimul ts=new TaskSimul();
-		ts.init_sm_tm(null,TS_NonMC1.ts1());
+		TaskSimulNor ts=new TaskSimulNor();
+		SysMng sm=new SysMng();
+		sm.setX(0.2);
+		ts.init_sm_tm(sm,TS_NonMC1.ts1());
 		ts.simul(0,20);
 		ts.simul_end();
 		return 0;

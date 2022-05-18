@@ -3,8 +3,8 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel_run;
-import sim.SimulSel_run;
+import imc.AnalSel_run;
+import imc.SimulSel_run;
 import sim.TaskSimul;
 import util.MList;
 

@@ -20,6 +20,7 @@ public class Task {
 	public int sb_tm=-1; // switch back time
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
+	private boolean is_MS_Mode=false;
 	private boolean is_dropped=false;
 	private boolean is_hi_preferred=false;
 	
@@ -39,31 +40,6 @@ public class Task {
 		this.c_l = c_l;
 		this.c_h = c_h;
 		this.is_HC=true;
-	}
-	public void ms(){
-		if(is_hi_preferred) 
-			return;
-		is_HI_Mode=true;
-	}
-	public void drop() {
-		SLogF.prn("drop "+tid);
-		this.is_dropped=true;
-	}
-	public void resume() {
-		SLogF.prn("resume "+tid);
-		this.is_dropped=false;
-	}
-	public void setX(double x){
-		this.x=x;
-		this.vd=x*this.period;
-	}
-	public void setHI_only() {
-		 is_hi_preferred = true;
-		 is_HI_Mode=true;
-	}
-	public void setNormal() {
-		 is_hi_preferred = false;
-		 is_HI_Mode=false;
 	}
 
 	
@@ -94,17 +70,13 @@ public class Task {
 	}
 	
 
-	public Task getCopy() {
-		Task t=new Task(period, c_l);
-		return t;
-	}
 	
 	public void prn() {
 		SLog.prnc(2, "tid:"+tid);
 		SLog.prnc(2, " p:"+period);
 		if (is_HC){
 			SLog.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
-			SLog.prnc(2," isHM:"+is_HI_Mode);
+			SLog.prnc(2," mode:"+is_HI_Mode);
 			
 		}else{
 			SLog.prnc(2," cl:"+c_l);
@@ -189,6 +161,7 @@ public class Task {
 
 	}
 
+	// operation
 	public void initMode() {
 		is_dropped=false;
 		if(is_hi_preferred)
@@ -197,6 +170,25 @@ public class Task {
 			is_HI_Mode=false;
 		sb_tm=-1;
 	}
+
+	public void ms(){
+		if(is_hi_preferred) 
+			return;
+		is_HI_Mode=true;
+		is_MS_Mode=true;
+	}
+	public void ms_end() {
+		is_MS_Mode=false;
+	}
+	public void drop() {
+		SLogF.prn("drop "+tid);
+		this.is_dropped=true;
+	}
+	public void resume() {
+		SLogF.prn("resume "+tid);
+		this.is_dropped=false;
+	}
+	
 	
 	// get Param
 	public boolean isHC() {
@@ -204,6 +196,9 @@ public class Task {
 	}
 	public boolean isHM() {
 		return is_HI_Mode;
+	}
+	public boolean isMS() {
+		return is_MS_Mode;
 	}
 	public boolean isDrop() {
 		return is_dropped;
@@ -215,7 +210,19 @@ public class Task {
 
 
 
-
+	//set Param
+	public void setX(double x){
+		this.x=x;
+		this.vd=x*this.period;
+	}
+	public void setHI_only() {
+		 is_hi_preferred = true;
+		 is_HI_Mode=true;
+	}
+	public void setNormal() {
+		 is_hi_preferred = false;
+		 is_HI_Mode=false;
+	}
 
 
 

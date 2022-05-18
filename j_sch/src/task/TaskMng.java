@@ -118,24 +118,31 @@ public class TaskMng {
 		
 	}
 	
-	public double getIV_Util() {
+	public double getRUN_Util() {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeIV_U(t);
+			util+=g_info.computeRUN_U(t);
+		}
+		return util;
+	}
+	public double getRUN5_Util() {
+		double util=0;
+		for(Task t:g_tasks.getArr())	{
+			util+=g_info.computeRUN5_U(t);
 		}
 		return util;
 	}
 
-	public double getRUN_Util(double x) {
+	public double getRUNE_Util(double x) {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeRUN_U(t,x);
+			util+=g_info.computeRUNE_U(t,x);
 		}
 		return util;
 	}
 	public double getRUN_Util2(double x) {
-		double util1=getRUN_Util(x);
-		double util2=getIV_Util();
+		double util1=getRUN_Util();
+		double util2=getRUNE_Util(x);
 //		if(util2<util1) {
 //			SLog.prn(2,MCal.getStr(util2)+"<"+MCal.getStr(util1)+"!!");
 //		}
@@ -277,7 +284,7 @@ public class TaskMng {
 		SLog.prn(2, "x:"+x);
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
-			double u=g_info.computeRUN_U(t,x);
+			double u=g_info.computeRUNE_U(t,x);
 			util+=u;
 			SLog.prn(2, u+","+util);
 		}

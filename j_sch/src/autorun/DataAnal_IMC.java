@@ -3,9 +3,9 @@ package autorun;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel_run;
 import auto.DataAnal;
 import imc.AnalSel_IMC;
+import imc.AnalSel_run;
 import util.MList;
 
 public class DataAnal_IMC extends DataAnal {

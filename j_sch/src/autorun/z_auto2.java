@@ -6,7 +6,6 @@ import auto.Platform;
 import util.SEngineT;
 import util.SLog;
 
-// 아직 구현이 미진함... platform_IMC 부분에서 simul IMC 부분을 구현해야함 
 //MC-FLEX p hc ratio (BRE)
 
 public class z_auto2 {
@@ -75,8 +74,8 @@ public class z_auto2 {
 //.......................................  DRE (comment out), BRE (setBE)  best effort 하지 말자 
 //		p.setBE();
 		
-		p.sim_loop(g_rs, g_ts,0,4);
-//		p.sim_loop(g_rs, g_ts,0,3);
+//		p.sim_loop(g_rs, g_ts,0,4);
+		p.sim_loop(g_rs, g_ts,0,3);
 //		p.sim_loop(g_rs, g_ts,0,2);
 //		p.sim_loop(g_rs, g_ts,0,1);
 		DataSim ds=new DataSim(g_path,0);
