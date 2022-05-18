@@ -8,7 +8,7 @@ import anal.AnalEDF_IV4;
 import anal.AnalEDF_VD;
 import gen.SysLoad;
 import imc.AnalEDF_RUN;
-import imc.TaskSimulIMC;
+import imc.TaskSimul_IMC;
 import imc.TaskSimul_MC_RUN;
 import imc.TaskSimul_MC_RUN2;
 import sim.SimulInfo;
@@ -40,7 +40,7 @@ public class z_TaskSimul5 {
 			tm=sy.loadOne();
 		}
 		Anal a;
-		TaskSimulIMC ts;
+		TaskSimul_IMC ts;
 		SLogF.init("test_RU.txt");
 		a=new AnalEDF_RUN();
 		ts=new TaskSimul_MC_RUN();
@@ -64,7 +64,7 @@ public class z_TaskSimul5 {
 
 		return 0;
 	}
-	private void simul(Anal a, TaskSimulIMC ts,TaskMng tm,int et) {
+	private void simul(Anal a, TaskSimul_IMC ts,TaskMng tm,int et) {
 		SLog.prn(2, "--!!!----------");
 		a.init(tm);
 		a.prepare();

@@ -9,7 +9,7 @@ import util.MCal;
 
 // for minJobDrop
 
-public class TaskSimul_MC_RUN2 extends TaskSimulIMC{
+public class TaskSimul_MC_RUN2 extends TaskSimul_IMC{
 
 	public TaskSimul_MC_RUN2() {
 		super();
@@ -41,7 +41,7 @@ public class TaskSimul_MC_RUN2 extends TaskSimulIMC{
 				g_tm.prnRun(x);
 				SLog.err("no available LO-task to drop. ru:"+ru);
 			}
-			drop_task(tsk);
+			degrade_task(tsk);
 			ru=g_tm.getRUN5_Util();
 		}
 		

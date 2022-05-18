@@ -203,7 +203,8 @@ public class AnalEDF_RUN extends Anal {
 	public void prn() {
 		SLog.prnc(2, "ll:"+MCal.getStr(g_lt_lu));
 		SLog.prnc(2, " hl:"+MCal.getStr(g_ht_lu));
-		SLog.prn(2, " hh:"+MCal.getStr(g_ht_hu));
+		SLog.prnc(2, " hh:"+MCal.getStr(g_ht_hu));
+		SLog.prn(2, " lh:"+MCal.getStr(g_lt_hu));
 		SLog.prn(2, "det:"+getDtm());
 		g_tm.prnTxt();
 		

@@ -4,6 +4,7 @@ import anal.Anal;
 import gen.SysLoad;
 import sim.SimulInfo;
 import sim.SysMng;
+import sim.TaskSimul_base;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import util.CProg;
@@ -62,7 +63,14 @@ public abstract class Platform_base {
 		
 	}
 	
-
+	public void genXA(String xaxis) {
+		MList fu_xa=new MList();
+		for(int i=0;i<g_dur_set.length;i++) {
+			fu_xa.add((g_dur_set[i]/1000)+"");
+		}
+		fu_xa.save(g_path+"/"+xaxis);
+	}	
+	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
 		MList fu=new MList();
@@ -115,7 +123,7 @@ public abstract class Platform_base {
 	}
 	
 	public abstract Anal getAnalSim(int sort) ;
-	public abstract TaskSimulMC getSim(int sort) ;
+	public abstract TaskSimul_base getSim(int sort) ;
 	
 	//simulation
 	public void sim_loop(String rs_list,String ts_list, int start, int end) {
@@ -147,7 +155,7 @@ public abstract class Platform_base {
 		MList fu_rs=new MList();
 		Anal a=getAnalSim(sort);
 		SLog.prn(2, "Anal:"+a.getName());
-		TaskSimulMC s=getSim(sort);
+		TaskSimul_base s=getSim(sort);
 		if(g_be)
 			s.setBE();
 		s.setRecoverIdle(g_recoverIdle);
@@ -162,7 +170,7 @@ public abstract class Platform_base {
 		return rs_fn;		
 	}
 	
-	public void simul_one(String ts,String out,Anal a,TaskSimulMC s) {
+	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
 		SLog.prn(2, ts);
 		SLog.prn(2, g_dur);
 		SLog.prn(2, s.getName());
@@ -171,9 +179,12 @@ public abstract class Platform_base {
 		int num=Integer.valueOf(ret).intValue();
 		CProg prog=new CProg(num);
 		prog.setLog(2);
-//		prog.setSort(1);
-//		prog.setStep(1);
-		prog.setPercent();
+		
+		prog.setSort(1);
+		prog.setStep(1);
+		
+//		prog.setPercent();
+
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
 //			SLog.prn(2, "no:"+i);
@@ -211,7 +222,7 @@ public abstract class Platform_base {
 		int anal_sort=Math.min(sort, 3);
 		
 		Anal a=getAnalSim(anal_sort);
-		TaskSimulMC s=getSim(sort);
+		TaskSimul_base s=getSim(sort);
 		if(g_be)
 			s.setBE();
 		String out=fn+".sim."+sort;
@@ -229,7 +240,7 @@ public abstract class Platform_base {
 		int anal_sort=Math.min(sort, 3);
 		
 		Anal a=getAnalSim(anal_sort);
-		TaskSimulMC s=getSim(sort);
+		TaskSimul_base s=getSim(sort);
 		if(g_be)
 			s.setBE();
 		

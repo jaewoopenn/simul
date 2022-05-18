@@ -15,7 +15,7 @@ public class JobMngMC extends JobMng {
 		Vector<Job> v=new Vector<Job>();
 		for(Job j:g_jobs){
 			if(j.tid==tid) {
-				j.exec=j.exec+j.add_exec;
+				j.ms();
 				j.setVD(j.dl);
 				j.add_exec=0;
 				v.add(j);
@@ -33,7 +33,6 @@ public class JobMngMC extends JobMng {
 	}
 	
 	public void drop(int tid) {
-//		int d_num=0;
 		while(true) {
 			Job t_j=null;
 			for(Job j:g_jobs){
@@ -41,8 +40,6 @@ public class JobMngMC extends JobMng {
 					continue;
 				if(j.tid==tid&&j.exec>0) {
 					t_j=j;
-	//				j.exec=0;
-	//				d_num++;
 					
 				}
 			}
@@ -53,12 +50,25 @@ public class JobMngMC extends JobMng {
 			g_jobs.add(t_j);
 		}
 		
-//		S_Log.prn(1, d_num);
-//		if(d_num>1){
-//			SLog.err("JobMngMC: drop num>1");
-//		}
-//		return d_num;
-		
+	}
+	public int degrade(int tid) { // for IMC
+		int d=0;
+		while(true) {
+			Job t_j=null;
+			for(Job j:g_jobs){
+				if(j.isDrop())
+					continue;
+				if(j.tid==tid&&j.exec>0) {
+					t_j=j;
+					
+				}
+			}
+			if(t_j==null)
+				break;
+			t_j.degrade();
+			d++;
+		}
+		return d;
 	}
 	
 	

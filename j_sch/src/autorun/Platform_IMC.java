@@ -6,10 +6,12 @@ import auto.Platform_base;
 import gen.ConfigGen;
 import gen.SysGen;
 import gen.SysGenMC;
+import imc.AnalEDF_VD_IMC;
 import imc.AnalSel_IMC;
 import imc.AnalSel_run;
 import imc.SimulSel_IMC;
-import imc.TaskSimulIMC;
+import imc.TaskSimul_IMC;
+import sim.TaskSimul_base;
 import sim.mc.TaskSimulMC;
 import util.MList;
 import util.SLog;
@@ -45,22 +47,7 @@ public class Platform_IMC extends Platform_base {
 		fu.save(g_path+"/"+cf);
 		
 	}
-	public void genCfg_util_one(String cf,double util) {
-		ConfigGen cg=ConfigGen.getPredefined();
-		MList fu=new MList();
-		cg.setParam("subfix", g_path);
-		cg.setParam("num",g_num+"");
-		cg.setParam("u_lb", (util)+"");
-		cg.setParam("u_ub", (util+0.05)+"");
-		cg.setParam("mod", "0");
-		cg.setParam("prob_hi",g_p_hc+"");
-		String fn=g_path+"/cfg_0.txt";
-		cg.setFile(fn);
-		cg.write();
-		fu.add(fn);
-		fu.save(g_path+"/"+cf);
-		
-	}
+
 	
 	
 	public void genTS(String cfg_list,String ts, String xaxis) {
@@ -72,7 +59,7 @@ public class Platform_IMC extends Platform_base {
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
-		Anal a=new AnalEDF_VD();
+		Anal a=new AnalEDF_VD_IMC();
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
@@ -80,7 +67,8 @@ public class Platform_IMC extends Platform_base {
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
-			sg.gen(fn, a);
+			int num=sg.prepareIMC();
+			sg.gen(fn, a,num);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_xa.add(mod);
@@ -89,14 +77,7 @@ public class Platform_IMC extends Platform_base {
 		fu_xa.save(g_path+"/"+xaxis);
 	}
 	
-	public void genXA(String xaxis) {
-		MList fu_xa=new MList();
-		for(int i=0;i<g_dur_set.length;i++) {
-			fu_xa.add((g_dur_set[i]/1000)+"");
-		}
-		fu_xa.save(g_path+"/"+xaxis);
-	}	
-	
+
 	
 	public Anal getAnal(int sort) {
 		return AnalSel_IMC.getAnal(sort);
@@ -104,7 +85,7 @@ public class Platform_IMC extends Platform_base {
 	public Anal getAnalSim(int sort) {
 		return AnalSel_IMC.getAnalSim(sort);
 	}
-	public TaskSimulMC getSim(int sort) {
+	public TaskSimul_base getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
 

@@ -4,19 +4,18 @@ package sim.mc;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
+import sim.TaskSimul_base;
 import sim.job.Job;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 
-public abstract class TaskSimulMC extends TaskSimul {
+public abstract class TaskSimulMC extends TaskSimul_base {
 
 	protected boolean g_ms_happen=false;
-	private  boolean g_recover_idle_on=true;
-	protected boolean g_best_effort=false;
-	private int g_life=0;
 	protected JobSimulMC g_jsm;
+	protected boolean g_best_effort=false;
 
 	public void setBE() {
 		g_best_effort=true;
@@ -26,7 +25,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
 			double x=sm.getX();
-			g_life=sm.getLife();
 			if(x>0) {
 				tm.setX(sm.getX());
 			}
@@ -86,12 +84,8 @@ public abstract class TaskSimulMC extends TaskSimul {
 				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
 				tsk.ms_end();
 			}
-			if(tsk.life<=0)
-				g_ms_happen=true;
-			tsk.life--;
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			tsk.life=g_life;
 		}
 		return j;
 	}
@@ -136,9 +130,6 @@ public abstract class TaskSimulMC extends TaskSimul {
 		}
 	}
 	
-	public void setRecoverIdle(boolean b) {
-		g_recover_idle_on=b;
-	}
 
 	///////////////////////
 	// private

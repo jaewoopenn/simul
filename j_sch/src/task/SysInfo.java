@@ -56,7 +56,7 @@ public class SysInfo {
 			else
 				return t.getLoVdUtil();
 		} else if(t.isDrop())
-			return 0;
+			return t.getHiUtil();
 		else
 			return t.getLoUtil();
 	}
@@ -71,7 +71,7 @@ public class SysInfo {
 			else
 				return t.getLoVdUtil();
 		} else if(t.isDrop())
-			return 0;
+			return t.getHiUtil();
 		else
 			return t.getLoUtil();
 	}
@@ -134,10 +134,17 @@ public class SysInfo {
 	}
 	
 	public void prn() {
-		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(getUtil_LC()+getUtil_HC_LO()));
-		SLog.prnc(2, " ll_util:"+MCal.getStr(getUtil_LC()));
-		SLog.prn(2, " hl_util:"+MCal.getStr(getUtil_HC_LO()));
-		SLog.prn(2, "hi_mode_util:"+MCal.getStr(getUtil_HC_HI()));
+		double l,h;
+		h=getUtil_HC_LO();
+		l=getUtil_LC();
+		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(h+l));
+		SLog.prnc(2, " hc_l_util:"+MCal.getStr(h));
+		SLog.prn(2, " lc_l_util:"+MCal.getStr(l));
+		h=getUtil_HC_HI();
+		l=getUtil_DeLC();
+		SLog.prnc(2, "hi_mode_util:"+MCal.getStr(h+l));
+		SLog.prnc(2, " hc_h_util:"+MCal.getStr(h));
+		SLog.prn(2, " lc_h_util:"+MCal.getStr(l));
 		SLog.prn(2, "x:"+MCal.getStr(getX()));
 	}
 	public void prnUtil() {

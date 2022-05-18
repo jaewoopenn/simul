@@ -6,6 +6,7 @@ import anal.Anal;
 import imc.AnalSel_run;
 import imc.SimulSel_run;
 import sim.TaskSimul;
+import sim.TaskSimul_base;
 import util.MList;
 
 public class DataSim {
@@ -66,7 +67,7 @@ public class DataSim {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			TaskSimul a=SimulSel_run.getSim(idx);
+			TaskSimul_base a=SimulSel_run.getSim(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);

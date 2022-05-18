@@ -16,10 +16,11 @@ public class z_SysGen1 {
 //		ConfigGen cfg=new ConfigGen("config/cfg1_copy.txt");
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_9.txt");
 		cfg.readFile();
-		SysGen eg=new SysGenMC(cfg);
+		SysGen sg=new SysGenMC(cfg);
 		String fn=cfg.get_fn();
 		Anal a=new AnalEDF_VD();
-		eg.gen(fn,a);
+		int num=sg.prepare();
+		sg.gen(fn, a,num);
 		return 1;
 
 	}
@@ -29,12 +30,13 @@ public class z_SysGen1 {
 	{
 		ConfigGen cfg=new ConfigGen("sch/t1/cfg_8.txt");
 		cfg.readFile();
-		SysGen eg=new SysGenMC(cfg);
-		eg.setCheck();
+		SysGen sg=new SysGenMC(cfg);
+		sg.setCheck();
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
 		Anal a=new AnalEDF_VD();
-		eg.gen(fn,a);
+		int num=sg.prepare();
+		sg.gen(fn, a,num);
 		return 0;
 	}
 	
@@ -50,9 +52,10 @@ public class z_SysGen1 {
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen eg=new SysGenMC(cfg);
+			SysGen sg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
-			eg.gen(fn,a);
+			int num=sg.prepare();
+			sg.gen(fn, a,num);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_rs.add(mod);

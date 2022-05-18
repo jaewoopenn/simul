@@ -65,7 +65,7 @@ public class TaskSetUtil {
         if(isHI==1)
         	return new Task(p,l,h);
         else
-        	return new Task(p,l);
+        	return new Task(p,l,h,false);
 	}
 	
 

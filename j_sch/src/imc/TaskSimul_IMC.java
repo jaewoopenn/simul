@@ -4,6 +4,7 @@ package imc;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
+import sim.TaskSimul_base;
 import sim.job.Job;
 import sim.mc.JobSimulMC;
 import task.Task;
@@ -11,10 +12,9 @@ import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 
-public abstract class TaskSimulIMC extends TaskSimul {
+public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	protected boolean g_ms_happen=false;
-	private  boolean g_recover_idle_on=true;
 	private int g_life=0;
 	protected JobSimulMC g_jsm;
 
@@ -43,6 +43,10 @@ public abstract class TaskSimulIMC extends TaskSimul {
 		g_si.drop+=g_jsm.simul_end();
 	}
 	
+	@Override
+	public void setBE() {
+		
+	}
 	
 
 	@Override
@@ -71,7 +75,7 @@ public abstract class TaskSimulIMC extends TaskSimul {
 //		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
 		int dl=t+tsk.period;
 		if(!tsk.isHC()) {
-			return new Job(tsk.tid,dl,tsk.c_l);
+			return new Job(tsk.tid,dl,tsk.c_l,tsk.c_l-tsk.c_h);
 		}
 
 		// HC task 
@@ -111,7 +115,8 @@ public abstract class TaskSimulIMC extends TaskSimul {
 			if(tsk.isDrop()){
 				s+="X";
 				Job j=rel_one_job(tsk,t);
-				j.drop();
+				j.degrade();
+				g_si.nrel++;
 				g_jsm.add(j);
 				continue;
 			}
@@ -201,14 +206,13 @@ public abstract class TaskSimulIMC extends TaskSimul {
 
 
 	
-	protected void drop_task(Task tsk) {
+	protected void degrade_task(Task tsk) { // for IMC
 		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot drop");
 		
 		if(tsk.isDrop())
 			return;
 		
-//		g_si.drop+=g_jsm.getJM().drop(tsk.tid);
-		g_jsm.getJM().drop(tsk.tid);
+		g_si.drop+=g_jsm.getJM().degrade(tsk.tid);
 		tsk.drop();
 	}
 	

@@ -4,9 +4,9 @@ package gen;
 import task.Task;
 import util.SLog;
 
-public class TaskGenMC extends TaskGen {
+public class TaskGenIMC extends TaskGen {
 	
-	public TaskGenMC(TaskGenParam tgp) {
+	public TaskGenIMC(TaskGenParam tgp) {
 		super(tgp);
 	}
 
@@ -15,7 +15,7 @@ public class TaskGenMC extends TaskGen {
 
 	@Override
 	public Task genTask(int tid){
-		Task tsk=g_param.genTask(tid,true);
+		Task tsk=g_param.genTaskIMC(tid);
 		if(!g_param.chkTask(tsk))
 			return null;
 		if(!g_param.chkMCTask(tsk))
@@ -43,8 +43,7 @@ public class TaskGenMC extends TaskGen {
 		double hiutil=0;
 		for(Task t:g_tasks){
 			loutil+=t.getLoUtil();
-			if(t.isHC())
-				hiutil+=t.getHiUtil();
+			hiutil+=t.getHiUtil();
 		}
 		return Math.max(loutil, hiutil);
 	}
@@ -54,6 +53,4 @@ public class TaskGenMC extends TaskGen {
 
 
 
-
-	
 }

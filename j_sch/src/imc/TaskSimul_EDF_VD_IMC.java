@@ -3,7 +3,7 @@ package imc;
 
 import task.Task;
 
-public class TaskSimul_EDF_VD_IMC extends TaskSimulIMC{
+public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 
 	public TaskSimul_EDF_VD_IMC() {
 		super();
@@ -17,7 +17,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimulIMC{
 				g_jsm.getJM().modeswitch(tsk.tid);
 				t.ms();
 			} else {
-				drop_task(t);
+				degrade_task(t);
 			}
 		}
 	}
@@ -27,6 +27,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimulIMC{
 	public void initSimul() {
 		
 	}
+
 
 
 

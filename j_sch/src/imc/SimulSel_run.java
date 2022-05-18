@@ -1,5 +1,6 @@
 package imc;
 
+import sim.TaskSimul_base;
 import sim.mc.*;
 
 public class SimulSel_run {
@@ -9,7 +10,7 @@ public class SimulSel_run {
 	 * 2: EDF-VD
 	 */
 	
-	public static TaskSimulMC getSim(int sort) {
+	public static TaskSimul_base getSim(int sort) {
 		if(sort==0) {
 			return new TaskSimul_EDF_AD_E();
 		} else if(sort==1) {

@@ -12,6 +12,7 @@ import imc.AnalSel_run;
 import imc.SimulSel_run;
 import sim.SimulInfo;
 import sim.SysMng;
+import sim.TaskSimul_base;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import util.MList;
@@ -113,7 +114,8 @@ public class Platform extends Platform_base{
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
-			sg.gen(fn, a);
+			int num=sg.prepare();
+			sg.gen(fn, a,num);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_xa.add(mod);
@@ -124,13 +126,6 @@ public class Platform extends Platform_base{
 //	public int getDur(int i) {
 //		return i*3000+2000;
 //	}
-	public void genXA(String xaxis) {
-		MList fu_xa=new MList();
-		for(int i=0;i<g_dur_set.length;i++) {
-			fu_xa.add((g_dur_set[i]/1000)+"");
-		}
-		fu_xa.save(g_path+"/"+xaxis);
-	}	
 
 	
 	public Anal getAnal(int sort) {
@@ -142,7 +137,7 @@ public class Platform extends Platform_base{
 
 
 	
-	public TaskSimulMC getSim(int sort) {
+	public TaskSimul_base getSim(int sort) {
 		return SimulSel_run.getSim(sort);
 	}
 	

@@ -33,9 +33,10 @@ public class z_Platform1 {
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen eg=new SysGenMC(cfg);
+			SysGen sg=new SysGenMC(cfg);
 			String fn=cfg.get_fn();
-			eg.gen(fn,a);
+			int num=sg.prepare();
+			sg.gen(fn, a,num);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();
 			fu_rs.add(mod);

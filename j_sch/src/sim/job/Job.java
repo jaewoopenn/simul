@@ -22,6 +22,15 @@ public class Job implements Comparable<Job>{
 		this.isDrop=false;
 		this.vd = dl;
 	}
+	public Job(int tid,int dl, int exec,int add) {
+		this.tid=tid;
+		this.dl = dl;
+		this.exec = exec;
+		this.add_exec=add;
+		this.isHI=false;
+		this.isDrop=false;
+		this.vd = dl;
+	}
 
 	public Job(int tid,int dl, int exec,double  vd,int add) {
 		this.tid=tid;
@@ -32,7 +41,20 @@ public class Job implements Comparable<Job>{
 		this.isDrop=false;
 		this.vd = vd;
 	}
-
+	public void ms() {
+		exec+=add_exec;
+		
+	}
+	public void degrade() {
+		if(isHI) 
+			SLog.err("Job:cannot degrade HC task");
+		if(isDrop)
+			return;
+		isDrop=true;
+		exec-=add_exec;
+		if(exec<0)
+			exec=0;
+	}
 	public void drop() {
 		if(isHI) 
 			SLog.err("Job:cannot drop HC task");
