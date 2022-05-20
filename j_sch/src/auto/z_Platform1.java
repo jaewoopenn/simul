@@ -8,7 +8,6 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import gen.ConfigGen;
 import gen.SysGen;
-import gen.SysGenMC;
 import gen.SysLoad;
 import task.TaskMng;
 import util.MList;
@@ -33,7 +32,7 @@ public class z_Platform1 {
 		for(int i=0;i<fu.size();i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen sg=new SysGenMC(cfg);
+			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			int num=sg.prepare();
 			sg.gen(fn, a,num);
@@ -54,7 +53,7 @@ public class z_Platform1 {
 		String ts="a_ts_list.txt";
 		String xl="a_x_list.txt";
 		Platform p=new Platform(g_path);
-		p.genTS(cl,ts,xl);
+		p.genTS(cl,ts);
 		return -1;
 	}
 	

@@ -53,7 +53,7 @@ public class z_auto1 {
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_util_ul);
-		p.genTS(g_cf,g_ts,g_xl);
+		p.genTS(g_cf,g_ts);
 		int end=3;
 		p.anal_loop(g_rs,g_ts,end);
 		DataAnal da=new DataAnal(g_path,0);

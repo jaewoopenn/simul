@@ -96,6 +96,9 @@ public class SysInfo {
 	public double getCritUtil() {
 		return 	Math.max(lo_util+hi_util_lm, hi_util_hm);	
 	}
+	public double getMaxUtil() {
+		return hi_util_hm+lo_util;
+	}
 	public double get_lm_util() {
 		return lo_util+hi_util_lm;
 	}
@@ -134,17 +137,17 @@ public class SysInfo {
 	}
 	
 	public void prn() {
-		double l,h;
-		h=getUtil_HC_LO();
-		l=getUtil_LC();
-		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(h+l));
-		SLog.prnc(2, " hc_l_util:"+MCal.getStr(h));
-		SLog.prn(2, " lc_l_util:"+MCal.getStr(l));
-		h=getUtil_HC_HI();
-		l=getUtil_DeLC();
-		SLog.prnc(2, "hi_mode_util:"+MCal.getStr(h+l));
-		SLog.prnc(2, " hc_h_util:"+MCal.getStr(h));
-		SLog.prn(2, " lc_h_util:"+MCal.getStr(l));
+		double hl=getUtil_HC_LO();
+		double ll=getUtil_LC();
+		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(hl+ll));
+		SLog.prnc(2, " hc_l_util:"+MCal.getStr(hl));
+		SLog.prn(2, " lc_l_util:"+MCal.getStr(ll));
+		double hh=getUtil_HC_HI();
+		double lh=getUtil_DeLC();
+		SLog.prnc(2, "hi_mode_util:"+MCal.getStr(hh+lh));
+		SLog.prnc(2, " hc_h_util:"+MCal.getStr(hh));
+		SLog.prn(2, " lc_h_util:"+MCal.getStr(lh));
+		SLog.prn(2, "hc_h+lc_l:"+MCal.getStr(hh+ll));
 		SLog.prn(2, "x:"+MCal.getStr(getX()));
 	}
 	public void prnUtil() {

@@ -62,7 +62,8 @@ public class z_auto8 {
 		p.setRatio(g_ratio);
 		p.genCfg_util(g_cf,g_util_ul);
 		p.setCheck();
-		p.genTS(g_cf,g_ts,g_xl);
+		p.genTS(g_cf,g_ts);
+		p.genXA(g_cf,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
 		p.setBE();

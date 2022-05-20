@@ -2,29 +2,33 @@ package auto;
 
 import anal.Anal;
 import anal.AnalEDF_VD;
-import anal.AnalSel;
 import gen.ConfigGen;
 import gen.SysGen;
-import gen.SysGenMC;
-import gen.SysLoad;
-import imc.AnalSel_IMC;
 import imc.AnalSel_run;
 import imc.SimulSel_run;
-import sim.SimulInfo;
-import sim.SysMng;
 import sim.TaskSimul_base;
-import sim.mc.TaskSimulMC;
-import task.TaskMng;
 import util.MList;
-import util.CProg;
 import util.SLog;
 
 public class Platform extends Platform_base{
 	
 	public Platform(String path) {
 		g_path=path;
+		g_rs_path=path;
 	}
-	
+	public Platform(String path, String rs_path) {
+		g_path=path;
+		g_rs_path=rs_path;
+	}	
+
+	public void setBE() {
+		SLog.prn(2, "BE");
+		this.g_be=true;
+		
+	}	
+	public void setRecoverIdle(boolean b) {
+		g_recoverIdle=b;
+	}
 	
 	// gen CFG, TS
 	public void genCfg_util(String cf,double ul) {
@@ -33,7 +37,7 @@ public class Platform extends Platform_base{
 		double end_i=(ul*100-base)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
 		MList fu=new MList();
-		cg.setParam("subfix", g_path);
+//		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
@@ -54,10 +58,11 @@ public class Platform extends Platform_base{
 		fu.save(g_path+"/"+cf);
 		
 	}
+	
 	public void genCfg_util_one(String cf,double util) {
 		ConfigGen cg=ConfigGen.getPredefined();
 		MList fu=new MList();
-		cg.setParam("subfix", g_path);
+//		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
 		cg.setParam("u_lb", (util)+"");
 		cg.setParam("u_ub", (util+0.05)+"");
@@ -90,18 +95,18 @@ public class Platform extends Platform_base{
 //		fu.save(g_path+"/"+cf);
 		
 	}
+	
 	public void genCfg_ratio(String cf,double util) {
 
 		
 	}
 
 	
-	public void genTS(String cfg_list,String ts, String xaxis) {
+	public void genTS(String cfg_list,String ts) {
 		SLog.prn(3, g_path+"/"+cfg_list);
 		MList fu=new MList(g_path+"/"+cfg_list);
 		
 		MList fu_ts=new MList();
-		MList fu_xa=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
@@ -110,19 +115,18 @@ public class Platform extends Platform_base{
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
-			SysGen sg=new SysGenMC(cfg);
+			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
 			int num=sg.prepare();
-			sg.gen(fn, a,num);
+			sg.gen(g_path+"/"+fn, a,num);
 			fu_ts.add(fn);
-			String mod=cfg.get_mod();
-			fu_xa.add(mod);
 		}
 		fu_ts.save(g_path+"/"+ts);
-		fu_xa.save(g_path+"/"+xaxis);
 	}
+	
+
 //	public int getDur(int i) {
 //		return i*3000+2000;
 //	}

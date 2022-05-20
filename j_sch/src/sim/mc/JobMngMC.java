@@ -67,6 +67,10 @@ public class JobMngMC extends JobMng {
 				break;
 			t_j.degrade();
 			d++;
+			if(t_j.exec==0) {
+				g_jobs.remove(t_j);
+				g_jobs.add(t_j);
+			}
 		}
 		return d;
 	}

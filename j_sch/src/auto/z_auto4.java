@@ -48,8 +48,8 @@ public class z_auto4 {
 		p.setP_HC(0.5);
 		p.genCfg_util_one(g_cf,0.85); //0.9
 		p.setCheck();
-		p.genTS(g_cf,g_ts,g_xl);
-		p.genXA(g_xl);
+		p.genTS(g_cf,g_ts);
+		p.genXA_dur(g_xl);
 		p.setDur(g_dur);
 		p.setBE();
 		p.setP_MS(0.2);

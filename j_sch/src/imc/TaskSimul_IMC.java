@@ -63,10 +63,10 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected void simul_one(){
 		
 		release_jobs();
-		if(g_jsm.is_idle()&&g_ms_happen&&g_recover_idle_on) {
+		if(g_jsm.is_idle()&&g_ms_happen) {
 			recover_idle();
 		}
-		g_si.drop+=g_jsm.simul_one();
+		g_jsm.simul_one();
 		ms_check();
 	}
 	
@@ -117,7 +117,8 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 				Job j=rel_one_job(tsk,t);
 				j.degrade();
 				g_si.nrel++;
-				g_jsm.add(j);
+				if(j.exec>0)
+					g_jsm.add(j);
 				continue;
 			}
 			s+="+";

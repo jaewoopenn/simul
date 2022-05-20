@@ -59,7 +59,8 @@ public class z_auto3 {
 		p.setNum(g_num);
 		p.genCfg_hc(g_cf,g_util_ul);
 		p.setCheck();
-		p.genTS(g_cf,g_ts,g_xl);
+		p.genTS(g_cf,g_ts);
+		p.genXA(g_cf,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);

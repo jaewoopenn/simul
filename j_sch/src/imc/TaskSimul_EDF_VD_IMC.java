@@ -7,7 +7,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 
 	public TaskSimul_EDF_VD_IMC() {
 		super();
-		g_name="EDF-VD";
+		g_name="EDF-VD-IMC";
 	}
 	
 	@Override

@@ -32,9 +32,9 @@ public class z_TaskSimul1 {
 		int et=10000;
 		
 		
-		SysLoad sy=new SysLoad("run/pi0/taskset_88");
+		SysLoad sy=new SysLoad("run/pi0/taskset_96");
 		sy.open();
-		int num=331;
+		int num=308;
 		TaskMng tm=null;
 		for(int i=0;i<num;i++) {
 			tm=sy.loadOne();
@@ -56,22 +56,20 @@ public class z_TaskSimul1 {
 		SLog.prn(2, "--!!!----------");
 		a.init(tm);
 		a.prepare();
+		a.prn();
 		double d=a.getDtm();
 		SLog.prn(2, "det:"+d);
 		SysMng sm=new SysMng();
-//		SLogF.init("test.txt");
 		sm.setMS_Prob(0.5);
 		double x=a.computeX();
 		sm.setX(x);
+//		sm.setLife(0);
 		sm.setLife(2);
-//		ts=new TaskSimul_EDF_AD_E();
 		ts.init_sm_tm(sm,tm);
-//		tm.prnTxt();
 		ts.simul(0,et);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn();
-//		SLogF.end();
 		
 	}
 

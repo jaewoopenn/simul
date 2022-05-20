@@ -24,6 +24,10 @@ public class CProg {
 	}
 	public void inc() {
 		cur++;
+		if(step==0) {
+			prn();
+			return;
+		}
 		if(cur%step==0) {
 			prn();
 		}

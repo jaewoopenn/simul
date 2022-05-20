@@ -11,7 +11,7 @@ import util.MPlot as mp;
 class gl_input:
     savename="run/pmsi"
     path="run/pi"
-    ylim=0.30
+    ylim=0.50
       
 
 
@@ -80,7 +80,11 @@ def loop(i):
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)
-    mp.legendUL()
+    if(i==2):
+        mp.legendBR()
+    else:
+        mp.legendUL()
+    
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
     mp.ylim(0,gl_input.ylim)

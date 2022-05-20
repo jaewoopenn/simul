@@ -1,14 +1,18 @@
 package gen;
 
 import anal.Anal;
+import task.TaskMng;
 import task.TaskSet;
+import task.TaskSetMC;
 import task.TaskSetUtil;
 import util.MList;
+import util.SLog;
 
-public abstract class SysGen {
+public class SysGen {
 	protected TaskGen g_tg;
 	private ConfigGen g_cfg;
 	protected boolean g_isCheck=false;
+	protected boolean g_isOnlyMC=false;
 
 	public SysGen(ConfigGen cfg) {
 		g_cfg=cfg;
@@ -16,6 +20,10 @@ public abstract class SysGen {
 	public void setCheck() {
 		g_isCheck=true;
 	}
+	public void setOnlyMC() {
+		g_isOnlyMC=true;
+	}
+	
 	private TaskGenParam prepare_in() {
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
@@ -37,20 +45,16 @@ public abstract class SysGen {
 	}	
 	public void gen(String fn,Anal a,int num) {
 		int i=0;
-//		String fn=g_cfg.get_dir();
-//		Log.prn(2, fn);
-//		FUtil.makeDir(fn);
 		MList fu=new MList();
 		fu.add(num+"");
 		while(i<num){
-//			Log.prn(2, i+"");
 			g_tg.generate();
-			int rs=check(a);
-			if(rs==0)
+			if(!isOK())
+				continue;
+			if(!isSch(a)) 
 				continue;
 			writeSys(fu);
-//			Log.prn(1, "write");
-			
+//			SLog.prn(2,i+"");
 			i++;
 		}
 		fu.save(fn);
@@ -64,7 +68,34 @@ public abstract class SysGen {
 		
 		return 1;
 	}
+	protected boolean isOK() {
+		if(!g_isOnlyMC)
+			return true;
+		TaskSetMC tsf=new TaskSetMC(g_tg.getTS());
+		TaskMng tm=tsf.getTM();
+//		tm.prnInfo();
+		if(tm.getMaxUtil()<=1) 
+			return false;
+//		SLog.prn(2,"OK");
+//		tm.prnInfo();
+		return true;
+	}
 
-	protected abstract int check(Anal a) ;
+	protected boolean isSch(Anal a) {
+		if(!g_isCheck)
+			return true;
+		TaskSetMC tsf=new TaskSetMC(g_tg.getTS());
+		TaskMng tm=tsf.getTM();
+		a.init(tm);
+		a.prepare();
+//		tm.prnInfo();
+		if(!a.is_sch()) {		
+//			SLog.prn(2,"Not OK");
+			return false;
+		}
+//		SLog.prn(2,"OK");
+		return true;
+	}
+
 	
 }

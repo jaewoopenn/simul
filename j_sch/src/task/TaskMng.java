@@ -171,6 +171,10 @@ public class TaskMng {
 		return util;
 	}
 	
+	public double getMaxUtil() {
+		
+		return g_info.getMaxUtil();
+	}
 
 
 	

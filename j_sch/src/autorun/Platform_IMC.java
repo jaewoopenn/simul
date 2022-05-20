@@ -1,29 +1,28 @@
 package autorun;
 
 import anal.Anal;
-import anal.AnalEDF_VD;
 import auto.Platform_base;
 import gen.ConfigGen;
 import gen.SysGen;
-import gen.SysGenMC;
 import imc.AnalEDF_VD_IMC;
 import imc.AnalSel_IMC;
-import imc.AnalSel_run;
 import imc.SimulSel_IMC;
-import imc.TaskSimul_IMC;
 import sim.TaskSimul_base;
-import sim.mc.TaskSimulMC;
 import util.MList;
 import util.SLog;
 
 public class Platform_IMC extends Platform_base {
-	public Platform_IMC(String path) {
+	private boolean g_onlyMC=false;
+	
+	public Platform_IMC(String path, String rs_path) {
 		g_path=path;
-	}	// gen CFG, TS
-	public void genCfg_util(String cf,double ul) {
-		int base=60;
+		g_rs_path=rs_path;
+	}	
+
+	// gen CFG, TS
+	public void genCfg_util(String cf,int base, int end) {
 		int step=4;
-		double end_i=(ul*100-base)/step;
+		double end_i=(end-base)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
 		MList fu=new MList();
 		cg.setParam("subfix", g_path);
@@ -39,8 +38,8 @@ public class Platform_IMC extends Platform_base {
 				cg.setParam("r_lb",(g_ratio)+"");
 				cg.setParam("r_ub",(g_ratio_hi)+"");
 			}
-			String fn=g_path+"/cfg_"+i+".txt";
-			cg.setFile(fn);
+			String fn="cfg_"+i+".txt";
+			cg.setFile(g_path+"/"+fn);
 			cg.write();
 			fu.add(fn);
 		}
@@ -50,31 +49,29 @@ public class Platform_IMC extends Platform_base {
 
 	
 	
-	public void genTS(String cfg_list,String ts, String xaxis) {
+	public void genTS(String cfg_list,String ts) {
 		SLog.prn(3, g_path+"/"+cfg_list);
 		MList fu=new MList(g_path+"/"+cfg_list);
 		
 		MList fu_ts=new MList();
-		MList fu_xa=new MList();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
 		Anal a=new AnalEDF_VD_IMC();
 		for(int i=0;i<max;i++) {
-			ConfigGen cfg=new ConfigGen(fu.get(i));
+			ConfigGen cfg=new ConfigGen(g_path+"/"+fu.get(i));
 			cfg.readFile();
-			SysGen sg=new SysGenMC(cfg);
+			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
+			if(g_onlyMC)
+				sg.setOnlyMC();
 			if(g_isCheck)
 				sg.setCheck();
 			int num=sg.prepareIMC();
-			sg.gen(fn, a,num);
+			sg.gen(g_path+"/"+fn, a,num);
 			fu_ts.add(fn);
-			String mod=cfg.get_mod();
-			fu_xa.add(mod);
 		}
 		fu_ts.save(g_path+"/"+ts);
-		fu_xa.save(g_path+"/"+xaxis);
 	}
 	
 
@@ -88,7 +85,13 @@ public class Platform_IMC extends Platform_base {
 	public TaskSimul_base getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
-
+	public void setOnlyMC() {
+		g_onlyMC=true;		
+	}
+	public void setLife(int i) {
+		g_life=i;
+		
+	}
 
 	
 }

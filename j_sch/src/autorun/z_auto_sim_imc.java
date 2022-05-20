@@ -15,7 +15,8 @@ public class z_auto_sim_imc {
 	private double g_p_ms;
 	private double g_p_hc;
 	private double g_ratio;
-	private double g_util_ul;
+	private int g_st;
+	private int g_end;
 	private int g_num;
 	private int g_dur;
 	private String g_cf;
@@ -39,10 +40,12 @@ public class z_auto_sim_imc {
 	
 	public void init_g() {
 		g_path="run/imc2";
-//		g_num=5000;
-//		g_dur=32000;
+//		g_num=10;
 		g_num=500;
+//		g_num=5000;
+		
 		g_dur=10000;
+//		g_dur=32000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -54,37 +57,44 @@ public class z_auto_sim_imc {
 		g_p_ms=0.2;
 		g_p_hc=0.5;
 		g_ratio=-1;
-		g_util_ul=0.95;
+		g_st=66;
+		g_end=98;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
-	public void loop_util() {
-		Platform_IMC p=new Platform_IMC(g_path);
+	public void gen() {
+		Platform_IMC p=new Platform_IMC(g_path,g_path);
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
-		p.genCfg_util(g_cf,g_util_ul);
+		p.genCfg_util(g_cf,g_st,g_end);
 		p.setCheck();
-		p.genTS(g_cf,g_ts,g_xl);
+		p.setOnlyMC();
+		p.genTS(g_cf,g_ts);
+		
+	}
+	public void loop_util(String rs_path) {
+		Platform_IMC p=new Platform_IMC(g_path,rs_path);
+
+		p.genXA(g_cf,g_xl);
+		
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 		p.setLife(2);
-//.......................................  DRE (comment out), BRE (setBE)  best effort 하지 말자 
-//		p.setBE();
 		
 		p.sim_loop(g_rs, g_ts,0,3);
-		DataSim_IMC ds=new DataSim_IMC(g_path,0);
+		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
 		ds.saveSim(g_graph);
 	}
 	public int test1() 
 	{
-		init_g();
-		init_sim();
-		g_path="sch/t2";
-		loop_util();
+//		init_g();
+//		init_sim();
+//		g_path="sch/t2";
+//		loop_util();
 		return 0;
 	}
 	public int test2() // p
@@ -96,37 +106,39 @@ public class z_auto_sim_imc {
 		init_sim();
 		double a[]= {0.05,0.1,0.25};
 //		double a[]= {0.2,0.5,0.7};
+		g_path="run/pi_ts";
+		gen();
 		for(int i=st;i<et;i++) {
-			g_path="run/pi"+i;
+			String rs_path="run/pi"+i;
 			g_p_ms=a[i];
-			loop_util();
+			loop_util(rs_path);
 		}
 		return 0;
 	}
 	public int test3() // hc
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.25,0.5,0.75};
-		int st=0;
-		for(int i=st;i<3;i++) {
-			g_path="sch/h"+i;
-			g_p_hc=a[i];
-			loop_util();
-		}
+//		init_g();
+//		init_sim();
+//		double a[]= {0.25,0.5,0.75};
+//		int st=0;
+//		for(int i=st;i<3;i++) {
+//			g_path="sch/h"+i;
+//			g_p_hc=a[i];
+//			loop_util();
+//		}
 		return 0;
 	}
 	public  int test4() // ratio
 	{
-		init_g();
-		init_sim();
-		double a[]= {0.2,0.4,0.6};
-		int st=0;
-		for(int i=st;i<3;i++) {
-			g_path="sch/r"+i;
-			g_ratio=a[i];
-			loop_util();
-		}
+//		init_g();
+//		init_sim();
+//		double a[]= {0.2,0.4,0.6};
+//		int st=0;
+//		for(int i=st;i<3;i++) {
+//			g_path="sch/r"+i;
+//			g_ratio=a[i];
+//			loop_util();
+//		}
 		return 0;		
 	}
 	public  int test5() 

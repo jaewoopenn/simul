@@ -18,7 +18,7 @@ public abstract class TaskGen {
 		while(true){
 			g_tasks=new Vector<Task>();
 			genTaskSet();
-			if(isOK()==true) break;
+			if(isOK()) break;
 		}
 	}
 	private void genTaskSet()
