@@ -1,8 +1,6 @@
 package autorun;
 
 
-import auto.DataSim;
-import auto.Platform;
 import util.SEngineT;
 import util.SLog;
 
@@ -18,6 +16,7 @@ public class z_auto_sim_imc {
 	private int g_st;
 	private int g_end;
 	private int g_num;
+	private int g_life;
 	private int g_dur;
 	private String g_cf;
 	private String g_ts;
@@ -28,8 +27,8 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
-//		int s=3; //hc
+//		int s=2; //p
+		int s=3; //life
 //		int s=4; //ratio
 //		int s=5; //all in one.
 		
@@ -40,7 +39,7 @@ public class z_auto_sim_imc {
 	
 	public void init_g() {
 		g_path="run/imc2";
-//		g_num=10;
+//		g_num=50;
 		g_num=500;
 //		g_num=5000;
 		
@@ -54,7 +53,9 @@ public class z_auto_sim_imc {
 
 
 	public void init_sim() {
-		g_p_ms=0.2;
+		g_p_ms=0.1;
+		g_life=200;
+//		g_life=0;
 		g_p_hc=0.5;
 		g_ratio=-1;
 		g_st=66;
@@ -81,7 +82,7 @@ public class z_auto_sim_imc {
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
-		p.setLife(2);
+		p.setLife(g_life);
 		
 		p.sim_loop(g_rs, g_ts,0,3);
 		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
@@ -104,7 +105,7 @@ public class z_auto_sim_imc {
 //		int st=2,et=3;
 		init_g();
 		init_sim();
-		double a[]= {0.05,0.1,0.25};
+		double a[]= {0.05,0.1,0.15};
 //		double a[]= {0.2,0.5,0.7};
 		g_path="run/pi_ts";
 		gen();
@@ -115,17 +116,19 @@ public class z_auto_sim_imc {
 		}
 		return 0;
 	}
-	public int test3() // hc
+	public int test3() // ms length
 	{
-//		init_g();
-//		init_sim();
-//		double a[]= {0.25,0.5,0.75};
-//		int st=0;
-//		for(int i=st;i<3;i++) {
-//			g_path="sch/h"+i;
-//			g_p_hc=a[i];
-//			loop_util();
-//		}
+		int st=0,et=3;
+		init_g();
+		init_sim();
+		int a[]= {0,200,400};
+		g_path="run/li_ts";
+		gen();
+		for(int i=st;i<et;i++) {
+			String rs_path="run/li"+i;
+			g_life=a[i];
+			loop_util(rs_path);
+		}
 		return 0;
 	}
 	public  int test4() // ratio

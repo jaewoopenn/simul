@@ -292,6 +292,19 @@ public class TaskMng {
 			SLog.prn(2, u+","+util);
 		}
 	}
+	public boolean isZeroLife() {
+		int life=0;
+		for(Task t:getHiTasks()) {
+			if(t.isHM()) {
+				life+=t.life;
+			}
+		}
+//		SLog.prn(2, "l:"+life);
+		if(life!=0) {
+			return false;
+		}
+		return true;
+	}
 
 	
 

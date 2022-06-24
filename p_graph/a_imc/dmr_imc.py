@@ -9,23 +9,17 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    savename="run/pmsi"
-    path="run/pi"
-    ylim=0.50
+#     savename="run/pmsi"
+#     path="run/pi"
+#     ylim=0.60
+
+    savename="run/lmsi"
+    path="run/li"
+    ylim=0.65
+      
       
 
 
-#     savename="sch/pms"
-#     path="sch/p"
-#     ylim=0.112
-       
-#     savename="sch/hc"
-#     path="sch/h"
-#     ylim=0.05
-
-#     savename="sch/ratio"
-#     path="sch/r"
-#     ylim=0.05
 
 
     fn="a_sim_graph.txt"

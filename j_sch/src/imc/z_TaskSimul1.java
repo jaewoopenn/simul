@@ -32,9 +32,9 @@ public class z_TaskSimul1 {
 		int et=10000;
 		
 		
-		SysLoad sy=new SysLoad("run/pi0/taskset_96");
+		SysLoad sy=new SysLoad("run/pi_ts/taskset_82");
 		sy.open();
-		int num=308;
+		int num=12;
 		TaskMng tm=null;
 		for(int i=0;i<num;i++) {
 			tm=sy.loadOne();
@@ -63,8 +63,8 @@ public class z_TaskSimul1 {
 		sm.setMS_Prob(0.5);
 		double x=a.computeX();
 		sm.setX(x);
-//		sm.setLife(0);
-		sm.setLife(2);
+		sm.setLife(200);
+//		sm.setLife(2);
 		ts.init_sm_tm(sm,tm);
 		ts.simul(0,et);
 		ts.simul_end();

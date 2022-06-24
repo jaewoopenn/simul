@@ -149,7 +149,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 			return;
 		if(j.add_exec>0) {
 			if(g_rutil.getDbl()<g_sm.getMS_Prob()) { // generated prob < ms_prob
-//				g_ms_happen=true;
+				g_ms_happen=true;
 				mode_switch(j.tid);
 			} else {
 				g_jsm.getJM().removeCur();

@@ -14,9 +14,10 @@ import util.SLog;
 
 public abstract class TaskSimul_IMC extends TaskSimul_base {
 
-	protected boolean g_ms_happen=false;
 	private int g_life=0;
 	protected JobSimulMC g_jsm;
+	protected boolean g_ms_happen=false;
+	
 
 	
 	@Override
@@ -53,7 +54,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected void init() {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
-		g_ms_happen=false;
 //		Log.prn(1, "num:"+g_tm.size());
 		initSimul();
 		initModeAll();
@@ -64,7 +64,10 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		
 		release_jobs();
 		if(g_jsm.is_idle()&&g_ms_happen) {
-			recover_idle();
+			if(g_tm.isZeroLife()) {
+				recover_idle();
+				g_ms_happen=false;
+			}
 		}
 		g_jsm.simul_one();
 		ms_check();
@@ -86,12 +89,11 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
 				tsk.ms_end();
 			}
-			if(tsk.life<=0)
-				g_ms_happen=true;
-			tsk.life--;
+			if(tsk.life>0)
+				tsk.life--;
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			tsk.life=g_life;
+			tsk.life=(int)Math.ceil(g_life/tsk.period);
 		}
 		return j;
 	}
@@ -146,7 +148,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	private void recover_idle(){
 		SLogF.prnc( "R ");
 		initModeAll();
-		g_ms_happen=false;
 	}
 	
 
@@ -156,7 +157,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			return;
 		if(j.add_exec>0) {
 			if(g_rutil.getDbl()<g_sm.getMS_Prob()) { // generated prob < ms_prob
-//				g_ms_happen=true;
+				g_ms_happen=true;
 				mode_switch(j.tid);
 			} else {
 				g_jsm.getJM().removeCur();
