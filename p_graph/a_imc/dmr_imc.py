@@ -9,14 +9,14 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="run/pmsi"
-#     path="run/pi"
-#     ylim=0.60
+    savename="run/pmsi"
+    path="run/pi"
+    ylim=0.50
 
-    savename="run/lmsi"
-    path="run/li"
-    ylim=0.65
-      
+#     savename="run/lmsi"
+#     path="run/li"
+#     ylim=0.55
+       
       
 
 
@@ -24,13 +24,13 @@ class gl_input:
 
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
-    ylab= "Deadline Miss Ratio"
+    ylab= "Percentage of Fully-serviced Job"
 
 class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r--','k-','b-.','g--','m:']
+    line=['r--','b-.','k-','g--','m:']
     marker=['o','v','D','^','s']
 
 def load(i):
@@ -47,17 +47,18 @@ def load(i):
 #     print(itemlen)
 
     for i in range(1,itemlen):
-        z=itemlen-i
-        gl.lab.append(raw[0][z])
+#         z=itemlen-i
+        gl.lab.append(raw[0][i])
     for i in range(1,len(raw)):
         gl.x.append(str(int(raw[i][0])/100))
 #     print(gl.x)
 
     for i in range(1,itemlen):
-        z=itemlen-i
+#         z=itemlen-i
         v=[]
         for j in range(1,len(raw)):
-            v.append(float(raw[j][z]))
+            val=1-float(raw[j][i]);
+            v.append(val)
 #         print(v)
         gl.vv.append(v)
         
@@ -73,15 +74,15 @@ def loop(i):
 #             continue
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-#     mp.ylim(0, 1.02)
-    if(i==2):
-        mp.legendBR()
-    else:
-        mp.legendUL()
+#     if(i==2):
+#         mp.legendBR()
+#     else:
+#         mp.legendUL()
+    mp.legendBL()
     
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(0,gl_input.ylim)
+#     mp.ylim(0,gl_input.ylim)
     mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
     
 def main():

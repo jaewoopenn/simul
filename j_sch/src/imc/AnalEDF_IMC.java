@@ -7,7 +7,7 @@ public class AnalEDF_IMC extends Anal {
 	private double u;
 	public AnalEDF_IMC() {
 		super();
-		g_name="EDF-IMC";
+		g_name="EDF";
 	}
 	@Override
 	public void prepare() {

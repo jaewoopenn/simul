@@ -70,7 +70,7 @@ public class z_auto_sim_imc {
 		p.setRatio(g_ratio);
 		p.genCfg_util(g_cf,g_st,g_end);
 		p.setCheck();
-		p.setOnlyMC();
+		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
 		
 	}
