@@ -61,7 +61,7 @@ public abstract class Platform_base {
 		MList fu_xa=new MList();
 		int max=fu.size();
 		for(int i=0;i<max;i++) {
-			ConfigGen cfg=new ConfigGen(g_path+"/"+fu.get(i));
+			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			String mod=cfg.get_mod();
 			fu_xa.add(mod);

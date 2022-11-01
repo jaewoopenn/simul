@@ -1,6 +1,7 @@
 package imc;
 
 import anal.Anal;
+import anal.AnalAMC_imc;
 
 public class AnalSel_IMC {
 
@@ -17,6 +18,8 @@ public class AnalSel_IMC {
 			return new AnalEDF_VD_IMC();
 		} else if(sort==2) {
 			return new AnalEDF_IMC();
+		} else if(sort==3) {
+			return new AnalAMC_imc();
 		} 
 		return null;
 	}

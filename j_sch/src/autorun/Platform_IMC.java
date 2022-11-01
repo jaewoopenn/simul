@@ -38,8 +38,8 @@ public class Platform_IMC extends Platform_base {
 				cg.setParam("r_lb",(g_ratio)+"");
 				cg.setParam("r_ub",(g_ratio_hi)+"");
 			}
-			String fn="cfg_"+i+".txt";
-			cg.setFile(g_path+"/"+fn);
+			String fn=g_path+"/cfg_"+i+".txt";
+			cg.setFile(fn);
 			cg.write();
 			fu.add(fn);
 		}
@@ -59,7 +59,7 @@ public class Platform_IMC extends Platform_base {
 		int max=fu.size();
 		Anal a=new AnalEDF_VD_IMC();
 		for(int i=0;i<max;i++) {
-			ConfigGen cfg=new ConfigGen(g_path+"/"+fu.get(i));
+			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();

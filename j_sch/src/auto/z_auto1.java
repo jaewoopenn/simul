@@ -17,9 +17,9 @@ public class z_auto1 {
 	private String g_graph;
 	
 	public static void init_s() {
-		int s=1;
+//		int s=1;
 //		int s=2;
-//		int s=3;
+		int s=3;
 		
 //		int s=1;
 //		int s=5;

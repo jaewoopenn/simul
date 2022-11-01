@@ -1,8 +1,8 @@
 package imc;
 
 import anal.Anal;
+import anal.AnalAMC;
 import anal.AnalEDF_AD_E;
-import anal.AnalEDF_IV4;
 import anal.AnalEDF_VD;
 import anal.AnalFMC;
 
@@ -23,6 +23,8 @@ public class AnalSel_run {
 			return new AnalEDF_VD();
 		} else if(sort==3) {
 			return new AnalFMC();		
+		} else if(sort==4) {
+			return new AnalAMC();		
 		} 
 		return null;
 	}

@@ -57,7 +57,7 @@ public class z_auto_imc {
 		p.genCfg_util(g_cf,g_st,g_end);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
-		int end=3;
+		int end=4;
 		p.anal_loop(g_rs,g_ts,end);
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
 		da.load_x(g_xl);
