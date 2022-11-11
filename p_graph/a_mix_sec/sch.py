@@ -44,7 +44,7 @@ def load():
         
 
 def main():
-    mp.prepare()
+    mp.prepare()aa
 #     mp.prepare2()
     load()
     no=0
