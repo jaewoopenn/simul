@@ -1,6 +1,7 @@
 package task;
 
 
+import java.util.Arrays;
 import java.util.Vector;
 
 import util.SLog;
@@ -26,6 +27,14 @@ public class TaskSet {
 	public TaskSet(Task[] a) {
 		g_tasks=a;
 	}
+	public void sortRM() {
+		Arrays.sort(g_tasks,new ComparatorTask());
+		
+	}
+	public void sortCM() {
+		Arrays.sort(g_tasks,new ComparatorTaskCM());
+		
+	}
 	
 	
 	public Task get(int i){
@@ -47,5 +56,6 @@ public class TaskSet {
 		}
 		
 	}
+
 
 }

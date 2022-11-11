@@ -12,27 +12,15 @@ public abstract class Platform_base {
 	protected String g_path;
 	protected String g_rs_path;
 	protected int g_num=100;
-	protected int g_dur=2000;
-	protected double g_p_ms=0.3;
 	protected double g_p_hc=0.5;
 	protected double g_ratio=-1;
 	protected double g_ratio_hi=-1;
 	protected boolean g_isCheck=false;
-	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
-	protected boolean g_be=false; // best effort 
-	protected boolean g_verbose=false;
-	protected boolean g_recoverIdle=true;
 	protected int g_life=0;
 	
 	
 	public void setNum(int n) {
 		g_num=n;
-	}
-	public void setDur(int n) {
-		g_dur=n;
-	}
-	public void setP_MS(double d) {
-		g_p_ms=d;
 	}
 	public void setP_HC(double d) {
 		g_p_hc=d;
@@ -48,9 +36,6 @@ public abstract class Platform_base {
 		g_isCheck=true;
 	}
 	
-	public void setVerbose(){
-		g_verbose=true;
-	}
 
 	public void genXA(String cfg_list, String xaxis) {
 		MList fu=new MList(g_path+"/"+cfg_list);
@@ -65,14 +50,6 @@ public abstract class Platform_base {
 		}
 		fu_xa.save(g_rs_path+"/"+xaxis);
 	}
-	
-	public void genXA_dur(String xaxis) {
-		MList fu_xa=new MList();
-		for(int i=0;i<g_dur_set.length;i++) {
-			fu_xa.add((g_dur_set[i]/1000)+"");
-		}
-		fu_xa.save(g_rs_path+"/"+xaxis);
-	}	
 	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {

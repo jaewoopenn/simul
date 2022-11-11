@@ -20,8 +20,8 @@ public class TS_MC1 {
 	
 	public static TaskMng ts2()	{
 		TaskVec tmp=new TaskVec();
-		tmp.add(new Task(2,1));
 		tmp.add(new Task(10,1,5));
+		tmp.add(new Task(2,1));
 		tmp.add(new Task(100,20,20));
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
@@ -29,10 +29,9 @@ public class TS_MC1 {
 
 	public static TaskMng ts3() {
 		TaskVec tmp=new TaskVec();
-		tmp.add(new Task(8,1));
-		tmp.add(new Task(8,3));
-		tmp.add(new Task(12,1,5));
-		tmp.add(new Task(12,1,5));
+		tmp.add(new Task(2,1));
+		tmp.add(new Task(10,1,2));
+		tmp.add(new Task(100,20));
 		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
 		return tme.getTM();
 	}

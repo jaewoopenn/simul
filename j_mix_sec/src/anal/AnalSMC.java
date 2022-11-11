@@ -31,10 +31,6 @@ public class AnalSMC extends Anal {
 
 
 
-	@Override
-	public double computeX() {
-		return 0;
-	}
 	
 
 	private boolean findOPA()
@@ -66,21 +62,30 @@ public class AnalSMC extends Anal {
 	}
 
 	private double computeRes(Task t, Task[] hp) {
-		double res=t.c_l;
+		double res=0;
+		double init_res;
+		if(t.isHC())
+			init_res=t.c_h;
+		else
+			init_res=t.c_l;
 		
 		double old_res=0;
 		double exec=0;
 		while(true){
 			old_res=res;
-			res=t.c_l;
+			res=init_res;
 			for(int i=0;i<hp.length;i++){
 				Task h_tsk=hp[i];
 				if(t==h_tsk)
 					continue;
-				if(h_tsk.isHC())
-					exec=h_tsk.c_h;
-				else
+				if(t.isHC()) {
+					if(h_tsk.isHC())
+						exec=h_tsk.c_h;
+					else // hp is LC task, use LO EXEC
+						exec=h_tsk.c_l;
+				} else { // t is LC task, use LO EXEC
 					exec=h_tsk.c_l;
+				}
 				res+=Math.ceil((double)old_res/h_tsk.period)*exec;
 			}
 //			SLog.prn(1, "r/o "+res+" "+old_res);
@@ -90,7 +95,6 @@ public class AnalSMC extends Anal {
 				break;
 			}
 		}
-//		SLog.prn(1, "r "+res);
 		return res;
 	}
 
@@ -106,7 +110,7 @@ public class AnalSMC extends Anal {
 		v.toArray(ret);
 		return ret;
 	}
-	private Task[] getHP(int p){ // get un prioritied task 
+	private Task[] getHP(int p){ 
 		Vector<Task> v=new Vector<Task>();
 		for(int i=0;i<sz;i++)
 		{
@@ -130,10 +134,6 @@ public class AnalSMC extends Anal {
 			double res_lo=computeRes(t,hp);
 			SLog.prn(1, ""+res_lo+" "+t.period);
 		}
-	}
-	@Override
-	public double getExtra(int i) {
-		return 0;
 	}
 
 }

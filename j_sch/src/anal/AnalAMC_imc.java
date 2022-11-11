@@ -90,6 +90,10 @@ public class AnalAMC_imc extends Anal {
 			}
 //			Log.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
+			if(res>t.period) {
+				res=t.period+1;
+				break;
+			}
 		}
 		return res;
 	}
@@ -110,6 +114,10 @@ public class AnalAMC_imc extends Anal {
 			}
 //			Log.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
+			if(res>t.period) {
+				res=t.period+1;
+				break;
+			}
 		}
 		return res;
 	}	

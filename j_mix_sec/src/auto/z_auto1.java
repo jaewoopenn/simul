@@ -8,7 +8,8 @@ public class z_auto1 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	private int g_num;
+	private int g_ts_num;
+	private int g_anal_num;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;
@@ -17,12 +18,6 @@ public class z_auto1 {
 	
 	public static void init_s() {
 		int s=1;
-//		int s=2;
-//		int s=3;
-		
-//		int s=1;
-//		int s=5;
-//		int s=6;
 		s_idx=s;
 		
 		s_log_level=2;
@@ -30,12 +25,13 @@ public class z_auto1 {
 	
 	public void init_g() {
 		g_path="mix_sec/t1";
-		g_num=5000;
+		g_ts_num=5000;
 //		g_num=100;
 //		g_num=5;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
+		g_anal_num=4;
 		
 	}
 
@@ -49,12 +45,11 @@ public class z_auto1 {
 		init_g();
 		init_anal();
 		Platform p=new Platform(g_path);
-		p.setNum(g_num);
+		p.setNum(g_ts_num);
 		p.genCfg_util(g_cf,50,5,100);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
-		int end=2;
-		p.anal_loop(g_rs,g_ts,end);
+		p.anal_loop(g_rs,g_ts,g_anal_num);
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);

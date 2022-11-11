@@ -30,10 +30,6 @@ public class AnalAMC extends Anal {
 
 
 
-	@Override
-	public double computeX() {
-		return 0;
-	}
 	
 
 	private boolean findOPA()
@@ -116,8 +112,12 @@ public class AnalAMC extends Anal {
 					
 				}
 			}
-			SLog.prn(1, "r/o "+res+" "+old_res);
+//			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
+			if(res>t.period) {
+				res=t.period+1;
+				break;
+			}
 		}
 		return res;
 	}
@@ -163,10 +163,6 @@ public class AnalAMC extends Anal {
 				SLog.prn(1, ""+res_lo+" "+t.period);
 			}		
 		}
-	}
-	@Override
-	public double getExtra(int i) {
-		return 0;
 	}
 
 }

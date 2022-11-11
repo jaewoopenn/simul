@@ -18,14 +18,6 @@ public class Platform extends Platform_base{
 		g_rs_path=rs_path;
 	}	
 
-	public void setBE() {
-		SLog.prn(2, "BE");
-		this.g_be=true;
-		
-	}	
-	public void setRecoverIdle(boolean b) {
-		g_recoverIdle=b;
-	}
 	
 	// gen CFG, TS
 	public void genCfg_util(String cf,int base,int step, int end)  {
@@ -71,30 +63,7 @@ public class Platform extends Platform_base{
 		
 	}
 	
-	public void genCfg_hc(String cf,double util) {
-//		ConfigGen cg=ConfigGen.getPredefined();
-//		MList fu=new MList();
-//		cg.setParam("subfix", g_path);
-//		cg.setParam("num",g_num+"");
-//		for(int i=0;i<10;i++){
-//			int p_hc=i+1;
-//			cg.setParam("u_lb", (util)+"");
-//			cg.setParam("u_ub", (util+0.05)+"");
-//			cg.setParam("mod", "0."+(p_hc));
-//			cg.setParam("prob_hi",(p_hc*0.1)+"");
-//			String fn=g_path+"/cfg_"+i+".txt";
-//			cg.setFile(fn);
-//			cg.write();
-//			fu.add(fn);
-//		}
-//		fu.save(g_path+"/"+cf);
-		
-	}
 	
-	public void genCfg_ratio(String cf,double util) {
-
-		
-	}
 
 	
 	public void genTS(String cfg_list,String ts) {
@@ -119,10 +88,6 @@ public class Platform extends Platform_base{
 		fu_ts.save(g_path+"/"+ts);
 	}
 	
-
-//	public int getDur(int i) {
-//		return i*3000+2000;
-//	}
 
 	
 	public Anal getAnal(int sort) {

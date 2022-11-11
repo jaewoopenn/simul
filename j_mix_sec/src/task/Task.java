@@ -19,7 +19,7 @@ public class Task {
 		this.tid=TaskSeq.getID();
 		this.period = period;
 		this.c_l = c_l;
-		this.c_h = 0;
+		this.c_h = c_l;
 	}
 
 	public Task(int period, int c_l, int c_h) {
