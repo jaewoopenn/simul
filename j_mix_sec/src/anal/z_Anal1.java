@@ -12,8 +12,8 @@ public class z_Anal1 {
 	public int test1() 
 	{
 //		TaskMng tm=TS_MC1.ts1();
-//		TaskMng tm=TS_MC1.ts2();
-		TaskMng tm=TS_MC1.ts3();
+		TaskMng tm=TS_MC1.ts2();
+//		TaskMng tm=TS_MC1.ts3();
 		tm.prn();
 		Anal a=new AnalSMC();
 		a.init(tm);
@@ -48,7 +48,7 @@ public class z_Anal1 {
 //		TaskMng tm=TS_MC1.ts1();
 		TaskMng tm=TS_MC1.ts2();
 		tm.prn();
-		Anal a=new AnalRM();
+		Anal a=new AnalRM(0);
 		a.init(tm);
 		a.prepare();
 		if(a.getDtm()<=1) {

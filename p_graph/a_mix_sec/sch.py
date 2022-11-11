@@ -44,7 +44,8 @@ def load():
         
 
 def main():
-    mp.prepare2()
+    mp.prepare()
+#     mp.prepare2()
     load()
     no=0
     for v in gl.vv:

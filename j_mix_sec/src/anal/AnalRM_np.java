@@ -7,18 +7,30 @@ import task.Task;
 import task.TaskSet;
 import util.SLog;
 
-public class AnalCM extends Anal {
+public class AnalRM_np extends Anal {
 	private TaskSet g_tasks;
-	public AnalCM() {
+	private int g_sort;
+	public AnalRM_np(int i) {
 		super();
-		g_name="CM";
+		g_sort=i;
+		if(g_sort==0) {
+			g_name="RM_np";
+		} else {
+			g_name="CM_np";
+		}
 	}
 	@Override
 	public void prepare() {
 		g_tasks=new TaskSet(g_tm.getTasks());
-		g_tasks.sortCM();
+		if(g_sort==0) {
+			g_tasks.sortRM();
+		} else {
+			g_tasks.sortCM();
+			
+		}
 //		g_tasks.prn();
 	}
+
 	
 	@Override
 	public double getDtm() {
@@ -38,7 +50,9 @@ public class AnalCM extends Anal {
 		for(int i=0;i<g_tasks.size();i++) {
 			Task t=g_tasks.get(i);
 			Task[] hp=getHP(i);
-			double res=computeRes( t,  hp);
+			Task[] lp=getLP(i);
+			double res=computeRes( t,  hp,lp);
+			SLog.prn(1, i+" hp: "+hp.length+" lp: "+lp.length);		
 			SLog.prn(1, i+" "+res+" "+t.period);		
 			if(res>t.period)
 				return false;
@@ -58,14 +72,35 @@ public class AnalCM extends Anal {
 		v.toArray(ret);
 		return ret;
 	}
+	private Task[] getLP(int p){ 
+		Vector<Task> v=new Vector<Task>();
+		for(int i=0;i<g_tasks.size();i++)
+		{
+//			SLog.prn(1, "prio"+i+" "+prio[i]);
+			if(i>p)
+				v.add(g_tasks.get(i));
+		}
+		Task[] ret=new Task[v.size()];
+		v.toArray(ret);
+		return ret;
+	}
 	
-	private double computeRes(Task t, Task[] hp) {
+	private double computeRes(Task t, Task[] hp, Task[] lp) {
 		double res=0;
 		double init_res;
+		double b=0;
+		for(Task lt:lp) {
+			double exec=0;
+			if(lt.isHC())
+				exec=lt.c_h;
+			else
+				exec=lt.c_l;
+			b=Math.max(b, exec);
+		}
 		if(t.isHC())
-			init_res=t.c_h;
+			init_res=b+t.c_h;
 		else
-			init_res=t.c_l;
+			init_res=b+t.c_l;
 		double old_res=0;
 		double exec=0;
 		while(true){
@@ -88,14 +123,20 @@ public class AnalCM extends Anal {
 				break;
 			}
 		}
-		SLog.prn(1, "r "+t.tid+" "+hp.length);
+//		SLog.prn(1, "r "+t.tid+" "+hp.length);
 		return res;
 	}
 
 	
 	@Override
 	public void prn() {
-		
+		for(int i=0;i<g_tasks.size();i++) {
+			Task t=g_tasks.get(i);
+			Task[] hp=getHP(i);
+			Task[] lp=getLP(i);
+			double res_lo=computeRes(t,hp,lp);
+			SLog.prn(1, ""+res_lo+" "+t.period);
+		}		
 	}
 
 }

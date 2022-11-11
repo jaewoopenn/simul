@@ -31,7 +31,7 @@ public class z_auto1 {
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		g_anal_num=4;
+		g_anal_num=3;
 		
 	}
 
@@ -46,7 +46,7 @@ public class z_auto1 {
 		init_anal();
 		Platform p=new Platform(g_path);
 		p.setNum(g_ts_num);
-		p.genCfg_util(g_cf,50,5,100);
+		p.genCfg_util(g_cf,20,5,95);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		p.anal_loop(g_rs,g_ts,g_anal_num);

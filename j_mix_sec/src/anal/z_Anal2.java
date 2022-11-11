@@ -4,26 +4,50 @@ import task.TaskMng;
 import util.SEngineT;
 import util.SLog;
 import z_ex.TS_MC1;
+import z_ex.TS_MC2;
 
-public class z_Sort1 {
-	public static int idx=1;
+public class z_Anal2 {
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 
 	public int test1() 
 	{
-		TaskMng tm=TS_MC1.ts3();
+		TaskMng tm=TS_MC2.ts1();
+//		TaskMng tm=TS_MC1.ts2();
+//		TaskMng tm=TS_MC1.ts3();
 		tm.prn();
-		Anal a=new AnalRM(1);
+		Anal a=new AnalSMC_np();
 		a.init(tm);
 		a.prepare();
+		if(a.getDtm()<=1) {
+			SLog.prn(1, "OK");
+			a.prn();
+		} else {
+			SLog.prn(1, "Not OK");
+			
+		}
 		return -1;
 	}
 
 	public int test2() {
+		TaskMng tm=TS_MC2.ts1();
+		tm.prn();
+		Anal a=new AnalRM_np(0);
+		a.init(tm);
+		a.prepare();
+		if(a.getDtm()<=1) {
+			SLog.prn(1, "OK");
+			a.prn();
+		} else {
+			SLog.prn(1, "Not OK");
+			
+		}
 		return -1;
 	}
 	public int test3() {
 		return -1;
+
 	}
 	public  int test4() {
 		return 1;
@@ -49,9 +73,9 @@ public class z_Sort1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_Sort1.class;
-		z_Sort1 m=new z_Sort1();
-		int[] aret=z_Sort1.gret;
+		Class c = z_Anal2.class;
+		z_Anal2 m=new z_Anal2();
+		int[] aret=z_Anal2.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

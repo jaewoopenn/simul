@@ -9,14 +9,26 @@ import util.SLog;
 
 public class AnalRM extends Anal {
 	private TaskSet g_tasks;
-	public AnalRM() {
+	private int g_sort;
+	
+	public AnalRM(int i) {
 		super();
-		g_name="RM";
+		g_sort=i;
+		if(g_sort==0) {
+			g_name="RM_np";
+		} else {
+			g_name="CM_np";
+		}
 	}
 	@Override
 	public void prepare() {
 		g_tasks=new TaskSet(g_tm.getTasks());
-		g_tasks.sortRM();
+		if(g_sort==0) {
+			g_tasks.sortRM();
+		} else {
+			g_tasks.sortCM();
+			
+		}
 //		g_tasks.prn();
 	}
 	

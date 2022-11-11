@@ -5,6 +5,7 @@ import java.util.Vector;
 import anal.Anal;
 import anal.AnalSel;
 import util.MList;
+import util.SLog;
 
 public class DataAnal {
 	protected String g_path;
@@ -23,7 +24,7 @@ public class DataAnal {
 			String s=fu.get(i);
 			g_xl.add(s);
 		}
-		g_rs=new double[10][g_xlen];
+		g_rs=new double[20][g_xlen];
 	}
 	public void load_rs(String fn){
 		MList fu=new MList(g_path+"/"+fn);
@@ -40,7 +41,7 @@ public class DataAnal {
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
 			double r=process_rs(s);
-//			Log.prn(1,s+" "+r);
+//			SLog.prn(2,s+" "+r);
 			g_rs[i][idx]=r;
 		}
 	}
