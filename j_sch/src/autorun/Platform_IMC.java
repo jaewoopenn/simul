@@ -20,8 +20,7 @@ public class Platform_IMC extends Platform_base {
 	}	
 
 	// gen CFG, TS
-	public void genCfg_util(String cf,int base, int end) {
-		int step=4;
+	public void genCfg_util(String cf,int base,int step, int end) {
 		double end_i=(end-base)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
 		MList fu=new MList();

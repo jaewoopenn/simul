@@ -1,12 +1,9 @@
 package auto;
 
 import anal.Anal;
-import anal.AnalEDF_VD;
+import anal.AnalSel;
 import gen.ConfigGen;
 import gen.SysGen;
-import imc.AnalSel_run;
-import imc.SimulSel_run;
-import sim.TaskSimul_base;
 import util.MList;
 import util.SLog;
 
@@ -108,8 +105,6 @@ public class Platform extends Platform_base{
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
-//		Anal a=new AnalFMC();
-		Anal a=new AnalEDF_VD();
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
@@ -118,7 +113,7 @@ public class Platform extends Platform_base{
 			if(g_isCheck)
 				sg.setCheck();
 			int num=sg.prepare();
-			sg.gen(g_path+"/"+fn, a,num);
+			sg.gen(g_path+"/"+fn, num);
 			fu_ts.add(fn);
 		}
 		fu_ts.save(g_path+"/"+ts);
@@ -131,16 +126,10 @@ public class Platform extends Platform_base{
 
 	
 	public Anal getAnal(int sort) {
-		return AnalSel_run.getAnal(sort);
-	}
-	public Anal getAnalSim(int sort) {
-		return AnalSel_run.getAnalSim(sort);
+		return AnalSel.getAnal(sort);
 	}
 
 
 	
-	public TaskSimul_base getSim(int sort) {
-		return SimulSel_run.getSim(sort);
-	}
-	
+
 }

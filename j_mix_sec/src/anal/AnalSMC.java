@@ -2,15 +2,16 @@ package anal;
 
 import java.util.Vector;
 
+
 import task.Task;
 import util.SLog;
 
-public class AnalAMC extends Anal {
+public class AnalSMC extends Anal {
 	private int sz;
 	private int[] prio;
-	public AnalAMC() {
+	public AnalSMC() {
 		super();
-		g_name="AMC"; // AMC-rtb
+		g_name="SMC";
 	}
 	@Override
 	public void prepare() {
@@ -60,18 +61,11 @@ public class AnalAMC extends Anal {
 	}
 	
 	private boolean chk_A_on_setB(Task t, Task[] hp) {
-		double res_lo=computeLO(t,hp);
-		if(t.isHC()) {
-			double res=computeHI(t,hp,res_lo);
-			SLog.prn(1, ""+res+" "+t.period);
-			return res<=t.period;
-		} else {
-			SLog.prn(1, ""+res_lo+" "+t.period);
-			return res_lo<=t.period;
-		}
+		double res_lo=computeRes(t,hp);
+		return res_lo<=t.period;
 	}
 
-	private double computeLO(Task t, Task[] hp) {
+	private double computeRes(Task t, Task[] hp) {
 		double res=t.c_l;
 		
 		double old_res=0;
@@ -83,42 +77,20 @@ public class AnalAMC extends Anal {
 				Task h_tsk=hp[i];
 				if(t==h_tsk)
 					continue;
-				exec=h_tsk.c_l;
+				if(h_tsk.isHC())
+					exec=h_tsk.c_h;
+				else
+					exec=h_tsk.c_l;
 				res+=Math.ceil((double)old_res/h_tsk.period)*exec;
 			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
+//			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
 			if(res>t.period) {
 				res=t.period+1;
 				break;
 			}
 		}
-		return res;
-	}
-	private double computeHI(Task t, Task[] hp, double res_lo) {
-		double res=t.c_h;
-		
-		double old_res=0;
-		double exec=0;
-		while(true){
-			old_res=res;
-			res=t.c_h;
-			for(int i=0;i<hp.length;i++){
-				Task h_tsk=hp[i];
-				if(t==h_tsk)
-					continue;
-				if(h_tsk.isHC()) {
-					exec=h_tsk.c_h;
-					res+=Math.ceil((double)old_res/h_tsk.period)*exec;
-				} else { // LC
-					exec=h_tsk.c_l;
-					res+=Math.ceil((double)res_lo/h_tsk.period)*exec;
-					
-				}
-			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
-			if(res==old_res) break;
-		}
+//		SLog.prn(1, "r "+res);
 		return res;
 	}
 
@@ -155,13 +127,8 @@ public class AnalAMC extends Anal {
 		for(int i=0;i<sz;i++) {
 			Task t=g_tm.getTask(i);
 			Task[] hp=getHP(prio[i]);
-			double res_lo=computeLO(t,hp);
-			if(t.isHC()) {
-				double res=computeHI(t,hp,res_lo);
-				SLog.prn(1, ""+res+" "+t.period);
-			} else {
-				SLog.prn(1, ""+res_lo+" "+t.period);
-			}		
+			double res_lo=computeRes(t,hp);
+			SLog.prn(1, ""+res_lo+" "+t.period);
 		}
 	}
 	@Override

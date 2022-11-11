@@ -12,8 +12,9 @@ public class z_auto_imc {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	private int g_end;
 	private int g_st;
+	private int g_step;
+	private int g_end;
 	private int g_num;
 	private String g_cf;
 	private String g_ts;
@@ -43,6 +44,7 @@ public class z_auto_imc {
 
 	public void init_anal() {
 		g_st=66;
+		g_step=4;
 		g_end=100;
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
@@ -54,7 +56,7 @@ public class z_auto_imc {
 		init_anal();
 		Platform_IMC p=new Platform_IMC(g_path,g_path);
 		p.setNum(g_num);
-		p.genCfg_util(g_cf,g_st,g_end);
+		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		int end=4;

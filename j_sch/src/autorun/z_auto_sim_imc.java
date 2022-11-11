@@ -14,6 +14,7 @@ public class z_auto_sim_imc {
 	private double g_p_hc;
 	private double g_ratio;
 	private int g_st;
+	private int g_step;
 	private int g_end;
 	private int g_num;
 	private int g_life;
@@ -59,6 +60,7 @@ public class z_auto_sim_imc {
 		g_p_hc=0.5;
 		g_ratio=-1;
 		g_st=66;
+		g_step=4;
 		g_end=98;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
@@ -68,7 +70,7 @@ public class z_auto_sim_imc {
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
-		p.genCfg_util(g_cf,g_st,g_end);
+		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.setCheck();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);

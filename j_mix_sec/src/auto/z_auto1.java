@@ -1,10 +1,6 @@
-package autorun;
+package auto;
 
-//\a_new\sch.py
-// mc run
 
-import auto.DataAnal;
-import auto.Platform;
 import util.SEngineT;
 
 
@@ -12,7 +8,6 @@ public class z_auto1 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	private double g_util_ul;
 	private int g_num;
 	private String g_cf;
 	private String g_ts;
@@ -21,16 +16,20 @@ public class z_auto1 {
 	private String g_graph;
 	
 	public static void init_s() {
-		int s=0;
-		s=1;
-//		s=2;
+		int s=1;
+//		int s=2;
+//		int s=3;
+		
+//		int s=1;
+//		int s=5;
+//		int s=6;
 		s_idx=s;
 		
 		s_log_level=2;
 	}
 	
 	public void init_g() {
-		g_path="run/mc1";
+		g_path="mix_sec/t1";
 		g_num=5000;
 //		g_num=100;
 //		g_num=5;
@@ -53,7 +52,8 @@ public class z_auto1 {
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,50,5,100);
 		p.genTS(g_cf,g_ts);
-		int end=5;
+		p.genXA(g_cf,g_xl);
+		int end=2;
 		p.anal_loop(g_rs,g_ts,end);
 		DataAnal da=new DataAnal(g_path,0);
 		da.load_x(g_xl);

@@ -8,7 +8,6 @@ public class z_auto1 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	private double g_util_ul;
 	private int g_num;
 	private String g_cf;
 	private String g_ts;
@@ -41,7 +40,6 @@ public class z_auto1 {
 	}
 
 	public void init_anal() {
-		g_util_ul=1.00;
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}
@@ -52,7 +50,7 @@ public class z_auto1 {
 		init_anal();
 		Platform p=new Platform(g_path);
 		p.setNum(g_num);
-		p.genCfg_util(g_cf,g_util_ul);
+		p.genCfg_util(g_cf,50,5,100);
 		p.genTS(g_cf,g_ts);
 		int end=3;
 		p.anal_loop(g_rs,g_ts,end);

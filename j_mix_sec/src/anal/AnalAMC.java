@@ -116,7 +116,7 @@ public class AnalAMC extends Anal {
 					
 				}
 			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
+			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
 		}
 		return res;
@@ -158,7 +158,7 @@ public class AnalAMC extends Anal {
 			double res_lo=computeLO(t,hp);
 			if(t.isHC()) {
 				double res=computeHI(t,hp,res_lo);
-				SLog.prn(1, ""+res+" "+t.period);
+				SLog.prn(1, ""+res_lo+" "+res+" "+t.period);
 			} else {
 				SLog.prn(1, ""+res_lo+" "+t.period);
 			}		

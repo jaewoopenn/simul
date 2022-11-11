@@ -12,7 +12,7 @@ public class z_auto9 {
 	private double g_p_hc;
 	private double g_ratio;
 	private double g_ratio_hi;
-	private double g_util_ul;
+	private int g_end;
 	private int g_num;
 	private int g_dur;
 	private String g_cf;
@@ -48,7 +48,7 @@ public class z_auto9 {
 		g_p_ms=0.2;
 		g_p_hc=0.5;
 		g_ratio=-1;
-		g_util_ul=0.95;
+		g_end=95;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
@@ -58,7 +58,7 @@ public class z_auto9 {
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.setRatio_hi(g_ratio_hi);
-		p.genCfg_util(g_cf,g_util_ul);
+		p.genCfg_util(g_cf,50,5,g_end);
 		p.setCheck();
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
