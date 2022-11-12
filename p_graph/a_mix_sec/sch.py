@@ -6,7 +6,7 @@ Draw Acceptance Ratio //// MC-FLEX
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    fig="mix_sec/sch.pdf"
+    fig="mix_sec/sch.pdf "
     fn="mix_sec/t1/a_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
