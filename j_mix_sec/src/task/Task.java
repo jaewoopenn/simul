@@ -38,16 +38,6 @@ public class Task {
 	public boolean isHC() {
 		return is_HC;
 	}
-	public void prn() {
-		SLog.prnc(2, "tid:"+tid);
-		SLog.prnc(2, " p:"+period);
-		SLog.prnc(2," cl:"+c_l+" ch:"+c_h);
-		if (is_HC){
-			SLog.prn(2," HI");
-		}else{
-			SLog.prn(2," LO");
-		}
-	}
 	
 	public boolean check() {
 		if (period==0)
@@ -66,5 +56,29 @@ public class Task {
 	public double getHiUtil(){
 		return (double)c_h/period;
 	}
+	// prn
+	public void prn() {
+		SLog.prnc(2, "tid:"+tid);
+		SLog.prnc(2, " p:"+period);
+		SLog.prnc(2," cl:"+c_l+" ch:"+c_h);
+		if (is_HC){
+			SLog.prn(2," HI");
+		}else{
+			SLog.prn(2," LO");
+		}
+	}
+	
+	public void prnPara() {
+		SLog.prnc(2, "tmp.add(new Task(");
+		SLog.prnc(2, period);
+		if (is_HC){
+			SLog.prnc(2, ", "+c_l);
+			SLog.prnc(2, ", "+c_h);
+		} else {
+			SLog.prnc(2, ", "+c_l);
+		}
+		SLog.prn(2, "));");
+
+	}	
 }
 

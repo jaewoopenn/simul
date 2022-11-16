@@ -68,6 +68,7 @@ public abstract class Platform_base {
 		Anal a=getAnal(sort);
 		
 		SLog.prn(1, "a:"+a.getName());
+		
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
 			String out=g_rs_path+"/"+fn+".rs."+sort;
@@ -88,7 +89,10 @@ public abstract class Platform_base {
 		for(int i=0;i<num;i++) {
 			TaskMng tm=sy.loadOne();
 			if(tm==null) break;
-
+//			tm.prnPara();
+//			SLog.prn(2," "+i);
+//			if(i==367)
+//				break;
 			a.init(tm);
 			a.prepare();
 //			a.prn();

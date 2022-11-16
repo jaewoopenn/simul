@@ -78,6 +78,8 @@ public class DataAnal {
 			String s=fu.get(i);
 			if(s.equals("1"))
 				p++;
+//			else
+//				SLog.prn(2, i+" X");
 		}
 		return (p*1.0/n);
 	}

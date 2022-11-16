@@ -103,13 +103,12 @@ public class AnalRM_np extends Anal {
 			init_res=b+t.c_l;
 		double old_res=0;
 		double exec=0;
-		while(true){
+		while(res<=t.period){
 			old_res=res;
 			res=init_res;
 			for(int i=0;i<hp.length;i++){
 				Task h_tsk=hp[i];
-				if(t==h_tsk)
-					continue;
+				if(t==h_tsk)		continue;
 				if(h_tsk.isHC())
 					exec=h_tsk.c_h;
 				else
@@ -118,10 +117,6 @@ public class AnalRM_np extends Anal {
 			}
 //			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
-			if(res>t.period) {
-				res=t.period+1;
-				break;
-			}
 		}
 //		SLog.prn(1, "r "+t.tid+" "+hp.length);
 		return res;
