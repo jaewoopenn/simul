@@ -16,9 +16,8 @@ def prepare2():
         
 def legendBL():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
-#     plt.legend(loc='upper right',prop=font)
     plt.legend(loc='lower left',prop=font)
-#    plt.legend(loc='upper left',prop=font)
+
 def legendBR():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
     plt.legend(loc='lower right',prop=font)
@@ -40,6 +39,9 @@ def plot3(x,v,l,la,ma):
 def xlim(l,u):
     plt.xlim(l,u)
 
+def xlab_rot(size):
+    plt.tick_params(axis="x", labelsize=size, labelrotation=-60)
+#     plt.tick_params(axis="x", labelsize=14, labelrotation=-60, labelcolor="turquoise")
 def xticks(x,xt):
     plt.xticks(x,xt)
 

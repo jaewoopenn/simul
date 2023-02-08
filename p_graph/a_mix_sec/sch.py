@@ -56,6 +56,7 @@ def main():
     mp.legendBL()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
+    mp.xlab_rot(13)
 #     mp.show()
     mp.savefig(mf.filepath(gl_input.fig))
 

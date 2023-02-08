@@ -31,7 +31,7 @@ public class z_auto1 {
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		g_anal_num=3;
+		g_anal_num=4;
 		
 	}
 
@@ -58,10 +58,21 @@ public class z_auto1 {
 	}
 	public int test2() // from 
 	{
+		init_g();
+		init_anal();
+		DataAnal da=new DataAnal(g_path,0);
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
 		return -1;	
 	}
 	public int test3() // task set --> anal rs
 	{
+		init_g();
+		init_anal();
+		Platform p=new Platform(g_path);
+		p.setNum(2);
+		p.anal_loop(g_rs,g_ts,g_anal_num);
 		return -1;
 	}
 	public  int test4() // anal rs --> graph

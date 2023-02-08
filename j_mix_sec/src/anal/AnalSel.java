@@ -14,8 +14,10 @@ public class AnalSel {
 		if(sort==0) { 
 			return new AnalSMC_np();
 		} else if(sort==1) {
-			return new AnalRM_np(0);
+			return new AnalSMC_np2();
 		} else if(sort==2) {
+			return new AnalRM_np(0);
+		} else if(sort==3) {
 			return new AnalRM_np(1);
 		} 
 		return null;

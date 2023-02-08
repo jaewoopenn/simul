@@ -8,16 +8,21 @@ import z_ex.TS_MC2;
 
 public class z_Anal2 {
 //	public static int idx=1;
-	public static int idx=2;
+	public static int idx=1;
 	public static int log_level=1;
 
 	public int test1() 
 	{
-		TaskMng tm=TS_MC2.ts1();
+//		TaskMng tm=TS_MC2.ts1();
 //		TaskMng tm=TS_MC1.ts2();
 //		TaskMng tm=TS_MC1.ts3();
+//		TaskMng tm=TS_MC2.ts4();
+//		TaskMng tm=TS_MC2.ts5();
+//		TaskMng tm=TS_MC2.ts6();
+		TaskMng tm=TS_MC2.ts7();
 		tm.prn();
-		Anal a=new AnalSMC_np();
+//		Anal a=new AnalSMC_np();
+		Anal a=new AnalSMC_np2();
 		a.init(tm);
 		a.prepare();
 		if(a.getDtm()<=1) {

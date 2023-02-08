@@ -37,9 +37,6 @@ public class TaskMng {
 		return g_tasks.size();
 	}
 
-	public void prn() {
-		g_tasks.prn();
-	}
 
 	public double getMaxUtil() {
 		double lo_util=0;
@@ -65,6 +62,13 @@ public class TaskMng {
 
 
 
+	public void prn() {
+		g_tasks.prn();
+	}
+	public void prnPara() {
+		g_tasks.prnPara();
+		
+	}
 
 
 }
