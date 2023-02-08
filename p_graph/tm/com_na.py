@@ -5,14 +5,14 @@ Created on 2015. 12. 11.
 '''
 import util.MPlot as mp;
 class gl:
-#     path="com/rs/"
-    path="final_rs/"
+    path="com/rs/"
+#     path="final_rs/"
     RS="util"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['FC-MCS, Naive-Drop','EDF-AT-S']
+    lab=['FC-MCS, Naive-Drop','MC-ADAPT']
 #     data=[1,2,0,3]
     data=['FC','NA']
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
@@ -43,10 +43,9 @@ def main():
         no+=1
     mp.xlim(0.55,1.0)
     mp.ylim(0, 1.02)
-    mp.legend()
+    mp.legendBL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
-    print "hihi"
     mp.savefig("/Users/jaewoo/data/fig/com_na.pdf")
     mp.show()
 
