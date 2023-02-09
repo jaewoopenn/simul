@@ -1,7 +1,7 @@
 package exp;
 
 
-import basic.Task;
+import task.Task;
 import util.Log;
 
 public class JobSimul {

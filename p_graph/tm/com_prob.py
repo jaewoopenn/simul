@@ -6,7 +6,7 @@ Created on 2015. 12. 11.
 import util.MPlot as mp;
 class gl:
 #     path="com/rs/"
-    path="final_rs/"
+    path="fc/rs/"
     RS="prob"
     x=[]
     vv=[]
@@ -45,10 +45,9 @@ def main():
     mp.xlim(0.0,1.0)
 #     mp.xlim(0.70,1.0)
     mp.ylim(0, 1.02)
-    mp.legend()
+    mp.legendBL()
     mp.xlabel("Probability to be a HI-task")
     mp.ylabel("Acceptance Ratio")
-    print "hihi"
     mp.savefig("/Users/jaewoo/data/fig/com_prob.pdf")
     mp.show()
 

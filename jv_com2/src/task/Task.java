@@ -12,6 +12,7 @@ import util.SLogF;
 
 public class Task {
 	public int tid;
+	public int cid;
 	public int period;
 	public int c_l;
 	public int c_h;
@@ -19,6 +20,7 @@ public class Task {
 	public double x;
 	public int sb_tm=-1; // switch back time
 	public int life=0;
+	private boolean is_isol=false;
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
 	private boolean is_MS_Mode=false;
@@ -232,6 +234,20 @@ public class Task {
 		 is_HI_Mode=false;
 	}
 
+	public void setComp(int id) {
+		cid=id;
+	}
+
+	public int getComp() {
+		return cid;
+	}
+
+	public void set_isol(boolean b) {
+		is_isol=b;
+	}
+	public boolean is_isol() {
+		return is_isol;
+	}
 
 
 }

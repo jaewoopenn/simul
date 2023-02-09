@@ -1,7 +1,7 @@
 package anal;
 
-import basic.TaskMng;
-import basic.TaskSetInfo;
+import task.SysInfo;
+import task.TaskMng;
 import util.Log;
 
 public class AnalEDF_VD extends Anal {
@@ -9,7 +9,7 @@ public class AnalEDF_VD extends Anal {
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
-	TaskSetInfo g_info;
+	SysInfo g_info;
 	public AnalEDF_VD() {
 		super();
 		g_name="VD";
@@ -17,9 +17,9 @@ public class AnalEDF_VD extends Anal {
 	@Override
 	public void prepare() {
 		g_info=g_tm.getInfo();
-		lotasks_loutil=g_info.getLo_util();
-		hitasks_loutil=g_info.getHi_util_lm();
-		hitasks_hiutil=g_info.getHi_util_hm();
+		lotasks_loutil=g_info.getUtil_LC();
+		hitasks_loutil=g_info.getUtil_HC_LO();
+		hitasks_hiutil=g_info.getUtil_HC_HI();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
 		Log.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
 		Log.prn(1, "x:"+glo_x);
@@ -55,6 +55,18 @@ public class AnalEDF_VD extends Anal {
 		a.init(tm);
 		a.prepare();
 		return a.getX();
+	}
+	@Override
+	public void prn() {
+		
+	}
+	@Override
+	public double computeX() {
+		return 0;
+	}
+	@Override
+	public double getExtra(int i) {
+		return 0;
 	}
 
 }

@@ -6,8 +6,8 @@ Created on 2015. 12. 11.
 import util.MPlot as mp;
 class gl:
 #     path="com/rs/"
-    path="final_rs/"
-    RS="util"
+    path="fc/rs/"
+    RS="util_X"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
@@ -25,7 +25,7 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn=gl.path+gl.RS+"_x_x.txt"
+    fn=gl.path+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def iterate(s,t):
@@ -43,7 +43,7 @@ def main():
         no+=1
     mp.xlim(0.55,1.0)
     mp.ylim(0, 1.02)
-    mp.legend()
+    mp.legendBL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
     print "hihi"

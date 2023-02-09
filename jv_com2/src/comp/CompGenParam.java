@@ -1,13 +1,13 @@
 package comp;
 
+import util.MRand;
 
 //import utill.Log;
-import util.RUtil;
 
 
 
 public class CompGenParam {
-	private RUtil g_rand;
+	private MRand g_rand;
 	
 	public double u_ub;
 	public double u_lb;
@@ -17,7 +17,7 @@ public class CompGenParam {
 	public double a_lb;
 	
 	public CompGenParam(){
-		g_rand=new RUtil();
+		g_rand=new MRand();
 		
 	}
 

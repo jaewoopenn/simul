@@ -4,17 +4,20 @@ package exp;
 import gen.ConfigGen;
 import gen.SimGen;
 import gen.SimGenTM;
+import sim.SimulInfo;
+import sim.SysMng;
+import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
+import sim.mc.TaskSimul_EDF_AD_E;
+import sim.mc.TaskSimul_EDF_VD;
 import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
-import basic.TaskMng;
-import simul.SimulInfo;
-import simul.TaskSimul;
-import simul.TaskSimul_EDF_AD_E;
-import simul.TaskSimul_EDF_VD;
-import util.FUtil;
+import task.TaskMng;
+import task.TaskSetUtil;
 import util.Log;
+import util.MList;
 import util.MUtil;
 
 public class PlatformTM extends Platform{
@@ -56,23 +59,22 @@ public class PlatformTM extends Platform{
 	}
 	public void simul() {
 		write_x_axis();
-		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
-		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null));
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
+		simul_in(2,new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E());
 	}
-	public void simul_in(int no,Anal an,TaskSimul tsim){
-		g_fu=new FUtil();
-		if(isWrite)
-			g_fu=new FUtil(getRsFN(no));
+	public void simul_in(int no,Anal an,TaskSimulMC tsim){
+		g_fu=new MList();
 		
 		tsim.isSchTab=false;
 		for(int i:MUtil.loop(g_size)){
 			simul_in_i(i,an,tsim);
 		}
-		g_fu.save();
+		if(isWrite)
+			g_fu.save(getRsFN(no));
 		
 	}
 	
-	public void simul_in_i(int i,Anal an,TaskSimul tsim)
+	public void simul_in_i(int i,Anal an,TaskSimulMC tsim)
 	{
 		double sum=0;
 		int sum_ms=0;
@@ -81,12 +83,14 @@ public class PlatformTM extends Platform{
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		int size=eg.size();
 		for(int j:MUtil.loop(size)){
-			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
-			tm.getInfo().setProb_ms(g_prob); 
+			TaskMng tm=(TaskSetUtil.loadFile(new MList(cfg.get_fn(j)))).getTM();
+//			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
+			SysMng sm=new SysMng();
+			sm.setMS_Prob(g_prob);
 			an.init(tm);
 			an.prepare();
-			tm.setX(an.computeX());
-			tsim.init_tm(tm);
+			sm.setX(an.computeX());
+			tsim.init_sm_tm(sm,tm);
 			eg.initSim(0, tsim);
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
@@ -99,34 +103,35 @@ public class PlatformTM extends Platform{
 		double avg=sum/size;
 		double avg_ms=(sum_ms*1.0/size);
 		Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
-		g_fu.print(avg+"");
+		g_fu.add(avg+"");
 		
 	}
 	
 	public void simul_vd() {
 		isWrite=false;
-		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD(null));
+		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
 	}
 
 	public void simul_one(int anal, int set, int no) {
 		if(anal==0)
-			simul_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(null),set,no);
+			simul_one(new AnalEDF_VD(),new TaskSimul_EDF_VD(),set,no);
 		else
-			simul_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(null),set,no);
+			simul_one(new AnalEDF_AD_E(),new TaskSimul_EDF_AD_E(),set,no);
 	}
 	
 	public void simul_one(Anal an,
-			TaskSimul tsim, int i, int j) {
+			TaskSimulMC tsim, int i, int j) {
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
-		TaskMng tm=TaskMng.getFile(fn);
-		tm.getInfo().setProb_ms(g_prob); 
+		TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(g_prob);
 		an.init(tm);
 		an.prepare();
 		tm.setX(an.computeX());
-		tsim.init_tm(tm);
+		tsim.init_sm_tm(sm,tm);
 		eg.initSim(0, tsim);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI(0);
@@ -145,13 +150,12 @@ public class PlatformTM extends Platform{
 	}
 	
 	public void anal_in(int algo_num,Anal an){
-		g_fu=new FUtil();
-		if(isWrite)
-			g_fu=new FUtil(getRsFN(algo_num));
+		g_fu=new MList();
 		for(int i=0;i<g_size;i++){
 			anal_in_i(i,an);			
 		}
-		g_fu.save();
+		if(isWrite)
+			g_fu.save(getRsFN(algo_num));
 		
 	}
 	public void anal_in_i(int i,Anal an){
@@ -162,7 +166,7 @@ public class PlatformTM extends Platform{
 		int size=eg.size();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
-			TaskMng tm=TaskMng.getFile(fn);
+			TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
 			int ret=eg.anal(tm,an);
 			Log.prn(2, j+","+ret);
 			sum+=ret;
@@ -170,7 +174,7 @@ public class PlatformTM extends Platform{
 		}
 		double avg=(double)sum/size;
 		Log.prn(3, (g_start+i*g_step)+":"+avg);
-		g_fu.print(avg+"");
+		g_fu.add(avg+"");
 	}
 	
 	public void anal_one(int kinds, int set, int no) {
@@ -185,7 +189,7 @@ public class PlatformTM extends Platform{
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
-		TaskMng tm=TaskMng.getFile(fn);
+		TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
 		int ret=eg.anal(tm,an);
 		Log.prn(3, i+","+j+":"+ret);
 		
@@ -202,7 +206,7 @@ public class PlatformTM extends Platform{
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				String fn=cfg.get_fn(j);
-				TaskMng tm=TaskMng.getFile(fn);
+				TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
 				Log.prn(2, mod+" "+j);
 				tm.getInfo().prn();
 			}

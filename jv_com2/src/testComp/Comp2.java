@@ -1,9 +1,9 @@
 package testComp;
 
 
-import basic.TaskMng;
 import comp.Comp;
 import comp.CompEx1;
+import task.TaskMng;
 import util.Log;
 import util.TEngine;
 

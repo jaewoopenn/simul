@@ -2,7 +2,6 @@ package testExp;
 
 import exp.Job;
 import exp.JobMng;
-import sysEx.Job_NonMC1;
 import util.TEngine;
 
 public class JobMng2 {
@@ -12,18 +11,18 @@ public class JobMng2 {
 	public static int gret[]={1,1,-1,-1,-1, -1,-1,-1,-1,-1};
 
 	public int test1()	{ // not ordering
-		JobMng jm=Job_NonMC1.ts1();
-		jm.prn();
+//		JobMng jm=Job_MC1.ts1();
+//		jm.prn();
 		return 1;
 	}
 	public int test2()	{ // ordering 
-		JobMng jm=Job_NonMC1.ts1();
-		while(true){
-			Job j=jm.removeCur();
-			if(j==null) break;
-			j.prn();
-			
-		}
+//		JobMng jm=Job_MC1.ts1();
+//		while(true){
+//			Job j=jm.removeCur();
+//			if(j==null) break;
+//			j.prn();
+//			
+//		}
 		return 1;
 	}
 	public  int test3()

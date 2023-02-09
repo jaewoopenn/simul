@@ -10,7 +10,11 @@ import util.TEngine;
 
 // schedulability 
 public class Platform4 {
-	public static int idx=5;
+	public static int idx=1;
+//	public static int idx=2;
+//	public static int idx=3;
+//	public static int idx=4;
+//	public static int idx=5;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public int kind=0;
@@ -50,7 +54,7 @@ public class Platform4 {
 
 	public PlatformCom getCommmon(){
 		PlatformCom p=new PlatformCom();
-		p.setPath("com");
+		p.setPath("fc");
 		p.setCfg_fn("cfg/cfg");
 		p.setAlpha(0.25,0.75);
 		if(isReal==1){

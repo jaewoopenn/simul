@@ -3,9 +3,10 @@ package comp;
 
 import gen.TaskGenMC;
 import gen.TaskGenParam;
-import basic.TaskMng;
-import basic.TaskSetFix;
 //import utill.Log;
+import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetMC;
 
 public class CompGen {
 	protected CompGenParam g_param;
@@ -26,8 +27,8 @@ public class CompGen {
 				g_t_param.setUtil(g_param.c_lb,g_param.c_ub);
 			tg.generate();
 			Comp c=new Comp(g_param.getAlpha());
-			TaskSetFix tmp=new TaskSetFix(tg.getAll());
-			TaskMng tm=tmp.getTM();
+			TaskSetMC tsf=new TaskSetMC(new TaskSet(tg.getAll()));
+			TaskMng tm=tsf.getTM();
 			c.setTM(tm);
 			cm.addComp(c);
 			u=cm.getMCUtil();

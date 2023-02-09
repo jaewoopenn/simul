@@ -2,7 +2,6 @@ package testExp;
 
 import exp.Job;
 import exp.JobMng;
-import sysEx.Job_NonMC1;
 import util.TEngine;
 
 public class JobMng1 {
@@ -16,29 +15,31 @@ public class JobMng1 {
 	
 	public int test1()
 	{
-		JobMng jm=Job_NonMC1.ts1();
-		Job j;
-		j=jm.removeCur();
-		j=jm.removeCur();
-		j=jm.removeCur();
-		if (j!=null)
-			System.out.println(j.dl);
-		else
-			System.out.println(j);
-		return jm.size();
+//		JobMng jm=Job_NonMC1.ts1();
+//		Job j;
+//		j=jm.removeCur();
+//		j=jm.removeCur();
+//		j=jm.removeCur();
+//		if (j!=null)
+//			System.out.println(j.dl);
+//		else
+//			System.out.println(j);
+//		return jm.size();
+		return 0;
 	}
 	public int test2()
 	{
-		JobMng jm=Job_NonMC1.ts1();
-		Job j;
-		j=jm.removeCur();
-		j=jm.removeCur();
-		j=jm.getCur();
-		if (j!=null)
-			System.out.println(j.dl);
-		else
-			System.out.println(j);
-		return jm.size();
+//		JobMng jm=Job_NonMC1.ts1();
+//		Job j;
+//		j=jm.removeCur();
+//		j=jm.removeCur();
+//		j=jm.getCur();
+//		if (j!=null)
+//			System.out.println(j.dl);
+//		else
+//			System.out.println(j);
+//		return jm.size();
+		return 0;
 	}
 	public  int test3()
 	{

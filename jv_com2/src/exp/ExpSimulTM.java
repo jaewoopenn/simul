@@ -2,18 +2,20 @@ package exp;
 
 
 import gen.ConfigGen;
+import sim.SimulInfo;
+import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
+import task.TaskMng;
 import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
 import anal.Anal;
-import basic.TaskMng;
-import simul.SimulInfo;
-import simul.TaskSimul;
+import anal.AnalEDF_AD_E;
 import util.Log;
 import util.MUtil;
 
 public class ExpSimulTM extends ExpSimul{
-	private TaskSimul g_tsim;
+	private TaskSimulMC g_tsim;
 	public ExpSimulTM(ConfigGen cfg) {
 		super(cfg);
 	}
@@ -21,18 +23,18 @@ public class ExpSimulTM extends ExpSimul{
 
 	@Override
 	public int anal(TaskMng tm, Anal a) {
-//		AnalEDF_AT a=new AnalEDF_AT();
+//		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
 //		Log.prn(2, ""+a.getDtm());
-		boolean b=a.isScheduable();
+		boolean b=a.is_sch();
 		return MUtil.btoi(b);
 	}
 	
 
 
 	@Override
-	public void initSim(int core, TaskSimul tsim) {
+	public void initSim(int core, TaskSimulMC tsim) {
 		g_tsim=tsim;
 	}
 
@@ -43,11 +45,8 @@ public class ExpSimulTM extends ExpSimul{
 
 	@Override
 	public void simul(int st, int et) {
-		g_tsim.checkErr();
-		if(st==0){
-			g_tsim.simulStart();
-		}
-		g_tsim.simulEnd(st,et);
+		g_tsim.simul(st,et);
+		g_tsim.simul_end();
 	}
 
 
@@ -80,5 +79,6 @@ public class ExpSimulTM extends ExpSimul{
 		return 	a.anal(kinds);
 
 	}
-	
+
+
 }

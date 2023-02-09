@@ -1,10 +1,13 @@
 package gen;
 
 import anal.Anal;
-import basic.TaskMng;
-import basic.TaskSetFix;
-import util.FUtil;
+import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetMC;
+import task.TaskSetUtil;
+import task.TaskVec;
 import util.Log;
+import util.MOut;
 
 public abstract class SimGen {
 	protected TaskGenMC g_tg;
@@ -31,7 +34,7 @@ public abstract class SimGen {
 		int i=0;
 		String fn=g_cfg.get_dir();
 		Log.prn(2, fn);
-		FUtil.makeDir(fn);
+		MOut.makeDir(fn);
 		while(i<num){
 //			Log.prn(2, i+"");
 			g_tg.generate();
@@ -54,8 +57,8 @@ public abstract class SimGen {
 	protected abstract int check() ;
 	public TaskMng genOne(){
 		g_tg.generate();
-		TaskSetFix tm=new TaskSetFix(g_tg.getAll());
-		TaskMng m=tm.getTM();
+		TaskSetMC tsf=new TaskSetMC(new TaskSet(g_tg.getAll()));
+		TaskMng m=tsf.getTM();
 		return m;
 	}
 	public void setCheck(boolean b){

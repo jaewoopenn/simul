@@ -2,10 +2,11 @@ package exp;
 
 
 import gen.ConfigGen;
+import sim.SimulInfo;
+import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
+import task.TaskMng;
 import anal.Anal;
-import basic.TaskMng;
-import simul.SimulInfo;
-import simul.TaskSimul;
 
 public abstract class ExpSimul {
 	protected ConfigGen g_cfg;
@@ -19,7 +20,7 @@ public abstract class ExpSimul {
 
 	public abstract int anal(TaskMng tm, Anal a) ;
 	
-	public abstract void initSim(int core,TaskSimul tsim);
+	public abstract void initSim(int core,TaskSimulMC tsim);
 
 	protected abstract void simulStart();
 	public abstract void simul(int st,int et);

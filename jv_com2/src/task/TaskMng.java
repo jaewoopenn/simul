@@ -24,6 +24,13 @@ public class TaskMng {
 		g_lo_tasks.sortLo2();
 	}
 	
+	public Task findDropTask_shared() {
+		for(Task t:g_lo_tasks.getArr()){
+			if (!t.isDrop()&&!t.is_isol())
+				return t;
+		}
+		return null;
+	}
 	public Task findDropTask() {
 		for(Task t:g_lo_tasks.getArr()){
 			if (!t.isDrop())
@@ -31,7 +38,6 @@ public class TaskMng {
 		}
 		return null;
 	}
-
 	public Task findResumeTask() {
 		Task [] ts=g_lo_tasks.getArr();
 		for(int i=ts.length-1;i>=0;i--){ // reverse order (from lowest util lo task)

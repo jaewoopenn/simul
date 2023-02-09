@@ -2,7 +2,7 @@ package comp;
 
 import gen.ConfigGen;
 import gen.TaskGenParam;
-import util.FUtil;
+import util.MOut;
 import util.MUtil;
 import anal.AnalEDF_VD;
 
@@ -31,7 +31,7 @@ public class SimCompGen {
 		int num=prepare();
 		int i=0;
 		String fn=g_cfg.get_dir();
-		FUtil.makeDir(fn);
+		MOut.makeDir(fn);
 		while(i<num){
 //			Log.prn(2, i+"");
 			CompMng cm=g_cg.generate();
@@ -64,7 +64,7 @@ public class SimCompGen {
 		a.init(cm.getTM());
 		a.prepare();
 		
-		return MUtil.btoi(a.isScheduable());
+		return MUtil.btoi(a.is_sch());
 	}
 	
 }

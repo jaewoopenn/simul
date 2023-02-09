@@ -1,6 +1,6 @@
 package test;
 
-import util.FUtil;
+import util.MList;
 import util.TEngine;
 
 public class Calcul1 {
@@ -10,31 +10,31 @@ public class Calcul1 {
 	public static int gret[]={1,1,1,-1,-1, -1,-1,-1,-1,-1};
 	public int test1() 
 	{
-		FUtil fu=new FUtil("graph/test1.txt");
+		MList fu=new MList();
 		for(int i=1;i<11;i++){
 			double v=1-Math.pow(1-0.04*i,5);
-			fu.print(v+"");
+			fu.add(v+"");
 		}
-		fu.save();
+		fu.save("graph/test1.txt");
 		return 1;
 	}
 	public int test2() 
 	{
-		FUtil fu=new FUtil("graph/test2.txt");
+		MList fu=new MList();
 		for(int i=1;i<11;i++){
 			double v=1-Math.pow(1-0.05*i,5);
-			fu.print(v+"");
+			fu.add(v+"");
 		}
-		fu.save();
+		fu.add("graph/test2.txt");
 		return 1;
 	}
 	public int test3() 
 	{
-		FUtil fu=new FUtil("graph/label.txt");
+		MList fu=new MList();
 		for(int i=1;i<11;i++){
-			fu.print((0.05*i)+"");
+			fu.add((0.05*i)+"");
 		}
-		fu.save();
+		fu.save("graph/label.txt");
 		return 1;
 	}
 	public  int test4() 

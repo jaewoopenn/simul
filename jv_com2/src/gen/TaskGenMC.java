@@ -1,7 +1,7 @@
 package gen;
 
 
-import basic.Task;
+import task.Task;
 import util.Log;
 
 public class TaskGenMC extends TaskGen {
@@ -30,7 +30,7 @@ public class TaskGenMC extends TaskGen {
 	public void prn(int lv) {
 		for(Task t:g_tasks) {
 			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
-					", h:"+t.c_h+", Xi:"+t.is_HI);
+					", h:"+t.c_h+", Xi:"+t.isHC());
 		}
 		Log.prn(lv, "MC util:"+getUtil());
 			
@@ -43,7 +43,7 @@ public class TaskGenMC extends TaskGen {
 		double hiutil=0;
 		for(Task t:g_tasks){
 			loutil+=t.getLoUtil();
-			if(t.is_HI)
+			if(t.isHC())
 				hiutil+=t.getHiUtil();
 		}
 		return Math.max(loutil, hiutil);

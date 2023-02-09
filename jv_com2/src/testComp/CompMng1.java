@@ -2,10 +2,9 @@ package testComp;
 
 
 import anal.AnalEDF_AD_E;
-import basic.Task;
-import basic.TaskMng;
 import comp.CompMng;
 import comp.CompMngEx1;
+import task.TaskMng;
 import util.Log;
 import util.TEngine;
 
@@ -29,12 +28,12 @@ public class CompMng1 {
 	}
 	public int test3() 
 	{
-		CompMng cm=CompMngEx1.getCompMng1();
-		cm.prn();
-		TaskMng tm=cm.getTM();
-		tm.prn();
-		Task t=tm.getTask(1);
-		Log.prn(1,"CID:"+t.getComp());
+//		CompMng cm=CompMngEx1.getCompMng1();
+//		cm.prn();
+//		TaskMng tm=cm.getTM();
+//		tm.prn();
+//		Task t=tm.getTask(1);
+//		Log.prn(1,"CID:"+t.getComp());
 		return 0;
 	}
 	public  int test4() 

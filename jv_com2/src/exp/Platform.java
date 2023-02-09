@@ -1,6 +1,6 @@
 package exp;
 
-import util.FUtil;
+import util.MList;
 
 
 
@@ -17,19 +17,19 @@ public class Platform {
 	protected String g_ts_name;
 	public boolean isWrite=true;
 	protected String g_RS;
-	protected FUtil g_fu;
+	protected MList g_fu;
 	
 	// com
 	protected double g_a_l;
 	protected double g_a_u;
 	
 	public void write_x_axis() {
-		FUtil fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
+		MList fu=new MList();
 
 		for(int i=0;i<g_size;i++){
-			fu.print((double)(g_start+i*g_step)/100+"");
+			fu.add((double)(g_start+i*g_step)/100+"");
 		}		
-		fu.save();
+		fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
 	}
 	
 	public void setKinds(int d) {

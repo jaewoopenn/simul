@@ -3,7 +3,7 @@ package comp;
 import util.Log;
 import util.MUtil;
 import anal.AnalEDF_VD;
-import basic.TaskMng;
+import task.TaskMng;
 
 public class AnalComp {
 	protected CompMng g_cm;
@@ -16,7 +16,7 @@ public class AnalComp {
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();
-		Log.prn(1, "sch:"+a.isScheduable());
+		Log.prn(1, "sch:"+a.is_sch());
 		g_cm.setX(x);
 //		tm.setX(x);
 	}

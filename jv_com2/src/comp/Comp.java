@@ -18,7 +18,7 @@ public class Comp {
 		this.alpha = alpha;
 	}
 	public void partition() {
-		double cu=g_tm.getInfo().getLo_util();
+		double cu=g_tm.getInfo().getUtil_LC();
 		double tu=cu*(alpha);
 //		Log.prn(1,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
 		cu=0;
@@ -63,8 +63,8 @@ public class Comp {
 	}
 	
 	// get
-	public TaskSet getTaskSet() {
-		return g_tm.getTaskSet();
+	public Task[] getTaskSet() {
+		return g_tm.getTasks();
 	}
 
 	public int size() {
@@ -84,8 +84,8 @@ public class Comp {
 	public double getST_U() {
 		double u=0;
 		for(Task t:g_tm.getTasks()){
-			if(t.is_HC())
-				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
+			if(t.isHC())
+				u+=Math.min(t.getLoVdUtil(), t.getHiUtil());
 			else
 				u+=t.getLoUtil();
 		}
@@ -98,7 +98,7 @@ public class Comp {
 	public double getNa_U(){
 		double u=0;
 		for(Task t:g_tm.getTasks()){
-			if(t.is_HI)
+			if(t.isHC())
 				u+= t.getHiUtil();
 			else{
 				if(t.is_isol())
@@ -112,8 +112,8 @@ public class Comp {
 	public double getExt_U() {
 		double u=0;
 		for(Task t:g_tm.getTasks()){
-			if(t.is_HI)
-				u+=Math.min(t.getLoRUtil(), t.getHiUtil());
+			if(t.isHC())
+				u+=Math.min(t.getLoVdUtil(), t.getHiUtil());
 			else{
 				if(t.is_isol())
 					u+=t.getLoUtil();
@@ -126,7 +126,7 @@ public class Comp {
 	public double getInt_U() {
 		double u=0;
 		for(Task t:g_tm.getTasks()){
-			if(t.is_HI)
+			if(t.isHC())
 				u+= t.getHiUtil();
 			else{
 				u+=g_tm.getInfo().getX()*t.getLoUtil();

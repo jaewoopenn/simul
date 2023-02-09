@@ -1,13 +1,14 @@
 package testComp;
 
 import anal.AnalEDF_VD;
-import basic.TaskMng;
 import comp.CompFile;
 import comp.CompMng;
 import comp.CompMngEx1;
 import comp.TaskSimul_FC_MCS;
 import comp.TaskSimul_FC_Naive;
-import simul.SimulInfo;
+import sim.SimulInfo;
+import sim.SysMng;
+import task.TaskMng;
 import util.TEngine;
 
 // Comp
@@ -27,10 +28,13 @@ public class TaskSimul5 {
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
-		tm.getInfo().setProb_ms(1.0);
-		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(1.0);
+		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS();
+		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
-		ts.simulEnd(0,20);
+		ts.simul(0,20);
+		ts.simul_end();
 		return 0;
 	}
 	public int test2() 
@@ -45,14 +49,17 @@ public class TaskSimul5 {
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
-		tm.getInfo().setProb_ms(0.1);
-		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS(tm);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(0.1);
+		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS();
 //		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
+		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
 		ts.isSchTab=false;
 //		ts.isPrnMS=false;
 		ts.isPrnEnd=false;
-		ts.simulEnd(0,400);
+		ts.simul(0,20);
+		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn();
 		return 0;
@@ -66,10 +73,14 @@ public class TaskSimul5 {
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
-		tm.getInfo().setProb_ms(1.0);
-		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(1.0);
+		sm.setX(x);
+		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive();
+		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
-		ts.simulEnd(0,20);
+		ts.simul(0,20);
+		ts.simul_end();
 		return 0;
 	}
 	public  int test4() 
@@ -82,10 +93,13 @@ public class TaskSimul5 {
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
-		tm.getInfo().setProb_ms(1);
-		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(1.0);
+		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive();
+		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
-		ts.simulEnd(0,100);
+		ts.simul(0,100);
+		ts.simul_end();		
 		return 0;
 	}
 	public  int test5() 

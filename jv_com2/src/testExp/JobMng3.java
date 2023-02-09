@@ -1,7 +1,6 @@
 package testExp;
 
 import exp.JobMng;
-import sysEx.Job_NonMC1;
 import util.TEngine;
 
 public class JobMng3 {
@@ -14,8 +13,8 @@ public class JobMng3 {
 
 	
 	public int test1()	{ 
-		JobMng jm=Job_NonMC1.ts1();
-		jm.prn();
+//		JobMng jm=Job_NonMC1.ts1();
+//		jm.prn();
 		return -1;
 	}
 	public int test2()	{ 

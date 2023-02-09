@@ -2,9 +2,9 @@ package gen;
 
 import java.util.Vector;
 
-import basic.Task;
-import basic.TaskFile;
-import util.FUtil;
+import task.Task;
+import task.TaskSetUtil;
+import util.MList;
 
 public abstract class TaskGen {
 	protected TaskGenParam g_param;
@@ -60,10 +60,10 @@ public abstract class TaskGen {
 	
 	// file
 	public void writeFile(String file) {
-		FUtil fu=new FUtil(file);
+		MList fu=new MList();
 		for(Task t:g_tasks)
-			TaskFile.writeTask(fu,t);
-		fu.save();
+			TaskSetUtil.writeTask(fu,t);
+		fu.save(file);
 	}
 	
 	

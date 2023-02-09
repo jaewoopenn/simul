@@ -1,11 +1,9 @@
 package testExp;
 import anal.Anal;
 import anal.AnalEDF_VD;
-import basic.TaskMng;
 import exp.ExpSimulTM;
 import gen.ConfigGen;
-import simul.SimulInfo;
-import simul.TaskSimul_EDF_VD;
+import task.TaskMng;
 import util.TEngine;
 
 public class ExpSimul1 {
@@ -15,37 +13,37 @@ public class ExpSimul1 {
 	public static int log_level=2;
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
-		cfg.readFile();
-		ExpSimulTM eg=new ExpSimulTM(cfg);
-		String fn=cfg.get_fn(0);
-		TaskMng tm=TaskMng.getFile(fn);
-		Anal an=new AnalEDF_VD();
-		an.init(tm);
-		an.prepare();
-		tm.setX(an.computeX());
-		eg.initSim(0, new TaskSimul_EDF_VD(tm));
-		eg.simul(0,1000);
-		SimulInfo si=eg.getSI(0);
-
-		si.prn();
+//		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
+//		cfg.readFile();
+//		ExpSimulTM eg=new ExpSimulTM(cfg);
+//		String fn=cfg.get_fn(0);
+//		TaskMng tm=TaskMng.getFile(fn);
+//		Anal an=new AnalEDF_VD();
+//		an.init(tm);
+//		an.prepare();
+//		tm.setX(an.computeX());
+//		eg.initSim(0, new TaskSimul_EDF_VD(tm));
+//		eg.simul(0,1000);
+//		SimulInfo si=eg.getSI(0);
+//
+//		si.prn();
 		return 1;
 	}
 	public int test2() 
 	{
-		ExpSimulTM eg=new ExpSimulTM(null);
-		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
-//		TaskMng tm=TaskMng.getFile("test/ts/taskset_1");
-		
-		Anal an=new AnalEDF_VD();
-		an.init(tm);
-		an.prepare();
-		tm.setX(an.computeX());
-
-		eg.initSim(0, new TaskSimul_EDF_VD(tm));
-		eg.simul(0,100);
-		SimulInfo si=eg.getSI(0);
-		si.prn();
+//		ExpSimulTM eg=new ExpSimulTM(null);
+//		TaskMng tm=TaskMng.getFile("test/ts/taskset_0");
+////		TaskMng tm=TaskMng.getFile("test/ts/taskset_1");
+//		
+//		Anal an=new AnalEDF_VD();
+//		an.init(tm);
+//		an.prepare();
+//		tm.setX(an.computeX());
+//
+//		eg.initSim(0, new TaskSimul_EDF_VD(tm));
+//		eg.simul(0,100);
+//		SimulInfo si=eg.getSI(0);
+//		si.prn();
 		return 1;
 	}
 	public int test3() 

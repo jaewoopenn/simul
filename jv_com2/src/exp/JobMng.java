@@ -3,7 +3,7 @@ package exp;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
-import basic.Task;
+import task.Task;
 import util.Log;
 
 public class JobMng {

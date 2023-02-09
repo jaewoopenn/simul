@@ -2,11 +2,13 @@ package comp;
 
 import java.util.Vector;
 
-import basic.Task;
-import basic.TaskMng;
-import basic.TaskSetFix;
+import task.Task;
+import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetMC;
+import task.TaskVec;
 import util.Log;
-import util.RUtil;
+import util.MRand;
 
 public class CompMng {
 	private Vector<Comp> g_comp;
@@ -26,14 +28,15 @@ public class CompMng {
 	}
 
 	public void makeTM(){
-		TaskSetFix tmp=new TaskSetFix();
+		TaskVec tmp=new TaskVec();
 		for(Comp c:g_comp){
-			for(Task t:c.getTaskSet().getArr()){
+			for(Task t:c.getTaskSet()){
 				t.setComp(c.getID());
 				tmp.add(t);
 			}
 		}
-		g_tm=tmp.getTM();
+		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
+		g_tm=tme.getTM();
 		
 	}
 
@@ -91,7 +94,7 @@ public class CompMng {
 		
 	}
 	public void setAlpha(double g_a_l, double g_a_u) {
-		RUtil ru=new RUtil();
+		MRand ru=new MRand();
 		for(Comp c:g_comp){
 			c.setAlpha(ru.getDbl(g_a_l,g_a_u));
 		}
@@ -123,7 +126,7 @@ public class CompMng {
 
 	public double getMCUtil() {
 		TaskMng tm=getTM();
-		return tm.getMCUtil();
+		return tm.getInfo().getCritUtil();
 	}
 
 

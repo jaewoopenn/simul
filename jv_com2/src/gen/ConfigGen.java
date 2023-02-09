@@ -3,15 +3,16 @@ package gen;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import util.FUtil;
 import util.Log;
+import util.MList;
 import util.MUtil;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"}; 
-	//"c_lb","c_ub",
-	//"a_lb","a_ub",
+//	"c_lb","c_ub",
+//	"a_lb","a_ub",
+	"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"}; 
+
 	private HashMap<String,String> param;
 	private String g_fn;
 	public ConfigGen(String f) {
@@ -22,8 +23,7 @@ public class ConfigGen {
 		param=new HashMap<String,String>();
 	}
 	public void readFile() {
-	    FUtil fu=new FUtil(g_fn);
-	    fu.load();
+	    MList fu=new MList(g_fn);
 	    for(int i:MUtil.loop(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
@@ -85,7 +85,7 @@ public class ConfigGen {
 		return Double.valueOf(s.trim()).doubleValue();
 	}
 	public void write(String file) {
-		FUtil fu=new FUtil(file);
+		MList fu=new MList();
 		for (String s:g_predefined){
 			String v=readPar(s);
 			if(v==null){
@@ -93,9 +93,9 @@ public class ConfigGen {
             	return;
 			}
 			String txt=s+":"+v;
-			fu.print(txt);
+			fu.add(txt);
 		}
-		fu.save();
+		fu.save(file);
 		
 	}
 	public void genRange(String fn,int start, int step, int size) {

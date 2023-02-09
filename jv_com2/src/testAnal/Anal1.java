@@ -2,7 +2,10 @@ package testAnal;
 
 import anal.AnalEDF_AD_E;
 import task.Task;
+import task.TaskMng;
 import task.TaskSet;
+import task.TaskSetUtil;
+import task.TaskVec;
 import util.Log;
 import util.TEngine;
 
@@ -14,10 +17,10 @@ public class Anal1 {
 
 	public int test1() 
 	{
-		TaskSet tmp=new TaskSet();
+		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(4,2));
 		tmp.add(new Task(6,1,5));
-		TaskMng tm=tmp.getTM();
+		TaskMng tm=TaskSetUtil.getTM(tmp);
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();

@@ -2,14 +2,17 @@ package comp;
 
 
 import gen.ConfigGen;
+import sim.SimulInfo;
+import sim.SysMng;
+import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
+import task.TaskMng;
 import exp.ExpSimulTM;
 import exp.Platform;
 import anal.Anal;
 import anal.AnalEDF_VD;
-import basic.TaskMng;
-import simul.SimulInfo;
-import util.FUtil;
 import util.Log;
+import util.MList;
 import util.MUtil;
 
 public class PlatformCom extends Platform{
@@ -50,16 +53,14 @@ public class PlatformCom extends Platform{
 	}
 	public void simulCom(){
 		write_x_axis();
-		simul_com_in(1,new TaskSimul_FC_MCS(null));
-		simul_com_in(2,new TaskSimul_FC_Naive(null));
+		simul_com_in(1,new TaskSimul_FC_MCS());
+		simul_com_in(2,new TaskSimul_FC_Naive());
 		
 	}
 	
-	private void simul_com_in(int kind, TaskSimul_FC tsim) {
+	private void simul_com_in(int kind, TaskSimulMC tsim) {
 		double ret;
-		FUtil fu=null;
-		if(isWrite)
-			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kind+".txt");
+		MList fu=new MList();
 		tsim.isSchTab=false;
 		Anal an=new AnalEDF_VD();
 		Log.prn(3, "prob:"+g_prob);
@@ -75,11 +76,12 @@ public class PlatformCom extends Platform{
 				CompMng cm=eg.loadCM(j);
 				cm.setAlpha(g_a_l,g_a_u);
 				TaskMng tm=cm.getTM();
-				tm.getInfo().setProb_ms(g_prob); 
+				SysMng sm=new SysMng();
+				sm.setMS_Prob(g_prob);
 				an.init(tm);
 				an.prepare();
 				cm.setX(an.computeX());
-				tsim.init_tm(tm);
+				tsim.init_sm_tm(sm,tm);
 				tsim.set_cm(cm);
 				eg.initSim(0, tsim);
 				eg.simul(0,g_dur);
@@ -92,20 +94,20 @@ public class PlatformCom extends Platform{
 			double avg=sum/size;
 			Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg));
 			if(isWrite)
-				fu.print(avg+"");
+				fu.add(avg+"");
 		}
 		if(isWrite)
-			fu.save();
+			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kind+".txt");
 		
 	}
 	public void simulCom_one(int kinds, int set, int no) {
 		if(kinds==0)
-			simul_com_in_one(new TaskSimul_FC_MCS(null),set,no);
+			simul_com_in_one(new TaskSimul_FC_MCS(),set,no);
 		else
-			simul_com_in_one(new TaskSimul_FC_Naive(null),set,no);
+			simul_com_in_one(new TaskSimul_FC_Naive(),set,no);
 	}
 	
-	private void simul_com_in_one(TaskSimul_FC ts, int set,
+	private void simul_com_in_one(TaskSimulMC ts, int set,
 			int no) {
 		double ret;
 		Anal an=new AnalEDF_VD();
@@ -117,11 +119,12 @@ public class PlatformCom extends Platform{
 		CompMng cm=eg.loadCM(no);
 		cm.setAlpha(g_a_l,g_a_u);
 		TaskMng tm=cm.getTM();
-		tm.getInfo().setProb_ms(g_prob); 
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(g_prob);
 		an.init(tm);
 		an.prepare();
 		cm.setX(an.computeX());
-		ts.init_tm(tm);
+		ts.init_sm_tm(sm,tm);
 		ts.set_cm(cm);
 		ts.isSchTab=false;
 		eg.initSim(0, ts);
@@ -147,9 +150,8 @@ public class PlatformCom extends Platform{
 	
 	public void analCom(int kinds) {
 		int ret;
-		FUtil fu=null;
-		if(isWrite)
-			fu=new FUtil(g_path+"/rs/"+g_ts_name+"_"+g_RS+".txt");
+		MList fu=new MList();
+
 		for(int i=0;i<g_size;i++){
 			int sum=0;
 			int mod=i*g_step+g_start;
@@ -169,10 +171,10 @@ public class PlatformCom extends Platform{
 			double avg=(double)sum/size;
 			Log.prn(3, (g_start+i*g_step)+":"+avg);
 			if(isWrite)
-				fu.print(avg+"");
+				fu.add(avg+"");
 		}
 		if(isWrite)
-			fu.save();
+			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+".txt");
 		
 		
 	}

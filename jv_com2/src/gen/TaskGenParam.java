@@ -1,13 +1,13 @@
 package gen;
 
 
-import basic.Task;
-import util.RUtil;
+import task.Task;
+import util.MRand;
 
 
 
 public class TaskGenParam {
-	private RUtil g_rand;
+	private MRand g_rand;
 	
 	public double u_ub;
 	public double u_lb;
@@ -20,7 +20,7 @@ public class TaskGenParam {
 	public double prob_HI;
 	
 	public TaskGenParam(){
-		g_rand=new RUtil();
+		g_rand=new MRand();
 		
 	}
 
@@ -73,10 +73,10 @@ public class TaskGenParam {
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
-			return new Task(tid,p,l,h);
+			return new Task(p,l,h);
 		} else{
 			int e=(int)(tu*p);
-			return new Task(tid,p,e);
+			return new Task(p,e);
 		}
 	}
 

@@ -1,6 +1,6 @@
 package exp;
 
-import basic.Task;
+import task.Task;
 import util.Log;
 
 public class Job implements Comparable<Job>{

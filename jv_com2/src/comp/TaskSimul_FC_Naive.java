@@ -1,27 +1,24 @@
 package comp;
 
+import sim.mc.TaskSimulMC;
+import task.Task;
+import task.TaskMng;
 
-import basic.Task;
-import basic.TaskMng;
-
-public class TaskSimul_FC_Naive extends TaskSimul_FC{
+public class TaskSimul_FC_Naive extends TaskSimulMC{
 	private boolean isExtMS=false;
 
-	public TaskSimul_FC_Naive(TaskMng m) {
-		super(m);
-	}
 
 	@Override
-	protected void initMode() {
-		initMode_base_hi();
+	protected void init() {
+		super.init();
 		isExtMS=false;
 	}
 
 	
 	@Override
 	public void modeswitch_in(Task t) {
-		modeswitch_in_base(t);		
-		int cid=g_tm.get_comp(t.tid);
+		modeswitch_after(t);		
+		int cid=t.getComp();
 		dropDecision(cid);
 		resManager(cid);
 	}
@@ -45,8 +42,29 @@ public class TaskSimul_FC_Naive extends TaskSimul_FC{
 		for(Task t:c.getTM().getLoTasks()){
 //			Log.prn(1, isAll+" "+t.is_isol());
 			if(isAll||!t.is_isol())
-				dropTask_base(t);
+				drop_task(t);
 		}
+		
+	}
+
+
+	@Override
+	public void initSimul() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	protected void recover_in(int tid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	protected void vir_check() {
+		// TODO Auto-generated method stub
 		
 	}
 	

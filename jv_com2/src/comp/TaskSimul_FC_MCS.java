@@ -1,30 +1,26 @@
 package comp;
 
 
-import basic.Task;
-import basic.TaskMng;
+import sim.TaskSimul;
+import sim.mc.TaskSimulMC;
+import task.Task;
+import task.TaskMng;
 //import utill.Log;
 import util.MUtil;
 
-public class TaskSimul_FC_MCS extends TaskSimul_FC{
-
-
-	public TaskSimul_FC_MCS(TaskMng m) {
-		super(m);
-	}
-	
-	@Override
-	protected void initMode() {
-		initMode_base_hi();
-	}
+public class TaskSimul_FC_MCS extends TaskSimulMC{
 
 
 	
+
 	
+	
+	public boolean isPrnEnd;
+
 	@Override
 	public void modeswitch_in(Task t) {
-		modeswitch_in_base(t);		
-		int cid=g_tm.get_comp(t.tid);
+		modeswitch_after(t);		
+		int cid=t.getComp();
 		dropDecision(cid);
 		resManager(cid);
 //		System.exit(0);
@@ -75,12 +71,30 @@ public class TaskSimul_FC_MCS extends TaskSimul_FC{
 					t=tm.findDropTask();
 				if(t==null) 
 					return ru;
-				dropTask_base(t);
+				drop_task(t);
 			}
 			else
 				return ru;
 			
 		}
+		
+	}
+
+	@Override
+	public void initSimul() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void recover_in(int tid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void vir_check() {
+		// TODO Auto-generated method stub
 		
 	}
 	

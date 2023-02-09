@@ -16,17 +16,18 @@ import util.SLog;
 public class TaskSet {
 	private Task[] g_tasks;
 	
-	public TaskSet(TaskVec v){
-		Vector<Task> tv=v.getVec();
+	public TaskSet(Vector<Task> tv){
 		int size=tv.size();
 		g_tasks=new Task[size];
 		tv.toArray(g_tasks);
+	}	
+	public TaskSet(TaskVec v){
+		this(v.getVec());
 	}
 
 	public TaskSet(Task[] a) {
 		g_tasks=a;
 	}
-	
 	
 	public Task get(int i){
 		return g_tasks[i];

@@ -6,7 +6,7 @@ Created on 2015. 12. 11.
 import util.MPlot as mp;
 class gl:
 #     path="com/rs/"
-    path="final_rs/"
+    path="fc/rs/"
 #     RS="util_sim_1"
     RS="util_sim_4"
 #     RS="util_sim_7"
@@ -43,10 +43,9 @@ def main():
     mp.xlim(0.55,1.0)
     mp.ylim(0, 0.5)
 #     mp.ylim(0, 1.02)
-    mp.legend2()
+    mp.legendBL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
-    print "hihi"
     mp.savefig("/Users/jaewoo/data/fig/com_dmr.pdf")
     mp.show()
 
