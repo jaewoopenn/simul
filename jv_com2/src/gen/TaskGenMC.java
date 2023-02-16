@@ -2,7 +2,7 @@ package gen;
 
 
 import task.Task;
-import util.Log;
+import util.SLog;
 
 public class TaskGenMC extends TaskGen {
 	
@@ -29,10 +29,10 @@ public class TaskGenMC extends TaskGen {
 	@Override
 	public void prn(int lv) {
 		for(Task t:g_tasks) {
-			Log.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
+			SLog.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
 					", h:"+t.c_h+", Xi:"+t.isHC());
 		}
-		Log.prn(lv, "MC util:"+getUtil());
+		SLog.prn(lv, "MC util:"+getUtil());
 			
 	}
 
@@ -48,6 +48,12 @@ public class TaskGenMC extends TaskGen {
 		}
 		return Math.max(loutil, hiutil);
 	}
+
+
+
+
+
+
 
 	
 }

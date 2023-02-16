@@ -3,8 +3,8 @@ package gen;
 import java.util.Vector;
 
 import task.Task;
-import task.TaskSetUtil;
-import util.MList;
+import task.TaskSet;
+import task.TaskVec;
 
 public abstract class TaskGen {
 	protected TaskGenParam g_param;
@@ -18,7 +18,7 @@ public abstract class TaskGen {
 		while(true){
 			g_tasks=new Vector<Task>();
 			genTaskSet();
-			if(g_param.check(getUtil())==1) break;
+			if(isOK()) break;
 		}
 	}
 	private void genTaskSet()
@@ -39,8 +39,9 @@ public abstract class TaskGen {
 	public abstract Task genTask(int tid);
 
 
-	public int check(){
-		return g_param.check(getUtil());
+	public boolean isOK() {
+		return g_param.isOK(getUtil());
+		
 	}
 	
 	public abstract void prn(int lv) ;
@@ -48,23 +49,19 @@ public abstract class TaskGen {
 
 	protected abstract double getUtil(); 
 
-	public Vector<Task> getAll() {
-		return g_tasks;
+
+	public TaskSet getTS() {
+		TaskVec ts=new TaskVec();
+		for(Task t:g_tasks) {
+			ts.add(t);
+		}
+		return new TaskSet(ts);
 	}
-
-
+	
 	public int size() {
 		return g_tasks.size();
 	}
 	
-	
-	// file
-	public void writeFile(String file) {
-		MList fu=new MList();
-		for(Task t:g_tasks)
-			TaskSetUtil.writeTask(fu,t);
-		fu.save(file);
-	}
 	
 	
 }

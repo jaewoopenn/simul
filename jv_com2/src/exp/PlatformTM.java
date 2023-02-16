@@ -2,8 +2,8 @@ package exp;
 
 
 import gen.ConfigGen;
-import gen.SimGen;
-import gen.SimGenTM;
+import gen.SysGen;
+import gen.SysGenTM;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
@@ -46,17 +46,16 @@ public class PlatformTM extends Platform{
 		cfg.write(getCfgFN(i));
 	}
 
-	public void genTS(boolean b) {
-		for(int i:MUtil.loop(g_size)){
-			ConfigGen cfg=new ConfigGen(getCfgFN(i));
-			cfg.readFile();
-			SimGen eg=new SimGenTM(cfg,new AnalEDF_VD());
-			eg.setCheck(b);
-			eg.gen();
-		}
-		Log.prn(3, "task");
-		
-	}
+//	public void genTS(boolean b) {
+//		for(int i:MUtil.loop(g_size)){
+//			ConfigGen cfg=new ConfigGen(getCfgFN(i));
+//			cfg.readFile();
+//			SysGen eg=new SysGenTM(cfg);
+//			eg.setCheck();
+//			eg.gen(new AnalEDF_VD());
+//		}
+//		Log.prn(3, "task");
+//	}
 	public void simul() {
 		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());

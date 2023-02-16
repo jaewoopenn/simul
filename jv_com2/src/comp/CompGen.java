@@ -27,7 +27,7 @@ public class CompGen {
 				g_t_param.setUtil(g_param.c_lb,g_param.c_ub);
 			tg.generate();
 			Comp c=new Comp(g_param.getAlpha());
-			TaskSetMC tsf=new TaskSetMC(new TaskSet(tg.getAll()));
+			TaskSetMC tsf=new TaskSetMC(tg.getTS());
 			TaskMng tm=tsf.getTM();
 			c.setTM(tm);
 			cm.addComp(c);

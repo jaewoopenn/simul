@@ -3,6 +3,7 @@ package gen;
 
 import task.Task;
 import util.MRand;
+import util.SLog;
 
 
 
@@ -42,16 +43,15 @@ public class TaskGenParam {
 		if(l>u){
 			System.out.println("Error setTUtil");
 		}
-		tu_ub=u;
 		tu_lb=l;
+		tu_ub=u;
 	}
 	public void setRatioLH(double l, double u) {
 		if(l>u){
 			System.out.println("Error setRatioLH");
 		}
-		ratio_ub=u;
 		ratio_lb=l;
-		
+		ratio_ub=u;
 	}
 
 
@@ -59,8 +59,8 @@ public class TaskGenParam {
 		if(l>u){
 			System.out.println("Error setPeriod");
 		}
-		p_ub=u;
 		p_lb=l;
+		p_ub=u;
 		
 	}
 
@@ -79,7 +79,24 @@ public class TaskGenParam {
 			return new Task(p,e);
 		}
 	}
-
+	public Task genTaskIMC(int tid){
+//		Log.prn(2, p_lb+" "+p_ub);
+		int p=g_rand.getInt(p_lb,p_ub);
+		double tu=g_rand.getDbl(tu_lb,tu_ub);
+		double getProb=g_rand.getDbl();
+		if(getProb<=prob_HI){
+			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
+			int h=(int)(tu*p);
+			int l=(int)(h*ratio);
+			return new Task(p,l,h);
+		} else{
+			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
+			int l=(int)(tu*p);
+			int h=(int)(l*ratio);
+//			int h=0;
+			return new Task(p,l,h,false);
+		}
+	}
 
 	
 	
@@ -100,13 +117,12 @@ public class TaskGenParam {
 		return true;
 	}
 
-	public int check(double util) {
-//		Log.prn(2," "+util+" "+u_ub+" "+u_lb);
+	public boolean isOK(double util) {
+//		SLog.prn(2," "+util+" "+u_ub+" "+u_lb);
 		if(util<=u_ub&&util>=u_lb){
-			return 1;
+			return true;
 		}
-//		Log.prn(2,"f");
-		return 0;
+		return false;
 	}
 
 	public void setProbHI(double d) {

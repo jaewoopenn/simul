@@ -72,7 +72,7 @@ public class Platform2 {
 	public int test2() 
 	{
 		PlatformTM p=getP();
-		p.genTS(false);
+//		p.genTS(false);
 		return 1;
 	}
 	public int test3() 
