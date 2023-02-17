@@ -20,7 +20,7 @@ public class Comp {
 	public void partition() {
 		double cu=g_tm.getInfo().getUtil_LC();
 		double tu=cu*(alpha);
-//		Log.prn(1,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
+//		SLog.prn(3,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
 		cu=0;
 		Task[] tasks=g_tm.getLoTasks();
 		for(int i=tasks.length-1;i>=0;i--){
@@ -58,7 +58,7 @@ public class Comp {
 		maxRes=d;
 	}
 	public void setAlpha(double d) {
-//		Log.prn(3, d+"");
+//		SLog.prn(3, d+"");
 		alpha=d;
 	}
 	

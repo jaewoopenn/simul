@@ -66,16 +66,14 @@ public class ExpSimulCom extends ExpSimul{
 		String fn=g_cfg.get_fn(i);
 		SLog.prn(2, fn);
 		CompMng cm=CompFile.loadFile(fn);
-		cm.part();
-		cm.analMaxRes();
-//		cm.prn();
 		return cm;
 	}
 	
 	public int analComp(CompMng cm,int kinds) {
+		cm.part();
+		cm.analMaxRes();
 		AnalComp a=new AnalComp(cm);
 		a.computeX();
-		a.part();
 		return 	a.anal(kinds);
 
 	}

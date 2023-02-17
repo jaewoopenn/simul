@@ -62,9 +62,9 @@ public class SimCompGen {
 //		a.init(cm.getTM());
 //		a.prepare();
 //		return MUtil.btoi(a.is_sch());
+		cm.part();
 
 		AnalComp ac=new AnalComp(cm);
-		ac.part();
 		ac.computeX();
 		cm.prn();
 		int det=ac.anal(1);

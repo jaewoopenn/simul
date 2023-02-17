@@ -19,9 +19,6 @@ public class Platform {
 	protected String g_RS;
 	protected MList g_fu;
 	
-	// com
-	protected double g_a_l;
-	protected double g_a_u;
 	
 	public void write_x_axis() {
 		MList fu=new MList();
@@ -64,11 +61,6 @@ public class Platform {
 	}
 	public void setRS(String s) {
 		this.g_RS=s;
-		
-	}
-	public void setAlpha(double l,double u) {
-		this.g_a_l=l;
-		this.g_a_u=u;
 		
 	}
 }

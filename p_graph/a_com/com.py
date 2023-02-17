@@ -6,7 +6,6 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl:
-#     path="com/rs/"
     path="fc/rs/"
     RS="util"
     x=[]
@@ -14,10 +13,7 @@ class gl:
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
     lab=['a=0.0','0<a<=0.25','0.25<a<=0.5','0.5<a<=0.75','0.75<a<=1.00','a=1']
-#     data=[1,2,0,3]
     data=[0,1,2,3,4]
-#     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
-#     data=[4,1,2,0,3]
 def load(fn):
     i_f = mf.load(fn)
     v=[]

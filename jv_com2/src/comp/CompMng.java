@@ -88,10 +88,10 @@ public class CompMng {
 	}
 	// set
 	
-	public void setAlpha(double g_a_l, double g_a_u) {
+	public void setAlpha(double al, double au) {
 		MRand ru=new MRand();
 		for(Comp c:g_comp){
-			c.setAlpha(ru.getDbl(g_a_l,g_a_u));
+			c.setAlpha(ru.getDbl(al,au));
 		}
 	}
 	// get

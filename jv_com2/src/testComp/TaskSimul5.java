@@ -52,8 +52,8 @@ public class TaskSimul5 {
 		String f="fc/ts/util_sim_"+(50+set*5)+"/taskset_"+no;
 		SLog.prn(1, f);
 		CompMng cm=CompFile.loadFile(f);
+		cm.part();
 		AnalComp ac=new AnalComp(cm);
-		ac.part();
 		ac.computeX();
 //		int det=ac.anal(0);
 		int det=ac.anal(1);

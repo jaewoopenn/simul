@@ -19,9 +19,9 @@ public class Anal2 {
 		CompMng cm=CompMngEx1.getCompMng2();
 //		cm.setAlpha(0, 0.25);
 		cm.setAlpha(0, 0);
+		cm.part();
 		AnalComp a=new AnalComp(cm);
 		a.computeX();
-		a.part();
 		cm.prn();
 		a.anal(0);
 		cm.prn();

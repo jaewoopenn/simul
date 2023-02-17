@@ -17,7 +17,8 @@ public class Platform3 {
 //	public static int log_level=1;
 //	public static int log_level=2;
 	public static int log_level=3;
-	public int kind=1;
+	public int kind=0;
+//	public int kind=1;
 	public int isReal=0;
 
 	public PlatformCom getP(){
@@ -58,7 +59,7 @@ public class Platform3 {
 			p.setSysNum(5000);
 //			p.setSysNum(1000);
 		} else{
-			p.setSysNum(100);
+			p.setSysNum(500);
 		}
 		return p;
 		
@@ -77,11 +78,7 @@ public class Platform3 {
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
 		PlatformCom p=getP();
-//		p.writeComCfg(eg);
-		for(int i=0;i<4;i++){
-			p.setAlpha(i*0.25,i*0.25+0.25);
-			p.writeComCfg(eg);
-		}	
+		p.writeComCfg(eg);
 		SLog.prn(3, "cfg");
 		return 1;
 	}
@@ -89,10 +86,6 @@ public class Platform3 {
 	{
 		PlatformCom p=getP();
 		p.genCom(false);
-//		for(int i=0;i<4;i++){
-//			p.setAlpha(i*0.25,i*0.25+0.25);
-//			p.genCom();
-//		}	
 		return 1;
 	}
 	public int test3() 
@@ -163,9 +156,12 @@ public class Platform3 {
 		int i=73;
 		PlatformCom p=getP();
 		int ret1;
-		p.setAlpha(0.75,1.00);
-		ret1=p.analCom(set,i,0);
-		SLog.prn(2,ret1);
+		double step=0.25;
+		for(int j=1;j<5;j++){
+			p.setAlpha((j-1)*step,j*step);
+			ret1=p.analCom(set,i,0);
+			SLog.prn(2,(j-1)*step+","+ret1);
+		}
 		return 0;
 	}
 	public  int test8()

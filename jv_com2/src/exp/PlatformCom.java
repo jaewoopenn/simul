@@ -18,6 +18,14 @@ import util.MList;
 import util.MUtil;
 
 public class PlatformCom extends Platform{
+	// com
+	protected double g_alpha_l;
+	protected double g_alpha_u;
+	public void setAlpha(double l,double u) {
+		this.g_alpha_l=l;
+		this.g_alpha_u=u;
+		
+	}
 	
 	public void writeComCfg(ConfigGen g_cfg) {
 		g_cfg.setParam("subfix", g_path+"/ts");
@@ -32,8 +40,8 @@ public class PlatformCom extends Platform{
 				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
 			g_cfg.setParam("mod", modStr);
-			g_cfg.setParam("a_lb", g_a_l+"");
-			g_cfg.setParam("a_ub", g_a_u+"");
+			g_cfg.setParam("a_lb", g_alpha_l+"");
+			g_cfg.setParam("a_ub", g_alpha_u+"");
 			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		}
 	}
@@ -84,7 +92,7 @@ public class PlatformCom extends Platform{
 	private SimulInfo simul_com_in(int j, ExpSimulCom eg, TaskSimulCom tsim) {
 		Anal an=new AnalEDF_AD_E();
 		CompMng cm=eg.loadCM(j);
-		cm.setAlpha(g_a_l,g_a_u);
+		cm.setAlpha(g_alpha_l,g_alpha_u);
 		TaskMng tm=cm.getTM();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
@@ -159,7 +167,8 @@ public class PlatformCom extends Platform{
 	}
 	private int analCom_in(int j, ExpSimulCom eg,int kinds) {
 		CompMng cm=eg.loadCM(j);
-		cm.setAlpha(g_a_l,g_a_u);
+//		SLog.prn(3, g_alpha_l+","+g_alpha_u);
+		cm.setAlpha(g_alpha_l,g_alpha_u);
 		return eg.analComp(cm,kinds);
 	}
 	public void prnCom() {

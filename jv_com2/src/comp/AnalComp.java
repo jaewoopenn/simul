@@ -23,9 +23,6 @@ public class AnalComp {
 		g_cm.setX(x);
 		g_cm.prn();
 	}
-	public void part() {
-		g_cm.part();
-	}
 	public int anal(int kinds) {
 		int size=g_cm.getSize();
 		double init_u=0;
