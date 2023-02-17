@@ -12,7 +12,7 @@ public class SysInfo {
 	private double lo_de_util;
 	private double hi_util_lm;
 	private double hi_util_hm;
-	private double x_para;
+	private double x_para=2;
 	public double getX() {
 		return x_para;
 	}

@@ -17,7 +17,11 @@ public class CompMng {
 		g_comp=new Vector<Comp>();
 	}
 
-	
+	public void setX(double x) {
+		for(Comp c:g_comp){
+			c.getTM().setX(x);
+		}
+	}
 	
 	
 	public void addComp(Comp c) {
@@ -35,8 +39,7 @@ public class CompMng {
 				tmp.add(t);
 			}
 		}
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		g_tm=tme.getTM();
+		g_tm=tmp.getTM();
 		
 	}
 
@@ -51,7 +54,7 @@ public class CompMng {
 //			Log.prn(1, "cur:"+u);
 			
 		}
-		SLog.prn(1, "rem:"+u);
+		SLog.prn(1, "fin:"+u);
 		
 	}
 

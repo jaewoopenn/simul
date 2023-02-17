@@ -38,6 +38,7 @@ public abstract class TaskSimul_base {
 		int t=st;
 		if(t==0){
 			SLogF.prn("rel  / exec / t");
+//			g_tm.prn();
 		}
 		while(t<et){
 			simul_one();

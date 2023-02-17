@@ -10,13 +10,15 @@ import util.SEngineT;
 
 // schedulability 
 public class Platform4 {
-	public static int idx=1;
+//	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
 //	public static int idx=4;
-//	public static int idx=5;
+	public static int idx=5;
 //	public static int idx=-1;
-	public static int log_level=1;
+//	public static int log_level=1;
+	public static int log_level=2;
+//	public static int log_level=3;
 	public int kind=0;
 	public int isReal=0;
 //	public int prob=1;
@@ -119,12 +121,12 @@ public class Platform4 {
 	}
 	public  int test5() 
 	{
-		int set=0;
-		int no=82;
+		int set=8;
+		int no=24;
 		PlatformCom p=getP();
-		p.setAlpha(0.1,0.3);
+		p.setAlpha(0.25,0.75);
 		SLog.prn(3, no+"");
-		p.simulCom_one(1,set,no);
+		p.simulCom_one(0,set,no);
 		return 1;
 	}
 	public  int test6() 

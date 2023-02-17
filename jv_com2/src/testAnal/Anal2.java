@@ -8,7 +8,8 @@ import util.SEngineT;
 import z_ex.CompMngEx1;
 
 public class Anal2 {
-	public static int idx=2;
+	public static int idx=1;
+//	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
@@ -23,8 +24,8 @@ public class Anal2 {
 		a.part();
 		cm.prn();
 		a.anal(0);
-//		cm.prn();
-//		Log.prn(2, "x:"+x);
+		cm.prn();
+//		SLog.prn(2, "x:"+x);
 		return -1;
 	}
 

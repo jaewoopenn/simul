@@ -7,6 +7,7 @@ import gen.TaskGenParam;
 import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetMC;
+import util.SLog;
 
 public class CompGen {
 	protected CompGenParam g_param;
@@ -43,7 +44,7 @@ public class CompGen {
 
 	public int check(CompMng cm){
 		double u=cm.getMCUtil();
-//		Log.prn(1, u+"");
+		SLog.prn(1, u+"");
 		if(u>=g_param.u_lb&&u<=g_param.u_ub){
 			return 1;
 		}

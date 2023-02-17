@@ -1,7 +1,6 @@
-package testPlatform;
+package old;
 
 
-import exp.PlatformTM;
 import gen.ConfigGen;
 import util.SLog;
 import util.SEngineT;
@@ -52,7 +51,7 @@ public class Platform2 {
 		if(isReal==1){
 			p.setSysNum(5000);
 		} else{
-			p.setSysNum(10);
+			p.setSysNum(100);
 		}
 		p.setRS("X");
 		return p;

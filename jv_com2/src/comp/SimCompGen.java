@@ -27,7 +27,8 @@ public class SimCompGen {
 		g_cg=new CompGen(cgp,tgp);
 		return g_cfg.readInt("num");
 	}
-	public void gen() {
+	public void gen(boolean isCheck) {
+		g_isCheck=isCheck;
 		int num=prepare();
 		int i=0;
 		String fn=g_cfg.get_dir();
@@ -41,10 +42,6 @@ public class SimCompGen {
 			writeSys(i,cm);
 			i++;
 		}
-	}
-	public void gen2(){
-		g_isCheck=true;
-		gen();
 	}
 	
 	public int writeSys(int i, CompMng cm)

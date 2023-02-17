@@ -1,51 +1,56 @@
-package testPlatform;
+package old;
 
 
+import old.Platform1;
+import old.Platform2;
 import util.MUtil;
 import util.SEngineT;
 
 public class Platform5 {
 //	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-	public static int idx=4;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int test1() 
 	{
-
-		return 0;
-	}
-	public int test2() 
-	{
-		return 0;
-	}
-	public int test3() 
-	{
-		Platform3 p=new Platform3(); // comp SCH
+		Platform1 p=new Platform1(); // TM DMR
 		p.isReal=0;
 //		p.isReal=1;
 		p.kind=0;
 		p.test1();
 		p.test2();
+//		p.prob=1;
+//		p.test3();
+		p.prob=4;
 		p.test3();
-		p.test4();
-		p.kind=1;
-		p.test1();
-		p.test2();
-		p.test3();
+//		p.prob=7;
+//		p.test3();
+//		p.kind=1;
+//		p.prob=4;
+//		p.test1();
+//		p.test2();
+//		p.test3();
 //		MUtil.sendMail("DMR anal OK");
+
 		return 0;
 	}
-	public  int test4() 
+	public int test2() 
 	{
-		Platform4 p=new Platform4(); // comp DMR
+		Platform2 p=new Platform2();  // TM SCH
 		p.isReal=0;
 //		p.isReal=1;
 		p.test1();
 		p.test2();
 		p.test3();
 		MUtil.sendMail("SCH anal OK");
+		return 0;
+	}
+	public int test3() 
+	{
+		return 0;
+	}
+	public  int test4() 
+	{
 		return 0;
 	}
 	public  int test5() 

@@ -14,7 +14,7 @@ class gl:
     marker=['o','v','D','^','s','s']
     lab=['a=0.0','0<a<=0.25','0.25<a<=0.5','0.5<a<=0.75','0.75<a<=1.00','a=1']
 #     data=[1,2,0,3]
-    data=[0,1,2,3,4,5]
+    data=[0,1,2,3,4]
 #     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
 #     data=[4,1,2,0,3]
 def load(fn):

@@ -78,7 +78,7 @@ public class z_TaskSimul4 {
 		CompMng cm=CompMngEx1.getCompMng3();
 		TaskMng tm=cm.getTM();
 		cm.part();
-		cm.analMaxRes();
+//		cm.analMaxRes();
 //		tm.prnComp();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.5);

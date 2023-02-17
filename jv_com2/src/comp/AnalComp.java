@@ -2,6 +2,8 @@ package comp;
 
 import util.SLog;
 import util.MUtil;
+import anal.Anal;
+import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import task.TaskMng;
 
@@ -12,12 +14,13 @@ public class AnalComp {
 	}
 	public void computeX() {
 		TaskMng tm=g_cm.getTM();
-		AnalEDF_VD a=new AnalEDF_VD();
+		Anal a=new AnalEDF_AD_E();
 		a.init(tm);
 		a.prepare();
-//		double x=a.getX();
+		double x=a.computeX();
 		SLog.prn(1, "sch:"+a.is_sch());
-//		tm.setX(x);
+		SLog.prn(1, "x:"+x);
+		g_cm.setX(x);
 	}
 	public void part() {
 		g_cm.part();
@@ -30,9 +33,9 @@ public class AnalComp {
 		for(int i=0;i<size;i++){
 			Comp c=g_cm.getComp(i);
 			init_u+=c.getST_U();
-			if(kinds==0)
+			if(kinds==0) // FCS
 				wc_u+=c.getWC_U();
-			else
+			else // Naive
 				wc_u+=c.getNa_U();
 		}
 		SLog.prn(2, "initU:"+init_u);

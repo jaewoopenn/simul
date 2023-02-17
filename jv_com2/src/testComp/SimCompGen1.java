@@ -2,25 +2,44 @@ package testComp;
 
 
 import gen.ConfigGen;
+import old.ExpSimulTM;
+import task.TaskSetMC;
+import task.TaskSetUtil;
+import anal.Anal;
+import anal.AnalEDF_AD_E;
+import comp.CompMng;
 import comp.SimCompGen;
+import exp.ExpSimulCom;
+import util.MList;
 import util.SEngineT;
+import util.SLog;
 
 public class SimCompGen1 {
-	public static int idx=1;
+//	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_55.txt");
+		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
 		cfg.readFile();
 		SimCompGen eg=new SimCompGen(cfg);
-		eg.gen();
+		eg.gen(false);
 		
 		return 0;
 	}
 	public int test2() 
 	{
+		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
+		Anal an=new AnalEDF_AD_E();
+		cfg.readFile();
+		ExpSimulCom eg=new ExpSimulCom(cfg);
+		CompMng cm=eg.loadCM(1);
+		cm.setAlpha(0,0.3);
+		int ret=eg.analComp(cm,1);
+		SLog.prn(3, ret);
+		
 		return 0;
 	}
 	public int test3() 

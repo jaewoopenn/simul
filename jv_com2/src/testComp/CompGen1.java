@@ -9,7 +9,8 @@ import comp.CompMng;
 import util.SEngineT;
 
 public class CompGen1 {
-	public static int idx=2;
+	public static int idx=1;
+//	public static int idx=2;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=1;

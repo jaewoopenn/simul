@@ -20,7 +20,6 @@ public abstract class ExpSimul {
 
 	public abstract int anal(TaskMng tm, Anal a) ;
 	
-	public abstract void initSim(int core,TaskSimulMC tsim);
 
 	protected abstract void simulStart();
 	public abstract void simul(int st,int et);

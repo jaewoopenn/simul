@@ -51,7 +51,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		g_jsm=new JobSimulMC(g_tm.size());
 		g_si=new SimulInfo();
 		g_ms_happen=false;
-//		Log.prn(1, "num:"+g_tm.size());
+//		SLog.prn(3, "num:"+g_tm.size());
 		initSimul();
 		initModeAll();
 	}

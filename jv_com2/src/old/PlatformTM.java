@@ -1,12 +1,10 @@
-package exp;
+package old;
 
 
 import gen.ConfigGen;
 import gen.SysGen;
-import gen.SysGenTM;
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.TaskSimul;
 import sim.mc.TaskSimulMC;
 import sim.mc.TaskSimul_EDF_AD_E;
 import sim.mc.TaskSimul_EDF_VD;
@@ -14,7 +12,9 @@ import anal.Anal;
 import anal.AnalEDF;
 import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
+import exp.Platform;
 import task.TaskMng;
+import task.TaskSetMC;
 import task.TaskSetUtil;
 import util.SLog;
 import util.MList;
@@ -51,7 +51,7 @@ public class PlatformTM extends Platform{
 			ConfigGen cfg=new ConfigGen(getCfgFN(i));
 			
 			cfg.readFile();
-			SysGen eg=new SysGenTM(cfg);
+			SysGen eg=new SysGen(cfg);
 			int num=eg.prepare();
 			if(b)
 				eg.setCheck();
@@ -167,8 +167,8 @@ public class PlatformTM extends Platform{
 		int size=eg.size();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
-			TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
-			int ret=eg.anal(tm,an);
+			TaskSetMC tm=TaskSetUtil.loadFile(new MList(fn));
+			int ret=eg.anal(tm.getTM(),an);
 			SLog.prn(2, j+","+ret);
 			sum+=ret;
 //			Log.prn(2, " "+sum);
@@ -190,8 +190,8 @@ public class PlatformTM extends Platform{
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
-		TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
-		int ret=eg.anal(tm,an);
+		TaskSetMC tm=TaskSetUtil.loadFile(new MList(fn));
+		int ret=eg.anal(tm.getTM(),an);
 		SLog.prn(3, i+","+j+":"+ret);
 		
 	}	

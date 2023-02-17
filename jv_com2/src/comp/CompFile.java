@@ -3,6 +3,7 @@ package comp;
 import java.util.Vector;
 
 import task.Task;
+import task.TaskSeq;
 import task.TaskSetUtil;
 import util.MList;
 import util.SLog;
@@ -25,6 +26,7 @@ public class CompFile {
 
 
 	public static CompMng loadFile(String f) {
+		TaskSeq.reset();
 	    MList fu=new MList(f);
 //	    fu.prn();
 	    CompMng cm=new CompMng();
@@ -32,7 +34,6 @@ public class CompFile {
 	    	String line=fu.get(i);
 	    	SLog.prn(1, line);
 	    	Comp c=TaskSetUtil.loadComp(line, fu,i+1);
-	    	c.prn();
 	    	if(c!=null){
 	    		cm.addComp(c);
 	    		i+=c.size();

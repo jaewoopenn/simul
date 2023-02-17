@@ -4,6 +4,7 @@ package exp;
 import gen.ConfigGen;
 import sim.SimulInfo;
 import sim.TaskSimul;
+import sim.com.TaskSimulCom;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import comp.AnalComp;
@@ -13,9 +14,9 @@ import anal.Anal;
 import util.SLog;
 import util.MUtil;
 
-public class ExpSimulTM extends ExpSimul{
-	private TaskSimulMC g_tsim;
-	public ExpSimulTM(ConfigGen cfg) {
+public class ExpSimulCom extends ExpSimul{
+	private TaskSimulCom g_tsim;
+	public ExpSimulCom(ConfigGen cfg) {
 		super(cfg);
 	}
 	
@@ -32,8 +33,7 @@ public class ExpSimulTM extends ExpSimul{
 	
 
 
-	@Override
-	public void initSim(int core, TaskSimulMC tsim) {
+	public void initSim(int core, TaskSimulCom tsim) {
 		g_tsim=tsim;
 	}
 
@@ -69,9 +69,12 @@ public class ExpSimulTM extends ExpSimul{
 		String fn=g_cfg.get_fn(i);
 		SLog.prn(2, fn);
 		CompMng cm=CompFile.loadFile(fn);
-		cm.prn();
+		cm.part();
+		cm.analMaxRes();
+//		cm.prn();
 		return cm;
 	}
+	
 	public int analComp(CompMng cm,int kinds) {
 		AnalComp a=new AnalComp(cm);
 		a.computeX();
