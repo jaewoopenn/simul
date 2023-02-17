@@ -4,7 +4,7 @@ package comp;
 import gen.TaskGenMC;
 import gen.TaskGenParam;
 import task.TaskMng;
-import task.TaskSetMC;
+import task.TaskSetUtil;
 import util.SLog;
 
 public class CompGen {
@@ -26,9 +26,7 @@ public class CompGen {
 				g_t_param.setUtil(g_param.c_lb,g_param.c_ub);
 			tg.generate();
 			Comp c=new Comp(g_param.getAlpha());
-			TaskSetMC tsf=new TaskSetMC(tg.getTS());
-			TaskMng tm=tsf.getTM();
-			c.setTM(tm);
+			c.setTM(tg.getTS().getTM());
 			cm.addComp(c);
 			u=cm.getMCUtil();
 			if(u>=g_param.u_lb)

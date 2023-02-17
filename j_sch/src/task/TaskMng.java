@@ -13,8 +13,8 @@ public class TaskMng {
 	private TaskSet g_lo_tasks;
 	private SysInfo g_info;
 
-	public TaskMng(TaskSet tasks,TaskSet hi_tasks,TaskSet lo_tasks,SysInfo info) {
-		this.g_tasks=tasks;
+	public TaskMng(Task[] ts,TaskSet hi_tasks,TaskSet lo_tasks,SysInfo info) {
+		this.g_tasks=new TaskSet(ts);
 		this.g_hi_tasks = hi_tasks;
 		this.g_lo_tasks = lo_tasks;
 		this.g_info = info;

@@ -3,7 +3,6 @@ package gen;
 import anal.Anal;
 import task.TaskMng;
 import task.TaskSet;
-import task.TaskSetMC;
 import task.TaskSetUtil;
 import util.MList;
 import util.SLog;
@@ -71,7 +70,7 @@ public class SysGen {
 	protected boolean isOK() {
 		if(!g_isOnlyMC)
 			return true;
-		TaskSetMC tsf=new TaskSetMC(g_tg.getTS());
+		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();
 //		tm.prnInfo();
 		if(tm.getMaxUtil()<=1) 
@@ -84,7 +83,7 @@ public class SysGen {
 	protected boolean isSch(Anal a) {
 		if(!g_isCheck)
 			return true;
-		TaskSetMC tsf=new TaskSetMC(g_tg.getTS());
+		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();
 		a.init(tm);
 		a.prepare();

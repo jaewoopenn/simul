@@ -66,6 +66,7 @@ public class SimCompGen {
 		AnalComp ac=new AnalComp(cm);
 		ac.part();
 		ac.computeX();
+		cm.prn();
 		int det=ac.anal(1);
 		return det;
 		

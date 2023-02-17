@@ -10,8 +10,8 @@ import util.SEngineT;
 // schedulability 
 public class Platform4 {
 //	public static int idx=1;
-	public static int idx=2;
-//	public static int idx=3;
+//	public static int idx=2;
+	public static int idx=3;
 //	public static int idx=4;
 //	public static int idx=5;
 //	public static int idx=-1;
@@ -21,8 +21,8 @@ public class Platform4 {
 	public int kind=0;
 	public int isReal=0;
 //	public int prob=1;
-//	public int prob=4;
-	public int prob=7;
+	public int prob=4;
+//	public int prob=7;
 
 	public PlatformCom getP(){
 		if(kind==0)
@@ -57,7 +57,7 @@ public class Platform4 {
 		PlatformCom p=new PlatformCom();
 		p.setPath("fc");
 		p.setCfg_fn("cfg/cfg");
-		p.setAlpha(0.0,0.25);
+		p.setAlpha(0.0,0.1);
 		if(isReal==1){
 			p.setDuration(10000);
 			p.setSysNum(5000);
@@ -125,7 +125,6 @@ public class Platform4 {
 		int set=8;
 		int no=24;
 		PlatformCom p=getP();
-		p.setAlpha(0.25,0.75);
 		SLog.prn(3, no+"");
 		p.simulCom_one(0,set,no);
 		return 1;

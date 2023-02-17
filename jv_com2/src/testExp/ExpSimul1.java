@@ -5,7 +5,7 @@ import gen.ConfigGen;
 import old.ExpSimulTM;
 import sim.SimulInfo;
 import sim.mc.TaskSimul_EDF_VD;
-import task.TaskSetMC;
+import task.TaskSet;
 import task.TaskSetUtil;
 import util.MList;
 import util.SEngineT;
@@ -21,7 +21,7 @@ public class ExpSimul1 {
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(0);
-		TaskSetMC tm=TaskSetUtil.loadFile(new MList(fn));
+		TaskSet tm=TaskSetUtil.loadFile(new MList(fn));
 		Anal an=new AnalEDF_VD();
 		an.init(tm.getTM());
 		an.prepare();

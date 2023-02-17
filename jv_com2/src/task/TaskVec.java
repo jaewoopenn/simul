@@ -35,10 +35,10 @@ public class TaskVec {
 	public Vector<Task> getVec(){
 		return g_taskV;
 	}
+
 	public TaskMng getTM() {
-		TaskSetMC ts=new TaskSetMC(new TaskSet(g_taskV));
+		TaskSet ts=new TaskSet(g_taskV);
 		return ts.getTM();
-		
 	}
 
 

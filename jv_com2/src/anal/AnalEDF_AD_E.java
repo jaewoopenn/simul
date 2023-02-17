@@ -29,7 +29,7 @@ public class AnalEDF_AD_E extends Anal {
 	}
 	
 	private void comp_X() {
-//		Log.prn(2, g_ht_hu+","+g_lt_lu);
+		SLog.prn(2, g_ht_hu+","+g_lt_lu);
 		double cal_x=(1-g_ht_hu)/g_lt_lu;
 		glo_x=Math.min(1,cal_x);
 	}

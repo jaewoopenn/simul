@@ -14,17 +14,17 @@ public class AnalComp {
 	}
 	public void computeX() {
 		TaskMng tm=g_cm.getTM();
-		Anal a=new AnalEDF_AD_E();
+		Anal a=new AnalEDF_VD();
 		a.init(tm);
 		a.prepare();
 		double x=a.computeX();
 		SLog.prn(1, "sch:"+a.is_sch());
 		SLog.prn(1, "x:"+x);
 		g_cm.setX(x);
+		g_cm.prn();
 	}
 	public void part() {
 		g_cm.part();
-		
 	}
 	public int anal(int kinds) {
 		int size=g_cm.getSize();

@@ -21,8 +21,7 @@ public class z_TaskSeq1 {
 		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(3,1));
 		tmp.add(new Task(4,1));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		TaskMng tm=tme.getTM();
+		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return 0;
 		

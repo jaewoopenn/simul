@@ -12,6 +12,7 @@ import sim.com.TaskSimulCom_FC;
 import sim.com.TaskSimulCom_NA;
 import task.TaskMng;
 import util.SEngineT;
+import util.SLog;
 import z_ex.CompMngEx1;
 
 // Comp
@@ -46,9 +47,10 @@ public class TaskSimul5 {
 	public int test2() 
 	{	
 //		int set=8;
-		int set=4;
-		int no=40;
-		String f="fc/ts/util_sim_"+(55+set*5)+"/taskset_"+no;
+		int set=7;
+		int no=0;
+		String f="fc/ts/util_sim_"+(50+set*5)+"/taskset_"+no;
+		SLog.prn(1, f);
 		CompMng cm=CompFile.loadFile(f);
 		AnalComp ac=new AnalComp(cm);
 		ac.part();

@@ -44,7 +44,7 @@ public class TaskSetUtil {
 
 	// import 
 	
-	public static TaskSetMC  loadFile(MList fu) {
+	public static TaskSet  loadFile(MList fu) {
 		TaskSeq.reset();
 		TaskVec tasks=new TaskVec();
 		for(int i=0;i<fu.size();i++) {
@@ -53,7 +53,7 @@ public class TaskSetUtil {
 	    	Task t=loadTask(line);
         	tasks.add(t);
 	    }
-	    return new TaskSetMC(new TaskSet(tasks));
+	    return new TaskSet(tasks);
 	}
 	
 	public static Task loadTask(String line){

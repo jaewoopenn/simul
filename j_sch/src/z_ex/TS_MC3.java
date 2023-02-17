@@ -3,7 +3,6 @@ package z_ex;
 import task.Task;
 import task.TaskMng;
 import task.TaskSet;
-import task.TaskSetMC;
 import task.TaskVec;
 
 // Task Set MC
@@ -12,8 +11,7 @@ public class TS_MC3 {
 		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(4,2));
 		tmp.add(new Task(6,1,5));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	
 	public static TaskMng ts2()	{
@@ -22,8 +20,7 @@ public class TS_MC3 {
 		tmp.add(new Task(8,3));
 		tmp.add(new Task(12,1,5));
 		tmp.add(new Task(12,1,5));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 
 	public static TaskMng ts3()	{
@@ -34,8 +31,7 @@ public class TS_MC3 {
 		tmp.add(new Task(40,3,8));
 		tmp.add(new Task(40,3,8));
 		tmp.add(new Task(40,3,8));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	public static TaskMng ts4()	{
 		TaskVec tmp=new TaskVec();
@@ -51,8 +47,7 @@ public class TS_MC3 {
 		tmp.add(new Task(190,13));
 		tmp.add(new Task(144,7));
 		tmp.add(new Task(152,3,4));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	
 }

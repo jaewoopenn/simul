@@ -102,6 +102,10 @@ public class Task {
 		SLog.prnc(2, ", "+period);
 		SLog.prnc(2, ", "+c_l);
 		SLog.prnc(2, ", "+c_h);
+		if (is_isol)
+			SLog.prnc(2,",I");
+		else
+			SLog.prnc(2,",S");
 		if (is_HC)
 			SLog.prn(2,",H");
 		else

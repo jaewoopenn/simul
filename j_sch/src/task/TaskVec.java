@@ -36,5 +36,10 @@ public class TaskVec {
 		return g_taskV;
 	}
 
+	public TaskMng getTM() {
+		TaskSet ts=new TaskSet(g_taskV);
+		return ts.getTM();
+	}
+
 
 }

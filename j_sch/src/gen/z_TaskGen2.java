@@ -4,7 +4,6 @@ import gen.TaskGenMC;
 import gen.TaskGenParam;
 import task.TaskMng;
 import task.TaskSet;
-import task.TaskSetMC;
 import task.TaskSetUtil;
 import util.SEngineT;
 import util.SLog;
@@ -50,8 +49,7 @@ public class z_TaskGen2 {
 //		TaskGen tg=getTG2();
 		tg.generate();
 		TaskSet ts=tg.getTS();
-		TaskSetMC tsm=new TaskSetMC(ts);
-		TaskMng tm=tsm.getTM();
+		TaskMng tm=ts.getTM();
 		tm.prn();
 		tm.prnInfo();
 		if(tg.isOK())

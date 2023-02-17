@@ -3,7 +3,6 @@ package z_ex;
 import task.Task;
 import task.TaskMng;
 import task.TaskSet;
-import task.TaskSetMC;
 import task.TaskVec;
 
 // Task Set MC
@@ -14,8 +13,7 @@ public class TS_MC4 {
 		tmp.add(new Task(6,1));
 		tmp.add(new Task(8,1,4));
 		tmp.add(new Task(10,3,4));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	
 	public static TaskMng ts2()	{
@@ -23,8 +21,7 @@ public class TS_MC4 {
 		tmp.add(new Task(6,1));
 		tmp.add(new Task(8,2,3));
 		tmp.add(new Task(10,3,4));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	public static TaskMng ts3()	{
 		TaskVec tmp=new TaskVec();
@@ -33,8 +30,7 @@ public class TS_MC4 {
 		tmp.add(new Task(53,13));
 		tmp.add(new Task(12,2,3));
 		tmp.add(new Task(9,2,3));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	public static TaskMng ts4()	{
 		TaskVec tmp=new TaskVec();
@@ -43,8 +39,7 @@ public class TS_MC4 {
 		tmp.add(new Task(15,3,4));
 		tmp.add(new Task(15,3));
 		tmp.add(new Task(20,1));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 
 	public static TaskMng ts5()	{
@@ -57,8 +52,7 @@ public class TS_MC4 {
 		tmp.add(new Task(88,3,8));
 		tmp.add(new Task(122,8));
 		tmp.add(new Task(23,3));	
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	public static TaskMng ts6()	{
 		TaskVec tmp=new TaskVec();
@@ -66,8 +60,7 @@ public class TS_MC4 {
 		tmp.add(new Task(10,2,3));
 		tmp.add(new Task(20,2,5));
 		tmp.add(new Task(15,1));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	public static TaskMng ts7()	{
 		TaskVec tmp=new TaskVec();
@@ -76,8 +69,7 @@ public class TS_MC4 {
 		tmp.add(new Task(74,9,10));
 		tmp.add(new Task(107,17,18));
 		
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 
 	public static TaskMng ts8()	{
@@ -90,8 +82,7 @@ public class TS_MC4 {
 		tmp.add(new Task(107, 1, 4));
 		tmp.add(new Task(116, 5, 10));
 		tmp.add(new Task(32, 4, 6));
-		TaskSetMC tme=new TaskSetMC(new TaskSet(tmp));
-		return tme.getTM();
+		return tmp.getTM();
 	}
 	
 

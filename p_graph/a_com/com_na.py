@@ -3,6 +3,8 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
+import util.MFile as mf
+
 import util.MPlot as mp;
 class gl:
     path="fc/rs/"
@@ -17,7 +19,7 @@ class gl:
     data=['FC','NA']
 #     data=[5,1,2]
 def load(fn):
-    i_f = open("C:/Users/jaewoo/data/"+fn,"r")
+    i_f = mf.load(fn)
     v=[]
     for line in i_f:
         val=line.strip()
@@ -45,7 +47,7 @@ def main():
     mp.legendBL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
-    mp.savefig("/Users/jaewoo/data/fig/com_na.pdf")
+#     mp.savefig(mf.filepath("fc/fig/com_na.pdf"))
     mp.show()
 
 if __name__ == '__main__':

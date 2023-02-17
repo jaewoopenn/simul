@@ -14,7 +14,7 @@ import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import exp.Platform;
 import task.TaskMng;
-import task.TaskSetMC;
+import task.TaskSet;
 import task.TaskSetUtil;
 import util.SLog;
 import util.MList;
@@ -167,7 +167,7 @@ public class PlatformTM extends Platform{
 		int size=eg.size();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
-			TaskSetMC tm=TaskSetUtil.loadFile(new MList(fn));
+			TaskSet tm=TaskSetUtil.loadFile(new MList(fn));
 			int ret=eg.anal(tm.getTM(),an);
 			SLog.prn(2, j+","+ret);
 			sum+=ret;
@@ -190,7 +190,7 @@ public class PlatformTM extends Platform{
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
-		TaskSetMC tm=TaskSetUtil.loadFile(new MList(fn));
+		TaskSet tm=TaskSetUtil.loadFile(new MList(fn));
 		int ret=eg.anal(tm.getTM(),an);
 		SLog.prn(3, i+","+j+":"+ret);
 		
