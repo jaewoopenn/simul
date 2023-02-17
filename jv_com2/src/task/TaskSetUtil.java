@@ -71,14 +71,10 @@ public class TaskSetUtil {
         return t;
 	}
 	
-	public static TaskMng getTM(TaskVec tv) {
-		TaskSetMC ts=new TaskSetMC(new TaskSet(tv));
-		return ts.getTM();
-	}
 
 	public static Comp loadComp(String line, MList fu, int idx) {
         String[] words=line.split(",");
-        int id=Integer.valueOf(words[1]).intValue();
+//        int id=Integer.valueOf(words[1]).intValue();
         int len=Integer.valueOf(words[2]).intValue();
         double alpha=Double.valueOf(words[3]).doubleValue();
         Comp c=new Comp(alpha);
@@ -87,7 +83,7 @@ public class TaskSetUtil {
         	tv.add(loadTask(fu.get(i)));
         	
         }
-        c.setTM(TaskSetUtil.getTM(tv));
+        c.setTM(tv.getTM());
 		return c;
 	}
 

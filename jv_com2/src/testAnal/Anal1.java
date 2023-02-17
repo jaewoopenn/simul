@@ -2,8 +2,6 @@ package testAnal;
 
 import anal.AnalEDF_AD_E;
 import task.Task;
-import task.TaskMng;
-import task.TaskSetUtil;
 import task.TaskVec;
 import util.SLog;
 import util.SEngineT;
@@ -19,9 +17,8 @@ public class Anal1 {
 		TaskVec tmp=new TaskVec();
 		tmp.add(new Task(4,2));
 		tmp.add(new Task(6,1,5));
-		TaskMng tm=TaskSetUtil.getTM(tmp);
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
-		a.init(tm);
+		a.init(tmp.getTM());
 		a.prepare();
 		double x=a.computeX();
 		SLog.prn(2, ""+x);

@@ -5,6 +5,9 @@ import gen.ConfigGen;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
+import sim.com.TaskSimulCom;
+import sim.com.TaskSimulCom_FC;
+import sim.com.TaskSimulCom_NA;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import exp.ExpSimulTM;
@@ -53,15 +56,14 @@ public class PlatformCom extends Platform{
 	}
 	public void simulCom(){
 		write_x_axis();
-		simul_com_in(1,new TaskSimul_FC_MCS());
-		simul_com_in(2,new TaskSimul_FC_Naive());
+		simul_com_in(1,new TaskSimulCom_FC());
+		simul_com_in(2,new TaskSimulCom_NA());
 		
 	}
 	
-	private void simul_com_in(int kind, TaskSimulMC tsim) {
+	private void simul_com_in(int kind, TaskSimulCom tsim) {
 		double ret;
 		MList fu=new MList();
-		tsim.isSchTab=false;
 		Anal an=new AnalEDF_VD();
 		SLog.prn(3, "prob:"+g_prob);
 		for(int i=0;i<g_size;i++){
@@ -102,12 +104,12 @@ public class PlatformCom extends Platform{
 	}
 	public void simulCom_one(int kinds, int set, int no) {
 		if(kinds==0)
-			simul_com_in_one(new TaskSimul_FC_MCS(),set,no);
+			simul_com_in_one(new TaskSimulCom_FC(),set,no);
 		else
-			simul_com_in_one(new TaskSimul_FC_Naive(),set,no);
+			simul_com_in_one(new TaskSimulCom_NA(),set,no);
 	}
 	
-	private void simul_com_in_one(TaskSimulMC ts, int set,
+	private void simul_com_in_one(TaskSimulCom ts, int set,
 			int no) {
 		double ret;
 		Anal an=new AnalEDF_VD();
@@ -126,7 +128,6 @@ public class PlatformCom extends Platform{
 		an.prepare();
 		ts.init_sm_tm(sm,tm);
 		ts.set_cm(cm);
-		ts.isSchTab=false;
 		eg.initSim(0, ts);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI(0);

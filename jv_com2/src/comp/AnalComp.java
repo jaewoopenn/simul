@@ -15,7 +15,7 @@ public class AnalComp {
 		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(tm);
 		a.prepare();
-		double x=a.getX();
+//		double x=a.getX();
 		SLog.prn(1, "sch:"+a.is_sch());
 //		tm.setX(x);
 	}

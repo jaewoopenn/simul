@@ -67,7 +67,6 @@ public class PlatformTM extends Platform{
 	public void simul_in(int no,Anal an,TaskSimulMC tsim){
 		g_fu=new MList();
 		
-		tsim.isSchTab=false;
 		for(int i:MUtil.loop(g_size)){
 			simul_in_i(i,an,tsim);
 		}

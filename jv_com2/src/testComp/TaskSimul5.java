@@ -3,17 +3,18 @@ package testComp;
 import anal.AnalEDF_VD;
 import comp.CompFile;
 import comp.CompMng;
-import comp.CompMngEx1;
-import comp.TaskSimul_FC_MCS;
-import comp.TaskSimul_FC_Naive;
 import sim.SimulInfo;
 import sim.SysMng;
+import sim.com.TaskSimulCom_FC;
+import sim.com.TaskSimulCom_NA;
 import task.TaskMng;
 import util.SEngineT;
+import z_ex.CompMngEx1;
 
 // Comp
 public class TaskSimul5 {
-	public static int idx=2;
+	public static int idx=1;
+//	public static int idx=2;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -23,14 +24,13 @@ public class TaskSimul5 {
 	{
 		CompMng cm=CompMngEx1.getCompMng3();
 		TaskMng tm=cm.getTM();
-		double x=AnalEDF_VD.computeX(tm);
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(1.0);
-		sm.setX(x);
-		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS();
+		sm.setX(AnalEDF_VD.computeX(tm));
+		TaskSimulCom_FC ts=new TaskSimulCom_FC();
 		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
 		ts.simul(0,20);
@@ -51,13 +51,12 @@ public class TaskSimul5 {
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.1);
 		sm.setX(x);
-		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS();
+		TaskSimulCom_FC ts=new TaskSimulCom_FC();
 //		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
 		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
-		ts.isSchTab=false;
 //		ts.isPrnMS=false;
-		ts.isPrnEnd=false;
+//		ts.isPrnEnd=false;
 		ts.simul(0,20);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
@@ -75,7 +74,7 @@ public class TaskSimul5 {
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(1.0);
 		sm.setX(x);
-		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive();
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
 		ts.simul(0,20);
@@ -94,7 +93,7 @@ public class TaskSimul5 {
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(1.0);
 		sm.setX(x);
-		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive();
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
 		ts.simul(0,100);

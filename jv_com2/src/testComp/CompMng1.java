@@ -3,9 +3,9 @@ package testComp;
 
 import anal.AnalEDF_AD_E;
 import comp.CompMng;
-import comp.CompMngEx1;
 import task.TaskMng;
 import util.SLog;
+import z_ex.CompMngEx1;
 import util.SEngineT;
 
 public class CompMng1 {

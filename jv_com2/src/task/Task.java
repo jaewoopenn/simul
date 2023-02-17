@@ -27,7 +27,9 @@ public class Task {
 	private boolean is_dropped=false;
 	private boolean is_hi_preferred=false;
 	
-
+	public Task() {
+		this.tid=TaskSeq.getID();
+	}
 	public Task(int period, int c_l) {
 		this.tid=TaskSeq.getID();
 		this.period = period;

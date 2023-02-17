@@ -2,16 +2,21 @@ package sim.mc;
 
 import anal.Anal;
 import anal.AnalEDF_AD_E;
+import anal.AnalEDF_VD;
+import comp.CompMng;
 import sim.SimulInfo;
 import sim.SysMng;
+import sim.com.TaskSimulCom_NA;
 import task.TaskMng;
 import util.SEngineT;
 import util.SLogF;
+import z_ex.CompMngEx1;
 import z_ex.TS_MC3;
 
 public class z_TaskSimul4 {
-	public static int idx=1;
+//	public static int idx=1;
 //	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=1;
 
 
@@ -29,7 +34,7 @@ public class z_TaskSimul4 {
 		SLogF.init("test/log2.txt");
 		Anal a=new AnalEDF_AD_E();
 		TaskSimul_EDF_AD_E ts=new TaskSimul_EDF_AD_E();
-		ts.setRecoverIdle(false);
+//		ts.setRecoverIdle(false);
 		
 		TaskMng tm=TS_MC3.ts3();
 		SysMng sm=getSM();
@@ -48,10 +53,45 @@ public class z_TaskSimul4 {
 	}
 	
 	public int test2() {
-		return -1;
+		SLogF.init("test/log2.txt");
+		Anal a=new AnalEDF_AD_E();
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+//		ts.setRecoverIdle(false);
+		
+		TaskMng tm=TS_MC3.ts3();
+		SysMng sm=getSM();
+		a.init(tm);
+		a.prepare();
+		sm.setX(a.computeX());
+//		sm.prn();
+		ts.init_sm_tm(sm,tm);
+		ts.simul(0,sm.getEnd());
+		ts.simul_end();
+		
+		SimulInfo si=ts.getSI();
+		si.prn();
+		SLogF.end();
+		return 0;
 	}
 	public int test3() {
-		return -1;
+		SLogF.init("test/log2.txt");
+		CompMng cm=CompMngEx1.getCompMng3();
+		TaskMng tm=cm.getTM();
+		cm.part();
+		cm.analMaxRes();
+//		tm.prnComp();
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(0.5);
+		sm.setX(AnalEDF_VD.computeX(tm));
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+		ts.init_sm_tm(sm, tm);
+		ts.set_cm(cm);
+		ts.simul(0,300);
+		ts.simul_end();
+		SimulInfo si=ts.getSI();
+		si.prn();
+		SLogF.end();
+		return 0;
 	}
 	public  int test4() {
 		return 1;

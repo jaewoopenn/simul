@@ -4,8 +4,8 @@ package testComp;
 import anal.AnalEDF_VD;
 import comp.Comp;
 import comp.CompMng;
-import comp.CompMngEx1;
 import util.SLog;
+import z_ex.CompMngEx1;
 import util.SEngineT;
 
 @SuppressWarnings("unused")

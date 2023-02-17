@@ -14,7 +14,7 @@ public abstract class TaskSimul {
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected MRand g_rutil=new MRand();
-	private JobSimul g_js;
+//	private JobSimul g_js;
 	protected SimulInfo g_si;
 
 	public String getName() {

@@ -3,6 +3,7 @@ package testExp;
 import exp.Job;
 import exp.JobMng;
 import exp.JobSimul;
+import task.Task;
 import util.SEngineT;
 
 public class JobSimul1 {
@@ -39,14 +40,15 @@ public class JobSimul1 {
 		return -1;
 	}
 	public int test2() {
+		Task t1=new Task();
+		Task t2=new Task();
 		JobSimul js=new JobSimul();
-//		js.add(new Job(new Task(1),3,1));
-//		js.add(new Job(new Task(2),4,2));
-//		js.add(new Job(new Task(0),5,1));
-////		js.simulDur(0,6);
-//		js.add(new Job(new Task(0),8,1));
-////		js.simulDur(6,10);
-//		js.simulEnd(10);
+		js.add(new Job(t1,3,1));
+		js.add(new Job(t2,4,2));
+		js.add(new Job(t1,5,1));
+		js.add(new Job(t1,8,1));
+		js.simul(10);
+		js.simulEnd(10);
 		return 0;
 	}
 	

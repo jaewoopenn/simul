@@ -1,8 +1,8 @@
 package testComp;
 import comp.CompFile;
 import comp.CompMng;
-import comp.CompMngEx1;
 import util.SEngineT;
+import z_ex.CompMngEx1;
 
 public class CompFile1 {
 	public static int idx=1;

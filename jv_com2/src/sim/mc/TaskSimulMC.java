@@ -1,7 +1,6 @@
 package sim.mc;
 
 
-import comp.CompMng;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul;
@@ -17,8 +16,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 	protected boolean g_ms_happen=false;
 	protected JobSimulMC g_jsm;
 	protected boolean g_best_effort=false;
-	protected CompMng g_cm;
-	public boolean isSchTab;
+
 	public void setBE() {
 		g_best_effort=true;
 	}
@@ -234,10 +232,6 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 			return;
 		tsk.resume();
 		
-	}
-
-	public void set_cm(CompMng cm) {
-		g_cm=cm;
 	}
 
 	

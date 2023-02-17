@@ -32,7 +32,7 @@ public class Job implements Comparable<Job>{
 	}
 
 	public void prn() {
-		SLog.prnc(1,tsk.tid+","+dl+","+exec);
+		SLog.prnc(1, tsk.tid+","+dl+","+exec);
 		if(isHI)
 			SLog.prn(1,","+vd+","+add_exec);
 		else

@@ -3,30 +3,33 @@ import anal.Anal;
 import anal.AnalEDF_VD;
 import exp.ExpSimulTM;
 import gen.ConfigGen;
-import task.TaskMng;
+import sim.SimulInfo;
+import sim.mc.TaskSimul_EDF_VD;
+import task.TaskSetMC;
+import task.TaskSetUtil;
+import util.MList;
 import util.SEngineT;
 
 public class ExpSimul1 {
-	public static int idx=4;
+	public static int idx=1;
 //	public static int idx=-1;
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 	public static int log_level=2;
 	public int test1() 
 	{
-//		ConfigGen cfg=new ConfigGen("test/cfg/cfg.txt");
-//		cfg.readFile();
-//		ExpSimulTM eg=new ExpSimulTM(cfg);
-//		String fn=cfg.get_fn(0);
-//		TaskMng tm=TaskMng.getFile(fn);
-//		Anal an=new AnalEDF_VD();
-//		an.init(tm);
-//		an.prepare();
-//		tm.setX(an.computeX());
-//		eg.initSim(0, new TaskSimul_EDF_VD(tm));
-//		eg.simul(0,1000);
-//		SimulInfo si=eg.getSI(0);
-//
-//		si.prn();
+		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_55.txt");
+		cfg.readFile();
+		ExpSimulTM eg=new ExpSimulTM(cfg);
+		String fn=cfg.get_fn(0);
+		TaskSetMC tm=TaskSetUtil.loadFile(new MList(fn));
+		Anal an=new AnalEDF_VD();
+		an.init(tm.getTM());
+		an.prepare();
+		eg.initSim(0, new TaskSimul_EDF_VD());
+		eg.simul(0,1000);
+		SimulInfo si=eg.getSI(0);
+
+		si.prn();
 		return 1;
 	}
 	public int test2() 

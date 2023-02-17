@@ -3,9 +3,9 @@ package testAnal;
 import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
-import comp.CompMngEx1;
 //import utill.Log;
 import util.SEngineT;
+import z_ex.CompMngEx1;
 
 public class Anal2 {
 	public static int idx=2;

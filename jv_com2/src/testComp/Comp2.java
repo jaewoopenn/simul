@@ -2,9 +2,9 @@ package testComp;
 
 
 import comp.Comp;
-import comp.CompEx1;
 import task.TaskMng;
 import util.SLog;
+import z_ex.CompEx1;
 import util.SEngineT;
 
 public class Comp2 {

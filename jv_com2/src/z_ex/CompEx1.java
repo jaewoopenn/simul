@@ -1,6 +1,6 @@
-package comp;
+package z_ex;
 
-
+import comp.Comp;
 
 // Task Set MC
 public class CompEx1 {

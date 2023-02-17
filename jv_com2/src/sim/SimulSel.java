@@ -14,7 +14,7 @@ public class SimulSel {
 			return new TaskSimul_EDF_AD_E();
 		} else if(sort==1) {
 			return new TaskSimul_EDF_VD();
-		} 
+		}
 		return null;
 	}
 //	/*

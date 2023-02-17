@@ -13,7 +13,7 @@ public class ExpSimul2 {
 
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("com/cfg/cfg_util_100.txt");
+		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
 		cfg.readFile();
 		//cfg.prn(2);
 		ExpSimulTM eg=new ExpSimulTM(cfg);
