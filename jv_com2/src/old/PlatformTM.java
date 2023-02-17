@@ -94,7 +94,7 @@ public class PlatformTM extends Platform{
 			tsim.init_sm_tm(sm,tm);
 			eg.initSim(0, tsim);
 			eg.simul(0,g_dur);
-			SimulInfo si=eg.getSI(0);
+			SimulInfo si=eg.getSI();
 			double ret=si.getDMR();
 			SLog.prnc(2, j+","+ret+","+si.ms);
 			sum+=ret;
@@ -135,7 +135,7 @@ public class PlatformTM extends Platform{
 		tsim.init_sm_tm(sm,tm);
 		eg.initSim(0, tsim);
 		eg.simul(0,g_dur);
-		SimulInfo si=eg.getSI(0);
+		SimulInfo si=eg.getSI();
 		SLog.prn(2, i+","+j+","+si.getDMR()+","+si.ms);
 	}
 

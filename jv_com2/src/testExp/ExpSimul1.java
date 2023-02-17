@@ -27,7 +27,7 @@ public class ExpSimul1 {
 		an.prepare();
 		eg.initSim(0, new TaskSimul_EDF_VD());
 		eg.simul(0,1000);
-		SimulInfo si=eg.getSI(0);
+		SimulInfo si=eg.getSI();
 
 		si.prn();
 		return 1;

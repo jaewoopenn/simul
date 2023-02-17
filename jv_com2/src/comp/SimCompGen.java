@@ -4,6 +4,7 @@ import gen.ConfigGen;
 import gen.TaskGenParam;
 import util.MOut;
 import util.MUtil;
+import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 
 public class SimCompGen {
@@ -57,11 +58,17 @@ public class SimCompGen {
 		if(!g_isCheck)
 			return 1;
 		
-		AnalEDF_VD a=new AnalEDF_VD();
-		a.init(cm.getTM());
-		a.prepare();
+//		AnalEDF_AD_E a=new AnalEDF_AD_E();
+//		a.init(cm.getTM());
+//		a.prepare();
+//		return MUtil.btoi(a.is_sch());
+
+		AnalComp ac=new AnalComp(cm);
+		ac.part();
+		ac.computeX();
+		int det=ac.anal(1);
+		return det;
 		
-		return MUtil.btoi(a.is_sch());
 	}
 	
 }

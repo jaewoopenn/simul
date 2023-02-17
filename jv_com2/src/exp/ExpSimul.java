@@ -21,7 +21,7 @@ public abstract class ExpSimul {
 
 	protected abstract void simulStart();
 	public abstract void simul(int st,int et);
-	public abstract SimulInfo getSI(int core);
+	public abstract SimulInfo getSI();
 	public abstract void prn() ;
 	
 }

@@ -15,7 +15,7 @@ class gl:
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
     lab=['FC-MCS','Naive-Drop']
-    data=[1,2,3,4,5]
+    data=[0,1,2,3,4,5]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
     v=[]
@@ -30,6 +30,7 @@ def x_load():
 def iterate(s,t):
     for i in range(s,t):
         fn=gl.path+gl.RS+"_"+str(gl.data[i])+".txt"
+        print(fn)
         v=load(fn)
         gl.vv.append(v)
 
@@ -40,7 +41,7 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.55,1.0)
+    mp.xlim(0.50,0.95)
     mp.ylim(0, 0.5)
 #     mp.ylim(0, 1.02)
     mp.legendBL()

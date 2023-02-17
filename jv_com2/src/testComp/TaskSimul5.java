@@ -1,6 +1,9 @@
 package testComp;
 
+import anal.Anal;
+import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
+import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
 import sim.SimulInfo;
@@ -14,8 +17,8 @@ import z_ex.CompMngEx1;
 // Comp
 public class TaskSimul5 {
 //	public static int idx=1;
-//	public static int idx=2;
-	public static int idx=3;
+	public static int idx=2;
+//	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -42,22 +45,35 @@ public class TaskSimul5 {
 	}
 	public int test2() 
 	{	
-		int set=8;
-		int no=72;
+//		int set=8;
+		int set=4;
+		int no=40;
 		String f="fc/ts/util_sim_"+(55+set*5)+"/taskset_"+no;
 		CompMng cm=CompFile.loadFile(f);
+		AnalComp ac=new AnalComp(cm);
+		ac.part();
+		ac.computeX();
+//		int det=ac.anal(0);
+		int det=ac.anal(1);
+		if(det==0)
+			return 0;
+		
 		TaskMng tm=cm.getTM();
-		double x=AnalEDF_VD.computeX(tm);
+		Anal a=new AnalEDF_AD_E();
+		a.init(tm);
+		double x=a.computeX();
+
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.1);
+		sm.setMS_Prob(0.99);
 		sm.setX(x);
 		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+//		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
-		ts.simul(0,200);
+		ts.simul(0,10000);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn();

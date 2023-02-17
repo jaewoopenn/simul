@@ -37,7 +37,6 @@ public class ExpSimulCom extends ExpSimul{
 
 	@Override
 	protected void simulStart() {
-//		g_tsim[0].simulStart();
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class ExpSimulCom extends ExpSimul{
 
 
 	@Override
-	public SimulInfo getSI(int core) {
+	public SimulInfo getSI() {
 		return g_tsim.getSI();
 	}
 

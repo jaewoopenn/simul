@@ -50,14 +50,13 @@ public class PlatformCom extends Platform{
 		SLog.prn(3, "com");
 		
 	}
-	public void simulCom(){
-		write_x_axis();
-		simul_com_in(1,new TaskSimulCom_FC());
-		simul_com_in(2,new TaskSimulCom_NA());
-		
-	}
 	
-	private void simul_com_in(int kind, TaskSimulCom tsim) {
+	public void simulCom(int kinds) { // 0 FC, 1 NA
+		TaskSimulCom tsim;
+		if(kinds==0)
+			tsim=new TaskSimulCom_FC();
+		else
+			tsim=new TaskSimulCom_NA();
 		MList fu=new MList();
 		SLog.prn(3, "prob:"+g_prob);
 		for(int i=0;i<g_size;i++){
@@ -69,7 +68,7 @@ public class PlatformCom extends Platform{
 			ExpSimulCom eg=new ExpSimulCom(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
-				SimulInfo si=simul_com_in_one(j,eg,tsim);
+				SimulInfo si=simul_com_in(j,eg,tsim);
 				sum+=si.getDMR();
 				SLog.prn(2, " "+sum);
 			}
@@ -79,10 +78,10 @@ public class PlatformCom extends Platform{
 				fu.add(avg+"");
 		}
 		if(isWrite)
-			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kind+".txt");
+			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
 		
 	}
-	private SimulInfo simul_com_in_one(int j, ExpSimulCom eg, TaskSimulCom tsim) {
+	private SimulInfo simul_com_in(int j, ExpSimulCom eg, TaskSimulCom tsim) {
 		Anal an=new AnalEDF_AD_E();
 		CompMng cm=eg.loadCM(j);
 		cm.setAlpha(g_a_l,g_a_u);
@@ -96,7 +95,7 @@ public class PlatformCom extends Platform{
 		tsim.set_cm(cm);
 		eg.initSim(0, tsim);
 		eg.simul(0,g_dur);
-		SimulInfo si=eg.getSI(0);
+		SimulInfo si=eg.getSI();
 		SLog.prnc(2, j+","+si.getDMR()+","+si.ms);
 		return si;
 	}
@@ -115,7 +114,7 @@ public class PlatformCom extends Platform{
 		ExpSimulCom eg=new ExpSimulCom(cfg);
 		
 		//		si.prn();
-		SimulInfo si=simul_com_in_one(no,eg,tsim);
+		SimulInfo si=simul_com_in(no,eg,tsim);
 		SLog.prn(2, set+","+no+":"+si.getDMR()+","+si.rel);
 	}
 	

@@ -45,7 +45,7 @@ public class ExpSimulTM extends ExpSimul{
 
 
 	@Override
-	public SimulInfo getSI(int core) {
+	public SimulInfo getSI() {
 		return g_tsim.getSI();
 	}
 
