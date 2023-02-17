@@ -4,8 +4,8 @@ package testPlatform;
 import comp.PlatformCom;
 
 import gen.ConfigGen;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 
 // schedulability 
@@ -86,7 +86,7 @@ public class Platform4 {
 		eg.setParam("tu_ub","0.1");
 		PlatformCom p=getP();
 		p.writeComCfg(eg);
-		Log.prn(3, "cfg");
+		SLog.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
@@ -111,7 +111,7 @@ public class Platform4 {
 			no=i;
 			PlatformCom p=getP();
 			p.setAlpha(0.1,0.3);
-			Log.prn(3, no+"");
+			SLog.prn(3, no+"");
 //			p.simulCom_one(0,set,no);
 			p.simulCom_one(1,set,no);
 		}
@@ -123,7 +123,7 @@ public class Platform4 {
 		int no=82;
 		PlatformCom p=getP();
 		p.setAlpha(0.1,0.3);
-		Log.prn(3, no+"");
+		SLog.prn(3, no+"");
 		p.simulCom_one(1,set,no);
 		return 1;
 	}
@@ -154,9 +154,9 @@ public class Platform4 {
 		Platform4 m=new Platform4();
 		int[] aret=Platform4.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 

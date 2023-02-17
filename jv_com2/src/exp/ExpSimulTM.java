@@ -11,7 +11,7 @@ import comp.CompFile;
 import comp.CompMng;
 import anal.Anal;
 import anal.AnalEDF_AD_E;
-import util.Log;
+import util.SLog;
 import util.MUtil;
 
 public class ExpSimulTM extends ExpSimul{
@@ -68,8 +68,9 @@ public class ExpSimulTM extends ExpSimul{
 	//comp
 	public CompMng loadCM(int i){
 		String fn=g_cfg.get_fn(i);
-		Log.prn(2, fn);
+		SLog.prn(2, fn);
 		CompMng cm=CompFile.loadFile(fn);
+		cm.prn();
 		return cm;
 	}
 	public int analComp(CompMng cm,int kinds) {

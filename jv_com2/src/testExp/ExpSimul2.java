@@ -2,8 +2,8 @@ package testExp;
 import comp.CompMng;
 import exp.ExpSimulTM;
 import gen.ConfigGen;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class ExpSimul2 {
 	public static int idx=1;
@@ -19,7 +19,7 @@ public class ExpSimul2 {
 		ExpSimulTM eg=new ExpSimulTM(cfg);
 		CompMng cm=eg.loadCM(0);
 		int ret=eg.analComp(cm,0);
-		Log.prn(1, ""+ret);
+		SLog.prn(1, ""+ret);
 		return 0;
 	}
 	public int test2() 
@@ -65,9 +65,9 @@ public class ExpSimul2 {
 		ExpSimul2 m=new ExpSimul2();
 		int[] aret=ExpSimul2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

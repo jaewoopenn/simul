@@ -1,7 +1,7 @@
 package testExp;
 
 import exp.JobMng;
-import util.TEngine;
+import util.SEngineT;
 
 public class JobMng3 {
 	public static int idx=1;
@@ -59,9 +59,9 @@ public class JobMng3 {
 		JobMng3 m=new JobMng3();
 		int[] aret=JobMng3.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import exp.Job;
 import task.Task;
-import util.TEngine;
+import util.SEngineT;
 
 public class Job1 {
 	public static int log_level=1;
@@ -82,9 +82,9 @@ public class Job1 {
 		Job1 m=new Job1();
 		int[] aret=Job1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

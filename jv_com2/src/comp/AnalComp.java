@@ -1,6 +1,6 @@
 package comp;
 
-import util.Log;
+import util.SLog;
 import util.MUtil;
 import anal.AnalEDF_VD;
 import task.TaskMng;
@@ -16,8 +16,7 @@ public class AnalComp {
 		a.init(tm);
 		a.prepare();
 		double x=a.getX();
-		Log.prn(1, "sch:"+a.is_sch());
-		g_cm.setX(x);
+		SLog.prn(1, "sch:"+a.is_sch());
 //		tm.setX(x);
 	}
 	public void part() {
@@ -36,8 +35,8 @@ public class AnalComp {
 			else
 				wc_u+=c.getNa_U();
 		}
-		Log.prn(2, "initU:"+init_u);
-		Log.prn(2, "wcU:"+wc_u);
+		SLog.prn(2, "initU:"+init_u);
+		SLog.prn(2, "wcU:"+wc_u);
 		if(init_u>1+MUtil.err) return 0;
 		if(wc_u>1+MUtil.err) return 0;
 		return 1;

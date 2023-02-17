@@ -1,9 +1,9 @@
 package test;
 
-import util.Log;
+import util.SLog;
 import util.MFile;
 import util.MList;
-import util.TEngine;
+import util.SEngineT;
 
 public class Calcul2 {
 	public static int log_level=1;
@@ -21,11 +21,11 @@ public class Calcul2 {
 				int v=(i&(1<<j))>>j;
 				//Log.prn(1, "s:"+j+","+v);
 				if (v==0)
-					Log.prnc(1, "- ");
+					SLog.prnc(1, "- ");
 				else
-					Log.prnc(1, "+ ");
+					SLog.prnc(1, "+ ");
 			}
-			Log.prn(1, "");
+			SLog.prn(1, "");
 		}
 		return 1;
 	}
@@ -83,9 +83,9 @@ public class Calcul2 {
 		Calcul2 m=new Calcul2();
 		int[] aret=Calcul2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

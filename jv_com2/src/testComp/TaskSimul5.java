@@ -9,7 +9,7 @@ import comp.TaskSimul_FC_Naive;
 import sim.SimulInfo;
 import sim.SysMng;
 import task.TaskMng;
-import util.TEngine;
+import util.SEngineT;
 
 // Comp
 public class TaskSimul5 {
@@ -24,12 +24,12 @@ public class TaskSimul5 {
 		CompMng cm=CompMngEx1.getCompMng3();
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(1.0);
+		sm.setX(x);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS();
 		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
@@ -45,12 +45,12 @@ public class TaskSimul5 {
 		CompMng cm=CompFile.loadFile(f);
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.1);
+		sm.setX(x);
 		TaskSimul_FC_MCS ts=new TaskSimul_FC_MCS();
 //		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive(tm);
 		ts.init_sm_tm(sm, tm);		
@@ -69,7 +69,6 @@ public class TaskSimul5 {
 		CompMng cm=CompMngEx1.getCompMng3();
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
@@ -89,12 +88,12 @@ public class TaskSimul5 {
 		CompMng cm=CompFile.loadFile(f);
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
-		cm.setX(x);
 		cm.part();
 		cm.analMaxRes();
 //		tm.prnComp();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(1.0);
+		sm.setX(x);
 		TaskSimul_FC_Naive ts=new TaskSimul_FC_Naive();
 		ts.init_sm_tm(sm, tm);
 		ts.set_cm(cm);
@@ -134,9 +133,9 @@ public class TaskSimul5 {
 		TaskSimul5 m=new TaskSimul5();
 		int[] aret=TaskSimul5.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

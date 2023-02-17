@@ -3,7 +3,7 @@ package comp;
 
 import task.Task;
 import task.TaskMng;
-import util.Log;
+import util.SLog;
 
 
 public class Comp {
@@ -30,21 +30,21 @@ public class Comp {
 			if(cu>=tu)
 				break;
 			cu+=t.getLoUtil();
-//			t.setIsolate(true);
+			t.set_isol(true);
 		}
 	}
 	// prn
 	public void prn() {
-		Log.prn(1, "cid:"+cid+", alpha:"+alpha);
-		Log.prn(1, "maxRes:"+maxRes);
+		SLog.prn(1, "cid:"+cid+", alpha:"+alpha);
+		SLog.prn(1, "maxRes:"+maxRes);
 //		g_tm.prnComp();
 	}
 	public void prnOff() {
-		Log.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());
-		Log.prn(1, "init:"+getST_U());
-		Log.prn(1, "wc:"+getWC_U());
-		Log.prn(1, "ext:"+getExt_U());
-		Log.prn(1, "int:"+getInt_U());
+		SLog.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());
+		SLog.prn(1, "init:"+getST_U());
+		SLog.prn(1, "wc:"+getWC_U());
+		SLog.prn(1, "ext:"+getExt_U());
+		SLog.prn(1, "int:"+getInt_U());
 	}
 	
 	// set

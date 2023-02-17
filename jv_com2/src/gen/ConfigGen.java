@@ -3,14 +3,14 @@ package gen;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import util.Log;
+import util.SLog;
 import util.MList;
 import util.MUtil;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
-//	"c_lb","c_ub",
-//	"a_lb","a_ub",
+	"c_lb","c_ub",
+	"a_lb","a_ub",
 	"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"}; 
 
 	private HashMap<String,String> param;
@@ -107,7 +107,7 @@ public class ConfigGen {
 		}
 	}
 	public void prn(int lv) {
-		Log.prn(lv,readPar("u_ub")+"--");
+		SLog.prn(lv,readPar("u_ub")+"--");
 	}
 	public static ConfigGen getCfg()	{
 		ConfigGen eg=new ConfigGen("");

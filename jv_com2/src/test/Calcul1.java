@@ -1,7 +1,7 @@
 package test;
 
 import util.MList;
-import util.TEngine;
+import util.SEngineT;
 
 public class Calcul1 {
 	public static int log_level=1;
@@ -72,9 +72,9 @@ public class Calcul1 {
 		Calcul1 m=new Calcul1();
 		int[] aret=Calcul1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

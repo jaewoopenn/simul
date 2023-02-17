@@ -1,7 +1,7 @@
 package exp;
 
 import task.Task;
-import util.Log;
+import util.SLog;
 
 public class Job implements Comparable<Job>{
 	public Task tsk;
@@ -32,11 +32,11 @@ public class Job implements Comparable<Job>{
 	}
 
 	public void prn() {
-		Log.prnc(1,tsk.tid+","+dl+","+exec);
+		SLog.prnc(1,tsk.tid+","+dl+","+exec);
 		if(isHI)
-			Log.prn(1,","+vd+","+add_exec);
+			SLog.prn(1,","+vd+","+add_exec);
 		else
-			Log.prn(1,"");
+			SLog.prn(1,"");
 			
 	}
 

@@ -4,8 +4,8 @@ package testPlatform;
 
 import exp.PlatformTM;
 import gen.ConfigGen;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class Platform1 {
 //	public static int idx=1;
@@ -53,7 +53,7 @@ public class Platform1 {
 			p.setSysNum(5000);
 		} else{
 			p.setDuration(100);
-			p.setSysNum(10);
+			p.setSysNum(100);
 		}
 		p.setProb(prob*0.1);
 		p.setRS(prob+"");
@@ -68,13 +68,13 @@ public class Platform1 {
 		eg.setParam("p_ub","300");
 		PlatformTM p=getP();
 		p.writeCfg(eg);
-		Log.prn(3, "cfg");
+		SLog.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
 		PlatformTM p=getP();
-//		p.genTS(true);
+		p.genTS(true);
 		return 1;
 	}
 	public int test3() 
@@ -132,9 +132,9 @@ public class Platform1 {
 		Platform1 m=new Platform1();
 		int[] aret=Platform1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 

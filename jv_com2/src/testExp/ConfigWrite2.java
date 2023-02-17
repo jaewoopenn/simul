@@ -1,7 +1,7 @@
 package testExp;
 import gen.ConfigGen;
 //import utill.Log;
-import util.TEngine;
+import util.SEngineT;
 
 public class ConfigWrite2 {
 	public static int idx=1;
@@ -67,9 +67,9 @@ public class ConfigWrite2 {
 		ConfigWrite2 m=new ConfigWrite2();
 		int[] aret=ConfigWrite2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

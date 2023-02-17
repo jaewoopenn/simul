@@ -5,8 +5,8 @@ import anal.AnalEDF_AD_E;
 import comp.CompMng;
 import comp.CompMngEx1;
 import task.TaskMng;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class CompMng1 {
 	public static int idx=4;
@@ -81,9 +81,9 @@ public class CompMng1 {
 		CompMng1 m=new CompMng1();
 		int[] aret=CompMng1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

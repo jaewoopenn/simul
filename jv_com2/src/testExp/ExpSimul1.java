@@ -4,7 +4,7 @@ import anal.AnalEDF_VD;
 import exp.ExpSimulTM;
 import gen.ConfigGen;
 import task.TaskMng;
-import util.TEngine;
+import util.SEngineT;
 
 public class ExpSimul1 {
 	public static int idx=4;
@@ -85,9 +85,9 @@ public class ExpSimul1 {
 		ExpSimul1 m=new ExpSimul1();
 		int[] aret=ExpSimul1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

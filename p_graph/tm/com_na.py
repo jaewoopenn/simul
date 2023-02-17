@@ -7,15 +7,15 @@ import util.MPlot as mp;
 class gl:
     path="fc/rs/"
 #     path="final_rs/"
-    RS="util_X"
+    RS="util_0"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
     lab=['FC-MCS', 'Naive-Drop','MC-ADAPT']
 #     data=[1,2,0,3]
-#     data=['FC','NA']
-    data=[5,1,2]
+    data=['FC','NA']
+#     data=[5,1,2]
 def load(fn):
     i_f = open("C:/Users/jaewoo/data/"+fn,"r")
     v=[]
@@ -29,7 +29,7 @@ def x_load():
 
 def iterate(s,t):
     for i in range(s,t):
-        fn=gl.path+"util_X_"+str(gl.data[i])+".txt"
+        fn=gl.path+"util_"+str(gl.data[i])+".txt"
         v=load(fn)
         gl.vv.append(v)
 

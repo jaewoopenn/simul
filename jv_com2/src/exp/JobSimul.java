@@ -2,7 +2,7 @@ package exp;
 
 
 import task.Task;
-import util.Log;
+import util.SLog;
 
 public class JobSimul {
 	JobMng g_jm;
@@ -22,7 +22,7 @@ public class JobSimul {
 			if (work(cur_t)==0) return 0;
 			cur_t++;
 		}
-		Log.prn(1, "*** Left Jobs at time "+cur_t+" ***");
+		SLog.prn(1, "*** Left Jobs at time "+cur_t+" ***");
 		g_jm.prn();
 		return g_jm.endCheck(et);
 	}
@@ -39,24 +39,24 @@ public class JobSimul {
 //	
 	// deprecated 
 	private int work(int cur_t){
-		Log.prnc(1, cur_t+" ");
+		SLog.prnc(1, cur_t+" ");
 		dlCheck(cur_t);
 		progress(cur_t,true);
-		Log.prn(1, "");
+		SLog.prn(1, "");
 		return 1;
 	}
 
 	public void simulEnd(int cur_t){
 		if(g_jm.endCheck(cur_t)==0){
 			g_jm.prn();
-			Log.prn(9,"Deadline miss at time "+cur_t);
+			SLog.prn(9,"Deadline miss at time "+cur_t);
 			System.exit(1);
 		}
 	}
 	public void simulEndPrn(boolean b){
 		if(!b)
 			return;
-		Log.prn(1, "*** Left Jobs  ***");
+		SLog.prn(1, "*** Left Jobs  ***");
 		g_jm.prn();
 	}
 	
@@ -67,7 +67,7 @@ public class JobSimul {
 			return;
 		if(cur_t<j.dl) 
 			return;
-		Log.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tsk.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
+		SLog.prn(9,"deadline miss at time "+cur_t+": tid:"+j.tsk.tid+", left exec:"+(j.exec)+", dl:"+j.dl);
 		System.exit(1);
 	}
 	public Task msCheck(int cur_t) { // before dlcheck
@@ -79,7 +79,7 @@ public class JobSimul {
 			if(j.exec==0){
 				if(j.isHI==true){
 					if(cur_t>j.vd){
-						Log.prn(9, "vd miss"+j.tsk.tid);
+						SLog.prn(9, "vd miss"+j.tsk.tid);
 						System.exit(1);
 					}
 					return j.tsk;

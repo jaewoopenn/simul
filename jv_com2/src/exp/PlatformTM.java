@@ -16,7 +16,7 @@ import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import task.TaskMng;
 import task.TaskSetUtil;
-import util.Log;
+import util.SLog;
 import util.MList;
 import util.MUtil;
 
@@ -46,16 +46,19 @@ public class PlatformTM extends Platform{
 		cfg.write(getCfgFN(i));
 	}
 
-//	public void genTS(boolean b) {
-//		for(int i:MUtil.loop(g_size)){
-//			ConfigGen cfg=new ConfigGen(getCfgFN(i));
-//			cfg.readFile();
-//			SysGen eg=new SysGenTM(cfg);
-//			eg.setCheck();
-//			eg.gen(new AnalEDF_VD());
-//		}
-//		Log.prn(3, "task");
-//	}
+	public void genTS(boolean b) {
+		for(int i:MUtil.loop(g_size)){
+			ConfigGen cfg=new ConfigGen(getCfgFN(i));
+			
+			cfg.readFile();
+			SysGen eg=new SysGenTM(cfg);
+			int num=eg.prepare();
+			if(b)
+				eg.setCheck();
+			eg.gen(cfg.get_fn(i),new AnalEDF_VD(),num);
+		}
+		SLog.prn(3, "task");
+	}
 	public void simul() {
 		write_x_axis();
 		simul_in(1,new AnalEDF_VD(),new TaskSimul_EDF_VD());
@@ -94,14 +97,14 @@ public class PlatformTM extends Platform{
 			eg.simul(0,g_dur);
 			SimulInfo si=eg.getSI(0);
 			double ret=si.getDMR();
-			Log.prnc(2, j+","+ret+","+si.ms);
+			SLog.prnc(2, j+","+ret+","+si.ms);
 			sum+=ret;
 			sum_ms+=si.ms;
-			Log.prn(2, " "+sum);
+			SLog.prn(2, " "+sum);
 		}
 		double avg=sum/size;
 		double avg_ms=(sum_ms*1.0/size);
-		Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
+		SLog.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg)+","+avg_ms);
 		g_fu.add(avg+"");
 		
 	}
@@ -134,7 +137,7 @@ public class PlatformTM extends Platform{
 		eg.initSim(0, tsim);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI(0);
-		Log.prn(2, i+","+j+","+si.getDMR()+","+si.ms);
+		SLog.prn(2, i+","+j+","+si.getDMR()+","+si.ms);
 	}
 
 	
@@ -167,12 +170,12 @@ public class PlatformTM extends Platform{
 			String fn=cfg.get_fn(j);
 			TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
 			int ret=eg.anal(tm,an);
-			Log.prn(2, j+","+ret);
+			SLog.prn(2, j+","+ret);
 			sum+=ret;
 //			Log.prn(2, " "+sum);
 		}
 		double avg=(double)sum/size;
-		Log.prn(3, (g_start+i*g_step)+":"+avg);
+		SLog.prn(3, (g_start+i*g_step)+":"+avg);
 		g_fu.add(avg+"");
 	}
 	
@@ -190,7 +193,7 @@ public class PlatformTM extends Platform{
 		String fn=cfg.get_fn(j);
 		TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
 		int ret=eg.anal(tm,an);
-		Log.prn(3, i+","+j+":"+ret);
+		SLog.prn(3, i+","+j+":"+ret);
 		
 	}	
 	
@@ -206,7 +209,7 @@ public class PlatformTM extends Platform{
 			for(int j=0;j<size;j++){
 				String fn=cfg.get_fn(j);
 				TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
-				Log.prn(2, mod+" "+j);
+				SLog.prn(2, mod+" "+j);
 				tm.getInfo().prn();
 			}
 		}

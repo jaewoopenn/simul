@@ -1,26 +1,33 @@
 package comp;
 
+import task.Task;
+import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetMC;
+import task.TaskVec;
 
 // Task Set MC
 public class CompMngEx1 {
 		
 	public static CompMng getCompMng1(){
 		CompMng cm=new CompMng();
-//		Comp c=new Comp(0);
-//		TaskSetFix tmp=new TaskSetFix();
-//		tmp.add(new Task(0,6,1));
-//		tmp.add(new Task(0,8,1));
-//		TaskMng tm=tmp.getTM();
-//		c.setTM(tm);
-//		cm.addComp(c);
-//		
-//		c=new Comp(0);
-//		tmp=new TaskSetFix();
-//		tmp.add(new Task(0,7,1));
-//		tmp.add(new Task(0,9,1));
-//		tm=tmp.getTM();
-//		c.setTM(tm);
-//		cm.addComp(c);
+		Comp c=new Comp(0);
+		TaskVec tmp=new TaskVec();
+		tmp.add(new Task(6,1));
+		tmp.add(new Task(8,1));
+		TaskSetMC ts=new TaskSetMC(new TaskSet(tmp.getVec()));
+		TaskMng tm=ts.getTM();
+		c.setTM(tm);
+		cm.addComp(c);
+		
+		c=new Comp(0);
+		tmp=new TaskVec();
+		tmp.add(new Task(7,1));
+		tmp.add(new Task(9,1));
+		ts=new TaskSetMC(new TaskSet(tmp.getVec()));
+		tm=ts.getTM();
+		c.setTM(tm);
+		cm.addComp(c);
 		return cm;
 	}
 	

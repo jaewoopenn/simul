@@ -2,18 +2,20 @@ package testComp;
 import comp.CompFile;
 import comp.CompMng;
 import comp.CompMngEx1;
-import util.TEngine;
+import util.SEngineT;
 
 public class CompFile1 {
-	public static int idx=4;
-//	public static int idx=-1;
+	public static int idx=1;
+//	public static int idx=2;
+//	public static int idx=3;
+//	public static int idx=4;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	public static int log_level=1;
 	public int test1()
 	{
 		CompMng cm=CompMngEx1.getCompMng1();
 		cm.prn();
-		CompFile.writeFile("file/testCom.txt",cm.getComps());
+		CompFile.writeFile("fc/test/testCom.txt",cm.getComps());
 		return 0;
 	}
 	public int test2()
@@ -69,9 +71,9 @@ public class CompFile1 {
 		CompFile1 m=new CompFile1();
 		int[] aret=CompFile1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

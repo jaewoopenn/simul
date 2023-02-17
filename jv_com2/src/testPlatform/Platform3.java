@@ -4,17 +4,19 @@ package testPlatform;
 import comp.PlatformCom;
 
 import gen.ConfigGen;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 
 // schedulability 
 public class Platform3 {
 //	public static int idx=1;
-	public static int idx=2;
+//	public static int idx=2;
 //	public static int idx=3;
-//	public static int idx=4;
-//	public static int idx=-1;
+	public static int idx=4;
+//	public static int idx=7;
+//	public static int log_level=1;
+//	public static int log_level=2;
 	public static int log_level=3;
 	public int kind=0;
 	public int isReal=0;
@@ -81,7 +83,7 @@ public class Platform3 {
 			p.setAlpha(i*0.25,i*0.25+0.25);
 			p.writeComCfg(eg);
 		}	
-		Log.prn(3, "cfg");
+		SLog.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
@@ -150,7 +152,7 @@ public class Platform3 {
 		p.setAlpha(0,0);
 		for(int i=0;i<100;i++){
 			ret1=p.analCom(set,i,0);
-			Log.prn(2,ret1);
+			SLog.prn(2,ret1);
 			if(ret1==0)
 				break;
 		}
@@ -162,9 +164,9 @@ public class Platform3 {
 		int i=73;
 		PlatformCom p=getP();
 		int ret1;
-		p.setAlpha(0,0);
+		p.setAlpha(0.75,1.00);
 		ret1=p.analCom(set,i,0);
-		Log.prn(2,ret1);
+		SLog.prn(2,ret1);
 		return 0;
 	}
 	public  int test8()
@@ -188,9 +190,9 @@ public class Platform3 {
 		Platform3 m=new Platform3();
 		int[] aret=Platform3.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 

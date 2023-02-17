@@ -3,7 +3,7 @@ package testComp;
 
 import gen.ConfigGen;
 import comp.SimCompGen;
-import util.TEngine;
+import util.SEngineT;
 
 public class SimCompGen1 {
 	public static int idx=1;
@@ -62,9 +62,9 @@ public class SimCompGen1 {
 		SimCompGen1 m=new SimCompGen1();
 		int[] aret=SimCompGen1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

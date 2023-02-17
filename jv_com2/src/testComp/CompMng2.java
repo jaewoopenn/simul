@@ -5,8 +5,8 @@ import anal.AnalEDF_VD;
 import comp.Comp;
 import comp.CompMng;
 import comp.CompMngEx1;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 @SuppressWarnings("unused")
 public class CompMng2 {
@@ -99,9 +99,9 @@ public class CompMng2 {
 		CompMng2 m=new CompMng2();
 		int[] aret=CompMng2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

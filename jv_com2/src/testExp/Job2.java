@@ -2,7 +2,7 @@ package testExp;
 import java.util.Vector;
 
 import exp.Job;
-import util.TEngine;
+import util.SEngineT;
 
 public class Job2 {
 	public static int idx=1;
@@ -60,9 +60,9 @@ public class Job2 {
 		Job2 m=new Job2();
 		int[] aret=Job2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

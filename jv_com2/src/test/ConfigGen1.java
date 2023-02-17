@@ -1,7 +1,7 @@
 package test;
 import gen.ConfigGen;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class ConfigGen1 {
 	public static int log_level=2;
@@ -52,7 +52,7 @@ public class ConfigGen1 {
 		int base=50;
 		for(int i=0;i<10;i++){
 			int lb=i*5+base;
-			Log.prn(2, lb+"");
+			SLog.prn(2, lb+"");
 			eg.setParam("u_lb", (lb)*1.0/100+"");
 			eg.setParam("u_ub", (lb+5)*1.0/100+"");
 			eg.setParam("mod", (lb+5)+"");
@@ -104,9 +104,9 @@ public class ConfigGen1 {
 		ConfigGen1 m=new ConfigGen1();
 		int[] aret=ConfigGen1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

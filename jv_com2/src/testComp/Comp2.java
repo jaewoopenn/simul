@@ -4,8 +4,8 @@ package testComp;
 import comp.Comp;
 import comp.CompEx1;
 import task.TaskMng;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class Comp2 {
 	public static int idx=1;
@@ -21,13 +21,13 @@ public class Comp2 {
 		TaskMng tm=c.getTM();
 		tm.setX(0.5);
 		double ru=tm.getRUtil();
-		Log.prn(1, "RU:"+ru);
+		SLog.prn(1, "RU:"+ru);
 		double u=c.getST_U();
-		Log.prn(1, "init:"+u);
+		SLog.prn(1, "init:"+u);
 		u=c.getExt_U();
-		Log.prn(1, "ext:"+u);
+		SLog.prn(1, "ext:"+u);
 		u=c.getInt_U();
-		Log.prn(1, "int:"+u);
+		SLog.prn(1, "int:"+u);
 		return 0;
 	}
 	public int test2() 
@@ -76,9 +76,9 @@ public class Comp2 {
 		Comp2 m=new Comp2();
 		int[] aret=Comp2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

@@ -3,7 +3,7 @@ package testExp;
 import exp.Job;
 import exp.JobMng;
 import exp.JobSimul;
-import util.TEngine;
+import util.SEngineT;
 
 public class JobSimul1 {
 	public static int log_level=1;
@@ -83,9 +83,9 @@ public class JobSimul1 {
 		JobSimul1 m=new JobSimul1();
 		int[] aret=JobSimul1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

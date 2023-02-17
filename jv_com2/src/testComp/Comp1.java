@@ -3,8 +3,8 @@ package testComp;
 
 import comp.Comp;
 import comp.CompEx1;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class Comp1 {
 	public static int idx=6;
@@ -37,7 +37,7 @@ public class Comp1 {
 	{
 		Comp c=CompEx1.getComp3();
 		double ru=c.getTM().getRUtil();
-		Log.prn(1, "RU:"+ru);
+		SLog.prn(1, "RU:"+ru);
 		return 0;
 	}
 
@@ -95,9 +95,9 @@ public class Comp1 {
 		Comp1 m=new Comp1();
 		int[] aret=Comp1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

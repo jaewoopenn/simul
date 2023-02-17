@@ -6,7 +6,7 @@ import comp.CompFile;
 import comp.CompGen;
 import comp.CompGenParam;
 import comp.CompMng;
-import util.TEngine;
+import util.SEngineT;
 
 public class CompGen1 {
 	public static int idx=2;
@@ -76,9 +76,9 @@ public class CompGen1 {
 		CompGen1 m=new CompGen1();
 		int[] aret=CompGen1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

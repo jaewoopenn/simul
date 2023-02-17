@@ -1,6 +1,6 @@
 package anal;
 
-import util.Log;
+import util.SLog;
 
 public class AnalEDF extends Anal {
 	private double u;
@@ -11,7 +11,7 @@ public class AnalEDF extends Anal {
 	@Override
 	public void prepare() {
 		u=g_tm.getInfo().getUtil();
-		Log.prn(1, "det:"+u);
+		SLog.prn(1, "det:"+u);
 	}
 	
 	@Override

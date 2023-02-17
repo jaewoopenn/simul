@@ -3,8 +3,8 @@ package testPlatform;
 
 import exp.PlatformTM;
 import gen.ConfigGen;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 
 // schedulability 
@@ -66,13 +66,13 @@ public class Platform2 {
 		eg.setParam("p_ub","300");
 		PlatformTM p=getP();
 		p.writeCfg(eg);
-		Log.prn(3, "cfg");
+		SLog.prn(3, "cfg");
 		return 1;
 	}
 	public int test2() 
 	{
 		PlatformTM p=getP();
-//		p.genTS(false);
+		p.genTS(false);
 		return 1;
 	}
 	public int test3() 
@@ -124,9 +124,9 @@ public class Platform2 {
 		Platform2 m=new Platform2();
 		int[] aret=Platform2.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
 

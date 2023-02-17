@@ -3,11 +3,10 @@ package testAnal;
 import anal.AnalEDF_AD_E;
 import task.Task;
 import task.TaskMng;
-import task.TaskSet;
 import task.TaskSetUtil;
 import task.TaskVec;
-import util.Log;
-import util.TEngine;
+import util.SLog;
+import util.SEngineT;
 
 public class Anal1 {
 	public static int idx=1;
@@ -25,7 +24,7 @@ public class Anal1 {
 		a.init(tm);
 		a.prepare();
 		double x=a.computeX();
-		Log.prn(2, ""+x);
+		SLog.prn(2, ""+x);
 		return -1;
 	}
 
@@ -72,9 +71,9 @@ public class Anal1 {
 		Anal1 m=new Anal1();
 		int[] aret=Anal1.gret;
 		if(idx==-1)
-			TEngine.run(m,c,aret,10);
+			SEngineT.run(m,c,aret,10);
 		else
-			TEngine.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,idx,log_level);
 	}
 
 }

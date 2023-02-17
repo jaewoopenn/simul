@@ -11,7 +11,7 @@ import exp.ExpSimulTM;
 import exp.Platform;
 import anal.Anal;
 import anal.AnalEDF_VD;
-import util.Log;
+import util.SLog;
 import util.MList;
 import util.MUtil;
 
@@ -39,7 +39,7 @@ public class PlatformCom extends Platform{
 		for(int i=0;i<g_size;i++){
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
-			Log.prn(3, modStr);
+			SLog.prn(3, modStr);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			SimCompGen eg=new SimCompGen(cfg);
@@ -48,7 +48,7 @@ public class PlatformCom extends Platform{
 			else
 				eg.gen();
 		}
-		Log.prn(3, "com");
+		SLog.prn(3, "com");
 		
 	}
 	public void simulCom(){
@@ -63,7 +63,7 @@ public class PlatformCom extends Platform{
 		MList fu=new MList();
 		tsim.isSchTab=false;
 		Anal an=new AnalEDF_VD();
-		Log.prn(3, "prob:"+g_prob);
+		SLog.prn(3, "prob:"+g_prob);
 		for(int i=0;i<g_size;i++){
 			double sum=0;
 			int mod=i*g_step+g_start;
@@ -80,19 +80,19 @@ public class PlatformCom extends Platform{
 				sm.setMS_Prob(g_prob);
 				an.init(tm);
 				an.prepare();
-				cm.setX(an.computeX());
+				sm.setX(an.computeX());
 				tsim.init_sm_tm(sm,tm);
 				tsim.set_cm(cm);
 				eg.initSim(0, tsim);
 				eg.simul(0,g_dur);
 				SimulInfo si=eg.getSI(0);
 				ret=si.getDMR();
-				Log.prnc(2, j+","+ret+","+si.ms);
+				SLog.prnc(2, j+","+ret+","+si.ms);
 				sum+=ret;
-				Log.prn(2, " "+sum);
+				SLog.prn(2, " "+sum);
 			}
 			double avg=sum/size;
-			Log.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg));
+			SLog.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg));
 			if(isWrite)
 				fu.add(avg+"");
 		}
@@ -121,9 +121,9 @@ public class PlatformCom extends Platform{
 		TaskMng tm=cm.getTM();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
+		sm.setX(an.computeX());
 		an.init(tm);
 		an.prepare();
-		cm.setX(an.computeX());
 		ts.init_sm_tm(sm,tm);
 		ts.set_cm(cm);
 		ts.isSchTab=false;
@@ -132,7 +132,7 @@ public class PlatformCom extends Platform{
 		SimulInfo si=eg.getSI(0);
 //		si.prn();
 		ret=si.getDMR();
-		Log.prn(2, set+","+no+":"+ret+","+si.rel);
+		SLog.prn(2, set+","+no+":"+ret+","+si.rel);
 	}
 	
 	public int analCom(int set, int no,int kinds) {
@@ -144,7 +144,7 @@ public class PlatformCom extends Platform{
 		CompMng cm=eg.loadCM(no);
 		cm.setAlpha(g_a_l,g_a_u);
 		int ret=eg.analComp(cm,kinds);
-		Log.prn(2, set+","+no+":"+ret);
+		SLog.prn(2, set+","+no+":"+ret);
 		return ret;
 	}
 	
@@ -164,12 +164,12 @@ public class PlatformCom extends Platform{
 				CompMng cm=eg.loadCM(j);
 				cm.setAlpha(g_a_l,g_a_u);
 				ret=eg.analComp(cm,kinds);
-				Log.prn(2, j+","+ret);
+				SLog.prn(2, j+","+ret);
 				sum+=ret;
 //				Log.prn(2, " "+sum);
 			}
 			double avg=(double)sum/size;
-			Log.prn(3, (g_start+i*g_step)+":"+avg);
+			SLog.prn(3, (g_start+i*g_step)+":"+avg);
 			if(isWrite)
 				fu.add(avg+"");
 		}
@@ -188,7 +188,7 @@ public class PlatformCom extends Platform{
 			int size=eg.size();
 			for(int j=0;j<size;j++){
 				CompMng cm=eg.loadCM(j);
-				Log.prn(3, mod+" "+j+" "+cm.getMCUtil());
+				SLog.prn(3, mod+" "+j+" "+cm.getMCUtil());
 			}
 		}
 		

@@ -7,7 +7,7 @@ import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetMC;
 import task.TaskVec;
-import util.Log;
+import util.SLog;
 import util.MRand;
 
 public class CompMng {
@@ -51,7 +51,7 @@ public class CompMng {
 //			Log.prn(1, "cur:"+u);
 			
 		}
-		Log.prn(1, "rem:"+u);
+		SLog.prn(1, "rem:"+u);
 		
 	}
 
@@ -73,13 +73,13 @@ public class CompMng {
 	// prn
 	
 	public void prn(){
-		Log.prn(2, "tot:"+g_comp.size());
+		SLog.prn(2, "tot:"+g_comp.size());
 		for(Comp c:g_comp){
 			c.prn();
 		}
 	}
 	public void prnOff(){
-		Log.prn(2, "tot:"+g_comp.size());
+		SLog.prn(2, "tot:"+g_comp.size());
 		
 		for(Comp c:g_comp){
 			c.prnOff();
@@ -87,12 +87,6 @@ public class CompMng {
 	}
 	// set
 	
-	public void setX(double x) {
-//		for(Comp c:g_comp){
-//			c.getTM().setX(x);
-//		}
-		
-	}
 	public void setAlpha(double g_a_l, double g_a_u) {
 		MRand ru=new MRand();
 		for(Comp c:g_comp){

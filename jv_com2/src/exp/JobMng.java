@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 import java.util.Vector;
 
 import task.Task;
-import util.Log;
+import util.SLog;
 
 public class JobMng {
 	PriorityQueue<Job> g_jobs;
@@ -24,7 +24,7 @@ public class JobMng {
 //		Log.prnc(1, "cur:"+cur_t+" ");
 		if (j==null){
 			for (int i=0;i<g_task_num;i++)
-				Log.prnc(1, "-");
+				SLog.prnc(1, "-");
 			return;
 		} 
 		if (j.tsk.tid+1>g_task_num)
@@ -33,11 +33,11 @@ public class JobMng {
 		{
 			if(i==j.tsk.tid){
 				if(out_type==1)
-					Log.prnc(1, "+"); // end
+					SLog.prnc(1, "+"); // end
 				else
-					Log.prnc(1, "|"); // continue
+					SLog.prnc(1, "|"); // continue
 			} else {
-				Log.prnc(1, "-"); // empty
+				SLog.prnc(1, "-"); // empty
 			}
 		}
 //		Log.prn(1, " ");
