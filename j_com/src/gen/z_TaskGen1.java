@@ -1,6 +1,4 @@
 package gen;
-import gen.TaskGen;
-import gen.TaskGenParam;
 import task.TaskSet;
 import task.TaskVec;
 import task.TaskUtil;

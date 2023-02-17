@@ -1,5 +1,4 @@
 package gen;
-import gen.ConfigGen;
 import util.SEngineT;
 
 public class z_ConfigGen1 {

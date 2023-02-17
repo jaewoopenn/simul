@@ -2,15 +2,11 @@ package testComp;
 
 
 import gen.ConfigGen;
-import old.ExpSimulTM;
-import task.TaskSetMC;
-import task.TaskSetUtil;
 import anal.Anal;
 import anal.AnalEDF_AD_E;
 import comp.CompMng;
 import comp.SimCompGen;
 import exp.ExpSimulCom;
-import util.MList;
 import util.SEngineT;
 import util.SLog;
 
@@ -32,7 +28,7 @@ public class SimCompGen1 {
 	public int test2() 
 	{
 		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
-		Anal an=new AnalEDF_AD_E();
+//		Anal an=new AnalEDF_AD_E();
 		cfg.readFile();
 		ExpSimulCom eg=new ExpSimulCom(cfg);
 		CompMng cm=eg.loadCM(1);

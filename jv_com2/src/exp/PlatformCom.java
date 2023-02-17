@@ -1,4 +1,4 @@
-package comp;
+package exp;
 
 
 import gen.ConfigGen;
@@ -8,11 +8,11 @@ import sim.com.TaskSimulCom;
 import sim.com.TaskSimulCom_FC;
 import sim.com.TaskSimulCom_NA;
 import task.TaskMng;
-import exp.ExpSimulCom;
-import exp.Platform;
 import anal.Anal;
 import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
+import comp.CompMng;
+import comp.SimCompGen;
 import util.SLog;
 import util.MList;
 import util.MUtil;
@@ -125,9 +125,7 @@ public class PlatformCom extends Platform{
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
 		ExpSimulCom eg=new ExpSimulCom(cfg);
-		CompMng cm=eg.loadCM(no);
-		cm.setAlpha(g_a_l,g_a_u);
-		int ret=eg.analComp(cm,kinds);
+		int ret=analCom_in(no,eg, kinds);
 		SLog.prn(2, set+","+no+":"+ret);
 		return ret;
 	}
@@ -145,9 +143,7 @@ public class PlatformCom extends Platform{
 			ExpSimulCom eg=new ExpSimulCom(cfg);
 			int size=eg.size();
 			for(int j=0;j<size;j++){
-				CompMng cm=eg.loadCM(j);
-				cm.setAlpha(g_a_l,g_a_u);
-				ret=eg.analComp(cm,kinds);
+				ret=analCom_in(j,eg, kinds);
 				SLog.prn(2, j+","+ret);
 				sum+=ret;
 //				Log.prn(2, " "+sum);
@@ -161,6 +157,11 @@ public class PlatformCom extends Platform{
 			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+".txt");
 		
 		
+	}
+	private int analCom_in(int j, ExpSimulCom eg,int kinds) {
+		CompMng cm=eg.loadCM(j);
+		cm.setAlpha(g_a_l,g_a_u);
+		return eg.analComp(cm,kinds);
 	}
 	public void prnCom() {
 		for(int i=0;i<g_size;i++){

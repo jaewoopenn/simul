@@ -1,6 +1,4 @@
 package gen;
-import gen.ConfigGen;
-import gen.SysGen;
 import util.SEngineT;
 
 public class z_SysGen1 {

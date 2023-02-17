@@ -3,15 +3,10 @@ package old;
 
 import gen.ConfigGen;
 import sim.SimulInfo;
-import sim.TaskSimul;
 import sim.mc.TaskSimulMC;
 import task.TaskMng;
-import comp.AnalComp;
-import comp.CompFile;
-import comp.CompMng;
 import exp.ExpSimul;
 import anal.Anal;
-import util.SLog;
 import util.MUtil;
 
 public class ExpSimulTM extends ExpSimul{

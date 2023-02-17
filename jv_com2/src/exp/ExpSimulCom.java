@@ -3,9 +3,7 @@ package exp;
 
 import gen.ConfigGen;
 import sim.SimulInfo;
-import sim.TaskSimul;
 import sim.com.TaskSimulCom;
-import sim.mc.TaskSimulMC;
 import task.TaskMng;
 import comp.AnalComp;
 import comp.CompFile;

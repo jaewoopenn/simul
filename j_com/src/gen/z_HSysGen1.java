@@ -1,5 +1,4 @@
 package gen;
-import gen.ConfigGen;
 import util.SEngineT;
 import util.SLog;
 
