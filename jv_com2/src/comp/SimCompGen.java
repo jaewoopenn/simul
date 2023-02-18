@@ -3,9 +3,6 @@ package comp;
 import gen.ConfigGen;
 import gen.TaskGenParam;
 import util.MOut;
-import util.MUtil;
-import anal.AnalEDF_AD_E;
-import anal.AnalEDF_VD;
 
 public class SimCompGen {
 	private CompGen g_cg;

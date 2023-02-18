@@ -82,7 +82,7 @@ public class PlatformTM extends Platform{
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
 		ExpSimulTM eg=new ExpSimulTM(cfg);
-		int size=eg.size();
+		int size=cfg.getSize();
 		for(int j:MUtil.loop(size)){
 			TaskMng tm=(TaskSetUtil.loadFile(new MList(cfg.get_fn(j)))).getTM();
 //			TaskMng tm=TaskMng.getFile(cfg.get_fn(j));
@@ -163,12 +163,11 @@ public class PlatformTM extends Platform{
 		int sum=0;
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimulTM eg=new ExpSimulTM(cfg);
-		int size=eg.size();
+		int size=cfg.getSize();
 		for(int j=0;j<size;j++){
 			String fn=cfg.get_fn(j);
 			TaskSet tm=TaskSetUtil.loadFile(new MList(fn));
-			int ret=eg.anal(tm.getTM(),an);
+			int ret=anal(tm.getTM(),an);
 			SLog.prn(2, j+","+ret);
 			sum+=ret;
 //			Log.prn(2, " "+sum);
@@ -188,11 +187,11 @@ public class PlatformTM extends Platform{
 	public void anal_one(Anal an, int i, int j) {
 		ConfigGen cfg=new ConfigGen(getCfgFN(i));
 		cfg.readFile();
-		ExpSimulTM eg=new ExpSimulTM(cfg);
+//		ExpSimulTM eg=new ExpSimulTM(cfg);
 		String fn=cfg.get_fn(j);
 		TaskSet tm=TaskSetUtil.loadFile(new MList(fn));
-		int ret=eg.anal(tm.getTM(),an);
-		SLog.prn(3, i+","+j+":"+ret);
+//		int ret=eg.anal(tm.getTM(),an);
+//		SLog.prn(3, i+","+j+":"+ret);
 		
 	}	
 	
@@ -203,8 +202,8 @@ public class PlatformTM extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimulTM eg=new ExpSimulTM(cfg);
-			int size=eg.size();
+//			ExpSimulTM eg=new ExpSimulTM(cfg);
+			int size=cfg.getSize();
 			for(int j=0;j<size;j++){
 				String fn=cfg.get_fn(j);
 				TaskMng tm=(TaskSetUtil.loadFile(new MList(fn))).getTM();
@@ -223,6 +222,12 @@ public class PlatformTM extends Platform{
 
 	private String getRsFN(int no){
 		return g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+no+".txt";
+	}
+
+	@Override
+	public int anal(TaskMng tm, Anal a) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

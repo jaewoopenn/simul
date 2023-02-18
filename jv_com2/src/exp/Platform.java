@@ -1,10 +1,12 @@
 package exp;
 
+import anal.Anal;
+import task.TaskMng;
 import util.MList;
 
 
 
-public class Platform {
+public abstract class Platform {
 	protected int g_kinds;
 	protected int g_start;
 	protected int g_size;
@@ -18,8 +20,6 @@ public class Platform {
 	public boolean isWrite=true;
 	protected String g_RS;
 	protected MList g_fu;
-	
-	
 	public void write_x_axis() {
 		MList fu=new MList();
 
@@ -63,4 +63,6 @@ public class Platform {
 		this.g_RS=s;
 		
 	}
+	public abstract int anal(TaskMng tm, Anal a) ;
+
 }

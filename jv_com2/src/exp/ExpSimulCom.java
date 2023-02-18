@@ -4,13 +4,6 @@ package exp;
 import gen.ConfigGen;
 import sim.SimulInfo;
 import sim.com.TaskSimulCom;
-import task.TaskMng;
-import comp.AnalComp;
-import comp.CompFile;
-import comp.CompMng;
-import anal.Anal;
-import util.SLog;
-import util.MUtil;
 
 public class ExpSimulCom extends ExpSimul{
 	private TaskSimulCom g_tsim;
@@ -19,19 +12,10 @@ public class ExpSimulCom extends ExpSimul{
 	}
 	
 
-	@Override
-	public int anal(TaskMng tm, Anal a) {
-//		AnalEDF_AD_E a=new AnalEDF_AD_E();
-		a.init(tm);
-		a.prepare();
-//		Log.prn(2, ""+a.getDtm());
-		boolean b=a.is_sch();
-		return MUtil.btoi(b);
-	}
-	
 
 
-	public void initSim(int core, TaskSimulCom tsim) {
+
+	public void initSim(TaskSimulCom tsim) {
 		g_tsim=tsim;
 	}
 
@@ -61,22 +45,7 @@ public class ExpSimulCom extends ExpSimul{
 
 
 	
-	//comp
-	public CompMng loadCM(int i){
-		String fn=g_cfg.get_fn(i);
-		SLog.prn(2, fn);
-		CompMng cm=CompFile.loadFile(fn);
-		return cm;
-	}
-	
-	public int analComp(CompMng cm,int kinds) {
-		cm.part();
-		cm.analMaxRes();
-		AnalComp a=new AnalComp(cm);
-		a.computeX();
-		return 	a.anal(kinds);
 
-	}
 
 
 }

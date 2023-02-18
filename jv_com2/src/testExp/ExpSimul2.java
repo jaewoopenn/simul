@@ -1,8 +1,4 @@
 package testExp;
-import comp.CompMng;
-import exp.ExpSimulCom;
-import gen.ConfigGen;
-import util.SLog;
 import util.SEngineT;
 
 public class ExpSimul2 {
@@ -13,13 +9,13 @@ public class ExpSimul2 {
 
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
-		cfg.readFile();
-		//cfg.prn(2);
-		ExpSimulCom eg=new ExpSimulCom(cfg);
-		CompMng cm=eg.loadCM(0);
-		int ret=eg.analComp(cm,0);
-		SLog.prn(1, ""+ret);
+//		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
+//		cfg.readFile();
+//		//cfg.prn(2);
+//		ExpSimulCom eg=new ExpSimulCom(cfg);
+//		CompMng cm=eg.loadCM(0);
+//		int ret=eg.analComp(cm,0);
+//		SLog.prn(1, ""+ret);
 		return 0;
 	}
 	public int test2() 

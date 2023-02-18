@@ -11,6 +11,8 @@ import task.TaskMng;
 import anal.Anal;
 import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
+import comp.AnalComp;
+import comp.CompFile;
 import comp.CompMng;
 import comp.SimCompGen;
 import util.SLog;
@@ -27,22 +29,22 @@ public class PlatformCom extends Platform{
 		
 	}
 	
-	public void writeComCfg(ConfigGen g_cfg) {
-		g_cfg.setParam("subfix", g_path+"/ts");
+	public void writeComCfg(ConfigGen cfg) {
+		cfg.setParam("subfix", g_path+"/ts");
 		for(int i=0;i<g_size;i++){
 			int mod=i*g_step+g_start;
 			String modStr=g_ts_name+"_"+(mod);
-			g_cfg.setParam("num",g_sys_num+"");
+			cfg.setParam("num",g_sys_num+"");
 			if(g_kinds==0){
-				g_cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
-				g_cfg.setParam("u_ub", (mod)*1.0/100+"");
+				cfg.setParam("u_lb", (mod-g_step)*1.0/100+"");
+				cfg.setParam("u_ub", (mod)*1.0/100+"");
 			} else{
-				g_cfg.setParam("prob_hi",(mod*1.0/100)+"");
+				cfg.setParam("prob_hi",(mod*1.0/100)+"");
 			}
-			g_cfg.setParam("mod", modStr);
-			g_cfg.setParam("a_lb", g_alpha_l+"");
-			g_cfg.setParam("a_ub", g_alpha_u+"");
-			g_cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
+			cfg.setParam("mod", modStr);
+			cfg.setParam("a_lb", g_alpha_l+"");
+			cfg.setParam("a_ub", g_alpha_u+"");
+			cfg.write(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		}
 	}
 	public void genCom(boolean bCheck) {
@@ -74,9 +76,10 @@ public class PlatformCom extends Platform{
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			ExpSimulCom eg=new ExpSimulCom(cfg);
-			int size=eg.size();
+			int size=cfg.getSize();
 			for(int j=0;j<size;j++){
-				SimulInfo si=simul_com_in(j,eg,tsim);
+				CompMng cm=loadCM(cfg.get_fn(j));
+				SimulInfo si=simul_com_in(cm,eg,tsim);
 				sum+=si.getDMR();
 				SLog.prn(2, " "+sum);
 			}
@@ -89,9 +92,8 @@ public class PlatformCom extends Platform{
 			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
 		
 	}
-	private SimulInfo simul_com_in(int j, ExpSimulCom eg, TaskSimulCom tsim) {
+	private SimulInfo simul_com_in(CompMng cm, ExpSimulCom eg, TaskSimulCom tsim) {
 		Anal an=new AnalEDF_AD_E();
-		CompMng cm=eg.loadCM(j);
 		cm.setAlpha(g_alpha_l,g_alpha_u);
 		TaskMng tm=cm.getTM();
 		SysMng sm=new SysMng();
@@ -101,10 +103,10 @@ public class PlatformCom extends Platform{
 		sm.setX(an.computeX());
 		tsim.init_sm_tm(sm,tm);
 		tsim.set_cm(cm);
-		eg.initSim(0, tsim);
+		eg.initSim(tsim);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI();
-		SLog.prnc(2, j+","+si.getDMR()+","+si.ms);
+		SLog.prnc(2, cm+","+si.getDMR()+","+si.ms);
 		return si;
 	}
 	public void simulCom_one(int kinds, int set, int no) {
@@ -122,7 +124,8 @@ public class PlatformCom extends Platform{
 		ExpSimulCom eg=new ExpSimulCom(cfg);
 		
 		//		si.prn();
-		SimulInfo si=simul_com_in(no,eg,tsim);
+		CompMng cm=loadCM(cfg.get_fn(no));
+		SimulInfo si=simul_com_in(cm,eg,tsim);
 		SLog.prn(2, set+","+no+":"+si.getDMR()+","+si.rel);
 	}
 	
@@ -131,8 +134,7 @@ public class PlatformCom extends Platform{
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
-		ExpSimulCom eg=new ExpSimulCom(cfg);
-		int ret=analCom_in(no,eg, kinds);
+		int ret=analCom_in(cfg.get_fn(no), kinds);
 		SLog.prn(2, set+","+no+":"+ret);
 		return ret;
 	}
@@ -147,10 +149,9 @@ public class PlatformCom extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimulCom eg=new ExpSimulCom(cfg);
-			int size=eg.size();
+			int size=cfg.getSize();
 			for(int j=0;j<size;j++){
-				ret=analCom_in(j,eg, kinds);
+				ret=analCom_in(cfg.get_fn(j), kinds);
 				SLog.prn(2, j+","+ret);
 				sum+=ret;
 //				Log.prn(2, " "+sum);
@@ -165,11 +166,11 @@ public class PlatformCom extends Platform{
 		
 		
 	}
-	private int analCom_in(int j, ExpSimulCom eg,int kinds) {
-		CompMng cm=eg.loadCM(j);
+	private int analCom_in(String fn, int kinds) {
+		CompMng cm=loadCM(fn);
 //		SLog.prn(3, g_alpha_l+","+g_alpha_u);
 		cm.setAlpha(g_alpha_l,g_alpha_u);
-		return eg.analComp(cm,kinds);
+		return analComp(cm,kinds);
 	}
 	public void prnCom() {
 		for(int i=0;i<g_size;i++){
@@ -177,14 +178,37 @@ public class PlatformCom extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimulCom eg=new ExpSimulCom(cfg);
-			int size=eg.size();
+			int size=cfg.getSize();
 			for(int j=0;j<size;j++){
-				CompMng cm=eg.loadCM(j);
+				CompMng cm=loadCM(cfg.get_fn(j));
 				SLog.prn(3, mod+" "+j+" "+cm.getMCUtil());
 			}
 		}
 		
 	}
+
+	public int anal(TaskMng tm, Anal a) {
+//		AnalEDF_AD_E a=new AnalEDF_AD_E();
+		a.init(tm);
+		a.prepare();
+//		Log.prn(2, ""+a.getDtm());
+		boolean b=a.is_sch();
+		return MUtil.btoi(b);
+	}
+	//comp
+	public CompMng loadCM(String fn){
+		SLog.prn(2, fn);
+		CompMng cm=CompFile.loadFile(fn);
+		return cm;
+	}
+	
+	public int analComp(CompMng cm,int kinds) {
+		cm.part();
+		cm.analMaxRes();
+		AnalComp a=new AnalComp(cm);
+		a.computeX();
+		return 	a.anal(kinds);
+
+	}	
 	
 }

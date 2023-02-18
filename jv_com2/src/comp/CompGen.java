@@ -3,8 +3,6 @@ package comp;
 
 import gen.TaskGenMC;
 import gen.TaskGenParam;
-import task.TaskMng;
-import task.TaskSetUtil;
 import util.SLog;
 
 public class CompGen {

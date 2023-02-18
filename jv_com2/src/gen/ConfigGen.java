@@ -109,6 +109,9 @@ public class ConfigGen {
 	public void prn(int lv) {
 		SLog.prn(lv,readPar("u_ub")+"--");
 	}
+	public int getSize() {
+		return readInt("num");
+	}
 	public static ConfigGen getCfg()	{
 		ConfigGen eg=new ConfigGen("");
 		eg.setParam("u_lb","0.95");

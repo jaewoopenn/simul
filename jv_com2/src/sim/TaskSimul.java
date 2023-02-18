@@ -2,11 +2,9 @@ package sim;
 
 
 import sim.job.Job;
-import sim.job.JobSimul;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
-import util.SLog;
 import util.MRand;
 
 public abstract class TaskSimul {

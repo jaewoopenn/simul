@@ -27,14 +27,14 @@ public class SimCompGen1 {
 	}
 	public int test2() 
 	{
-		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
-//		Anal an=new AnalEDF_AD_E();
-		cfg.readFile();
-		ExpSimulCom eg=new ExpSimulCom(cfg);
-		CompMng cm=eg.loadCM(1);
-		cm.setAlpha(0,0.3);
-		int ret=eg.analComp(cm,1);
-		SLog.prn(3, ret);
+//		ConfigGen cfg=new ConfigGen("fc/cfg/cfg_util_95.txt");
+////		Anal an=new AnalEDF_AD_E();
+//		cfg.readFile();
+//		ExpSimulCom eg=new ExpSimulCom(cfg);
+//		CompMng cm=eg.loadCM(1);
+//		cm.setAlpha(0,0.3);
+//		int ret=eg.analComp(cm,1);
+//		SLog.prn(3, ret);
 		
 		return 0;
 	}
