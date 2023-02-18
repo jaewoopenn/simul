@@ -37,7 +37,7 @@ public class Comp {
 	public void prn() {
 		SLog.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());
 		SLog.prn(1, "maxRes:"+maxRes);
-//		g_tm.prn();
+		g_tm.prn();
 	}
 	public void prnOff() {
 		SLog.prn(1, "cid:"+cid+", alpha:"+alpha+", x:"+g_tm.getInfo().getX());

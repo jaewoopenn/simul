@@ -89,7 +89,6 @@ public class PlatformTM extends Platform{
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_prob);
 			an.init(tm);
-			an.prepare();
 			sm.setX(an.computeX());
 			tsim.init_sm_tm(sm,tm);
 			eg.initSim(0, tsim);
@@ -130,7 +129,6 @@ public class PlatformTM extends Platform{
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
 		an.init(tm);
-		an.prepare();
 		tm.setX(an.computeX());
 		tsim.init_sm_tm(sm,tm);
 		eg.initSim(0, tsim);

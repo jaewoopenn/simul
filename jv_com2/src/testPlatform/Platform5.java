@@ -7,8 +7,8 @@ import util.SEngineT;
 public class Platform5 {
 //	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
-//	public static int idx=4;
+//	public static int idx=3;
+	public static int idx=4;
 //	public static int idx=-1;
 	public static int log_level=3;
 	public int test1() 
@@ -34,7 +34,6 @@ public class Platform5 {
 		p.test1();
 		p.test2();
 		p.test3();
-//		MUtil.sendMail("DMR anal OK");
 		return 0;
 	}
 	public  int test4() 
@@ -45,7 +44,6 @@ public class Platform5 {
 		p.test1();
 		p.test2();
 		p.test3();
-		MUtil.sendMail("SCH anal OK");
 		return 0;
 	}
 	public  int test5() 

@@ -43,7 +43,6 @@ public class CompMng1 {
 		tm.prn();
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
-		a.prepare();
 		double x=a.computeX();
 		tm.setX(x);
 		cm.prn();

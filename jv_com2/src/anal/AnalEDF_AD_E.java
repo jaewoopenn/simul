@@ -21,13 +21,15 @@ public class AnalEDF_AD_E extends Anal {
 		super();
 		g_name="MC-ADAPT";
 	}
+
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 		comp_X();
 		comp_hi_prefer();
+		
 	}
-	
+
 	private void comp_X() {
 		SLog.prn(2, g_ht_hu+","+g_lt_lu);
 		double cal_x=(1-g_ht_hu)/g_lt_lu;
@@ -86,7 +88,6 @@ public class AnalEDF_AD_E extends Anal {
 	public static double computeX(TaskMng tm) {
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
-		a.prepare();
 		return a.computeX();
 	}
 	

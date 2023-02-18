@@ -13,7 +13,7 @@ public class AnalAMC extends Anal {
 		g_name="AMC"; // AMC-rtb
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		sz=g_tm.getTasks().length;
 		prio=new int[sz];
 	}

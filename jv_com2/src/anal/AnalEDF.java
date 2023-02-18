@@ -9,9 +9,10 @@ public class AnalEDF extends Anal {
 		g_name="EDF";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		u=g_tm.getInfo().getUtil();
 		SLog.prn(1, "det:"+u);
+		
 	}
 	
 	@Override
@@ -35,6 +36,7 @@ public class AnalEDF extends Anal {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 
 

@@ -52,7 +52,6 @@ public class z_TaskSimul_post {
 		
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
-		a.prepare();
 		a.proceed_if_sch();
 		
 		double x=a.computeX();

@@ -63,6 +63,7 @@ public abstract class Platform {
 		this.g_RS=s;
 		
 	}
+	
 	public abstract int anal(TaskMng tm, Anal a) ;
 
 }

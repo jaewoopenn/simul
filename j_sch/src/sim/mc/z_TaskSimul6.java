@@ -35,7 +35,6 @@ public class z_TaskSimul6 {
 			Anal a;
 			a=new AnalEDF_IV();
 			a.init(tm);
-			a.prepare();
 			double d=a.getDtm();
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(prob);
@@ -53,7 +52,6 @@ public class z_TaskSimul6 {
 			
 			a=new AnalEDF_AD_E();
 			a.init(tm);
-			a.prepare();
 			d=a.getDtm();
 			sm=new SysMng();
 			sm.setMS_Prob(prob);
@@ -98,7 +96,6 @@ public class z_TaskSimul6 {
 			Anal a;
 			a=new AnalEDF_IV();
 			a.init(tm);
-			a.prepare();
 			double d=a.getDtm();
 			SLog.prnc(2, "iv:"+d);
 
@@ -106,7 +103,6 @@ public class z_TaskSimul6 {
 			
 			a=new AnalEDF_AD_E();
 			a.init(tm);
-			a.prepare();
 			d=a.getDtm();
 			SLog.prn(2, " post2:"+d);
 
@@ -130,7 +126,6 @@ public class z_TaskSimul6 {
 			
 			a=new AnalEDF_AD_E();
 			a.init(tm);
-			a.prepare();
 			d=a.getDtm();
 			SLog.prn(2, " post2:"+d);
 			
@@ -176,7 +171,6 @@ public class z_TaskSimul6 {
 
 			a=new AnalEDF_AD_E();
 			a.init(tm);
-			a.prepare();
 			d=a.getDtm();
 			sm=new SysMng();
 			sm.setMS_Prob(prob);

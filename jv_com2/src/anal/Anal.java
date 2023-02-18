@@ -10,6 +10,7 @@ public abstract class Anal {
 	public void init(TaskMng mng) {
 //		Log.prn(1, "Algo:"+g_name);
 		g_tm=mng;
+		prepare();
 	}
 	public String getName() {
 		return g_name;
@@ -33,8 +34,8 @@ public abstract class Anal {
 	}
 
 	// abs method
+	protected abstract void prepare();
 	public abstract void prn();
-	public abstract void prepare();
 	public abstract double getDtm();
 	public abstract double computeX();
 	public abstract double getExtra(int i);

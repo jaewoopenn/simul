@@ -24,7 +24,6 @@ public class ExpSimul1 {
 		TaskSet tm=TaskSetUtil.loadFile(new MList(fn));
 		Anal an=new AnalEDF_VD();
 		an.init(tm.getTM());
-		an.prepare();
 		eg.initSim(0, new TaskSimul_EDF_VD());
 		eg.simul(0,1000);
 		SimulInfo si=eg.getSI();

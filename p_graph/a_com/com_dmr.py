@@ -42,7 +42,7 @@ def main():
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.50,0.95)
+    mp.xlim(0.55,1.0)
     mp.ylim(0, 0.5)
 #     mp.ylim(0, 1.02)
     mp.legendBL()

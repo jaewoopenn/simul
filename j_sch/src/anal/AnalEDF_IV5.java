@@ -23,7 +23,7 @@ public class AnalEDF_IV5 extends Anal {
 		g_name="MC-RUN-BAL";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 	}
 	private ArrayList<Double> getDelta(){

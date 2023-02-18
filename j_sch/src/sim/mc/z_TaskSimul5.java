@@ -67,7 +67,6 @@ public class z_TaskSimul5 {
 	private void simul(Anal a, TaskSimul_IMC ts,TaskMng tm,int et) {
 		SLog.prn(2, "--!!!----------");
 		a.init(tm);
-		a.prepare();
 		double d=a.getDtm();
 		SLog.prn(2, "det:"+d);
 		SysMng sm=new SysMng();
@@ -112,7 +111,6 @@ public class z_TaskSimul5 {
 		
 		a=new AnalEDF_AD_E();
 		a.init(tm);
-		a.prepare();
 		double d=a.getDtm();
 		SLog.prn(2, "det:"+d);
 		SysMng sm=new SysMng();
@@ -159,7 +157,6 @@ public class z_TaskSimul5 {
 		
 		a=new AnalEDF_IV2();
 		a.init(tm);
-		a.prepare();
 		d=a.getDtm();
 		SLog.prn(2, "det:"+d);
 		SysMng sm=new SysMng();

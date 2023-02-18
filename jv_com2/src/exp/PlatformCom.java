@@ -99,7 +99,7 @@ public class PlatformCom extends Platform{
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
 		an.init(tm);
-		an.prepare();
+
 		sm.setX(an.computeX());
 		tsim.init_sm_tm(sm,tm);
 		tsim.set_cm(cm);
@@ -190,7 +190,6 @@ public class PlatformCom extends Platform{
 	public int anal(TaskMng tm, Anal a) {
 //		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tm);
-		a.prepare();
 //		Log.prn(2, ""+a.getDtm());
 		boolean b=a.is_sch();
 		return MUtil.btoi(b);

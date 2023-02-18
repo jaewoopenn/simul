@@ -23,7 +23,7 @@ public class AnalEDF_IV2 extends Anal {
 		g_name="MC-RUN-LO-MAX";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 	}
 	private double getHSum() {

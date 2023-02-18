@@ -116,7 +116,6 @@ public abstract class Platform_base {
 			if(tm==null) break;
 
 			a.init(tm);
-			a.prepare();
 //			a.prn();
 			if(a.is_sch()) {
 				fu.add("1");
@@ -201,7 +200,6 @@ public abstract class Platform_base {
 			if(tm==null) break;
 			
 			a.init(tm);
-			a.prepare();
 			prog.inc();
 			if(!a.is_sch()) {
 				SLog.prn(2, "no sch "+i);

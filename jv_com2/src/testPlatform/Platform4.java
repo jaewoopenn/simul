@@ -36,7 +36,7 @@ public class Platform4 {
 		PlatformCom p=getCommmon();
 		p.setTSName("util_sim");
 		p.setKinds(0);
-		p.setStart(50);
+		p.setStart(55);
 		p.setSize(10);
 //		p.setStart(100);
 //		p.setSize(1);
@@ -99,7 +99,7 @@ public class Platform4 {
 	public int test3() 
 	{
 		PlatformCom p=getP();
-//		p.setAlpha(0.25,0.75);
+		p.setAlpha(0.25,0.75);
 //		p.isWrite=false;
 		p.write_x_axis();
 		p.simulCom(0);

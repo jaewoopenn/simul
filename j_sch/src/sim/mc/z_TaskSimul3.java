@@ -46,7 +46,6 @@ public class z_TaskSimul3 {
 //		tm.prnTxt();
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
-		a.prepare();
 		
 		sm.setX(a.computeX());
 //		sm.prn();
@@ -78,7 +77,6 @@ public class z_TaskSimul3 {
 //		tm.prnTxt();
 		Anal a=AnalSel.getAnal(0);
 		a.init(tm);
-		a.prepare();
 //		a.prn();
 //		SLog.prn(1, a.computeX());
 		double x=a.computeX();

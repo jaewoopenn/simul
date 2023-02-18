@@ -16,7 +16,7 @@ public class AnalEDF_VD extends Anal {
 	}
 
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		g_info=g_tm.getInfo();
 		lotasks_loutil=g_info.getUtil_LC();
 		hitasks_loutil=g_info.getUtil_HC_LO();

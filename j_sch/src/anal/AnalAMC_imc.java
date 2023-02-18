@@ -12,8 +12,9 @@ public class AnalAMC_imc extends Anal {
 		super();
 		g_name="AMC-IMC";
 	}
+	
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		sz=g_tm.getTasks().length;
 		prio=new int[sz];
 	}

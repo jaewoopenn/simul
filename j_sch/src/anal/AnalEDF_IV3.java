@@ -24,7 +24,7 @@ public class AnalEDF_IV3 extends Anal {
 		g_name="MC-RUN";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 	}
 	private double getD() {

@@ -117,6 +117,10 @@ public class Task {
 		SLog.prnc(2, ",vd:"+vd);
 		SLog.prnc(2, ",cl:"+c_l);
 		SLog.prnc(2, ",ch:"+c_h);
+		if (is_hi_preferred)
+			SLog.prnc(2,",HO");
+		else
+			SLog.prnc(2,",N");
 		if (is_HC)
 			SLog.prn(2,", HC");
 		else
@@ -229,6 +233,10 @@ public class Task {
 	//set Param
 	public void setX(double x){
 		this.x=x;
+		if(x>1) {
+			SLog.err("VD set error x>1:"+x);
+		}
+		SLog.prn(1, "x:"+x);
 		this.vd=x*this.period;
 	}
 	public void setHI_only() {

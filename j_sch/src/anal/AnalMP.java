@@ -25,7 +25,7 @@ public class AnalMP extends Anal {
 	
 	
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 		comp_X(g_lt_lu);
 		comp_hi_prefer();

@@ -20,12 +20,10 @@ public class z_Anal1 {
 //		SLog.prn(1, tm.getDeLoUtil());
 		Anal a=new AnalEDF_IMC();
 		a.init(tm);
-		a.prepare();
 		a.prn();
 		
 		a=new AnalEDF_VD_IMC();
 		a.init(tm);
-		a.prepare();
 		a.prn();
 		return -1;
 	}
@@ -35,7 +33,6 @@ public class z_Anal1 {
 		TaskMng tm=TS_IMC1.ts2();
 		Anal a=new AnalEDF_VD_IMC();
 		a.init(tm);
-		a.prepare();
 		a.prn();
 		return -1;
 	}
@@ -60,7 +57,6 @@ public class z_Anal1 {
 
 		a=new AnalEDF_RUN();
 		a.init(tm);
-		a.prepare();
 		double d=a.getDtm();
 		SLog.prn(1, "det:"+d);
 		

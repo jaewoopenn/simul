@@ -43,14 +43,12 @@ public class z_TaskSimul7 {
 		
 		a=new AnalEDF_IV4();
 		a.init(tm);
-		a.prepare();
 		d=a.getDtm();
 		SLog.prn(2, "RUN det:"+d);
 		
 		a=new AnalEDF_AD_E();
 //		a=new AnalEDF_IV3();
 		a.init(tm);
-		a.prepare();
 		d=a.getDtm();
 		SLog.prn(2, "ADE det:"+d);
 
@@ -71,14 +69,12 @@ public class z_TaskSimul7 {
 			tm=sy.loadOne();
 			a=new AnalEDF_IV4();
 			a.init(tm);
-			a.prepare();
 			d=a.getDtm();
 			SLog.prn(2, "RUN det:"+d);
 			
 			a=new AnalEDF_AD_E();
 //			a=new AnalEDF_IV3();
 			a.init(tm);
-			a.prepare();
 			d=a.getDtm();
 			SLog.prn(2, "ADE det:"+d);
 			SLog.prn(2, "---------");
@@ -112,7 +108,6 @@ public class z_TaskSimul7 {
 	private void simul(Anal a, TaskSimul_IMC ts,TaskMng tm,int et) {
 		SLog.prn(2, "--!!!----------");
 		a.init(tm);
-		a.prepare();
 		double d=a.getDtm();
 		SLog.prn(2, "det:"+d);
 		SysMng sm=new SysMng();

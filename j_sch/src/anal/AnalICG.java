@@ -13,7 +13,7 @@ public class AnalICG extends Anal {
 		g_name="ICG";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		sz=g_tm.getTasks().length;
 		prio=new int[sz];
 	}

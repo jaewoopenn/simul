@@ -25,11 +25,13 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		if(sm!=null) {
 			double x=sm.getX();
 			if(x>0) {
-				tm.setX(sm.getX());
+				tm.setX(x);
 			}
 //			tm.prnTxt();
-//			SLog.err("test");
+			SLog.prn(1,"sm set:"+x);
 			g_sm=sm;
+		} else {
+			SLog.err("sm null");
 		}
 		g_tm=tm;
 		init();
@@ -41,6 +43,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 	@Override
 	public void simul_end() {
 		g_si.drop+=g_jsm.simul_end();
+		g_tm.prn();
 	}
 	
 	

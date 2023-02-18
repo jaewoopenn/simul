@@ -19,7 +19,6 @@ public class Anal1 {
 		tmp.add(new Task(6,1,5));
 		AnalEDF_AD_E a=new AnalEDF_AD_E();
 		a.init(tmp.getTM());
-		a.prepare();
 		double x=a.computeX();
 		SLog.prn(2, ""+x);
 		return -1;

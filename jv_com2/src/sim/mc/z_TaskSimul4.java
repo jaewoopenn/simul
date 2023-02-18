@@ -39,7 +39,6 @@ public class z_TaskSimul4 {
 		TaskMng tm=TS_MC3.ts3();
 		SysMng sm=getSM();
 		a.init(tm);
-		a.prepare();
 		sm.setX(a.computeX());
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
@@ -61,7 +60,6 @@ public class z_TaskSimul4 {
 		TaskMng tm=TS_MC3.ts3();
 		SysMng sm=getSM();
 		a.init(tm);
-		a.prepare();
 		sm.setX(a.computeX());
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);

@@ -79,7 +79,6 @@ public class SysGen {
 			return true;
 		TaskMng tm=g_tg.getTS().getTM();
 		a.init(tm);
-		a.prepare();
 //		tm.prnInfo();
 		if(!a.is_sch()) {		
 //			SLog.prn(2,"Not OK");

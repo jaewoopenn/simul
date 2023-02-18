@@ -16,7 +16,6 @@ public class AnalComp {
 		TaskMng tm=g_cm.getTM();
 		Anal a=new AnalEDF_VD();
 		a.init(tm);
-		a.prepare();
 		double x=a.computeX();
 		SLog.prn(1, "sch:"+a.is_sch());
 		SLog.prn(1, "x:"+x);

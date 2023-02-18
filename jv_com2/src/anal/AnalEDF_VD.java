@@ -15,7 +15,7 @@ public class AnalEDF_VD extends Anal {
 		g_name="VD";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		g_info=g_tm.getInfo();
 		lotasks_loutil=g_info.getUtil_LC();
 		hitasks_loutil=g_info.getUtil_HC_LO();
@@ -50,7 +50,6 @@ public class AnalEDF_VD extends Anal {
 	public static double computeX(TaskMng tm) {
 		AnalEDF_VD a=new AnalEDF_VD();
 		a.init(tm);
-		a.prepare();
 		return a.computeX();
 	}
 	@Override

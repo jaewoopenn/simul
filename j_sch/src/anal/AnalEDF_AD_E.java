@@ -22,7 +22,7 @@ public class AnalEDF_AD_E extends Anal {
 		g_name="MC-ADAPT";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 		comp_X();
 		comp_hi_prefer();

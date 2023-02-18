@@ -34,7 +34,6 @@ public class z_Platform2 {
 		tm.prnInfo();
 		Anal a=AnalSel.getAnal(1);
 		a.init(tm);
-		a.prepare();
 		double x=a.computeX();
 		SLog.prn(1, "x:"+x);
 		SysMng sm=new SysMng();
@@ -59,7 +58,6 @@ public class z_Platform2 {
 //		tm.prnInfo();
 		Anal a=AnalSel.getAnal(1);
 		a.init(tm);
-		a.prepare();
 		double x=a.computeX();
 //		Log.prn(1, "x:"+x);
 		SysMng sm=new SysMng();

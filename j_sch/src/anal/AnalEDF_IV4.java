@@ -19,7 +19,7 @@ public class AnalEDF_IV4 extends Anal {
 		g_name="MC-RUN"; //HI-MAX
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		load();
 	}
 	private ArrayList<Double> getDelta(){

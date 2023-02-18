@@ -9,7 +9,7 @@ public class AnalEDF extends Anal {
 		g_name="EDF";
 	}
 	@Override
-	public void prepare() {
+	protected void prepare() {
 		u=g_tm.getInfo().getUtil();
 	}
 	
