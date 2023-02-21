@@ -11,9 +11,9 @@ import util.SEngineT;
 public class Platform4 {
 //	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
+//	public static int idx=3;
 //	public static int idx=4;
-//	public static int idx=5;
+	public static int idx=5;
 //	public static int idx=-1;
 //	public static int log_level=1;
 //	public static int log_level=2;
@@ -108,25 +108,27 @@ public class Platform4 {
 	}
 	public  int test4() 
 	{
-		int set=0;
+		int set=3;
 		int no=72;
 		for(int i=0;i<100;i++){
 			no=i;
 			PlatformCom p=getP();
 			p.setAlpha(0.1,0.3);
-			SLog.prn(3, no+"");
-//			p.simulCom_one(0,set,no);
+//			SLog.prn(3, no+"");
+			p.simulCom_one(0,set,no);
 			p.simulCom_one(1,set,no);
 		}
 		return 1;
 	}
 	public  int test5() 
 	{
-		int set=8;
-		int no=24;
+		int set=3;
+		int no=97;
 		PlatformCom p=getP();
-		SLog.prn(3, no+"");
+//		SLog.prn(3, no+"");
+		p.setAlpha(0.1,0.3);
 		p.simulCom_one(0,set,no);
+		p.simulCom_one(1,set,no);
 		return 1;
 	}
 	public  int test6() 

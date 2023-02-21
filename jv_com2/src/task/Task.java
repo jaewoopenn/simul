@@ -236,7 +236,6 @@ public class Task {
 		if(x>1) {
 			SLog.err("VD set error x>1:"+x);
 		}
-		SLog.prn(1, "x:"+x);
 		this.vd=x*this.period;
 	}
 	public void setHI_only() {

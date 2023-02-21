@@ -5,6 +5,7 @@ import comp.Comp;
 import task.Task;
 import task.TaskMng;
 import util.MUtil;
+import util.SLog;
 
 public class TaskSimulCom_FC extends TaskSimulCom{
 
@@ -30,22 +31,23 @@ public class TaskSimulCom_FC extends TaskSimulCom{
 	}
 	private void resManager(int ex_id) {
 		double ru=g_cm.getRU();
-//		Log.prn(1, "G_RU:"+ru);
 		double req=ru-1;
+		if(ru<1) 
+			return;
+		SLog.prn(1, "G_RU:"+ru);
 		for(Comp c:g_cm.getComps()){
-//			Log.prn(1, "req:"+req);
+			SLog.prn(1, "req:"+req);
 			if(req<=0) break;
 			if(c.getID()==ex_id)
 				continue;
 			double ori=c.getRU();
 			double mod=request(c,req);
-//			double mod=c.request(req);
 			req-=ori-mod;
 			if(req<=0) break;
+//			SLog.prn(1, "G_RU:"+ru);
+//			System.exit(1);
 		}
 		ru=g_cm.getRU();
-//		Log.prn(1, "G_RU:"+ru);
-//		System.exit(1);
 		
 	}
 	private void dropDecision(int cid) {

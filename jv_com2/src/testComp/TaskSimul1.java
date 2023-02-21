@@ -25,9 +25,10 @@ public class TaskSimul1 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
 	public CompMng getComp(int set, int no) {
-		String f="fc/ts/util_sim_"+(50+set*5)+"/taskset_"+no;
+		String f="fc/ts/util_sim_"+(55+set*5)+"/taskset_"+no;
 		SLog.prn(1, f);
 		CompMng cm=CompFile.loadFile(f);
+		cm.setAlpha(0.1, 0.3);
 		cm.part();
 		
 
@@ -37,19 +38,16 @@ public class TaskSimul1 {
 	// Comp
 	public int test1() 
 	{
-		CompMng cm=getComp(5,17);
+		CompMng cm=getComp(3,98);
 //		tm.prnComp();
 		TaskMng tm=cm.getTM();
-		Anal a=new AnalEDF_VD();
-		a.init(tm);
-		double x=a.computeX();
-//		SLog.prn(1, "x:"+x);
+		double x=AnalEDF_VD.computeX(tm);
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.99);
+		sm.setMS_Prob(0.77);
 		sm.setX(x);
 //		cm.prn();
-		TaskSimulCom_FC ts=new TaskSimulCom_FC();
-//		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
 		ts.simul(0,10000);

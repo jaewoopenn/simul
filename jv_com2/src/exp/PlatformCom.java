@@ -106,7 +106,7 @@ public class PlatformCom extends Platform{
 		eg.initSim(tsim);
 		eg.simul(0,g_dur);
 		SimulInfo si=eg.getSI();
-		SLog.prnc(2, cm+","+si.getDMR()+","+si.ms);
+//		SLog.prnc(2, cm+","+si.getDMR()+","+si.ms);
 		return si;
 	}
 	public void simulCom_one(int kinds, int set, int no) {
@@ -126,7 +126,7 @@ public class PlatformCom extends Platform{
 		//		si.prn();
 		CompMng cm=loadCM(cfg.get_fn(no));
 		SimulInfo si=simul_com_in(cm,eg,tsim);
-		SLog.prn(2, set+","+no+":"+si.getDMR()+","+si.rel);
+		SLog.prn(3, set+","+no+":"+si.getDMR()+","+tsim.getName());
 	}
 	
 	public int analCom(int set, int no,int kinds) {
@@ -168,7 +168,6 @@ public class PlatformCom extends Platform{
 	}
 	private int analCom_in(String fn, int kinds) {
 		CompMng cm=loadCM(fn);
-//		SLog.prn(3, g_alpha_l+","+g_alpha_u);
 		cm.setAlpha(g_alpha_l,g_alpha_u);
 		return analComp(cm,kinds);
 	}
