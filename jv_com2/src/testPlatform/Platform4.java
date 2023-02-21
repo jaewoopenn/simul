@@ -41,7 +41,7 @@ public class Platform4 {
 //		p.setStart(100);
 //		p.setSize(1);
 		p.setStep(5);
-		return p;
+		return p; //lll
 	}
 	public PlatformCom getP2() {
 		PlatformCom p=getCommmon();
