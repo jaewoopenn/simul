@@ -16,7 +16,7 @@ import util.SLog;
 import z_ex.CompMngEx1;
 
 // Comp
-public class TaskSimul5 {
+public class z_TaskSimul5 {
 //	public static int idx=1;
 	public static int idx=2;
 //	public static int idx=3;
@@ -136,9 +136,9 @@ public class TaskSimul5 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = TaskSimul5.class;
-		TaskSimul5 m=new TaskSimul5();
-		int[] aret=TaskSimul5.gret;
+		Class c = z_TaskSimul5.class;
+		z_TaskSimul5 m=new z_TaskSimul5();
+		int[] aret=z_TaskSimul5.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

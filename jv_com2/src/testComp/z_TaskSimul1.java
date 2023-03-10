@@ -16,7 +16,7 @@ import util.SLog;
 import z_ex.CompMngEx1;
 
 // Comp
-public class TaskSimul1 {
+public class z_TaskSimul1 {
 	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
@@ -38,21 +38,22 @@ public class TaskSimul1 {
 	// Comp
 	public int test1() 
 	{
-		CompMng cm=getComp(3,98);
+		CompMng cm=getComp(5,99);
 //		tm.prnComp();
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.77);
+		sm.setMS_Prob(0.55);
 		sm.setX(x);
 //		cm.prn();
-//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
-		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+//		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
 		ts.simul(0,10000);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
+		SLog.prn(1, ts.getName());
 		si.prn();
 		return 0;
 	}
@@ -97,9 +98,9 @@ public class TaskSimul1 {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = TaskSimul1.class;
-		TaskSimul1 m=new TaskSimul1();
-		int[] aret=TaskSimul1.gret;
+		Class c = z_TaskSimul1.class;
+		z_TaskSimul1 m=new z_TaskSimul1();
+		int[] aret=z_TaskSimul1.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

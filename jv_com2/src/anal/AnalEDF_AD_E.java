@@ -66,7 +66,7 @@ public class AnalEDF_AD_E extends Anal {
 			return g_lt_lu;
 		}
 		if(g_lt_lu+g_ht_hu<=1) {
-			return g_lt_lu+g_ht_hu;
+			return 0;
 		}
 		double dtm=g_lt_lu;
 		for(Task t:g_tm.getHiTasks()){

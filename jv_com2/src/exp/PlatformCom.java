@@ -9,7 +9,6 @@ import sim.com.TaskSimulCom_FC;
 import sim.com.TaskSimulCom_NA;
 import task.TaskMng;
 import anal.Anal;
-import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import comp.AnalComp;
 import comp.CompFile;
@@ -75,11 +74,10 @@ public class PlatformCom extends Platform{
 			String modStr=g_ts_name+"_"+(mod);
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
-			ExpSimulCom eg=new ExpSimulCom(cfg);
 			int size=cfg.getSize();
 			for(int j=0;j<size;j++){
 				CompMng cm=loadCM(cfg.get_fn(j));
-				SimulInfo si=simul_com_in(cm,eg,tsim);
+				SimulInfo si=simul_com_in(cm,tsim);
 				sum+=si.getDMR();
 				SLog.prn(2, " "+sum);
 			}
@@ -92,8 +90,8 @@ public class PlatformCom extends Platform{
 			fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_"+kinds+".txt");
 		
 	}
-	private SimulInfo simul_com_in(CompMng cm, ExpSimulCom eg, TaskSimulCom tsim) {
-		Anal an=new AnalEDF_AD_E();
+	private SimulInfo simul_com_in(CompMng cm, TaskSimulCom tsim) {
+		Anal an=new AnalEDF_VD();
 		cm.setAlpha(g_alpha_l,g_alpha_u);
 		TaskMng tm=cm.getTM();
 		SysMng sm=new SysMng();
@@ -101,11 +99,14 @@ public class PlatformCom extends Platform{
 		an.init(tm);
 
 		sm.setX(an.computeX());
+		if(an.getDtm()==0) {
+			return new SimulInfo();
+		}
 		tsim.init_sm_tm(sm,tm);
 		tsim.set_cm(cm);
-		eg.initSim(tsim);
-		eg.simul(0,g_dur);
-		SimulInfo si=eg.getSI();
+		tsim.simul(0,g_dur);
+		tsim.simul_end();
+		SimulInfo si=tsim.getSI();
 //		SLog.prnc(2, cm+","+si.getDMR()+","+si.ms);
 		return si;
 	}
@@ -121,12 +122,11 @@ public class PlatformCom extends Platform{
 		String modStr=g_ts_name+"_"+(mod);
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
-		ExpSimulCom eg=new ExpSimulCom(cfg);
 		
 		//		si.prn();
 		CompMng cm=loadCM(cfg.get_fn(no));
-		SimulInfo si=simul_com_in(cm,eg,tsim);
-		SLog.prn(3, set+","+no+":"+si.getDMR()+","+tsim.getName());
+		SimulInfo si=simul_com_in(cm,tsim);
+		SLog.prn(3, modStr+":"+set+","+no+":"+si.getDMR()+","+tsim.getName());
 	}
 	
 	public int analCom(int set, int no,int kinds) {

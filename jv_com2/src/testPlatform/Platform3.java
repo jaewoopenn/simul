@@ -7,7 +7,11 @@ import util.SLog;
 import util.SEngineT;
 
 
-// schedulability 
+/* 
+ * schedulability 
+ * 
+ */
+
 public class Platform3 {
 //	public static int idx=1;
 //	public static int idx=2;

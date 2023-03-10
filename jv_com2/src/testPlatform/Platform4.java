@@ -7,7 +7,11 @@ import util.SLog;
 import util.SEngineT;
 
 
-// schedulability 
+/* 
+ * DMR
+ * 
+ */
+
 public class Platform4 {
 //	public static int idx=1;
 //	public static int idx=2;
@@ -57,13 +61,13 @@ public class Platform4 {
 		PlatformCom p=new PlatformCom();
 		p.setPath("fc");
 		p.setCfg_fn("cfg/cfg");
-		p.setAlpha(0.0,0.1);
+		p.setAlpha(0.1,0.3);
 		if(isReal==1){
 			p.setDuration(10000);
 			p.setSysNum(5000);
 //			p.setSysNum(1000);
 		} else{
-			p.setDuration(1000);
+			p.setDuration(10000);
 			p.setSysNum(100);
 		}
 		p.setProb(prob*0.1);
@@ -108,7 +112,7 @@ public class Platform4 {
 	}
 	public  int test4() 
 	{
-		int set=3;
+		int set=5;
 		int no=72;
 		for(int i=0;i<100;i++){
 			no=i;
@@ -122,8 +126,8 @@ public class Platform4 {
 	}
 	public  int test5() 
 	{
-		int set=3;
-		int no=97;
+		int set=5;
+		int no=99;
 		PlatformCom p=getP();
 //		SLog.prn(3, no+"");
 		p.setAlpha(0.1,0.3);

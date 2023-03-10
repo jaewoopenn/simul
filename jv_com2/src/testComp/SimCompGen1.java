@@ -6,7 +6,6 @@ import anal.Anal;
 import anal.AnalEDF_AD_E;
 import comp.CompMng;
 import comp.SimCompGen;
-import exp.ExpSimulCom;
 import util.SEngineT;
 import util.SLog;
 
