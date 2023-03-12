@@ -14,12 +14,15 @@ public class SysInfo {
 	private double hi_util_hm;
 	private double x_para=2;
 	public double getX() {
+		if(x_para>1) {
+			SLog.err("x:"+x_para);
+		}
 		return x_para;
 	}
 	public void setX(double x_para) {
 		this.x_para = x_para;
 	}
-	public double computeRU(Task t) {
+	public double computeRU(Task t) {  //EDF-VD
 		if(t.isHC()){
 			if(t.isHM())
 				return t.getHiUtil();
@@ -27,67 +30,27 @@ public class SysInfo {
 				return t.getLoVdUtil();
 		} 
 		if(t.isDrop())
-			return x_para*t.getLoUtil();
+			return getX()*t.getLoUtil();
 		else
 			return t.getLoUtil();
 		
 	}
-	public double computeVU(Task t) {
+	public double computeVU(Task t) {  //MC-ADAPT
 		if(t.isHC()){
 			if(t.isHI_Preferred())
 				return t.getHiUtil();
-			if(t.isHM()||t.sb_tm!=-1)
+			if(t.isHM())
 				return t.getHiUtil();
 			else
 				return t.getLoVdUtil();
 		} 
 		if(t.isDrop())
-			return x_para*t.getLoUtil();
+			return getX()*t.getLoUtil();
 		else
 			return t.getLoUtil();
 		
 	}
 	
-	public double computeRUN_U(Task t) {
-		if(t.isHC()){
-			if(t.isHM()) {
-				return t.getMsUtil();
-			}
-			else
-				return t.getLoVdUtil();
-		} else if(t.isDrop())
-			return t.getHiUtil();
-		else
-			return t.getLoUtil();
-	}
-	public double computeRUN5_U(Task t) {
-		if(t.isHC()){
-			if(t.isHM()) {
-				if(t.isMS())
-					return t.getMsUtil();
-				else
-					return t.getHiUtil();
-			}
-			else
-				return t.getLoVdUtil();
-		} else if(t.isDrop())
-			return t.getHiUtil();
-		else
-			return t.getLoUtil();
-	}
-	
-	public double computeRUNE_U(Task t,double x) {
-		if(t.isHC()){
-			if(t.isHM()) {
-				return t.getHiUtil();
-			} else {
-				return t.getLoVdUtil();
-			}
-		} else if(t.isDrop())
-			return x*t.getLoUtil();
-		else
-			return t.getLoUtil();
-	}
 
 	
 	public double getUtil() {

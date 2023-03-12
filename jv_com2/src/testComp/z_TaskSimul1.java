@@ -25,20 +25,43 @@ public class z_TaskSimul1 {
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
 	public CompMng getComp(int set, int no) {
-		String f="fc/ts/util_sim_"+(55+set*5)+"/taskset_"+no;
+		String f="fc/ts/util_sim_"+(60+set*4)+"/taskset_"+no;
 		SLog.prn(1, f);
 		CompMng cm=CompFile.loadFile(f);
-		cm.setAlpha(0.1, 0.3);
 		cm.part();
-		
+		double x=AnalEDF_VD.computeX(cm.getTM());
+		cm.setX(x);
 
 		cm.analMaxRes();
+//		cm.prn();
 		return cm;
 	}
 	// Comp
 	public int test1() 
 	{
-		CompMng cm=getComp(5,97);
+		CompMng cm=getComp(6,87);
+		TaskMng tm=cm.getTM();
+		double dtm=AnalEDF_VD.dtm(tm);
+		SLog.prn(1,"dtm:"+dtm);
+//		double x=AnalEDF_VD.computeX(tm);
+//		SysMng sm=new SysMng();
+//		sm.setMS_Prob(0.4);
+//		sm.setX(x);
+//		cm.prn();
+//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+////		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+//		ts.init_sm_tm(sm, tm);		
+//		ts.set_cm(cm);
+//		ts.simul(0,10000);
+//		ts.simul_end();
+//		SimulInfo si=ts.getSI();
+//		SLog.prn(1, ts.getName());
+//		si.prn();
+		return 0;
+	}
+	public int test2() 
+	{	
+		CompMng cm=getComp(6,87);
 //		tm.prnComp();
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
@@ -55,10 +78,6 @@ public class z_TaskSimul1 {
 		SimulInfo si=ts.getSI();
 		SLog.prn(1, ts.getName());
 		si.prn();
-		return 0;
-	}
-	public int test2() 
-	{	
 		return 0;
 
 	}

@@ -15,8 +15,8 @@ import util.SEngineT;
 public class Platform4 {
 //	public static int idx=1;
 //	public static int idx=2;
-//	public static int idx=3;
-	public static int idx=4;
+	public static int idx=3;
+//	public static int idx=4;
 //	public static int idx=5;
 //	public static int idx=-1;
 //	public static int log_level=1;
@@ -40,11 +40,11 @@ public class Platform4 {
 		PlatformCom p=getCommmon();
 		p.setTSName("util_sim");
 		p.setKinds(0);
-		p.setStart(55);
+		p.setStart(60);
 		p.setSize(10);
 //		p.setStart(100);
 //		p.setSize(1);
-		p.setStep(5);
+		p.setStep(4);
 		return p; 
 	}
 	public PlatformCom getP2() {
@@ -61,7 +61,6 @@ public class Platform4 {
 		PlatformCom p=new PlatformCom();
 		p.setPath("fc");
 		p.setCfg_fn("cfg/cfg");
-		p.setAlpha(0.1,0.3);
 		if(isReal==1){
 			p.setDuration(10000);
 			p.setSysNum(5000);
@@ -90,6 +89,7 @@ public class Platform4 {
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
 		PlatformCom p=getP();
+		p.setAlpha(0.01, 0.2);
 		p.writeComCfg(eg);
 		SLog.prn(3, "cfg");
 		return 1;
@@ -103,7 +103,6 @@ public class Platform4 {
 	public int test3() 
 	{
 		PlatformCom p=getP();
-		p.setAlpha(0.25,0.75);
 //		p.isWrite=false;
 		p.write_x_axis();
 		p.simulCom(0);
@@ -112,25 +111,21 @@ public class Platform4 {
 	}
 	public  int test4() 
 	{
-		int set=5;
-		int no=72;
+		int set=6;
 		for(int i=0;i<100;i++){
-			no=i;
 			PlatformCom p=getP();
-			p.setAlpha(0.1,0.3);
 //			SLog.prn(3, no+"");
-			p.simulCom_one(0,set,no);
-			p.simulCom_one(1,set,no);
+			p.simulCom_one(0,set,i);
+			p.simulCom_one(1,set,i);
 		}
 		return 1;
 	}
 	public  int test5() 
 	{
-		int set=5;
-		int no=99;
+		int set=6;
+		int no=87;
 		PlatformCom p=getP();
 //		SLog.prn(3, no+"");
-		p.setAlpha(0.1,0.3);
 		p.simulCom_one(0,set,no);
 		p.simulCom_one(1,set,no);
 		return 1;

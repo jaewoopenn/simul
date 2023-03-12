@@ -98,7 +98,7 @@ public class Platform3 {
 //		p.isWrite=false;
 		p.setRS("x");
 		p.write_x_axis();
-		p.setAlpha(0,0);
+		p.setAlpha(0,0.3);
 		p.setRS("0");
 		p.analCom(0);
 		double step=0.25;

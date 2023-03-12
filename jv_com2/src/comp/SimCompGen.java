@@ -6,6 +6,7 @@ import gen.ConfigGen;
 import gen.TaskGenParam;
 import util.MOut;
 import util.MUtil;
+import util.SLog;
 
 public class SimCompGen {
 	private CompGen g_cg;
@@ -35,7 +36,7 @@ public class SimCompGen {
 		String fn=g_cfg.get_dir();
 		MOut.makeDir(fn);
 		while(i<num){
-//			Log.prn(2, i+"");
+			SLog.prn(2, "start "+fn);
 			CompMng cm=g_cg.generate();
 			int rs=check(cm);
 			if(rs==0)
@@ -58,16 +59,20 @@ public class SimCompGen {
 		if(!g_isCheck)
 			return 1;
 		
-		AnalEDF_VD a=new AnalEDF_VD();
-		a.init(cm.getTM());
-		return MUtil.btoi(a.is_sch());
-
-//		cm.part();
-//		AnalComp ac=new AnalComp(cm);
-//		ac.computeX();
-//		cm.prn();
-//		int det=ac.anal(1);
-//		return det;
+//		AnalEDF_VD a=new AnalEDF_VD();
+//		a.init(cm.getTM());
+//		return MUtil.btoi(a.is_sch());
+		
+		cm.part();
+		double x=AnalEDF_VD.computeX(cm.getTM());
+		cm.setX(x);
+		cm.analMaxRes();
+		AnalComp ac=new AnalComp(cm);
+		ac.computeX();
+		cm.prn();
+		int det=ac.anal(1);
+		SLog.prn(1, "!!!d:"+det);
+		return det;
 		
 	}
 	

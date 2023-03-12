@@ -54,6 +54,11 @@ public class AnalEDF_VD extends Anal {
 		a.init(tm);
 		return a.computeX();
 	}
+	public static double dtm(TaskMng tm) {
+		AnalEDF_VD a=new AnalEDF_VD();
+		a.init(tm);
+		return a.getScore();
+	}	
 	@Override
 	public void prn() {
 		

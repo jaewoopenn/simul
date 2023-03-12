@@ -20,7 +20,7 @@ public class AnalComp {
 		SLog.prn(1, "sch:"+a.is_sch());
 		SLog.prn(1, "x:"+x);
 		g_cm.setX(x);
-		g_cm.prn();
+//		g_cm.prn();
 	}
 	public int anal(int kinds) {
 		int size=g_cm.getSize();

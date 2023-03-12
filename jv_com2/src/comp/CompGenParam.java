@@ -1,6 +1,7 @@
 package comp;
 
 import util.MRand;
+import util.SLog;
 
 //import utill.Log;
 
@@ -47,6 +48,9 @@ public class CompGenParam {
 	}
 
 	public double getAlpha() {
+		if(a_lb==0&a_ub==0) {
+			SLog.err("alpha error:"+a_lb+","+a_ub);
+		}
 		return g_rand.getDbl(a_lb,a_ub);
 	}
 }

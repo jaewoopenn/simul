@@ -30,7 +30,7 @@ public class TaskSimulCom_FC extends TaskSimulCom{
 		resManager(cid);
 	}
 	private void resManager(int ex_id) {
-		double ru=g_cm.getRU();
+		double ru=g_cm.getVU();
 		double req=ru-1;
 		if(ru<1) 
 			return;
@@ -40,7 +40,7 @@ public class TaskSimulCom_FC extends TaskSimulCom{
 			if(req<=0) break;
 			if(c.getID()==ex_id)
 				continue;
-			double ori=c.getRU();
+			double ori=c.getVU();
 			double mod=request(c,req);
 			req-=ori-mod;
 			if(req<=0) break;
@@ -55,7 +55,7 @@ public class TaskSimulCom_FC extends TaskSimulCom{
 		drop_in(c,c.getMaxRes(),false);		
 	}
 	public double request(Comp c,double req) {
-		double ru=c.getRU();
+		double ru=c.getVU();
 		double tu=ru-req;
 		return drop_in(c,tu,true);
 	}

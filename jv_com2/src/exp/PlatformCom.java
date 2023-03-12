@@ -20,8 +20,8 @@ import util.MUtil;
 
 public class PlatformCom extends Platform{
 	// com
-	protected double g_alpha_l;
-	protected double g_alpha_u;
+	protected double g_alpha_l=0;
+	protected double g_alpha_u=0;
 	public void setAlpha(double l,double u) {
 		this.g_alpha_l=l;
 		this.g_alpha_u=u;
@@ -91,15 +91,12 @@ public class PlatformCom extends Platform{
 		
 	}
 	private SimulInfo simul_com_in(CompMng cm, TaskSimulCom tsim) {
-		Anal an=new AnalEDF_VD();
-		cm.setAlpha(g_alpha_l,g_alpha_u);
 		TaskMng tm=cm.getTM();
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
-		an.init(tm);
 
-		sm.setX(an.computeX());
-		if(an.getDtm()==0) {
+		sm.setX(AnalEDF_VD.computeX(tm));
+		if(AnalEDF_VD.dtm(tm)==0) {
 			return new SimulInfo();
 		}
 		tsim.init_sm_tm(sm,tm);
@@ -108,9 +105,11 @@ public class PlatformCom extends Platform{
 		tsim.simul_end();
 		SimulInfo si=tsim.getSI();
 //		SLog.prnc(2, cm+","+si.getDMR()+","+si.ms);
+		si.prn();		
 		return si;
 	}
 	public void simulCom_one(int kinds, int set, int no) {
+//		SLog.prn(1, "no:"+kinds);
 		if(kinds==0)
 			simul_com_one_in(new TaskSimulCom_FC(),set,no);
 		else
@@ -123,8 +122,8 @@ public class PlatformCom extends Platform{
 		ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 		cfg.readFile();
 		
-		//		si.prn();
 		CompMng cm=loadCM(cfg.get_fn(no));
+		
 		SimulInfo si=simul_com_in(cm,tsim);
 		SLog.prn(3, modStr+":"+set+","+no+":"+si.getDMR()+","+tsim.getName());
 	}
@@ -167,8 +166,7 @@ public class PlatformCom extends Platform{
 		
 	}
 	private int analCom_in(String fn, int kinds) {
-		CompMng cm=loadCM(fn);
-		cm.setAlpha(g_alpha_l,g_alpha_u);
+		CompMng cm=loadCM_a(fn);
 		return analComp(cm,kinds);
 	}
 	public void prnCom() {
@@ -193,15 +191,35 @@ public class PlatformCom extends Platform{
 		boolean b=a.is_sch();
 		return MUtil.btoi(b);
 	}
+	
 	//comp
 	public CompMng loadCM(String fn){
 		SLog.prn(2, fn);
 		CompMng cm=CompFile.loadFile(fn);
+		cm.part();
+		double x=AnalEDF_VD.computeX(cm.getTM());
+		cm.setX(x);
+		
+		cm.analMaxRes();
+		
+		return cm;
+	}
+	public CompMng loadCM_a(String fn){
+		SLog.prn(2, fn);
+		CompMng cm=CompFile.loadFile(fn);
+		if(g_alpha_l==0&&g_alpha_u==0) {
+			SLog.err("alpha error:"+g_alpha_l+","+g_alpha_u);
+		}
+		cm.setAlpha(g_alpha_l,g_alpha_u);
+		cm.part();
+		double x=AnalEDF_VD.computeX(cm.getTM());
+		cm.setX(x);
+		cm.analMaxRes();
+		
 		return cm;
 	}
 	
 	public int analComp(CompMng cm,int kinds) {
-		cm.part();
 		cm.analMaxRes();
 		AnalComp a=new AnalComp(cm);
 		a.computeX();

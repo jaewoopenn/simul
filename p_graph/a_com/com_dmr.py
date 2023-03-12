@@ -36,16 +36,17 @@ def iterate(s,t):
         gl.vv.append(v)
 
 def main():
+    mp.prepare()
     x_load()
     iterate(0,2)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-    mp.xlim(0.54,1.01)
-    mp.ylim(0, 0.5)
+    mp.xlim(0.54,1.00)
+    mp.ylim(0, 0.2)
 #     mp.ylim(0, 1.02)
-    mp.legendBL()
+    mp.legendUL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
 #     mp.savefig(mf.filepath("fc/fig/com_dmr.pdf"))

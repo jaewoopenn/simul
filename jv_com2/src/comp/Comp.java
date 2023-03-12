@@ -137,6 +137,9 @@ public class Comp {
 	public double getRU() {
 		return g_tm.getRUtil();
 	}
+	public double getVU() {
+		return g_tm.getVUtil();
+	}
 	public double getMaxRes() {
 		return maxRes;
 	}

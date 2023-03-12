@@ -44,6 +44,7 @@ public class CompMng {
 
 
 	public void analMaxRes() {
+//		SLog.prn(1, "anal");
 		double u=0;
 		for(Comp c:g_comp){
 			double res=c.getWC_U();
@@ -103,6 +104,14 @@ public class CompMng {
 		}
 		return u;
 	}
+	public double getVU() {
+		double u=0;
+		for(Comp c:g_comp){
+			u+=c.getVU();
+		}
+		return u;
+	}
+	
 	
 	public TaskMng getTM() {
 		if(g_tm==null)
