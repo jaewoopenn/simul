@@ -38,7 +38,7 @@ public class z_TaskSimul1 {
 	// Comp
 	public int test1() 
 	{
-		CompMng cm=getComp(5,99);
+		CompMng cm=getComp(5,97);
 //		tm.prnComp();
 		TaskMng tm=cm.getTM();
 		double x=AnalEDF_VD.computeX(tm);
@@ -46,8 +46,8 @@ public class z_TaskSimul1 {
 		sm.setMS_Prob(0.55);
 		sm.setX(x);
 //		cm.prn();
-		TaskSimulCom_FC ts=new TaskSimulCom_FC();
-//		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
 		ts.simul(0,10000);
