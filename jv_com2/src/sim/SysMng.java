@@ -1,6 +1,7 @@
 package sim;
 
 import util.SLog;
+//..
 
 public class SysMng {
 	private double g_prob=-1;

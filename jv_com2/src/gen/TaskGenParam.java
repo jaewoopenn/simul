@@ -1,5 +1,5 @@
 package gen;
-
+//..
 
 import task.Task;
 import util.MRand;

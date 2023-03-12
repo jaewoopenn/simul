@@ -1,6 +1,7 @@
 /* 
  * Static Class
  */
+//..
 
 package util;
 
