@@ -9,14 +9,14 @@ class gl:
 #     path="com/rs/"
     path="fc/rs/"
 #     RS="util_sim_1"
-    RS="util_sim_4"
-#     RS="util_sim_7"
+#     RS="util_sim_4"
+    RS="util_sim_7"
     x=[]
     vv=[]
     line=['r-','b--','m-.','g:','k:','k:']
     marker=['o','v','D','^','s','s']
-    lab=['FC-MCS','Naive-Drop']
-    data=[0,1,2,3,4,5]
+    lab=['EDF-VD','FC-MCS_v1','FC-MCS_v2']
+    data=[2,1,0,3,4,5]
 def load(fn):
     i_f = mf.load(fn)
     v=[]
@@ -38,13 +38,13 @@ def iterate(s,t):
 def main():
     mp.prepare()
     x_load()
-    iterate(0,2)
+    iterate(0,3)
     no=0
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(0.54,1.00)
-    mp.ylim(0, 0.3)
+    mp.ylim(0, 0.45)
 #     mp.ylim(0, 1.02)
     mp.legendUL()
     mp.xlabel("Utilization Bound")

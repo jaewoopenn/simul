@@ -2,12 +2,8 @@ package testComp;
 
 
 import gen.ConfigGen;
-import anal.Anal;
-import anal.AnalEDF_AD_E;
-import comp.CompMng;
 import comp.SimCompGen;
 import util.SEngineT;
-import util.SLog;
 
 public class SimCompGen1 {
 //	public static int idx=1;

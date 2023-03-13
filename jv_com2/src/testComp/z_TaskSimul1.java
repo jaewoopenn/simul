@@ -1,9 +1,6 @@
 package testComp;
 
-import anal.Anal;
-import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
-import comp.AnalComp;
 import comp.CompFile;
 import comp.CompMng;
 import sim.SimulInfo;
@@ -13,19 +10,19 @@ import sim.com.TaskSimulCom_NA;
 import task.TaskMng;
 import util.SEngineT;
 import util.SLog;
-import z_ex.CompMngEx1;
+import util.SLogF;
 
 // Comp
 public class z_TaskSimul1 {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=3;
 //	public static int idx=-1;
 	public static int log_level=1;
 	public static int gret[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
 	public CompMng getComp(int set, int no) {
-		String f="fc/ts/util_sim_"+(60+set*4)+"/taskset_"+no;
+		String f="fc/ts/util_sim_"+(55+set*5)+"/taskset_"+no;
 		SLog.prn(1, f);
 		CompMng cm=CompFile.loadFile(f);
 		cm.part();
@@ -36,41 +33,25 @@ public class z_TaskSimul1 {
 //		cm.prn();
 		return cm;
 	}
+	public CompMng getComp() {
+		return getComp(7,66);
+	}
 	// Comp
 	public int test1() 
 	{
-		CompMng cm=getComp(6,87);
+		CompMng cm=getComp();
 		TaskMng tm=cm.getTM();
-		double dtm=AnalEDF_VD.dtm(tm);
-		SLog.prn(1,"dtm:"+dtm);
-//		double x=AnalEDF_VD.computeX(tm);
-//		SysMng sm=new SysMng();
-//		sm.setMS_Prob(0.4);
-//		sm.setX(x);
-//		cm.prn();
-//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
-////		TaskSimulCom_NA ts=new TaskSimulCom_NA();
-//		ts.init_sm_tm(sm, tm);		
-//		ts.set_cm(cm);
-//		ts.simul(0,10000);
-//		ts.simul_end();
-//		SimulInfo si=ts.getSI();
-//		SLog.prn(1, ts.getName());
-//		si.prn();
-		return 0;
-	}
-	public int test2() 
-	{	
-		CompMng cm=getComp(6,87);
-//		tm.prnComp();
-		TaskMng tm=cm.getTM();
+//		double dtm=AnalEDF_VD.dtm(tm);
 		double x=AnalEDF_VD.computeX(tm);
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.55);
+		sm.setMS_Prob(0.4);
 		sm.setX(x);
 //		cm.prn();
-//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
-		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+
+		SLogF.init("test/log1.txt");
+		
+		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+//		TaskSimulCom_NA ts=new TaskSimulCom_NA();
 		ts.init_sm_tm(sm, tm);		
 		ts.set_cm(cm);
 		ts.simul(0,10000);
@@ -78,11 +59,39 @@ public class z_TaskSimul1 {
 		SimulInfo si=ts.getSI();
 		SLog.prn(1, ts.getName());
 		si.prn();
+		SLogF.end();
+		return 0;
+	}
+	public int test2() 
+	{	
+		CompMng cm=getComp();
+//		tm.prnComp();
+		TaskMng tm=cm.getTM();
+		double x=AnalEDF_VD.computeX(tm);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(0.4);
+		sm.setX(x);
+//		cm.prn();
+//		TaskSimulCom_FC ts=new TaskSimulCom_FC();
+		TaskSimulCom_NA ts=new TaskSimulCom_NA();
+		SLogF.init("test/log2.txt");
+
+		ts.init_sm_tm(sm, tm);		
+		ts.set_cm(cm);
+		ts.simul(0,2000);
+		ts.simul_end();
+		SimulInfo si=ts.getSI();
+		SLog.prn(1, ts.getName());
+		si.prn();
+		SLogF.end();
 		return 0;
 
 	}
 	public int test3() 
 	{
+		CompMng cm=getComp();
+		TaskMng tm=cm.getTM();
+		tm.prn();
 		return 0;
 	}
 	public  int test4() 

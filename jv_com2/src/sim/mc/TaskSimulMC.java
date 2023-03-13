@@ -14,11 +14,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 
 	protected boolean g_ms_happen=false;
 	protected JobSimulMC g_jsm;
-	protected boolean g_best_effort=false;
 
-	public void setBE() {
-		g_best_effort=true;
-	}
 	
 	@Override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
@@ -67,7 +63,6 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		}
 		g_si.drop+=g_jsm.simul_one();
 		ms_check();
-		vir_check();
 	}
 	
 	@Override
@@ -82,10 +77,6 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		Job j;
 		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
-			if(tsk.isMS()) {
-				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
-				tsk.ms_end();
-			}
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 		}
@@ -109,14 +100,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 			}
 			g_si.rel++;
 			if(tsk.isDrop()){
-				if(this.g_best_effort) {
-					s+="X";
-					Job j=rel_one_job(tsk,t);
-					j.drop();
-					g_jsm.add(j);
-				} else {
-					g_si.nrel++;
-				}
+				g_si.nrel++;
 				continue;
 			}
 			s+="+";
@@ -140,6 +124,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 
 	private void recover_idle(){
 		SLogF.prnc( "R ");
+		recover_idle_in();
 		initModeAll();
 		g_ms_happen=false;
 	}
@@ -181,8 +166,8 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 	// abstract method
 	protected abstract void modeswitch_in(Task tsk);
 	protected abstract void recover_in(int tid);
-	protected abstract void vir_check();
-	
+	protected abstract void recover_idle_in();
+
 	
 	
 	// MC specific 
@@ -197,13 +182,11 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		SLog.err_if(!tsk.isHC(),"task "+tsk.tid+" is not HI-task, cannot mode switch");
 
 		tsk.ms();
-		int t=g_jsm.get_time();
+//		int t=g_jsm.get_time();
 		
 		g_jsm.getJM().modeswitch(tsk.tid);
 	}
 
-	protected void switchback_tid(int tid){
-	}
 	
 	
 	protected void drop_task(Task tsk) {
@@ -217,14 +200,5 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		tsk.drop();
 	}
 	
-	protected void resume_task(Task tsk) {
-		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot resume");
-		
-		if(!tsk.isDrop())
-			return;
-		tsk.resume();
-		
-	}
 
-	
 }

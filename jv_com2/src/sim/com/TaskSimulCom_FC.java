@@ -83,21 +83,6 @@ public class TaskSimulCom_FC extends TaskSimulCom{
 	}
 
 	
-//	private void drop_algo() {
-//		double ru=g_tm.getRUtil();
-//		while(ru>=1+MCal.err){
-//			Task tsk=g_tm.findDropTask();
-//			if(tsk==null){
-//				g_sm.prn();
-//				g_tm.prnRuntime();
-//				SLog.err("no available LO-task to drop. ru:"+ru);
-//			}
-//			drop_task(tsk);
-//			ru=g_tm.getRUtil();
-//		}
-//		
-//	}
-
 
 	@Override
 	protected void recover_in(int tid) {
@@ -106,10 +91,6 @@ public class TaskSimulCom_FC extends TaskSimulCom{
 
 
 
-	@Override
-	protected void vir_check() {
-		
-	}
 
 
 

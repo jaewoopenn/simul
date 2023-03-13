@@ -62,7 +62,11 @@ public class TaskSet {
 				t.setHI_only();
 		}
 	}
-
+	public void setX2(double x) {
+		for(Task t:g_tasks){
+			t.setX(x);
+		}
+	}
 	public void prn() {
 		for(Task t:g_tasks){
 			t.prnTxt();

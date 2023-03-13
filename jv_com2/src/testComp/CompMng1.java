@@ -4,7 +4,6 @@ package testComp;
 import anal.AnalEDF_AD_E;
 import comp.CompMng;
 import task.TaskMng;
-import util.SLog;
 import z_ex.CompMngEx1;
 import util.SEngineT;
 

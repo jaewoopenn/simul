@@ -20,6 +20,11 @@ public class CompMng {
 			c.getTM().setX(x);
 		}
 	}
+	public void setX2(double x) {
+		for(Comp c:g_comp){
+			c.getTM().setX2(x);
+		}
+	}
 	
 	
 	public void addComp(Comp c) {

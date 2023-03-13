@@ -26,7 +26,6 @@ public abstract class TaskSimul_base {
 	
 
 	
-	public abstract void setBE() ;
 	public void setRecoverIdle(boolean b) {
 		g_recover_idle_on=b;
 	}

@@ -29,9 +29,11 @@ public class TaskSimulCom extends TaskSimulMC{
 	}
 
 	@Override
-	protected void vir_check() {
+	protected void recover_idle_in() {
 		
 	}
+
+
 
 
 }

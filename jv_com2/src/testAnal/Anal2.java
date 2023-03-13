@@ -21,7 +21,7 @@ public class Anal2 {
 		cm.setAlpha(0, 0);
 		cm.part();
 		AnalComp a=new AnalComp(cm);
-		a.computeX();
+		a.computeX(0);
 		cm.prn();
 		a.anal(0);
 		cm.prn();
@@ -34,7 +34,7 @@ public class Anal2 {
 		CompMng cm=CompFile.loadFile("com/ts/taskset_util_70_5");
 		cm.setAlpha(0, 0);
 		AnalComp a=new AnalComp(cm);
-		a.computeX();
+		a.computeX(0);
 		return 0;
 	}
 	public int test3() 

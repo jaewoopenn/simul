@@ -1,12 +1,9 @@
 package comp;
 
-import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import gen.ConfigGen;
 import gen.TaskGenParam;
 import util.MDir;
-import util.MOut;
-import util.MUtil;
 import util.SLog;
 
 public class SimCompGen {
@@ -69,7 +66,7 @@ public class SimCompGen {
 		cm.setX(x);
 		cm.analMaxRes();
 		AnalComp ac=new AnalComp(cm);
-		ac.computeX();
+		ac.computeX(0);
 		cm.prn();
 		int det=ac.anal(1);
 		SLog.prn(1, "!!!d:"+det);

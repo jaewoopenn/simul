@@ -27,13 +27,15 @@ public class TaskSimul_EDF_VD extends TaskSimulMC{
 	protected void recover_in(int tid) {
 	}
 
+
 	@Override
-	protected void vir_check() {
+	public void initSimul() {
 		
 	}
 
 	@Override
-	public void initSimul() {
+	protected void recover_idle_in() {
+		// TODO Auto-generated method stub
 		
 	}
 

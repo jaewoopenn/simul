@@ -5,7 +5,6 @@ import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetUtil;
 import util.MList;
-import util.SLog;
 
 public class SysGen {
 	protected TaskGen g_tg;

@@ -22,7 +22,6 @@ public class Task {
 	private boolean is_isol=false;
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
-	private boolean is_MS_Mode=false;
 	private boolean is_dropped=false;
 	private boolean is_hi_preferred=false;
 	
@@ -186,17 +185,12 @@ public class Task {
 			is_HI_Mode=true;
 		else
 			is_HI_Mode=false;
-		is_MS_Mode=false;
 	}
 
 	public void ms(){
 		if(is_hi_preferred) 
 			return;
 		is_HI_Mode=true;
-		is_MS_Mode=true;
-	}
-	public void ms_end() {
-		is_MS_Mode=false;
 	}
 	public void drop() {
 		SLogF.prn("drop "+tid);
@@ -215,14 +209,11 @@ public class Task {
 	public boolean isHM() {
 		return is_HI_Mode;
 	}
-	public boolean isMS() {
-		return is_MS_Mode;
-	}
 	public boolean isDrop() {
 		return is_dropped;
 	}
 
-	public boolean isHI_Preferred() {
+	public boolean isHO() {
 		return is_hi_preferred;
 	}
 

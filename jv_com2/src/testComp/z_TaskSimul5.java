@@ -54,7 +54,7 @@ public class z_TaskSimul5 {
 		CompMng cm=CompFile.loadFile(f);
 		cm.part();
 		AnalComp ac=new AnalComp(cm);
-		ac.computeX();
+		ac.computeX(0);
 //		int det=ac.anal(0);
 		int det=ac.anal(1);
 		if(det==0)

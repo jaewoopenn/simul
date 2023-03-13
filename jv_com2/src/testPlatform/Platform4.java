@@ -25,8 +25,8 @@ public class Platform4 {
 	public int kind=0;
 	public int isReal=0;
 //	public int prob=1;
-	public int prob=4;
-//	public int prob=7;
+//	public int prob=4;
+	public int prob=7;
 
 	public PlatformCom getP(){
 		if(kind==0)
@@ -107,11 +107,12 @@ public class Platform4 {
 		p.write_x_axis();
 		p.simulCom(0);
 		p.simulCom(1);
+		p.simulCom(2);
 		return 1;
 	}
 	public  int test4() 
 	{
-		int set=9;
+		int set=7;
 		for(int i=0;i<100;i++){
 			PlatformCom p=getP();
 //			SLog.prn(3, no+"");
@@ -122,8 +123,8 @@ public class Platform4 {
 	}
 	public  int test5() 
 	{
-		int set=6;
-		int no=87;
+		int set=7;
+		int no=66;
 		PlatformCom p=getP();
 //		SLog.prn(3, no+"");
 		p.simulCom_one(0,set,no);

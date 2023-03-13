@@ -55,6 +55,10 @@ public class TaskMng {
 		g_hi_tasks.setX(x);
 	}
 
+	public void setX2(double x){
+		g_info.setX(x);
+		g_hi_tasks.setX2(x);
+	}
 	
 
 	// get

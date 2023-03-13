@@ -37,7 +37,7 @@ public class SysInfo {
 	}
 	public double computeVU(Task t) {  //MC-ADAPT
 		if(t.isHC()){
-			if(t.isHI_Preferred())
+			if(t.isHO())
 				return t.getHiUtil();
 			if(t.isHM())
 				return t.getHiUtil();
