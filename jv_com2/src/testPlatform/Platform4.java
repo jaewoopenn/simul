@@ -111,7 +111,7 @@ public class Platform4 {
 	}
 	public  int test4() 
 	{
-		int set=6;
+		int set=9;
 		for(int i=0;i<100;i++){
 			PlatformCom p=getP();
 //			SLog.prn(3, no+"");

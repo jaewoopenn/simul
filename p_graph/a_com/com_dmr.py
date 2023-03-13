@@ -44,7 +44,7 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
     mp.xlim(0.54,1.00)
-    mp.ylim(0, 0.2)
+    mp.ylim(0, 0.3)
 #     mp.ylim(0, 1.02)
     mp.legendUL()
     mp.xlabel("Utilization Bound")

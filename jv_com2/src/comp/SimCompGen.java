@@ -4,6 +4,7 @@ import anal.AnalEDF_AD_E;
 import anal.AnalEDF_VD;
 import gen.ConfigGen;
 import gen.TaskGenParam;
+import util.MDir;
 import util.MOut;
 import util.MUtil;
 import util.SLog;
@@ -34,7 +35,7 @@ public class SimCompGen {
 		int num=prepare();
 		int i=0;
 		String fn=g_cfg.get_dir();
-		MOut.makeDir(fn);
+		MDir.makeDir(fn);
 		while(i<num){
 			SLog.prn(2, "start "+fn);
 			CompMng cm=g_cg.generate();

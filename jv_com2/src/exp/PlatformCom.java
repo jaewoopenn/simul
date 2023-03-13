@@ -75,13 +75,19 @@ public class PlatformCom extends Platform{
 			ConfigGen cfg=new ConfigGen(g_path+"/"+g_cfg_fn+"_"+modStr+".txt");
 			cfg.readFile();
 			int size=cfg.getSize();
+			int tot=size;
 			for(int j=0;j<size;j++){
 				CompMng cm=loadCM(cfg.get_fn(j));
 				SimulInfo si=simul_com_in(cm,tsim);
-				sum+=si.getDMR();
+				double dmr=si.getDMR();
+				sum+=dmr;
+//				if(dmr==0)
+//					tot--;
 				SLog.prn(2, " "+sum);
 			}
-			double avg=sum/size;
+			double avg=0;
+			if(tot!=0)
+				avg=sum/tot;
 			SLog.prn(3, (g_start+i*g_step)+":"+MUtil.getStr(avg));
 			if(isWrite)
 				fu.add(avg+"");

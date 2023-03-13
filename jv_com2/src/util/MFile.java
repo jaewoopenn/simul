@@ -10,7 +10,6 @@ import java.util.Vector;
 */
 
 public class MFile {
-	public static final String path=System.getProperty ( "user.home" )+"/data/";
 	protected String g_fn;
 	protected BufferedReader g_br;
 	protected Vector<String> g_v;
@@ -32,7 +31,7 @@ public class MFile {
 	public void br_open() {
 		if(g_fn==null)
 			return;
-	    File file = new File(MFile.path+g_fn);
+	    File file = new File(MDir.path+g_fn);
 		try {
 			FileReader fr = new FileReader(file);
 			g_br = new BufferedReader(fr);

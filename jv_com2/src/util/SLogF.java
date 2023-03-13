@@ -15,7 +15,7 @@ public class SLogF {
 	
 	public static void init(String file) {
 		try {
-			g_writer = new PrintWriter(MFile.path+file);
+			g_writer = new PrintWriter(MDir.path+file);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
