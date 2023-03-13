@@ -13,6 +13,9 @@ def prepare():
 
 def prepare2():
     plt.figure(figsize=(7,7))
+
+def prepare3():
+    plt.figure(figsize=(9,6))
         
 def legendBL():
     font= matplotlib.font_manager.FontProperties(weight="normal") 

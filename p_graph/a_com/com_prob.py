@@ -11,13 +11,10 @@ class gl:
     RS="prob"
     x=[]
     vv=[]
-    line=['r-','b--','m-.','g:','k:','k:']
-    marker=['o','v','D','^','s','s']
+    line=['k-','b--','m-.','g:','k:','r-']
+    marker=['o','v','D','^','s','o']
     lab=['a=0.0','0<a<=0.25','0.25<a<=0.5','0.5<a<=0.75','0.75<a<=1.00','a=1']
-#     data=[1,2,0,3]
-    data=[0,1,2,3,4]
-#     lab=['EDF-ADAMS','EDF-AA-E(EDF-VD)','EDF-AA','EDF','ICG',]
-#     data=[4,1,2,0,3]
+    data=[0,1,2,3,4,5]
 def load(fn):
     i_f = mf.load(fn)
     v=[]
@@ -26,7 +23,7 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn=gl.path+gl.RS+"_x_x.txt"
+    fn=gl.path+gl.RS+"_x.txt"
     gl.x=load(fn)
 
 def iterate(s,t):
@@ -38,8 +35,9 @@ def iterate(s,t):
 
 def main():
     x_load()
-    iterate(0,5)
+    iterate(0,6)
     no=0
+    mp.prepare3()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1

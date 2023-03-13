@@ -25,10 +25,10 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		if(sm!=null) {
 			double x=sm.getX();
 			SLog.prn(1,"sm set:"+x);
-			if(x>0) {
-				tm.setX(x);
+			if(x<=0) {
+				SLog.err("x<0:"+x);
 			}
-//			tm.prnTxt();
+			tm.setX(x);
 			g_sm=sm;
 		} else {
 			SLog.err("sm null");

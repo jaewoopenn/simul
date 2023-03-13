@@ -31,8 +31,8 @@ public class AnalComp {
 			init_u+=c.getST_U();
 			if(kinds==0) // FCS
 				wc_u+=c.getWC_U();
-			else // Naive
-				wc_u+=c.getNa_U();
+			else // isolation 
+				wc_u+=c.get_isol_U();
 		}
 		SLog.prn(2, "initU:"+init_u);
 		SLog.prn(2, "wcU:"+wc_u);

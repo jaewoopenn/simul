@@ -25,7 +25,7 @@ def load(fn):
         v.append(float(val))
     return v
 def x_load():
-    fn=gl.path+gl.RS+"_x.txt"
+    fn=gl.path+gl.RS+".txt"
     gl.x=load(fn)
 
 def iterate(s,t):

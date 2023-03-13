@@ -20,8 +20,8 @@ import util.MUtil;
 
 public class PlatformCom extends Platform{
 	// com
-	protected double g_alpha_l=0;
-	protected double g_alpha_u=0;
+	protected double g_alpha_l=-1;
+	protected double g_alpha_u=-1;
 	public void setAlpha(double l,double u) {
 		this.g_alpha_l=l;
 		this.g_alpha_u=u;
@@ -98,13 +98,14 @@ public class PlatformCom extends Platform{
 	}
 	private SimulInfo simul_com_in(CompMng cm, TaskSimulCom tsim) {
 		TaskMng tm=cm.getTM();
-		SysMng sm=new SysMng();
-		sm.setMS_Prob(g_prob);
-
-		sm.setX(AnalEDF_VD.computeX(tm));
 		if(AnalEDF_VD.dtm(tm)==0) {
 			return new SimulInfo();
 		}
+
+		
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(g_prob);
+		sm.setX(AnalEDF_VD.computeX(tm));
 		tsim.init_sm_tm(sm,tm);
 		tsim.set_cm(cm);
 		tsim.simul(0,g_dur);
@@ -206,14 +207,17 @@ public class PlatformCom extends Platform{
 		double x=AnalEDF_VD.computeX(cm.getTM());
 		cm.setX(x);
 		
-		cm.analMaxRes();
-		
+		double u=cm.analMaxRes();
+//		SLog.prn(3, "MCUtil:"+cm.getMCUtil()+", MaxUtil:"+cm.getMaxUtil()+", WC_Util:"+u);
+		if(u>1+MUtil.err) {
+			SLog.err("not schedulable:"+u);
+		}
 		return cm;
 	}
 	public CompMng loadCM_a(String fn){
 		SLog.prn(2, fn);
 		CompMng cm=CompFile.loadFile(fn);
-		if(g_alpha_l==0&&g_alpha_u==0) {
+		if(g_alpha_l==-1||g_alpha_u==-1) {
 			SLog.err("alpha error:"+g_alpha_l+","+g_alpha_u);
 		}
 		cm.setAlpha(g_alpha_l,g_alpha_u);
@@ -226,9 +230,7 @@ public class PlatformCom extends Platform{
 	}
 	
 	public int analComp(CompMng cm,int kinds) {
-		cm.analMaxRes();
 		AnalComp a=new AnalComp(cm);
-		a.computeX();
 		return 	a.anal(kinds);
 
 	}	

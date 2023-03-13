@@ -11,36 +11,42 @@ public class Platform5 {
 	public static int idx=4;
 //	public static int idx=-1;
 	public static int log_level=3;
+	public int g_real=0;
+//	public int g_real=1;
 	public int test1() 
 	{
-
-		return 0;
-	}
-	public int test2() 
-	{
-		return 0;
-	}
-	public int test3() 
-	{
-		Platform3 p=new Platform3(); // comp SCH
-		p.isReal=0;
-//		p.isReal=1;
+		Platform3 p=new Platform3(); // util alpha
+		p.isReal=g_real;
 		p.kind=0;
 		p.test1();
 		p.test2();
 		p.test3();
-		p.test4();
+		return 0;
+	}
+	public int test2() 
+	{
+		Platform3 p=new Platform3(); // util prob
+		p.isReal=g_real;
 		p.kind=1;
 		p.test1();
 		p.test2();
 		p.test3();
 		return 0;
 	}
+	public int test3() 
+	{
+		Platform3 p=new Platform3(); // comp SCH
+		p.isReal=g_real;
+		p.kind=0;
+		p.test1();
+		p.test2();
+		p.test4();
+		return 0;
+	}
 	public  int test4() 
 	{
 		Platform4 p=new Platform4(); // comp DMR
-		p.isReal=0;
-//		p.isReal=1;
+		p.isReal=g_real;
 		p.test1();
 		p.test2();
 		p.test3();

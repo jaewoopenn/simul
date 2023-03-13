@@ -40,11 +40,11 @@ public class Platform4 {
 		PlatformCom p=getCommmon();
 		p.setTSName("util_sim");
 		p.setKinds(0);
-		p.setStart(60);
+		p.setStart(55);
 		p.setSize(10);
 //		p.setStart(100);
 //		p.setSize(1);
-		p.setStep(4);
+		p.setStep(5);
 		return p; 
 	}
 	public PlatformCom getP2() {
@@ -66,7 +66,7 @@ public class Platform4 {
 			p.setSysNum(5000);
 //			p.setSysNum(1000);
 		} else{
-			p.setDuration(10000);
+			p.setDuration(5000);
 			p.setSysNum(100);
 		}
 		p.setProb(prob*0.1);
@@ -89,7 +89,7 @@ public class Platform4 {
 		eg.setParam("tu_lb","0.02");
 		eg.setParam("tu_ub","0.1");
 		PlatformCom p=getP();
-		p.setAlpha(0.01, 0.2);
+		p.setAlpha(0.1, 0.3);
 		p.writeComCfg(eg);
 		SLog.prn(3, "cfg");
 		return 1;

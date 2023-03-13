@@ -20,7 +20,7 @@ public class Comp {
 	public void partition() {
 		double cu=g_tm.getInfo().getUtil_LC();
 		double tu=cu*(alpha);
-//		SLog.prn(3,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
+		SLog.prnc(2,"cu:"+cu+" tu:"+tu+", alpha:"+alpha);
 		cu=0;
 		Task[] tasks=g_tm.getLoTasks();
 		for(int i=tasks.length-1;i>=0;i--){
@@ -32,6 +32,7 @@ public class Comp {
 			cu+=t.getLoUtil();
 			t.set_isol(true);
 		}
+		SLog.prn(2,", isol:"+cu);
 	}
 	// prn
 	public void prn() {
@@ -95,7 +96,7 @@ public class Comp {
 	public double getWC_U(){
 		return Math.max(getExt_U(), getInt_U());
 	}
-	public double getNa_U(){
+	public double get_isol_U(){
 		double u=0;
 		for(Task t:g_tm.getTasks()){
 			if(t.isHC())

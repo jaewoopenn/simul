@@ -26,7 +26,7 @@ public abstract class Platform {
 		for(int i=0;i<g_size;i++){
 			fu.add((double)(g_start+i*g_step)/100+"");
 		}		
-		fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+"_x.txt");
+		fu.save(g_path+"/rs/"+g_ts_name+"_"+g_RS+".txt");
 	}
 	
 	public void setKinds(int d) {

@@ -15,12 +15,13 @@ import util.SEngineT;
 public class Platform3 {
 //	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
+//	public static int idx=3;
 //	public static int idx=4;
+	public static int idx=5;
 //	public static int idx=7;
 //	public static int log_level=1;
-//	public static int log_level=2;
-	public static int log_level=3;
+	public static int log_level=2;
+//	public static int log_level=3;
 	public int kind=0;
 //	public int kind=1;
 	public int isReal=0;
@@ -39,8 +40,6 @@ public class Platform3 {
 		p.setKinds(0);
 		p.setStart(55);
 		p.setSize(10);
-//		p.setStart(100);
-//		p.setSize(1);
 		p.setStep(5);
 		return p;
 	}
@@ -98,8 +97,8 @@ public class Platform3 {
 //		p.isWrite=false;
 		p.setRS("x");
 		p.write_x_axis();
-		p.setAlpha(0,0.3);
 		p.setRS("0");
+		p.setAlpha(0,0);
 		p.analCom(0);
 		double step=0.25;
 		for(int i=1;i<5;i++){
@@ -107,34 +106,38 @@ public class Platform3 {
 			p.setRS(i+"");
 			p.analCom(0);
 		}	
-//		MUtil.sendMail("ICG anal OK");
+		p.setRS("5");
+		p.setAlpha(1.0,1.0);
+		p.analCom(0);
 		return 1;
 	}
 	public  int test4() 
 	{
 		PlatformCom p=getP();
 //		p.isWrite=false;
-		p.setRS("0");
+		p.setRS("sch_x");
 		p.write_x_axis();
 		p.setAlpha(0.25,0.75);
 		p.setRS("FC");
 		p.analCom(0);
-		p.setRS("NA");
+		p.setRS("IS");
 		p.analCom(1);
 		return 1;
 	}
 	public  int test5() 
 	{
-		int set=9;
+		int set=6;
 		PlatformCom p=getP();
 		int ret1,ret2;
-		for(int i=0;i<100;i++){
-			p.setAlpha(0,0.25);
+		for(int i=0;i<200;i++){
+			p.setAlpha(0.0,0.0);
 			ret1=p.analCom(set,i,0);
-			p.setAlpha(0.75,1.00);
+			p.setAlpha(0.0,0.25);
 			ret2=p.analCom(set,i,0);
-			if(ret1==0&&ret2==1)
+			if(ret1!=ret2)
 				break;
+//			if(ret1==0&&ret2==1)
+//				break;
 //			if(ret1==1&&ret2==0)
 //				break;
 		}

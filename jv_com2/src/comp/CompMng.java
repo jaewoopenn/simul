@@ -43,7 +43,7 @@ public class CompMng {
 
 
 
-	public void analMaxRes() {
+	public double analMaxRes() {
 //		SLog.prn(1, "anal");
 		double u=0;
 		for(Comp c:g_comp){
@@ -54,7 +54,7 @@ public class CompMng {
 			
 		}
 		SLog.prn(1, "fin:"+u);
-		
+		return u;
 	}
 
 
@@ -131,6 +131,10 @@ public class CompMng {
 	public double getMCUtil() {
 		TaskMng tm=getTM();
 		return tm.getInfo().getCritUtil();
+	}
+	public double getMaxUtil() {
+		TaskMng tm=getTM();
+		return tm.getInfo().getMaxUtil();
 	}
 
 
