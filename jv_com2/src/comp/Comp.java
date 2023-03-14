@@ -92,7 +92,16 @@ public class Comp {
 		}
 		return u;
 	}
-	
+	public double getST_U2() {
+		double u=0;
+		for(Task t:g_tm.getTasks()){
+			if(t.isHC())
+				u+=t.getLoVdUtil();
+			else
+				u+=t.getLoUtil();
+		}
+		return u;
+	}	
 	public double getWC_U(){
 		return Math.max(getExt_U(), getInt_U());
 	}

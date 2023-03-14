@@ -125,6 +125,7 @@ public class Platform3 {
 		p.setAlpha(0.0,0.4);
 		p.setRS("FC");
 		p.analCom(0);
+		p.setAlpha(1.0,1.0);
 		p.setRS("IS");
 		p.analCom(1);
 		p.setRS("VD");

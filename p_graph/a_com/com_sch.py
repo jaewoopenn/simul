@@ -46,8 +46,8 @@ def main():
     mp.legendBL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
-    mp.savefig(mf.filepath("fc/fig/com_sch.pdf"))
-#     mp.show()
+#     mp.savefig(mf.filepath("fc/fig/com_sch.pdf"))
+    mp.show()
 
 if __name__ == '__main__':
     main()

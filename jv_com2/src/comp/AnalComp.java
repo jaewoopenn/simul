@@ -45,8 +45,10 @@ public class AnalComp {
 			init_u+=c.getST_U();
 			if(kinds==0) // FCS
 				wc_u+=c.getWC_U();
-			else // EDF-VD
+			else if(kinds==1) // MC-ADAPT
 				wc_u+=c.get_isol_U();
+			else  // EDF-VD
+				wc_u+=Math.max(c.getST_U2(),c.get_isol_U());
 		}
 		SLog.prn(2, "initU:"+init_u);
 		SLog.prn(2, "wcU:"+wc_u);

@@ -35,7 +35,6 @@ public class TaskSimul_EDF_VD extends TaskSimulMC{
 
 	@Override
 	protected void recover_idle_in() {
-		// TODO Auto-generated method stub
 		
 	}
 
