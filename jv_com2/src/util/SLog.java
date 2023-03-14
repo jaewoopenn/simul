@@ -29,6 +29,12 @@ public class SLog {
 	
 	public static void err(String s){
 		System.out.println("ERR:"+s);
+		try {
+		   int num1 = 5/0;
+		}
+	    catch (Throwable e) {
+	    	e.printStackTrace();
+	    }
 		System.exit(1);
 	}
 	public static void err_if(boolean b, String s) {

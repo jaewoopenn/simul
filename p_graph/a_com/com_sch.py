@@ -12,8 +12,8 @@ class gl:
     RS="util_sch"
     x=[]
     vv=[]
-    line=['r-','b--','m-.','g:','k:','k:']
-    marker=['o','v','D','^','s','s']
+    line=['r-','g--','b:','k-.','m-','b:']
+    marker=['o','s','D','^','v','o']
     lab=['FC-MCS', 'MC-ADAPT','EDF-VD']
     data=['FC','IS','VD']
 def load(fn):
@@ -37,6 +37,7 @@ def main():
     x_load()
     iterate(0,3)
     no=0
+    mp.prepare3()
     for v in gl.vv:
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
@@ -45,8 +46,8 @@ def main():
     mp.legendBL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Acceptance Ratio")
-#     mp.savefig(mf.filepath("fc/fig/com_na.pdf"))
-    mp.show()
+    mp.savefig(mf.filepath("fc/fig/com_sch.pdf"))
+#     mp.show()
 
 if __name__ == '__main__':
     main()

@@ -54,6 +54,7 @@ public class SimCompGen {
 	private int check(CompMng cm) {
 		if(g_cg.check(cm)==0)
 			return 0;
+		
 		if(!g_isCheck)
 			return 1;
 		
@@ -68,8 +69,8 @@ public class SimCompGen {
 		AnalComp ac=new AnalComp(cm);
 		ac.computeX(0);
 		cm.prn();
-		int det=ac.anal(1);
-		SLog.prn(1, "!!!d:"+det);
+		int det=ac.anal(0);
+//		SLog.prn(3, "!!!d:"+det);
 		return det;
 		
 	}

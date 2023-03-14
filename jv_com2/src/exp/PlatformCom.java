@@ -26,7 +26,7 @@ public class PlatformCom extends Platform{
 	public void setAlpha(double l,double u) {
 		this.g_alpha_l=l;
 		this.g_alpha_u=u;
-		
+		SLog.prn(3, l+","+u);
 	}
 	
 	public void writeComCfg(ConfigGen cfg) {
@@ -108,7 +108,11 @@ public class PlatformCom extends Platform{
 		
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
-		sm.setX(AnalEDF_VD.computeX(tm));
+		double x=AnalEDF_VD.computeX(tm);
+		if(x==0) {
+			return new SimulInfo();
+		}
+		sm.setX(x);
 		tsim.init_sm_tm(sm,tm);
 		tsim.set_cm(cm);
 		tsim.simul(0,g_dur);
@@ -219,11 +223,11 @@ public class PlatformCom extends Platform{
 		else
 			cm.setX(x);
 		
-		double u=cm.analMaxRes();
-//		SLog.prn(3, "MCUtil:"+cm.getMCUtil()+", MaxUtil:"+cm.getMaxUtil()+", WC_Util:"+u);
-		if(u>1+MUtil.err) {
-			SLog.err("not schedulable:"+u);
-		}
+//		double u=cm.analMaxRes();
+////		SLog.prn(3, "MCUtil:"+cm.getMCUtil()+", MaxUtil:"+cm.getMaxUtil()+", WC_Util:"+u);
+//		if(u>1+MUtil.err) {
+//			SLog.err("com: not schedulable:"+u);
+//		}
 		return cm;
 	}
 	public CompMng loadCM_a(String fn){

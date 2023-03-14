@@ -39,10 +39,14 @@ public class CompGen {
 	public int check(CompMng cm){
 		double u=cm.getMCUtil();
 		SLog.prn(1, u+"");
-		if(u>=g_param.u_lb&&u<=g_param.u_ub){
-			return 1;
+		if(u<g_param.u_lb||u>g_param.u_ub){
+			return 0;
 		}
-		return 0;
+		if(cm.getLoUtil()==0)
+			return 0;
+//		if(cm.getHcUtil()==0)
+//			return 0;
+		return 1;
 	}
 	
 

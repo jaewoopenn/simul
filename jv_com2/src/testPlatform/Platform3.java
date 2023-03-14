@@ -106,9 +106,9 @@ public class Platform3 {
 			p.setRS(i+"");
 			p.analCom(0);
 		}	
-		p.setRS("5");
-		p.setAlpha(1.0,1.0);
-		p.analCom(0);
+//		p.setRS("5");
+//		p.setAlpha(1.0,1.0);
+//		p.analCom(0);
 		return 1;
 	}
 	public  int test4() 

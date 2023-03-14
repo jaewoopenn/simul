@@ -148,6 +148,16 @@ public class CompMng {
 		return g_comp;
 	}
 
+	public double getLoUtil() {
+		TaskMng tm=getTM();
+		return tm.getLoUtil();
+	}
+
+	public double getHcUtil() {
+		TaskMng tm=getTM();
+		return tm.getRUtil();
+	}
+
 
 
 

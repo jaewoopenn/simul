@@ -25,8 +25,8 @@ public class Platform4 {
 	public int kind=0;
 	public int isReal=0;
 //	public int prob=1;
-//	public int prob=4;
-	public int prob=7;
+	public int prob=4;
+//	public int prob=7;
 
 	public PlatformCom getP(){
 		if(kind==0)
