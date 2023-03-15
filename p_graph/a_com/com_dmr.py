@@ -49,8 +49,8 @@ def main():
     mp.legendUL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
-    mp.savefig(mf.filepath("fc/fig/com_dmr.pdf"))
-#     mp.show()
+#     mp.savefig(mf.filepath("fc/fig/com_dmr.pdf"))
+    mp.show()
 
 if __name__ == '__main__':
     main()

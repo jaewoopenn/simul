@@ -67,9 +67,9 @@ public class SimCompGen {
 		cm.setX(x);
 		cm.analMaxRes();
 		AnalComp ac=new AnalComp(cm);
-		ac.computeX(0);
+		ac.computeX(1);
 		cm.prn();
-		int det=ac.anal(0);
+		int det=ac.anal(1);
 //		SLog.prn(3, "!!!d:"+det);
 		return det;
 		

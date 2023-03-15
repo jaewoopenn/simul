@@ -122,7 +122,7 @@ public class Platform3 {
 //		p.setAlpha(0,0.25);
 //		p.setAlpha(0.0,0.3);
 //		p.setAlpha(0.25,0.75);
-		p.setAlpha(0.0,0.4);
+		p.setAlpha(0.0,0.3);
 		p.setRS("FC");
 		p.analCom(0);
 		p.setAlpha(1.0,1.0);
