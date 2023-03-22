@@ -15,7 +15,7 @@ class gl:
     vv=[]
     line=['r-','g--','b:','k-.','m-','b:']
     marker=['o','s','D','^','v','o']
-    lab=['EDF-VD','FC-MCS_v1','FC-MCS_v2']
+    lab=['EDF-VD','FC-MCS-v1','FC-MCS-v2']
     data=[2,1,0,3,4,5]
 def load(fn):
     i_f = mf.load(fn)
@@ -49,8 +49,8 @@ def main():
     mp.legendUL()
     mp.xlabel("Utilization Bound")
     mp.ylabel("Deadline Miss Ratio")
-#     mp.savefig(mf.filepath("fc/fig/com_dmr.pdf"))
-    mp.show()
+    mp.savefig(mf.filepath("fc/fig/com_dmr.pdf"))
+#     mp.show()
 
 if __name__ == '__main__':
     main()
