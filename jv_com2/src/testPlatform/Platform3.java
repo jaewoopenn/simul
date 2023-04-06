@@ -109,6 +109,22 @@ public class Platform3 {
 //		p.setRS("5");
 //		p.setAlpha(1.0,1.0);
 //		p.analCom(0);
+		String[] lab={"alpha=0","0<alpha<=0.25","0.25<alpha<=0.5","0.5<alpha<=0.75","0.75<alpha<=1"};
+		DataAnal da=new DataAnal("fc",5);
+		if(kind==0) {
+			da.load_x("rs/util_x.txt");
+			for(int i=0;i<5;i++) {
+				da.load_rs("rs/util_"+i+".txt",lab[i] , i);
+			}
+			da.save("gra/util_alpha.csv");	
+		} else {
+			da.load_x("rs/prob_x.txt");
+			for(int i=0;i<5;i++) {
+				da.load_rs("rs/prob_"+i+".txt",lab[i] , i);
+			}
+			da.save("gra/util_prob.csv");	
+			
+		}
 		return 1;
 	}
 	public  int test4() 
@@ -130,6 +146,13 @@ public class Platform3 {
 		p.analCom(1);
 		p.setRS("VD");
 		p.analCom(2);
+		String[] lab={"FC","IS","VD"};
+		DataAnal da=new DataAnal("fc",3);
+		da.load_x("rs/util_sch_x.txt");
+		for(int i=0;i<3;i++) {
+			da.load_rs("rs/util_"+lab[i]+".txt",lab[i] , i);
+		}
+		da.save("gra/com_sch.csv");			
 		return 1;
 	}
 	public  int test5() 

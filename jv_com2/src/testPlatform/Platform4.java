@@ -108,6 +108,13 @@ public class Platform4 {
 		p.simulCom(0);
 		p.simulCom(1);
 		p.simulCom(2);
+		String[] lab={"EDF-VD","FC-MCS-v1","FC-MCS-v2"};
+		DataAnal da=new DataAnal("fc",3);
+		da.load_x("rs/util_sim_4.txt");
+		for(int i=0;i<3;i++) {
+			da.load_rs("rs/util_sim_4_"+i+".txt",lab[i] , i);
+		}
+		da.save("gra/com_dmr.csv");			
 		return 1;
 	}
 	public  int test4() 

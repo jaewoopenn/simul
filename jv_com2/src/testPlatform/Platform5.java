@@ -10,8 +10,8 @@ public class Platform5 {
 //	public static int idx=4;
 //	public static int idx=-1;
 	public static int log_level=3;
-//	public int g_real=0;
-	public int g_real=1;
+	public int g_real=0;
+//	public int g_real=1;
 	public int test1() 
 	{
 		Platform3 p=new Platform3(); // util alpha
