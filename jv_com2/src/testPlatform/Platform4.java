@@ -15,9 +15,9 @@ import util.SEngineT;
 public class Platform4 {
 //	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
+//	public static int idx=3;
 //	public static int idx=4;
-//	public static int idx=5;
+	public static int idx=5;
 //	public static int idx=-1;
 //	public static int log_level=1;
 //	public static int log_level=2;
@@ -108,7 +108,7 @@ public class Platform4 {
 		p.simulCom(0);
 		p.simulCom(1);
 		p.simulCom(2);
-		String[] lab={"EDF-VD","FC-MCS-v1","FC-MCS-v2"};
+		String[] lab={"FC-MCS-v2","FC-MCS-v1","EDF-VD"};
 		DataAnal da=new DataAnal("fc",3);
 		da.load_x("rs/util_sim_4.txt");
 		for(int i=0;i<3;i++) {
@@ -140,6 +140,10 @@ public class Platform4 {
 	}
 	public  int test6() 
 	{
+		PlatformCom p=getP();
+//		p.simulCom(0); //CMC-DRA
+//		p.simulCom(1); // NA
+		p.simulCom(2); // NA2
 		return 0;
 	}
 	public  int test7()

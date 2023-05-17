@@ -5,13 +5,14 @@ import util.SEngineT;
 
 public class Platform5 {
 //	public static int idx=1;
-	public static int idx=2;
+//	public static int idx=2;
 //	public static int idx=3;
 //	public static int idx=4;
+	public static int idx=5;
 //	public static int idx=-1;
 	public static int log_level=3;
-	public int g_real=0;
-//	public int g_real=1;
+//	public int g_real=0;
+	public int g_real=1;
 	public int test1() 
 	{
 		Platform3 p=new Platform3(); // util alpha
@@ -44,6 +45,7 @@ public class Platform5 {
 	}
 	public  int test4() 
 	{
+		
 		Platform4 p=new Platform4(); // comp DMR
 		p.isReal=g_real;
 		p.test1();
@@ -53,8 +55,15 @@ public class Platform5 {
 	}
 	public  int test5() 
 	{
-		test3();
-		test4();
+		Platform4 p=new Platform4(); // comp DMR
+		p.isReal=g_real;
+		p.test1();
+		p.test2();
+		long start = System.currentTimeMillis();
+		p.test6();
+		long finish = System.currentTimeMillis();
+		long timeElapsed = finish - start;		
+		System.out.println(timeElapsed+"ms");		
 		return 0;
 	}
 	public  int test6() 
