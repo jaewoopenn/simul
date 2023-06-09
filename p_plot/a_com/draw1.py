@@ -1,13 +1,15 @@
 '''
 Created on 2015. 12. 17.
 
+test g
+
 @author: jaewo
 '''
 import file.MFile as mf
 import util.MPlot as mp
 
 class gl_inp:
-    fn="com/test_g.txt"
+    fn="com/draw/test_g.txt"
 
 class gl:
     xl=[]
@@ -58,7 +60,7 @@ def path2():
 #         print(gl.xl[i])
 #         print(gl.vl[i])
         mp.plot(gl.xl[i],gl.vl[i]) 
-    mp.xlim(0,20)
+    mp.xlim(0,30)
     mp.ylim(0,15)
     mp.ylabel("Resources")
     mp.xlabel("Time")

@@ -14,8 +14,8 @@ public class z_draw1 {
 	public static void init_s() {
 //		int s=1;
 //		int s=2;
-//		int s=3;
-		int s=4;
+		int s=3;
+//		int s=4;
 		
 //		int log=1;
 		int log=2;

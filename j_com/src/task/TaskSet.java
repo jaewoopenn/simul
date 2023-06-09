@@ -47,7 +47,16 @@ public class TaskSet {
 		
 		return r;
 	}
+	public  double computeDBF(double t) {
+		double d=0;
+		for(Task tsk:g_tasks)	{
+			d+=Math.floor((t+MCal.err)/tsk.period)*tsk.exec;
+		}
+		
+		return d;
+	}
 
+	
 	public int size() {
 		return g_tasks.length;
 	}
@@ -89,6 +98,18 @@ public class TaskSet {
 	public void sort() {
 		Arrays.sort(g_tasks,new ComparatorTask());
 		
+	}
+
+
+	public int[] getPeriods() {
+		int[] arr=new int[g_tasks.length];
+		int c=0;
+		for(Task t:g_tasks)	{
+			arr[c]=t.period;
+			c++;
+		}
+		return arr;
+
 	}
 
 }

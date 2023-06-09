@@ -39,6 +39,26 @@ public class MCal {
 		}
 		
 	}
+	public static long lcm(long a, long b) {
+		int gcd_value = gcd((int)a, (int)b);
+		if (gcd_value == 0) return 0; // 인수가 둘다 0일 때의 에러 처리
+		return Math.abs( (a * b) / gcd_value );
+	}
 
+	public static int gcd(int a, int b) {
+		while (b != 0) {
+			int temp = a % b;
+			a = b;
+			b = temp;
+		}
+		return Math.abs(a);
+	}
+	public static long lcm(int[] nums) {
+		long c=1;
+		for(int num:nums) {
+			c=lcm(c,num);
+		}
+		return c;
+	}
 
 }
