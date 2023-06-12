@@ -17,6 +17,8 @@ public class AnalRM_dprm extends Anal{
 //		return true;
 		return checkSch(g_prm);
 	}
+	
+	@Override
 	public boolean checkSch(PRM p) {
 		Task[] tm=g_ts.getArr();
 		for(int i=0;i<tm.length;i++) {

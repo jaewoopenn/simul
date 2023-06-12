@@ -40,6 +40,7 @@ public abstract class Anal {
 	// abs method
 	public abstract boolean is_sch();
 	public abstract double getExec(int p);
+	public abstract boolean checkSch(PRM p);
 	
 	
 }

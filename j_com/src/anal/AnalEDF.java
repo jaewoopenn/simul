@@ -3,6 +3,7 @@ package anal;
 import com.PRM;
 
 import task.Task;
+import util.MCal;
 import util.SLog;
 
 public class AnalEDF extends Anal{
@@ -17,19 +18,18 @@ public class AnalEDF extends Anal{
 	}	
 
 
-	public int getLCM() {
-		int lcm=0;
-		for(Task t:g_ts.getArr()) {
-			lcm+=t.period;
-		}
+	public long getLCM() {
+		long lcm=MCal.lcm(g_ts.getPeriods());
 		return lcm;
 	}
+	
+	@Override
 	public boolean checkSch(PRM p) {
-		int end_t=getLCM();
+		long end_t=getLCM();
 		return checkSch_in(p,end_t);
 	}
 
-	public boolean checkSch_in(PRM p,  int end_t) {
+	public boolean checkSch_in(PRM p,  long end_t) {
 		int log_lv=1;
 		SLog.prn(log_lv, " end_t:"+end_t);
 		SLog.prn(log_lv, "t \t sup \t req ");
@@ -53,8 +53,12 @@ public class AnalEDF extends Anal{
 
 	@Override
 	public double getExec(int p) {
-		// TODO Auto-generated method stub
-		return 0;
+		long end_t=getLCM();
+		for(int i=0;i<end_t;i++) {
+			SLog.prn(1,i );
+			
+		}
+		return 2;
 	}
 	
 

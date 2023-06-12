@@ -113,6 +113,7 @@ public class AnalRM extends Anal{
 		return theta;
 	}
 
+	@Override
 	public boolean checkSch(PRM p) {
 		Task[] tm=g_ts.getArr();
 		for(int i=0;i<tm.length;i++) {
