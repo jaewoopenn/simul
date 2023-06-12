@@ -54,13 +54,17 @@ public class AnalEDF extends Anal{
 	@Override
 	public double getExec(int p) {
 		long end_t=getLCM();
-		for(int i=0;i<end_t;i++) {
-			SLog.prn(1,i );
+		for(int t=0;t<end_t;t++) {
+			double d=getExec(p,t);
+			SLog.prn(1,t+" "+d );
 			
 		}
 		return 2;
 	}
 	
-
+	public double getExec(int pi, int t) {
+		double req=g_ts.computeDBF(t);
+		return req;
+	}
 }
 	
