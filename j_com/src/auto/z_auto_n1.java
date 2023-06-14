@@ -23,15 +23,17 @@ public class z_auto_n1 {
 	}
 	
 	public void init() {
+		g_num=25;
+//		g_num=50;
 //		g_num=100;
 //		g_num=1000;
-		g_num=3000;
+//		g_num=3000;
 		g_cfg="_cfg.txt";
 		g_ts="_ts.txt";
 		g_xaxis="_x.txt";
 		g_rs="_rs.txt";
-		int anal[]= {0,1,2};
-//		int anal[]= {2};
+//		int anal[]= {0,1,2};
+		int anal[]= {2};
 		g_anal=anal;
 		
 	}
@@ -43,8 +45,8 @@ public class z_auto_n1 {
 		double lb[]= {0.002,-1,-2,-3};
 		double ub[]= {0.1,0.04,0.06,0.1};
 		int st=0;
-//		for(int i=st;i<1;i++) {
-		for(int i=st;i<4;i++) {
+		for(int i=st;i<1;i++) {
+//		for(int i=st;i<4;i++) {
 			g_path="com/u"+i;
 			g_t_lb=lb[i];
 			g_t_ub=ub[i];

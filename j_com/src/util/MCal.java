@@ -56,6 +56,7 @@ public class MCal {
 	public static long lcm(int[] nums) {
 		long c=1;
 		for(int num:nums) {
+//			SLog.prn(3, num);
 			c=lcm(c,num);
 		}
 		return c;

@@ -7,6 +7,11 @@ import java.util.Vector;
 import task.Task;
 import util.SLog;
 
+//
+// drop 안하는 것. 
+// down sacled 이것은 약 1/2 exec. time
+// 
+
 public class AnalAMC_np2 extends Anal {
 	private int sz;
 	private int[] prio;
@@ -19,6 +24,8 @@ public class AnalAMC_np2 extends Anal {
 		sz=g_tm.getTasks().length;
 		prio=new int[sz];
 	}
+	
+	
 	
 	@Override
 	public double getDtm() {
@@ -64,7 +71,7 @@ public class AnalAMC_np2 extends Anal {
 			double res=computeHI(t,hp,lp,res_lo);
 			SLog.prn(1, ""+res+" "+t.period);
 			return res<=t.period;
-		} else {
+		} else { // LO task 
 			SLog.prn(1, ""+res_lo+" "+t.period);
 			return res_lo<=t.period;
 		}

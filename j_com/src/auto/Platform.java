@@ -146,8 +146,10 @@ public class Platform {
 			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
 			String res=anal_tasks(tm,a);
+			SLog.prnc(3, ".");
 			fu.add(res);
 		}
+		SLog.prn(3, "end");
 		fu.save(out);
 		
 	}

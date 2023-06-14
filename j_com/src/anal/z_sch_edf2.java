@@ -8,38 +8,20 @@ import task.TaskSet;
 import util.SLog;
 import util.SEngineT;
 
-public class z_sch_edf1 {
-//	public static int idx=1;
-	public static int idx=2;
+public class z_sch_edf2 {
+	public static int idx=1;
+//	public static int idx=2;
 //	public static int idx=3;
 	public static int log_level=1;
 //	public static int log_level=2;
 
 	
-	// check PRM 
-	public int test1()
-	{
-		PRM p=new PRM(3,2);
-//		PRM p=new PRM(3,1);
-//		TaskSet tm=TS1.tm1();
-		TaskSet tm=TS1.tm2();
-		String st="";
-		Anal a=new AnalEDF();
-		a.init(tm);
-		if(a.checkSch(p))
-			st+="OK";
-		else
-			st+="Not OK";
-		SLog.prn(3,st );
-		return 0;
-	}
-	
 	// getExec
-	public int test2() 
+	public int test1()
 	{
 		TaskSet tm=TS1.tm1();
 		int p=3;
-		Anal a=new AnalEDF();
+		Anal a=new AnalEDF_iplus();
 		a.init(tm);
 		double exec=a.getExec(p);
 		String st="exec:"+exec;
@@ -48,10 +30,10 @@ public class z_sch_edf1 {
 	}
 	
 	// check the answer 
-	public  int test3()
+	public int test2() 
 	{
+//		double exec=2.6666666666666665;
 		double exec=1.67;
-//		double exec=1.66;
 		PRM p=new PRM(3,exec);
 		TaskSet tm=TS1.tm1();
 		String st="";
@@ -62,6 +44,11 @@ public class z_sch_edf1 {
 		else
 			st+="Not OK";
 		SLog.prn(3,st );
+		return 0;
+	}
+	
+	public  int test3()
+	{
 		return 0;
 	}
 	public  int test4()
@@ -91,9 +78,9 @@ public class z_sch_edf1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_sch_edf1.class;
-		z_sch_edf1 m=new z_sch_edf1();
-		int[] aret=z_sch_edf1.gret;
+		Class c = z_sch_edf2.class;
+		z_sch_edf2 m=new z_sch_edf2();
+		int[] aret=z_sch_edf2.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

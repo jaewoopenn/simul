@@ -5,6 +5,9 @@ import java.util.Vector;
 import task.Task;
 import util.SLog;
 
+///
+// drop
+
 public class AnalAMC_np extends Anal {
 	private int sz;
 	private int[] prio;
