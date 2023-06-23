@@ -32,12 +32,15 @@ public class PRM {
 
 	public double sbf_i(double t) {
 		double init_d=period-Math.floor(exec+0.5);  // round
+//		double init_d=period-Math.floor(exec);  
 		double tprime=t-init_d+MCal.err;
 		double k=Math.floor(tprime/period);
 		double ef=Math.floor((k+1)*exec)-Math.floor(k*exec);
+//		double ef=Math.floor((k+2)*exec)-Math.floor((k+1)*exec);
 		double cur_d=period-ef;
 //		SLog.prn(1, "k:"+k);
 //		SLog.prn(1, "cur_d:"+cur_d);
+//		double s=Math.floor((k+1)*exec+MCal.err)-Math.floor(exec+MCal.err)+Math.max(0, tprime-k*period-cur_d);
 		double s=Math.floor(k*exec+MCal.err)+Math.max(0, tprime-k*period-cur_d);
 		s=Math.round(s*1000)*1.0/1000;
 		return Math.max(0, s); 

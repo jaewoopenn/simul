@@ -10,7 +10,7 @@ public abstract class Anal {
 	protected TaskSet g_ts;
 	protected PRM g_prm;
 	
-	protected int g_limit=10000;
+	protected int g_limit=100000;
 	protected double g_error=0.001;
 
 	public String getName() {

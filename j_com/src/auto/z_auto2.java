@@ -2,9 +2,12 @@ package auto;
 
 
 import anal.Anal;
+import anal.AnalEDF;
+import anal.AnalEDF_iplus;
 import anal.AnalRM;
 //import anal.AnalRM_iplus;
 import util.SEngineT;
+import util.SLog;
 
 
 public class z_auto2 {
@@ -25,14 +28,30 @@ public class z_auto2 {
 	
 
 
-	public int test1()  {// config gen
+	public int test1()  {
 		Platform p=new Platform(g_path);
-		Anal a=new AnalRM();
+//		Anal a=new AnalRM();
 //		Anal a=new AnalRM_iplus();
-		p.anal_one3("com/t1/taskset_20.txt",  a,23);
+		Anal a;
+		int num=47;
+		a=new AnalRM();
+		p.anal_one3("com/u0/taskset_70.txt",  a,num);
+		a=new AnalEDF();
+		p.anal_one3("com/u0/taskset_70.txt",  a,num);
+		a=new AnalEDF_iplus();
+		p.anal_one3("com/u0/taskset_70.txt",  a,num);
 		return 0;
 	}
-	public int test2() {// task set gen
+	public int test2() {
+		Platform p=new Platform(g_path);
+		Anal a;
+		for(int num=0;num<50;num++) {
+			SLog.prn(3,num+"!!");
+			a=new AnalEDF();
+			p.anal_one3("com/u0/taskset_70.txt",  a,num);
+			a=new AnalEDF_iplus();
+			p.anal_one3("com/u0/taskset_70.txt",  a,num);
+		}
 		return 0;
 	}
 	

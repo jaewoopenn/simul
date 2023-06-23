@@ -7,7 +7,6 @@ import util.MCal;
 import util.SLog;
 
 public class AnalEDF_iplus extends Anal{
-	long g_upper=1000000;
 	public AnalEDF_iplus() {
 		super();
 		g_name="Q-CSF";
@@ -27,8 +26,8 @@ public class AnalEDF_iplus extends Anal{
 	public long getLCM() {
 		long lcm=MCal.lcm(g_ts.getPeriods());
 //		SLog.prn(3, lcm);
-		if(lcm>g_upper)
-			lcm=g_upper;
+		if(lcm>g_limit)
+			lcm=g_limit;
 //		SLog.prn(3, lcm);
 		return lcm;
 	}
@@ -69,6 +68,7 @@ public class AnalEDF_iplus extends Anal{
 			exec=Math.max(exec,exec1);
 			
 		}
+		exec=Math.max(g_ts.getUtil()*p,exec);
 		return exec;
 	}
 	public double getExec(int pi, int t, double req) {
@@ -87,25 +87,23 @@ public class AnalEDF_iplus extends Anal{
 		st="Compute Normal";
 		SLog.prn(1, st);
 		double temp1=getThetaNormal(req,pi,t,kp1);
-		st="case1:"+temp1;
-		SLog.prn(1, st);
 		double temp2=getThetaNormal(req,pi,t,kp2);
 		double thetaNormal=Math.min(temp1, temp2);
-		st=" case2:"+temp2;
+		st="case1:"+temp1;
+		st+=" case2:"+temp2;
 		st+=" thetaNor:"+thetaNormal;
 		SLog.prn(1, st);
 		st="Compute Multiple";
 		SLog.prn(1, st);
 		temp1=getThetaMultiple(req,pi,t,kp1);
-		st="case1:"+temp1;
-		SLog.prn(1, st);
 		temp2=getThetaMultiple(req,pi,t,kp2);
 		double thetaMultiple=Math.min(temp1, temp2);
-		st=" case2:"+temp2;
+		st="case1:"+temp1;
+		st+=" case2:"+temp2;
 		st+=" thetaMul:"+thetaMultiple;
 		SLog.prn(1, st);
 		double theta=Math.min(thetaNormal, thetaMultiple);
-		st=" thetaF:"+theta;
+		st="theta Final:"+theta;
 		
 		SLog.prn(1, st);
 		
@@ -118,12 +116,12 @@ public class AnalEDF_iplus extends Anal{
 //		if(k==-1)
 //			return pi;
 		double theta=pi-(t-req-2)/(k+2);
-		double init_d=pi-Math.floor(theta+0.5);
+		double init_d=pi-Math.floor(theta);
+		double alpha=t-init_d-k*pi;
 		String st=" theta:"+theta;
 		st+=" init_d:"+init_d;
-		double alpha=t-init_d-k*pi;
 		st+=" alpha:"+alpha;
-//		st+=" pi-theta:"+(pi-theta);
+		st+=" pi-theta:"+(pi-theta);
 		SLog.prn(1, st);
 		if(0<=alpha && alpha<=pi)
 			return theta;
@@ -137,15 +135,15 @@ public class AnalEDF_iplus extends Anal{
 			return pi;
 		String st="";
 		
-		double theta=req/k;
+		double theta=(req+1)/k;
 		if(theta>pi)
 			return pi;
 		st+=" theta:"+theta;
-		double init_d=pi-Math.floor(theta+0.5);
+		double init_d=pi-Math.floor(theta);
 		st+=" init_d:"+init_d;
 		double alpha=t-init_d-k*pi;
 		st+=" alpha:"+alpha;
-		SLog.prn(1, st);
+//		SLog.prn(1, st);
 		if(0<=alpha && alpha <=pi)
 			return theta;
 		return pi;

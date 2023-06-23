@@ -7,7 +7,6 @@ import util.MCal;
 import util.SLog;
 
 public class AnalEDF extends Anal{
-	long g_upper=1000000;
 	public AnalEDF() {
 		super();
 		g_name="CSF";
@@ -22,8 +21,8 @@ public class AnalEDF extends Anal{
 	public long getLCM() {
 		long lcm=MCal.lcm(g_ts.getPeriods());
 //		SLog.prn(3, lcm);
-		if(lcm>g_upper)
-			lcm=g_upper;
+		if(lcm>g_limit)
+			lcm=g_limit;
 //		SLog.prn(3, lcm);
 		return lcm;
 	}
@@ -41,7 +40,7 @@ public class AnalEDF extends Anal{
 		String st="";
 		for(int t=1;t<=end_t;t++) {
 			double d=g_ts.computeDBF(t);
-			double s=p.sbf_i(t);
+			double s=p.sbf(t);
 			st=t+"\t"+s;
 			if (s+g_error<d) {
 				st+=" <<<<"+"\t"+d+"\t";
@@ -71,6 +70,7 @@ public class AnalEDF extends Anal{
 			exec=Math.max(exec,exec1);
 			
 		}
+		exec=Math.max(g_ts.getUtil()*p,exec);
 		return exec;
 	}
 	
@@ -81,29 +81,27 @@ public class AnalEDF extends Anal{
 		int kp1=kp2-1;
 		if (kp2<0)
 			kp2=0;
-		String st="";
-		st+="req:"+req;
+		String st="t: "+t;
+		st+=" req:"+req;
 		st+=" kp1:"+kp1;
 		st+=" kp2:"+kp2;
 		SLog.prn(1, st);
 		double temp1=getThetaNormal(req,pi,t,kp1);
-		st="case1:"+temp1;
-		SLog.prn(1, st);
 		double temp2=getThetaNormal(req,pi,t,kp2);
 		double thetaNormal=Math.min(temp1, temp2);
-		st=" case2:"+temp2;
+		st="case1:"+temp1;
+		st+=" case2:"+temp2;
 		st+=" thetaNor:"+thetaNormal;
 		SLog.prn(1, st);
 		temp1=getThetaMultiple(req,pi,t,kp1);
-		st="case1:"+temp1;
-		SLog.prn(1, st);
 		temp2=getThetaMultiple(req,pi,t,kp2);
 		double thetaMultiple=Math.min(temp1, temp2);
-		st=" case2:"+temp2;
+		st="case1:"+temp1;
+		st+=" case2:"+temp2;
 		st+=" thetaMul:"+thetaMultiple;
 		SLog.prn(1, st);
 		double theta=Math.min(thetaNormal, thetaMultiple);
-		st=" theta:"+theta;
+		st=" theta F:"+theta;
 		
 		SLog.prn(1, st);		
 		return theta;
@@ -113,8 +111,8 @@ public class AnalEDF extends Anal{
 	// compute theta1,  r mod theta !=0
 	private  double getThetaNormal(double req, int pi,  int t,int k) {
 		double theta=pi-(t-req)/(k+2);
-		String st=" th:"+theta;
 		double alpha=t-k*pi-(pi-theta);
+		String st=" th:"+theta;
 		st+=" alpha:"+alpha;
 		st+=" pi-theta:"+(pi-theta);
 		SLog.prn(1, st);

@@ -10,8 +10,8 @@ import util.SEngineT;
 
 public class z_sch_edf1 {
 //	public static int idx=1;
-	public static int idx=2;
-//	public static int idx=3;
+//	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=1;
 //	public static int log_level=2;
 
@@ -52,6 +52,7 @@ public class z_sch_edf1 {
 	{
 		double exec=1.67;
 //		double exec=1.66;
+//		double exec=1.5;
 		PRM p=new PRM(3,exec);
 		TaskSet tm=TS1.tm1();
 		String st="";

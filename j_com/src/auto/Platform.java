@@ -145,6 +145,7 @@ public class Platform {
 		for(int i=0;i<num;i++) {
 			TaskSet tm=sy.loadOne();
 			if(tm==null) break;
+//			SLog.prnc(3, i+" ");
 			String res=anal_tasks(tm,a);
 			SLog.prnc(3, ".");
 			fu.add(res);
@@ -167,7 +168,7 @@ public class Platform {
 
 	
 	private String anal_tasks(TaskSet tm, Anal a) {
-		int p=20;  // TODO change period
+		int p=70;  // TODO change period
 		int p2=50;  
 		tm.sort();
 		if(a.getName().equals("DPRM")) {
@@ -194,6 +195,8 @@ public class Platform {
 			}
 	
 			double ru=e/p;
+//			SLog.prn(3, p+" "+e);
+//			SLog.prn(3, ru-tm.getUtil());
 			return ru+" "+tm.getUtil();
 			
 		}

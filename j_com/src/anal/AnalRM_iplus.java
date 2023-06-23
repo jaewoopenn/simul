@@ -144,7 +144,7 @@ public class AnalRM_iplus extends Anal{
 			return pi;
 		String st="";
 		
-		double theta=req/k;
+		double theta=(req+1)/k;
 		if(theta>pi)
 			return pi;
 		st+=" theta:"+theta;

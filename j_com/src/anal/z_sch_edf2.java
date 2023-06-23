@@ -34,10 +34,12 @@ public class z_sch_edf2 {
 	{
 //		double exec=2.6666666666666665;
 		double exec=1.67;
+//		double exec=1.66;
+//		double exec=1.5;
 		PRM p=new PRM(3,exec);
 		TaskSet tm=TS1.tm1();
 		String st="";
-		Anal a=new AnalEDF();
+		Anal a=new AnalEDF_iplus();
 		a.init(tm);
 		if(a.checkSch(p))
 			st+="OK";

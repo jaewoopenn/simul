@@ -11,10 +11,10 @@ import util.SEngineT;
 
 public class z_sch_rm_iplus1 {
 //	public static int idx=1;
-//	public static int idx=2;
-	public static int idx=3;
-//	public static int log_level=1;
-	public static int log_level=2;
+	public static int idx=2;
+//	public static int idx=3;
+	public static int log_level=1;
+//	public static int log_level=2;
 
 	
 	public int test1()
@@ -42,7 +42,7 @@ public class z_sch_rm_iplus1 {
 	}
 	public int test2() 
 	{
-		PRM p=new PRM(3,1.3);
+		PRM p=new PRM(3,1.6);
 		int end_t=18;
 		for(int t=0;t<end_t;t++) {
 			String st="t:"+t;
