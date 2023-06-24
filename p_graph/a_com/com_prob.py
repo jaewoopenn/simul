@@ -46,7 +46,7 @@ def main():
 #     mp.xlim(0.70,1.0)
     mp.ylim(0, 1.02)
     mp.legendBL()
-    mp.xlabel("Probability to be a HI-task")
+    mp.xlabel("Probability to be a HC task")
     mp.ylabel("Acceptance Ratio")
     mp.savefig(mf.filepath("fc/fig/com_prob.pdf"))
 #     mp.show()

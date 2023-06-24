@@ -14,7 +14,7 @@ class gl:
     vv=[]
     line=['r-','g--','b:','k-.','m-','b:']
     marker=['o','s','D','^','v','o']
-    lab=['FC-MCS', 'MC-ADAPT','EDF-VD']
+    lab=['CMC-DRA', 'MC-ADAPT','EDF-VD']
     data=['FC','IS','VD']
 def load(fn):
     i_f = mf.load(fn)
