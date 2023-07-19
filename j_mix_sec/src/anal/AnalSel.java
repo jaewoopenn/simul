@@ -12,8 +12,8 @@ public class AnalSel {
 
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
-			return new AnalAMC_np();
-//			return new AnalAMC_np2();
+//			return new AnalAMC_np();
+			return new AnalAMC_np2();
 		} else if(sort==1) {
 //			return new AnalAMC_np2();
 			return new AnalRM_np(0);
