@@ -18,7 +18,7 @@ public class AnalEDF_RUN extends Anal {
 	SysInfo g_info;
 	public AnalEDF_RUN() {
 		super();
-		g_name="MC-RUN-IMC"; //HI-MAX
+		g_name="MC-RUN"; //HI-MAX
 	}
 	@Override
 	public void prepare() {

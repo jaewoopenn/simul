@@ -4,7 +4,8 @@ package autorun;
 import util.SEngineT;
 import util.SLog;
 
-//MC-FLEX p hc ratio (BRE)
+// MC-RUN
+// a_imc/dmr_imc.py
 
 public class z_auto_sim_imc {
 	private static int s_idx;
@@ -28,8 +29,8 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 //		int s=1;
-//		int s=2; //p
-		int s=3; //life
+		int s=2; //p
+//		int s=3; //life
 //		int s=4; //ratio
 //		int s=5; //all in one.
 		

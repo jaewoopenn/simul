@@ -66,6 +66,9 @@ public class Task {
 	public double getLoExec(){
 		return (double)c_l;
 	}
+	public double getLIKE(){
+		return (double)(c_l-c_h);
+	}
 	public double getHiUtil(){
 		return (double)c_h/period;
 	}

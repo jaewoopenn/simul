@@ -13,10 +13,7 @@ class gl_input:
     path="run/pi"
     ylim=0.50
 
-#     savename="run/lmsi"
-#     path="run/li"
-#     ylim=0.55
-       
+      
       
 
 

@@ -19,7 +19,7 @@ public class TaskSimul_MC_RUN2 extends TaskSimul_IMC{
 	
 	@Override
 	public void initSimul() {
-		g_tm.sortMinJobDrop();
+		g_tm.sortLC_IMC();
 		
 	}
 	

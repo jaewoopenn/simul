@@ -24,7 +24,7 @@ public class DataAnal {
 			String s=fu.get(i);
 			g_xl.add(s);
 		}
-		g_rs=new double[10][g_xlen];
+		g_rs=new double[20][g_xlen];
 	}
 	public void load_rs(String fn){
 		MList fu=new MList(g_path+"/"+fn);

@@ -43,7 +43,7 @@ public class z_auto_imc {
 	}
 
 	public void init_anal() {
-		g_st=66;
+		g_st=56;
 		g_step=4;
 		g_end=100;
 		g_rs="a_rs_list.txt";
