@@ -7,31 +7,16 @@ Created on 2015. 12. 11.
 @author: cpslab
 '''
 import util.MFile as mf
-import util.MPlot as mp;
 class gl_input:
-    savename="run_f/pmsi"
     path="run_f/pi"
-    ylim=0.44
-
-      
-      
-
-
-
-
+#     path="run_f/li"
     fn="a_sim_graph.txt"
-    xlab= "Utilization Bound"
-    ylab= "Percentage of Fully-serviced Job"
 
 class gl:
-    lab=[]
     x=[]
     vv=[]
-    line=['r--','b-.','k-','g--','m:']
-    marker=['o','v','D','^','s']
 
 def load(i):
-    gl.lab=[]
     gl.x=[]
     gl.vv=[]
     
@@ -41,14 +26,9 @@ def load(i):
         val=line.strip().split(" ")
         raw.append(val)
     itemlen=len(raw[0])
-#     print(itemlen)
-
-    for i in range(1,itemlen):
-#         z=itemlen-i
-        gl.lab.append(raw[0][i])
+#     print(len(raw))
     for i in range(1,len(raw)):
         gl.x.append(str(int(raw[i][0])/100))
-#     print(gl.x)
 
     for i in range(1,itemlen):
 #         z=itemlen-i
@@ -62,29 +42,23 @@ def load(i):
 
 def loop(i):
     load(i)
-    no=0
-#     mp.prepare()
-    mp.prepare2()
-    for v in gl.vv:
-#         if no==2:
-#             no+=1
-#             continue
-        mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
-        no+=1
-#     if(i==2):
-#         mp.legendBR()
-#     else:
-#         mp.legendUL()
-    mp.legendBL()
-    
-    mp.xlabel(gl_input.xlab)
-    mp.ylabel(gl_input.ylab)
-    mp.ylim(gl_input.ylim,1.01)
-    mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
+    x_b=0
+    y_b=0
+    for i in range(8):
+        x=gl.vv[0][i]-gl.vv[1][i]
+        x_b=max(x_b,x)
+        y=gl.vv[0][i]-gl.vv[2][i]
+        y_b=max(y_b,y)
+#         z=gl.vv[0][i]-gl.vv[3][i]
+#         z_b=max(z_b,z)
+        print(gl.x[i],x,y)
+    print(x_b,y_b)
     
 def main():
     loop(0)
+    print("--1")
     loop(1)
+    print("--2")
     loop(2)
     print("end")
 

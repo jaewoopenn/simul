@@ -9,10 +9,9 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
- 
-    savename="run/lmsi"
-    path="run/li"
-    ylim=0.55
+    savename="run_f/lmsi"
+    path="run_f/li"
+    ylim=0.44
        
       
 
@@ -63,8 +62,8 @@ def load(i):
 def loop(i):
     load(i)
     no=0
-    mp.prepare()
-#     mp.prepare2()
+#     mp.prepare()
+    mp.prepare2()
     for v in gl.vv:
 #         if no==2:
 #             no+=1
@@ -79,7 +78,7 @@ def loop(i):
     
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-#     mp.ylim(0,gl_input.ylim)
+    mp.ylim(gl_input.ylim,1.01)
     mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
     
 def main():

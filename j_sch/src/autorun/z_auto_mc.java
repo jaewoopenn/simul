@@ -53,6 +53,7 @@ public class z_auto_mc {
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,56,4,100);
 		p.genTS(g_cf,g_ts);
+		p.genXA(g_cf,g_xl);
 		int end=5;
 		p.anal_loop(g_rs,g_ts,end);
 		DataAnal da=new DataAnal(g_path,0);

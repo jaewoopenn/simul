@@ -29,8 +29,8 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
-//		int s=3; //life
+//		int s=2; //p
+		int s=3; //life
 //		int s=4; //ratio
 //		int s=5; //all in one.
 		
@@ -42,11 +42,11 @@ public class z_auto_sim_imc {
 	public void init_g() {
 		g_path="run/imc2";
 //		g_num=50;
-		g_num=500;
-//		g_num=5000;
+//		g_num=500;
+		g_num=5000;
 		
-		g_dur=10000;
-//		g_dur=32000;
+//		g_dur=10000;
+		g_dur=32000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
