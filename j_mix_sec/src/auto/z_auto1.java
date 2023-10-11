@@ -31,7 +31,7 @@ public class z_auto1 {
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		g_anal_num=3;
+		g_anal_num=4;
 		
 	}
 

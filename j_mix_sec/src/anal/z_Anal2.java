@@ -18,11 +18,12 @@ public class z_Anal2 {
 //		TaskMng tm=TS_MC1.ts3();
 //		TaskMng tm=TS_MC2.ts4();
 //		TaskMng tm=TS_MC2.ts5();
-//		TaskMng tm=TS_MC2.ts6();
-		TaskMng tm=TS_MC2.ts7();
+		TaskMng tm=TS_MC2.ts6();
+//		TaskMng tm=TS_MC2.ts7();
 		tm.prn();
 //		Anal a=new AnalSMC_np();
-		Anal a=new AnalSMC_np2();
+//		Anal a=new AnalSMC_np2();
+		Anal a=new AnalOPA_np();
 		a.init(tm);
 		a.prepare();
 		if(a.getDtm()<=1) {

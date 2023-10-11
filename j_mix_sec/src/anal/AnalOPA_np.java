@@ -12,12 +12,12 @@ import util.SLog;
 // down sacled 이것은 약 1/2 exec. time
 // 
 
-public class AnalAMC_np2 extends Anal {
+public class AnalOPA_np extends Anal {
 	private int sz;
 	private int[] prio;
-	public AnalAMC_np2() {
+	public AnalOPA_np() {
 		super();
-		g_name="MixSec"; // AMC-rtb
+		g_name="OPA_np"; // AMC-rtb
 	}
 	@Override
 	public void prepare() {
@@ -66,48 +66,13 @@ public class AnalAMC_np2 extends Anal {
 	}
 	
 	private boolean chk_A_on_setB(Task t, Task[] hp,Task[] lp) {
-		double res_lo=computeLO(t,hp,lp);
-		if(t.isHC()) {
-			double res=computeHI(t,hp,lp,res_lo);
-			SLog.prn(1, ""+res+" "+t.period);
-			return res<=t.period;
-		} else { // LO task 
-			SLog.prn(1, ""+res_lo+" "+t.period);
-			return res_lo<=t.period;
-		}
+		double res_lo=computeRes(t,hp,lp);
+		return res_lo<=t.period;
 	}
 
-	private double computeLO(Task t, Task[] hp,Task[] lp) {
-		double b=0;
-		for(Task lt:lp) {
-			double exec=lt.c_l;
-			b=Math.max(b, exec);
-		}		
-		double init_res=b+t.c_l;
-		double res=init_res;
-		
-		double old_res=0;
-		double exec=0;
-		while(true){
-			old_res=res;
-			res=init_res;
-			for(int i=0;i<hp.length;i++){
-				Task h_tsk=hp[i];
-				if(t==h_tsk)
-					continue;
-				exec=h_tsk.c_l;
-				res+=Math.ceil((double)old_res/h_tsk.period)*exec;
-			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
-			if(res==old_res) break;
-			if(res>t.period) {
-				res=t.period+1;
-				break;
-			}
-		}
-		return res;
-	}
-	private double computeHI(Task t, Task[] hp, Task[] lp, double res_lo) {
+	private double computeRes(Task t, Task[] hp, Task[] lp) {
+		double res=0;
+		double init_res;
 		double b=0;
 		for(Task lt:lp) {
 			double exec=0;
@@ -116,36 +81,30 @@ public class AnalAMC_np2 extends Anal {
 			else
 				exec=lt.c_l;
 			b=Math.max(b, exec);
-		}		
-		double init_res=b+t.c_h;
-		double res=init_res;
-		
+		}
+		SLog.prn(1, "blocking "+b);
+		if(t.isHC())
+			init_res=b+t.c_h;
+		else
+			init_res=b+t.c_l;
 		double old_res=0;
 		double exec=0;
-		while(true){
+		while(res<=t.period){
 			old_res=res;
 			res=init_res;
 			for(int i=0;i<hp.length;i++){
 				Task h_tsk=hp[i];
-				if(t==h_tsk)
-					continue;
-				if(h_tsk.isHC()) {
+				if(t==h_tsk)		continue;
+				if(h_tsk.isHC())
 					exec=h_tsk.c_h;
-					res+=Math.ceil((double)old_res/h_tsk.period)*exec;
-				} else { // LC
+				else
 					exec=h_tsk.c_l;
-					res+=Math.ceil((double)res_lo/h_tsk.period)*exec;
-					res+=Math.ceil((double)(old_res-res_lo)/h_tsk.period)*exec/2;
-					
-				}
+				res+=Math.ceil((double)old_res/h_tsk.period)*exec;
 			}
 //			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
-			if(res>t.period) {
-				res=t.period+1;
-				break;
-			}
 		}
+//		SLog.prn(1, "r "+t.tid+" "+hp.length);
 		return res;
 	}
 
@@ -200,21 +159,6 @@ public class AnalAMC_np2 extends Anal {
 	
 	@Override
 	public void prn() {
-		for(int i=0;i<sz;i++) {
-			SLog.prn(1,i+" "+prio[i]);
-		}
-		for(int i=0;i<sz;i++) {
-			Task t=g_tm.getTask(i);
-			Task[] hp=getHP(prio[i]);
-			Task[] lp=getLP(prio[i]);
-			double res_lo=computeLO(t,hp,lp);
-			if(t.isHC()) {
-				double res=computeHI(t,hp,lp,res_lo);
-				SLog.prn(1, ""+res_lo+" "+res+" "+t.period);
-			} else {
-				SLog.prn(1, ""+res_lo+" "+t.period);
-			}		
-		}
 	}
 
 }
