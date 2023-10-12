@@ -53,8 +53,8 @@ public class AnalRM_np extends Anal {
 			Task[] lp=getLP(i);
 			double res=computeRes( t,  hp,lp);
 			SLog.prn(1, i+" hp: "+hp.length+" lp: "+lp.length);		
-			SLog.prn(1, i+" "+res+" "+t.period);		
-			if(res>t.period)
+			SLog.prn(1, i+" "+res+" "+t.deadline);		
+			if(res>t.deadline)
 				return false;
 		}
 		return true;

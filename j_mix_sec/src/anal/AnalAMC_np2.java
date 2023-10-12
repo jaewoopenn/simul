@@ -70,10 +70,10 @@ public class AnalAMC_np2 extends Anal {
 		if(t.isHC()) {
 			double res=computeHI(t,hp,lp,res_lo);
 			SLog.prn(1, ""+res+" "+t.period);
-			return res<=t.period;
+			return res<=t.deadline;
 		} else { // LO task 
 			SLog.prn(1, ""+res_lo+" "+t.period);
-			return res_lo<=t.period;
+			return res_lo<=t.deadline;
 		}
 	}
 

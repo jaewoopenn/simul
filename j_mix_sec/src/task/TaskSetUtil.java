@@ -31,7 +31,7 @@ public class TaskSetUtil {
 
 	public static void writeTask(MList fu, Task t) {
 		int isHI=t.isHC()?1:0;
-		String txt=t.period+",";
+		String txt=t.period+","+t.deadline+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 		fu.add(txt);
 	}
@@ -59,13 +59,14 @@ public class TaskSetUtil {
 	public static Task loadTask(String line){
         String[] words=line.split(",");
         int p=Integer.valueOf(words[0]).intValue();
-        int l=Integer.valueOf(words[1]).intValue();
-        int h=Integer.valueOf(words[2]).intValue();
-        int isHI=Integer.valueOf(words[3]).intValue();
+        double d=Double.valueOf(words[1]).doubleValue();
+        int l=Integer.valueOf(words[2]).intValue();
+        int h=Integer.valueOf(words[3]).intValue();
+        int isHI=Integer.valueOf(words[4]).intValue();
         if(isHI==1)
-        	return new Task(p,l,h);
+        	return new Task(p,l,h,d);
         else
-        	return new Task(p,l);
+        	return new Task(p,l,d);
 	}
 	
 

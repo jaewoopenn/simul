@@ -8,14 +8,14 @@ import util.MPlot as mp;
 class gl_input:
     fig="mix_sec/sch.pdf"
     fn="mix_sec/t1/a_graph.txt"
-    xlab= "Utilization Bound"
-    ylab= "Acceptance Ratio"
+    xlab= "Utilization bound"
+    ylab= "Acceptance ratio"
 
 class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r--','k-','b-.','g--','m:']
+    line=['k-','r-','b-','g-','m--']
     marker=['o','v','D','^','s']
 
 def load():
@@ -44,8 +44,8 @@ def load():
         
 
 def main():
-    mp.prepare()
-#     mp.prepare2()
+#     mp.prepare()
+    mp.prepare4()
     load()
     no=0
     for v in gl.vv:

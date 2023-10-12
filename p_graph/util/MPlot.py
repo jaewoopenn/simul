@@ -16,6 +16,8 @@ def prepare2():
 
 def prepare3():
     plt.figure(figsize=(9,6))
+def prepare4():
+    plt.figure(figsize=(9,7))
         
 def legendBL():
     font= matplotlib.font_manager.FontProperties(weight="normal") 
@@ -37,7 +39,7 @@ def plot(x,v):
 def plot2(x,v,l,la):
     plt.plot(x,v, l, drawstyle='default',label=la )
 def plot3(x,v,l,la,ma):
-    plt.plot(x,v, l,marker=ma, drawstyle='default',label=la )
+    plt.plot(x,v, l,marker=ma,markersize=8, drawstyle='default',label=la )
 
 def xlim(l,u):
     plt.xlim(l,u)

@@ -67,7 +67,7 @@ public class AnalOPA_np extends Anal {
 	
 	private boolean chk_A_on_setB(Task t, Task[] hp,Task[] lp) {
 		double res_lo=computeRes(t,hp,lp);
-		return res_lo<=t.period;
+		return res_lo<=t.deadline;
 	}
 
 	private double computeRes(Task t, Task[] hp, Task[] lp) {

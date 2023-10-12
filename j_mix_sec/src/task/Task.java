@@ -10,21 +10,30 @@ import util.SLog;
 public class Task {
 	public int tid;
 	public int period;
+	public double deadline;
 	public int c_l;
 	public int c_h;
 	private boolean is_HC=false;
 	
-
 	public Task(int period, int c_l) {
+		this(period,c_l,period);
+	}
+	public Task(int period, int c_l,int c_h) {
+		this(period,c_l,c_h,period);
+	}
+
+	public Task(int period, int c_l,double d) {
 		this.tid=TaskSeq.getID();
 		this.period = period;
+		this.deadline = d;
 		this.c_l = c_l;
 		this.c_h = c_l;
 	}
 
-	public Task(int period, int c_l, int c_h) {
+	public Task(int period, int c_l, int c_h,double d) {
 		this.tid=TaskSeq.getID();
 		this.period = period;
+		this.deadline = d;
 		this.c_l = c_l;
 		this.c_h = c_h;
 		this.is_HC=true;
@@ -48,13 +57,13 @@ public class Task {
 	}
 	
 	public double getLoUtil(){
-		return (double)c_l/period;
+		return (double)c_l/deadline;
 	}
 	public double getLoExec(){
 		return (double)c_l;
 	}
 	public double getHiUtil(){
-		return (double)c_h/period;
+		return (double)c_h/deadline;
 	}
 	// prn
 	public void prn() {
