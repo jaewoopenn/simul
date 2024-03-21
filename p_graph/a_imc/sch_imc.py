@@ -54,8 +54,8 @@ def main():
     mp.legendBL()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.show()
-#     mp.savefig(mf.filepath("run/sch_imc.pdf"))
+#     mp.show()
+    mp.savefig(mf.filepath("run/sch_imc.pdf"))
 
 if __name__ == '__main__':
     main()

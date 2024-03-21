@@ -8,6 +8,7 @@ class gl_input:
     fn1="run/imc1/a_graph.txt"
     fn2="run/mc1/a_graph.txt"
 
+
 class gl:
     x=[]
     vv=[]
