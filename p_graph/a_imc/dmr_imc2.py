@@ -9,8 +9,10 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    savename="run_f/lmsi"
-    path="run_f/li"
+#     savename="run_f/lmsi"
+#     path="run_f/li"
+    savename="run/lmsi"
+    path="run/li"
     ylim=0.44
        
       

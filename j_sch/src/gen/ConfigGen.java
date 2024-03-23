@@ -9,7 +9,7 @@ import util.MCal;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
-			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","num","subfix","mod"}; 
+			"tu_lb","tu_ub","r_lb","r_ub","prob_hi","mo_lb","mo_ub","num","subfix","mod"}; 
 	//"c_lb","c_ub",
 	//"a_lb","a_ub",
 	private HashMap<String,String> param;
@@ -116,6 +116,8 @@ public class ConfigGen {
 //		eg.setParam("r_ub","0.5");
 		eg.setParam("r_lb","0.25");
 		eg.setParam("r_ub","1.0");
+		eg.setParam("mo_lb","0.25");
+		eg.setParam("mo_ub","1.0");
 		eg.setParam("prob_hi","0.5");
 		eg.setParam("num","10");
 		eg.setParam("subfix","exp");

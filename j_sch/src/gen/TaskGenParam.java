@@ -16,6 +16,8 @@ public class TaskGenParam {
 	public double tu_lb;
 	public double ratio_lb;
 	public double ratio_ub;
+	public double mo_lb;
+	public double mo_ub;
 	public int p_ub;
 	public int p_lb;
 	public double prob_HI;
@@ -52,6 +54,14 @@ public class TaskGenParam {
 		}
 		ratio_lb=l;
 		ratio_ub=u;
+	}
+	public void setMoLH(double l, double u) {
+		if(l>u){
+			System.out.println("Error setMoLH");
+		}
+		mo_lb=l;
+		mo_ub=u;
+//		SLog.prn(2, mo_lb+" "+mo_ub);
 	}
 
 
@@ -90,9 +100,10 @@ public class TaskGenParam {
 			int l=(int)(h*ratio);
 			return new Task(p,l,h);
 		} else{
-			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
+			double m_ratio=g_rand.getDbl(mo_lb,mo_ub);
 			int l=(int)(tu*p);
-			int h=(int)(l*ratio);
+			int h=(int)(l*m_ratio);
+//			SLog.prn(2, l+" "+h+" "+ratio);
 //			int h=0;
 			return new Task(p,l,h,false);
 		}

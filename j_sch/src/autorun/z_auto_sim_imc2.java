@@ -4,19 +4,16 @@ package autorun;
 import util.SEngineT;
 import util.SLog;
 
-// MC-RUN
-// a_imc/dmr_imc.py
+// IMC-PnG 
+// revision / MO ratio 
 
-public class z_auto_sim_imc {
+public class z_auto_sim_imc2 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
 	private double g_p_ms;
 	private double g_p_hc;
 	private double g_ratio;
-	private int g_st;
-	private int g_step;
-	private int g_end;
 	private int g_num;
 	private int g_life;
 	private int g_dur;
@@ -29,10 +26,7 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 //		int s=1;
-//		int s=2; //p
-		int s=3; //life
-//		int s=4; //ratio
-//		int s=5; //all in one.
+		int s=2; //p
 		
 		s_idx=s;
 		
@@ -40,10 +34,10 @@ public class z_auto_sim_imc {
 	}
 	
 	public void init_g() {
-		g_path="run/imc2";
-		g_num=100;
+//		g_path="run/imc2";
+//		g_num=100;
 //		g_num=500;
-//		g_num=5000;
+		g_num=5000;
 		
 //		g_dur=10000;
 		g_dur=32000;
@@ -60,9 +54,6 @@ public class z_auto_sim_imc {
 //		g_life=0;
 		g_p_hc=0.5;
 		g_ratio=-1;
-		g_st=66;
-		g_step=4;
-		g_end=98;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
@@ -71,7 +62,7 @@ public class z_auto_sim_imc {
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
-		p.genCfg_util(g_cf,g_st,g_step,g_end);
+		p.genCfg_mo(g_cf,0,10,100);
 		p.setCheck();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
@@ -103,55 +94,24 @@ public class z_auto_sim_imc {
 	}
 	public int test2() // p
 	{
-		int st=0,et=3;
-//		int st=1,et=2;
-//		int st=2,et=3;
 		init_g();
 		init_sim();
-		double a[]= {0.05,0.1,0.15};
-//		double a[]= {0.2,0.5,0.7};
-		g_path="run/pi_ts";
+		g_path="run/mo_ts";
 		gen();
-		for(int i=st;i<et;i++) {
-			String rs_path="run/pi"+i;
-			g_p_ms=a[i];
-			loop_util(rs_path);
-		}
+		String rs_path="run/mo";
+		loop_util(rs_path);
 		return 0;
 	}
-	public int test3() // ms length
+	public int test3() // 
 	{
-		int st=0,et=3;
-		init_g();
-		init_sim();
-		int a[]= {0,200,400};
-		g_path="run/li_ts";
-		gen();
-		for(int i=st;i<et;i++) {
-			String rs_path="run/li"+i;
-			g_life=a[i];
-			loop_util(rs_path);
-		}
 		return 0;
 	}
-	public  int test4() // ratio
+	public  int test4() // 
 	{
-//		init_g();
-//		init_sim();
-//		double a[]= {0.2,0.4,0.6};
-//		int st=0;
-//		for(int i=st;i<3;i++) {
-//			g_path="sch/r"+i;
-//			g_ratio=a[i];
-//			loop_util();
-//		}
-		return 0;		
+		return 0;
 	}
 	public  int test5() 
 	{
-		test2();
-		test3();
-		test4();
 		return 0;
 	}
 	public  int test6() 
@@ -174,10 +134,10 @@ public class z_auto_sim_imc {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto_sim_imc.init_s();
-		Class c = z_auto_sim_imc.class;
-		z_auto_sim_imc m=new z_auto_sim_imc();
-		int[] aret=z_auto_sim_imc.gret;
+		z_auto_sim_imc2.init_s();
+		Class c = z_auto_sim_imc2.class;
+		z_auto_sim_imc2 m=new z_auto_sim_imc2();
+		int[] aret=z_auto_sim_imc2.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
