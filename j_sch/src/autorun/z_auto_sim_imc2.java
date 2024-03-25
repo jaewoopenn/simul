@@ -26,7 +26,8 @@ public class z_auto_sim_imc2 {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
+//		int s=2; //mo
+		int s=3; //hc
 		
 		s_idx=s;
 		
@@ -34,7 +35,6 @@ public class z_auto_sim_imc2 {
 	}
 	
 	public void init_g() {
-//		g_path="run/imc2";
 //		g_num=100;
 //		g_num=500;
 		g_num=5000;
@@ -66,8 +66,17 @@ public class z_auto_sim_imc2 {
 		p.setCheck();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
-		
 	}
+	public void gen2() {
+		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		p.setNum(g_num);
+		p.setRatio(g_ratio);
+		p.genCfg_hc(g_cf,0,10,100);
+		p.setCheck();
+		//p.setOnlyMC();
+		p.genTS(g_cf,g_ts);
+	}
+	
 	public void loop_util(String rs_path) {
 		Platform_IMC p=new Platform_IMC(g_path,rs_path);
 
@@ -104,6 +113,12 @@ public class z_auto_sim_imc2 {
 	}
 	public int test3() // 
 	{
+		init_g();
+		init_sim();
+		g_path="run/hc_ts";
+		gen2();
+		String rs_path="run/hc";
+		loop_util(rs_path);
 		return 0;
 	}
 	public  int test4() // 

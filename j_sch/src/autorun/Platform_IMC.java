@@ -46,7 +46,7 @@ public class Platform_IMC extends Platform_base {
 		
 	}
 
-	// gen CFG, TS
+	// gen mo
 	public void genCfg_mo(String cf,int base,int step, int end) {
 		double end_i=(end-base)/step;
 		ConfigGen cg=ConfigGen.getPredefined();
@@ -66,10 +66,33 @@ public class Platform_IMC extends Platform_base {
 			cg.setParam("mo_ub", (lb+step)*1.0/100+"");
 			cg.setParam("mod", (lb)+"");
 			cg.setParam("prob_hi",g_p_hc+"");
-			if(g_ratio!=-1) {
-				cg.setParam("r_lb",(g_ratio)+"");
-				cg.setParam("r_ub",(g_ratio_hi)+"");
-			}
+			String fn=g_path+"/cfg_"+i+".txt";
+			cg.setFile(fn);
+			cg.write();
+			fu.add(fn);
+		}
+		fu.save(g_path+"/"+cf);
+		
+	}
+	// gen hc
+	
+	public void genCfg_hc(String cf,int base,int step, int end) {
+		double end_i=(end-base)/step;
+		ConfigGen cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		for(int i=0;i<=end_i;i++){
+			int lb=i*step+base;
+			SLog.prn(2, lb+"");
+//			cg.setParam("u_lb", 0.90+"");
+//			cg.setParam("u_ub", 0.95+"");
+			cg.setParam("u_lb", 0.85+"");
+			cg.setParam("u_ub", 0.90+"");
+//			cg.setParam("u_lb", 0.80+"");
+//			cg.setParam("u_ub", 0.85+"");
+			cg.setParam("mod", (lb)+"");
+			cg.setParam("prob_hi",lb*1.0/100+"");
 			String fn=g_path+"/cfg_"+i+".txt";
 			cg.setFile(fn);
 			cg.write();
@@ -124,6 +147,7 @@ public class Platform_IMC extends Platform_base {
 		g_life=i;
 		
 	}
+
 
 	
 }

@@ -9,10 +9,10 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="run/mo"
-#     path="run/mo"
-    savename="run_f/mo"
-    path="run_f/mo"
+#     savename="run/hc"
+#     path="run/hc"
+    savename="run_f/hc"
+    path="run_f/hc"
     ylim=0.44
        
       
@@ -21,7 +21,7 @@ class gl_input:
 
 
     fn="a_sim_graph.txt"
-    xlab= "Mandatory Part Ratio"
+    xlab= "The probability of HC tasks"
     ylab= "Percentage of Fully-serviced Job"
 
 class gl:
