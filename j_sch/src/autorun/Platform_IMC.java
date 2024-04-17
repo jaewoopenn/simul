@@ -75,6 +75,23 @@ public class Platform_IMC extends Platform_base {
 		
 	}
 	// gen hc
+	public void genCfg(String cf) {
+		ConfigGen cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		cg.setParam("u_lb", 0.85+"");
+		cg.setParam("u_ub", 0.90+"");
+//			cg.setParam("u_lb", 0.80+"");
+//			cg.setParam("u_ub", 0.85+"");
+		cg.setParam("mod", 0+"");
+		cg.setParam("prob_hi",g_p_hc+"");
+		String fn=g_path+"/cfg_0.txt";
+		cg.setFile(fn);
+		cg.write();
+		fu.add(fn);
+		fu.save(g_path+"/"+cf);		
+	}
 	
 	public void genCfg_hc(String cf,int base,int step, int end) {
 		double end_i=(end-base)/step;
@@ -147,6 +164,7 @@ public class Platform_IMC extends Platform_base {
 		g_life=i;
 		
 	}
+
 
 
 	
