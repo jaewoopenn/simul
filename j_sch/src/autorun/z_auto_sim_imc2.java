@@ -17,6 +17,7 @@ public class z_auto_sim_imc2 {
 	private int g_num;
 	private int g_life;
 	private int g_dur;
+//	private int[] g_dur_set={4000,8000,16000,32000,64000,128000};
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;
@@ -64,7 +65,7 @@ public class z_auto_sim_imc2 {
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.genCfg_mo(g_cf,0,10,100);
-		p.setCheck();
+//		p.setCheck();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
 	}
@@ -73,7 +74,7 @@ public class z_auto_sim_imc2 {
 		p.setNum(g_num);
 		p.setRatio(g_ratio);
 		p.genCfg_hc(g_cf,0,10,100);
-		p.setCheck();
+//		p.setCheck();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
 	}
@@ -103,6 +104,22 @@ public class z_auto_sim_imc2 {
 		ds.load_rs(g_rs);
 		ds.saveSim(g_graph);
 	}
+
+	public void loop_util3(String rs_path) {
+		Platform_IMC p=new Platform_IMC(g_path,rs_path);
+
+		
+		p.genXA_dur(g_xl);
+		
+		p.setP_MS(g_p_ms);
+		SLog.prn(2, "p:"+g_p_ms);
+		p.setLife(g_life);
+		p.sim_loop_dur(g_rs, g_ts,3);
+		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
+		ds.load_x(g_xl);
+		ds.load_rs(g_rs);
+		ds.saveSim(g_graph);
+	}	
 	public int test1() 
 	{
 //		init_g();
@@ -136,9 +153,9 @@ public class z_auto_sim_imc2 {
 		init_g();
 		init_sim();
 		g_path="run/dur_ts";
-		gen2();
+		gen3();
 		String rs_path="run/dur";
-		loop_util(rs_path);
+		loop_util3(rs_path);
 		return 0;
 	}
 	public  int test5() 

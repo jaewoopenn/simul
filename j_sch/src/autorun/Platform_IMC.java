@@ -82,8 +82,6 @@ public class Platform_IMC extends Platform_base {
 		cg.setParam("num",g_num+"");
 		cg.setParam("u_lb", 0.85+"");
 		cg.setParam("u_ub", 0.90+"");
-//			cg.setParam("u_lb", 0.80+"");
-//			cg.setParam("u_ub", 0.85+"");
 		cg.setParam("mod", 0+"");
 		cg.setParam("prob_hi",g_p_hc+"");
 		String fn=g_path+"/cfg_0.txt";

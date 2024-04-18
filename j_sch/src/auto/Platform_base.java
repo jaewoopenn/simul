@@ -139,6 +139,15 @@ public abstract class Platform_base {
 		}
 		fu.save(g_rs_path+"/"+rs_list);
 	}
+//	public void sim_loop_dur(String rs_list,String ts_list, int start, int end,int dur[]) {
+//		MList fu=new MList();
+//		for(int i=start;i<end;i++){
+//			g_dur=dur[i];
+//			String rs=simul(ts_list,i);
+//			fu.add(rs);
+//		}
+//		fu.save(g_rs_path+"/"+rs_list);
+//	}
 
 	
 	//simulation
@@ -253,9 +262,9 @@ public abstract class Platform_base {
 			s.setBE();
 		
 		for(int i=0;i<g_dur_set.length;i++) {
-			String out=fn+"_"+i+".sim."+sort;
+			String out=g_rs_path+"/"+fn+"_"+i+".sim."+sort;
 			g_dur=g_dur_set[i];
-			simul_one(fn,out,a,s);
+			simul_one(g_path+"/"+fn,out,a,s);
 			fu_rs.add(out);
 		}		
 		fu_rs.save(rs_fn);

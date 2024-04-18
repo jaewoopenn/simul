@@ -4,6 +4,7 @@ Created on 2019. 4. 29.
 @author: JWLEE
 '''
 from pathlib import Path
+import os
 class gl:
 #     path="d:/data/"
     path=str(Path.home())+"/data/"
@@ -17,3 +18,9 @@ def load(fn):
     return v    
 def filepath(fn):
     return gl.path+fn;    
+
+def make_dir(d):
+    os.mkdir(gl.path+d)
+    
+def remove_dir(d):
+    os.rmdir(gl.path+d)

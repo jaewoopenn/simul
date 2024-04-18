@@ -6,6 +6,7 @@ package autorun;
 import auto.DataAnal;
 import auto.Platform;
 import util.SEngineT;
+import util.SLog;
 
 
 public class z_auto_imc {
@@ -16,6 +17,7 @@ public class z_auto_imc {
 	private int g_step;
 	private int g_end;
 	private int g_num;
+	private int g_sort;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;
@@ -24,8 +26,9 @@ public class z_auto_imc {
 	
 	public static void init_s() {
 		int s=0;
-		s=1;
+//		s=1;
 //		s=2;
+		s=3;
 		s_idx=s;
 		
 		s_log_level=2;
@@ -39,7 +42,7 @@ public class z_auto_imc {
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		
+		g_sort=4;
 	}
 
 	public void init_anal() {
@@ -49,7 +52,34 @@ public class z_auto_imc {
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}
+	public void gen() {
+		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		p.setNum(g_num);
+		p.genCfg_mo(g_cf,0,10,100);
+//		p.setCheck();
+		//p.setOnlyMC();
+		p.genTS(g_cf,g_ts);
+	}
+	public void gen2() {
+		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		p.setNum(g_num);
+		p.genCfg_hc(g_cf,0,10,100);
+//		p.setCheck();
+		//p.setOnlyMC();
+		p.genTS(g_cf,g_ts);
+	}	
+	public void loop_anal(String rs_path) {
+		Platform_IMC p=new Platform_IMC(g_path,rs_path);
 
+		p.genXA(g_cf,g_xl);
+		
+		
+		p.anal_loop(g_rs, g_ts,g_sort);
+		DataAnal_IMC ds=new DataAnal_IMC(rs_path,0);
+		ds.load_x(g_xl);
+		ds.load_rs(g_rs);
+		ds.save(g_graph);
+	}
 	public int test1() 
 	{
 		init_g();
@@ -59,21 +89,32 @@ public class z_auto_imc {
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
-		int end=4;
-		p.anal_loop(g_rs,g_ts,end);
+		p.anal_loop(g_rs,g_ts,g_sort);
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);
 		da.save(g_graph);
 		return 0;
 	}
-	public int test2() // from 
+	public int test2() // p
 	{
-		return -1;	
+		init_g();
+		init_anal();
+		g_path="run/mos_ts";
+		gen();
+		String rs_path="run/mos";
+		loop_anal(rs_path);
+		return 0;
 	}
-	public int test3() // task set --> anal rs
+	public int test3() // 
 	{
-		return -1;
+		init_g();
+		init_anal();
+		g_path="run/hcs_ts";
+		gen2();
+		String rs_path="run/hcs";
+		loop_anal(rs_path);
+		return 0;
 	}
 	public  int test4() // anal rs --> graph
 	{
