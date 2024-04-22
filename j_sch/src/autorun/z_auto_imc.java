@@ -27,8 +27,8 @@ public class z_auto_imc {
 	public static void init_s() {
 		int s=0;
 //		s=1;
-//		s=2;
-		s=3;
+		s=2;
+//		s=3;
 		s_idx=s;
 		
 		s_log_level=2;
@@ -96,7 +96,7 @@ public class z_auto_imc {
 		da.save(g_graph);
 		return 0;
 	}
-	public int test2() // p
+	public int test2() // mandatory part ratio 
 	{
 		init_g();
 		init_anal();
@@ -106,7 +106,7 @@ public class z_auto_imc {
 		loop_anal(rs_path);
 		return 0;
 	}
-	public int test3() // 
+	public int test3() // probability of HC tasks 
 	{
 		init_g();
 		init_anal();
