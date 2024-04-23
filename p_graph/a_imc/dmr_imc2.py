@@ -9,10 +9,10 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-#     savename="run_f/lmsi"
-#     path="run_f/li"
-    savename="run/lmsi"
-    path="run/li"
+    savename="run_f/lmsi"
+    path="run_f/li"
+#     savename="run/lmsi"
+#     path="run/li"
     ylim=0.44
        
       
@@ -28,7 +28,7 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r--','b-.','k-','g--','m:']
+    line=['r--','k-','b-.','g--','m:']
     marker=['o','v','D','^','s']
 
 def load(i):

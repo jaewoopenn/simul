@@ -14,8 +14,8 @@ class gl:
     lab=[]
     x=[]
     vv=[]
-    line=['r--','k-','b-.','g--','m:']
-    marker=['o','v','D','^','s']
+    line=['r-','k:','b-.','g--','m-.','y-']
+    marker=['o','v','D','^','s','o']
 
 def load():
     i_f = mf.load(gl_input.fn)

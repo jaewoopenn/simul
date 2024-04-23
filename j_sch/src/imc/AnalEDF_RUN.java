@@ -20,6 +20,11 @@ public class AnalEDF_RUN extends Anal {
 		super();
 		g_name="IMC-PnG"; 
 	}
+	public AnalEDF_RUN(String n) {
+		super();
+		g_name=n; 
+	}
+
 	@Override
 	public void prepare() {
 		load();

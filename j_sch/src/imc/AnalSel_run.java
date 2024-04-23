@@ -18,12 +18,14 @@ public class AnalSel_run {
 		if(sort==0) { 
 			return new AnalEDF_RUN();  //HI-MAX
 		} else if(sort==1) {
-			return new AnalEDF_AD_E();
+			return new AnalEDF_RUN("MC-Fluid");  //HI-MAX
 		} else if(sort==2) {
-			return new AnalEDF_VD();
+			return new AnalEDF_AD_E();
 		} else if(sort==3) {
-			return new AnalFMC();		
+			return new AnalEDF_VD();
 		} else if(sort==4) {
+			return new AnalFMC();		
+		} else if(sort==5) {
 			return new AnalAMC();		
 		} 
 		return null;
