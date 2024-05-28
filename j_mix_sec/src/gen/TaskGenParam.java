@@ -72,7 +72,8 @@ public class TaskGenParam {
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		double getProb=g_rand.getDbl();
 		double ratio=g_rand.getDbl(d_lb,d_ub);
-		double d=ratio*p;
+//		double d=ratio*p;
+		double d=p;
 		if(getProb<=prob_HI&&isMC){
 			ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);

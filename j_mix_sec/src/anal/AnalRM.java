@@ -15,9 +15,9 @@ public class AnalRM extends Anal {
 		super();
 		g_sort=i;
 		if(g_sort==0) {
-			g_name="RM_np";
+			g_name="RM";
 		} else {
-			g_name="CM_np";
+			g_name="CM";
 		}
 	}
 	@Override

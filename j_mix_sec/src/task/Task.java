@@ -56,14 +56,20 @@ public class Task {
 		return true;
 	}
 	
-	public double getLoUtil(){
-		return (double)c_l/deadline;
-	}
 	public double getLoExec(){
 		return (double)c_l;
 	}
+	public double getLoUtil(){
+		return (double)c_l/deadline;
+	}
 	public double getHiUtil(){
 		return (double)c_h/deadline;
+	}
+	public double getLoRUtil(){
+		return (double)c_l/period;
+	}
+	public double getHiRUtil(){
+		return (double)c_h/period;
 	}
 	// prn
 	public void prn() {

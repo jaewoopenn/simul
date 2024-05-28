@@ -42,9 +42,9 @@ public class TaskGenMC extends TaskGen {
 		double loutil=0;
 		double hiutil=0;
 		for(Task t:g_tasks){
-			loutil+=t.getLoUtil();
+			loutil+=t.getLoRUtil();
 			if(t.isHC())
-				hiutil+=t.getHiUtil();
+				hiutil+=t.getHiRUtil();
 		}
 		return Math.max(loutil, hiutil);
 	}

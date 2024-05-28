@@ -51,9 +51,30 @@ public class TaskMng {
 		return Math.max(lo_util, hi_util);
 	}
 
+	public double getLC_LoUtil() {
+		double lo_util=0;
+		for(Task t:g_lo_tasks.getArr())	{
+			lo_util+=t.getLoUtil();
+		}
+		return lo_util;
+		
+	}
 
+	public double getHC_LoUtil() {
+		double lo_util=0;
+		for(Task t:g_hi_tasks.getArr())	{
+			lo_util+=t.getLoUtil();
+		}
+		return lo_util;
+	}
 
-
+	public double getHC_HiUtil() {
+		double util=0;
+		for(Task t:g_hi_tasks.getArr())	{
+			util+=t.getHiUtil();
+		}
+		return util;		
+	}
 
 
 
