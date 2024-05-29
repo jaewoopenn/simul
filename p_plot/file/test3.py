@@ -3,7 +3,7 @@ Created on 2015. 12. 17.
 
 @author: jaewo
 '''
-import file.MFile as mf
+import util.MFile as mf
 import util.MPlot as mp
 
 class gl:
