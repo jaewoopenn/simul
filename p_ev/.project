@@ -3,6 +3,7 @@
 	<name>p_ev</name>
 	<comment></comment>
 	<projects>
+		<project>p_common</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
