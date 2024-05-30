@@ -3,14 +3,16 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-import util.MRand as mr
 
 class gl:
     path=1
+#     path=2
+#     path=3
+#     path=4
+
     
 def test1():
-    a=mr.pickInt(1, 5)
-    print(a)
+    pass
 
 def test2():
     pass
@@ -30,7 +32,6 @@ def main():
         test3()
     elif gl.path==4:
         test4()
-    print("hihi")
 
 if __name__ == '__main__':
     main()
