@@ -1,0 +1,4 @@
+test2()
+
+gap 통과하면, 그냥 demand에서는 체크 없이, 넣기만 하기. 
+# gap 리스트를 첨부터 업데이트 하면서, online에서 add/remove 하자. 

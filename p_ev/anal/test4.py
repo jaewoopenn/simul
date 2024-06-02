@@ -9,8 +9,8 @@ Created on 2015. 12. 11.
 
 
 class gl:
-    path=1
-#     path=2
+#     path=1
+    path=2
 #     path=3
 #     path=4
 
@@ -50,13 +50,46 @@ def dem_add(dem,td):
     if add_flag==0:
         tv.append(TD(td.t,old_d+td.d))
     dem.vec=tv
+
 def dem_gap(dem):
     tv=[]
     for e in dem.vec:
         tv.append((e.t,e.t-e.d))
-    old_g=0
-    
+    old_g=100
+    print(tv)    
+    tv2=[]
+    for e in tv:
+        if e[1]<=old_g:
+            tv2=[]
+            tv2.append(e)
+            old_g=e[1]
+        if e[1]>old_g:
+            tv2.append(e)
+    return tv2
+
+def gap_after(v,t):
+    tv=[]
+    for e in v:
+        if e[0]>=t:
+            tv.append(e)
+    return tv    
+def add_check(v,d):
+    for e in v:
+        if d>e[1]:
+            return 0
+    return 1    
+def gap_add(v,td):
+    tv=[]
+    add_flag=0
+    for e in v:
+        if e[0]<td.t:
+            tv.append(e)
+        if e[0]>=td.t:
+            tv.append((e[0],e[1]-td.d))
+#         if e[0]>td.t:
+#             tv.append((e[0],e[1]-td.d))
     return tv
+            
 
 def test1():
     v= Demand()
@@ -68,9 +101,27 @@ def test1():
     gap=dem_gap(v)
     print(gap)
 
+'''
+gap list update 
+'''
+
 def test2():
-   
-    pass
+    v= Demand()
+    dem_add(v,TD(4,1))
+    dem_add(v,TD(7,4))
+    dem_add(v,TD(10,2))
+    dem_add(v,TD(13,2))
+    v.prn()
+    gap=dem_gap(v)
+    print(gap)
+    add_t=TD(8,2)
+    gap2=gap_after(gap,add_t.t)
+    print(gap2)
+    c=add_check(gap2,add_t.d)
+    print(c)
+    if c!=0:
+        gap=gap_add(gap,add_t)
+    print(gap)
 
 def test3():
     pass
