@@ -10,9 +10,9 @@ Created on 2015. 12. 11.
 
 class gl:
 #     path=1
-    path=2
+#     path=2
 #     path=3
-#     path=4
+    path=4
 
 class TD:
     t=0
@@ -25,10 +25,18 @@ class TD:
 
 class Demand:
     vec=[]
+    gap=[]
     def prn(self):
         for e in self.vec:
             e.prn()
 
+def dem_add2(dem,td):
+    ret=gap_add(dem,td)
+    dem_gap_compact(dem)
+    print(dem.gap)    
+    if ret:
+        dem_add(dem,td)
+        
 def dem_add(dem,td):
     tv=[]
     old_d=0
@@ -55,40 +63,56 @@ def dem_gap(dem):
     tv=[]
     for e in dem.vec:
         tv.append((e.t,e.t-e.d))
+    dem.gap=tv
+    
+def dem_gap_compact(dem):
     old_g=100
-    print(tv)    
-    tv2=[]
-    for e in tv:
+    tv=[]
+    for e in dem.gap:
         if e[1]<=old_g:
-            tv2=[]
-            tv2.append(e)
+            tv=[]
+            tv.append(e)
             old_g=e[1]
         if e[1]>old_g:
-            tv2.append(e)
-    return tv2
+            tv.append(e)
+    dem.gap=tv
 
-def gap_after(v,t):
+def in_gap_after(v,t):
     tv=[]
     for e in v:
         if e[0]>=t:
             tv.append(e)
     return tv    
-def add_check(v,d):
+def in_add_check(v,d):
     for e in v:
         if d>e[1]:
             return 0
     return 1    
-def gap_add(v,td):
+def gap_add(dem,td):
     tv=[]
+    gap2=in_gap_after(dem.gap,td.t)
+#     print(gap2)
+    c=in_add_check(gap2,td.d)
+    if c==0:
+        return 0
     add_flag=0
-    for e in v:
+    old_d=0
+    mod_d=td.t-td.d
+    for e in dem.gap:
+        mod=e[1]-td.d
         if e[0]<td.t:
             tv.append(e)
-        if e[0]>=td.t:
-            tv.append((e[0],e[1]-td.d))
-#         if e[0]>td.t:
-#             tv.append((e[0],e[1]-td.d))
-    return tv
+            old_d=e[0]-e[1]
+        mod_d=td.t-td.d-old_d
+        if e[0]>=td.t and mod!=0:
+            if add_flag==0:
+                tv.append((td.t,mod_d))
+                add_flag=1
+            tv.append((e[0],mod))
+    if add_flag==0:
+        tv.append((td.t,mod_d))
+    dem.gap=tv
+    return 1
             
 
 def test1():
@@ -112,22 +136,50 @@ def test2():
     dem_add(v,TD(10,2))
     dem_add(v,TD(13,2))
     v.prn()
-    gap=dem_gap(v)
-    print(gap)
+    dem_gap(v)
+    dem_gap_compact(v)
+    print(v.gap)
     add_t=TD(8,2)
-    gap2=gap_after(gap,add_t.t)
-    print(gap2)
-    c=add_check(gap2,add_t.d)
-    print(c)
-    if c!=0:
-        gap=gap_add(gap,add_t)
-    print(gap)
+#     add_t=TD(8,3)
+#     add_t=TD(8,4)
+    ret=gap_add(v,add_t)
+    if ret:
+        print("OK")
+        dem_gap_compact(v)
+    else:
+        print("Not")
+        
+    print(v.gap)
 
 def test3():
-    pass
+    v= Demand()
+    dem_add(v,TD(4,1))
+    dem_add(v,TD(7,4))
+    dem_add(v,TD(10,2))
+    dem_add(v,TD(13,2))
+    v.prn()
+    dem_gap(v)
+    dem_gap_compact(v)
+    print(v.gap)
+#     add_t=TD(13,1)
+    add_t=TD(15,1)
+    ret=gap_add(v,add_t)
+    if ret:
+        print("OK")
+    else:
+        print("Not")
+        
+    print(v.gap)
 
 def test4():
-    pass
+    v= Demand()
+    dem_add2(v,TD(13,2))
+    dem_add2(v,TD(4,1))
+    dem_add2(v,TD(10,2))
+    dem_add2(v,TD(7,4))
+    v.prn()
+
+
     
 def main():
     if gl.path==1:
