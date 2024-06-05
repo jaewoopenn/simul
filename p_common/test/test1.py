@@ -5,8 +5,11 @@ Created on 2015. 12. 11.
 '''
 from util.MFile import CFile
 class gl:
+#     path=1
+#     path=2
+#     path=3
     path=4
-    
+
 def test1():
     cf=CFile()
     cf.open_r("test/log1.txt")

@@ -20,7 +20,7 @@ def main():
 #     print vl
     mp.plot(xl,vl)
     mp.xlog()
-    mp.xlim(0, 1024)
+    mp.xlim(1, 1024)
     mp.xlabel("The number of tasks")
     mp.ylabel("Utilization")
     mp.show()

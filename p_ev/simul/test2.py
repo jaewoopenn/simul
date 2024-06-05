@@ -7,8 +7,10 @@ from simul.MSimul import CSimul
 import simul.MSimul as ms
 
 class gl:
-#     path=1
-    path=3
+    path=1
+#     path=2
+#     path=3
+#     path=4
 
 
 '''
