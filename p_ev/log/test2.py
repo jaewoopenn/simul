@@ -5,12 +5,13 @@ Created on 2015. 12. 11.
 '''
 
 from util.MFile import CFile
-
+from log.MLog import CLog
+import util.MRand as mr
 
 class gl:
 #     path=1
-    path=2
-#     path=3
+#     path=2
+    path=3
 #     path=4
 
     
@@ -18,18 +19,22 @@ def test1():
     cf=CFile()
     cf.open_w("ev/test.txt")
     t=0
-    while True:
-        t+=1
-        d=t+10
-        m=5
-        o=1
+    end_t=20
+    arr_p=0.6
+    while t<=end_t:
+        if mr.pick()>arr_p:
+            t+=1
+            continue
+        d=mr.pickInt(7, 12)
+        m=mr.pickInt(2,4)
+        o=mr.pickInt(1,3)
         str="%d %d %d %d"%(t,d,m,o)
         cf.write(str)
-        if t==10:
-            break
+        t+=1
     cf.end()
     
     pass
+
 
 def test2():
     cf=CFile()
@@ -42,7 +47,14 @@ def test2():
     
 
 def test3():
-    pass
+    cl=CLog("ev/test.txt")
+    t=0
+    while t<10:
+        while t==cl.getLast():
+            w=cl.getW()
+            print(t,w)
+        t+=1
+    
 
 def test4():
     pass

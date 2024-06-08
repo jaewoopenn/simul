@@ -8,8 +8,8 @@ import util.MRand as mr
 class gl:
 #     path=1
 #     path=2
-    path=3
-#     path=4
+#     path=3
+    path=4
 
 def test1():
     p=mr.pick()
@@ -35,7 +35,8 @@ def test3():
     pass
 
 def test4():
-    pass
+    p=mr.pickInt(5, 10)
+    print(p)
     
 def main():
     if gl.path==1:
