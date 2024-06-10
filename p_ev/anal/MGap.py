@@ -29,7 +29,7 @@ class CGap:
     def after(self,t):
         tv=[]
         for e in self.vec:
-            if e[0]>=t:
+            if e[0]>t:
                 tv.append(e)
         return tv
     def add_check(self,td):
@@ -83,27 +83,31 @@ def dem_add(dem,td):
 
  
 
-def gap_add(gap,td):
+def gap_add(gap,td,t):
     tv=[]
     c=gap.add_check(td)
     if c==0:
         return 0
     add_flag=0
-    old_d=0
-    mod_d=td.t-td.d
+    old_g=t
     for e in gap.vec:
         mod=e[1]-td.d
         if e[0]<td.t:
             tv.append(e)
-            old_d=e[0]-e[1]
-        mod_d=td.t-td.d-old_d
-        if e[0]>=td.t and mod!=0:
+            old_g=e[0]-e[1]
+        if e[0]==td.t:
+            tv.append((e[0],mod))
+            old_g=mod
+            add_flag=1
+        if e[0]>td.t and mod!=0:
             if add_flag==0:
-                tv.append((td.t,mod_d))
+                mod_g=td.t-td.d-old_g
+                tv.append((td.t,mod_g))
                 add_flag=1
             tv.append((e[0],mod))
     if add_flag==0:
-        tv.append((td.t,mod_d))
+        mod_g=td.t-td.d-old_g
+        tv.append((td.t,mod_g))
     gap.vec=tv
     return 1
             

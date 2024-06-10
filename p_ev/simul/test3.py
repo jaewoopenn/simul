@@ -15,10 +15,10 @@ class gl:
 #     path=4
 
 
-def dem_add2(dem,gap,td):
-    ret=mg.gap_add(gap,td)
+def dem_add2(dem,gap,td,t):
+    ret=mg.gap_add(gap,td,t)
     gap.compact()
-    print(gap.vec)    
+    print(t, gap.vec)    
     if ret:
         mg.dem_add(dem,td)
     else:
@@ -48,11 +48,12 @@ def test2():
     cl=CLog("ev/test.txt")
     
     t=0
-    end_t=10
+    end_t=20
     while t<end_t:
+        g.vec=g.after(t)
         while t==cl.getLast():
             w=cl.getW()
-            dem_add2(v,g,TD(t+w[1],w[2]))
+            dem_add2(v,g,TD(t+w[1],w[2]),t)
         t+=1
     print(g.vec)
     v.prn()
