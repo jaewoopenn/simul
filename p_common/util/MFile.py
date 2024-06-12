@@ -26,10 +26,14 @@ class CFile:
         v=self.i_f.readline()
         return v.strip().split()
     def getInts(self):
-        v=self.i_f.readline()
-        w=v.strip().split()
-        if not w:
-            return 
+        v=0
+        while True:
+            v=self.i_f.readline()
+            w=v.strip().split()
+            if not w:
+                return 
+            if w[0]!="#":
+                break
         tv=[]
         for e in w:
             tv.append(int(e))

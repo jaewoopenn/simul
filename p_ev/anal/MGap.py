@@ -32,6 +32,12 @@ class CGap:
             if e[0]>t:
                 tv.append(e)
         return tv
+    def prune(self,t):
+        if not self.vec:
+            return
+        last=self.vec[-1]
+        if last[0]-last[1]<t:
+            self.vec=[]
     def add_check(self,td):
         tv=self.after(td.t)
         for e in tv:
@@ -48,6 +54,7 @@ class CGap:
                 old_g=e[1]
             if e[1]>old_g:
                 tv.append(e)
+                old_g=e[1]
         self.vec=tv
 
     def remove(self,t):
@@ -56,7 +63,13 @@ class CGap:
             if e[0]>t:
                 tv.append(e)
         self.vec=tv
-        
+    def consume(self):
+        if not self.vec:
+            return
+        for e in self.vec:
+            e[1]-=1
+        if self.vec[0][1]==0:
+            self.vec.pop(0)
 
         
 def dem_add(dem,td):
@@ -96,18 +109,21 @@ def gap_add(gap,td,t):
             tv.append(e)
             old_g=e[0]-e[1]
         if e[0]==td.t:
-            tv.append((e[0],mod))
+            tv.append([e[0],mod])
             old_g=mod
             add_flag=1
         if e[0]>td.t and mod!=0:
             if add_flag==0:
                 mod_g=td.t-td.d-old_g
-                tv.append((td.t,mod_g))
+                tv.append([td.t,mod_g])
                 add_flag=1
-            tv.append((e[0],mod))
+            tv.append([e[0],mod])
     if add_flag==0:
         mod_g=td.t-td.d-old_g
-        tv.append((td.t,mod_g))
+        tv.append([td.t,mod_g])
+    for e in tv:
+        if e[1]<0:
+            return 0
     gap.vec=tv
     return 1
             

@@ -5,6 +5,7 @@ Created on 2015. 12. 11.
 '''
 
 from log.MLog import CLog
+from anal.MQueue import CQueue
 from anal.MGap import TD,CDemand,CGap
 import anal.MGap as mg
 
@@ -16,9 +17,9 @@ class gl:
 
 
 def dem_add2(dem,gap,td,t):
+    gap.prune(t)
     ret=mg.gap_add(gap,td,t)
     gap.compact()
-    print(t, gap.vec)    
     if ret:
         mg.dem_add(dem,td)
     else:
@@ -45,7 +46,10 @@ def test2():
     v= CDemand()
     g=CGap()
     
-    cl=CLog("ev/test.txt")
+#     cl=CLog("ev/test2.txt")
+#     cl=CLog("ev/test3.txt")
+#     cl=CLog("ev/test4.txt")
+    cl=CLog("ev/test5.txt")
     
     t=0
     end_t=20
@@ -54,6 +58,9 @@ def test2():
         while t==cl.getLast():
             w=cl.getW()
             dem_add2(v,g,TD(t+w[1],w[2]),t)
+#         if t>=2 and t<4:
+#             g.consume()
+        print(t, g.vec)    
         t+=1
     print(g.vec)
     v.prn()
@@ -62,8 +69,20 @@ def test2():
 '''
 two process
 '''
+
 def test3():
-    pass
+    
+    cl=CLog("ev/test2.txt")
+    q=CQueue()
+    t=0
+    end_t=15
+    while t<end_t:
+        while t==cl.getLast():
+            w=cl.getW()
+            q.add([t+w[1],w[2]])
+        q.prn(t)
+        t+=1
+        q.proceed()
 
 def test4():
     pass
