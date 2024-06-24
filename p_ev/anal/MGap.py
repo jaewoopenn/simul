@@ -26,6 +26,7 @@ class CDemand:
         
 class CGap:
     vec=[]
+    std=0 # used slack 
     def after(self,t):
         tv=[]
         for e in self.vec:
@@ -122,7 +123,7 @@ def gap_add(gap,td,t):
         mod_g=td.t-td.d-old_g
         tv.append([td.t,mod_g])
     for e in tv:
-        if e[1]<0:
+        if e[1]<gap.std:
             return 0
     gap.vec=tv
     return 1

@@ -49,10 +49,12 @@ def test2():
 #     cl=CLog("ev/test2.txt")
 #     cl=CLog("ev/test3.txt")
 #     cl=CLog("ev/test4.txt")
-    cl=CLog("ev/test5.txt")
+#     cl=CLog("ev/test5.txt")
+    cl=CLog("ev/test6.txt")
     
     t=0
     end_t=20
+    g.std=1
     while t<end_t:
         g.vec=g.after(t)
         while t==cl.getLast():
