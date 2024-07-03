@@ -26,32 +26,9 @@ def dem_add2(dem,gap,td,t):
         print("error")
             
 def test1(): 
-    cl=CLog("ev/test.txt")
-    
-    t=0
-    end_t=10
-    while t<end_t:
-        print(t, end =" ")
-        while t==cl.getLast():
-            w=cl.getW()
-            print(w, end =" ")
-        print("")
-        t+=1
-
-'''
-edf 
-'''
-
-def test2():
     v= CDemand()
     g=CGap()
     
-#     cl=CLog("ev/test2.txt")
-#     cl=CLog("ev/test3.txt")
-#     cl=CLog("ev/test4.txt")
-#     cl=CLog("ev/test5.txt")
-#     cl=CLog("ev/test6.txt")
-#     cl=CLog("ev/test7.txt")
     cl=CLog("ev/test8.txt")
     
     t=0
@@ -71,22 +48,18 @@ def test2():
 
 
 '''
-two process
+..
+'''
+
+def test2():
+    pass
+
+'''
+...
 '''
 
 def test3():
-    
-    cl=CLog("ev/test2.txt")
-    q=CQueue()
-    t=0
-    end_t=15
-    while t<end_t:
-        while t==cl.getLast():
-            w=cl.getW()
-            q.add([t+w[1],w[2]])
-        q.prn(t)
-        t+=1
-        q.proceed()
+    pass
 
 def test4():
     pass
