@@ -8,8 +8,7 @@ class CSimul:
     '''
     classdocs
     '''
-    cur_t=0
-    cur_job=[]
+    cur_job=None
     queue=[]
 
     def __init__(self):
@@ -22,21 +21,28 @@ class CSimul:
         
     def add_ed(self,e):
         if self.cur_job:
-            self.queue.append(tuple(self.cur_job))
-            self.cur_job=[0,0,0]
+            if e[1]<self.cur_job[1]:
+                self.queue.append(tuple(self.cur_job))
+                self.cur_job=None
         self.queue.append(e)
         self.queue.sort(key=lambda s: s[1])   
+    def prn(self):
+        print(self.queue)
 
-def simul_t(c):
+def simul_t(c,t):
     if not c.cur_job:
-        c.cur_job=list(c.queue.pop(0))
+        if len(c.queue)!=0:
+            c.cur_job=list(c.queue.pop(0))
+        else:
+            print(t,": idle")
+            return
+        
+    if c.cur_job[2]>0:
+        print(t,":",c.cur_job[0],"rem:",c.cur_job[2]," dl:",c.cur_job[1])
+        c.cur_job[2]-=1
         
     if c.cur_job[2]==0:
         if len(c.queue)!=0:
             c.cur_job=list(c.queue.pop(0))
-    if c.cur_job[2]>0:
-        print(c.cur_t,":",c.cur_job[0],"rem:",c.cur_job[2]," dl:",c.cur_job[1])
-        c.cur_job[2]-=1
-    else:
-        print(c.cur_t,": idle")        
-    c.cur_t+=1
+        else:
+            c.cur_job=None

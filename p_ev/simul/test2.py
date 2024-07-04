@@ -7,8 +7,8 @@ from simul.MSimul import CSimul
 import simul.MSimul as ms
 
 class gl:
-    path=1
-#     path=2
+#     path=1
+    path=2
 #     path=3
 #     path=4
 
@@ -42,6 +42,7 @@ def test2():
     while True:
         if t==2:
             cs.add_ed((3,5,2))
+        cs.prn()
         ms.simul_t(cs)
         if t==10:
             break

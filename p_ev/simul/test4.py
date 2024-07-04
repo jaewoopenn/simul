@@ -5,28 +5,32 @@ Created on 2015. 12. 11.
 '''
 
 from log.MLog import CLog
-from anal.MQueue import CQueue
-from anal.MGap import TD,CDemand,CGap
+from anal.MGap import TD,CGap
 import anal.MGap as mg
+from simul.MSimul import CSimul
+import simul.MSimul as ms
 
 class gl:
 #     path=1
-    path=2
-#     path=3
+#     path=2
+    path=3
 #     path=4
+    idx=100
+#     b_gap=0
+    b_gap=1
+    b_sim=0
+#     b_sim=1
 
 
-def dem_add2(dem,gap,td,t):
+def dem_add3(gap,td,t):
     gap.prune(t)
     ret=mg.gap_add(gap,td,t)
     gap.compact()
-    if ret:
-        mg.dem_add(dem,td)
-    else:
+    if not ret:
         print("error")
+
             
 def test1(): 
-    v= CDemand()
     g=CGap()
     
     cl=CLog("ev/test8.txt")
@@ -38,29 +42,69 @@ def test1():
         g.vec=g.after(t)
         while t==cl.getLast():
             w=cl.getW()
-            dem_add2(v,g,TD(t+w[1],w[2]),t)
+            dem_add3(g,TD(t+w[1],w[2]),t)
 #         if t>=2 and t<4:
 #             g.consume()
         print(t, g.vec)    
         t+=1
     print(g.vec)
-    v.prn()
 
 
 '''
 ..
 '''
-
+def job_add(cs,w,t):
+    cs.add_ed((gl.idx,t+w[1],w[2]))
+    gl.idx+=1
+    
 def test2():
-    pass
+    
+#     cl=CLog("ev/test8.txt")
+    cl=CLog("ev/preempt1.txt")
+    cs=CSimul()
+    t=0
+    end_t=11
+    while t<end_t:
+        while t==cl.getLast():
+            w=cl.getW()
+            job_add(cs,w,t)
+        cs.prn()
+        ms.simul_t(cs,t)
+        
+        t+=1
+#     print(g.vec)
+#     v.prn()
+
 
 '''
-...
+merged version: gap, simul 
 '''
 
 def test3():
-    pass
-
+    fn="preempt1"
+#     fn="test8"
+    g=CGap()
+    cs=CSimul()
+    cl=CLog("ev/"+fn+".txt")
+    
+    t=0
+    end_t=20
+    g.std=0
+    while t<end_t:
+        g.vec=g.after(t)
+        while t==cl.getLast():
+            w=cl.getW()
+            dem_add3(g,TD(t+w[1],w[2]),t)
+            job_add(cs,w,t)
+#         if t>=2 and t<4:
+#             g.consume()
+        if gl.b_sim:
+            cs.prn()
+        if gl.b_gap:
+            print(t, g.vec)    
+        ms.simul_t(cs,t)
+        t+=1
+    print(g.vec)
 def test4():
     pass
     
