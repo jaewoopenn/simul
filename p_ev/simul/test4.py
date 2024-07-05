@@ -16,10 +16,10 @@ class gl:
     path=3
 #     path=4
     idx=100
-#     b_gap=0
-    b_gap=1
-    b_sim=0
-#     b_sim=1
+    b_gap=0
+#     b_gap=1
+#     b_sim=0
+    b_sim=1
 
 
 def dem_add3(gap,td,t):
@@ -54,7 +54,7 @@ def test1():
 ..
 '''
 def job_add(cs,w,t):
-    cs.add_ed((gl.idx,t+w[1],w[2]))
+    cs.add_ed((gl.idx,t+w[1],w[2],w[3]))
     gl.idx+=1
     
 def test2():
@@ -78,10 +78,12 @@ def test2():
 
 '''
 merged version: gap, simul 
+using gap, implement opt exec. std 0~1
 '''
 
 def test3():
-    fn="preempt1"
+#     fn="preempt1"
+    fn="preempt2"
 #     fn="test8"
     g=CGap()
     cs=CSimul()

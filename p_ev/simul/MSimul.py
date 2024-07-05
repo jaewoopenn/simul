@@ -10,6 +10,8 @@ class CSimul:
     '''
     cur_job=None
     queue=[]
+    opt_max=2
+    cur_opt=0
 
     def __init__(self):
         '''
@@ -35,14 +37,24 @@ def simul_t(c,t):
             c.cur_job=list(c.queue.pop(0))
         else:
             print(t,": idle")
+            c.cur_opt=0
+            return
+    if c.cur_job[2]==0:
+        # HERE, optional execution 
+        if c.cur_job[3]>0 and c.cur_opt<c.opt_max:
+            print(t,":",c.cur_job[0],"rem:",c.cur_job[2],c.cur_job[3]," dl:",c.cur_job[1])
+            c.cur_job[3]-=1
+            c.cur_opt+=1
             return
         
-    if c.cur_job[2]>0:
-        print(t,":",c.cur_job[0],"rem:",c.cur_job[2]," dl:",c.cur_job[1])
-        c.cur_job[2]-=1
-        
-    if c.cur_job[2]==0:
         if len(c.queue)!=0:
             c.cur_job=list(c.queue.pop(0))
         else:
             c.cur_job=None
+            print(t,": idle")
+            return
+        
+    if c.cur_job[2]>0:
+        print(t,":",c.cur_job[0],"rem:",c.cur_job[2],c.cur_job[3]," dl:",c.cur_job[1])
+        c.cur_job[2]-=1
+        
