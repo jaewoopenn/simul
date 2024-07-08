@@ -31,9 +31,10 @@ def dem_add3(gap,td,t):
 
             
 def test1(): 
+    fn="opt1"
+    cl=CLog("ev/"+fn+".txt")
     g=CGap()
     
-    cl=CLog("ev/test8.txt")
     
     t=0
     end_t=20
@@ -45,7 +46,11 @@ def test1():
             dem_add3(g,TD(t+w[1],w[2]),t)
 #         if t>=2 and t<4:
 #             g.consume()
-        print(t, g.vec)    
+        print(t, g.vec)
+        if g.vec:
+            allow=int(g.vec[0][1]*0.2)
+            print(allow)
+#             print(g.vec[0][1])
         t+=1
     print(g.vec)
 
@@ -83,8 +88,9 @@ using gap, implement opt exec. std 0~1
 
 def test3():
 #     fn="preempt1"
-    fn="preempt2"
+#     fn="preempt2"
 #     fn="test8"
+    fn="opt1"
     g=CGap()
     cs=CSimul()
     cl=CLog("ev/"+fn+".txt")
@@ -104,7 +110,7 @@ def test3():
             cs.prn()
         if gl.b_gap:
             print(t, g.vec)    
-        ms.simul_t(cs,t)
+        ms.simul_t(g,cs,t)
         t+=1
     print(g.vec)
 def test4():
