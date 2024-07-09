@@ -5,49 +5,49 @@ Created on 2015. 12. 11.
 
 
 '''
-from anal.MGap import TD,CDemand,CGap
+from anal.MGap import TD,CGap
 import anal.MGap as mg
 
 
 class gl:
-    path=1
+#     path=1
 #     path=2
-#     path=3
+    path=3
 #     path=4
 
-def dem_add2(dem,gap,td):
-    ret=mg.gap_add(gap,td)
-    gap.compact()
-    print(gap.vec)    
-    if ret:
-        mg.dem_add(dem,td)
-    else:
+def dem_add2(gap,td,t):
+    ret=mg.gap_add(gap,td,t)
+    if ret==0:
         print("error")
+        return
+    gap.compact()
+    gap.prn_vec(t)
 
 def test1():
     print("hihi")
-    v= CDemand()
     g=CGap()
-    dem_add2(v,g,TD(13,2))
-    dem_add2(v,g,TD(4,1))
-    dem_add2(v,g,TD(10,2))
-    dem_add2(v,g,TD(7,4))
-    v.prn()
-    v.remove(8)
-    g.remove(8)
-    print(g.vec)
-    v.prn()
-
+    dem_add2(g,TD(13,2),0)
+    dem_add2(g,TD(4,1),0)
+    dem_add2(g,TD(10,2),0)
+    dem_add2(g,TD(7,4),0)
 '''
 gap list update 
 '''
 
 def test2():
-    pass
+    g=CGap()
+    dem_add2(g,TD(13,2),0)
+#     dem_add2(g,TD(4,1),1)
+#     dem_add2(g,TD(13,1),1)
+    dem_add2(g,TD(15,1),1)
+    dem_add2(g,TD(4,1),1)
 
 def test3():
-    pass
-
+    g=CGap()
+    dem_add2(g,TD(5,1),0)
+#     dem_add2(g,TD(5,2),1)
+    dem_add2(g,TD(10,2),1)
+    dem_add2(g,TD(7,1),1)
 def test4():
     pass
 

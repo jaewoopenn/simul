@@ -5,35 +5,36 @@ Created on 2024. 5. 30.
 '''
 import sys
 
-class CSimul:
-    '''
-    classdocs
-    '''
+class CSimulF:
     cur_job=None
     queue=[]
     opt_queue=[]
-    opt_max=2
-    cur_opt=0
-    opt_r=0
     
     def __init__(self):
         '''
         Constructor
         '''
         pass
-#     def add(self,e):
-#         self.queue.append(e)
-        
-    def add_ed(self,e):
-        if self.cur_job:
-            if e[1]<self.cur_job[1]:
-                self.queue.append(tuple(self.cur_job))
-                self.cur_job=None
+    def add(self,e,t):
+        if not self.cur_job:
+            self.cur_job=list(e)
+            return 1
+            
+        capa=self.cur_job[1]-t
+        req=self.cur_job[2]
+        for item in self.queue:
+            req+=item[2]
+        print(req+e[2],capa)
+        if req+e[2]>capa:
+            return 0
+        if req+e[2]>e[1]:
+            return 0
         self.queue.append(e)
-        self.queue.sort(key=lambda s: s[1])   
+        return 1
+        
+        
     def add_opt(self,e):
         self.opt_queue.append(e)
-        self.opt_queue.sort(key=lambda s: s[1])   
         
     def prn(self):
         print(self.queue, self.opt_queue)
@@ -46,6 +47,7 @@ class CSimul:
         print(t,"OPT :",self.opt_queue[0][0],
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
+
 def simul_reload(c):
     if len(c.queue)!=0:
         c.cur_job=list(c.queue.pop(0))
@@ -53,6 +55,7 @@ def simul_reload(c):
     else:
         c.cur_job=None
         return 0
+
 def simul_opt(c,t):
     if not c.opt_queue:
         return 0
@@ -66,8 +69,7 @@ def simul_opt(c,t):
         c.opt_queue.pop(0)
     return 1
 
-def simul_t(g,c,t):
-
+def simul_t(c,t):
     # no current job
     if not c.cur_job:
         if not simul_reload(c):
@@ -82,19 +84,6 @@ def simul_t(g,c,t):
     
     # exec =0
     if c.cur_job[2]==0:
-        # HERE, optional execution 
-        if g.vec:
-            c.opt_max=int(g.vec[0].d*c.opt_r)
-        else:
-            c.opt_max=0
-        if c.cur_job[3]>0 and c.cur_opt<c.opt_max:
-            print(c.opt_max)
-            c.prn_c(t,"OPTE")
-            c.cur_job[3]-=1
-            c.cur_opt+=1
-            g.std=c.cur_opt
-            return
-        # when opt exec ended, change to next job 
         c.add_opt(c.cur_job)
         if not simul_reload(c):
             if not simul_opt(c,t):
