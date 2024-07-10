@@ -14,10 +14,11 @@ class gl:
 #     path=3
 #     path=4
 
-    
-def test1():
+
+def run(fn):
+    print(fn)
     cf=CFile()
-    cf.open_w("ev/data/test.txt")
+    cf.open_w("ev/data/"+fn+".txt")
     t=0
     end_t=20
     arr_p=0.6
@@ -32,8 +33,10 @@ def test1():
         cf.write(str)
         t+=1
     cf.end()
-    
-    pass
+
+def test1():
+    for i in range(10):
+        run("test"+str(i))
 
 
 def test2():

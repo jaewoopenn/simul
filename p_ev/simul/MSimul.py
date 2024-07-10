@@ -21,8 +21,6 @@ class CSimul:
         Constructor
         '''
         pass
-#     def add(self,e):
-#         self.queue.append(e)
         
     def add_ed(self,e):
         if self.cur_job:

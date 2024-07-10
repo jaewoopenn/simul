@@ -5,6 +5,13 @@ Created on 2024. 5. 30.
 '''
 import sys
 
+class gl:
+    bPrn=0
+    
+def prn(str):
+    if not gl.bPrn:
+        return
+    print(str)
 class CSimulF:
     cur_job=None
     queue=[]
@@ -24,7 +31,7 @@ class CSimulF:
         req=self.cur_job[2]
         for item in self.queue:
             req+=item[2]
-        print(req+e[2],capa)
+#         print(req+e[2],capa)
         if req+e[2]>capa:
             return 0
         if req+e[2]>e[1]:
@@ -37,13 +44,19 @@ class CSimulF:
         self.opt_queue.append(e)
         
     def prn(self):
+        if not gl.bPrn:
+            return
         print(self.queue, self.opt_queue)
 
     def prn_c(self,t,str):
+        if not gl.bPrn:
+            return
         print(t,":",str,self.cur_job[0],
             "rem:",self.cur_job[2], self.cur_job[3],
             " dl:",self.cur_job[1])
     def prn_opt(self,t):
+        if not gl.bPrn:
+            return
         print(t,"OPT :",self.opt_queue[0][0],
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
@@ -74,7 +87,8 @@ def simul_t(c,t):
     if not c.cur_job:
         if not simul_reload(c):
             if not simul_opt(c,t):
-                print(t,": idle1")
+                prn("{}: idle1".format(t))
+#                 print(t,": idle1")
                 c.cur_opt=0
             return
     if t>=c.cur_job[1] and c.cur_job[2]>0:
