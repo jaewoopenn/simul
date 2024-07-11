@@ -135,7 +135,7 @@ def test3():
         t+=1
     print(g.vec)
 def test4():
-    fn="test"
+    fn="test4"
     g=CGap()
     cs=CSimul()
 #     cs.opt_r=0.9
@@ -144,6 +144,7 @@ def test4():
     
     t=0
     end_t=30
+#     end_t=6
     while t<end_t:
         g.vec=g.after(t)
         while t==cl.getLast():
@@ -161,11 +162,12 @@ def test4():
     print(gl.reject)
 
 def test5():
-    fn="test"
-#     fn="test2"
+#     fn="fifo1"
+#     fn="fifo2"
+    fn="fifo3"
     cs=CSimulF()
 #     cs.opt_r=0.9
-    cl=CLog("ev/data/"+fn+".txt")
+    cl=CLog("ev/ex/"+fn+".txt")
     
     t=0
     end_t=30
@@ -178,6 +180,7 @@ def test5():
         msf.simul_t(cs,t)
         t+=1
     print(gl.reject)
+    
 def main():
     if gl.path==1:
         test1()

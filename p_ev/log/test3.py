@@ -26,7 +26,7 @@ def run(fn):
         if mr.pick()>arr_p:
             t+=1
             continue
-        d=mr.pickInt(7, 12)
+        d=mr.pickInt(5, 20)
         m=mr.pickInt(2,4)
         o=mr.pickInt(1,3)
         str="%d %d %d %d"%(t,d,m,o)

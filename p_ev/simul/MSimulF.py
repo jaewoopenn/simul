@@ -7,6 +7,7 @@ import sys
 
 class gl:
     bPrn=0
+#     bPrn=1
     
 def prn(str):
     if not gl.bPrn:
@@ -27,13 +28,10 @@ class CSimulF:
             self.cur_job=list(e)
             return 1
             
-        capa=self.cur_job[1]-t
-        req=self.cur_job[2]
+        req=t+self.cur_job[2]
         for item in self.queue:
             req+=item[2]
 #         print(req+e[2],capa)
-        if req+e[2]>capa:
-            return 0
         if req+e[2]>e[1]:
             return 0
         self.queue.append(e)
@@ -101,7 +99,7 @@ def simul_t(c,t):
         c.add_opt(c.cur_job)
         if not simul_reload(c):
             if not simul_opt(c,t):
-                print(t,": idle2")
+                prn("{}: idle2".format(t))
                 c.cur_opt=0
             return
     

@@ -13,9 +13,9 @@ from simul.MSimulF import CSimulF
 import simul.MSimulF as msf
 
 class gl:
-    path=1
+#     path=1
 #     path=2
-#     path=3
+    path=3
 #     path=4
 #     path=5
     idx=100
@@ -69,32 +69,72 @@ def run(fn):
         while t==cl.getLast():
             w=cl.getW()
             job_add2(cs,w,t)
-        if gl.b_sim:
-            cs.prn()
         msf.simul_t(cs,t)
         t+=1
     return gl.reject
 
+def run2(fn):
+    g=CGap()
+    cs=CSimul()
+#     cs.opt_r=0.5
+#     cs.opt_r=0.2
+    cs.opt_r=0
+    cl=CLog("ev/data/"+fn+".txt")
+    
+    t=0
+    end_t=30
+    while t<end_t:
+        g.vec=g.after(t)
+        while t==cl.getLast():
+            w=cl.getW()
+            ret=dem_add3(g,TD(t+w[1],w[2]),t)
+            if ret:
+                job_add(cs,w,t)
+        ms.simul_t(g,cs,t)
+        t+=1
+    return gl.reject
+
 def test1(): 
+    sum=0
     for i in range(10):
         gl.reject=0
         fn="test"+str(i)
         ret=run(fn)
+        sum+=ret
         print(fn,ret)
+    print(sum)
 
 '''
 ..
 '''
 
 def test2():
-    pass
+    sum=0
+    for i in range(10):
+        gl.reject=0
+        fn="test"+str(i)
+        ret=run2(fn)
+        sum+=ret
+        print(fn,ret)
+    print(sum)
+
 
 '''
 ..
 '''
 
 def test3():
-    pass
+    sum1=0
+    sum2=0
+    for i in range(10):
+        fn="test"+str(i)
+        gl.reject=0
+        ret=run(fn)
+        sum1+=ret
+        gl.reject=0
+        ret=run2(fn)
+        sum2+=ret
+    print(sum1,sum2)
 
 def test4():
     pass
