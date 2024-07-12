@@ -11,9 +11,9 @@ public class AnalSel {
 	 */
 
 	public static Anal getAnal(int sort) {
-//		return n_preemptive(sort);
+		return n_preemptive(sort);
 
-		return preemptive(sort);
+//		return preemptive(sort);
 	}
 	
 	public static Anal n_preemptive(int sort) {

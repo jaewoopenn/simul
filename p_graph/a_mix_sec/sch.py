@@ -23,6 +23,7 @@ def load():
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
+#         val=line.strip().split("\t")
         raw.append(val)
     itemlen=len(raw[0])
 #     print(itemlen)

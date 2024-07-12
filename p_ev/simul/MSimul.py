@@ -28,7 +28,11 @@ class CSimul:
         Constructor
         '''
         pass
-        
+    def clear(self):
+        self.cur_job=None
+        self.cur_opt=0        
+        self.queue=[]
+        self.opt_queue=[]
     def add_ed(self,e):
         if self.cur_job:
             if e[1]<self.cur_job[1]:

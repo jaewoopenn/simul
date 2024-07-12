@@ -13,6 +13,7 @@ def prn(str):
     if not gl.bPrn:
         return
     print(str)
+    
 class CSimulF:
     cur_job=None
     queue=[]
@@ -23,19 +24,12 @@ class CSimulF:
         Constructor
         '''
         pass
-    def add(self,e,t):
-        if not self.cur_job:
-            self.cur_job=list(e)
-            return 1
-            
-        req=t+self.cur_job[2]
-        for item in self.queue:
-            req+=item[2]
-#         print(req+e[2],capa)
-        if req+e[2]>e[1]:
-            return 0
+    def clear(self):
+        self.cur_job=None
+        self.queue=[]
+        self.opt_queue=[]
+    def add(self,e):
         self.queue.append(e)
-        return 1
         
         
     def add_opt(self,e):
@@ -59,6 +53,18 @@ class CSimulF:
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
 
+def add_ok(cs,e,t):
+    if not cs.cur_job:
+        return 1
+        
+    req=t+cs.cur_job[2]
+    for item in cs.queue:
+        req+=item[2]
+#         print(req+e[2],capa)
+    if req+e[2]>e[1]:
+        return 0
+    return 1
+    
 def simul_reload(c):
     if len(c.queue)!=0:
         c.cur_job=list(c.queue.pop(0))
@@ -66,6 +72,7 @@ def simul_reload(c):
     else:
         c.cur_job=None
         return 0
+
 
 def simul_opt(c,t):
     if not c.opt_queue:

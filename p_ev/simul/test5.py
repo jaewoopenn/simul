@@ -49,8 +49,12 @@ def job_add(cs,w,t):
     gl.idx+=1
 
 def job_add2(cs,w,t):
-    ret=cs.add((gl.idx,t+w[1],w[2],w[3]),t)
-    if not ret:
+    e=(gl.idx,t+w[1],w[2],w[3])
+    ret=msf.add_ok(cs,e,t)
+    if ret:
+        cs.add(e)
+#         cs.prn()
+    else:
         gl.reject+=1
         prn("error {}".format(gl.reject))
         return 0
@@ -61,6 +65,7 @@ def run(fn):
     end_t=30
 #     fn="test2"
     cs=CSimulF()
+    cs.clear()
 #     cs.opt_r=0.9
     cl=CLog("ev/data/"+fn+".txt")
     
@@ -76,6 +81,7 @@ def run(fn):
 def run2(fn):
     g=CGap()
     cs=CSimul()
+    cs.clear()
 #     cs.opt_r=0.5
 #     cs.opt_r=0.2
     cs.opt_r=0

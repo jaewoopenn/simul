@@ -46,7 +46,8 @@ public class z_auto1 {
 		init_anal();
 		Platform p=new Platform(g_path);
 		p.setNum(g_ts_num);
-		p.genCfg_util(g_cf,40,5,100);
+//		p.genCfg_util(g_cf,40,5,100);
+		p.genCfg_util(g_cf,25,5,100);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		p.anal_loop(g_rs,g_ts,g_anal_num);
