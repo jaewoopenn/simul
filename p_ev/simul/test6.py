@@ -5,54 +5,44 @@ Created on 2015. 12. 11.
 '''
 
 from log.MLog import CLog
-from simul.MSimul import CSimul
-import simul.MSimul as ms
 from simul.MSimulF import CSimulF
 import simul.MSimulF as msf
+from simul.MSimul import CSimul
+import simul.MSimul as ms
 
 class gl:
-#     path=1
-    path=2
+    path=1
+#     path=2
 #     path=3
 #     path=4
 #     path=5
     idx=100
     reject=0
     
-    b_gap=0
-#     b_gap=1
     
     b_sim=0
 #     b_sim=1
 
-    bPrn=0
-#     bPrn=1
+#     bPrn=0
+    bPrn=1
 def prn(str):
     if not gl.bPrn:
         return
     print(str)    
 
-def job_add_edf(t,w,cs):
-    e=(gl.idx,t+w[1],w[2],w[3])
-    ret=ms.add_ok(cs, e, t)
-    if ret:
-        cs.add_ed(e)
-        gl.idx+=1
-    else:
-        gl.reject+=1
-        prn("error {}".format(gl.reject))
 
-
-def job_add_fifo(t,w,cs):
+def add_fifo_ok(t,w,cs): 
     e=(gl.idx,t+w[1],w[2],w[3])
-    ret=msf.add_ok(cs,e,t)
-    if ret:
-        cs.add(e)
-#         cs.prn()
-        gl.idx+=1
-    else:
-        gl.reject+=1
-        prn("error {}".format(gl.reject))
+    return msf.add_ok(cs,e,t)
+def add_edf_ok(t,w,cs): 
+    if w[1]<w[2]:
+        return 0
+    e=(gl.idx,t+w[1],w[2],w[3])
+    return ms.add_ok(cs,e,t)
+def add_com(t,w,cs):
+    e=(gl.idx,t+w[1],w[2],w[3])
+    cs.add(e)
+    gl.idx+=1
 
                 
 def run_fifo(fn):
@@ -60,6 +50,8 @@ def run_fifo(fn):
 #     fn="test2"
     cs=CSimulF()
     cs.clear()
+    cs2=CSimulF()
+    cs2.clear()
 #     cs.opt_r=0.9
     cl=CLog("ev/data/"+fn+".txt")
     
@@ -67,45 +59,56 @@ def run_fifo(fn):
     while t<end_t:
         while t==cl.getLast():
             w=cl.getW()
-            job_add_fifo(t,w,cs)
-        if gl.b_sim:
-            cs.prn()
+            if add_fifo_ok(t,w,cs):
+                add_com(t,w,cs)
+            elif add_fifo_ok(t,w,cs2):
+                add_com(t,w,cs2)
+            else:
+                gl.reject+=1
+                prn("error {}".format(gl.reject))
+                
         msf.simul_t(cs,t)
+        msf.simul_t(cs2,t)
         t+=1
     return gl.reject
 
 def run_edf(fn):
+    end_t=30
+#     fn="test2"
     cs=CSimul()
     cs.clear()
-#     cs.opt_r=0.5
-#     cs.opt_r=0.2
-    cs.opt_r=0
+    cs2=CSimul()
+    cs2.clear()
+#     cs.opt_r=0.9
     cl=CLog("ev/data/"+fn+".txt")
     
     t=0
-    end_t=30
     while t<end_t:
-        cs.gap_after(t)
         while t==cl.getLast():
             w=cl.getW()
-            job_add_edf(t,w,cs)
-        if gl.b_gap:
-            cs.prn_gap()
+            if add_edf_ok(t,w,cs):
+                add_com(t,w,cs)
+            elif add_edf_ok(t,w,cs2):
+                add_com(t,w,cs2)
+            else:
+                gl.reject+=1
+                prn("error {}".format(gl.reject))
+                
+#         ms.simul_t(cs,t)
         if gl.b_sim:
-            cs.prn()
-        ms.simul_t(cs,t)
+            cs2.prn()
+            cs2.prn_gap()
+        ms.simul_t(cs2,t)
         t+=1
     return gl.reject
 
+
 def test1(): 
-    sum=0
-    for i in range(10):
-        gl.reject=0
-        fn="test"+str(i)
-        ret=run_fifo(fn)
-        sum+=ret
-        print(fn,ret)
-    print(sum)
+    gl.reject=0
+    fn="test9"
+#     fn="test5"
+    ret=run_fifo(fn)
+    print(fn,ret)
 
 '''
 ..
@@ -113,7 +116,8 @@ def test1():
 
 def test2():
     gl.reject=0
-    fn="test1"
+    fn="test9"
+#     fn="test5"
     ret=run_edf(fn)
     print(fn,ret)
 
@@ -123,17 +127,15 @@ def test2():
 '''
 
 def test3():
-    sum1=0
-    sum2=0
+    sum=0
     for i in range(10):
+        gl.reject=0
         fn="test"+str(i)
-        gl.reject=0
         ret=run_fifo(fn)
-        sum1+=ret
-        gl.reject=0
-        ret=run_edf(fn)
-        sum2+=ret
-    print(sum1,sum2)
+        sum+=ret
+        print(fn,ret)
+    print(sum)
+
 
 def test4():
     pass

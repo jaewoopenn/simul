@@ -27,6 +27,8 @@ class TD:
 class CGap:
     vec=[]
     std=0 # used slack 
+    def gap_after(self,t):
+        self.vec=self.after(t)
     def after(self,t):
         tv=[]
         for e in self.vec:
@@ -46,17 +48,21 @@ class CGap:
                 return 0
         return 1  
     def compact(self):
-        old_g=100
+        old_g=self.vec[-1].d
         tv=[]
         for e in self.vec:
             if e.d<=old_g:
-                tv=[]
                 tv.append(e)
-                old_g=e.d
-            if e.d>old_g:
-                tv.append(e)
-                old_g=e.d
-        self.vec=tv
+        tv2=[]
+        old_g=-1
+        for e in tv:
+            if e.d!=old_g:
+                tv2.append(e)
+            else:
+                tv2.pop(-1)
+                tv2.append(e)
+            old_g=e.d
+        self.vec=tv2
 
     def remove(self,t):
         tv=[]
@@ -64,43 +70,13 @@ class CGap:
             if e.t>t:
                 tv.append(e)
         self.vec=tv
-    def prn_vec(self,t):
-        print(t,": [", end="")
+    def prn_vec(self):
+        print(" [", end="")
         for e in self.vec:
             print("(",e.t,e.d,")", end="")
         print("]")
-#     def consume(self):
-#         if not self.vec:
-#             return
-#         for e in self.vec:
-#             e.d-=1
-#         if self.vec[0][1]==0:
-#             self.vec.pop(0)
 
-#         
-# def dem_add(dem,td):
-#     tv=[]
-#     old_d=0
-#     add_flag=0
-#     for e in dem.vec:
-#         if td.t>e.t:
-#             tv.append(e)
-#             old_d=e.d
-#         if td.t==e.t:
-#             dd=e.d+td.d
-#             tv.append(TD(td.t,dd))
-#             add_flag=1
-#             old_d=dd
-#         if td.t<e.t:
-#             if add_flag==0:
-#                 tv.append(TD(td.t,old_d+td.d))
-#                 add_flag=1
-#             tv.append(TD(e.t,e.d+td.d))
-#     if add_flag==0:
-#         tv.append(TD(td.t,old_d+td.d))
-#     dem.vec=tv
 
- 
 
 def gap_add(gap,td,t):
     tv=[]

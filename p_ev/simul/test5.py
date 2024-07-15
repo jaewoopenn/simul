@@ -5,8 +5,6 @@ Created on 2015. 12. 11.
 '''
 
 from log.MLog import CLog
-from anal.MGap import TD,CGap
-import anal.MGap as mg
 from simul.MSimul import CSimul
 import simul.MSimul as ms
 from simul.MSimulF import CSimulF
@@ -34,34 +32,30 @@ def prn(str):
         return
     print(str)    
 
-def dem_add3(gap,td,t):
-    gap.prune(t)
-    ret=mg.gap_add(gap,td,t)
-    if not ret:
+def job_add_edf(t,w,cs):
+    e=(gl.idx,t+w[1],w[2],w[3])
+    ret=ms.add_ok(cs, e, t)
+    if ret:
+        cs.add(e)
+        gl.idx+=1
+    else:
         gl.reject+=1
         prn("error {}".format(gl.reject))
-        return 0
-    gap.compact()
-    return 1
 
-def job_add(cs,w,t):
-    cs.add_ed((gl.idx,t+w[1],w[2],w[3]))
-    gl.idx+=1
 
-def job_add2(cs,w,t):
+def job_add_fifo(t,w,cs):
     e=(gl.idx,t+w[1],w[2],w[3])
     ret=msf.add_ok(cs,e,t)
     if ret:
         cs.add(e)
 #         cs.prn()
+        gl.idx+=1
     else:
         gl.reject+=1
         prn("error {}".format(gl.reject))
-        return 0
 
-    gl.idx+=1
                 
-def run(fn):
+def run_fifo(fn):
     end_t=30
 #     fn="test2"
     cs=CSimulF()
@@ -73,13 +67,12 @@ def run(fn):
     while t<end_t:
         while t==cl.getLast():
             w=cl.getW()
-            job_add2(cs,w,t)
+            job_add_fifo(t,w,cs)
         msf.simul_t(cs,t)
         t+=1
     return gl.reject
 
-def run2(fn):
-    g=CGap()
+def run_edf(fn):
     cs=CSimul()
     cs.clear()
 #     cs.opt_r=0.5
@@ -90,13 +83,11 @@ def run2(fn):
     t=0
     end_t=30
     while t<end_t:
-        g.vec=g.after(t)
+        cs.gap_after(t)
         while t==cl.getLast():
             w=cl.getW()
-            ret=dem_add3(g,TD(t+w[1],w[2]),t)
-            if ret:
-                job_add(cs,w,t)
-        ms.simul_t(g,cs,t)
+            job_add_edf(t,w,cs)
+        ms.simul_t(cs,t)
         t+=1
     return gl.reject
 
@@ -105,7 +96,7 @@ def test1():
     for i in range(10):
         gl.reject=0
         fn="test"+str(i)
-        ret=run(fn)
+        ret=run_fifo(fn)
         sum+=ret
         print(fn,ret)
     print(sum)
@@ -119,7 +110,7 @@ def test2():
     for i in range(10):
         gl.reject=0
         fn="test"+str(i)
-        ret=run2(fn)
+        ret=run_edf(fn)
         sum+=ret
         print(fn,ret)
     print(sum)
@@ -135,10 +126,10 @@ def test3():
     for i in range(10):
         fn="test"+str(i)
         gl.reject=0
-        ret=run(fn)
+        ret=run_fifo(fn)
         sum1+=ret
         gl.reject=0
-        ret=run2(fn)
+        ret=run_edf(fn)
         sum2+=ret
     print(sum1,sum2)
 

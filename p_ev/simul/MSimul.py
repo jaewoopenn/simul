@@ -4,6 +4,9 @@ Created on 2024. 5. 30.
 @author: jaewoo
 '''
 import sys
+from anal.MGap import TD,CGap
+import anal.MGap as mg
+
 class gl:
     bPrn=0
 #     bPrn=1
@@ -22,7 +25,7 @@ class CSimul:
     opt_max=2
     cur_opt=0
     opt_r=0
-    
+    gap=None
     def __init__(self):
         '''
         Constructor
@@ -33,7 +36,11 @@ class CSimul:
         self.cur_opt=0        
         self.queue=[]
         self.opt_queue=[]
-    def add_ed(self,e):
+        self.gap=CGap()
+    def gap_after(self,t):
+        self.gap.gap_after(t)
+
+    def add(self,e):
         if self.cur_job:
             if e[1]<self.cur_job[1]:
                 if self.cur_job[2]==0:
@@ -65,6 +72,16 @@ class CSimul:
         print(t,"OPT :",self.opt_queue[0][0],
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
+    def prn_gap(self):
+        self.gap.prn_vec()
+def add_ok(cs,e,t):
+    td=TD(e[1],e[2])
+    cs.gap.prune(t)
+    ret=mg.gap_add(cs.gap,td,t)
+    if ret:
+        cs.gap.compact()
+        return 1
+    return 0
 def simul_reload(c):
     if len(c.queue)!=0:
         c.cur_job=list(c.queue.pop(0))
@@ -85,7 +102,7 @@ def simul_opt(c,t):
         c.opt_queue.pop(0)
     return 1
 
-def simul_t(g,c,t):
+def simul_t(c,t):
 
     # no current job
     if not c.cur_job:
@@ -103,8 +120,8 @@ def simul_t(g,c,t):
     # exec =0
     if c.cur_job[2]==0:
         # HERE, optional execution 
-        if g.vec:
-            c.opt_max=int(g.vec[0].d*c.opt_r)
+        if c.gap.vec:
+            c.opt_max=int(c.gap.vec[0].d*c.opt_r)
         else:
             c.opt_max=0
         if c.cur_job[3]>0 and c.cur_opt<c.opt_max:
@@ -112,7 +129,7 @@ def simul_t(g,c,t):
             c.prn_c(t,"OPTE")
             c.cur_job[3]-=1
             c.cur_opt+=1
-            g.std=c.cur_opt
+            c.gap.std=c.cur_opt
             return
         # when opt exec ended, change to next job 
         c.add_opt(c.cur_job)
