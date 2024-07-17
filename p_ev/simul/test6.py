@@ -11,20 +11,21 @@ from simul.MSimul import CSimul
 import simul.MSimul as ms
 
 class gl:
-    path=1
+#     path=1
 #     path=2
-#     path=3
+    path=3
 #     path=4
 #     path=5
     idx=100
+    end_t=40
     reject=0
     
     
     b_sim=0
 #     b_sim=1
 
-#     bPrn=0
-    bPrn=1
+    bPrn=0
+#     bPrn=1
 def prn(str):
     if not gl.bPrn:
         return
@@ -46,7 +47,6 @@ def add_com(t,w,cs):
 
                 
 def run_fifo(fn):
-    end_t=30
 #     fn="test2"
     cs=CSimulF()
     cs.clear()
@@ -56,7 +56,7 @@ def run_fifo(fn):
     cl=CLog("ev/data/"+fn+".txt")
     
     t=0
-    while t<end_t:
+    while t<gl.end_t:
         while t==cl.getLast():
             w=cl.getW()
             if add_fifo_ok(t,w,cs):
@@ -73,7 +73,6 @@ def run_fifo(fn):
     return gl.reject
 
 def run_edf(fn):
-    end_t=30
 #     fn="test2"
     cs=CSimul()
     cs.clear()
@@ -83,7 +82,7 @@ def run_edf(fn):
     cl=CLog("ev/data/"+fn+".txt")
     
     t=0
-    while t<end_t:
+    while t<gl.end_t:
         while t==cl.getLast():
             w=cl.getW()
             if add_edf_ok(t,w,cs):
@@ -94,7 +93,7 @@ def run_edf(fn):
                 gl.reject+=1
                 prn("error {}".format(gl.reject))
                 
-#         ms.simul_t(cs,t)
+        ms.simul_t(cs,t)
         if gl.b_sim:
             cs2.prn()
             cs2.prn_gap()
@@ -132,6 +131,7 @@ def test3():
         gl.reject=0
         fn="test"+str(i)
         ret=run_fifo(fn)
+#         ret=run_edf(fn)
         sum+=ret
         print(fn,ret)
     print(sum)

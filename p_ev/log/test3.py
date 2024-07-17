@@ -9,8 +9,8 @@ from log.MLog import CLog
 import util.MRand as mr
 
 class gl:
-    path=1
-#     path=2
+#     path=1
+    path=2
 #     path=3
 #     path=4
 
@@ -34,13 +34,37 @@ def run(fn):
         t+=1
     cf.end()
 
+def run2(fn):
+    print(fn)
+    cf=CFile()
+    cf.open_w("ev/data/"+fn+".txt")
+    t=0
+    end_t=20
+    arr_p=0.5
+    max_n=2
+    while t<=end_t:
+        if mr.pick()>arr_p:
+            t+=1
+            continue
+        n=mr.pickInt(1,max_n)
+        for i in range(n):
+            d=mr.pickInt(7, 30)
+            m=mr.pickInt(2,4)
+            o=mr.pickInt(1,4)
+            str="%d %d %d %d"%(t,d,m,o)
+            cf.write(str)
+        t+=1
+    cf.end()
+
+
 def test1():
     for i in range(10):
         run("test"+str(i))
 
 
 def test2():
-    pass
+    for i in range(10):
+        run2("test"+str(i))
     
 
 def test3():
