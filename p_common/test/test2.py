@@ -35,8 +35,10 @@ def test3():
     pass
 
 def test4():
-    p=mr.pickInt(5, 10)
+#     p=mr.pickInt(5, 10)
+    p=mr.pickInt(0, 2)
     print(p)
+
     
 def main():
     if gl.path==1:
