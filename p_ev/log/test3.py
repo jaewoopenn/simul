@@ -40,13 +40,14 @@ def run2(fn):
     cf.open_w("ev/data/"+fn+".txt")
     t=0
     end_t=20
-    arr_p=0.5
+    min_n=-2
     max_n=2
     while t<=end_t:
-        if mr.pick()>arr_p:
+        n=mr.pickInt(min_n,max_n)
+        if n<=0:
             t+=1
             continue
-        n=mr.pickInt(1,max_n)
+            
         for i in range(n):
             d=mr.pickInt(7, 30)
             m=mr.pickInt(2,4)

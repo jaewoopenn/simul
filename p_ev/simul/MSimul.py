@@ -25,6 +25,7 @@ class CSimul:
     opt_max=2
     cur_opt=0
     opt_r=0
+    tot_opt=0
     gap=None
     def __init__(self):
         '''
@@ -44,7 +45,7 @@ class CSimul:
         if self.cur_job:
             if e[1]<self.cur_job[1]:
                 if self.cur_job[2]==0:
-                    self.add_opt(tuple(self.cur_job))
+                    self.add_opt(list(self.cur_job))
                     self.cur_job=None
                 else:
                     self.queue.append(tuple(self.cur_job))
@@ -60,20 +61,21 @@ class CSimul:
             return
         print(self.queue, self.opt_queue)
 
-    def prn_c(self,t,str):
+    def prn_c(self,t,str1):
         if not gl.bPrn:
             return
-        print(t,":",str,self.cur_job[0],
+        print(t,":",str1,self.cur_job[0],
             "rem:",self.cur_job[2], self.cur_job[3],
             " dl:",self.cur_job[1])
     def prn_opt(self,t):
         if not gl.bPrn:
             return
-        print(t,"OPT :",self.opt_queue[0][0],
+        print(t,": OPT",self.opt_queue[0][0],
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
     def prn_gap(self):
         self.gap.prn_vec()
+
 def add_ok(cs,e,t):
     td=TD(e[1],e[2])
     cs.gap.prune(t)
@@ -97,6 +99,8 @@ def simul_opt(c,t):
         if not c.opt_queue:
             return 0
     c.prn_opt(t)
+    c.tot_opt+=1
+#     print(c.opt_queue[0])
     c.opt_queue[0][3]-=1
     if c.opt_queue[0][3]==0:
         c.opt_queue.pop(0)
@@ -108,7 +112,7 @@ def simul_t(c,t):
     if not c.cur_job:
         if not simul_reload(c):
             if not simul_opt(c,t):
-                prn("{}: idle1".format(t))
+                prn("{} : idle1".format(t))
                 c.cur_opt=0
             return
         
@@ -125,8 +129,9 @@ def simul_t(c,t):
         else:
             c.opt_max=0
         if c.cur_job[3]>0 and c.cur_opt<c.opt_max:
-            prn(c.opt_max)
+#             prn(c.opt_max)
             c.prn_c(t,"OPTE")
+            c.tot_opt+=1
             c.cur_job[3]-=1
             c.cur_opt+=1
             c.gap.std=c.cur_opt

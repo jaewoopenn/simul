@@ -113,7 +113,7 @@ def test1():
 
 def test2():
     gl.reject=0
-    fn="test1"
+    fn="opt1"
     ret=run_edf(fn)
     print(fn,ret)
 

@@ -18,6 +18,7 @@ class CSimulF:
     cur_job=None
     queue=[]
     opt_queue=[]
+    tot_opt=0
     
     def __init__(self):
         '''
@@ -40,27 +41,26 @@ class CSimulF:
             return
         print(self.queue, self.opt_queue)
 
-    def prn_c(self,t,str):
+    def prn_c(self,t,str1):
         if not gl.bPrn:
             return
-        print(t,":",str,self.cur_job[0],
+        print(t,":",str1,self.cur_job[0],
             "rem:",self.cur_job[2], self.cur_job[3],
             " dl:",self.cur_job[1])
     def prn_opt(self,t):
         if not gl.bPrn:
             return
-        print(t,"OPT :",self.opt_queue[0][0],
+        print(t,": OPT",self.opt_queue[0][0],
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
 
 def add_ok(cs,e,t):
-    if not cs.cur_job:
-        return 1
-        
-    req=t+cs.cur_job[2]
+    req=t
+    if cs.cur_job:
+        req+=cs.cur_job[2]
     for item in cs.queue:
         req+=item[2]
-#         print(req+e[2],capa)
+#     print(req, e[2],e[1])
     if req+e[2]>e[1]:
         return 0
     return 1
@@ -82,6 +82,7 @@ def simul_opt(c,t):
         if not c.opt_queue:
             return 0
     c.prn_opt(t)
+    c.tot_opt+=1
     c.opt_queue[0][3]-=1
     if c.opt_queue[0][3]==0:
         c.opt_queue.pop(0)
@@ -92,7 +93,7 @@ def simul_t(c,t):
     if not c.cur_job:
         if not simul_reload(c):
             if not simul_opt(c,t):
-                prn("{}: idle1".format(t))
+                prn("{} : idle1".format(t))
 #                 print(t,": idle1")
                 c.cur_opt=0
             return

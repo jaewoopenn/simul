@@ -4,7 +4,6 @@ Created on 2015. 12. 11.
 @author: cpslab
 '''
 import util.MRand as mr
-
 class gl:
 #     path=1
 #     path=2
@@ -36,8 +35,9 @@ def test3():
 
 def test4():
 #     p=mr.pickInt(5, 10)
-    p=mr.pickInt(0, 2)
-    print(p)
+    p=mr.pickInt(-2, 3)
+    p2=max(p,0)
+    print(p,p2)
 
     
 def main():
