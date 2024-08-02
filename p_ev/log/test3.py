@@ -41,7 +41,7 @@ def run2(fn):
     t=0
     end_t=20
     min_n=-2
-    max_n=2
+    max_n=5
     while t<=end_t:
         n=mr.pickInt(min_n,max_n)
         if n<=0:

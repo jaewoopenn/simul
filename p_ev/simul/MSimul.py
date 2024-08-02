@@ -11,10 +11,11 @@ class gl:
     bPrn=0
 #     bPrn=1
     
-def prn(str):
+def prn(str1):
     if not gl.bPrn:
         return
-    print(str)
+    print(str1)
+
 class CSimul:
     '''
     classdocs
@@ -26,6 +27,7 @@ class CSimul:
     cur_opt=0
     opt_r=0
     tot_opt=0
+    chr_r=1
     gap=None
     def __init__(self):
         '''
@@ -84,6 +86,7 @@ def add_ok(cs,e,t):
         cs.gap.compact()
         return 1
     return 0
+
 def simul_reload(c):
     if len(c.queue)!=0:
         c.cur_job=list(c.queue.pop(0))
@@ -94,16 +97,13 @@ def simul_reload(c):
 def simul_opt(c,t):
     if not c.opt_queue:
         return 0
-    while t>=c.opt_queue[0][1]:
+    while t>=c.opt_queue[0][1] or c.opt_queue[0][3]<=0:
         c.opt_queue.pop(0)
         if not c.opt_queue:
             return 0
     c.prn_opt(t)
     c.tot_opt+=1
-#     print(c.opt_queue[0])
     c.opt_queue[0][3]-=1
-    if c.opt_queue[0][3]==0:
-        c.opt_queue.pop(0)
     return 1
 
 def simul_t(c,t):

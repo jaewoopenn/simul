@@ -19,6 +19,7 @@ class CSimulF:
     queue=[]
     opt_queue=[]
     tot_opt=0
+    chr_r=1
     
     def __init__(self):
         '''
@@ -77,15 +78,13 @@ def simul_reload(c):
 def simul_opt(c,t):
     if not c.opt_queue:
         return 0
-    while t>=c.opt_queue[0][1]:
+    while t>=c.opt_queue[0][1] or c.opt_queue[0][3]<=0:
         c.opt_queue.pop(0)
         if not c.opt_queue:
             return 0
     c.prn_opt(t)
     c.tot_opt+=1
     c.opt_queue[0][3]-=1
-    if c.opt_queue[0][3]==0:
-        c.opt_queue.pop(0)
     return 1
 
 def simul_t(c,t):

@@ -9,6 +9,7 @@ from simul.MSimulF import CSimulF
 import simul.MSimulF as msf
 from simul.MSimul import CSimul
 import simul.MSimul as ms
+import math
 
 class gl:
 #     path=1
@@ -25,6 +26,9 @@ class gl:
 
     bPrn=0
 #     bPrn=1
+#     chr_r=1
+    chr_r=0.7
+
 def prn(str):
     if not gl.bPrn:
         return
@@ -32,15 +36,21 @@ def prn(str):
 
 
 def add_fifo_ok(t,w,cs): 
-    e=(gl.idx,t+w[1],w[2],w[3])
+    if w[1]<w[2]:
+        return 0
+    mod=math.ceil(w[2]*cs.chr_r)
+    e=(gl.idx,t+w[1],mod,w[3]) # id, deadline, req, opt
+    
     return msf.add_ok(cs,e,t)
 def add_edf_ok(t,w,cs): 
     if w[1]<w[2]:
         return 0
-    e=(gl.idx,t+w[1],w[2],w[3])
+    mod=math.ceil(w[2]*cs.chr_r)
+    e=(gl.idx,t+w[1],mod,w[3]) # id, deadline, req, opt
     return ms.add_ok(cs,e,t)
 def add_com(t,w,cs):
-    e=(gl.idx,t+w[1],w[2],w[3])
+    mod=math.ceil(w[2]*cs.chr_r)
+    e=(gl.idx,t+w[1],mod,w[3]) # id, deadline, req, opt
     cs.add(e)
     gl.idx+=1
 
@@ -51,6 +61,8 @@ def run_fifo(fn):
     for i in range(gl.max_s):
         cs=CSimulF()
         cs.clear()
+        if i==gl.max_s-1:
+            cs.chr_r=gl.chr_r
         csa.append(cs)
     cl=CLog("ev/data/"+fn+".txt")
     
@@ -66,7 +78,7 @@ def run_fifo(fn):
                     break
             if add_ok==0:
                 reject+=1
-                prn("error {}".format(gl.reject))
+                prn("error {}".format(reject))
                 
         for i in range(gl.max_s):
             msf.simul_t(csa[i],t)
@@ -79,6 +91,8 @@ def run_edf(fn):
     for i in range(gl.max_s):
         cs=CSimul()
         cs.clear()
+        if i==gl.max_s-1:
+            cs.chr_r=gl.chr_r
         csa.append(cs)
 
     cl=CLog("ev/data/"+fn+".txt")
@@ -95,7 +109,7 @@ def run_edf(fn):
                     break
             if add_ok==0:
                 reject+=1
-                prn("error {}".format(gl.reject))
+                prn("error {}".format(reject))
                 
         for i in range(gl.max_s):
             ms.simul_t(csa[i],t)
