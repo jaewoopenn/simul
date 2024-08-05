@@ -47,7 +47,9 @@ def add_edf_ok(t,w,cs):
         return 0
     mod=math.ceil(w[2]*cs.chr_r)
     e=(gl.idx,t+w[1],mod,w[3]) # id, deadline, req, opt
+
     return ms.add_ok(cs,e,t)
+
 def add_com(t,w,cs):
     mod=math.ceil(w[2]*cs.chr_r)
     e=(gl.idx,t+w[1],mod,w[3]) # id, deadline, req, opt
@@ -83,7 +85,7 @@ def run_fifo(fn):
         for i in range(gl.max_s):
             msf.simul_t(csa[i],t)
         t+=1
-    return reject
+    return reject, cs.tot_opt
 
 def run_edf(fn):
     csa=[]
@@ -115,7 +117,7 @@ def run_edf(fn):
             ms.simul_t(csa[i],t)
 
         t+=1
-    return reject
+    return reject, cs.tot_opt
 
 
 def test1(): 
@@ -160,16 +162,17 @@ def test4():
     print(sum)
 
 def test5():
-    sum1=0
-    sum2=0
+    sum1=[0,0]
+    sum2=[0,0]
     for i in range(10):
         fn="test"+str(i)
         ret=run_fifo(fn)
-        sum1+=ret
+        for i in range(2):
+            sum1[i]+=ret[i]
         ret=run_edf(fn)
-        sum2+=ret
+        for i in range(2):
+            sum2[i]+=ret[i]
     print(sum1,sum2)
-
 def main():
     if gl.path==1:
         test1()

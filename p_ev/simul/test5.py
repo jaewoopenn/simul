@@ -13,9 +13,9 @@ import math
 class gl:
 #     path=1
 #     path=2
-#     path=3
+    path=3
 #     path=4
-    path=5
+#     path=5
 
     idx=100
     end_t=40
@@ -141,9 +141,11 @@ def test3():
     for i in range(10):
         fn="data/test"+str(i)
         ret=run_fifo(fn)
-        sum1=[sum1[0]+ret[0],sum1[1]+ret[1]]
+        for i in range(2):
+            sum1[i]+=ret[i]
         ret=run_edf(fn)
-        sum2=[sum2[0]+ret[0],sum2[1]+ret[1]]
+        for i in range(2):
+            sum2[i]+=ret[i]
     print(sum1,sum2)
 
 
