@@ -1,13 +1,13 @@
 '''
-Draw Acceptance Ratio //// MC-FLEX
 
 @author: cpslab
 '''
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    fig="ev/sch.pdf"
-    fn="ev/var/a_graph.txt"
+    path="ev/var/"
+    out_path="ev/out/"
+    prefix="data"
     xlab= "Utilization bound"
     ylab= "Acceptance ratio"
 
@@ -19,7 +19,8 @@ class gl:
     marker=['o','v','D','^','s']
 
 def load():
-    i_f = mf.load(gl_input.fn)
+    fn=gl_input.path+gl_input.prefix+"_gra.txt"
+    i_f = mf.load(fn)
     raw=[]
     for line in i_f:
 #         val=line.strip().split("\t")
@@ -60,7 +61,8 @@ def main():
     mp.ylabel(gl_input.ylab)
     mp.xlab_rot(13)
 #     mp.show()
-    mp.savefig(mf.filepath(gl_input.fig))
+    fn=gl_input.out_path+gl_input.prefix+"_gra.pdf"
+    mp.savefig(mf.filepath(fn))
 
 if __name__ == '__main__':
     main()

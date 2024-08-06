@@ -5,6 +5,7 @@ Created on 2015. 12. 11.
 '''
 from util.MFile import CFile
 
+
 class gl:
     path=1
 #     path=2

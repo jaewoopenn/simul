@@ -64,9 +64,9 @@ def run(idx):
         fn="ev/var/data"+str(idx)+"-"+str(i)+".txt"
         gen(fn)
 def test3():
-    run(1)
-#     for i in range(1,10):
-#         run("ev/var/config"+str(i)+".txt")
+#     run(1)
+    for i in range(1,10):
+        run(i)
 
 def test4():
     pass

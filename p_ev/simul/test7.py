@@ -3,6 +3,10 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
+from log.MLog import CLog
+from util.MFile import CFile
+import util.MRand as mr
+
 class gl:
     path=1
 #     path=2
@@ -10,10 +14,48 @@ class gl:
 #     path=4
 #     path=5
 
+    end_t=40
+    prefix="data"
 
+def run_one(idx,i,algo):
+    fn="ev/var/"+gl.prefix+str(idx)+"-"+str(i)+".txt"
+    print(fn)
+    cl=CLog(fn)
+    
+    t=0
+    w=""
+    while t<gl.end_t:
+        while t==cl.getLast():
+            w=cl.getW()
+                
+        t+=1
+    print(w)
+    noise=mr.pickU(-0.05, 0.05)
+#     print(noise)
+    if algo==1:
+        return 1-idx*0.05+noise
+    else:
+        return 1-idx*0.1+noise*2+0.05
+        
+def run(idx):
+    sum1=0
+    sum2=0
+    for i in range(10):
+        ret=run_one(idx,i,1)
+        sum1+=ret
+        ret=run_one(idx,i,2)
+        sum2+=ret
+    return sum1/10,sum2/10
 def test1(): 
-    pass
-
+    fn="ev/var/"+gl.prefix+"_gra.txt"
+    cf=CFile()
+    cf.open_w(fn)
+    cf.write("xx EDF FIFO")
+    
+    for i in range(1,10):
+        ret=run(i)
+        cf.write(str(i*10)+" "+str(ret[0])+" "+str(ret[1]))
+    cf.end()
 
 '''
 ..
