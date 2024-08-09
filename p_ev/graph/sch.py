@@ -3,7 +3,8 @@
 @author: cpslab
 '''
 import util.MFile as mf
-import util.MPlot as mp;
+import util.MPlot as mp
+
 class gl_input:
     path="ev/var/"
     out_path="ev/out/"

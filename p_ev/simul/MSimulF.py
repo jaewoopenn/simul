@@ -4,15 +4,18 @@ Created on 2024. 5. 30.
 @author: jaewoo
 '''
 import sys
+import math
+from log.MLog import CLog
+import simul.MSimCom as msc
 
 class gl:
-    bPrn=0
-#     bPrn=1
+
+    end_t=40
+    max_s=3
     
-def prn(str):
-    if not gl.bPrn:
-        return
-    print(str)
+
+#     chr_r=1
+    chr_r=0.7    
     
 class CSimulF:
     cur_job=None
@@ -38,19 +41,19 @@ class CSimulF:
         self.opt_queue.append(e)
         
     def prn(self):
-        if not gl.bPrn:
-            return
+        if not msc.isPrn():
+            return 
         print(self.queue, self.opt_queue)
 
     def prn_c(self,t,str1):
-        if not gl.bPrn:
-            return
+        if not msc.isPrn():
+            return 
         print(t,":",str1,self.cur_job[0],
             "rem:",self.cur_job[2], self.cur_job[3],
             " dl:",self.cur_job[1])
     def prn_opt(self,t):
-        if not gl.bPrn:
-            return
+        if not msc.isPrn():
+            return 
         print(t,": OPT",self.opt_queue[0][0],
             "rem:",self.opt_queue[0][3],
             " dl:",self.opt_queue[0][1])
@@ -92,7 +95,7 @@ def simul_t(c,t):
     if not c.cur_job:
         if not simul_reload(c):
             if not simul_opt(c,t):
-                prn("{} : idle1".format(t))
+                msc.prn("{} : idle1".format(t))
 #                 print(t,": idle1")
                 c.cur_opt=0
             return
@@ -106,7 +109,7 @@ def simul_t(c,t):
         c.add_opt(c.cur_job)
         if not simul_reload(c):
             if not simul_opt(c,t):
-                prn("{}: idle2".format(t))
+                msc.prn("{}: idle2".format(t))
                 c.cur_opt=0
             return
     
@@ -115,3 +118,43 @@ def simul_t(c,t):
         c.prn_c(t,"MAN")
         c.cur_job[2]-=1
         
+
+def add_fifo_ok(t,w,cs): 
+    if w[1]<w[2]:
+        return 0
+    mod=math.ceil(w[2]*cs.chr_r)
+    e=(0,t+w[1],mod,w[3]) # id, deadline, req, opt
+    
+    return add_ok(cs,e,t)
+
+
+    
+def run_fifo(fn):
+    csa=[]
+    reject=0
+    for i in range(gl.max_s):
+        cs=CSimulF()
+        cs.clear()
+        if i==gl.max_s-1:
+            cs.chr_r=gl.chr_r
+        csa.append(cs)
+    cl=CLog(fn)
+    
+    t=0
+    while t<gl.end_t:
+        while t==cl.getLast():
+            w=cl.getW()
+            add_ok=0
+            for i in range(gl.max_s):
+                if add_fifo_ok(t,w,csa[i]):
+                    msc.add_com(t,w,csa[i])
+                    add_ok=1
+                    break
+            if add_ok==0:
+                reject+=1
+                msc.prn("error {}".format(reject))
+                
+        for i in range(gl.max_s):
+            simul_t(csa[i],t)
+        t+=1
+    return reject, cs.tot_opt

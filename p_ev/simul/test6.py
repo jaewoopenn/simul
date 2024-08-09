@@ -42,6 +42,7 @@ def add_fifo_ok(t,w,cs):
     e=(gl.idx,t+w[1],mod,w[3]) # id, deadline, req, opt
     
     return msf.add_ok(cs,e,t)
+
 def add_edf_ok(t,w,cs): 
     if w[1]<w[2]:
         return 0

@@ -10,8 +10,8 @@ from log.MConfig import CConfig
 import util.MRand as mr
 
 class gl:
-    path=1
-#     path=2
+#     path=1
+    path=2
 #     path=3
 #     path=4
 
@@ -28,15 +28,37 @@ def test1():
 
 
 def test2():
+#     run(1)
     for i in range(1,10):
-        c=CConfig()
-        c.init_r("ev/var/config"+str(i)+".txt")
-        w=c.get('num')
-        print(w)
-        w=c.get('prob')
-        print(w)
+        run(i)
 
+def gen(fn,c):
+    cf=CFile()
+    cf.open_w(fn)
+    t=0
+    end_t=20
+    arr_p=float(c.get('prob'))
+    while t<=end_t:
+        if mr.pick()>arr_p:
+            t+=1
+            continue
+        d=mr.pickInt(5, 20)
+        m=mr.pickInt(2,7)
+        o=mr.pickInt(1,4)
+        str="%d %d %d %d"%(t,d,m,o)
+        cf.write(str)
+        t+=1
+    cf.end()
 
+    
+def run(idx):
+    c=CConfig()
+    fn="ev/var/config"+str(idx)+".txt"
+    c.init_r(fn)
+    n=int(c.get('num'))
+    for i in range(n):
+        fn="ev/var/data"+str(idx)+"-"+str(i)+".txt"
+        gen(fn,c)
 def test3():
     pass
 
