@@ -1,6 +1,5 @@
 package anal;
 
-import z_ex.TS_IMC1;
 import z_ex.TS_MC6;
 import task.TaskMng;
 import util.SEngineT;
@@ -29,18 +28,6 @@ public class z_AnalAMC1 {
 	}
 
 	public int test2() {
-//		TaskMng tm=TS_IMC1.ts1();
-//		TaskMng tm=TS_IMC1.ts2();
-		TaskMng tm=TS_IMC1.ts3();
-		Anal a=new AnalAMC_imc();
-		a.init(tm);
-		a.prepare();
-		if(a.getDtm()<=1) {
-			SLog.prn(1, "OK");
-		} else {
-			SLog.prn(1, "Not OK");
-		}
-		a.prn();
 		return -1;
 	}
 	public int test3() {
