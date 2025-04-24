@@ -5,10 +5,10 @@ Created on 2015. 12. 11.
 '''
 import util.MRand as mr
 class gl:
-#     path=1
+    path=1
 #     path=2
 #     path=3
-    path=4
+    # path=4
 
 def test1():
     p=mr.pick()
