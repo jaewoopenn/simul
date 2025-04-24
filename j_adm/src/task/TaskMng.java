@@ -22,9 +22,6 @@ public class TaskMng {
 	public void sortMinJobDrop() {
 		g_lo_tasks.sortLo2();
 	}
-	public void sortLC_IMC() {
-		g_lo_tasks.sortLoIMC();
-	}
 	
 	public Task findDropTask() {
 		for(Task t:g_lo_tasks.getArr()){

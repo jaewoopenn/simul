@@ -51,9 +51,6 @@ public class TaskSet {
 		Arrays.sort(g_tasks,new ComparatorTask2());
 	}
 
-	public void sortLoIMC() {
-		Arrays.sort(g_tasks,new ComparatorTaskIMC());
-	}
 	public void sortHi() {
 		Arrays.sort(g_tasks,new ComparatorHighTask());
 		

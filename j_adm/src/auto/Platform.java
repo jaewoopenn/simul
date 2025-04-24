@@ -21,11 +21,6 @@ public class Platform extends Platform_base{
 		g_rs_path=rs_path;
 	}	
 
-	public void setBE() {
-		SLog.prn(2, "BE");
-		this.g_be=true;
-		
-	}	
 	public void setRecoverIdle(boolean b) {
 		g_recoverIdle=b;
 	}

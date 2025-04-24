@@ -22,7 +22,6 @@ public abstract class Platform_base {
 	protected double g_ratio_hi=-1;
 	protected boolean g_isCheck=false;
 	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
-	protected boolean g_be=false; // best effort 
 	protected boolean g_verbose=false;
 	protected boolean g_recoverIdle=true;
 	protected int g_life=0;
@@ -170,8 +169,6 @@ public abstract class Platform_base {
 		Anal a=getAnalSim(sort);
 		SLog.prn(2, "Anal:"+a.getName());
 		TaskSimul_base s=getSim(sort);
-		if(g_be)
-			s.setBE();
 		s.setRecoverIdle(g_recoverIdle);
 		
 		for(int i=0;i<fu.size();i++) {
@@ -239,8 +236,6 @@ public abstract class Platform_base {
 		
 		Anal a=getAnalSim(anal_sort);
 		TaskSimul_base s=getSim(sort);
-		if(g_be)
-			s.setBE();
 		String out=fn+".sim."+sort;
 		simul_one(fn,out,a,s);
 		return "OK";		
@@ -258,8 +253,6 @@ public abstract class Platform_base {
 		
 		Anal a=getAnalSim(anal_sort);
 		TaskSimul_base s=getSim(sort);
-		if(g_be)
-			s.setBE();
 		
 		for(int i=0;i<g_dur_set.length;i++) {
 			String out=g_rs_path+"/"+fn+"_"+i+".sim."+sort;

@@ -64,7 +64,6 @@ public class z_auto9 {
 		p.genXA(g_cf,g_xl);
 		p.setP_MS(g_p_ms);
 		p.setDur(g_dur);
-		p.setBE();
 		p.sim_loop(g_rs, g_ts,0,5);
 		DataSim ds=new DataSim(g_path,0);
 		ds.load_x(g_xl);
