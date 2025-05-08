@@ -3,6 +3,7 @@ package auto;
 import anal.Anal;
 import gen.ConfigGen;
 import gen.SysLoad;
+import imc.AnalEDF_IMC;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
@@ -198,7 +199,7 @@ public abstract class Platform_base {
 		} else { 
 			prog.setPercent();
 		}
-
+		Anal base;
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
 //			SLog.prn(2, "no:"+i);
@@ -208,7 +209,14 @@ public abstract class Platform_base {
 			a.init(tm);
 			prog.inc();
 			if(!a.is_sch()) {
-				SLog.prn(2, "no sch "+i);
+//				SLog.prn(2, "no sch "+i);
+				fu.add("1.0");
+				continue;
+			}
+			base=new AnalEDF_IMC();
+			base.init(tm);
+			if(base.is_sch()) {
+				fu.add("0.0");
 				continue;
 			}
 

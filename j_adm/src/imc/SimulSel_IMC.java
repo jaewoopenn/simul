@@ -11,9 +11,9 @@ public class SimulSel_IMC {
 	
 	public static TaskSimul_base getSim(int sort) {
 		if(sort==0) {
-			return new TaskSimul_EDF_VD_IMC();
+			return new TaskSimul_EDF_IMC();
 		} else if(sort==1) {
-			return null;
+			return new TaskSimul_EDF_VD_IMC();
 		} else if(sort==2) {
 			return null;
 		}

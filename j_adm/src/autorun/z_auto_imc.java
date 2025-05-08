@@ -26,8 +26,8 @@ public class z_auto_imc {
 	
 	public static void init_s() {
 		int s=0;
-		s=1;
-//		s=2;
+//		s=1;
+		s=2;
 //		s=3;
 		s_idx=s;
 		
@@ -100,10 +100,13 @@ public class z_auto_imc {
 	{
 		init_g();
 		init_anal();
-		g_path="run/mos_ts";
-		gen();
-		String rs_path="run/mos";
-		loop_anal(rs_path);
+		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		p.setNum(g_num);
+		p.anal_loop(g_rs,g_ts,g_sort);
+		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
 		return 0;
 	}
 	public int test3() // probability of HC tasks 

@@ -24,11 +24,11 @@ public class AnalSel_IMC {
 
 	public static Anal getAnalSim(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_RUN();  //HI-MAX
+			return new AnalEDF_IMC();
 		} else if(sort==1) {
-			return new AnalEDF_RUN();  //HI-MAX
-		} else if(sort==2) {
 			return new AnalEDF_VD_IMC();
+		} else if(sort==2) {
+			return null;
 		} 
 		return null;
 	}

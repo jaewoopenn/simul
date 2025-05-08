@@ -29,8 +29,8 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 //		int s=1;
-//		int s=2; //p
-		int s=3; //life
+		int s=2; //p
+//		int s=3; //life
 //		int s=4; //ratio
 //		int s=5; //all in one.
 		
@@ -40,7 +40,7 @@ public class z_auto_sim_imc {
 	}
 	
 	public void init_g() {
-		g_path="run/imc2";
+		g_path="adm/test1";
 		g_num=100;
 //		g_num=500;
 //		g_num=5000;
@@ -60,9 +60,9 @@ public class z_auto_sim_imc {
 //		g_life=0;
 		g_p_hc=0.5;
 		g_ratio=-1;
-		g_st=66;
+		g_st=64;
 		g_step=4;
-		g_end=98;
+		g_end=96;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
@@ -87,7 +87,7 @@ public class z_auto_sim_imc {
 		p.setDur(g_dur);
 		p.setLife(g_life);
 		
-		p.sim_loop(g_rs, g_ts,0,3);
+		p.sim_loop(g_rs, g_ts,0,2);
 		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
@@ -108,12 +108,12 @@ public class z_auto_sim_imc {
 //		int st=2,et=3;
 		init_g();
 		init_sim();
-		double a[]= {0.05,0.1,0.15};
-//		double a[]= {0.2,0.5,0.7};
-		g_path="run/pi_ts";
+//		double a[]= {0.05,0.1,0.15};
+		double a[]= {0.2,0.5,0.7};
+		g_path="adm/test1";
 		gen();
 		for(int i=st;i<et;i++) {
-			String rs_path="run/pi"+i;
+			String rs_path="adm/pi"+i;
 			g_p_ms=a[i];
 			loop_util(rs_path);
 		}

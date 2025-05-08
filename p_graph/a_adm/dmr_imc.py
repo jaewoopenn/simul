@@ -1,14 +1,27 @@
 '''
-Draw Acceptance Ratio //// MC-FLEX
+Draw DMR varying utilization
 
+Created on 2015. 12. 11.
+
+// MC-FLEX
 @author: cpslab
 '''
 import util.MFile as mf
-import util.MPlot as mp
+import util.MPlot as mp;
 class gl_input:
-    fn="adm/test1/a_graph.txt"
+    savename="adm/pmsi"
+    path="adm/pi"
+    ylim=0.20
+
+      
+      
+
+
+
+
+    fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
-    ylab= "Acceptance Ratio"
+    ylab= "Percentage of Fully-serviced Job"
 
 class gl:
     lab=[]
@@ -17,8 +30,12 @@ class gl:
     line=['r--','k-','b-.','g--','m:']
     marker=['o','v','D','^','s']
 
-def load():
-    i_f = mf.load(gl_input.fn)
+def load(i):
+    gl.lab=[]
+    gl.x=[]
+    gl.vv=[]
+    
+    i_f = mf.load(gl_input.path+str(i)+"/"+gl_input.fn)
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
@@ -27,35 +44,49 @@ def load():
 #     print(itemlen)
 
     for i in range(1,itemlen):
+#         z=itemlen-i
         gl.lab.append(raw[0][i])
     for i in range(1,len(raw)):
         gl.x.append(str(int(raw[i][0])/100))
-#         gl.x.append(raw[i][0])
 #     print(gl.x)
 
     for i in range(1,itemlen):
+#         z=itemlen-i
         v=[]
         for j in range(1,len(raw)):
-            v.append(float(raw[j][i]))
+            val=1-float(raw[j][i]);
+            v.append(val)
 #         print(v)
         gl.vv.append(v)
         
-        
 
-def main():
-    mp.prepare3()
-    load()
+def loop(i):
+    load(i)
     no=0
+#     mp.prepare()
+    mp.prepare2()
     for v in gl.vv:
-        print(v)
+#         if no==2:
+#             no+=1
+#             continue
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-#     mp.ylim(0, 1.02)
+#     if(i==2):
+#         mp.legendBR()
+#     else:
+#         mp.legendUL()
     mp.legendBL()
+    
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-#     mp.show()
-    mp.savefig(mf.filepath("adm/sch_imc.pdf"))
+    mp.ylim(gl_input.ylim,1.01)
+    mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
+    
+def main():
+    loop(0)
+    loop(1)
+    loop(2)
+    print("end")
 
 if __name__ == '__main__':
     main()
