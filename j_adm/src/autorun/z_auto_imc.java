@@ -26,8 +26,8 @@ public class z_auto_imc {
 	
 	public static void init_s() {
 		int s=0;
-//		s=1;
-		s=2;
+		s=1;
+//		s=2;
 //		s=3;
 		s_idx=s;
 		
@@ -35,14 +35,14 @@ public class z_auto_imc {
 	}
 	
 	public void init_g() {
-		g_path="run/imc1";
+		g_path="adm/test1";
 		g_num=5000;
 //		g_num=100;
 //		g_num=5;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		g_sort=4;
+		g_sort=3;
 	}
 
 	public void init_anal() {
