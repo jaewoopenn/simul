@@ -27,13 +27,14 @@ public class z_auto_sim_imc2 {
 
 	public void init_sim() {
 		g_path="adm/test1";
-		g_dur=32000;
+		g_dur=5000;
 		g_p_ms=0.1;
 	}
 	public int test1() 
 	{
 		init_sim();
 		g_path="adm/test1";
+		g_ts="a_ts_list.txt";
 		String rs_path="adm/pi0";
 		g_p_ms=0.2;
 		Platform_IMC p=new Platform_IMC(g_path,rs_path);
@@ -43,7 +44,7 @@ public class z_auto_sim_imc2 {
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 		
-		p.simul_num(g_ts,1,7,0,10);
+		p.simul_num(g_ts,1,7,9,9);
 		return 0;
 	}
 	public int test2() 

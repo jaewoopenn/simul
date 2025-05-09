@@ -31,7 +31,7 @@ public abstract class TaskSimul_base {
 		g_recover_idle_on=b;
 	}
 
-
+ 
 	// simul interval
 	public void simul(int st, int et){
 		int t=st;

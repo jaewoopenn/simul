@@ -11,6 +11,7 @@ import task.TaskMng;
 import util.CProg;
 import util.MList;
 import util.SLog;
+import util.SLogF;
 
 public abstract class Platform_base {
 	protected String g_path;
@@ -252,17 +253,19 @@ public abstract class Platform_base {
 		fu.save(out);
 	}
 
-	public void simul_one_n(String ts,String out,Anal a,TaskSimul_base s,int from,int to) {
+	public void simul_one_n(String ts,String out,Anal a,TaskSimul_base s,int from, int to) {
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		Anal base;
 		MList fu=new MList();
 		TaskMng tm=null;
-		for(int i=0;i<to;i++) {
+		SLogF.init(out);
+		for(int i=0;i<=to;i++) {
 			tm=sy.loadOne();
-			if(tm==null) return;
 			if(i<from)
 				continue;
+			SLog.prn(2, "num:"+i);
+			SLogF.prn("num:"+i);
 			a.init(tm);
 			if(!a.is_sch()) {
 				SLog.prn(2, "no sch "+i);
@@ -289,9 +292,9 @@ public abstract class Platform_base {
 			s.simul(0,g_dur);
 			s.simul_end();
 			SimulInfo si=s.getSI();
-			fu.add(si.getDMR()+"");
+			SLogF.prn(si.getDMR()+"");
 		}
-		fu.save(out);
+		SLogF.end();
 	}
 
 
