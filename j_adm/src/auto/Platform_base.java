@@ -182,6 +182,21 @@ public abstract class Platform_base {
 		return rs_fn;		
 	}
 	
+	public String simul_num(String ts_list,int sort,int num,int from, int to) {
+		MList fu=new MList(g_path+"/"+ts_list);
+		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
+		Anal a=getAnalSim(sort);
+		SLog.prn(2, "Anal:"+a.getName());
+		TaskSimul_base s=getSim(sort);
+		s.setRecoverIdle(g_recoverIdle);
+		
+		String fn=fu.get(num);
+		String out=g_rs_path+"/"+fn+".sim."+sort;
+		simul_one_n(g_path+"/"+fn,out,a,s,from,to);
+		return rs_fn;		
+	}
+
+	
 	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
 		SLog.prn(2, "ts:"+ts);
 		SLog.prn(2, "out:"+out);
@@ -237,18 +252,50 @@ public abstract class Platform_base {
 		fu.save(out);
 	}
 
-
-	// one 
-	public String simul_a(String fn,int sort) {
-		int anal_sort=Math.min(sort, 3);
-		
-		Anal a=getAnalSim(anal_sort);
-		TaskSimul_base s=getSim(sort);
-		String out=fn+".sim."+sort;
-		simul_one(fn,out,a,s);
-		return "OK";		
-		
+	public void simul_one_n(String ts,String out,Anal a,TaskSimul_base s,int from,int to) {
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		Anal base;
+		MList fu=new MList();
+		TaskMng tm=null;
+		for(int i=0;i<to;i++) {
+			tm=sy.loadOne();
+			if(tm==null) return;
+			if(i<from)
+				continue;
+			a.init(tm);
+			if(!a.is_sch()) {
+				SLog.prn(2, "no sch "+i);
+				fu.add("1.0");
+				continue;
+			}
+			base=new AnalEDF_IMC();
+			base.init(tm);
+			if(base.is_sch()) {
+				SLog.prn(2, "EDF sch "+i);
+				fu.add("0.0");
+				continue;
+			}
+	
+			double x=a.computeX();
+			
+			SysMng sm=new SysMng();
+			sm.setMS_Prob(g_p_ms);
+			sm.setX(x);
+			sm.setLife(g_life);
+			sm.setDelay(x*tm.getLongPeriod());
+	//			sm.prn();
+			s.init_sm_tm(sm,tm);
+			s.simul(0,g_dur);
+			s.simul_end();
+			SimulInfo si=s.getSI();
+			fu.add(si.getDMR()+"");
+		}
+		fu.save(out);
 	}
+
+
+
 	
 	// simulate task set list with algorithm choice (duration)
 	public String simul_dur(String ts_list,int sort) {
