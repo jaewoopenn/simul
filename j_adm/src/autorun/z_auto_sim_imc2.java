@@ -24,19 +24,14 @@ public class z_auto_sim_imc2 {
 		s_log_level=2;
 	}
 	
-	public void init_g() {
-		g_path="adm/test1";
-		g_dur=32000;
-		
-	}
-
 
 	public void init_sim() {
+		g_path="adm/test1";
+		g_dur=32000;
 		g_p_ms=0.1;
 	}
 	public int test1() 
 	{
-		init_g();
 		init_sim();
 		g_path="adm/test1";
 		String rs_path="adm/pi0";
