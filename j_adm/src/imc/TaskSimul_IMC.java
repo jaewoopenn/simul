@@ -81,7 +81,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
 			if(tsk.isMS()) {
-				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
+//				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
 				tsk.ms_end();
 			}
 			if(tsk.life>0)
@@ -122,7 +122,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
-		SLogF.prnc(s);
+//		SLogF.prnc(s);
 	}
 	
 	protected void check_err() {
@@ -141,7 +141,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 
 	private void recover_idle(){
-		SLogF.prnc( "R ");
+//		SLogF.prnc( "R ");
 		initModeAll();
 	}
 	
@@ -186,7 +186,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	// MC specific 
 	protected void mode_switch(int tid){ // connect to each algo's MS
 		Task tsk=g_tm.getTask(tid);
-		SLogF.prn("t:"+g_jsm.get_time()+" mode-switch "+tid);
+		SLogF.prn(g_jsm.get_time()+" "+tid);
 		g_si.ms++;
 		modeswitch_in(tsk);
 	}

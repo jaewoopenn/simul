@@ -6,7 +6,6 @@ import sim.job.JobSimul;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
-import util.SLog;
 import util.MRand;
 
 public abstract class TaskSimul_base {
@@ -35,9 +34,7 @@ public abstract class TaskSimul_base {
 	// simul interval
 	public void simul(int st, int et){
 		int t=st;
-		if(t==0){
-			SLogF.prn("rel  / exec / t");
-		}
+//		SLogF.prn("rel  / exec / t");
 		while(t<et){
 			simul_one();
 			t++;

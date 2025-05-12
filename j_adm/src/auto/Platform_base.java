@@ -265,7 +265,7 @@ public abstract class Platform_base {
 			if(i<from)
 				continue;
 			SLog.prn(2, "num:"+i);
-			SLogF.prn("num:"+i);
+//			SLogF.prn("num:"+i);
 			a.init(tm);
 			if(!a.is_sch()) {
 				SLog.prn(2, "no sch "+i);
@@ -292,7 +292,7 @@ public abstract class Platform_base {
 			s.simul(0,g_dur);
 			s.simul_end();
 			SimulInfo si=s.getSI();
-			SLogF.prn(si.getDMR()+"");
+//			SLogF.prn(si.getDMR()+"");
 		}
 		SLogF.end();
 	}

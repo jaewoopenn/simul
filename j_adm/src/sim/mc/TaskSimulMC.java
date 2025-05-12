@@ -121,7 +121,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
-		SLogF.prnc(s);
+		//SLogF.prnc(s);
 	}
 	
 	protected void check_err() {

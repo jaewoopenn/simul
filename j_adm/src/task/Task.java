@@ -192,7 +192,7 @@ public class Task {
 		is_MS_Mode=false;
 	}
 	public void drop() {
-		SLogF.prn("drop "+tid);
+//		SLogF.prn("drop "+tid);
 		this.is_dropped=true;
 	}
 	public void resume() {
