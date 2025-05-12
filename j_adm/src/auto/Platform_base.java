@@ -4,6 +4,8 @@ import anal.Anal;
 import gen.ConfigGen;
 import gen.SysLoad;
 import imc.AnalEDF_IMC;
+import imc.TaskSimul_EDF_IMC;
+import imc.TaskSimul_EDF_IMC_gen;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
@@ -183,7 +185,18 @@ public abstract class Platform_base {
 		return rs_fn;		
 	}
 	
-	public String simul_num(String ts_list,int sort,int num,int from, int to) {
+	public void gen_scn(String ts_list,int ts_n,int from, int to, int n) {
+		MList fu=new MList(g_path+"/"+ts_list);
+		
+		String fn=fu.get(ts_n);
+		for(int i=0;i<n;i++) {
+			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+			SLog.prn(2,out);
+			gen_scn_one(g_path+"/"+fn,out,from,to);
+		}
+	}
+
+	public String run_scn(String ts_list,int sort,int ts_n,int n,int from, int to) {
 		MList fu=new MList(g_path+"/"+ts_list);
 		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
 		Anal a=getAnalSim(sort);
@@ -191,12 +204,16 @@ public abstract class Platform_base {
 		TaskSimul_base s=getSim(sort);
 		s.setRecoverIdle(g_recoverIdle);
 		
-		String fn=fu.get(num);
-		String out=g_rs_path+"/"+fn+".sim."+sort;
-		simul_one_n(g_path+"/"+fn,out,a,s,from,to);
+		String fn=fu.get(ts_n);
+		for(int i=from;i<to;i++) {
+			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+			SLog.prn(2,out);
+			run_scn_one(g_path+"/"+fn,out,a,s,n,i);
+		}
 		return rs_fn;		
 	}
 
+	
 	
 	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
 		SLog.prn(2, "ts:"+ts);
@@ -253,50 +270,62 @@ public abstract class Platform_base {
 		fu.save(out);
 	}
 
-	public void simul_one_n(String ts,String out,Anal a,TaskSimul_base s,int from, int to) {
+	public void gen_scn_one(String ts,String out,int from, int to) {
+//		SLog.prn(2, ts);
+		SysLoad sy=new SysLoad(ts);
+		sy.open();
+		TaskMng tm=null;
+		SLogF.init(out);
+		sy.moveto(from);
+		for(int i=0;i<=to-from;i++) {
+			tm=sy.loadOne();
+			SysMng sm=new SysMng();
+			TaskSimul_base s=new TaskSimul_EDF_IMC_gen();
+			sm.setMS_Prob(g_p_ms);
+			sm.setX(1);
+			s.init_sm_tm(sm,tm);
+			s.simul(0,g_dur);
+			s.simul_end();
+		}
+		SLogF.end();
+	}
+
+	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int n, int scn) {
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		Anal base;
 		MList fu=new MList();
 		TaskMng tm=null;
-		SLogF.init(out);
-		for(int i=0;i<=to;i++) {
+		for(int i=0;i<=n;i++) {
 			tm=sy.loadOne();
-			if(i<from)
+			if(i<n)
 				continue;
-			SLog.prn(2, "num:"+i);
-//			SLogF.prn("num:"+i);
-			a.init(tm);
-			if(!a.is_sch()) {
-				SLog.prn(2, "no sch "+i);
-				fu.add("1.0");
-				continue;
-			}
-			base=new AnalEDF_IMC();
-			base.init(tm);
-			if(base.is_sch()) {
-				SLog.prn(2, "EDF sch "+i);
-				fu.add("0.0");
-				continue;
-			}
-	
-			double x=a.computeX();
-			
-			SysMng sm=new SysMng();
-			sm.setMS_Prob(g_p_ms);
-			sm.setX(x);
-			sm.setLife(g_life);
-			sm.setDelay(x*tm.getLongPeriod());
-	//			sm.prn();
-			s.init_sm_tm(sm,tm);
-			s.simul(0,g_dur);
-			s.simul_end();
-			SimulInfo si=s.getSI();
-//			SLogF.prn(si.getDMR()+"");
 		}
-		SLogF.end();
-	}
+		a.init(tm);
+		if(!a.is_sch()) {
+			SLog.prn(2, "no sch "+n);
+			fu.add("1.0");
+			return;
+		}
+		base=new AnalEDF_IMC();
+		base.init(tm);
+		if(base.is_sch()) {
+			SLog.prn(2, "EDF sch "+n);
+			fu.add("0.0");
+			return;
+		}
 
+		double x=a.computeX();
+		
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(g_p_ms);
+		sm.setX(x);
+		sm.setLife(g_life);
+		sm.setDelay(x*tm.getLongPeriod());
+		s.init_sm_tm(sm,tm);
+		s.simul(0,g_dur);
+		s.simul_end();
+	}
 
 
 	

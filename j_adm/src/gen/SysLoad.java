@@ -28,5 +28,12 @@ public class SysLoad {
 		return tsf.getTM();
 		
 	}
+
+
+	public void moveto(int n) {
+		for (int i=0;i<n;i++) {
+			loadOne();
+		}
+	}
 	
 }
