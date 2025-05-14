@@ -12,6 +12,7 @@ public class z_auto2 {
 	private double g_p_ms;
 	private double g_p_hc;
 	private double g_ratio;
+	@SuppressWarnings("unused")
 	private int g_end;
 	private int g_num;
 	private int g_dur;
@@ -68,7 +69,7 @@ public class z_auto2 {
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 
-//  DRE (comment out), BRE (setBE)  best effort ÇÏÁö ¸»ÀÚ 
+//  DRE (comment out), BRE (setBE)  best effort ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		
 //		p.setBE();
 //		p.sim_loop(g_rs, g_ts,0,5);
