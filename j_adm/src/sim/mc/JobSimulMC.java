@@ -35,7 +35,7 @@ public class JobSimulMC extends JobSimul{
 			j.exec-=1;
 		}
 		s=g_jm.getJobArrow(j,out_type);
-//		SLogF.prn(s);
+		SLogF.prn(s);
 	}	
 	
 	// do ms check after exec

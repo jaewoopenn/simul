@@ -4,7 +4,6 @@ import anal.Anal;
 import gen.ConfigGen;
 import gen.SysLoad;
 import imc.AnalEDF_IMC;
-import imc.TaskSimul_EDF_IMC;
 import imc.TaskSimul_EDF_IMC_gen;
 import sim.SimulInfo;
 import sim.SysMng;
@@ -287,7 +286,7 @@ public abstract class Platform_base {
 			s.simul(0,g_dur);
 			s.simul_end();
 		}
-		SLogF.end();
+		SLogF.save();
 	}
 
 	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int n, int scn) {

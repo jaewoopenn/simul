@@ -2,10 +2,7 @@ package auto;
 
 import java.util.Vector;
 
-import anal.Anal;
-import imc.AnalSel_run;
 import imc.SimulSel_run;
-import sim.TaskSimul;
 import sim.TaskSimul_base;
 import util.MList;
 

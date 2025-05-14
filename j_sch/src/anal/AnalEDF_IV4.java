@@ -123,6 +123,7 @@ public class AnalEDF_IV4 extends Anal {
 		return z_sum;
 	}
 	
+	@SuppressWarnings("unused")
 	private void showVD() {
 		for(Task t:g_tm.getHiTasks()){
 			SLog.prn(1,"vd "+MCal.getStr(t.vd)+" "+t.period);

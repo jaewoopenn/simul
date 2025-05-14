@@ -3,7 +3,6 @@ package imc;
 
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.TaskSimul;
 import sim.TaskSimul_base;
 import sim.job.Job;
 import sim.mc.JobSimulMC;
@@ -122,7 +121,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
-//		SLogF.prnc(s);
+		SLogF.prnc(s);
 	}
 	
 	protected void check_err() {
@@ -141,7 +140,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 
 	private void recover_idle(){
-//		SLogF.prnc( "R ");
+		SLogF.prnc( "R ");
 		initModeAll();
 	}
 	
@@ -151,7 +150,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		if(j==null) 
 			return;
 		if(j.add_exec>0) {
-			if(g_rutil.getDbl()<g_sm.getMS_Prob()) { // generated prob < ms_prob
+			if(isMS()) { 
 				g_ms_happen=true;
 				mode_switch(j.tid);
 			} else {
@@ -165,6 +164,12 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	}
 
 	
+	private boolean isMS() {
+		if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
+			return true;
+		else
+			return false;
+	}
 	private void initModeAll() {
 		for(Task t:g_tm.getTasks()){
 			t.initMode();

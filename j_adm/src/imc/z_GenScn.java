@@ -1,13 +1,9 @@
 package imc;
 
 import gen.SysLoad;
-import sim.SysMng;
-import sim.mc.TaskSimul_EDF_VD;
-import task.Task;
 import task.TaskMng;
 import util.SEngineT;
 import util.SLog;
-import z_ex.TS_MC1;
 
 public class z_GenScn {
 //	public static int idx=1;

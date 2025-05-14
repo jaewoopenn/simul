@@ -1,7 +1,6 @@
 package sim.mc;
 
 import util.SLog;
-import util.SLogF;
 //import util.SLogF;
 import task.Task;
 import util.MCal;
@@ -53,6 +52,7 @@ public class TaskSimul_EDF_IV extends TaskSimulMC{
 
 
 	
+	@SuppressWarnings("unused")
 	private void resume_algo() {
 		
 		double ru=g_tm.getRUN_Util();

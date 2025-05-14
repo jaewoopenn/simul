@@ -22,7 +22,7 @@ public class JobSimul {
 
 
 	public int simul_one() {
-//		SLogF.prnc( String.format("%05d ", g_t));
+		SLogF.prnc( String.format("%05d ", g_t));
 		int dl=dl_check(g_t);
 		exec_one();
 		g_t++;
@@ -36,8 +36,8 @@ public class JobSimul {
 			SLog.prn(9,"Deadline miss at time "+g_t);
 			System.exit(1);
 		}
-//		SLogF.prn("*** Left Jobs at time "+g_t+" ***");
-//		g_jm.f_prn();
+		SLogF.prn("*** Left Jobs at time "+g_t+" ***");
+		g_jm.f_prn();
 		return g_jm.endDL(g_t);
 	}
 	
@@ -97,7 +97,7 @@ public class JobSimul {
 		if(!SLogF.isON())
 			return;
 		s=g_jm.getJobArrow(j,out_type);
-//		SLogF.prn(s);
+		SLogF.prn(s);
 	}
 	
 	

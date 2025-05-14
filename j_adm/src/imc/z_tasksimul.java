@@ -1,25 +1,39 @@
-package sim.mc;
+package imc;
 
+import gen.SysLoad;
 import sim.*;
 import task.TaskMng;
 import util.SEngineT;
-import z_ex.TS_MC1;
+import util.SLog;
+import util.SLogF;
 
-public class z_TaskSimul1 {
+public class z_tasksimul {
 	public static int idx=1;
+//	public static int idx=2;
 	public static int log_level=1;
 
 
 	public int test1()	{
-		int et=40;
+		String tsn="adm/test1/taskset_96";
+		String out="adm/test.log.txt";
+		int n=10;
+		double prob=0.2;
+		int dur=3000;
+		SysLoad sy=new SysLoad(tsn);
+		String ret=sy.open();
+		SLog.prn(1, ret);
+		sy.moveto(n);
+		TaskMng tm=sy.loadOne();
+
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.3);
+		sm.setMS_Prob(prob);
 		sm.setX(0.5);
-		TaskMng tm=TS_MC1.ts1();
-		TaskSimul_base ts=new TaskSimul_EDF_VD();
+		TaskSimul_base ts=new TaskSimul_EDF_VD_IMC();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,et);
+		SLogF.init(out);
+		ts.simul(0,dur);
 		ts.simul_end();
+		SLogF.save();
 		return 0;
 	}
 	
@@ -53,9 +67,9 @@ public class z_TaskSimul1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_TaskSimul1.class;
-		z_TaskSimul1 m=new z_TaskSimul1();
-		int[] aret=z_TaskSimul1.gret;
+		Class c = z_tasksimul.class;
+		z_tasksimul m=new z_tasksimul();
+		int[] aret=z_tasksimul.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

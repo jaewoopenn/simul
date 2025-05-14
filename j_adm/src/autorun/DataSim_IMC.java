@@ -2,10 +2,7 @@ package autorun;
 
 import java.util.Vector;
 
-import anal.Anal;
-import imc.AnalSel_IMC;
 import imc.SimulSel_IMC;
-import sim.TaskSimul;
 import sim.TaskSimul_base;
 import util.MList;
 

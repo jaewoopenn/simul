@@ -2,11 +2,9 @@ package sim;
 
 
 import sim.job.Job;
-import sim.job.JobSimul;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
-import util.SLog;
 import util.MRand;
 
 public abstract class TaskSimul {
@@ -14,7 +12,6 @@ public abstract class TaskSimul {
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected MRand g_rutil=new MRand();
-	private JobSimul g_js;
 	protected SimulInfo g_si;
 
 	public String getName() {

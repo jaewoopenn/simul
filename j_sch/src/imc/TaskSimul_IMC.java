@@ -3,7 +3,6 @@ package imc;
 
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.TaskSimul;
 import sim.TaskSimul_base;
 import sim.job.Job;
 import sim.mc.JobSimulMC;

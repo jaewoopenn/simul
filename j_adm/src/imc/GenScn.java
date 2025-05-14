@@ -12,6 +12,8 @@ public class GenScn {
 	TaskMng tm;
 	double prob;
 	MList scn;
+	int next_t;
+	Vector<Integer> ms_v;
 	protected MRand g_rutil=new MRand();
 
 	public GenScn(TaskMng tm) {
@@ -61,28 +63,44 @@ public class GenScn {
 		scn=new MList(fn);
 		String next=scn.getNext();
 		int dur=Integer.valueOf(next).intValue();
-//		for(int t=0;t<dur;t++) {
+		int nxt=-2;
+		for(int t=0;t<dur;t++) {
 //			SLog.prn(1, t+"");
-//		}
-		int old_t=-1;
-		
-		while(true) {
-			next=scn.getNext();
-			if(next==null)
-				break;
-//			SLog.prn(1, next);
-	        String[] words=next.split(",");
-			SLog.prnc(1, words[0]+" ");
-	        boolean bFirst=true;
-	        for(String w: words) {
-	        	if(bFirst) {
-	        		bFirst=false;
-	        		continue;
-	        	}
-				SLog.prnc(1, w+" ");
-	        }
-			SLog.prn(1, "");
+			if(nxt<t && nxt!=-1 ) {
+				nxt=getNext();
+//				SLog.prn(1, nxt+"");
+			} 
+			if(nxt==t) {
+				String s=t+": ";
+				for(int v:ms_v) s+=v+" ";
+				SLog.prn(1, s);
+			}
 		}
+		SLog.prn(1, "--end--");
 		
+	}
+	private int getNext() {
+		String next;
+		ms_v=new Vector<Integer>();
+		int t=0;
+		next=scn.getNext();
+		if(next==null)
+			return -1;
+//			SLog.prn(1, next);
+        String[] words=next.split(",");
+//		SLog.prnc(1, words[0]+" ");
+		t=Integer.valueOf(words[0]).intValue();
+        boolean bFirst=true;
+        for(String w: words) {
+        	if(bFirst) {
+        		bFirst=false;
+        		continue;
+        	}
+        	
+//			SLog.prnc(1, w+" ");
+			ms_v.add(Integer.valueOf(w));
+        }
+//		SLog.prn(1, "");
+		return t;
 	}
 }

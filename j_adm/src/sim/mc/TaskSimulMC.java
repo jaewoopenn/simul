@@ -3,7 +3,6 @@ package sim.mc;
 
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.TaskSimul;
 import sim.TaskSimul_base;
 import sim.job.Job;
 import task.Task;
@@ -121,7 +120,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";
-		//SLogF.prnc(s);
+		SLogF.prnc(s);
 	}
 	
 	protected void check_err() {
@@ -210,7 +209,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 			tsk.initMode();
 			tsk.sb_tm=g_jsm.get_time();
 		}
-//		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
+		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
 	}
 	
 	

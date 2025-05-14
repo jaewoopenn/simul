@@ -12,7 +12,6 @@ public class z_auto_mc {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
-	private double g_util_ul;
 	private int g_num;
 	private String g_cf;
 	private String g_ts;

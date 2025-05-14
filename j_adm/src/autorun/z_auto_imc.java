@@ -3,10 +3,7 @@ package autorun;
 //\a_new\sch.py
 // mc run
 
-import auto.DataAnal;
-import auto.Platform;
 import util.SEngineT;
-import util.SLog;
 
 
 public class z_auto_imc {

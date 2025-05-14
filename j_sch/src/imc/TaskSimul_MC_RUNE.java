@@ -1,14 +1,12 @@
 package imc;
 
 import util.SLog;
-import util.SLogF;
-import sim.mc.TaskSimulMC;
 //import util.SLogF;
 import task.Task;
 import util.MCal;
 
 // for minJobDrop
-// for MC RUN ÈÄ¼Ó 
+// for MC RUN ï¿½Ä¼ï¿½ 
 
 public class TaskSimul_MC_RUNE extends TaskSimul_IMC{
 

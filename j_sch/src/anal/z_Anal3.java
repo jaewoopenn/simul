@@ -5,8 +5,6 @@ package anal;
  * 
  */
 
-import z_ex.TS_MC1;
-import z_ex.TS_MC3;
 import z_ex.TS_MC4;
 import task.TaskMng;
 import util.SEngineT;

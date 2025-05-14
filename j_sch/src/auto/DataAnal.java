@@ -3,7 +3,6 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
-import imc.AnalSel_IMC;
 import imc.AnalSel_run;
 import util.MList;
 

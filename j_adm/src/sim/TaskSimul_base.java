@@ -2,7 +2,6 @@ package sim;
 
 
 import sim.job.Job;
-import sim.job.JobSimul;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
@@ -13,7 +12,6 @@ public abstract class TaskSimul_base {
 	protected SysMng g_sm;
 	protected TaskMng g_tm;
 	protected MRand g_rutil=new MRand();
-	private JobSimul g_js;
 	protected SimulInfo g_si;
 	protected  boolean g_recover_idle_on=true;
 
@@ -34,7 +32,7 @@ public abstract class TaskSimul_base {
 	// simul interval
 	public void simul(int st, int et){
 		int t=st;
-//		SLogF.prn("rel  / exec / t");
+		SLogF.prn("rel  / exec / t");
 		while(t<et){
 			simul_one();
 			t++;

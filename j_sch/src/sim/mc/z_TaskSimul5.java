@@ -2,10 +2,7 @@ package sim.mc;
 
 import anal.Anal;
 import anal.AnalEDF_AD_E;
-import anal.AnalEDF_IV;
 import anal.AnalEDF_IV2;
-import anal.AnalEDF_IV4;
-import anal.AnalEDF_VD;
 import gen.SysLoad;
 import imc.AnalEDF_RUN;
 import imc.TaskSimul_IMC;
@@ -13,7 +10,6 @@ import imc.TaskSimul_MC_RUN;
 import imc.TaskSimul_MC_RUN2;
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.TaskSimul;
 import task.TaskMng;
 import util.SEngineT;
 import util.SLog;

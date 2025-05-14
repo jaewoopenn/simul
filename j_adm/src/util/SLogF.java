@@ -42,7 +42,7 @@ public class SLogF {
 			g_writer.print(txt);
 	}
 	
-	public static void end()
+	public static void save()
 	{
 		if(g_writer!=null) {
 			g_writer.close();
