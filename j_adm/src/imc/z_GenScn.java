@@ -10,13 +10,16 @@ import util.SLog;
 import z_ex.TS_MC1;
 
 public class z_GenScn {
-	public static int idx=1;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 
 
 	public int test1()	{
 		String ts="adm/test1/taskset_96";
+		String out="adm/test.txt";
 		int n=10;
+		double prob=0.7;
 		int dur=300;
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
@@ -24,13 +27,24 @@ public class z_GenScn {
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
 		GenScn gs=new GenScn(tm);
-		gs.loop(dur);
+		gs.setProb(prob);
+		gs.gen(dur,out);
 
 		
 		return 0;
 	}
 	
 	public int test2() {
+		String ts="adm/test1/taskset_96";
+		String in="adm/test.txt";
+		int n=10;
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		SLog.prn(1, ret);
+		sy.moveto(n);
+		TaskMng tm=sy.loadOne();
+		GenScn gs=new GenScn(tm);
+		gs.play(in);
 		return -1;
 	}
 	public int test3() {
