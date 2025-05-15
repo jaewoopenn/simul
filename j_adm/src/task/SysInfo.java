@@ -36,7 +36,7 @@ public class SysInfo {
 		if(t.isHC()){
 			if(t.isHI_Preferred())
 				return t.getHiUtil();
-			if(t.isHM()||t.sb_tm!=-1)
+			if(t.isHM())
 				return t.getHiUtil();
 			else
 				return t.getLoVdUtil();

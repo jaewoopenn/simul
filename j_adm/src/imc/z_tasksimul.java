@@ -28,11 +28,15 @@ public class z_tasksimul {
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(prob);
 		sm.setX(0.5);
+		
 		TaskSimul_base ts=new TaskSimul_EDF_VD_IMC();
 		ts.init_sm_tm(sm,tm);
+
 		SLogF.init(out);
-		ts.simul(0,dur);
+		ts.simul(dur);
 		ts.simul_end();
+		SimulInfo si=ts.getSI();
+		si.prn();
 		SLogF.save();
 		return 0;
 	}

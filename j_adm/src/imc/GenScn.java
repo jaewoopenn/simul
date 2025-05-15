@@ -9,20 +9,17 @@ import util.MRand;
 import util.SLog;
 
 public class GenScn {
-	TaskMng tm;
 	double prob;
 	MList scn;
 	int next_t;
 	Vector<Integer> ms_v;
 	protected MRand g_rutil=new MRand();
 
-	public GenScn(TaskMng tm) {
-		this.tm=tm;
-	}
 	public void setProb(double p) {
 		prob=p;
 	}
-	public void gen(int dur,String fn) {
+	
+	public void gen(TaskMng tm,int dur,String fn) {
 		tm.prn();
 		boolean b=false;
 		MList fu=new MList();
@@ -59,10 +56,7 @@ public class GenScn {
 		fu.save(fn);
 	}
 	public void play(String fn) {
-		tm.prn();
-		scn=new MList(fn);
-		String next=scn.getNext();
-		int dur=Integer.valueOf(next).intValue();
+		int dur=initGet(fn);
 		int nxt=-2;
 		for(int t=0;t<dur;t++) {
 //			SLog.prn(1, t+"");
@@ -79,7 +73,13 @@ public class GenScn {
 		SLog.prn(1, "--end--");
 		
 	}
-	private int getNext() {
+	public int initGet(String fn) {
+		scn=new MList(fn);
+		String next=scn.getNext();
+		return Integer.valueOf(next).intValue();
+		
+	}
+	public int getNext() {
 		String next;
 		ms_v=new Vector<Integer>();
 		int t=0;

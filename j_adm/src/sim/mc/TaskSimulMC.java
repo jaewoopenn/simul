@@ -195,7 +195,6 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 
 		tsk.ms();
 		int t=g_jsm.get_time();
-		tsk.sb_tm=t;
 		
 		g_jsm.getJM().modeswitch(tsk.tid);
 	}
@@ -207,7 +206,6 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 		if(!tsk.isHI_Preferred()) {
 			SLogF.prn("t:"+g_jsm.get_time()+" switch back "+tid);
 			tsk.initMode();
-			tsk.sb_tm=g_jsm.get_time();
 		}
 		SLogF.prn("t:"+g_jsm.get_time()+" isHI "+tsk.isHM());
 	}

@@ -22,9 +22,9 @@ public class z_GenScn {
 		SLog.prn(1, ret);
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
-		GenScn gs=new GenScn(tm);
+		GenScn gs=new GenScn();
 		gs.setProb(prob);
-		gs.gen(dur,out);
+		gs.gen(tm,dur,out);
 
 		
 		return 0;
@@ -39,7 +39,7 @@ public class z_GenScn {
 		SLog.prn(1, ret);
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
-		GenScn gs=new GenScn(tm);
+		GenScn gs=new GenScn();
 		gs.play(in);
 		return -1;
 	}

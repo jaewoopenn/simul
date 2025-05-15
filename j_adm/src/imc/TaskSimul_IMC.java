@@ -17,8 +17,12 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected JobSimulMC g_jsm;
 	protected boolean g_ms_happen=false;
 	
+	private GenScn gscn;
 
-	
+	public void setScn(String fn) {
+		gscn=new GenScn();
+		gscn.initGet(fn);
+	}
 	@Override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
@@ -105,6 +109,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			if(tsk.isHC()) {
 				s+="+";
 				g_jsm.add(rel_one_job(tsk,t));
+				
 				continue;
 			}
 			g_si.rel++;
@@ -165,10 +170,14 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	
 	private boolean isMS() {
-		if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
-			return true;
-		else
-			return false;
+		if(gscn==null) {
+			if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
+				return true;
+			else
+				return false;
+		}
+		g_jsm.get_time();
+		return false;
 	}
 	private void initModeAll() {
 		for(Task t:g_tm.getTasks()){
@@ -200,8 +209,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		SLog.err_if(!tsk.isHC(),"task "+tsk.tid+" is not HI-task, cannot mode switch");
 
 		tsk.ms();
-		int t=g_jsm.get_time();
-		tsk.sb_tm=t;
 		
 		g_jsm.getJM().modeswitch(tsk.tid);
 	}

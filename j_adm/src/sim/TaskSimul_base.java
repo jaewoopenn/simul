@@ -30,8 +30,8 @@ public abstract class TaskSimul_base {
 
  
 	// simul interval
-	public void simul(int st, int et){
-		int t=st;
+	public void simul(int et){
+		int t=0;
 		SLogF.prn("rel  / exec / t");
 		while(t<et){
 			simul_one();

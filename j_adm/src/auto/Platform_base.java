@@ -261,7 +261,7 @@ public abstract class Platform_base {
 			sm.setDelay(x*tm.getLongPeriod());
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
-			s.simul(0,g_dur);
+			s.simul(g_dur);
 			s.simul_end();
 			SimulInfo si=s.getSI();
 			fu.add(si.getDMR()+"");
@@ -283,7 +283,7 @@ public abstract class Platform_base {
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(1);
 			s.init_sm_tm(sm,tm);
-			s.simul(0,g_dur);
+			s.simul(g_dur);
 			s.simul_end();
 		}
 		SLogF.save();
@@ -322,7 +322,7 @@ public abstract class Platform_base {
 		sm.setLife(g_life);
 		sm.setDelay(x*tm.getLongPeriod());
 		s.init_sm_tm(sm,tm);
-		s.simul(0,g_dur);
+		s.simul(g_dur);
 		s.simul_end();
 	}
 
