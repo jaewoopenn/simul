@@ -8,6 +8,7 @@ import util.SLog;
 public class z_GenScn {
 //	public static int idx=1;
 	public static int idx=2;
+//	public static int idx=3;
 	public static int log_level=1;
 
 
@@ -31,19 +32,20 @@ public class z_GenScn {
 	}
 	
 	public int test2() {
-		String ts="adm/test1/taskset_96";
 		String in="adm/test.txt";
+		GenScn gs=new GenScn();
+		gs.play(in);
+		return -1;
+	}
+	public int test3() {
+		String ts="adm/test1/taskset_96";
 		int n=10;
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		SLog.prn(1, ret);
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
-		GenScn gs=new GenScn();
-		gs.play(in);
-		return -1;
-	}
-	public int test3() {
+		tm.prn();
 		return 0;
 	}
 	public  int test4() {

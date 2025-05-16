@@ -10,6 +10,7 @@ public class Job implements Comparable<Job>{
 	public int exec;
 	public int add_exec;
 	public boolean isHI;
+	public boolean b_tobeMS=false;
 	public double vd;
 	private boolean isDrop;
 
@@ -88,6 +89,13 @@ public class Job implements Comparable<Job>{
 
 	public void setVD(int d) {
 		this.vd=d;
+	}
+	public boolean tobeMS() {
+		return b_tobeMS;
+	}
+	public void setTobeMS() {
+		b_tobeMS=true;
+		
 	}
 
 

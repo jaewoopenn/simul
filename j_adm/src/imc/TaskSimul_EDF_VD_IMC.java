@@ -16,6 +16,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 			if(t.isHC()){
 				g_jsm.getJM().modeswitch(tsk.tid);
 				t.ms();
+				
 			} else {
 				degrade_task(t);
 			}

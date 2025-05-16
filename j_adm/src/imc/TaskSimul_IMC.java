@@ -75,16 +75,17 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected Job rel_one_job(Task tsk, int t) {
 //		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
 		int dl=t+tsk.period;
-		if(!tsk.isHC()) {
+		if(!tsk.isHC()) { // LC task
 			return new Job(tsk.tid,dl,tsk.c_l,tsk.c_l-tsk.c_h);
 		}
 
 		// HC task 
 		Job j;
-		if(tsk.isHM()){ // HI-mode
+//		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
+		if(tsk.isHM()&&g_life!=0){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
 			if(tsk.isMS()) {
-//				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
+				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
 				tsk.ms_end();
 			}
 			if(tsk.life>0)
@@ -92,6 +93,27 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 			tsk.life=(int)Math.ceil(g_life/tsk.period);
+			if(gscn!=null) {
+				int nxt=gscn.getNxt();
+				if(nxt<t) {
+					gscn.fetchNxt();
+					nxt=gscn.getNxt();
+//					SLog.prn(1, nxt+"");
+				}
+				if(nxt!=-1) {
+					String s=t+":"+nxt+":"+tsk.tid+":";
+					for(int tid:gscn.getNxtA()) {
+						s+= tid+" ";
+						if(tsk.tid==tid) {
+							j.setTobeMS();
+							SLog.prn(1, t+": "+tsk.tid+" MS ");
+						}
+					}
+//					SLog.prn(1, s);
+					
+				}
+				
+			}
 		}
 		return j;
 	}
@@ -155,7 +177,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		if(j==null) 
 			return;
 		if(j.add_exec>0) {
-			if(isMS()) { 
+			if(isMS(j)) { 
 				g_ms_happen=true;
 				mode_switch(j.tid);
 			} else {
@@ -169,15 +191,14 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	}
 
 	
-	private boolean isMS() {
+	private boolean isMS(Job j) {
 		if(gscn==null) {
 			if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
 				return true;
 			else
 				return false;
 		}
-		g_jsm.get_time();
-		return false;
+		return j.tobeMS();
 	}
 	private void initModeAll() {
 		for(Task t:g_tm.getTasks()){
@@ -201,6 +222,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected void mode_switch(int tid){ // connect to each algo's MS
 		Task tsk=g_tm.getTask(tid);
 		SLogF.prn(g_jsm.get_time()+" "+tid);
+		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
 		g_si.ms++;
 		modeswitch_in(tsk);
 	}

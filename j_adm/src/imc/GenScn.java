@@ -9,10 +9,10 @@ import util.MRand;
 import util.SLog;
 
 public class GenScn {
-	double prob;
-	MList scn;
-	int next_t;
-	Vector<Integer> ms_v;
+	private double prob;
+	private MList scn;
+	private int nxt=-2;
+	private int[] msa;
 	protected MRand g_rutil=new MRand();
 
 	public void setProb(double p) {
@@ -29,7 +29,7 @@ public class GenScn {
 			b=false;
 			String s="";
 			s+=t+" : ";
-			for(Task tsk:tm.getTasks()){
+			for(Task tsk:tm.getHiTasks()){
 				if (t%tsk.period==0){
 					s+=tsk.tid+" ";
 					b=true;
@@ -58,18 +58,24 @@ public class GenScn {
 	public void play(String fn) {
 		int dur=initGet(fn);
 		int nxt=-2;
+		int n=0;
 		for(int t=0;t<dur;t++) {
 //			SLog.prn(1, t+"");
 			if(nxt<t && nxt!=-1 ) {
-				nxt=getNext();
+				fetchNxt();
+				nxt=getNxt();
 //				SLog.prn(1, nxt+"");
 			} 
 			if(nxt==t) {
 				String s=t+": ";
-				for(int v:ms_v) s+=v+" ";
+				for(int v:getNxtA()) {
+					s+=v+" ";
+					n++;
+				}
 				SLog.prn(1, s);
 			}
 		}
+		SLog.prn(1, "total: "+n);
 		SLog.prn(1, "--end--");
 		
 	}
@@ -79,28 +85,38 @@ public class GenScn {
 		return Integer.valueOf(next).intValue();
 		
 	}
-	public int getNext() {
+	public void fetchNxt() {
 		String next;
-		ms_v=new Vector<Integer>();
 		int t=0;
 		next=scn.getNext();
-		if(next==null)
-			return -1;
+		if(next==null) {
+			nxt=-1;
+			return;
+			
+		}
 //			SLog.prn(1, next);
         String[] words=next.split(",");
 //		SLog.prnc(1, words[0]+" ");
-		t=Integer.valueOf(words[0]).intValue();
+		nxt=Integer.valueOf(words[0]).intValue();
+		
         boolean bFirst=true;
+        msa=new int[words.length-1];
+        int i=0;
         for(String w: words) {
         	if(bFirst) {
         		bFirst=false;
         		continue;
         	}
-        	
-//			SLog.prnc(1, w+" ");
-			ms_v.add(Integer.valueOf(w));
+			msa[i]=Integer.valueOf(w);
+			i++;
         }
 //		SLog.prn(1, "");
-		return t;
+	}
+    public int[] getNxtA() {
+		return msa;
+	}
+
+	public int getNxt() {
+		return nxt;
 	}
 }

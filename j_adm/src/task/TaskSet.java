@@ -59,6 +59,10 @@ public class TaskSet {
 	public void setX(double x) {
 		for(Task t:g_tasks){
 			t.setX(x);
+		}
+	}
+	public void set_HI_only() {
+		for(Task t:g_tasks){
 			if(t.getHiUtil()<=t.getLoVdUtil())
 				t.setHI_only();
 		}
