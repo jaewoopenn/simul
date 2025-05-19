@@ -57,14 +57,6 @@ public class z_auto_imc {
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
 	}
-	public void gen2() {
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
-		p.setNum(g_num);
-		p.genCfg_hc(g_cf,0,10,100);
-//		p.setCheck();
-		//p.setOnlyMC();
-		p.genTS(g_cf,g_ts);
-	}	
 	public void loop_anal(String rs_path) {
 		Platform_IMC p=new Platform_IMC(g_path,rs_path);
 
@@ -77,8 +69,7 @@ public class z_auto_imc {
 		ds.load_rs(g_rs);
 		ds.save(g_graph);
 	}
-	public int test1() 
-	{
+	public int test1() {
 		init_g();
 		init_anal();
 		Platform_IMC p=new Platform_IMC(g_path,g_path);
@@ -106,30 +97,19 @@ public class z_auto_imc {
 		da.save(g_graph);
 		return 0;
 	}
-	public int test3() // probability of HC tasks 
-	{
-		init_g();
-		init_anal();
-		g_path="run/hcs_ts";
-		gen2();
-		String rs_path="run/hcs";
-		loop_anal(rs_path);
-		return 0;
-	}
-	public  int test4() // anal rs --> graph
-	{
+	public int test3()  {
 		return -1;
 	}
-	public  int test5() // gen TS w/ schedulable
-	{
-		return 0;
-	}
-	public  int test6() // ts --> simul rs --->graph
-	{
+	public  int test4() {
 		return -1;
 	}
-	public  int test7()// simul rs --> graph
-	{
+	public  int test5() {
+		return 0;
+	}
+	public  int test6() {
+		return -1;
+	}
+	public  int test7() {
 		return 0;
 	}
 	public  int test8() {

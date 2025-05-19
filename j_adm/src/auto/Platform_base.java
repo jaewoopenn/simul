@@ -27,7 +27,7 @@ public abstract class Platform_base {
 	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	protected boolean g_verbose=false;
 	protected boolean g_recoverIdle=true;
-	protected int g_life=0;
+	protected int g_life=0; // life는 hi mode가 얼마나 지속... time unit 기
 	
 	
 	public void setNum(int n) {

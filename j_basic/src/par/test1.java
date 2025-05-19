@@ -29,7 +29,7 @@ public class test1 {
 
 	public static void main(String[] args) throws InterruptedException {
 		SLog.set_lv(1);
-		int n=100;
+		int n=10;
 		MyRunnable[] mr=new MyRunnable[n];
 		Thread[] th=new Thread[n];
 		int[] ran=IntStream.range(0,n).toArray();
