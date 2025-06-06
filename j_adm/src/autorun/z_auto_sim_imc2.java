@@ -20,8 +20,8 @@ public class z_auto_sim_imc2 {
 	
 	
 	public static void init_s() {
-		int s=1;
-//		int s=2;
+//		int s=1;
+		int s=2;
 		
 		s_idx=s;
 		
@@ -36,7 +36,7 @@ public class z_auto_sim_imc2 {
 		g_dur=5000;
 		g_p_ms=0.2;
 		g_ts_list_n=7;
-		g_ts_n=9;
+		g_ts_n=11;
 	}
 	public int test1() 
 	{
