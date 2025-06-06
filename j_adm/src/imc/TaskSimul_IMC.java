@@ -222,6 +222,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected void mode_switch(int tid){ // connect to each algo's MS
 		Task tsk=g_tm.getTask(tid);
 		SLogF.prn(g_jsm.get_time()+" "+tid);
+		SLogF.prng(g_jsm.get_time()+" "+tid);
 		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
 		g_si.ms++;
 		modeswitch_in(tsk);

@@ -13,7 +13,7 @@ public abstract class TaskSimul_base {
 	protected TaskMng g_tm;
 	protected MRand g_rutil=new MRand();
 	protected SimulInfo g_si;
-	protected  boolean g_recover_idle_on=true;
+	protected boolean g_recover_idle_on=true;
 
 	public String getName() {
 		return g_name;

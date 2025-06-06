@@ -275,6 +275,7 @@ public abstract class Platform_base {
 		sy.open();
 		TaskMng tm=null;
 		SLogF.init(out);
+		SLogF.setGen();
 		sy.moveto(ts_n);
 		tm=sy.loadOne();
 		SysMng sm=new SysMng();
@@ -285,6 +286,7 @@ public abstract class Platform_base {
 		s.simul(g_dur);
 		s.simul_end();
 		SLogF.save();
+		
 	}
 
 	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int ts_n, int scn) {

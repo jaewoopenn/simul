@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 
 public class SLogF {
 	private static PrintWriter g_writer=null;
+	private static boolean g_is_gen=false;
 	
 	public static boolean isON() {
 		return (g_writer!=null);
@@ -33,13 +34,20 @@ public class SLogF {
 		}
 		
 	}
+	public static void setGen() {
+		g_is_gen=true;
+	}
 	public static void prn(String txt){
-		if(g_writer!=null)
+		if(g_writer!=null&&g_is_gen==false)
 			g_writer.println(txt);
 	}
 	public static void prnc(String txt){
-		if(g_writer!=null)
+		if(g_writer!=null&&g_is_gen==false)
 			g_writer.print(txt);
+	}
+	public static void prng(String txt){
+		if(g_writer!=null&&g_is_gen==true)
+			g_writer.println(txt);
 	}
 	
 	public static void save()
