@@ -13,11 +13,15 @@ public class z_auto_sim_imc2 {
 	private String g_path;
 	private double g_p_ms;
 	private int g_dur;
+	private String g_rs_path;
 	private String g_ts;
+	private int g_ts_list_n;
+	private int g_ts_n;
 	
 	
 	public static void init_s() {
 		int s=1;
+//		int s=2;
 		
 		s_idx=s;
 		
@@ -27,41 +31,37 @@ public class z_auto_sim_imc2 {
 
 	public void init_sim() {
 		g_path="adm/test1";
+		g_rs_path="adm/scn";
+		g_ts="a_ts_list.txt";
 		g_dur=5000;
-		g_p_ms=0.1;
+		g_p_ms=0.2;
+		g_ts_list_n=7;
+		g_ts_n=9;
 	}
 	public int test1() 
 	{
 		init_sim();
-		g_path="adm/test1";
-		g_ts="a_ts_list.txt";
-		String rs_path="adm/scn";
-		g_p_ms=0.2;
-		Platform_IMC p=new Platform_IMC(g_path,rs_path);
+		Platform_IMC p=new Platform_IMC(g_path,g_rs_path);
 
 		
+		p.setDur(g_dur);
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
-		p.setDur(g_dur);
 		
-		p.gen_scn(g_ts,7,10,10,10);
+		p.gen_scn(g_ts,g_ts_list_n,g_ts_n,5);
 		return 0;
 	}
 	public int test2() 
 	{
 		init_sim();
-		g_path="adm/test1";
-		g_ts="a_ts_list.txt";
-		String rs_path="adm/scn";
-		g_p_ms=0.2;
-		Platform_IMC p=new Platform_IMC(g_path,rs_path);
+		Platform_IMC p=new Platform_IMC(g_path,g_rs_path);
 
 		
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 		
-		p.run_scn(g_ts,1,7,9,9,10);
+		p.run_scn(1,g_ts,g_ts_list_n,g_ts_n,0,5);
 		return 0;
 	}
 	public int test3() 
