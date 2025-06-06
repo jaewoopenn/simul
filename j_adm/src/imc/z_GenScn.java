@@ -17,7 +17,7 @@ public class z_GenScn {
 		String out="adm/test.txt";
 		int n=10;
 		double prob=0.7;
-		int dur=300;
+		int dur=500;
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		SLog.prn(1, ret);

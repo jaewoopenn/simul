@@ -16,8 +16,8 @@ public class SysLoad {
 	public String open() {
 		g_fu.br_open();
 		return g_fu.read();
-		
 	}
+	
 	public TaskMng loadOne() {
 		boolean b=g_fu.readSplit("------");
 		if(!b) 

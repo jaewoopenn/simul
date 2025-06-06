@@ -98,7 +98,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 				if(nxt<t) {
 					gscn.fetchNxt();
 					nxt=gscn.getNxt();
-//					SLog.prn(1, nxt+"");
 				}
 				if(nxt!=-1) {
 					String s=t+":"+nxt+":"+tsk.tid+":";
@@ -109,7 +108,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 							SLog.prn(1, t+": "+tsk.tid+" MS ");
 						}
 					}
-//					SLog.prn(1, s);
 					
 				}
 				

@@ -291,7 +291,7 @@ public abstract class Platform_base {
 
 	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int ts_n, int scn) {
 		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
+		sy.open();
 		Anal base;
 		MList fu=new MList();
 		TaskMng tm=null;
