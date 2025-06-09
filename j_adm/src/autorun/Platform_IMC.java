@@ -28,7 +28,6 @@ public class Platform_IMC extends Platform_base {
 		cg.setParam("num",g_num+"");
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
-			SLog.prn(2, lb+"");
 			cg.setParam("u_lb", (lb)*1.0/100+"");
 			cg.setParam("u_ub", (lb+step)*1.0/100+"");
 			cg.setParam("mod", (lb+step)+"");
@@ -108,6 +107,7 @@ public class Platform_IMC extends Platform_base {
 			cfg.readFile();
 			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
+			SLog.prn(3, fn);
 			if(g_onlyMC)
 				sg.setOnlyMC();
 			if(g_isCheck)

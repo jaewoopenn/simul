@@ -24,8 +24,8 @@ public class z_auto_imc {
 	public static void init_s() {
 		int s=0;
 //		s=1;
-		s=2;
-//		s=3;
+//		s=2;
+		s=3;
 		s_idx=s;
 		
 		s_log_level=2;
@@ -84,8 +84,7 @@ public class z_auto_imc {
 		da.save(g_graph);
 		return 0;
 	}
-	public int test2() // mandatory part ratio 
-	{
+	public int test2() 	{  // without gen
 		init_g();
 		init_anal();
 		Platform_IMC p=new Platform_IMC(g_path,g_path);
@@ -97,8 +96,14 @@ public class z_auto_imc {
 		da.save(g_graph);
 		return 0;
 	}
-	public int test3()  {
-		return -1;
+	public int test3()  { // gen only
+		init_g();
+		init_anal();
+		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		p.setNum(g_num);
+		p.genCfg_util(g_cf,g_st,g_step,g_end);
+		p.genTS(g_cf,g_ts);
+		return 0;
 	}
 	public  int test4() {
 		return -1;

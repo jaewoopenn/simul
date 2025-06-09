@@ -31,6 +31,9 @@ public class TaskVec {
 	public void removeLast(){
 		g_taskV.remove(g_taskV.size()-1);
 	}
+	public void remove(int i){
+		g_taskV.remove(i);
+	}
 	
 	public Vector<Task> getVec(){
 		return g_taskV;

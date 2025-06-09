@@ -101,16 +101,15 @@ public class Task {
 		SLog.prnc(2, ", "+c_l);
 		SLog.prnc(2, ", "+c_h);
 		if (is_HC)
-			SLog.prn(2,",H");
+			SLog.prn(2,", H");
 		else
-			SLog.prn(2,",L");
+			SLog.prn(2,", L");
 	}
 	
 	public void prnTxt() {
-		SLog.prnc(2, "p:"+period);
-		SLog.prnc(2, ",vd:"+vd);
-		SLog.prnc(2, ",cl:"+c_l);
-		SLog.prnc(2, ",ch:"+c_h);
+		SLog.prnc(2, "p: "+period);
+		SLog.prnc(2, ", cl: "+c_l);
+		SLog.prnc(2, ", ch: "+c_h);
 		if (is_HC)
 			SLog.prn(2,", HC");
 		else

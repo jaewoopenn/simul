@@ -70,7 +70,7 @@ public class TaskSet {
 
 	public void prn() {
 		for(Task t:g_tasks){
-			t.prnShort();
+			t.prnTxt();
 		}
 		
 	}
