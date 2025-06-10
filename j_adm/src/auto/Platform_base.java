@@ -70,7 +70,7 @@ public abstract class Platform_base {
 			String mod=cfg.get_mod();
 			fu_xa.add(mod);
 		}
-		fu_xa.save(g_rs_path+"/"+xaxis);
+		fu_xa.saveTo(g_rs_path+"/"+xaxis);
 	}
 	
 	public void genXA_dur(String xaxis) {
@@ -78,7 +78,7 @@ public abstract class Platform_base {
 		for(int i=0;i<g_dur_set.length;i++) {
 			fu_xa.add((g_dur_set[i]/1000)+"");
 		}
-		fu_xa.save(g_rs_path+"/"+xaxis);
+		fu_xa.saveTo(g_rs_path+"/"+xaxis);
 	}	
 	
 	// anal
@@ -88,7 +88,7 @@ public abstract class Platform_base {
 			String rs=anal(ts_list,i);
 			fu.add(rs);
 		}
-		fu.save(g_rs_path+"/"+rs_list);
+		fu.saveTo(g_rs_path+"/"+rs_list);
 	}
 	// analyze task set list with algorithm choice
 	public String anal(String ts_list,int sort) {
@@ -105,7 +105,7 @@ public abstract class Platform_base {
 			anal_one(fn,out,a);
 			fu_rs.add(out);
 		}		
-		fu_rs.save(rs_fn);
+		fu_rs.saveTo(rs_fn);
 		return rs_fn;
 	}
 	public abstract Anal getAnal(int sort) ;
@@ -132,7 +132,7 @@ public abstract class Platform_base {
 				fu.add("0");
 			}
 		}
-		fu.save(out);
+		fu.saveTo(out);
 	}
 	
 	public abstract Anal getAnalSim(int sort) ;
@@ -145,7 +145,7 @@ public abstract class Platform_base {
 			String rs=simul(ts_list,i);
 			fu.add(rs);
 		}
-		fu.save(g_rs_path+"/"+rs_list);
+		fu.saveTo(g_rs_path+"/"+rs_list);
 	}
 //	public void sim_loop_dur(String rs_list,String ts_list, int start, int end,int dur[]) {
 //		MList fu=new MList();
@@ -165,7 +165,7 @@ public abstract class Platform_base {
 			String rs=simul_dur(ts_list,i);
 			fu.add(rs);
 		}
-		fu.save(g_rs_path+"/"+rs_list);
+		fu.saveTo(g_rs_path+"/"+rs_list);
 	}
 	
 
@@ -186,7 +186,7 @@ public abstract class Platform_base {
 			simul_one(g_path+"/"+fn,out,a,s);
 			fu_rs.add(out);
 		}		
-		fu_rs.save(rs_fn);
+		fu_rs.saveTo(rs_fn);
 		return rs_fn;		
 	}
 	
@@ -272,7 +272,7 @@ public abstract class Platform_base {
 			SimulInfo si=s.getSI();
 			fu.add(si.getDMR()+"");
 		}
-		fu.save(out);
+		fu.saveTo(out);
 	}
 
 	public void gen_scn_one(String ts,String out,int ts_n) {
@@ -352,7 +352,7 @@ public abstract class Platform_base {
 			simul_one(g_path+"/"+fn,out,a,s);
 			fu_rs.add(out);
 		}		
-		fu_rs.save(rs_fn);
+		fu_rs.saveTo(rs_fn);
 		return rs_fn;		
 	}
 

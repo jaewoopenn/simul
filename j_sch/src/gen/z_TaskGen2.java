@@ -36,7 +36,7 @@ public class z_TaskGen2 {
 	{
 		TaskGen tg=getTG1();
 //		TaskGen tg=getTG2();
-		tg.generate();
+		tg.genTS();
 		TaskSet ts=tg.getTS();
 		TaskSetUtil.writeFile("test/test.txt", ts.getArr());
 		return 1;
@@ -44,12 +44,12 @@ public class z_TaskGen2 {
 	public int test2() {
 		TaskGen tg=getTG1();
 //		TaskGen tg=getTG2();
-		tg.generate();
+		tg.genTS();
 		TaskSet ts=tg.getTS();
 		TaskMng tm=ts.getTM();
 		tm.prn();
 		tm.prnInfo();
-		if(tg.isOK())
+		if(tg.chkUtil())
 			SLog.prn(1, "OK");
 		else
 			SLog.prn(1, "not OK");

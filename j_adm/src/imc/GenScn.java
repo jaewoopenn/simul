@@ -53,7 +53,7 @@ public class GenScn {
 			}
 
 		}
-		fu.save(fn);
+		fu.saveTo(fn);
 	}
 	public void play(String fn) {
 		int dur=initGet(fn);

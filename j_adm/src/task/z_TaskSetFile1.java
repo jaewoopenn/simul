@@ -19,10 +19,10 @@ public class z_TaskSetFile1 {
 		TaskSetUtil.nextStage(fu);
 		TaskSetUtil.writeTask(fu, new Task(5,1,4));
 		TaskSetUtil.nextStage(fu);
-		TaskSetUtil.removeTask(fu, 3);
-		TaskSetUtil.removeTask(fu, 2);
+		TaskSetUtil.remove(fu, 3);
+		TaskSetUtil.remove(fu, 2);
 		TaskSetUtil.writeTask(fu, new Task(5,1,3));
-		fu.save("test/test.txt");
+		fu.saveTo("test/test.txt");
 		return 1;
 	}
 	public int test2()

@@ -17,9 +17,10 @@ public abstract class TaskGen {
 	public void genTS() {
 		while(true){
 			genTS_One();
-			if(isOK()) break;
+			if(chkUtil()) break;
 		}
 	}
+	
 	private void genTS_One()
 	{
 		g_tasks=new Vector<Task>();
@@ -39,9 +40,8 @@ public abstract class TaskGen {
 	public abstract Task genTask(int tid);
 
 
-	public boolean isOK() {
-		return g_param.isOK(getUtil());
-		
+	public boolean chkUtil() {
+		return g_param.chkUtil(getUtil());
 	}
 	
 	public abstract void prn(int lv) ;
@@ -58,9 +58,6 @@ public abstract class TaskGen {
 		return new TaskSet(ts);
 	}
 	
-	public int size() {
-		return g_tasks.size();
-	}
 	
 	
 	

@@ -61,7 +61,7 @@ public class DataAnal {
 			}
 			fu.add(str);
 		}
-		fu.save(g_path+"/"+fn);
+		fu.saveTo(g_path+"/"+fn);
 	}
 	public Anal getAnal(int i) {
 		return AnalSel.getAnal(i);

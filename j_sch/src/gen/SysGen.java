@@ -47,7 +47,7 @@ public class SysGen {
 		MList fu=new MList();
 		fu.add(num+"");
 		while(i<num){
-			g_tg.generate();
+			g_tg.genTS();
 			if(!isOK())
 				continue;
 			if(!isSch(a)) 

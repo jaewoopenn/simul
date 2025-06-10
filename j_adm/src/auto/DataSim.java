@@ -76,7 +76,7 @@ public class DataSim {
 			fu.add(str);
 //			Log.prn(1, str);
 		}
-		fu.save(g_path+"/"+fn);
+		fu.saveTo(g_path+"/"+fn);
 		
 	}
 	

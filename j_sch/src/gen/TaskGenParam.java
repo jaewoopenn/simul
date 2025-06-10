@@ -127,7 +127,7 @@ public class TaskGenParam {
 		return true;
 	}
 
-	public boolean isOK(double util) {
+	public boolean chkUtil(double util) {
 //		SLog.prn(2," "+util+" "+u_ub+" "+u_lb);
 		if(util<=u_ub&&util>=u_lb){
 			return true;

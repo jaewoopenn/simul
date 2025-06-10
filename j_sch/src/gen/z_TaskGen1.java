@@ -23,7 +23,7 @@ public class z_TaskGen1 {
 	public int test1()
 	{
 		TaskGen tg=getTG1();
-		tg.generate();
+		tg.genTS();
 		TaskSet ts=tg.getTS();
 		TaskSetUtil.writeFile("test/test.txt", ts.getArr());
 		return 1;

@@ -41,7 +41,7 @@ public class Platform_IMC extends Platform_base {
 			cg.write();
 			fu.add(fn);
 		}
-		fu.save(g_path+"/"+cf);
+		fu.saveTo(g_path+"/"+cf);
 		
 	}
 
@@ -59,7 +59,7 @@ public class Platform_IMC extends Platform_base {
 		cg.setFile(fn);
 		cg.write();
 		fu.add(fn);
-		fu.save(g_path+"/"+cf);		
+		fu.saveTo(g_path+"/"+cf);		
 	}
 	
 	// gen mo
@@ -87,7 +87,7 @@ public class Platform_IMC extends Platform_base {
 			cg.write();
 			fu.add(fn);
 		}
-		fu.save(g_path+"/"+cf);
+		fu.saveTo(g_path+"/"+cf);
 	}
 	
 
@@ -113,10 +113,10 @@ public class Platform_IMC extends Platform_base {
 			if(g_isCheck)
 				sg.setCheck();
 			int num=sg.prepareIMC();
-			sg.gen(g_path+"/"+fn, a,num);
+			sg.gen2(g_path+"/"+fn, a,num);
 			fu_ts.add(fn);
 		}
-		fu_ts.save(g_path+"/"+ts);
+		fu_ts.saveTo(g_path+"/"+ts);
 	}
 	
 

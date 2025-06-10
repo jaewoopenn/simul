@@ -17,24 +17,24 @@ public class TaskSetUtil {
 	public static void writeFile(String fn,Task[] tasks){
 		MList fu=new MList();
 		writeTS_in(fu,tasks);		
-		fu.save(fn);
+		fu.saveTo(fn);
 	}
 	
-	public static void writeTS(MList fu,Task[] tasks){
-		writeTS_in(fu,tasks);		
-		fu.add("------");
+	public static void writeTS(MList ml,Task[] tasks){
+		writeTS_in(ml,tasks);		
+		ml.add("------");
 	}
-	private static void writeTS_in(MList fu,Task[] tasks){
-		fu.add("stage,1");
+	private static void writeTS_in(MList ml,Task[] tasks){
+		ml.add("stage,1");
 		for(Task t:tasks)
-			writeTask(fu,t);
+			writeTask(ml,t);
 	}	
 	
-	public static void removeTask(MList fu, int i) {
+	public static void remove(MList ml, int i) {
 		String txt="remove,";
 		txt+=(int)i;
 //		SLog.prn(2, txt);
-		fu.add(txt);
+		ml.add(txt);
 		
 	}
 	public static void initStage(MList fu, int n) {
@@ -44,37 +44,37 @@ public class TaskSetUtil {
 		fu.add(txt);
 		
 	}
-	public static void nextStage(MList fu) {
+	public static void nextStage(MList ml) {
 		String txt="next";
 //		SLog.prn(2, txt);
-		fu.add(txt);
+		ml.add(txt);
 		
 	}
 
-	public static void writeTask(MList fu, Task t) {
+	public static void writeTask(MList ml, Task t) {
 		int isHI=t.isHC()?1:0;
 		String txt="add,";
 		txt+=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 //		SLog.prn(2, txt);
-		fu.add(txt);
+		ml.add(txt);
 	}
-	public static void loadView(MList fu) {
-		for(int i=0;i<fu.size();i++) {
-	    	String line=fu.get(i);
+	public static void loadView(MList ml) {
+		for(int i=0;i<ml.size();i++) {
+	    	String line=ml.get(i);
 	    	SLog.prn(1,line);
 		}
 	}
 
 	// import 
 	
-	public static TaskSet  loadFile(MList fu) {
+	public static TaskSet  loadFile(MList ml) {
 		TaskSeq.reset();
 		DTaskVec tasks=new DTaskVec(3);
 		Task t;
 		int stage=0;
-		for(int i=1;i<fu.size();i++) {
-	    	String line=fu.get(i);
+		for(int i=1;i<ml.size();i++) {
+	    	String line=ml.get(i);
 //	    	Log.prn(1, line);
 	        String[] words=line.split(",");
         	t=loadTask(words);
@@ -83,17 +83,17 @@ public class TaskSetUtil {
 	    return new TaskSet(tasks.getVec(0));
 	}
 
-	public static DTaskVec  loadFile2(MList fu) {
+	public static DTaskVec  loadFile2(MList ml) {
 		TaskSeq.reset();
-    	String line=fu.get(0);
+    	String line=ml.get(0);
 //    	SLog.prn(2, line);
         String[] words=line.split(",");
         int num=Integer.valueOf(words[1]).intValue();
 		DTaskVec tasks=new DTaskVec(num);
 		Task t;
 		int stage=0;
-		for(int i=1;i<fu.size();i++) {
-	    	line=fu.get(i);
+		for(int i=1;i<ml.size();i++) {
+	    	line=ml.get(i);
 //	    	Log.prn(1, line);
 	        words=line.split(",");
 	        if(words[0].equals("add")) {

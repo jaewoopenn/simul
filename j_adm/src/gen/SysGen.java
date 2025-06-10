@@ -1,6 +1,7 @@
 package gen;
 
 import anal.Anal;
+import task.Task;
 import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetUtil;
@@ -44,29 +45,60 @@ public class SysGen {
 	}	
 	public void gen(String fn,Anal a,int num) {
 		int i=0;
-		MList fu=new MList();
-		fu.add(num+"");
+		MList ml=new MList();
+		ml.add(num+"");
 		while(i<num){
 			g_tg.genTS();
 			if(!checkOnlyMC())
 				continue;
 			if(!isSch(a)) 
 				continue;
-			writeSys(fu);
+			writeSys(ml);
 //			SLog.prn(2,i+"");
 			i++;
 		}
-		fu.save(fn);
+		ml.saveTo(fn);
 	}
+	public void gen2(String fn,Anal a,int num) {
+		int i=0;
+		MList ml=new MList();
+		ml.add(num+"");
+		while(i<num){
+			g_tg.genTS();
+			if(!checkOnlyMC())
+				continue;
+			if(!isSch(a)) 
+				continue;
+			writeSys2(ml);
+//			SLog.prn(2,i+"");
+			i++;
+		}
+		ml.saveTo(fn);
+	}
+
 	
-	public int writeSys(MList fu)
+	public int writeSys(MList ml)
 	{
 		
 		TaskSet ts=g_tg.getTS();
-		TaskSetUtil.writeTS(fu, ts.getArr());
+		TaskSetUtil.writeTS(ml, ts.getArr());
 		
 		return 1;
 	}
+	public int writeSys2(MList ml)
+	{
+		
+		TaskSet ts=g_tg.getTS();
+		TaskSetUtil.initStage(ml, 2);
+		for(Task t:ts.getArr()) {
+			TaskSetUtil.writeTask(ml, t);
+		}
+		TaskSetUtil.nextStage(ml);
+		TaskSetUtil.remove(ml,0);
+		ml.add("------");
+		return 1;
+	}
+	
 	protected boolean checkOnlyMC() {
 		if(!g_isOnlyMC)
 			return true;

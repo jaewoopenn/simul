@@ -98,7 +98,7 @@ public class ConfigGen {
 			String txt=s+":"+v;
 			fu.add(txt);
 		}
-		fu.save(g_fn);
+		fu.saveTo(g_fn);
 		
 	}
 	public void prn(int lv) {

@@ -41,7 +41,7 @@ public class MList {
 	}
 	
 
-	public void save(String fn) {
+	public void saveTo(String fn) {
 		if(fn==null)
 			return;
 		MOut fu=new MOut(fn);
