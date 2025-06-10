@@ -29,8 +29,11 @@ public class TaskGenIMC extends TaskGen {
 	@Override
 	public void prn(int lv) {
 		for(Task t:g_tasks) {
-			SLog.prn(1, "tid:"+t.tid+", p:"+t.period+", l:"+t.c_l+
-					", h:"+t.c_h+", Xi:"+t.isHC());
+			SLog.prn(1, "tid:"+t.tid+
+					", p:"+t.period+
+					", l:"+t.c_l+
+					", h:"+t.c_h+
+					", Xi:"+t.isHC());
 		}
 		SLog.prn(lv, "MC util:"+getUtil());
 			

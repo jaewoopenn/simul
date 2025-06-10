@@ -3,6 +3,7 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
+import anal.AnalSel;
 import imc.AnalSel_run;
 import util.MList;
 
@@ -64,7 +65,7 @@ public class DataAnal {
 		fu.save(g_path+"/"+fn);
 	}
 	public Anal getAnal(int i) {
-		return AnalSel_run.getAnal(i);
+		return AnalSel.getAnal(i);
 	}
 
 

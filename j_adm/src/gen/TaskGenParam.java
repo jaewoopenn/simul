@@ -89,7 +89,6 @@ public class TaskGenParam {
 		}
 	}
 	public Task genTaskIMC(int tid){
-//		Log.prn(2, p_lb+" "+p_ub);
 		int p=g_rand.getInt(p_lb,p_ub);
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		double getProb=g_rand.getDbl();
@@ -102,8 +101,6 @@ public class TaskGenParam {
 			double m_ratio=g_rand.getDbl(mo_lb,mo_ub);
 			int l=(int)(tu*p);
 			int h=(int)(l*m_ratio);
-//			SLog.prn(2, l+" "+h+" "+ratio);
-//			int h=0;
 			return new Task(p,l,h,false);
 		}
 	}

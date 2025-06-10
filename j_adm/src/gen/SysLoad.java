@@ -1,5 +1,6 @@
 package gen;
 
+import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetUtil;
@@ -19,14 +20,21 @@ public class SysLoad {
 	}
 	
 	public TaskMng loadOne() {
-		boolean b=g_fu.readSplit("------");
+		boolean b=g_fu.readUntil("------");
 		if(!b) 
 			return null;
 		MList ml=new MList();
-		ml.copy(g_fu);
+		ml.copyFrom(g_fu);
 		TaskSet tsf=TaskSetUtil.loadFile(ml);
 		return tsf.getTM();
-		
+	}
+	public DTaskVec loadOne2() {
+		boolean b=g_fu.readUntil("------");
+		if(!b) 
+			return null;
+		MList ml=new MList();
+		ml.copyFrom(g_fu);
+		return TaskSetUtil.loadFile2(ml);
 	}
 
 

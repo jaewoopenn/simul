@@ -25,6 +25,7 @@ public class TaskSetUtil {
 		fu.add("------");
 	}
 	private static void writeTS_in(MList fu,Task[] tasks){
+		fu.add("stage,1");
 		for(Task t:tasks)
 			writeTask(fu,t);
 	}	
@@ -32,20 +33,20 @@ public class TaskSetUtil {
 	public static void removeTask(MList fu, int i) {
 		String txt="remove,";
 		txt+=(int)i;
-		SLog.prn(2, txt);
+//		SLog.prn(2, txt);
 		fu.add(txt);
 		
 	}
 	public static void initStage(MList fu, int n) {
 		String txt="stage,";
 		txt+=(int)n;
-		SLog.prn(2, txt);
+//		SLog.prn(2, txt);
 		fu.add(txt);
 		
 	}
 	public static void nextStage(MList fu) {
 		String txt="next";
-		SLog.prn(2, txt);
+//		SLog.prn(2, txt);
 		fu.add(txt);
 		
 	}
@@ -55,7 +56,7 @@ public class TaskSetUtil {
 		String txt="add,";
 		txt+=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
-		SLog.prn(2, txt);
+//		SLog.prn(2, txt);
 		fu.add(txt);
 	}
 	public static void loadView(MList fu) {
@@ -72,17 +73,12 @@ public class TaskSetUtil {
 		DTaskVec tasks=new DTaskVec(3);
 		Task t;
 		int stage=0;
-		for(int i=0;i<fu.size();i++) {
+		for(int i=1;i<fu.size();i++) {
 	    	String line=fu.get(i);
 //	    	Log.prn(1, line);
 	        String[] words=line.split(",");
-	        if(words[0].equals("add")) {
-	        	t=loadTask(words);
-	        	tasks.add(stage,t);
-	        } else if(words[0].equals("remove")) {
-	        	int idx=Integer.valueOf(words[1]).intValue();
-	        	tasks.remove(stage,idx);
-	        }
+        	t=loadTask(words);
+        	tasks.add(stage,t);
 	    }
 	    return new TaskSet(tasks.getVec(0));
 	}
@@ -90,6 +86,7 @@ public class TaskSetUtil {
 	public static DTaskVec  loadFile2(MList fu) {
 		TaskSeq.reset();
     	String line=fu.get(0);
+//    	SLog.prn(2, line);
         String[] words=line.split(",");
         int num=Integer.valueOf(words[1]).intValue();
 		DTaskVec tasks=new DTaskVec(num);

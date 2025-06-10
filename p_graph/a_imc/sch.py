@@ -6,7 +6,7 @@ Draw Acceptance Ratio //// MC-FLEX
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    fn="run/mc1/a_graph.txt"
+    fn="test/mc/a_graph.txt"
     xlab= "Utilization Bound"
     ylab= "Acceptance Ratio"
 
@@ -55,7 +55,7 @@ def main():
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
 #     mp.show()
-    mp.savefig(mf.filepath("run/sch.pdf"))
+    mp.savefig(mf.filepath("test/sch.pdf"))
 
 if __name__ == '__main__':
     main()

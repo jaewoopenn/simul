@@ -8,7 +8,9 @@ import imc.TaskSimul_EDF_IMC_gen;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
+import task.DTaskVec;
 import task.TaskMng;
+import task.TaskSet;
 import util.CProg;
 import util.MList;
 import util.SLog;
@@ -114,16 +116,20 @@ public abstract class Platform_base {
 		int num=Integer.valueOf(ret).intValue();
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
-			TaskMng tm=sy.loadOne();
-			if(tm==null) break;
-
-			a.init(tm);
-//			a.prn();
-			if(a.is_sch()) {
+			DTaskVec dt=sy.loadOne2();
+			if(dt==null) break;
+			boolean isSch=true;
+			for(int j=0;j<dt.getNum();j++) {
+				TaskSet tmp=new TaskSet(dt.getVec(j));
+				TaskMng tm=tmp.getTM();
+				a.init(tm);
+				if(!a.is_sch()) 
+					isSch=false;
+			}
+			if(isSch) {
 				fu.add("1");
 			} else {
 				fu.add("0");
-//				a.prn();
 			}
 		}
 		fu.save(out);

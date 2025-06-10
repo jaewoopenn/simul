@@ -17,15 +17,15 @@ public class MFile {
 		g_fn=file;
 		g_v=new Vector<String>();
 	}
-	public int size(){
+	public int bufferSize(){
 		return g_v.size();
 	}
-	public String get(int idx){
+	public String getBuf(int idx){
 		return g_v.elementAt(idx);
 	}
 	public void view() {
-		for(int i=0;i<size();i++) {
-			SLog.prn(1, get(i));
+		for(int i=0;i<bufferSize();i++) {
+			SLog.prn(1, getBuf(i));
 		}
 	}
 	public void br_open() {
@@ -60,7 +60,7 @@ public class MFile {
 		}
 		
 	}
-	public boolean readSplit(String split) {
+	public boolean readUntil(String split) {
 		g_v=new Vector<String>();
 		try {
 		    String line;

@@ -47,8 +47,8 @@ public class SysGen {
 		MList fu=new MList();
 		fu.add(num+"");
 		while(i<num){
-			g_tg.generate();
-			if(!isOK())
+			g_tg.genTS();
+			if(!checkOnlyMC())
 				continue;
 			if(!isSch(a)) 
 				continue;
@@ -67,16 +67,13 @@ public class SysGen {
 		
 		return 1;
 	}
-	protected boolean isOK() {
+	protected boolean checkOnlyMC() {
 		if(!g_isOnlyMC)
 			return true;
 		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();
-//		tm.prnInfo();
 		if(tm.getMaxUtil()<=1) 
 			return false;
-//		SLog.prn(2,"OK");
-//		tm.prnInfo();
 		return true;
 	}
 
@@ -86,13 +83,7 @@ public class SysGen {
 		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();
 		a.init(tm);
-//		tm.prnInfo();
-		if(!a.is_sch()) {		
-//			SLog.prn(2,"Not OK");
-			return false;
-		}
-//		SLog.prn(2,"OK");
-		return true;
+		return a.is_sch(); 
 	}
 
 	

@@ -72,11 +72,8 @@ public class SysGen {
 			return true;
 		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();
-//		tm.prnInfo();
 		if(tm.getMaxUtil()<=1) 
 			return false;
-//		SLog.prn(2,"OK");
-//		tm.prnInfo();
 		return true;
 	}
 
@@ -86,13 +83,7 @@ public class SysGen {
 		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();
 		a.init(tm);
-//		tm.prnInfo();
-		if(!a.is_sch()) {		
-//			SLog.prn(2,"Not OK");
-			return false;
-		}
-//		SLog.prn(2,"OK");
-		return true;
+		return a.is_sch(); 
 	}
 
 	

@@ -14,15 +14,15 @@ public abstract class TaskGen {
 		g_param=tgp;
 	}
 
-	public void generate() {
+	public void genTS() {
 		while(true){
-			g_tasks=new Vector<Task>();
-			genTaskSet();
+			genTS_One();
 			if(isOK()) break;
 		}
 	}
-	private void genTaskSet()
+	private void genTS_One()
 	{
+		g_tasks=new Vector<Task>();
 		int tid=0;
 		Task t;
 		while(getUtil()<=g_param.u_ub){

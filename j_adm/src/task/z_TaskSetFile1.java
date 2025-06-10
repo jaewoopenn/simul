@@ -6,18 +6,20 @@ import util.SLog;
 public class z_TaskSetFile1 {
 //	public static int idx=1;
 	public static int idx=2;
+//	public static int idx=3;
+//	public static int idx=4;
 	public static int log_level=1;
 	public int test1()
 	{
 		MList fu=new MList();
-		TaskSetUtil.initStage(fu, 10);
+		TaskSetUtil.initStage(fu, 5);
 		TaskSetUtil.writeTask(fu, new Task(3,1));
 		TaskSetUtil.writeTask(fu, new Task(4,1));
 		TaskSetUtil.writeTask(fu, new Task(5,1));
 		TaskSetUtil.nextStage(fu);
-		TaskSetUtil.removeTask(fu, 2);
 		TaskSetUtil.writeTask(fu, new Task(5,1,4));
 		TaskSetUtil.nextStage(fu);
+		TaskSetUtil.removeTask(fu, 3);
 		TaskSetUtil.removeTask(fu, 2);
 		TaskSetUtil.writeTask(fu, new Task(5,1,3));
 		fu.save("test/test.txt");
@@ -37,10 +39,19 @@ public class z_TaskSetFile1 {
 	}
 	
 	public int test3() {
-		return 0;
+		TaskVec tmp=new TaskVec();
+		tmp.add(new Task(3,1));
+		tmp.add(new Task(4,1));
+		TaskMng tm=tmp.getTM();
+		tm.prn();
+		TaskSetUtil.writeFile("test/test.txt",tm.getTasks());
+		return 1;
 	}
 	public  int test4() {
-		return 1;
+		TaskSet tmp=TaskSetUtil.loadFile(new MList("test/test.txt"));
+		TaskMng tm=tmp.getTM();
+		tm.prn();
+		return 0;
 	}
 	public  int test5() {
 		return 1;

@@ -12,8 +12,8 @@ public class MList {
 		g_list=new Vector<String>();
 		MFile fu=new MFile(fn);
 	    fu.load();
-	    for(int i:MLoop.run(fu.size())){
-	    	g_list.add(fu.get(i));
+	    for(int i:MLoop.run(fu.bufferSize())){
+	    	g_list.add(fu.getBuf(i));
 		}		
 	}
 	public String getNext() {
@@ -50,9 +50,9 @@ public class MList {
 		}
 		fu.save();
 	}
-	public void copy(MFile fu) {
-		for(int i=0;i<fu.size();i++) {
-	    	String line=fu.get(i);
+	public void copyFrom(MFile fu) {
+		for(int i=0;i<fu.bufferSize();i++) {
+	    	String line=fu.getBuf(i);
 	    	add(line);
 		}
 		

@@ -24,8 +24,8 @@ public class z_auto_imc {
 	public static void init_s() {
 		int s=0;
 //		s=1;
-//		s=2;
-		s=3;
+		s=2;
+//		s=3;
 		s_idx=s;
 		
 		s_log_level=2;
@@ -56,18 +56,6 @@ public class z_auto_imc {
 //		p.setCheck();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
-	}
-	public void loop_anal(String rs_path) {
-		Platform_IMC p=new Platform_IMC(g_path,rs_path);
-
-		p.genXA(g_cf,g_xl);
-		
-		
-		p.anal_loop(g_rs, g_ts,g_sort);
-		DataAnal_IMC ds=new DataAnal_IMC(rs_path,0);
-		ds.load_x(g_xl);
-		ds.load_rs(g_rs);
-		ds.save(g_graph);
 	}
 	public int test1() {
 		init_g();
@@ -103,6 +91,7 @@ public class z_auto_imc {
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
+		p.genXA(g_cf,g_xl);
 		return 0;
 	}
 	public  int test4() {
