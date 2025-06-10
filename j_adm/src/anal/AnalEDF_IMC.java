@@ -1,6 +1,5 @@
-package imc;
+package anal;
 
-import anal.Anal;
 import util.SLog;
 
 public class AnalEDF_IMC extends Anal {

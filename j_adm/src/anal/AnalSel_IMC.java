@@ -1,7 +1,4 @@
-package imc;
-
-import anal.Anal;
-import anal.AnalAMC_imc;
+package anal;
 
 public class AnalSel_IMC {
 
@@ -13,10 +10,12 @@ public class AnalSel_IMC {
 
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_VD_IMC();
+			return new AnalEDF_VD_IMC2();
 		} else if(sort==1) {
-			return new AnalEDF_IMC();
+			return new AnalEDF_VD_IMC();
 		} else if(sort==2) {
+			return new AnalEDF_IMC();
+		} else if(sort==3) {
 			return new AnalAMC_imc();
 		} 
 		return null;

@@ -39,7 +39,7 @@ public class z_auto_imc {
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		g_sort=3;
+		g_sort=4;
 	}
 
 	public void init_anal() {

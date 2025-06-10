@@ -47,7 +47,8 @@ public class AnalAMC_imc extends Anal {
 			b=false;
 			for(int i=0;i<sz;i++){
 				Task t=g_tm.getTask(i);
-				if(prio[i]!=0) continue;
+				if(prio[i]!=0) 
+					continue;
 				SLog.prn(1, "checking "+i+" "+ts.length);
 				if(chk_A_on_setB(t,ts)){
 					prio[i]=p;
@@ -89,7 +90,7 @@ public class AnalAMC_imc extends Anal {
 				exec=h_tsk.c_l;
 				res+=Math.ceil((double)old_res/h_tsk.period)*exec;
 			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
+//			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
 			if(res>t.period) {
 				res=t.period+1;
@@ -113,7 +114,7 @@ public class AnalAMC_imc extends Anal {
 				exec=h_tsk.c_l;
 				res+=Math.ceil((double)old_res/h_tsk.period)*exec;
 			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
+//			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
 			if(res>t.period) {
 				res=t.period+1;
@@ -142,8 +143,16 @@ public class AnalAMC_imc extends Anal {
 					
 				}
 			}
-//			Log.prn(1, "r/o "+res+" "+old_res);
+//			if(Double.isNaN(res)||res>1000) {
+//				SLog.prn(1, "!!r/o "+res+" "+old_res);
+//				System.exit(1);
+//			}
+//			SLog.prn(1, "r/o "+res+" "+old_res);
 			if(res==old_res) break;
+			if(res>t.period) {
+				res=t.period+1;
+				break;
+			}
 		}
 		return res;
 	}

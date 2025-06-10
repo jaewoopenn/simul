@@ -1,11 +1,11 @@
 package autorun;
 
 import anal.Anal;
+import anal.AnalEDF_VD_IMC;
+import anal.AnalSel_IMC;
 import auto.Platform_base;
 import gen.ConfigGen;
 import gen.SysGen;
-import imc.AnalEDF_VD_IMC;
-import imc.AnalSel_IMC;
 import imc.SimulSel_IMC;
 import sim.TaskSimul_base;
 import util.MList;

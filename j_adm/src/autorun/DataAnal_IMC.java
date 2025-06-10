@@ -2,8 +2,8 @@ package autorun;
 
 
 import anal.Anal;
+import anal.AnalSel_IMC;
 import auto.DataAnal;
-import imc.AnalSel_IMC;
 
 public class DataAnal_IMC extends DataAnal {
 

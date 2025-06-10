@@ -75,10 +75,12 @@ public class TaskSetUtil {
 		int stage=0;
 		for(int i=1;i<ml.size();i++) {
 	    	String line=ml.get(i);
-//	    	Log.prn(1, line);
+//	    	SLog.prn(1, line);
 	        String[] words=line.split(",");
-        	t=loadTask(words);
-        	tasks.add(stage,t);
+	        if(words[0].equals("add")) {
+	        	t=loadTask(words);
+	        	tasks.add(stage,t);
+	        }
 	    }
 	    return new TaskSet(tasks.getVec(0));
 	}
@@ -94,7 +96,7 @@ public class TaskSetUtil {
 		int stage=0;
 		for(int i=1;i<ml.size();i++) {
 	    	line=ml.get(i);
-//	    	Log.prn(1, line);
+//	    	SLog.prn(2, line);
 	        words=line.split(",");
 	        if(words[0].equals("add")) {
 	        	t=loadTask(words);

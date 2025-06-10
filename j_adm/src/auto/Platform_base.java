@@ -1,9 +1,9 @@
 package auto;
 
 import anal.Anal;
+import anal.AnalEDF_IMC;
 import gen.ConfigGen;
 import gen.SysLoad;
-import imc.AnalEDF_IMC;
 import imc.TaskSimul_EDF_IMC_gen;
 import sim.SimulInfo;
 import sim.SysMng;
@@ -119,6 +119,7 @@ public abstract class Platform_base {
 			DTaskVec dt=sy.loadOne2();
 			if(dt==null) break;
 			boolean isSch=true;
+//			SLog.prn(2, i+"");
 			for(int j=0;j<dt.getNum();j++) {
 				TaskSet tmp=new TaskSet(dt.getVec(j));
 				TaskMng tm=tmp.getTM();

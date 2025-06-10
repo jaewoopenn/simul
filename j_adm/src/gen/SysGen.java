@@ -94,9 +94,8 @@ public class SysGen {
 			TaskSetUtil.writeTask(ml, t);
 		}
 		TaskSetUtil.nextStage(ml);
-		TaskSetUtil.writeTask(ml, new Task(50,1));
-
-//		TaskSetUtil.remove(ml,0);
+		TaskSetUtil.remove(ml,0);
+		TaskSetUtil.writeTask(ml, new Task(40,1,2));
 		ml.add("------");
 		return 1;
 	}

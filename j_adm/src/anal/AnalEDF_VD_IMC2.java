@@ -1,26 +1,26 @@
 package anal;
 
 import task.SysInfo;
-import task.Task;
 import task.TaskMng;
-import util.MCal;
 import util.SLog;
 
-public class AnalFMC extends Anal {
+public class AnalEDF_VD_IMC2 extends Anal {
 	private double lotasks_loutil;
+	private double lotasks_hiutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x;
 	SysInfo g_info;
-	public AnalFMC() {
+	public AnalEDF_VD_IMC2() {
 		super();
-		g_name="FMC";
+		g_name="EDF-VD-IMC2";
 	}
 
 	@Override
-	protected void prepare() {
+	public void prepare() {
 		g_info=g_tm.getInfo();
 		lotasks_loutil=g_info.getUtil_LC();
+		lotasks_hiutil=g_info.getUtil_DeLC();
 		hitasks_loutil=g_info.getUtil_HC_LO();
 		hitasks_hiutil=g_info.getUtil_HC_HI();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
@@ -28,26 +28,17 @@ public class AnalFMC extends Anal {
 	
 	@Override
 	public double getDtm() {
-		if(getScore()>=0)
-			return 1;
-		else 
-			return 2;
+		return getScore();
 	}
 
 	public double getScore() {
-		if (hitasks_hiutil>1) return 2;
-		if (lotasks_loutil>1) return 2;
-		
-		
-		double dtm=0;
-		for(Task t:g_tm.getHiTasks()){
-			double pi=t.getLoUtil()/hitasks_loutil*(1-lotasks_loutil)-t.getHiUtil();
-			if(pi<0)
-				dtm+=pi;
-//			SLog.prn(1, "pi:"+pi);
-		}
-		dtm+=(1-glo_x)*lotasks_loutil;
-		return dtm+MCal.err;
+		if (hitasks_hiutil>1) return hitasks_hiutil;
+		if (lotasks_loutil>1) return lotasks_loutil;
+		double dtm=hitasks_hiutil+lotasks_loutil;
+		if (dtm<=1)
+			return dtm;
+		dtm=glo_x*lotasks_loutil+(1-glo_x)*lotasks_hiutil+hitasks_hiutil;
+		return dtm;
 	}
 	
 
@@ -58,18 +49,12 @@ public class AnalFMC extends Anal {
 		return glo_x;
 	}
 	
-	public static double computeX(TaskMng tm) {
-		AnalFMC a=new AnalFMC();
-		a.init(tm);
-		a.prepare();
-		return a.computeX();
-	}
 
 	@Override
 	public void prn() {
-		SLog.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
+		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
+		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
 		SLog.prn(1, "x:"+glo_x);
-		SLog.prn(1, "score:"+getScore());
 		SLog.prn(1, "det:"+getDtm());
 		
 	}
@@ -78,5 +63,14 @@ public class AnalFMC extends Anal {
 	public double getExtra(int i) {
 		return 0;
 	}
+	
+	public static double computeX(TaskMng tm) {
+		AnalEDF_VD_IMC2 a=new AnalEDF_VD_IMC2();
+		a.init(tm);
+		a.prepare();
+		return a.computeX();
+	}
+	
+	
 
 }
