@@ -114,36 +114,7 @@ public class TaskMng {
 		
 	}
 	
-	public double getRUN_Util() {
-		double util=0;
-		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeRUN_U(t);
-		}
-		return util;
-	}
-	public double getRUN5_Util() {
-		double util=0;
-		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeRUN5_U(t);
-		}
-		return util;
-	}
 
-	public double getRUNE_Util(double x) {
-		double util=0;
-		for(Task t:g_tasks.getArr())	{
-			util+=g_info.computeRUNE_U(t,x);
-		}
-		return util;
-	}
-	public double getRUN_Util2(double x) {
-		double util1=getRUN_Util();
-		double util2=getRUNE_Util(x);
-//		if(util2<util1) {
-//			SLog.prn(2,MCal.getStr(util2)+"<"+MCal.getStr(util1)+"!!");
-//		}
-		return Math.min(util1, util2);
-	}
 	
 	public double getWCUtil() {
 		double util=0;
@@ -282,15 +253,6 @@ public class TaskMng {
 	public void prnPara() {
 		g_tasks.prnPara();
 		
-	}
-	public void prnRun(double x) {
-		SLog.prn(2, "x:"+x);
-		double util=0;
-		for(Task t:g_tasks.getArr())	{
-			double u=g_info.computeRUNE_U(t,x);
-			util+=u;
-			SLog.prn(2, u+","+util);
-		}
 	}
 	public boolean isZeroLife() {
 		int life=0;

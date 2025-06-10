@@ -18,8 +18,8 @@ public class TaskGenIMC extends TaskGen {
 		Task tsk=g_param.genTaskIMC(tid);
 		if(!g_param.chkTask(tsk))
 			return null;
-		if(!g_param.chkMCTask(tsk))
-			return null;
+//		if(!g_param.chkMCTask(tsk))
+//			return null;
 		return tsk;
 	}
 

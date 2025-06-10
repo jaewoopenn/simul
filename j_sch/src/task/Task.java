@@ -79,6 +79,9 @@ public class Task {
 		return (double)(c_h-c_l)/(period-vd);
 	}
 	
+	public double getMaxUtil() {
+		return (double)Math.max(c_l, c_h)/period;
+	}
 
 	
 	public void prn() {
@@ -234,6 +237,7 @@ public class Task {
 		 is_hi_preferred = false;
 		 is_HI_Mode=false;
 	}
+
 
 
 

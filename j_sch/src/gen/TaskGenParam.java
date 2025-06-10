@@ -3,6 +3,7 @@ package gen;
 
 import task.Task;
 import util.MRand;
+import util.SLog;
 
 
 
@@ -73,12 +74,12 @@ public class TaskGenParam {
 		
 	}
 
-	public Task genTask(int tid, boolean isMC){
+	public Task genTask(int tid){
 //		Log.prn(2, p_lb+" "+p_ub);
 		int p=g_rand.getInt(p_lb,p_ub);
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		double getProb=g_rand.getDbl();
-		if(getProb<=prob_HI&&isMC){
+		if(getProb<=prob_HI){
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
@@ -114,7 +115,7 @@ public class TaskGenParam {
 		int p=t.period;
 		if(p>=p_ub && p<p_lb)
 			return false;
-		double tu=t.getHiUtil();
+		double tu=t.getMaxUtil();
 		if(tu>=tu_ub && tu<tu_lb)
 			return false;
 		return true;

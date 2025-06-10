@@ -48,46 +48,8 @@ public class SysInfo {
 		
 	}
 	
-	public double computeRUN_U(Task t) {
-		if(t.isHC()){
-			if(t.isHM()) {
-				return t.getMsUtil();
-			}
-			else
-				return t.getLoVdUtil();
-		} else if(t.isDrop())
-			return t.getHiUtil();
-		else
-			return t.getLoUtil();
-	}
-	public double computeRUN5_U(Task t) {
-		if(t.isHC()){
-			if(t.isHM()) {
-				if(t.isMS())
-					return t.getMsUtil();
-				else
-					return t.getHiUtil();
-			}
-			else
-				return t.getLoVdUtil();
-		} else if(t.isDrop())
-			return t.getHiUtil();
-		else
-			return t.getLoUtil();
-	}
 	
-	public double computeRUNE_U(Task t,double x) {
-		if(t.isHC()){
-			if(t.isHM()) {
-				return t.getHiUtil();
-			} else {
-				return t.getLoVdUtil();
-			}
-		} else if(t.isDrop())
-			return x*t.getLoUtil();
-		else
-			return t.getLoUtil();
-	}
+
 
 	
 	public double getUtil() {

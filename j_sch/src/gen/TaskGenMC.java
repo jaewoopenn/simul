@@ -15,11 +15,11 @@ public class TaskGenMC extends TaskGen {
 
 	@Override
 	public Task genTask(int tid){
-		Task tsk=g_param.genTask(tid,true);
+		Task tsk=g_param.genTask(tid);
 		if(!g_param.chkTask(tsk))
 			return null;
-		if(!g_param.chkMCTask(tsk))
-			return null;
+//		if(!g_param.chkMCTask(tsk))
+//			return null;
 		return tsk;
 	}
 

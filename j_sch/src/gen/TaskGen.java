@@ -28,6 +28,8 @@ public abstract class TaskGen {
 		Task t;
 		while(getUtil()<=g_param.u_ub){
 			t=genTask(tid);
+			if(t==null)
+				continue;
 			if (!t.check())
 				continue;
 			g_tasks.add(t);

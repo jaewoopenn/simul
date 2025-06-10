@@ -23,8 +23,8 @@ public class z_auto_imc {
 	
 	public static void init_s() {
 		int s=0;
-//		s=1;
-		s=2;
+		s=1;
+//		s=2;
 //		s=3;
 		s_idx=s;
 		
@@ -48,14 +48,6 @@ public class z_auto_imc {
 		g_end=100;
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
-	}
-	public void gen() {
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
-		p.setNum(g_num);
-		p.genCfg_mo(g_cf,0,10,100);
-//		p.setCheck();
-		//p.setOnlyMC();
-		p.genTS(g_cf,g_ts);
 	}
 	public int test1() {
 		init_g();
