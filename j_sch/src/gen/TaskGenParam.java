@@ -115,24 +115,23 @@ public class TaskGenParam {
 		if(p>=p_ub && p<p_lb)
 			return false;
 		double tu=t.getHiUtil();
-		if(tu>=p_ub && tu<p_lb)
+		if(tu>=tu_ub && tu<tu_lb)
 			return false;
 		return true;
 	}
 
 	public boolean chkMCTask(Task t) {
 		double ratio=(double)(t.c_l)/t.c_h;
-		if(ratio>=ratio_ub && ratio<ratio_lb)
-			return false;
+		if(ratio>ratio_ub) return false;
+		if(ratio<ratio_lb) return false;
 		return true;
 	}
 
 	public boolean chkUtil(double util) {
 //		SLog.prn(2," "+util+" "+u_ub+" "+u_lb);
-		if(util<=u_ub&&util>=u_lb){
-			return true;
-		}
-		return false;
+		if(util>u_ub) return false;
+		if(util<u_lb) return false;
+		return true;
 	}
 
 	public void setProbHI(double d) {
