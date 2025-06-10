@@ -19,27 +19,8 @@ public class TaskMng {
 		this.g_info = info;
 		g_lo_tasks.sortLo();
 	}
-	public void sortMinJobDrop() {
-		g_lo_tasks.sortLo2();
-	}
 	
-	public Task findDropTask() {
-		for(Task t:g_lo_tasks.getArr()){
-			if (!t.isDrop())
-				return t;
-		}
-		return null;
-	}
 
-	public Task findResumeTask() {
-		Task [] ts=g_lo_tasks.getArr();
-		for(int i=ts.length-1;i>=0;i--){ // reverse order (from lowest util lo task)
-			Task t=ts[i];
-			if (t.isDrop()) // if task is dropped, pick this
-				return t;
-		}
-		return null;
-	}
 
 	
 	// set
