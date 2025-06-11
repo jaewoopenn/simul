@@ -14,11 +14,9 @@ public class z_Anal1 {
 		TaskMng tm=TS_MC1.ts4();
 		Anal a=new AnalEDF_VD();
 		a.init(tm);
-		a.prepare();
 		a.prn();
 		a=new AnalEDF_BV();
 		a.init(tm);
-		a.prepare();
 		a.prn();
 		return -1;
 	}

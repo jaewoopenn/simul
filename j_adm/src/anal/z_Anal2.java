@@ -27,7 +27,6 @@ public class z_Anal2 {
 		tm.prn();
 		Anal a=new AnalAMC_imc();
 		a.init(tm);
-		a.prepare();
 		SLog.prn(1, a.getDtm());
 //		a.prn();
 
@@ -42,10 +41,11 @@ public class z_Anal2 {
 		SLog.prn(1, ret);
 		int n=Integer.valueOf(ret).intValue();
 		int s=0;
+//		Anal a=new AnalAMC_imc();
+		Anal a=new AnalEDF_VD_IMC();
+//		Anal a=new AnalEDF_VD_IMC2();
 		for(int i=0;i<n;i++) {
-//			Anal a=new AnalAMC_imc();
-			Anal a=new AnalEDF_VD_IMC();
-//			Anal a=new AnalEDF_VD_IMC2();
+			a.reset();
 			DTaskVec dt=sy.loadOne2();
 			int num=dt.getNum();
 			double dtm=0;
@@ -54,8 +54,7 @@ public class z_Anal2 {
 				TaskMng tm=tmp.getTM();
 //				tm.prn();
 				a.init(tm);
-				a.prepare();
-				a.prn();
+//				a.prn();
 				dtm=Math.max(dtm, a.getDtm());
 				SLog.prn(1, i+": "+dtm);
 			}

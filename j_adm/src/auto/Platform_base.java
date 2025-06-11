@@ -120,6 +120,7 @@ public abstract class Platform_base {
 			if(dt==null) break;
 			double dtm=0;
 //			SLog.prn(2, i+"");
+			a.reset();
 			for(int j=0;j<dt.getNum();j++) {
 				TaskSet tmp=new TaskSet(dt.getVec(j));
 				TaskMng tm=tmp.getTM();

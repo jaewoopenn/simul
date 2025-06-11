@@ -4,26 +4,26 @@ import task.SysInfo;
 import task.TaskMng;
 import util.SLog;
 
-public class AnalEDF_VD_IMC2 extends Anal {
-	private double lotasks_loutil;
-	private double lotasks_hiutil;
-	private double hitasks_loutil;
-	private double hitasks_hiutil;
+public class AnalEDF_VD_ADM extends Anal {
+	private double lctasks_acUtil;
+	private double lctasks_deUtil;
+	private double hctasks_loutil;
+	private double hctasks_hiutil;
 	private double glo_x;
 	SysInfo g_info;
-	public AnalEDF_VD_IMC2() {
+	public AnalEDF_VD_ADM() {
 		super();
-		g_name="EDF-VD-IMC2";
+		g_name="EDF-VD-ADM";
 	}
 
 	@Override
 	public void prepare() {
 		g_info=g_tm.getInfo();
-		lotasks_loutil=g_info.getUtil_LC();
-		lotasks_hiutil=g_info.getUtil_DeLC();
-		hitasks_loutil=g_info.getUtil_HC_LO();
-		hitasks_hiutil=g_info.getUtil_HC_HI();
-		glo_x=hitasks_loutil/(1-lotasks_loutil);
+		lctasks_acUtil=g_info.getUtil_LC();
+		lctasks_deUtil=g_info.getUtil_DeLC();
+		hctasks_loutil=g_info.getUtil_HC_LO();
+		hctasks_hiutil=g_info.getUtil_HC_HI();
+		glo_x=hctasks_loutil/(1-lctasks_acUtil);
 //		SLog.prn(1, glo_x);
 	}
 	
@@ -33,13 +33,14 @@ public class AnalEDF_VD_IMC2 extends Anal {
 	}
 
 	public double getScore() {
-		if (hitasks_hiutil>1) return hitasks_hiutil;
-		if (lotasks_loutil>1) return lotasks_loutil;
-		double dtm=hitasks_hiutil+lotasks_loutil;
+		if (hctasks_hiutil>1) return hctasks_hiutil;
+		if (lctasks_acUtil>1) return lctasks_acUtil;
+		double dtm=hctasks_hiutil+lctasks_acUtil;
 		if (dtm<=1)
 			return dtm;
-		dtm=glo_x*lotasks_loutil+(1-glo_x)*lotasks_hiutil+hitasks_hiutil;
-		return dtm;
+		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
+		double dtm2=0;
+		return Math.max(dtm, dtm2);
 	}
 	
 
@@ -66,7 +67,7 @@ public class AnalEDF_VD_IMC2 extends Anal {
 	}
 	
 	public static double computeX(TaskMng tm) {
-		AnalEDF_VD_IMC2 a=new AnalEDF_VD_IMC2();
+		AnalEDF_VD_ADM a=new AnalEDF_VD_ADM();
 		a.init(tm);
 		a.prepare();
 		return a.computeX();

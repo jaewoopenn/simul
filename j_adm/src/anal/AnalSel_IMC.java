@@ -10,7 +10,7 @@ public class AnalSel_IMC {
 
 	public static Anal getAnal(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_VD_IMC2();
+			return new AnalEDF_VD_ADM();
 		} else if(sort==1) {
 			return new AnalEDF_VD_IMC();
 		} else if(sort==2) {
