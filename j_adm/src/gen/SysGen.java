@@ -24,7 +24,7 @@ public class SysGen {
 		g_isOnlyMC=true;
 	}
 	
-	private TaskGenParam prepare_in() {
+	private TaskGenParam getTgp() {
 		TaskGenParam tgp=new TaskGenParam();
 		tgp.setUtil(g_cfg);
 		tgp.setPeriod(g_cfg);
@@ -35,12 +35,12 @@ public class SysGen {
 		return tgp;
 	}
 	public int prepare(){
-		TaskGenParam tgp=prepare_in();
+		TaskGenParam tgp=getTgp();
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
 	public int prepareIMC(){
-		TaskGenParam tgp=prepare_in();
+		TaskGenParam tgp=getTgp();
 		g_tg=new TaskGenIMC(tgp);
 		return g_cfg.readInt("num");
 	}	
