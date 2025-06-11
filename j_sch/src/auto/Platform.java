@@ -117,7 +117,7 @@ public class Platform extends Platform_base{
 			String fn=cfg.get_fn();
 			if(g_isCheck)
 				sg.setCheck();
-			int num=sg.prepare();
+			int num=sg.prepare_MC();
 			sg.gen(g_path+"/"+fn, a,num);
 			fu_ts.add(fn);
 		}

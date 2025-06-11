@@ -8,7 +8,7 @@ import util.SLog;
 
 
 public class TaskGenParam {
-	private MRand g_rand;
+	private MRand g_rand=new MRand();
 	
 	public double u_ub;
 	public double u_lb;
@@ -23,7 +23,6 @@ public class TaskGenParam {
 	public double prob_HI;
 	
 	public TaskGenParam(){
-		g_rand=new MRand();
 		
 	}
 

@@ -32,12 +32,12 @@ public class SysGen {
 		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
 		return tgp;
 	}
-	public int prepare(){
+	public int prepare_MC(){
 		TaskGenParam tgp=getTGP();
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
-	public int prepareIMC(){
+	public int prepare_IMC(){
 		TaskGenParam tgp=getTGP();
 		g_tg=new TaskGenIMC(tgp);
 		return g_cfg.readInt("num");

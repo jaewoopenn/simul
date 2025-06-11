@@ -112,7 +112,7 @@ public class Platform_IMC extends Platform_base {
 				sg.setOnlyMC();
 			if(g_isCheck)
 				sg.setCheck();
-			int num=sg.prepareIMC();
+			int num=sg.prepare_IMC();
 			sg.gen2(g_path+"/"+fn, a,num);
 			fu_ts.add(fn);
 		}

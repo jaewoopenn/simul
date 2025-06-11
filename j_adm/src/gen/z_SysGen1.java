@@ -13,13 +13,13 @@ public class z_SysGen1 {
 	public int test1() 
 	{
 		String path="adm/test1/";
-		ConfigGen cfg=new ConfigGen(path+"cfg_0.txt");
+		ConfigGen cfg=new ConfigGen(path+"cfg_9.txt");
 		cfg.readFile();
 		SysGen sg=new SysGen(cfg);
 		String fn=cfg.get_fn();
 		Anal a=null;
 //		a=new AnalEDF_VD();
-		int num=sg.prepare();
+		int num=sg.prepare_IMC();
 		sg.gen2(path+fn+".txt", a,num);
 		SLog.prn(1, "OK "+num);
 		return 1;
@@ -36,7 +36,7 @@ public class z_SysGen1 {
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
 		Anal a=new AnalEDF_VD();
-		int num=sg.prepare();
+		int num=sg.prepare_IMC();
 		sg.gen(fn, a,num);
 		return 0;
 	}

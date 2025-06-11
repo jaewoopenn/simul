@@ -34,7 +34,7 @@ public class z_Platform1 {
 			cfg.readFile();
 			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
-			int num=sg.prepare();
+			int num=sg.prepare_MC();
 			sg.gen(fn, a,num);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();

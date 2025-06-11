@@ -19,7 +19,7 @@ public class z_SysGen1 {
 		SysGen sg=new SysGen(cfg);
 		String fn=cfg.get_fn();
 		Anal a=new AnalEDF_VD();
-		int num=sg.prepare();
+		int num=sg.prepare_MC();
 		sg.gen(fn, a,num);
 		return 1;
 
@@ -35,7 +35,7 @@ public class z_SysGen1 {
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
 		Anal a=new AnalEDF_VD();
-		int num=sg.prepare();
+		int num=sg.prepare_MC();
 		sg.gen(fn, a,num);
 		return 0;
 	}
@@ -54,7 +54,7 @@ public class z_SysGen1 {
 			cfg.readFile();
 			SysGen sg=new SysGen(cfg);
 			String fn=cfg.get_fn();
-			int num=sg.prepare();
+			int num=sg.prepare_MC();
 			sg.gen(fn, a,num);
 			fu_ts.add(fn);
 			String mod=cfg.get_mod();

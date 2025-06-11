@@ -9,7 +9,7 @@ import task.TaskVec;
 public abstract class TaskGen {
 	protected TaskGenParam g_param;
 	protected Vector<Task> g_tasks;
-
+	private int g_tid=0;
 	public TaskGen(TaskGenParam tgp) {
 		g_param=tgp;
 	}
@@ -24,20 +24,27 @@ public abstract class TaskGen {
 	private void genTS_One()
 	{
 		g_tasks=new Vector<Task>();
-		int tid=0;
+		g_tid=0;
 		Task t;
 		while(getUtil()<=g_param.u_ub){
-			t=genTask(tid);
+			t=genTask(g_tid);
 			if(t==null) 
 				continue;
 			if (!t.check())
 				continue;
 			g_tasks.add(t);
-			tid++;
+			g_tid++;
 		}
 		g_tasks.remove(g_tasks.size()-1);
 	}
-	
+	public Task genTaskOne() {
+		Task t=null;
+		while(t==null) {
+			t=genTask(g_tid);
+		}
+		g_tid++;
+		return t;
+	}
 
 	public abstract Task genTask(int tid);
 

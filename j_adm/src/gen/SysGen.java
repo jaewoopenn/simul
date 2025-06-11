@@ -6,9 +6,11 @@ import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetUtil;
 import util.MList;
+import util.MRand;
 import util.SLog;
 
 public class SysGen {
+	private MRand g_rand=new MRand();
 	protected TaskGen g_tg;
 	private ConfigGen g_cfg;
 	protected boolean g_isCheck=false;
@@ -34,12 +36,12 @@ public class SysGen {
 		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
 		return tgp;
 	}
-	public int prepare(){
+	public int prepare_MC(){
 		TaskGenParam tgp=getTgp();
 		g_tg=new TaskGenMC(tgp);
 		return g_cfg.readInt("num");
 	}
-	public int prepareIMC(){
+	public int prepare_IMC(){
 		TaskGenParam tgp=getTgp();
 		g_tg=new TaskGenIMC(tgp);
 		return g_cfg.readInt("num");
@@ -92,12 +94,16 @@ public class SysGen {
 		
 		TaskSet ts=g_tg.getTS();
 		TaskSetUtil.initStage(ml, 2);
-		for(Task t:ts.getArr()) {
+		Task[] tss=ts.getArr();
+		for(Task t:tss) {
 			TaskSetUtil.writeTask(ml, t);
 		}
+		int num=tss.length;
+		int remove_n=g_rand.getInt(num);
 		TaskSetUtil.nextStage(ml);
-		TaskSetUtil.remove(ml,0);
-		TaskSetUtil.writeTask(ml, new Task(40,1,2));
+		TaskSetUtil.remove(ml,remove_n);
+		Task t=g_tg.genTaskOne();
+		TaskSetUtil.writeTask(ml, t);
 		ml.add("------");
 		return 1;
 	}

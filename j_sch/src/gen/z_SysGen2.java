@@ -20,7 +20,7 @@ public class z_SysGen2 {
 		sg.setCheck();
 		Anal a=new AnalEDF_VD_IMC();
 		String fn=cfg.get_fn();
-		int num=sg.prepareIMC();
+		int num=sg.prepare_IMC();
 		sg.gen(fn, a,num);
 		return 1;
 
