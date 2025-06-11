@@ -1,13 +1,17 @@
 package anal;
 
 import gen.SysLoad;
+import task.DTaskVec;
 import task.TaskMng;
+import task.TaskSet;
+import task.TaskSetUtil;
+import util.MList;
 import util.SEngineT;
 import util.SLog;
 
 public class z_Anal2 {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=3;
 	public static int log_level=1;
 
@@ -32,6 +36,35 @@ public class z_Anal2 {
 	}
 	
 	public int test2() {
+		String ts="adm/test1/taskset_92";
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		SLog.prn(1, ret);
+		int n=Integer.valueOf(ret).intValue();
+		int s=0;
+		for(int i=0;i<n;i++) {
+//			Anal a=new AnalAMC_imc();
+			Anal a=new AnalEDF_VD_IMC();
+//			Anal a=new AnalEDF_VD_IMC2();
+			DTaskVec dt=sy.loadOne2();
+			int num=dt.getNum();
+			double dtm=0;
+			for(int j=0;j<num;j++) {
+				TaskSet tmp=new TaskSet(dt.getVec(j));
+				TaskMng tm=tmp.getTM();
+//				tm.prn();
+				a.init(tm);
+				a.prepare();
+				a.prn();
+				dtm=Math.max(dtm, a.getDtm());
+				SLog.prn(1, i+": "+dtm);
+			}
+			if(dtm<=1)
+				s++;
+//			tm.prn();
+		}
+		SLog.prn(1, s+" Suc: "+(double)s/n);
+//		a.prn();
 		return -1;
 	}
 	public int test3() {

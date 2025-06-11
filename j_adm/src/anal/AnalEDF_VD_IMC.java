@@ -9,7 +9,7 @@ public class AnalEDF_VD_IMC extends Anal {
 	private double lotasks_hiutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
-	private double glo_x=0;
+	private double glo_x=-1;
 	SysInfo g_info;
 	public AnalEDF_VD_IMC() {
 		super();
@@ -23,8 +23,10 @@ public class AnalEDF_VD_IMC extends Anal {
 		lotasks_hiutil=g_info.getUtil_DeLC();
 		hitasks_loutil=g_info.getUtil_HC_LO();
 		hitasks_hiutil=g_info.getUtil_HC_HI();
-		if(glo_x==0)
+		if(glo_x==-1)
 			glo_x=hitasks_loutil/(1-lotasks_loutil);
+//		SLog.prn(1, glo_x);
+		
 	}
 	
 	@Override
@@ -53,10 +55,10 @@ public class AnalEDF_VD_IMC extends Anal {
 
 	@Override
 	public void prn() {
-		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
-		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
+//		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
+//		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
 		SLog.prn(1, "x:"+glo_x);
-		SLog.prn(1, "det:"+getDtm());
+//		SLog.prn(1, "det:"+getDtm());
 		
 	}
 
@@ -70,6 +72,11 @@ public class AnalEDF_VD_IMC extends Anal {
 		a.init(tm);
 		a.prepare();
 		return a.computeX();
+	}
+
+	@Override
+	public void reset() {
+		glo_x=-1;
 	}
 	
 	

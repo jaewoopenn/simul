@@ -207,4 +207,9 @@ public class AnalAMC_imc extends Anal {
 		return 0;
 	}
 
+	@Override
+	public void reset() {
+		
+	}
+
 }

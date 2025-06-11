@@ -66,4 +66,9 @@ public class AnalEDF_BV extends Anal {
 		return 0;
 	}
 
+	@Override
+	public void reset() {
+		
+	}
+
 }

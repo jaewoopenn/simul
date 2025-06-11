@@ -24,6 +24,7 @@ public class AnalEDF_VD_IMC2 extends Anal {
 		hitasks_loutil=g_info.getUtil_HC_LO();
 		hitasks_hiutil=g_info.getUtil_HC_HI();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
+//		SLog.prn(1, glo_x);
 	}
 	
 	@Override
@@ -52,10 +53,10 @@ public class AnalEDF_VD_IMC2 extends Anal {
 
 	@Override
 	public void prn() {
-		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
-		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
+//		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
+//		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
 		SLog.prn(1, "x:"+glo_x);
-		SLog.prn(1, "det:"+getDtm());
+//		SLog.prn(1, "det:"+getDtm());
 		
 	}
 
@@ -69,6 +70,11 @@ public class AnalEDF_VD_IMC2 extends Anal {
 		a.init(tm);
 		a.prepare();
 		return a.computeX();
+	}
+
+	@Override
+	public void reset() {
+		
 	}
 	
 	

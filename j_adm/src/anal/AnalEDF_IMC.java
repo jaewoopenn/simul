@@ -31,6 +31,11 @@ public class AnalEDF_IMC extends Anal {
 	public double getExtra(int i) {
 		return 0;
 	}
+	@Override
+	public void reset() {
+		
+		
+	}
 
 
 

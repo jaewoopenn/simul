@@ -118,16 +118,15 @@ public abstract class Platform_base {
 		for(int i=0;i<num;i++) {
 			DTaskVec dt=sy.loadOne2();
 			if(dt==null) break;
-			boolean isSch=true;
+			double dtm=0;
 //			SLog.prn(2, i+"");
 			for(int j=0;j<dt.getNum();j++) {
 				TaskSet tmp=new TaskSet(dt.getVec(j));
 				TaskMng tm=tmp.getTM();
 				a.init(tm);
-				if(!a.is_sch()) 
-					isSch=false;
+				dtm=Math.max(dtm, a.getDtm());
 			}
-			if(isSch) {
+			if(dtm<=1) {
 				fu.add("1");
 			} else {
 				fu.add("0");
