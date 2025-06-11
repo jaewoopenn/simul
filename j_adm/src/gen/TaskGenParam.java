@@ -27,7 +27,13 @@ public class TaskGenParam {
 		
 	}
 
-	public void setUtil(double l, double u) {
+	public void setUtil(ConfigGen g_cfg) {
+		double l=g_cfg.readDbl("u_lb");
+		double u=g_cfg.readDbl("u_ub");
+		setUtil(l,u);
+	}
+	
+	public void setUtil(double l, double u ) {
 		if(l>u){
 			System.out.println("Error setUtil");
 		}
@@ -36,6 +42,11 @@ public class TaskGenParam {
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
+	public void setTUtil(ConfigGen g_cfg) {
+		double l=g_cfg.readDbl("tu_lb");
+		double u=g_cfg.readDbl("tu_ub");
+		setTUtil(l,u);
+	}
 
 	public void setTUtil(double l, double u) {
 		if(l>u){
@@ -44,12 +55,20 @@ public class TaskGenParam {
 		tu_lb=l;
 		tu_ub=u;
 	}
+	public void setRatioLH(ConfigGen g_cfg) {
+		setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
+	}
+	
 	public void setRatioLH(double l, double u) {
 		if(l>u){
 			System.out.println("Error setRatioLH");
 		}
 		ratio_lb=l;
 		ratio_ub=u;
+	}
+	
+	public void setMoLH(ConfigGen g_cfg) {
+		setMoLH(g_cfg.readDbl("mo_lb"),g_cfg.readDbl("mo_ub"));
 	}
 	public void setMoLH(double l, double u) {
 		if(l>u){
@@ -59,15 +78,17 @@ public class TaskGenParam {
 		mo_ub=u;
 //		SLog.prn(2, mo_lb+" "+mo_ub);
 	}
-
-
+	
+	public void setPeriod(ConfigGen g_cfg) {
+		setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
+	}
+	
 	public void setPeriod(int l, int u) {
 		if(l>u){
 			System.out.println("Error setPeriod");
 		}
 		p_lb=l;
 		p_ub=u;
-		
 	}
 
 	public Task genTask(int tid){
@@ -148,6 +169,7 @@ public class TaskGenParam {
 		return tgp;
 		
 	}
+
 	
 
 }

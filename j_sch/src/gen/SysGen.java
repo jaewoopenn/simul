@@ -24,11 +24,11 @@ public class SysGen {
 	
 	private TaskGenParam prepare_in() {
 		TaskGenParam tgp=new TaskGenParam();
-		tgp.setUtil(g_cfg.readDbl("u_lb"),g_cfg.readDbl("u_ub"));
-		tgp.setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
-		tgp.setTUtil(g_cfg.readDbl("tu_lb"),g_cfg.readDbl("tu_ub"));
-		tgp.setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
-		tgp.setMoLH(g_cfg.readDbl("mo_lb"),g_cfg.readDbl("mo_ub"));
+		tgp.setUtil(g_cfg);
+		tgp.setPeriod(g_cfg);
+		tgp.setTUtil(g_cfg);
+		tgp.setRatioLH(g_cfg);
+		tgp.setMoLH(g_cfg);
 		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
 		return tgp;
 	}

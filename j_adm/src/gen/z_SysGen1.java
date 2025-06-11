@@ -1,7 +1,6 @@
 package gen;
 import anal.Anal;
 import anal.AnalEDF_VD;
-import util.MList;
 import util.SLog;
 import util.SEngineT;
 
@@ -13,13 +12,16 @@ public class z_SysGen1 {
 	// gen
 	public int test1() 
 	{
-		ConfigGen cfg=new ConfigGen("adm/test1/cfg_0.txt");
+		String path="adm/test1/";
+		ConfigGen cfg=new ConfigGen(path+"cfg_0.txt");
 		cfg.readFile();
 		SysGen sg=new SysGen(cfg);
 		String fn=cfg.get_fn();
-		Anal a=new AnalEDF_VD();
+		Anal a=null;
+//		a=new AnalEDF_VD();
 		int num=sg.prepare();
-		sg.gen(fn, a,num);
+		sg.gen2(path+fn+".txt", a,num);
+		SLog.prn(1, "OK "+num);
 		return 1;
 
 	}

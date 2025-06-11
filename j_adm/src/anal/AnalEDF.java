@@ -6,7 +6,7 @@ public class AnalEDF extends Anal {
 	private double u;
 	public AnalEDF() {
 		super();
-		g_name="EDF";
+		g_name="EDF(WCR)";
 	}
 	@Override
 	protected void prepare() {

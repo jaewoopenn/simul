@@ -42,8 +42,8 @@ public class z_Anal2 {
 		int n=Integer.valueOf(ret).intValue();
 		int s=0;
 //		Anal a=new AnalAMC_imc();
-		Anal a=new AnalEDF_VD_IMC();
-//		Anal a=new AnalEDF_VD_IMC2();
+//		Anal a=new AnalEDF_VD_IMC();
+		Anal a=new AnalEDF_VD_ADM();
 		for(int i=0;i<n;i++) {
 			a.reset();
 			DTaskVec dt=sy.loadOne2();
