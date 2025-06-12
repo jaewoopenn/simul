@@ -45,7 +45,7 @@ public class ConfigGen {
 	}
 	public String get_fn(){
 		String mod=get_mod();
-		String fn="taskset_"+mod;
+		String fn="taskset_"+mod+".txt";
 		return fn;
 		
 	}

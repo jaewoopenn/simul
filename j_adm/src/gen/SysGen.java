@@ -77,7 +77,7 @@ public class SysGen {
 			i++;
 		}
 		ml.saveTo(fn);
-		SLog.prn(2,fn+"");
+//		SLog.prn(2,fn+"");
 	}
 
 	

@@ -13,7 +13,7 @@ public class z_SysGen1 {
 	public int test1() 
 	{
 		String path="adm/test1/";
-		ConfigGen cfg=new ConfigGen(path+"cfg_9.txt");
+		ConfigGen cfg=new ConfigGen(path+"cfg_8.txt");
 		cfg.readFile();
 		SysGen sg=new SysGen(cfg);
 		String fn=cfg.get_fn();
