@@ -93,17 +93,20 @@ public class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
-		TaskSetUtil.initStage(ml, 2);
+		int max=2;
+		TaskSetUtil.initStage(ml, max);
 		Task[] tss=ts.getArr();
 		for(Task t:tss) {
 			TaskSetUtil.writeTask(ml, t);
 		}
 		int num=tss.length;
-		int remove_n=g_rand.getInt(num);
-		TaskSetUtil.nextStage(ml);
-		TaskSetUtil.remove(ml,remove_n);
-		Task t=g_tg.genTaskOne();
-		TaskSetUtil.writeTask(ml, t);
+		for(int i=1;i<max;i++) {
+			int remove_n=g_rand.getInt(num);
+			TaskSetUtil.nextStage(ml);
+			TaskSetUtil.remove(ml,remove_n);
+			Task t=g_tg.genTaskOne();
+			TaskSetUtil.writeTask(ml, t);
+		}
 		ml.add("------");
 		return 1;
 	}

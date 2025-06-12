@@ -41,8 +41,8 @@ def plot2(x,v,l,la):
 def plot3(x,v,l,la,ma):
     plt.plot(x,v, l,marker=ma,markersize=8, drawstyle='default',label=la )
 
-def xlim(l,u):
-    plt.xlim(l,u)
+def xlim(lim):
+    plt.xlim(lim)
 
 def xlab_rot(size):
     plt.tick_params(axis="x", labelsize=size, labelrotation=-60)

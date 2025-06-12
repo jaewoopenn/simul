@@ -7,7 +7,7 @@ import util.MFile as mf
 import util.MPlot as mp
 class gl_input:
     fn="adm/test1/a_graph.txt"
-    xlab= "Utilization Bound"
+    xlab= "Utilization Bound(%)"
     ylab= "Acceptance Ratio"
 
 class gl:
@@ -29,7 +29,7 @@ def load():
     for i in range(1,itemlen):
         gl.lab.append(raw[0][i])
     for i in range(1,len(raw)):
-        gl.x.append(str(int(raw[i][0])/100))
+        gl.x.append(int(raw[i][0]))
 #         gl.x.append(raw[i][0])
 #     print(gl.x)
 
@@ -51,6 +51,7 @@ def main():
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
 #     mp.ylim(0, 1.02)
+    mp.xlim([55,100])
     mp.legendBL()
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)

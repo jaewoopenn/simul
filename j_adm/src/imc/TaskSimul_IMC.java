@@ -67,6 +67,9 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 				g_ms_happen=false;
 			}
 		}
+		if(g_ms_happen) {
+			g_si.degraded++;
+		}
 		g_jsm.simul_one();
 		ms_check();
 	}
