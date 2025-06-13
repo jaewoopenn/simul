@@ -5,7 +5,7 @@ import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
 import sim.job.Job;
-import sim.mc.JobSimulMC;
+import sim.mc.JobSimul_MC;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
@@ -14,7 +14,7 @@ import util.SLog;
 public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	private int g_life=0;
-	protected JobSimulMC g_jsm;
+	protected JobSimul_MC g_jsm;
 	protected boolean g_ms_happen=false;
 	
 	private GenScn gscn;
@@ -50,7 +50,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	@Override
 	protected void init() {
-		g_jsm=new JobSimulMC(g_tm.size());
+		g_jsm=new JobSimul_MC(g_tm.size());
 		g_si=new SimulInfo();
 //		Log.prn(1, "num:"+g_tm.size());
 		initSimul();

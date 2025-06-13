@@ -5,8 +5,8 @@ import sim.job.Job;
 import sim.job.JobSimul;
 import util.SLogF;
 
-public class JobSimulMC extends JobSimul{
-	public JobSimulMC(int n){
+public class JobSimul_MC extends JobSimul{
+	public JobSimul_MC(int n){
 		super(0);
 		g_jm=new JobMngMC(n);
 	}

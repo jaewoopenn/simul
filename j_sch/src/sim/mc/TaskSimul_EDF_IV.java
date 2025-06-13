@@ -7,7 +7,7 @@ import util.MCal;
 
 // for minJobDrop
 
-public class TaskSimul_EDF_IV extends TaskSimulMC{
+public class TaskSimul_EDF_IV extends TaskSimul_MC{
 
 	public TaskSimul_EDF_IV() {
 		super();

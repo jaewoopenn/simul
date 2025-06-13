@@ -3,7 +3,7 @@ package sim.mc;
 
 import task.Task;
 
-public class TaskSimul_EDF_VD extends TaskSimulMC{
+public class TaskSimul_EDF_VD extends TaskSimul_MC{
 
 	public TaskSimul_EDF_VD() {
 		super();

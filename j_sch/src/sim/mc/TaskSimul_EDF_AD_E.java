@@ -5,7 +5,7 @@ import util.SLog;
 import task.Task;
 import util.MCal;
 
-public class TaskSimul_EDF_AD_E extends TaskSimulMC{
+public class TaskSimul_EDF_AD_E extends TaskSimul_MC{
 
 
 	public TaskSimul_EDF_AD_E() {

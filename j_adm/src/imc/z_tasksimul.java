@@ -26,9 +26,11 @@ public class z_tasksimul {
 
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.2);
-		sm.setX(0.9);
+		sm.setX(0.4);
 		
 		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
+//		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
+		SLog.prn(1, ts.getName());
 		ts.init_sm_tm(sm,tm);
 //
 		SLogF.init(out);

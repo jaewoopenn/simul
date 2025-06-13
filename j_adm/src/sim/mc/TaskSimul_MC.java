@@ -10,10 +10,10 @@ import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 
-public abstract class TaskSimulMC extends TaskSimul_base {
+public abstract class TaskSimul_MC extends TaskSimul_base {
 
 	protected boolean g_ms_happen=false;
-	protected JobSimulMC g_jsm;
+	protected JobSimul_MC g_jsm;
 	protected boolean g_best_effort=false;
 
 	public void setBE() {
@@ -47,7 +47,7 @@ public abstract class TaskSimulMC extends TaskSimul_base {
 
 	@Override
 	protected void init() {
-		g_jsm=new JobSimulMC(g_tm.size());
+		g_jsm=new JobSimul_MC(g_tm.size());
 		g_si=new SimulInfo();
 		g_ms_happen=false;
 //		Log.prn(1, "num:"+g_tm.size());

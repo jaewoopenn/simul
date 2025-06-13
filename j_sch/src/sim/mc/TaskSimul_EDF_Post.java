@@ -6,7 +6,7 @@ import util.SLogF;
 import task.Task;
 import util.MCal;
 
-public class TaskSimul_EDF_Post extends TaskSimulMC{
+public class TaskSimul_EDF_Post extends TaskSimul_MC{
 
 	public TaskSimul_EDF_Post() {
 		super();

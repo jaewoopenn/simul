@@ -1,13 +1,13 @@
-package sim.mc;
+package imc;
 
 
 import task.Task;
 
-public class TaskSimul_EDF_VD extends TaskSimul_MC{
+public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 
-	public TaskSimul_EDF_VD() {
+	public TaskSimul_EDF_VD_ADM() {
 		super();
-		g_name="EDF-VD";
+		g_name="EDF-VD-ADM";
 	}
 	
 	@Override
@@ -16,25 +16,19 @@ public class TaskSimul_EDF_VD extends TaskSimul_MC{
 			if(t.isHC()){
 				g_jsm.getJM().modeswitch(tsk.tid);
 				t.ms();
+				
 			} else {
-				drop_task(t);
+				degrade_task(t);
 			}
 		}
 	}
 
-	@Override
-	protected void recover_in(int tid) {
-	}
-
-	@Override
-	protected void vir_check() {
-		
-	}
 
 	@Override
 	public void initSimul() {
 		
 	}
+
 
 
 

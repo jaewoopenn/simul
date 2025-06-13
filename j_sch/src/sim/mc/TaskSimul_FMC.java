@@ -5,7 +5,7 @@ import util.SLog;
 import task.Task;
 import util.MCal;
 
-public class TaskSimul_FMC extends TaskSimulMC{
+public class TaskSimul_FMC extends TaskSimul_MC{
 
 
 	public TaskSimul_FMC() {

@@ -9,7 +9,7 @@ public class SimulSel {
 	 * 2: EDF-VD
 	 */
 	
-	public static TaskSimulMC getSim(int sort) {
+	public static TaskSimul_MC getSim(int sort) {
 		if(sort==0) {
 			return new TaskSimul_EDF_IV();
 		} else if(sort==1) {
