@@ -19,16 +19,13 @@ public class JobMng {
 	public String getJobArrow(Job j,int out_type)
 	{
 		String s="";
-		if (j==null){
-			for (int i=0;i<g_task_num;i++)
-				s+="-";
-			return s;
-		} 
 		for (int i=0;i<g_task_num;i++)
 		{
-			if(i==j.tid){
+			if(j==null) {
+				s+="-";
+			} else if(i==j.tid){
 				if(out_type==1)
-					s+="+"; // end
+					s+="*"; // end
 				else
 					s+= "|"; // continue
 			} else {

@@ -14,15 +14,18 @@ public class z_tasksimul {
 
 
 	public int test1()	{
-		String tsn="adm/test1/taskset_80.txt";
-		String out="adm/test.log.txt";
 		int n=10;
 		int dur=350;
+
+		String tsn="adm/test1/taskset_80.txt";
+		String out="adm/test.log.txt";
+		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
 		SLog.prn(1, ret);
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
+		tm.prn();
 
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0.2);
@@ -38,7 +41,7 @@ public class z_tasksimul {
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn2();
-//		SLogF.save();
+		SLogF.save();
 		return 0;
 	}
 	

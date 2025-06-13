@@ -107,7 +107,8 @@ public class Task {
 	}
 	
 	public void prnTxt() {
-		SLog.prnc(2, "p: "+period);
+		SLog.prnc(2, "tid: "+tid);
+		SLog.prnc(2, ", p: "+period);
 		SLog.prnc(2, ", cl: "+c_l);
 		SLog.prnc(2, ", ch: "+c_h);
 		if (is_HC)

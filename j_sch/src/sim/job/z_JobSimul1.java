@@ -9,25 +9,24 @@ public class z_JobSimul1 {
 
 
 	public int test1()	{
-		JobSimul_indep js=new JobSimul_indep(3);
+		JobSimul js=new JobSimul(3);
 		js.add(new Job(0,5,1));
 		js.add(new Job(1,3,1));
 		js.add(new Job(2,4,2));
-		js.simulBy(3);
+		js.simul_one();
+		js.simul_one();
+		js.simul_one();
 		js.add(new Job(1,6,1));
 		SLog.prn(1,"  ");
-		js.simulBy(4);
+		js.simul_one();
 		js.add(new Job(2,8,2));
-		js.simul(8);
+		js.simul_one();
+		js.simul_one();
+		js.simul_one();
+		js.simul_end();
 		return -1;
 	}
 	public int test2() {
-		JobSimul_indep js=new JobSimul_indep(3);
-		js.add(new Job(0,3,2));
-		js.add(new Job(1,3,2));
-		js.add(new Job(2,3,2));
-		js.simulBy(6);
-		js.simul_end();
 		return 0;
 	}
 	
