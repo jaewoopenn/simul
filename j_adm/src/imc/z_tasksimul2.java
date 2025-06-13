@@ -30,7 +30,7 @@ public class z_tasksimul2 {
 		
 		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
 		ts.init_sm_tm(sm,tm);
-		ts.setScn(scn);
+//		ts.setScn(scn);
 
 //		SLogF.init(out);
 		ts.simul(dur);
