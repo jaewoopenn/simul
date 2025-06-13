@@ -8,26 +8,26 @@ import util.SLog;
 
 public class TaskMng {
 	private TaskSet g_tasks;
-	private TaskSet g_hi_tasks;
-	private TaskSet g_lo_tasks;
+	private TaskSet g_hc_tasks;
+	private TaskSet g_lc_tasks;
 	private SysInfo g_info;
 
 	public TaskMng(Task[] ts,TaskSet hi_tasks,TaskSet lo_tasks,SysInfo info) {
 		this.g_tasks=new TaskSet(ts);
-		this.g_hi_tasks = hi_tasks;
-		this.g_lo_tasks = lo_tasks;
+		this.g_hc_tasks = hi_tasks;
+		this.g_lc_tasks = lo_tasks;
 		this.g_info = info;
-		g_lo_tasks.sortLo();
+		g_lc_tasks.sortLo();
 	}
 	public void sortMinJobDrop() {
-		g_lo_tasks.sortLo2();
+		g_lc_tasks.sortLo2();
 	}
 	public void sortLC_IMC() {
-		g_lo_tasks.sortLoIMC();
+		g_lc_tasks.sortLoIMC();
 	}
 	
 	public Task findDropTask() {
-		for(Task t:g_lo_tasks.getArr()){
+		for(Task t:g_lc_tasks.getArr()){
 			if (!t.isDrop())
 				return t;
 		}
@@ -35,7 +35,7 @@ public class TaskMng {
 	}
 
 	public Task findResumeTask() {
-		Task [] ts=g_lo_tasks.getArr();
+		Task [] ts=g_lc_tasks.getArr();
 		for(int i=ts.length-1;i>=0;i--){ // reverse order (from lowest util lo task)
 			Task t=ts[i];
 			if (t.isDrop()) // if task is dropped, pick this
@@ -49,7 +49,7 @@ public class TaskMng {
 	
 	public void setX(double x){
 		g_info.setX(x);
-		g_hi_tasks.setX(x);
+		g_hc_tasks.setX(x);
 	}
 
 	
@@ -63,11 +63,11 @@ public class TaskMng {
 	public Task[] getTasks() {
 		return g_tasks.getArr();
 	}
-	public Task[] getHiTasks(){
-		return g_hi_tasks.getArr();
+	public Task[] get_HC_Tasks(){
+		return g_hc_tasks.getArr();
 	}
-	public Task[] getLoTasks(){
-		return g_lo_tasks.getArr();
+	public Task[] get_LC_Tasks(){
+		return g_lc_tasks.getArr();
 	}
 
 
@@ -149,17 +149,17 @@ public class TaskMng {
 	
 	public double getWCUtil() {
 		double util=0;
-		for(Task t:g_hi_tasks.getArr())	{
+		for(Task t:g_hc_tasks.getArr())	{
 			util+=t.getHiUtil();
 		}
-		for(Task t:g_lo_tasks.getArr())	{
+		for(Task t:g_lc_tasks.getArr())	{
 			util+=getDroppedUtil(t);
 		}
 		return util;
 	}
 	public double getLoUtil() {
 		double util=0;
-		for(Task t:g_lo_tasks.getArr())	{
+		for(Task t:g_lc_tasks.getArr())	{
 			util+=t.getLoUtil();
 		}
 		return util;
@@ -167,7 +167,7 @@ public class TaskMng {
 
 	public double getDeLoUtil() {
 		double util=0;
-		for(Task t:g_lo_tasks.getArr())	{
+		for(Task t:g_lc_tasks.getArr())	{
 			util+=t.getHiUtil();
 		}
 		return util;
@@ -227,13 +227,13 @@ public class TaskMng {
 	}
 	
 	public void prnHI() {
-		g_hi_tasks.prn();
+		g_hc_tasks.prn();
 		SLog.prn(2, "hi_mode_util:"+g_info.getUtil_HC_HI());
 		
 	}
 
 	public void prnLoTasks() {
-		g_lo_tasks.prnRuntime();
+		g_lc_tasks.prnRuntime();
 	}
 	public void prnInfo() {
 		g_info.prn();
@@ -254,7 +254,7 @@ public class TaskMng {
 
 	public int getLongPeriod() {
 		int l=0;
-		for(Task t:g_hi_tasks.getArr()){
+		for(Task t:g_hc_tasks.getArr()){
 			if(t.period>l)
 				l=t.period;
 		}
@@ -263,7 +263,7 @@ public class TaskMng {
 
 	public int getShortPeriod() {
 		int l=-1;
-		for(Task t:g_hi_tasks.getArr()){
+		for(Task t:g_hc_tasks.getArr()){
 			if(l==-1)
 				l=t.period;
 			if(t.period<l)
@@ -296,7 +296,7 @@ public class TaskMng {
 	}
 	public boolean isZeroLife() {
 		int life=0;
-		for(Task t:getHiTasks()) {
+		for(Task t:get_HC_Tasks()) {
 			if(t.isHM()) {
 				life+=t.life;
 			}

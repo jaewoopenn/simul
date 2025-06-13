@@ -32,7 +32,7 @@ public class AnalEDF_IV3 extends Anal {
 			SLog.prn(1, "-!!!---");
 			double ratio=0;
 			double idx=-1;
-			for(Task t:g_tm.getHiTasks()) {
+			for(Task t:g_tm.get_HC_Tasks()) {
 				if(t.isHI_Preferred())
 					continue;
 				double ul=t.getLoUtil();
@@ -54,7 +54,7 @@ public class AnalEDF_IV3 extends Anal {
 				break;
 		}
 		int no=0;
-		for(Task t:g_tm.getHiTasks()) {
+		for(Task t:g_tm.get_HC_Tasks()) {
 			if(t.isHI_Preferred())
 				no++;
 		}
@@ -62,7 +62,7 @@ public class AnalEDF_IV3 extends Anal {
 		return getHSum();
 	}
 	private void setHiOnlyTask(double idx, boolean b) {
-		for(Task t:g_tm.getHiTasks()) {
+		for(Task t:g_tm.get_HC_Tasks()) {
 			if(t.tid==idx) {
 				if(b)
 					t.setHI_only();
@@ -74,7 +74,7 @@ public class AnalEDF_IV3 extends Anal {
 	}
 	private double getHSum() {
 		ArrayList<Double> delta=new ArrayList<Double>();
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			if(t.isHI_Preferred())
 				continue;
 			double l=t.getLoUtil();
@@ -100,7 +100,7 @@ public class AnalEDF_IV3 extends Anal {
 			
 			z_sum=g_tm.getLoUtil();
 			h_sum=0;
-			for(Task t:g_tm.getHiTasks()){
+			for(Task t:g_tm.get_HC_Tasks()){
 				double l=t.getLoUtil();
 				double h=t.getHiUtil();
 				double z=compDtoZ(h,l,d);
@@ -129,7 +129,7 @@ public class AnalEDF_IV3 extends Anal {
 		double z_sum=0;
 		double h_sum=0;
 		double slack=1-g_tm.getLoUtil();
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,old_d);
@@ -152,7 +152,7 @@ public class AnalEDF_IV3 extends Anal {
 	}
 	private double compute_h_sum(double z_sum,double d) {
 		double h_sum=0;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,d);
@@ -169,7 +169,7 @@ public class AnalEDF_IV3 extends Anal {
 			z_sum+=z;
 		}
 		SLog.prn(1,"z_sum, h_sum: "+z_sum+","+h_sum);
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			SLog.prn(1,"vd "+t.vd+" "+t.period);
 		}
 		if(z_sum>1+MCal.err) {
@@ -183,7 +183,7 @@ public class AnalEDF_IV3 extends Anal {
 	
 	private double compute_d_opt(double d_prime, double slack) {
 		double alpha=0;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			if(t.isHI_Preferred()) 
 				l=t.getHiUtil();
@@ -227,7 +227,7 @@ public class AnalEDF_IV3 extends Anal {
 			return g_lt_lu;
 		}
 		if(g_lt_lu+g_ht_hu<=1) {
-			for(Task t:g_tm.getHiTasks()){
+			for(Task t:g_tm.get_HC_Tasks()){
 				t.setHI_only();
 			}
 			return g_lt_lu+g_ht_hu;

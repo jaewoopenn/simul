@@ -12,14 +12,14 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 	
 	@Override
 	protected void modeswitch_in(Task tsk) {
-		for(Task t:g_tm.getTasks()){
-			if(t.isHC()){
-				g_jsm.getJM().modeswitch(tsk.tid);
-				t.ms();
-				
-			} else {
+		// all ms , all degrade 
+		
+		for(Task t:g_tm.get_HC_Tasks()){
+			g_jsm.getJM().modeswitch(tsk.tid);
+			t.ms();
+		}
+		for(Task t:g_tm.get_LC_Tasks()){
 				degrade_task(t);
-			}
 		}
 	}
 

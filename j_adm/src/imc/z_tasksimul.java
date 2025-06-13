@@ -36,12 +36,12 @@ public class z_tasksimul {
 		SLog.prn(1, ts.getName());
 		ts.init_sm_tm(sm,tm);
 //
-		SLogF.init(out);
+//		SLogF.init(out);
 		ts.simul(dur);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn2();
-		SLogF.save();
+//		SLogF.save();
 		return 0;
 	}
 	

@@ -44,7 +44,7 @@ public class AnalEDF_AD_E extends Anal {
 	
 	private void comp_hi_prefer() {
 		n_hi_prefer=0;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
@@ -67,7 +67,7 @@ public class AnalEDF_AD_E extends Anal {
 			return g_lt_lu+g_ht_hu;
 		}
 		double dtm=g_lt_lu;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 			dtm+=Math.min(v_util,h_util);

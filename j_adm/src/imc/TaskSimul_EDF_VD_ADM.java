@@ -12,11 +12,13 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 	
 	@Override
 	protected void modeswitch_in(Task tsk) {
+		// individual ms. 
+		// test fail? all degrade 
+		
 		for(Task t:g_tm.getTasks()){
 			if(t.isHC()){
 				g_jsm.getJM().modeswitch(tsk.tid);
 				t.ms();
-				
 			} else {
 				degrade_task(t);
 			}

@@ -29,7 +29,7 @@ public class GenScn {
 			b=false;
 			String s="";
 			s+=t+" : ";
-			for(Task tsk:tm.getHiTasks()){
+			for(Task tsk:tm.get_HC_Tasks()){
 				if (t%tsk.period==0){
 					s+=tsk.tid+" ";
 					b=true;

@@ -28,7 +28,7 @@ public class AnalEDF_IV extends Anal {
 	}
 	private double getLSum() {
 		ArrayList<Double> delta=new ArrayList<Double>();
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double d=compDeriv(h,l,h);
@@ -50,7 +50,7 @@ public class AnalEDF_IV extends Anal {
 			SLog.prn(1,"d "+d);
 			
 			double z_sum=0;
-			for(Task t:g_tm.getHiTasks()){
+			for(Task t:g_tm.get_HC_Tasks()){
 				double l=t.getLoUtil();
 				double h=t.getHiUtil();
 				double z=compDtoZ(h,l,d);
@@ -66,7 +66,7 @@ public class AnalEDF_IV extends Anal {
 		}
 		SLog.prn(1,"init d "+old_d);
 		double slack=dest_z;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,old_d);
@@ -79,7 +79,7 @@ public class AnalEDF_IV extends Anal {
 		double d_opt=compute_d_opt(d_prime,slack);
 		SLog.prn(1,"d_opt: "+d_opt);
 		double z_sum=0,l_sum=g_tm.getLoUtil();
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,d_opt);
@@ -94,7 +94,7 @@ public class AnalEDF_IV extends Anal {
 			z_sum+=z;
 		}
 		SLog.prn(1,"l_sum, z_sum: "+l_sum+", "+z_sum);
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			SLog.prn(1,"vd "+t.vd+" "+t.period);
 		}
 		if(z_sum>1+MCal.err) {
@@ -107,7 +107,7 @@ public class AnalEDF_IV extends Anal {
 	
 	private double compute_d_opt(double d_prime, double slack) {
 		double alpha=0;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double l=t.getLoUtil();
 			double h=t.getHiUtil();
 			double z=compDtoZ(h,l,d_prime);
@@ -147,7 +147,7 @@ public class AnalEDF_IV extends Anal {
 			return g_lt_lu;
 		}
 		if(g_lt_lu+g_ht_hu<=1) {
-			for(Task t:g_tm.getHiTasks()){
+			for(Task t:g_tm.get_HC_Tasks()){
 				t.setHI_only();
 			}
 			return g_lt_lu+g_ht_hu;

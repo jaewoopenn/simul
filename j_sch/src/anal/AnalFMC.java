@@ -40,7 +40,7 @@ public class AnalFMC extends Anal {
 		
 		
 		double dtm=0;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double pi=t.getLoUtil()/hitasks_loutil*(1-lotasks_loutil)-t.getHiUtil();
 			if(pi<0)
 				dtm+=pi;

@@ -57,7 +57,7 @@ public class AnalMP extends Anal {
 		n_hi_prefer=0;
 		g_ft_lu=0;
 		g_ft_hu=0;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 //			Log.prn(1, v_util+","+h_util);
@@ -79,7 +79,7 @@ public class AnalMP extends Anal {
 			return 2;
 		}
 		double dtm=g_lt_lu;
-		for(Task t:g_tm.getHiTasks()){
+		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/glo_x;
 			double h_util=t.getHiUtil();
 			dtm+=Math.min(v_util,h_util);
