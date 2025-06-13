@@ -18,7 +18,6 @@ public class z_auto_sim_imc {
 	private int g_step;
 	private int g_end;
 	private int g_num;
-	private int g_life;
 	private int g_dur;
 	private String g_cf;
 	private String g_ts;
@@ -56,7 +55,6 @@ public class z_auto_sim_imc {
 
 	public void init_sim() {
 		g_p_ms=0.1;
-		g_life=200;
 //		g_life=0;
 		g_p_hc=0.5;
 		g_ratio=-1;
@@ -85,7 +83,6 @@ public class z_auto_sim_imc {
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
-		p.setLife(g_life);
 		
 		p.sim_loop(g_rs, g_ts,0,2);
 		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
@@ -121,17 +118,6 @@ public class z_auto_sim_imc {
 	}
 	public int test3() // ms length
 	{
-		int st=0,et=3;
-		init_g();
-		init_sim();
-		int a[]= {0,200,400};
-		g_path="run/li_ts";
-		gen();
-		for(int i=st;i<et;i++) {
-			String rs_path="run/li"+i;
-			g_life=a[i];
-			loop_util(rs_path);
-		}
 		return 0;
 	}
 	public  int test4() // ratio

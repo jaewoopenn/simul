@@ -13,7 +13,6 @@ import util.SLog;
 
 public abstract class TaskSimul_IMC extends TaskSimul_base {
 
-	private int g_life=0;
 	protected JobSimul_MC g_jsm;
 	protected boolean g_ms_happen=false;
 	
@@ -27,7 +26,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
 		if(sm!=null) {
 			double x=sm.getX();
-			g_life=sm.getLife();
 			if(x>0) {
 				tm.setX(sm.getX());
 			}
@@ -62,10 +60,8 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		
 		release_jobs();
 		if(g_jsm.is_idle()&&g_ms_happen) {
-			if(g_tm.isZeroLife()) {
-				recover_idle();
-				g_ms_happen=false;
-			}
+			recover_idle();
+			g_ms_happen=false;
 		}
 		if(g_ms_happen) {
 			g_si.degraded++;
@@ -85,17 +81,14 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		// HC task 
 		Job j;
 //		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
-		if(tsk.isHM()&&g_life!=0){ // HI-mode
+		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
 			if(tsk.isMS()) {
 				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
 				tsk.ms_end();
 			}
-			if(tsk.life>0)
-				tsk.life--;
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-			tsk.life=(int)Math.ceil(g_life/tsk.period);
 			if(gscn!=null) {
 				int nxt=gscn.getNxt();
 				if(nxt<t) {

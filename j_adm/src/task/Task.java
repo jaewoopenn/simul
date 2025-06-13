@@ -17,7 +17,6 @@ public class Task {
 	public int c_h;
 	public double vd;
 	public double x;
-	public int life=0;
 	private boolean is_HC=false;
 	private boolean is_HI_Mode=false;
 	private boolean is_MS_Mode=false;

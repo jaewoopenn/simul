@@ -133,10 +133,6 @@ public class Platform_IMC extends Platform_base {
 	public void setOnlyMC() {
 		g_onlyMC=true;		
 	}
-	public void setLife(int i) {
-		g_life=i;
-		
-	}
 
 
 

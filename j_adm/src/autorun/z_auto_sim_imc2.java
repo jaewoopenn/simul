@@ -48,7 +48,7 @@ public class z_auto_sim_imc2 {
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		
-		p.gen_scn(g_ts,g_ts_list_n,g_ts_n,5);
+//		p.gen_scn(g_ts,g_ts_list_n,g_ts_n,5);
 		return 0;
 	}
 	public int test2() 
@@ -61,7 +61,7 @@ public class z_auto_sim_imc2 {
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 		
-		p.run_scn(1,g_ts,g_ts_list_n,g_ts_n,0,5);
+//		p.run_scn(1,g_ts,g_ts_list_n,g_ts_n,0,5);
 		return 0;
 	}
 	public int test3() 

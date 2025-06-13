@@ -29,7 +29,6 @@ public abstract class Platform_base {
 	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	protected boolean g_verbose=false;
 	protected boolean g_recoverIdle=true;
-	protected int g_life=0; // life는 hi mode가 얼마나 지속... time unit 기
 	
 	
 	public void setNum(int n) {
@@ -182,33 +181,33 @@ public abstract class Platform_base {
 		return rs_fn;		
 	}
 	
-	public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		
-		String fn=fu.get(ts_list_n);
-		for(int i=0;i<scn_n;i++) {
-			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
-			SLog.prn(2,out);
-			gen_scn_one(g_path+"/"+fn,out,ts_n);
-		}
-	}
-
-	public String run_scn(int sort,String ts_list,int ts_list_n,int ts_n,int scn_from, int scn_to) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-		Anal a=getAnalSim(sort);
-		SLog.prn(2, "Anal:"+a.getName());
-		TaskSimul_base s=getSim(sort);
-		s.setRecoverIdle(g_recoverIdle);
-		
-		String fn=fu.get(ts_list_n);
-		for(int i=scn_from;i<scn_to;i++) {
-			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
-			SLog.prn(2,out);
-			run_scn_one(g_path+"/"+fn,out,a,s,ts_n,i);
-		}
-		return rs_fn;		
-	}
+//	public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {
+//		MList fu=new MList(g_path+"/"+ts_list);
+//		
+//		String fn=fu.get(ts_list_n);
+//		for(int i=0;i<scn_n;i++) {
+//			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+//			SLog.prn(2,out);
+//			gen_scn_one(g_path+"/"+fn,out,ts_n);
+//		}
+//	}
+//
+//	public String run_scn(int sort,String ts_list,int ts_list_n,int ts_n,int scn_from, int scn_to) {
+//		MList fu=new MList(g_path+"/"+ts_list);
+//		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
+//		Anal a=getAnalSim(sort);
+//		SLog.prn(2, "Anal:"+a.getName());
+//		TaskSimul_base s=getSim(sort);
+//		s.setRecoverIdle(g_recoverIdle);
+//		
+//		String fn=fu.get(ts_list_n);
+//		for(int i=scn_from;i<scn_to;i++) {
+//			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+//			SLog.prn(2,out);
+//			run_scn_one(g_path+"/"+fn,out,a,s,ts_n,i);
+//		}
+//		return rs_fn;		
+//	}
 
 	
 	
@@ -255,7 +254,6 @@ public abstract class Platform_base {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
-			sm.setLife(g_life);
 			sm.setDelay(x*tm.getLongPeriod());
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
@@ -317,7 +315,6 @@ public abstract class Platform_base {
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_p_ms);
 		sm.setX(x);
-		sm.setLife(g_life);
 		sm.setDelay(x*tm.getLongPeriod());
 		s.init_sm_tm(sm,tm);
 		s.simul(g_dur);
