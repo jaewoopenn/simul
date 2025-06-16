@@ -6,9 +6,6 @@ Individual Task
 */
 
 
-import util.SLog;
-import util.MCal;
-import util.SLogF;
 
 public class TaskMC extends Task{
 	
