@@ -15,7 +15,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 		// all ms , all degrade 
 		
 		for(Task t:g_tm.get_HC_Tasks()){
-			g_jsm.getJM().modeswitch(tsk.tid);
+			g_jsm.getJM().modeswitch(t.tid);
 			t.ms();
 		}
 		for(Task t:g_tm.get_LC_Tasks()){

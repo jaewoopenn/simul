@@ -14,7 +14,7 @@ public class TaskSimul_EDF_VD extends TaskSimul_MC{
 	protected void modeswitch_in(Task tsk) {
 		for(Task t:g_tm.getTasks()){
 			if(t.isHC()){
-				g_jsm.getJM().modeswitch(tsk.tid);
+				g_jsm.getJM().modeswitch(t.tid);
 				t.ms();
 			} else {
 				drop_task(t);

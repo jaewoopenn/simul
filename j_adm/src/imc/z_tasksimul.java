@@ -16,23 +16,25 @@ public class z_tasksimul {
 	public int test1()	{
 		int n=10;
 		int dur=350;
+		double p=0.2;
+		double x=0.4;
 
 		String tsn="adm/test1/taskset_80.txt";
 		String out="adm/test.log.txt";
 		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
-		SLog.prn(1, ret);
+		SLog.prn(0, ret);
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
 		tm.prn();
 
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0.2);
-		sm.setX(0.4);
+		sm.setMS_Prob(p);
+		sm.setX(x);
 		
-		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
-//		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
+//		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
+		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
 		SLog.prn(1, ts.getName());
 		ts.init_sm_tm(sm,tm);
 //
