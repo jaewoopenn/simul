@@ -59,7 +59,7 @@ public abstract class TaskSimul_MC extends TaskSimul_base {
 	protected void simul_one(){
 		
 		release_jobs();
-		if(g_jsm.is_idle()&&g_ms_happen&&g_recover_idle_on) {
+		if(g_jsm.is_idle()&&g_ms_happen) {
 			recover_idle();
 		}
 		g_si.drop+=g_jsm.simul_one();
@@ -79,10 +79,6 @@ public abstract class TaskSimul_MC extends TaskSimul_base {
 		Job j;
 		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
-			if(tsk.isMS()) {
-				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
-				tsk.ms_end();
-			}
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 		}
@@ -137,6 +133,7 @@ public abstract class TaskSimul_MC extends TaskSimul_base {
 
 	private void recover_idle(){
 		SLogF.prnc( "R ");
+//		SLog.prn(1, "Idle ");
 		initModeAll();
 		g_ms_happen=false;
 	}

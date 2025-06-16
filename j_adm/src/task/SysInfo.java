@@ -32,7 +32,7 @@ public class SysInfo {
 			return t.getLoUtil();
 		
 	}
-	public double computeVU(Task t) {
+	public double computeVU(Task t) { // this point, change to IMC
 		if(t.isHC()){
 			if(t.isHI_Preferred())
 				return t.getHiUtil();
@@ -42,7 +42,7 @@ public class SysInfo {
 				return t.getLoVdUtil();
 		} 
 		if(t.isDrop())
-			return x_para*t.getLoUtil();
+			return x_para*t.getLoUtil(); // need to change
 		else
 			return t.getLoUtil();
 		

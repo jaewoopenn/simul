@@ -42,10 +42,6 @@ public class TaskSimul_EDF_IMC_gen extends TaskSimul_IMC{
 		Job j;
 		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
-			if(tsk.isMS()) {
-//				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
-				tsk.ms_end();
-			}
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 		}

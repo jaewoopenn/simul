@@ -84,10 +84,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 //		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
 		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
-			if(tsk.isMS()) {
-				SLogF.prn("t:"+g_jsm.get_time()+" HI-mode "+tsk.tid);				
-				tsk.ms_end();
-			}
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
 //			if(gscn!=null) {
@@ -152,9 +148,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		}
 	}
 	
-	public void setRecoverIdle(boolean b) {
-		g_recover_idle_on=b;
-	}
 
 	///////////////////////
 	// private
@@ -163,6 +156,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	private void recover_idle(){
 		SLogF.prnc( "R ");
+		SLog.prn(1, "idle ");
 		initModeAll();
 	}
 	
@@ -173,7 +167,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			return;
 		if(j.add_exec>0) {
 			if(isMS(j)) { 
-				g_ms_happen=true;
+//				g_ms_happen=true;
 				mode_switch(j.tid);
 			} else {
 				g_jsm.getJM().removeCur();

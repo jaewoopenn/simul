@@ -14,13 +14,15 @@ public class z_tasksimul {
 
 
 	public int test1()	{
-		int n=10;
+		int n=25;
 		int dur=350;
 		double p=0.2;
 		double x=0.4;
 
-		String tsn="adm/test1/taskset_80.txt";
+		String tsn="adm/test1/taskset_74.txt";
 		String out="adm/test.log.txt";
+//		boolean bSave=true;
+		boolean bSave=false;
 		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
@@ -38,12 +40,14 @@ public class z_tasksimul {
 		SLog.prn(1, ts.getName());
 		ts.init_sm_tm(sm,tm);
 //
-//		SLogF.init(out);
+		if(bSave)	
+			SLogF.init(out);
 		ts.simul(dur);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn2();
-//		SLogF.save();
+		if(bSave)	
+			SLogF.save();
 		return 0;
 	}
 	

@@ -28,7 +28,6 @@ public abstract class Platform_base {
 	protected boolean g_isCheck=false;
 	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	protected boolean g_verbose=false;
-	protected boolean g_recoverIdle=true;
 	
 	
 	public void setNum(int n) {
@@ -169,7 +168,6 @@ public abstract class Platform_base {
 		Anal a=getAnalSim(sort);
 		SLog.prn(2, "Anal:"+a.getName());
 		TaskSimul_base s=getSim(sort);
-		s.setRecoverIdle(g_recoverIdle);
 		
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);

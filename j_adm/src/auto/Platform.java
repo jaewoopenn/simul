@@ -21,9 +21,6 @@ public class Platform extends Platform_base{
 		g_rs_path=rs_path;
 	}	
 
-	public void setRecoverIdle(boolean b) {
-		g_recoverIdle=b;
-	}
 	
 	// gen CFG, TS
 	public void genCfg_util(String cf,int base,int step, int end)  {
