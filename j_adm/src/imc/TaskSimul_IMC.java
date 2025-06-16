@@ -156,7 +156,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	private void recover_idle(){
 		SLogF.prnc( "R ");
-		SLog.prn(1, "idle ");
+		SLog.prn(1, "idle "+g_jsm.get_time());
 		initModeAll();
 	}
 	

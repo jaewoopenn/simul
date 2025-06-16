@@ -16,29 +16,13 @@ public class Task {
 	public int c_l;
 	public int c_h;
 	public double vd;
-	private boolean is_HC=false;
-	private boolean is_HI_Mode=false;
-//	private boolean is_MS_Mode=false;
-	private boolean is_dropped=false;
-	private boolean is_hi_preferred=false;
+	protected boolean is_HC=false;
+	protected boolean is_HI_Mode=false;
+//	protected boolean is_MS_Mode=false;
+	protected boolean is_dropped=false;
+	protected boolean is_hi_preferred=false;
 	
 
-	public Task(int period, int c_l) {
-		this.tid=TaskSeq.getID();
-		this.period = period;
-		this.vd = period;
-		this.c_l = c_l;
-		this.c_h = 0;
-	}
-
-	public Task(int period, int c_l, int c_h) {
-		this.tid=TaskSeq.getID();
-		this.period = period;
-		this.vd = period;
-		this.c_l = c_l;
-		this.c_h = c_h;
-		this.is_HC=true;
-	}
 	public Task(int period, int c_l, int c_h,boolean is_HC) {
 		this.tid=TaskSeq.getID();
 		this.period = period;

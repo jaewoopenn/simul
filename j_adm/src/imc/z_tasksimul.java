@@ -1,8 +1,11 @@
 package imc;
 
 import gen.SysLoad;
+import task.SysInfo;
 import sim.*;
+import task.DTaskVec;
 import task.TaskMng;
+import task.TaskSet;
 import util.SEngineT;
 import util.SLog;
 import util.SLogF;
@@ -16,20 +19,25 @@ public class z_tasksimul {
 	public int test1()	{
 		int n=25;
 		int dur=350;
-		double p=0.2;
-		double x=0.4;
+		double p=0.5;
+		double x=0.5;
 
-		String tsn="adm/test1/taskset_74.txt";
+		String tsn="adm/test1/taskset_86.txt";
 		String out="adm/test.log.txt";
-//		boolean bSave=true;
-		boolean bSave=false;
+		boolean bSave=true;
+//		boolean bSave=false;
 		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
 		SLog.prn(0, ret);
 		sy.moveto(n);
-		TaskMng tm=sy.loadOne();
+		DTaskVec dt=sy.loadOne2();
+		TaskSet its=new TaskSet(dt.getVec(0));
+		TaskMng tm=its.getTM();
 		tm.prn();
+		SysInfo sii=tm.getInfo();
+		sii.setX(x);
+		SLog.prn(2, "lo sch:"+(sii.getUtil_HC_LO()/x+sii.getUtil_LC()));
 
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(p);

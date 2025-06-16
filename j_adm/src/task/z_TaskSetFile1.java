@@ -13,15 +13,15 @@ public class z_TaskSetFile1 {
 	{
 		MList fu=new MList();
 		TaskSetUtil.initStage(fu, 5);
-		TaskSetUtil.writeTask(fu, new Task(3,1));
-		TaskSetUtil.writeTask(fu, new Task(4,1));
-		TaskSetUtil.writeTask(fu, new Task(5,1));
+		TaskSetUtil.writeTask(fu, new TaskMC(3,1));
+		TaskSetUtil.writeTask(fu, new TaskMC(4,1));
+		TaskSetUtil.writeTask(fu, new TaskMC(5,1));
 		TaskSetUtil.nextStage(fu);
-		TaskSetUtil.writeTask(fu, new Task(5,1,4));
+		TaskSetUtil.writeTask(fu, new TaskMC(5,1,4));
 		TaskSetUtil.nextStage(fu);
 		TaskSetUtil.remove(fu, 3);
 		TaskSetUtil.remove(fu, 2);
-		TaskSetUtil.writeTask(fu, new Task(5,1,3));
+		TaskSetUtil.writeTask(fu, new TaskMC(5,1,3));
 		fu.saveTo("test/test.txt");
 		return 1;
 	}
@@ -40,8 +40,8 @@ public class z_TaskSetFile1 {
 	
 	public int test3() {
 		TaskVec tmp=new TaskVec();
-		tmp.add(new Task(3,1));
-		tmp.add(new Task(4,1));
+		tmp.add(new TaskMC(3,1));
+		tmp.add(new TaskMC(4,1));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
 		TaskSetUtil.writeFile("test/test.txt",tm.getTasks());

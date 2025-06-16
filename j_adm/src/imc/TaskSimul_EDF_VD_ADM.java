@@ -17,13 +17,13 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 		// individual ms. 
 		double ru;
 		ru=g_tm.getVUtil();
-		SLog.prn(2, "vu:"+ru);
+//		SLog.prn(2, "vu:"+ru);
 		
 		g_jsm.getJM().modeswitch(tsk.tid);
 		tsk.ms();
 		// check schedulability test
 		ru=g_tm.getVUtil();
-		SLog.prn(2, "vu:"+ru);
+//		SLog.prn(2, "vu:"+ru);
 		if(ru<1+MCal.err)
 			return;
 		if(g_ms_happen)

@@ -34,13 +34,12 @@ public class SysInfo {
 	}
 	public double computeVU(Task t) { // this point, change to IMC
 		if(t.isHC()){
-			if(t.isHI_Preferred())
-				return t.getHiUtil();
-			if(t.isHM())
+			if(t.isHI_Preferred() ||t.isHM())
 				return t.getHiUtil();
 			else
 				return t.getLoVdUtil();
 		} 
+		// LC task
 		if(t.isDrop())
 			return x_para*t.getLoUtil(); // need to change
 		else

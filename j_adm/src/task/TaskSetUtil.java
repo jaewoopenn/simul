@@ -118,7 +118,7 @@ public class TaskSetUtil {
         int h=Integer.valueOf(words[3]).intValue();
         int isHI=Integer.valueOf(words[4]).intValue();
         if(isHI==1)
-        	return new Task(p,l,h);
+        	return new Task(p,l,h,true);
         else
         	return new Task(p,l,h,false);
 	       

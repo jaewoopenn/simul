@@ -2,6 +2,7 @@ package gen;
 
 
 import task.Task;
+import task.TaskMC;
 import util.MRand;
 import util.SLog;
 
@@ -100,10 +101,10 @@ public class TaskGenParam {
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
-			return new Task(p,l,h);
+			return new TaskMC(p,l,h);
 		} else{
 			int e=(int)(tu*p);
-			return new Task(p,e);
+			return new TaskMC(p,e);
 		}
 	}
 	public Task genTaskIMC(int tid){
@@ -115,7 +116,7 @@ public class TaskGenParam {
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
-			return new Task(p,l,h);
+			return new Task(p,l,h,true);
 		} else{
 			double m_ratio=g_rand.getDbl(mo_lb,mo_ub);
 			int l=(int)(tu*p);
