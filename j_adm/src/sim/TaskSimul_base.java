@@ -54,7 +54,6 @@ public abstract class TaskSimul_base {
 	
 	protected abstract Job rel_one_job(Task tsk, int t) ;
 	
-	protected abstract void check_err() ;
 	
 	protected abstract void release_jobs();
 

@@ -26,7 +26,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		g_sm=sm;
 		g_tm=tm;
 		init();
-		check_err();
 	}
 	
 	public abstract void initSimul();
@@ -123,11 +122,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		SLogF.prnc(s);
 	}
 	
-	protected void check_err() {
-		if(g_tm==null){
-			SLog.err("ERROR: TaskMng is not set");
-		}
-	}
 	
 	public void setRecoverIdle(boolean b) {
 		g_recover_idle_on=b;
