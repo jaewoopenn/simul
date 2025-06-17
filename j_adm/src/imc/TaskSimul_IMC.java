@@ -25,15 +25,8 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	
 	@Override
 	public void init_sm_tm(SysMng sm,TaskMng tm ){
-		if(sm!=null) {
-			double x=sm.getX();
-			if(x>0) {
-				tm.setX(sm.getX());
-			}
-//			tm.prnTxt();
-//			SLog.err("test");
-			g_sm=sm;
-		}
+		tm.setX(sm.getX());
+		g_sm=sm;
 		g_tm=tm;
 		init();
 		check_err();

@@ -32,12 +32,19 @@ public class SysMng {
 	}
 
 	
+	
 	//--- Set
-	public void setMS_Prob(double p) {
-		g_prob=p;
+	public void setMS_Prob(double d) {
+		if(d<=0 || d>1) {
+			SLog.err("p<0 or p>1: "+ d);
+		}
+		g_prob=d;
 	}
 
 	public void setX(double d) {
+		if(d<=0 || d>1) {
+			SLog.err("x<0 or x>1: "+ d);
+		}
 		g_x=d;
 	}
 	public void prn() {
