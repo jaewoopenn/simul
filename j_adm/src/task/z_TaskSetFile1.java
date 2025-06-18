@@ -16,9 +16,9 @@ public class z_TaskSetFile1 {
 		TaskSetUtil.writeTask(fu, new TaskMC(3,1));
 		TaskSetUtil.writeTask(fu, new TaskMC(4,1));
 		TaskSetUtil.writeTask(fu, new TaskMC(5,1));
-		TaskSetUtil.nextStage(fu);
+		TaskSetUtil.nextStage(fu,100);
 		TaskSetUtil.writeTask(fu, new TaskMC(5,1,4));
-		TaskSetUtil.nextStage(fu);
+		TaskSetUtil.nextStage(fu,200);
 		TaskSetUtil.remove(fu, 3);
 		TaskSetUtil.remove(fu, 2);
 		TaskSetUtil.writeTask(fu, new TaskMC(5,1,3));

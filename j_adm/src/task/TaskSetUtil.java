@@ -44,8 +44,8 @@ public class TaskSetUtil {
 		fu.add(txt);
 		
 	}
-	public static void nextStage(MList ml) {
-		String txt="next";
+	public static void nextStage(MList ml, int i) {
+		String txt="next, "+(i*100);
 //		SLog.prn(2, txt);
 		ml.add(txt);
 		

@@ -93,7 +93,7 @@ public class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
-		int max=2;
+		int max=3;
 		TaskSetUtil.initStage(ml, max);
 		Task[] tss=ts.getArr();
 		for(Task t:tss) {
@@ -102,7 +102,7 @@ public class SysGen {
 		int num=tss.length;
 		for(int i=1;i<max;i++) {
 			int remove_n=g_rand.getInt(num);
-			TaskSetUtil.nextStage(ml);
+			TaskSetUtil.nextStage(ml,i);
 			TaskSetUtil.remove(ml,remove_n);
 			Task t=g_tg.genTaskOne();
 			TaskSetUtil.writeTask(ml, t);
