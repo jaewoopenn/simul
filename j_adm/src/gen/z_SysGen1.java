@@ -1,6 +1,6 @@
 package gen;
 import anal.Anal;
-import anal.AnalEDF_VD;
+import anal.AnalEDF_VD_IMC;
 import util.SLog;
 import util.SEngineT;
 
@@ -35,7 +35,7 @@ public class z_SysGen1 {
 		sg.setCheck();
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
-		Anal a=new AnalEDF_VD();
+		Anal a=new AnalEDF_VD_IMC();
 		int num=sg.prepare_IMC();
 		sg.gen(fn, a,num);
 		return 0;
