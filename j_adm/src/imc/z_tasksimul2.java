@@ -2,7 +2,7 @@ package imc;
 
 import gen.SysLoad;
 import sim.*;
-import task.TaskMng;
+import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
 import util.SLogF;
@@ -22,14 +22,14 @@ public class z_tasksimul2 {
 		String ret=sy.open();
 		SLog.prn(1, ret);
 		sy.moveto(n);
-		TaskMng tm=sy.loadOne();
+		DTaskVec tm=sy.loadOne2();
 
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(0);
 		sm.setX(0.9);
 		
 		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
-		ts.init_sm_tm(sm,tm);
+		ts.init_sm_dt(sm,tm);
 //		ts.setScn(scn);
 
 //		SLogF.init(out);

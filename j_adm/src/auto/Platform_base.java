@@ -230,10 +230,11 @@ public abstract class Platform_base {
 		MList fu=new MList();
 		for(int i=0;i<num;i++) {
 //			SLog.prn(2, "no:"+i);
-			TaskMng tm=sy.loadOne();
-			if(tm==null) break;
+			DTaskVec dt=sy.loadOne2();
+
+			if(dt==null) break;
 			
-			a.init(tm);
+			a.init(dt.getTM(0));
 			prog.inc();
 			if(!a.is_sch()) {
 //				SLog.prn(2, "no sch "+i);
@@ -241,7 +242,7 @@ public abstract class Platform_base {
 				continue;
 			}
 			base=new AnalEDF_IMC();
-			base.init(tm);
+			base.init(dt.getTM(0));
 			if(base.is_sch()) {
 				fu.add("0.0");
 				continue;
@@ -252,9 +253,8 @@ public abstract class Platform_base {
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
-			sm.setDelay(x*tm.getLongPeriod());
 //			sm.prn();
-			s.init_sm_tm(sm,tm);
+			s.init_sm_dt(sm,dt);
 			s.simul(g_dur);
 			s.simul_end();
 			SimulInfo si=s.getSI();
@@ -267,16 +267,15 @@ public abstract class Platform_base {
 //		SLog.prn(2, ts);
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
-		TaskMng tm=null;
 		SLogF.init(out);
 		SLogF.setGen();
 		sy.moveto(ts_n);
-		tm=sy.loadOne();
+		DTaskVec dt=sy.loadOne2();
 		SysMng sm=new SysMng();
 		TaskSimul_base s=new TaskSimul_EDF_IMC_gen();
 		sm.setMS_Prob(g_p_ms);
 		sm.setX(1);
-		s.init_sm_tm(sm,tm);
+		s.init_sm_dt(sm,dt);
 		s.simul(g_dur);
 		s.simul_end();
 		SLogF.save();
@@ -288,20 +287,20 @@ public abstract class Platform_base {
 		sy.open();
 		Anal base;
 		MList fu=new MList();
-		TaskMng tm=null;
+		DTaskVec dt=null;
 		for(int i=0;i<=ts_n;i++) {
-			tm=sy.loadOne();
+			dt=sy.loadOne2();
 			if(i<ts_n)
 				continue;
 		}
-		a.init(tm);
+		a.init(dt.getTM(0));
 		if(!a.is_sch()) {
 			SLog.prn(2, "no sch "+ts_n);
 			fu.add("1.0");
 			return;
 		}
 		base=new AnalEDF_IMC();
-		base.init(tm);
+		base.init(dt.getTM(0));
 		if(base.is_sch()) {
 			SLog.prn(2, "EDF sch "+ts_n);
 			fu.add("0.0");
@@ -313,8 +312,7 @@ public abstract class Platform_base {
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_p_ms);
 		sm.setX(x);
-		sm.setDelay(x*tm.getLongPeriod());
-		s.init_sm_tm(sm,tm);
+		s.init_sm_dt(sm,dt);
 		s.simul(g_dur);
 		s.simul_end();
 	}

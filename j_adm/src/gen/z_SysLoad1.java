@@ -1,6 +1,4 @@
 package gen;
-import anal.Anal;
-import anal.AnalEDF_VD;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
@@ -25,6 +23,7 @@ public class z_SysLoad1 {
 		sy.moveto(n);
 		DTaskVec dt=sy.loadOne2();
 		for(int i=0;i<dt.getNum();i++) {
+			SLog.prn(1, "time: "+dt.getTime(i));
 			TaskSet its=new TaskSet(dt.getVec(i));
 			TaskMng tm=its.getTM();
 			tm.prn();

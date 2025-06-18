@@ -2,6 +2,7 @@ package sim;
 
 
 import sim.job.Job;
+import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
@@ -10,6 +11,7 @@ import util.MRand;
 public abstract class TaskSimul_base {
 	protected String g_name="";
 	protected SysMng g_sm;
+	protected DTaskVec g_dt;
 	protected TaskMng g_tm;
 	protected MRand g_rutil=new MRand();
 	protected SimulInfo g_si;
@@ -19,7 +21,7 @@ public abstract class TaskSimul_base {
 	}
 
 	
-	public abstract void init_sm_tm(SysMng sm,TaskMng tm );
+	public abstract void init_sm_dt(SysMng sm, DTaskVec tm );
 	
 
 	

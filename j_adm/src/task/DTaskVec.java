@@ -11,15 +11,16 @@ import java.util.Vector;
 
 public class DTaskVec {
 	private TaskVec[] g_taskV;
+	private Integer[] g_stageTime;
 	private int g_num;
 	public DTaskVec(int num){
 		g_num=num;
 		g_taskV=new TaskVec[num];
+		g_stageTime=new Integer[num];
 		for(int i=0;i<num;i++) {
 			g_taskV[i]=new TaskVec();
 		}
 	}
-
 	public void add(int stage, Task t){
 		g_taskV[stage].add(t);
 	}
@@ -30,6 +31,10 @@ public class DTaskVec {
 	
 	public Vector<Task> getVec(int stage){
 		return g_taskV[stage].getVec();
+	}
+	public TaskMng getTM(int stage){
+		TaskSet ts=new TaskSet(g_taskV[stage].getVec());
+		return ts.getTM();
 	}
 
 	public int getNum() {
@@ -43,6 +48,13 @@ public class DTaskVec {
 		}
 	}
 
+	public void addTime(int stage, int value) {
+		g_stageTime[stage]=value;
+	}
+
+	public int getTime(int stage) {
+		return g_stageTime[stage];
+	}
 
 
 }

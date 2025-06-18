@@ -4,6 +4,8 @@ package task;
 
 */
 
+import java.util.Vector;
+
 import util.SLog;
 
 public class TaskMng {
@@ -25,6 +27,14 @@ public class TaskMng {
 	
 	// set
 	
+	public TaskMng(Vector<Task> vec) {
+		TaskSet ts=new TaskSet(vec);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 	public void setX(double x){
 		g_info.setX(x);
 		g_hc_tasks.setX(x);

@@ -45,7 +45,7 @@ public class TaskSetUtil {
 		
 	}
 	public static void nextStage(MList ml, int i) {
-		String txt="next, "+(i*100);
+		String txt="next,"+(i*100);
 //		SLog.prn(2, txt);
 		ml.add(txt);
 		
@@ -92,6 +92,7 @@ public class TaskSetUtil {
         String[] words=line.split(",");
         int num=Integer.valueOf(words[1]).intValue();
 		DTaskVec tasks=new DTaskVec(num);
+    	tasks.addTime(0,0);
 		Task t;
 		int stage=0;
 		for(int i=1;i<ml.size();i++) {
@@ -106,6 +107,9 @@ public class TaskSetUtil {
 	        	tasks.remove(stage,idx);
 	        } else if(words[0].equals("next")) {
 	        	stage++;
+//	        	SLog.prn(1, words[1]);
+	        	int time=Integer.valueOf(words[1]).intValue();
+	        	tasks.addTime(stage, time);
 	        	tasks.copy(stage-1,stage);
 	        }
 	    }

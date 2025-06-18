@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import anal.Anal;
 import anal.AnalSel;
-import imc.AnalSel_run;
 import util.MList;
 
 public class DataAnal {

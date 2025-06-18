@@ -6,8 +6,8 @@ import sim.SysMng;
 import sim.TaskSimul_base;
 import sim.job.Job;
 import sim.mc.JobSimul_MC;
+import task.DTaskVec;
 import task.Task;
-import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 
@@ -16,18 +16,13 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected JobSimul_MC g_jsm;
 	protected boolean g_ms_happen=false;
 	
-//	private GenScn gscn;
-//
-//	public void setScn(String fn) {
-//		gscn=new GenScn();
-//		gscn.initGet(fn);
-//	}
 	
 	@Override
-	public void init_sm_tm(SysMng sm,TaskMng tm ){
-		tm.setX(sm.getX());
+	public void init_sm_dt(SysMng sm, DTaskVec dt ){
 		g_sm=sm;
-		g_tm=tm;
+		g_dt=dt;
+		g_tm=dt.getTM(0);
+		g_tm.setX(sm.getX());
 		init();
 	}
 	public abstract void initSimul();

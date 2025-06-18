@@ -5,8 +5,8 @@ import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
 import sim.job.Job;
+import task.DTaskVec;
 import task.Task;
-import task.TaskMng;
 import util.SLogF;
 import util.SLog;
 
@@ -22,10 +22,10 @@ public abstract class TaskSimul_MC extends TaskSimul_base {
 	
 	
 	@Override
-	public void init_sm_tm(SysMng sm,TaskMng tm ){
-		tm.setX(sm.getX());
+	public void init_sm_dt(SysMng sm,DTaskVec dt ){
 		g_sm=sm;
-		g_tm=tm;
+		g_tm=dt.getTM(0);
+		g_tm.setX(sm.getX());
 		init();
 	}
 	public abstract void initSimul();
