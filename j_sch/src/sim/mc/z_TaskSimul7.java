@@ -112,8 +112,7 @@ public class z_TaskSimul7 {
 //		ts=new TaskSimul_EDF_AD_E();
 		ts.init_sm_tm(sm,tm);
 		tm.prnTxt();
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 		SimulInfo si=ts.getSI();
 		si.prn();
 //		SLogF.end();

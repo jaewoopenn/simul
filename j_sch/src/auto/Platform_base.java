@@ -224,8 +224,7 @@ public abstract class Platform_base {
 			sm.setDelay(x*tm.getLongPeriod());
 //			sm.prn();
 			s.init_sm_tm(sm,tm);
-			s.simul(0,g_dur);
-			s.simul_end();
+			s.simul(g_dur);
 			SimulInfo si=s.getSI();
 			fu.add(si.getDMR()+"");
 		}

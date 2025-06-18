@@ -36,10 +36,11 @@ public abstract class TaskSimul_base {
 			simul_one();
 			t++;
 		}
+		simul_end();
 	}
 	
 	
-	public abstract void simul_end() ;
+	protected abstract void simul_end() ;
 
 	// get param
 	public SimulInfo getSI(){

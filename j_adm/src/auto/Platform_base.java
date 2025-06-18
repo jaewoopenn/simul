@@ -256,7 +256,6 @@ public abstract class Platform_base {
 //			sm.prn();
 			s.init_sm_dt(sm,dt);
 			s.simul(g_dur);
-			s.simul_end();
 			SimulInfo si=s.getSI();
 			fu.add(si.getDMR()+"");
 		}
@@ -277,7 +276,6 @@ public abstract class Platform_base {
 		sm.setX(1);
 		s.init_sm_dt(sm,dt);
 		s.simul(g_dur);
-		s.simul_end();
 		SLogF.save();
 		
 	}
@@ -314,7 +312,6 @@ public abstract class Platform_base {
 		sm.setX(x);
 		s.init_sm_dt(sm,dt);
 		s.simul(g_dur);
-		s.simul_end();
 	}
 
 

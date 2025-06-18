@@ -41,8 +41,7 @@ public class z_Platform2 {
 		sm.setX(x);
 		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
 		tsim.init_sm_tm(sm,tm);
-		tsim.simul(0,dur);
-		tsim.simul_end();
+		tsim.simul(dur);
 		SimulInfo si=tsim.getSI();
 		si.prn();
 		return -1;		
@@ -65,8 +64,7 @@ public class z_Platform2 {
 		sm.setX(x);
 		TaskSimul_EDF_VD tsim=new TaskSimul_EDF_VD();
 		tsim.init_sm_tm(sm,tm);
-		tsim.simul(0,dur);
-		tsim.simul_end();
+		tsim.simul(dur);
 		SimulInfo si=tsim.getSI();
 		si.prn();
 		return -1;

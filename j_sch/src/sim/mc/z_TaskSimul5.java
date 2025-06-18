@@ -74,8 +74,7 @@ public class z_TaskSimul5 {
 //		ts=new TaskSimul_EDF_AD_E();
 		ts.init_sm_tm(sm,tm);
 //		tm.prnTxt();
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 		SimulInfo si=ts.getSI();
 		si.prn();
 //		SLogF.end();
@@ -120,8 +119,7 @@ public class z_TaskSimul5 {
 		ts.init_sm_tm(sm,tm);
 		tm.prnTxt();
 		tm.prnOffline();
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 		SimulInfo si=ts.getSI();
 		si.prn();
 		
@@ -163,8 +161,7 @@ public class z_TaskSimul5 {
 		TaskSimul_EDF_IV ts=new TaskSimul_EDF_IV();
 		ts.init_sm_tm(sm,tm);
 		tm.prnTxt();
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 		SimulInfo si=ts.getSI();
 		si.prn();
 		SLogF.end();

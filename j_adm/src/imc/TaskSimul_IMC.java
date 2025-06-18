@@ -16,7 +16,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected JobSimul_MC g_jsm;
 	protected boolean g_ms_happen=false;
 	
-	
 	@Override
 	public void init_sm_dt(SysMng sm, DTaskVec dt ){
 		g_sm=sm;
@@ -45,7 +44,13 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	@Override
 	protected void simul_one(){
-		
+		int t=g_jsm.get_time();
+		if(t==g_dt.getNext()) {
+			g_dt.nextStage();
+			g_tm=g_dt.getTM(g_dt.getStage());
+			g_tm.setX(g_sm.getX());
+			
+		}
 		release_jobs();
 		if(g_jsm.is_idle()&&g_ms_happen) {
 			recover_idle();

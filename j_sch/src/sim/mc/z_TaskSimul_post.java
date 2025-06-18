@@ -62,8 +62,7 @@ public class z_TaskSimul_post {
 		
 		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,g_et);
-		ts.simul_end();
+		ts.simul(g_et);
 		
 		g_si=ts.getSI();
 		return 	end_g();		
@@ -81,8 +80,7 @@ public class z_TaskSimul_post {
 		
 		TaskSimul_EDF_Post ts=new TaskSimul_EDF_Post();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,g_et);
-		ts.simul_end();
+		ts.simul(g_et);
 		
 		g_si=ts.getSI();
 		return 	end_g();		

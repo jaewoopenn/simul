@@ -34,8 +34,7 @@ public class z_TaskSimul4 {
 		SysMng sm=getSM();
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		
 		SimulInfo si=ts.getSI();
 		si.prn();
@@ -53,8 +52,7 @@ public class z_TaskSimul4 {
 		SysMng sm=getSM();
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		
 		SimulInfo si=ts.getSI();
 		si.prn();
@@ -71,7 +69,7 @@ public class z_TaskSimul4 {
 		SysMng sm=getSM();
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
+		ts.simul(sm.getEnd());
 		ts.simul_end();
 		
 		SimulInfo si=ts.getSI();

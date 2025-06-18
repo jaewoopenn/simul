@@ -42,8 +42,7 @@ public class z_TaskSimul6 {
 			TaskSimul_EDF_IV ts=new TaskSimul_EDF_IV();
 			ts.init_sm_tm(sm,tm);
 			ts.setBE();
-			ts.simul(0,et);
-			ts.simul_end();
+			ts.simul(et);
 			SimulInfo si=ts.getSI();
 			double r1=si.getDMR();
 
@@ -60,8 +59,7 @@ public class z_TaskSimul6 {
 			TaskSimul_EDF_Post2 ts2=new TaskSimul_EDF_Post2();
 			ts2.init_sm_tm(sm,tm);
 			ts2.setBE();
-			ts2.simul(0,et);
-			ts2.simul_end();
+			ts2.simul(et);
 			si=ts2.getSI();
 			double r2=si.getDMR();
 			SLog.prnc(2, "no:"+i);
@@ -179,8 +177,7 @@ public class z_TaskSimul6 {
 			TaskSimul_EDF_Post2 ts2=new TaskSimul_EDF_Post2();
 			ts2.init_sm_tm(sm,tm);
 			ts2.setBE();
-			ts2.simul(0,et);
-			ts2.simul_end();
+			ts2.simul(et);
 			si=ts2.getSI();
 			r1=si.getDMR();
 			

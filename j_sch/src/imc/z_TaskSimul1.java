@@ -54,8 +54,7 @@ public class z_TaskSimul1 {
 		sm.setLife(200);
 //		sm.setLife(2);
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 		SimulInfo si=ts.getSI();
 		si.prn();
 		

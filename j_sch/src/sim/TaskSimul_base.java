@@ -31,19 +31,18 @@ public abstract class TaskSimul_base {
 
 
 	// simul interval
-	public void simul(int st, int et){
-		int t=st;
-		if(t==0){
-			SLogF.prn("rel  / exec / t");
-		}
+	public void simul(int et){
+		int t=0;
+		SLogF.prn("rel  / exec / t");
 		while(t<et){
 			simul_one();
 			t++;
 		}
+		simul_end();
 	}
 	
 	
-	public abstract void simul_end() ;
+	protected abstract void simul_end() ;
 
 	// get param
 	public SimulInfo getSI(){

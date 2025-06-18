@@ -50,8 +50,7 @@ public class z_TaskSimul3 {
 		sm.setX(a.computeX());
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		
 		SimulInfo si=ts.getSI();
 		si.prn();
@@ -84,8 +83,7 @@ public class z_TaskSimul3 {
 		sm.setDelay(x*tm.getLongPeriod());
 		ts.setBE();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		
 		SimulInfo si=ts.getSI();
 		si.prn();

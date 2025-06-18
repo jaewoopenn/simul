@@ -13,6 +13,7 @@ public class DTaskVec {
 	private TaskVec[] g_taskV;
 	private Integer[] g_stageTime;
 	private int g_num;
+	private int g_stage=0;
 	public DTaskVec(int num){
 		g_num=num;
 		g_taskV=new TaskVec[num];
@@ -54,6 +55,16 @@ public class DTaskVec {
 
 	public int getTime(int stage) {
 		return g_stageTime[stage];
+	}
+	public int getNext() {
+		// TODO Auto-generated method stub
+		return g_stageTime[g_stage];
+	}
+	public void nextStage() {
+		g_stage++;
+	}
+	public int getStage() {
+		return g_stage;
 	}
 
 

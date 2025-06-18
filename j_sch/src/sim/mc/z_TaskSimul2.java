@@ -34,8 +34,7 @@ public class z_TaskSimul2 {
 //		sm.setDelay(0);
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		
 		SimulInfo si=ts.getSI();
 		si.prn();
@@ -51,8 +50,7 @@ public class z_TaskSimul2 {
 		SysMng sm=getSM();
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		
 		SimulInfo si=ts.getSI();
 		si.prn();
@@ -71,8 +69,7 @@ public class z_TaskSimul2 {
 //		sm.setDelay(0);
 //		sm.prn();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,sm.getEnd());
-		ts.simul_end();
+		ts.simul(sm.getEnd());
 		SimulInfo si=ts.getSI();
 		si.prn();
 		SLogF.end();
@@ -83,8 +80,7 @@ public class z_TaskSimul2 {
 		TaskSimul_EDF_AD_E ts2=new TaskSimul_EDF_AD_E();
 //		ts2.setRecoverIdle(false);
 		ts2.init_sm_tm(sm,tm);
-		ts2.simul(0,sm.getEnd());
-		ts2.simul_end();
+		ts2.simul(sm.getEnd());
 		
 		si=ts2.getSI();
 		si.prn();

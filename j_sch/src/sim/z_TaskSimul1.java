@@ -38,8 +38,7 @@ public class z_TaskSimul1 {
 //		TaskMng tm=TS_NonMC1.ts1();
 		TaskMng tm=TS_MC1.ts1();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 		return 0;
 	}
 	
@@ -54,8 +53,7 @@ public class z_TaskSimul1 {
 //		TaskMng tm=TS_NonMC1.ts1();
 		TaskMng tm=TS_MC1.ts1();
 		ts.init_sm_tm(sm,tm);
-		ts.simul(0,et);
-		ts.simul_end();
+		ts.simul(et);
 //		FLog.end();
 		SimulInfo si=ts.getSI();
 		si.prn();
