@@ -54,6 +54,7 @@ public class TaskSetUtil {
 	public static void writeTask(MList ml, Task t) {
 		int isHI=t.isHC()?1:0;
 		String txt="add,";
+		txt+=t.tid+",";
 		txt+=t.period+",";
 		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
 //		SLog.prn(2, txt);

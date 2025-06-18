@@ -14,6 +14,7 @@ import util.MList;
 import util.SLog;
 import util.SEngineT;
 
+@SuppressWarnings("unused")
 public class z_Platform1 {
 //	public static int idx=5;
 	public static int idx=6;

@@ -53,11 +53,11 @@ public class AnalEDF_IV3 extends Anal {
 			if(idx==-1)
 				break;
 		}
-		int no=0;
-		for(Task t:g_tm.get_HC_Tasks()) {
-			if(t.isHI_Preferred())
-				no++;
-		}
+//		int no=0;
+//		for(Task t:g_tm.get_HC_Tasks()) {
+//			if(t.isHI_Preferred())
+//				no++;
+//		}
 //		SLog.prnc(2, " ho:"+no);
 		return getHSum();
 	}

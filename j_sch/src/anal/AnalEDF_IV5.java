@@ -51,8 +51,8 @@ public class AnalEDF_IV5 extends Anal {
 		double step=0.01;
 //		g_tm.prn();
 //		g_tm.prnInfo();
-		double old_hsum=1.0;
-		double old_zsum=1.0;
+//		double old_hsum=1.0;
+//		double old_zsum=1.0;
 		while(true) {
 //			SLog.prn(1,"st:"+step);
 //			SLog.prn(1,"dest_z:"+dest_z);
@@ -69,8 +69,8 @@ public class AnalEDF_IV5 extends Anal {
 			}
 			if(step<0.0001)
 				break;
-			old_hsum=hsum;
-			old_zsum=zsum;
+//			old_hsum=hsum;
+//			old_zsum=zsum;
 			dest_z-=step;
 		}
 		return getHSum_ind(dest_z);
@@ -92,17 +92,17 @@ public class AnalEDF_IV5 extends Anal {
 //			SLog.prn(1,"d "+d);
 			
 			double z_sum=g_tm.getLoUtil();
-			double h_sum=0;
+//			double h_sum=0;
 			for(Task t:g_tm.get_HC_Tasks()){
 				double l=t.getLoUtil();
 				double h=t.getHiUtil();
 				double z=compDtoZ(h,l,d);
 				if(z>h)
 					z=h;
-				double x=l/z;
-				double h_r=(h-l)/(1-x);
+//				double x=l/z;
+//				double h_r=(h-l)/(1-x);
 //				SLog.prn(1,t.tid+" rate "+MCal.getStr(z)+" "+MCal.getStr(h_r));
-				h_sum+=h_r;
+//				h_sum+=h_r;
 				z_sum+=z;
 			}
 //			SLog.prn(1,"z sum "+MCal.getStr(z_sum)+" h sum "+MCal.getStr(h_sum));

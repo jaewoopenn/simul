@@ -87,7 +87,6 @@ public class GenScn {
 	}
 	public void fetchNxt() {
 		String next;
-		int t=0;
 		next=scn.getNext();
 		if(next==null) {
 			nxt=-1;

@@ -3,8 +3,8 @@ package sim.job;
 import util.SEngineT;
 import util.SLog;
 import util.SLogF;
-import z_ex.Job_MC1;
 
+@SuppressWarnings("unused")
 public class z_JobSimul2 {
 	public static int idx=4;
 	public static int log_level=1;

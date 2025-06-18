@@ -149,12 +149,11 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	
 
 	private void ms_check(){
-		Job j=g_jsm.get_ms_job();
+		Job j=g_jsm.get_ms_job(); 
 		if(j==null) 
 			return;
 		if(j.add_exec>0) {
 			if(isMS(j)) { 
-//				g_ms_happen=true;
 				mode_switch(j.tid);
 			} else {
 				g_jsm.getJM().removeCur();

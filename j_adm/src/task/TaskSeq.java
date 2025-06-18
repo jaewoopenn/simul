@@ -10,7 +10,7 @@ public class TaskSeq {
 
 	public static int getID() {
 		tid++;
-		return tid-1;
+		return tid;
 	}
 	public static void reset() {
 		tid=0;

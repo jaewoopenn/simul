@@ -7,6 +7,7 @@ import util.SLog;
 // MC-RUN
 // a_imc/dmr_imc.py
 
+@SuppressWarnings("unused")
 public class z_auto_sim_imc2 {
 	private static int s_idx;
 	private static int s_log_level;

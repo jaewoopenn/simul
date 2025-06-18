@@ -9,6 +9,7 @@ import util.MList;
 import util.MRand;
 import util.SLog;
 
+@SuppressWarnings("unused")
 public class SysGen {
 	private MRand g_rand=new MRand();
 	protected TaskGen g_tg;
@@ -35,11 +36,6 @@ public class SysGen {
 		tgp.setMoLH(g_cfg);
 		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
 		return tgp;
-	}
-	public int prepare_MC(){
-		TaskGenParam tgp=getTgp();
-		g_tg=new TaskGenMC(tgp);
-		return g_cfg.readInt("num");
 	}
 	public int prepare_IMC(){
 		TaskGenParam tgp=getTgp();

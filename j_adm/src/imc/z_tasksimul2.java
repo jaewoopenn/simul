@@ -7,6 +7,7 @@ import util.SEngineT;
 import util.SLog;
 import util.SLogF;
 
+@SuppressWarnings("unused")
 public class z_tasksimul2 {
 	public static int idx=1;
 //	public static int idx=2;

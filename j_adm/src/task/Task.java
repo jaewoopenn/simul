@@ -24,7 +24,12 @@ public class Task {
 	
 
 	public Task(int period, int c_l, int c_h,boolean is_HC) {
-		this.tid=TaskSeq.getID();
+		this(TaskSeq.getID(),period,c_l,c_h,is_HC);
+	}
+
+	
+	public Task(int tid, int period, int c_l, int c_h,boolean is_HC) {
+		this.tid=tid;
 		this.period = period;
 		this.vd = period;
 		this.c_l = c_l;
@@ -32,7 +37,7 @@ public class Task {
 		this.is_HC=is_HC;
 	}
 
-	
+
 	public boolean check() {
 		if (period==0)
 			return false;

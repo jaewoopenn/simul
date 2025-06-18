@@ -8,6 +8,7 @@ import util.SLog;
 
 
 
+@SuppressWarnings("unused")
 public class TaskGenParam {
 	private MRand g_rand=new MRand();
 	
@@ -116,12 +117,12 @@ public class TaskGenParam {
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
 			int l=(int)(h*ratio);
-			return new Task(p,l,h,true);
+			return new Task(tid, p,l,h,true);
 		} else{
 			double m_ratio=g_rand.getDbl(mo_lb,mo_ub);
 			int l=(int)(tu*p);
 			int h=(int)(l*m_ratio);
-			return new Task(p,l,h,false);
+			return new Task(tid,p,l,h,false);
 		}
 	}
 

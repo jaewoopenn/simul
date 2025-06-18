@@ -39,20 +39,21 @@ public class JobSimul_MC extends JobSimul{
 	}	
 	
 	// do ms check after exec
+	// check current job exec=0, low task end
 	public Job get_ms_job() { 
 		Job j=(Job)g_jm.getCur();
 		if(j==null)
 			return null;
-		if(j.exec==0) {
-			
-			if(!j.isHI) {
-				g_jm.removeCur();
-				return null;
-			} else { //HI
-				return j;
-			}
+		if(j.exec!=0) 
+			return null;
+		
+		if(j.isHI) {
+			return j;
+		} else { //HI
+			g_jm.removeCur();
+			return null;
 		}
-		return null;
+		
 	}
 	
 
