@@ -32,7 +32,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 
 	@Override
-	public void simul_end() {
+	protected void simul_end() {
 		g_si.drop+=g_jsm.simul_end();
 	}
 	
