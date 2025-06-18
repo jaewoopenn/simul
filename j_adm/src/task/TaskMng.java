@@ -27,10 +27,6 @@ public class TaskMng {
 	
 	// set
 	
-	public TaskMng(Vector<Task> vec) {
-		TaskSet ts=new TaskSet(vec);
-		// TODO Auto-generated constructor stub
-	}
 
 
 

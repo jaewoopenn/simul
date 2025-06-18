@@ -57,7 +57,6 @@ public class DTaskVec {
 		return g_stageTime[stage];
 	}
 	public int getNext() {
-		// TODO Auto-generated method stub
 		return g_stageTime[g_stage];
 	}
 	public void nextStage() {
