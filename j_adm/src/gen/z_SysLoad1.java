@@ -15,7 +15,7 @@ public class z_SysLoad1 {
 	{
 		int n=25;
 
-		String tsn="adm/test1/taskset_86.txt";
+		String tsn="adm/test1/taskset_83.txt";
 		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();

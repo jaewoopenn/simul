@@ -8,9 +8,10 @@ import task.Task;
 import util.SLog;
 
 //
-// drop ¾ÈÇÏ´Â °Í. 
-// down sacled ÀÌ°ÍÀº ¾à 1/2 exec. time
+// drop ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½. 
+// down sacled ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ï¿½ 1/2 exec. time
 // 
+
 
 public class AnalAMC_np2 extends Anal {
 	private int sz;

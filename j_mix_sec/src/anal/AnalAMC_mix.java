@@ -7,10 +7,7 @@ import java.util.Vector;
 import task.Task;
 import util.SLog;
 
-//
-// drop 안하는 것. 
-// down sacled 이것은 약 1/2 exec. time
-// 
+// ARES
 
 public class AnalAMC_mix extends Anal {
 	private int sz;

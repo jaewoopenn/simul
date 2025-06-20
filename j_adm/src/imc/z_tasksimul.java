@@ -20,9 +20,9 @@ public class z_tasksimul {
 		int n=25;
 		int dur=350;
 		double p=0.5;
-		double x=0.51;
+		double x=0.54;
 
-		String tsn="adm/test1/taskset_86.txt";
+		String tsn="adm/test1/taskset_80.txt";
 		String out="adm/test.log.txt";
 //		boolean bSave=true;
 		boolean bSave=false;
@@ -43,15 +43,14 @@ public class z_tasksimul {
 		sm.setMS_Prob(p);
 		sm.setX(x);
 		
-		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
-//		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
+//		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
+		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
 		SLog.prn(1, ts.getName());
 		ts.init_sm_dt(sm,dt);
 //
 		if(bSave)	
 			SLogF.init(out);
 		ts.simul(dur);
-		ts.simul_end();
 		SimulInfo si=ts.getSI();
 		si.prn2();
 		if(bSave)	

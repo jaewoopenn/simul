@@ -57,7 +57,9 @@ public class DTaskVec {
 		return g_stageTime[stage];
 	}
 	public int getNext() {
-		return g_stageTime[g_stage];
+		if(g_stage==g_num-1) 
+			return -1;
+		return g_stageTime[g_stage+1];
 	}
 	public void nextStage() {
 		g_stage++;

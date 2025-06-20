@@ -20,7 +20,7 @@ public class z_SysGen1 {
 		Anal a=null;
 //		a=new AnalEDF_VD();
 		int num=sg.prepare_IMC();
-		sg.gen2(path+fn+".txt", a,num);
+		sg.gen2(path+fn, a,num);
 		SLog.prn(1, "OK "+num);
 		return 1;
 

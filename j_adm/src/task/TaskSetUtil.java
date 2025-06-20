@@ -118,14 +118,15 @@ public class TaskSetUtil {
 	}
 	
 	public static Task loadTask(String[] words){
-        int p=Integer.valueOf(words[1]).intValue();
-        int l=Integer.valueOf(words[2]).intValue();
-        int h=Integer.valueOf(words[3]).intValue();
-        int isHI=Integer.valueOf(words[4]).intValue();
+        int tid=Integer.valueOf(words[1]).intValue();
+        int p=Integer.valueOf(words[2]).intValue();
+        int l=Integer.valueOf(words[3]).intValue();
+        int h=Integer.valueOf(words[4]).intValue();
+        int isHI=Integer.valueOf(words[5]).intValue();
         if(isHI==1)
-        	return new Task(p,l,h,true);
+        	return new Task(tid,p,l,h,true);
         else
-        	return new Task(p,l,h,false);
+        	return new Task(tid,p,l,h,false);
 	       
 	}
 

@@ -28,7 +28,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 
 	@Override
-	public void simul_end() {
+	protected void simul_end() {
 		g_si.drop+=g_jsm.simul_end();
 	}
 	
@@ -46,9 +46,11 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected void simul_one(){
 		int t=g_jsm.get_time();
 		if(t==g_dt.getNext()) {
+			SLog.prn(2, "task change "+t+" "+(g_dt.getStage()+1));
 			g_dt.nextStage();
 			g_tm=g_dt.getTM(g_dt.getStage());
 			g_tm.setX(g_sm.getX());
+//			g_tm.prn();
 			
 		}
 		release_jobs();

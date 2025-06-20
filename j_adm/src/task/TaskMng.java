@@ -55,9 +55,12 @@ public class TaskMng {
 	}
 
 
-	public Task getTask(int i) {
-
-		return g_tasks.get(i);
+	public Task getTask(int tid) {
+		for(Task t:g_hc_tasks.getArr()) {
+			if(t.tid==tid)
+				return t;
+		}
+		return null;
 	}
 	
 	public double getRUtilFMC() {
