@@ -1,4 +1,4 @@
-package autorun;
+package auto;
 
 //\a_new\sch.py
 // mc run

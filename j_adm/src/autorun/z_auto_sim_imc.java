@@ -1,6 +1,8 @@
 package autorun;
 
 
+import auto.DataSim_IMC;
+import auto.Platform_IMC;
 import util.SEngineT;
 import util.SLog;
 

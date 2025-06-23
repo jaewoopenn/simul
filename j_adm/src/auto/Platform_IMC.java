@@ -1,9 +1,8 @@
-package autorun;
+package auto;
 
 import anal.Anal;
 import anal.AnalEDF_VD_IMC;
 import anal.AnalSel_IMC;
-import auto.Platform_base;
 import gen.ConfigGen;
 import gen.SysGen;
 import imc.SimulSel_IMC;

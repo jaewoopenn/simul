@@ -1,4 +1,4 @@
-package autorun;
+package auto;
 
 import java.util.Vector;
 

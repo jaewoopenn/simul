@@ -200,7 +200,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		if(tsk==null) 
 			return;
 		SLogF.prn(g_jsm.get_time()+" "+tid);
-		SLogF.prng(g_jsm.get_time()+" "+tid);
+		SLogF.prng("MS,"+g_jsm.get_time()+","+tid);
 		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
 		g_si.ms++;
 		modeswitch_in(tsk);
