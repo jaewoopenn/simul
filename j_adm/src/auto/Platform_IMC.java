@@ -3,6 +3,7 @@ package auto;
 import anal.Anal;
 import anal.AnalEDF_VD_IMC;
 import anal.AnalSel_IMC;
+import anal.AnalSel_MC;
 import gen.ConfigGen;
 import gen.SysGen;
 import imc.SimulSel_IMC;
@@ -12,16 +13,24 @@ import util.SLog;
 
 public class Platform_IMC extends Platform_base {
 	private boolean g_onlyMC=false;
+	private boolean g_isMC=false;
 	
 	public Platform_IMC(String path, String rs_path) {
 		g_path=path;
 		g_rs_path=rs_path;
 	}	
-
+	
+	public void setMC() {
+		g_isMC=true;
+	}
 	// gen CFG, TS
 	public void genCfg_util(String cf,int base,int step, int end) {
 		double end_i=(end-base)/step;
-		ConfigGen cg=ConfigGen.getPredefined();
+		ConfigGen cg;
+		if(g_isMC)
+			cg=ConfigGen.getPredefinedMC();
+		else
+			cg=ConfigGen.getPredefined();
 		MList fu=new MList();
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_num+"");
@@ -41,9 +50,9 @@ public class Platform_IMC extends Platform_base {
 			fu.add(fn);
 		}
 		fu.saveTo(g_path+"/"+cf);
-		
 	}
 
+	
 	// gen 
 	public void genCfg(String cf) {
 		ConfigGen cg=ConfigGen.getPredefined();
@@ -121,7 +130,10 @@ public class Platform_IMC extends Platform_base {
 
 	
 	public Anal getAnal(int sort) {
-		return AnalSel_IMC.getAnal(sort);
+		if(g_isMC)
+			return AnalSel_MC.getAnal(sort);
+		else
+			return AnalSel_IMC.getAnal(sort);
 	}
 	public Anal getAnalSim(int sort) {
 		return AnalSel_IMC.getAnalSim(sort);

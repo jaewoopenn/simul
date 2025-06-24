@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import anal.Anal;
 import anal.AnalSel_IMC;
+import anal.AnalSel_MC;
 import util.MList;
 
 public class DataAnal_IMC  {
@@ -13,9 +14,13 @@ public class DataAnal_IMC  {
 	protected double[][] g_rs;
 	protected int g_max=0;
 	protected int g_xlen=0;
+	private boolean g_isMC=false;
 	public DataAnal_IMC(String path, int x) {
 		g_path=path;
 		g_max=x;
+	}
+	public void setMC() {
+		g_isMC=true;
 	}
 	
 	public void load_x(String fn) {
@@ -81,9 +86,12 @@ public class DataAnal_IMC  {
 	}
 	
 
+	public Anal getAnal(int sort) {
+		if(g_isMC)
+			return AnalSel_MC.getAnal(sort);
+		else
+			return AnalSel_IMC.getAnal(sort);
+	}
 
-	public Anal getAnal(int i) {
-		return AnalSel_IMC.getAnal(i);
-	}	
 	
 }

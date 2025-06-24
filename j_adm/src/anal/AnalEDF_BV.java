@@ -22,6 +22,10 @@ public class AnalEDF_BV extends Anal {
 		hitasks_loutil=g_info.getUtil_HC_LO();
 		hitasks_hiutil=g_info.getUtil_HC_HI();
 		glo_x=hitasks_loutil/(1-lotasks_loutil);
+		double lctasks_deUtil=g_info.getUtil_DeLC();
+		if(lctasks_deUtil>0)
+			SLog.err("EDF-BV for MC, deUtil:"+lctasks_deUtil);
+
 	}
 	
 	@Override
@@ -34,7 +38,14 @@ public class AnalEDF_BV extends Anal {
 		if (lotasks_loutil>1) return lotasks_loutil;
 		if (hitasks_hiutil+lotasks_loutil<=1)
 			return hitasks_hiutil+lotasks_loutil;
-		double dtm=(hitasks_hiutil-hitasks_loutil)/(1-glo_x);
+//		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
+//		return dtm;
+		
+		double dtm;
+		dtm=hitasks_loutil/glo_x+lotasks_loutil;
+		if(dtm>1)
+			return dtm;
+		dtm=(hitasks_hiutil-hitasks_loutil)/(1-glo_x);
 		return dtm;
 	}
 	

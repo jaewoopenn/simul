@@ -89,7 +89,7 @@ public class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
-		int max=3;
+		int max=1;
 		TaskSetUtil.initStage(ml, max);
 		Task[] tss=ts.getArr();
 		for(Task t:tss) {

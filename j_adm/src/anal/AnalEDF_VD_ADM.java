@@ -1,6 +1,7 @@
 package anal;
 
 import task.SysInfo;
+import task.Task;
 import task.TaskMng;
 import util.SLog;
 
@@ -24,9 +25,20 @@ public class AnalEDF_VD_ADM extends Anal {
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
 		glo_x=hctasks_loutil/(1-lctasks_acUtil);
-//		SLog.prn(1, glo_x);
+//		comp_hi_prefer();
 	}
-	
+
+//	private void comp_hi_prefer() {
+//		for(Task t:g_tm.get_HC_Tasks()){
+//			double v_util=t.getLoUtil()/glo_x;
+//			double h_util=t.getHiUtil();
+////			Log.prn(1, v_util+","+h_util);
+//			if(v_util>=h_util){
+//				t.setHI_only();
+//			}
+//		}
+//	}
+		
 	@Override
 	public double getDtm() {
 		return getScore();
@@ -39,6 +51,13 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (dtm<=1)
 			return dtm;
 		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
+//		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil;
+//		for(Task t:g_tm.get_HC_Tasks()){
+//			double v_util=t.getLoUtil()/glo_x;
+//			double h_util=t.getHiUtil();
+//			dtm+=Math.min(v_util,h_util);
+////			SLog.prn(2, t.getLoUtil()+","+v_util+", "+h_util);
+//		}
 		double dtm2=0;
 		return Math.max(dtm, dtm2);
 	}
