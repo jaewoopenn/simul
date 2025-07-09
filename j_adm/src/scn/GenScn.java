@@ -1,4 +1,4 @@
-package imc;
+package scn;
 
 import java.util.Vector;
 

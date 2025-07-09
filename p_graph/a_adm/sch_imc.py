@@ -51,7 +51,7 @@ def main():
         print(v)
         mp.plot3(gl.x,v,gl.line[no],gl.lab[no],gl.marker[no])
         no+=1
-#     mp.ylim(0, 1.02)
+    mp.ylim(0, 1.02)
     mp.xlim([55,100])
     mp.legendBL()
     mp.xlabel(gl_input.xlab)
