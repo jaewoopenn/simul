@@ -15,7 +15,7 @@ public class z_Anal2 {
 
 
 	public int test1()	{
-		String ts="adm/test1/taskset_96";
+		String ts="adm/test1/test_task.txt";
 		int n=1745;
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
@@ -33,7 +33,8 @@ public class z_Anal2 {
 	}
 	
 	public int test2() {
-		String ts="adm/test1/taskset_92";
+//		String ts="adm/test1/taskset_92";
+		String ts="adm/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		SLog.prn(1, ret);
@@ -47,14 +48,28 @@ public class z_Anal2 {
 			DTaskVec dt=sy.loadOne2();
 			int num=dt.getNum();
 			double dtm=0;
+			double x=-1;
 			for(int j=0;j<num;j++) {
 				TaskSet tmp=new TaskSet(dt.getVec(j));
 				TaskMng tm=tmp.getTM();
-//				tm.prn();
+				tm.prn();
 				a.init(tm);
+				if(x==-1) {
+					x=a.computeX();
+				}
+				a.setX(x);
 //				a.prn();
-				dtm=Math.max(dtm, a.getDtm());
-				SLog.prn(1, i+": "+dtm);
+				double d=a.getDtm();
+				dtm=Math.max(dtm, d);
+				SLog.prn(1, "x: "+x);
+				SLog.prn(1, i+": "+d);
+				if(d>1) {
+					x=a.computeX();
+					SLog.prn(1, "re x: "+x);
+					a.setX(x);
+					d=a.getDtm();
+					SLog.prn(1, "re: "+d);
+				}
 			}
 			if(dtm<=1)
 				s++;

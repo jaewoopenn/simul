@@ -4,7 +4,7 @@ import anal.Anal;
 import anal.AnalEDF_IMC;
 import gen.ConfigGen;
 import gen.SysLoad;
-import imc.TaskSimul_EDF_IMC_gen;
+import scn.TaskSimul_EDF_IMC_gen;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;

@@ -80,6 +80,11 @@ public class AnalEDF_VD_IMC extends Anal {
 		return a.computeX();
 	}
 
+	@Override
+	public void setX(double x) {
+		glo_x=x;
+	}
+
 	
 	
 

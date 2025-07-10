@@ -24,7 +24,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		lctasks_deUtil=g_info.getUtil_DeLC();
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
-		glo_x=hctasks_loutil/(1-lctasks_acUtil);
+		computeX();
 //		comp_hi_prefer();
 	}
 
@@ -41,10 +41,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		
 	@Override
 	public double getDtm() {
-		return getScore();
-	}
-
-	public double getScore() {
 		if (hctasks_hiutil>1) return hctasks_hiutil;
 		if (lctasks_acUtil>1) return lctasks_acUtil;
 		double dtm=hctasks_hiutil+lctasks_acUtil;
@@ -56,7 +52,7 @@ public class AnalEDF_VD_ADM extends Anal {
 //			double v_util=t.getLoUtil()/glo_x;
 //			double h_util=t.getHiUtil();
 //			dtm+=Math.min(v_util,h_util);
-////			SLog.prn(2, t.getLoUtil()+","+v_util+", "+h_util);
+//			SLog.prn(2, t.getLoUtil()+","+v_util+", "+h_util);
 //		}
 		double dtm2=0;
 		return Math.max(dtm, dtm2);
@@ -67,6 +63,9 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double computeX() {
+		glo_x=hctasks_loutil/(1-lctasks_acUtil);
+		if(glo_x==0)
+			glo_x=1;
 		return glo_x;
 	}
 	
@@ -85,17 +84,16 @@ public class AnalEDF_VD_ADM extends Anal {
 		return 0;
 	}
 	
-	public static double computeX(TaskMng tm) {
-		AnalEDF_VD_ADM a=new AnalEDF_VD_ADM();
-		a.init(tm);
-		a.prepare();
-		return a.computeX();
-	}
 
 	@Override
 	public void reset() {
 		
 	}
+	@Override
+	public void setX(double x) {
+		glo_x=x;
+	}
+
 	
 	
 

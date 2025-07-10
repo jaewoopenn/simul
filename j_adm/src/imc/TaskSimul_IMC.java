@@ -15,7 +15,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 
 	protected JobSimul_MC g_jsm;
 	protected boolean g_ms_happen=false;
-	
+	protected int g_delayed_t=-1;
 	@Override
 	public void init_sm_dt(SysMng sm, DTaskVec dt ){
 		g_sm=sm;
@@ -45,13 +45,27 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	@Override
 	protected void simul_one(){
 		int t=g_jsm.get_time();
+		
 		if(t==g_dt.getNext()) {
-			SLog.prn(2, "task change "+t+" "+(g_dt.getStage()+1));
+			SLog.prn(2,t+": stage change "+(g_dt.getStage()+1));
 			g_dt.nextStage();
-			g_tm=g_dt.getTM(g_dt.getStage());
-			g_tm.setX(g_sm.getX());
+			if(g_dt.getClass(g_dt.getStage())==0) { // add
+				g_si.start_delay=t;
+				setDelay();
+			} else { // remove
+				SLog.prn(2, t+": task change.");
+				g_tm=g_dt.getTM(g_dt.getStage());
+			}
 //			g_tm.prn();
-			
+		}
+		if(g_delayed_t!=-1) {
+			if(t==g_delayed_t||g_jsm.is_idle()) {
+				g_si.delayed+=t-g_si.start_delay;
+				SLog.prn(2, t+": delayed task change.");
+				g_tm=g_dt.getTM(g_dt.getStage());
+				setVD();
+				g_delayed_t=-1;
+			}
 		}
 		release_jobs();
 		if(g_jsm.is_idle()&&g_ms_happen) {
@@ -64,6 +78,9 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		g_jsm.simul_one();
 		ms_check();
 	}
+	
+	protected abstract void setDelay();
+	protected abstract void setVD();
 	
 	@Override
 	protected Job rel_one_job(Task tsk, int t) {

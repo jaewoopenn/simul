@@ -1,6 +1,7 @@
-package imc;
+package scn;
 
 
+import imc.TaskSimul_IMC;
 import sim.job.Job;
 import task.Task;
 
@@ -48,6 +49,18 @@ public class TaskSimul_EDF_IMC_gen extends TaskSimul_IMC{
 		return j;
 	}
 
+	@Override
+	protected void setVD() {
+		g_tm.setX(g_sm.getX());
+		
+	}
+
+
+
+	@Override
+	protected void setDelay() {
+		
+	}
 
 
 }

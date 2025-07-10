@@ -10,8 +10,10 @@ public class SimulInfo {
 	public int nrel;
 	public int drop;
 	public int ms;
+	public int delayed;
 	public int degraded;
 	public int total;
+	public int start_delay;
 	public double getDMR(){
 		if(rel==0)
 			return 0;
@@ -29,6 +31,7 @@ public class SimulInfo {
 	public void prn2() {
 		SLog.prn(2, "ms:"+ms);
 		SLog.prn(2, "degraded:"+degraded);
+		SLog.prn(2, "delayed:"+delayed);
 		SLog.prn(2, "total:"+total);
 		double per=(double)degraded/total;
 		SLog.prn(2, "degraded pecentage:"+MCal.getStr(per));

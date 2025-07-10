@@ -28,6 +28,16 @@ public class TaskSimul_EDF_IMC extends TaskSimul_IMC{
 		return new Job(tsk.tid,dl,Math.max(tsk.c_h,tsk.c_l),0);
 	}
 
+	@Override
+	protected void setVD() {
+		g_tm.setX(g_sm.getX());
+		
+	}
+
+	@Override
+	protected void setDelay() {
+		
+	}
 
 
 }

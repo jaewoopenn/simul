@@ -212,4 +212,8 @@ public class AnalAMC_imc extends Anal {
 		
 	}
 
+	@Override
+	public void setX(double x) {
+	}
+
 }

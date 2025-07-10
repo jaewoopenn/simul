@@ -1,5 +1,7 @@
 package imc;
 
+import anal.Anal;
+import anal.AnalEDF_VD_ADM;
 import gen.SysLoad;
 import task.SysInfo;
 import sim.*;
@@ -17,15 +19,16 @@ public class z_tasksimul {
 
 
 	public int test1()	{
-		int n=25;
-		int dur=350;
+		int n=7;
+		int dur=550;
 		double p=0.5;
 		double x=0.54;
-
-		String tsn="adm/test1/taskset_80.txt";
+		String tsn="adm/test1/taskset_77.txt";
 		String out="adm/test.log.txt";
+		
 //		boolean bSave=true;
 		boolean bSave=false;
+		Anal a=new AnalEDF_VD_ADM();
 		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
@@ -36,7 +39,10 @@ public class z_tasksimul {
 		TaskMng tm=its.getTM();
 		tm.prn();
 		SysInfo sii=tm.getInfo();
+		a.init(tm);
+		x=a.computeX();
 		sii.setX(x);
+		SLog.prn(2, "x:"+x);
 		SLog.prn(2, "lo sch:"+(sii.getUtil_HC_LO()/x+sii.getUtil_LC()));
 
 		SysMng sm=new SysMng();
@@ -50,9 +56,11 @@ public class z_tasksimul {
 //
 		if(bSave)	
 			SLogF.init(out);
+		
 		ts.simul(dur);
-		SimulInfo si=ts.getSI();
-		si.prn2();
+		SLog.prn(1, "-------");
+		ts.prnSI();
+		
 		if(bSave)	
 			SLogF.save();
 		return 0;

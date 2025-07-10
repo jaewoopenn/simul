@@ -46,6 +46,9 @@ public abstract class TaskSimul_base {
 	public SimulInfo getSI(){
 		return g_si;
 	}
+	public void prnSI() {
+		g_si.prn2();
+	}
 	public TaskMng getTM(){
 		return g_tm;
 	}

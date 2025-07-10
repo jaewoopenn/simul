@@ -31,6 +31,16 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 	}
 
 
+	@Override
+	protected void setVD() {
+		g_tm.setX(g_sm.getX());
+		
+	}
+
+	@Override
+	protected void setDelay() {
+		
+	}
 
 
 }

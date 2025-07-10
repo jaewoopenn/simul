@@ -3,6 +3,7 @@ package autorun;
 import auto.DataAnal_IMC;
 import auto.Platform_IMC;
 
+// generate task set skip if HC util = 0 or LC util=0 (not yet implement)
 //\a_new\sch.py
 // mc run
 

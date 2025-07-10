@@ -39,6 +39,7 @@ public abstract class Anal {
 	protected abstract void prepare();
 	public abstract double getDtm();
 	public abstract double computeX();
+	public abstract void setX(double x);
 	public abstract double getExtra(int i);
 	
 }

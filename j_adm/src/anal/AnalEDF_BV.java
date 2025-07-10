@@ -82,4 +82,8 @@ public class AnalEDF_BV extends Anal {
 		
 	}
 
+	@Override
+	public void setX(double x) {
+	}
+
 }
