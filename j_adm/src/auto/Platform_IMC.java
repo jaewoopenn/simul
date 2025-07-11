@@ -13,7 +13,7 @@ import util.SLog;
 
 public class Platform_IMC extends Platform_base {
 	private boolean g_onlyMC=false;
-	private boolean g_isMC=false;
+	private boolean g_isMC=false; // not IMC
 	private int g_stage=1;
 	
 	public Platform_IMC(String path, String rs_path) {

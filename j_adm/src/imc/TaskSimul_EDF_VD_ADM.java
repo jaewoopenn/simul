@@ -68,9 +68,10 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 	@Override
 	protected void setDelay() {
 		int t=g_jsm.get_time();
+		int add=50;
+		// VD는 먼저 바꾸자 
 		// max Delay
-//		int add=50;
-		int add=g_tm.getMaxPeriod();
+//		int add=g_tm.getMaxPeriod();
 		g_delayed_t=t+add;				
 		
 	}

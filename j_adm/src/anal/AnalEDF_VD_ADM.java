@@ -85,10 +85,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		
 	}
 
-	@Override
-	public double getExtra(int i) {
-		return 0;
-	}
 	
 
 	@Override

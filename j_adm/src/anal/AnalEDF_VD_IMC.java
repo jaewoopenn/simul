@@ -68,10 +68,6 @@ public class AnalEDF_VD_IMC extends Anal {
 		
 	}
 
-	@Override
-	public double getExtra(int i) {
-		return 0;
-	}
 	
 	public static double computeX(TaskMng tm) {
 		AnalEDF_VD_IMC a=new AnalEDF_VD_IMC();

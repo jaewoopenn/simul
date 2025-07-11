@@ -27,10 +27,7 @@ public class AnalEDF_IMC extends Anal {
 		SLog.prn(1, "det:"+u);
 		
 	}
-	@Override
-	public double getExtra(int i) {
-		return 0;
-	}
+	
 	@Override
 	public void reset() {
 		

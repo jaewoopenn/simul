@@ -202,10 +202,6 @@ public class AnalAMC_imc extends Anal {
 
 		}
 	}
-	@Override
-	public double getExtra(int i) {
-		return 0;
-	}
 
 	@Override
 	public void reset() {

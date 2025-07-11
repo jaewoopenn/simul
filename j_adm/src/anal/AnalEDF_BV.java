@@ -41,12 +41,9 @@ public class AnalEDF_BV extends Anal {
 //		double dtm=glo_x*lotasks_loutil+hitasks_hiutil;
 //		return dtm;
 		
-		double dtm;
-		dtm=hitasks_loutil/glo_x+lotasks_loutil;
-		if(dtm>1)
-			return dtm;
-		dtm=(hitasks_hiutil-hitasks_loutil)/(1-glo_x);
-		return dtm;
+		double dtm=hitasks_loutil/glo_x+lotasks_loutil;
+		double dtm2=(hitasks_hiutil-hitasks_loutil)/(1-glo_x);
+		return Math.max(dtm, dtm2);
 	}
 	
 
@@ -57,12 +54,6 @@ public class AnalEDF_BV extends Anal {
 		return glo_x;
 	}
 	
-	public static double computeX(TaskMng tm) {
-		AnalEDF_BV a=new AnalEDF_BV();
-		a.init(tm);
-		a.prepare();
-		return a.computeX();
-	}
 
 	@Override
 	public void prn() {
@@ -72,10 +63,6 @@ public class AnalEDF_BV extends Anal {
 		
 	}
 
-	@Override
-	public double getExtra(int i) {
-		return 0;
-	}
 
 	@Override
 	public void reset() {

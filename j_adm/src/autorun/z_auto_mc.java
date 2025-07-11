@@ -10,7 +10,7 @@ import auto.Platform_IMC;
 import util.SEngineT;
 
 
-public class z_auto_imc {
+public class z_auto_mc {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
@@ -49,49 +49,37 @@ public class z_auto_imc {
 	}
 
 	public void init_anal() {
-		g_stage=6;
+		g_stage=2;
 		g_st=56;
 		g_step=3;
 		g_end=100;
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}
-	public int test1() {
+	public int test1() { // MC
 		init_g();
 		init_anal();
+		g_path="adm/test2";
+		g_sort=4;
 		Platform_IMC p=new Platform_IMC(g_path,g_path);
 		p.setStage(g_stage);
+		p.setMC();
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		p.anal_loop(g_rs,g_ts,g_sort);
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
+		da.setMC();
 		da.load_x(g_xl);
 		da.load_rs(g_rs);
 		da.save(g_graph);
 		return 0;
 	}
 	public int test2() 	{  // without gen
-		init_g();
-		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
-		p.setNum(g_num);
-		p.anal_loop(g_rs,g_ts,g_sort);
-		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
-		da.load_x(g_xl);
-		da.load_rs(g_rs);
-		da.save(g_graph);
 		return 0;
 	}
 	public int test3()  { // gen only
-		init_g();
-		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
-		p.setNum(g_num);
-		p.genCfg_util(g_cf,g_st,g_step,g_end);
-		p.genTS(g_cf,g_ts);
-		p.genXA(g_cf,g_xl);
 		return 0;
 	}
 	public  int test4() {
@@ -118,10 +106,10 @@ public class z_auto_imc {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto_imc.init_s();
-		Class c = z_auto_imc.class;
-		z_auto_imc m=new z_auto_imc();
-		int[] aret=z_auto_imc.gret;
+		z_auto_mc.init_s();
+		Class c = z_auto_mc.class;
+		z_auto_mc m=new z_auto_mc();
+		int[] aret=z_auto_mc.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
