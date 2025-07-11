@@ -40,11 +40,14 @@ public class AnalEDF_VD_IMC extends Anal {
 	}
 
 	public double getScore() {
-		if (hctasks_hiutil>1) return hctasks_hiutil;
-		if (lctasks_acUtil>1) return lctasks_acUtil;
 		double dtm=hctasks_hiutil+lctasks_acUtil;
 		if (dtm<=1)
 			return dtm;
+		
+		double util_max=Math.max(hctasks_hiutil, lctasks_acUtil);
+		if (util_max>1) 
+			return util_max;
+		
 		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
 		double dtm2=hctasks_loutil/glo_x+lctasks_acUtil;
 		return Math.max(dtm, dtm2);
