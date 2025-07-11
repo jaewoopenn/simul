@@ -210,7 +210,7 @@ public class TaskMng {
 		
 	}
 
-	public int getLongPeriod() {
+	public int getMaxPeriod() {
 		int l=0;
 		for(Task t:g_hc_tasks.getArr()){
 			if(t.period>l)
@@ -219,7 +219,7 @@ public class TaskMng {
 		return l;
 	}
 
-	public int getShortPeriod() {
+	public int getMinPeriod() {
 		int l=-1;
 		for(Task t:g_hc_tasks.getArr()){
 			if(l==-1)

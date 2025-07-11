@@ -14,6 +14,7 @@ import util.SLog;
 public class Platform_IMC extends Platform_base {
 	private boolean g_onlyMC=false;
 	private boolean g_isMC=false;
+	private int g_stage=1;
 	
 	public Platform_IMC(String path, String rs_path) {
 		g_path=path;
@@ -114,6 +115,7 @@ public class Platform_IMC extends Platform_base {
 			ConfigGen cfg=new ConfigGen(fu.get(i));
 			cfg.readFile();
 			SysGen sg=new SysGen(cfg);
+			sg.setStage(g_stage);
 			String fn=cfg.get_fn();
 			SLog.prn(3, fn);
 			if(g_onlyMC)
@@ -143,6 +145,10 @@ public class Platform_IMC extends Platform_base {
 	}
 	public void setOnlyMC() {
 		g_onlyMC=true;		
+	}
+
+	public void setStage(int s) {
+		g_stage=s;
 	}
 
 

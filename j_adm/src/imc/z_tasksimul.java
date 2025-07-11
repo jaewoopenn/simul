@@ -19,11 +19,11 @@ public class z_tasksimul {
 
 
 	public int test1()	{
-		int n=7;
-		int dur=550;
+		int n=1;
+		int dur=570;
 		double p=0.5;
 		double x=0.54;
-		String tsn="adm/test1/taskset_77.txt";
+		String tsn="adm/test1/taskset_80.txt";
 		String out="adm/test.log.txt";
 		
 //		boolean bSave=true;

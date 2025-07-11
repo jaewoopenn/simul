@@ -5,6 +5,10 @@ import task.Task;
 import task.TaskMng;
 import util.SLog;
 
+// todo EDF로 스케줄 가능할때, 전부 HI-only로 맞추기
+
+
+
 public class AnalEDF_VD_ADM extends Anal {
 	private double lctasks_acUtil;
 	private double lctasks_deUtil;
@@ -24,7 +28,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		lctasks_deUtil=g_info.getUtil_DeLC();
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
-		computeX();
+		glo_x=computeX();
 //		comp_hi_prefer();
 	}
 
@@ -54,7 +58,7 @@ public class AnalEDF_VD_ADM extends Anal {
 //			dtm+=Math.min(v_util,h_util);
 //			SLog.prn(2, t.getLoUtil()+","+v_util+", "+h_util);
 //		}
-		double dtm2=0;
+		double dtm2=hctasks_loutil/glo_x+lctasks_acUtil;
 		return Math.max(dtm, dtm2);
 	}
 	
@@ -63,10 +67,10 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double computeX() {
-		glo_x=hctasks_loutil/(1-lctasks_acUtil);
-		if(glo_x==0)
-			glo_x=1;
-		return glo_x;
+		double x=hctasks_loutil/(1-lctasks_acUtil);
+		if(x==0)
+			x=1;
+		return x;
 	}
 	
 
@@ -75,7 +79,9 @@ public class AnalEDF_VD_ADM extends Anal {
 //		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
 //		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
 		SLog.prn(1, "x:"+glo_x);
-//		SLog.prn(1, "det:"+getDtm());
+		double dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
+		double dtm2=hctasks_loutil/glo_x+lctasks_acUtil; // LO mode 
+		SLog.prn(1, "det:"+dtm2+","+dtm);
 		
 	}
 

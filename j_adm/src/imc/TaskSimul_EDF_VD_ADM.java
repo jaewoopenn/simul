@@ -47,16 +47,20 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 	protected void setVD() {
 		Anal a=new AnalEDF_VD_ADM();
 		a.init(g_tm);
-		a.setX(g_sm.getX());
+		double x=g_sm.getX();
+		a.setX(x);
 		double d=a.getDtm();
 		SLog.prn(2, "dtm:"+d);
+		a.prn();
 		if(d>1) {
-			SLog.prn(2, "x need to be changed, not implemented yet");
-			double x=a.computeX();
+			SLog.prn(2, "x need to be changed");
+			x=a.computeX();
 			d=a.getDtm();
-			SLog.prn(2, "dtm:"+d);
-			g_tm.setX(x);
-			g_sm.setX(x);
+			a.prn();
+			if(d<=1) {
+				g_tm.setX(x);
+				g_sm.setX(x);
+			}
 		}
 		
 	}
@@ -64,7 +68,10 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 	@Override
 	protected void setDelay() {
 		int t=g_jsm.get_time();
-		g_delayed_t=t+50;				
+		// max Delay
+//		int add=50;
+		int add=g_tm.getMaxPeriod();
+		g_delayed_t=t+add;				
 		
 	}
 

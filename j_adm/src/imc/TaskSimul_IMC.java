@@ -51,6 +51,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			g_dt.nextStage();
 			if(g_dt.getClass(g_dt.getStage())==0) { // add
 				g_si.start_delay=t;
+				g_si.add_task++;
 				setDelay();
 			} else { // remove
 				SLog.prn(2, t+": task change.");

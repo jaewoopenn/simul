@@ -14,6 +14,7 @@ public class SimulInfo {
 	public int degraded;
 	public int total;
 	public int start_delay;
+	public int add_task=0;
 	public double getDMR(){
 		if(rel==0)
 			return 0;
@@ -35,6 +36,8 @@ public class SimulInfo {
 		SLog.prn(2, "total:"+total);
 		double per=(double)degraded/total;
 		SLog.prn(2, "degraded pecentage:"+MCal.getStr(per));
+		double avg=(double)delayed/add_task;
+		SLog.prn(2, "average delay:"+MCal.getStr(avg));
 		
 	}
 	

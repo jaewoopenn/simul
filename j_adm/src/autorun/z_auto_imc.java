@@ -16,6 +16,7 @@ public class z_auto_imc {
 	private String g_path;
 	private int g_st;
 	private int g_step;
+	private int g_stage;
 	private int g_end;
 	private int g_num;
 	private int g_sort;
@@ -48,6 +49,7 @@ public class z_auto_imc {
 	}
 
 	public void init_anal() {
+		g_stage=6;
 		g_st=56;
 		g_step=3;
 		g_end=100;
@@ -58,6 +60,7 @@ public class z_auto_imc {
 		init_g();
 		init_anal();
 		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		p.setStage(g_stage);
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);

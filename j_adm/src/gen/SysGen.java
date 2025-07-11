@@ -16,6 +16,7 @@ public class SysGen {
 	private ConfigGen g_cfg;
 	protected boolean g_isCheck=false;
 	protected boolean g_isOnlyMC=false;
+	protected int g_stage;
 
 	public SysGen(ConfigGen cfg) {
 		g_cfg=cfg;
@@ -25,6 +26,9 @@ public class SysGen {
 	}
 	public void setOnlyMC() {
 		g_isOnlyMC=true;
+	}
+	public void setStage(int n) {
+		g_stage=n;
 	}
 	
 	private TaskGenParam getTgp() {
@@ -89,16 +93,13 @@ public class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
-//		int max=1;
-		int max=5;
-//		int max=10;
-		TaskSetUtil.initStage(ml, max);
+		TaskSetUtil.initStage(ml, g_stage);
 		Task[] tss=ts.getArr();
 		for(Task t:tss) {
 			TaskSetUtil.writeTask(ml, t);
 		}
 		int num=tss.length;
-		for(int i=1;i<max;i++) {
+		for(int i=1;i<g_stage;i++) {
 			TaskSetUtil.nextStage(ml,i);
 			if(g_rand.getBool()||num==0) { //add
 				Task t=g_tg.genTaskOne();
