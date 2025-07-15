@@ -9,8 +9,8 @@ import util.SLog;
 
 public class z_Anal2 {
 //	public static int idx=1;
-	public static int idx=2;
-//	public static int idx=3;
+//	public static int idx=2;
+	public static int idx=3;
 	public static int log_level=1;
 
 
@@ -33,8 +33,8 @@ public class z_Anal2 {
 	}
 	
 	public int test2() {
-//		String ts="adm/test1/taskset_92";
-		String ts="adm/test_task.txt";
+		String ts="adm/test2/taskset_98.txt";
+//		String ts="adm/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
 		SLog.prn(1, ret);
@@ -43,6 +43,7 @@ public class z_Anal2 {
 //		Anal a=new AnalAMC_imc();
 //		Anal a=new AnalEDF_VD_IMC();
 		Anal a=new AnalEDF_VD_ADM();
+//		Anal a=new AnalEDF_BV();
 		for(int i=0;i<n;i++) {
 			a.reset();
 			DTaskVec dt=sy.loadOne2();
@@ -52,7 +53,7 @@ public class z_Anal2 {
 			for(int j=0;j<num;j++) {
 				TaskSet tmp=new TaskSet(dt.getVec(j));
 				TaskMng tm=tmp.getTM();
-				tm.prn();
+//				tm.prn();
 				a.init(tm);
 				if(x==-1) {
 					x=a.computeX();
@@ -60,7 +61,6 @@ public class z_Anal2 {
 				a.setX(x);
 //				a.prn();
 				double d=a.getDtm();
-				dtm=Math.max(dtm, d);
 				SLog.prn(1, "x: "+x);
 				SLog.prn(1, i+": "+d);
 				if(d>1) {
@@ -70,6 +70,7 @@ public class z_Anal2 {
 					d=a.getDtm();
 					SLog.prn(1, "re: "+d);
 				}
+				dtm=Math.max(dtm, d);
 			}
 			if(dtm<=1)
 				s++;
@@ -80,7 +81,37 @@ public class z_Anal2 {
 		return -1;
 	}
 	public int test3() {
-		return 0;
+		String ts="adm/test2/taskset_98.txt";
+//		String ts="adm/test_task.txt";
+		SysLoad sy=new SysLoad(ts);
+		sy.open();
+//		Anal a=new AnalEDF_VD_ADM();
+		Anal a=new AnalEDF_BV();
+		DTaskVec dt=sy.loadOne2();
+		int num=dt.getNum();
+		double x=-1;
+		for(int j=0;j<num;j++) {
+			TaskSet tmp=new TaskSet(dt.getVec(j));
+			TaskMng tm=tmp.getTM();
+			tm.prn();
+			tm.prnInfo();
+			a.init(tm);
+			if(x==-1) {
+				x=a.computeX();
+			}
+			a.setX(x);
+			double d=a.getDtm();
+			SLog.prn(1, "x: "+x);
+			SLog.prn(1, "d: "+d);
+			if(d>1) {
+				x=a.computeX();
+				SLog.prn(1, "re x: "+x);
+				a.setX(x);
+				d=a.getDtm();
+				SLog.prn(1, "re: "+d);
+			}
+		}
+		return -1;
 	}
 	public  int test4() {
 		return 1;

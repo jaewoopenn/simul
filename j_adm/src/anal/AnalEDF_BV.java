@@ -9,6 +9,7 @@ public class AnalEDF_BV extends Anal {
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
 	private double glo_x=-1;
+	private double bv_rato=1.2;
 	SysInfo g_info;
 	public AnalEDF_BV() {
 		super();
@@ -30,6 +31,18 @@ public class AnalEDF_BV extends Anal {
 	
 	@Override
 	public double getDtm() {
+		double d=getScore();
+		
+		if(d>1) {
+			double old_x=glo_x;
+			glo_x=Math.min(0.999,glo_x*bv_rato);
+			d=getScore();
+			glo_x=old_x;
+			return d;
+		}
+		return d;
+	}
+	public double getScore() {
 		if (hitasks_hiutil+lotasks_loutil<=1)
 			return hitasks_hiutil+lotasks_loutil;
 		
@@ -39,6 +52,7 @@ public class AnalEDF_BV extends Anal {
 		
 		double dtm=hitasks_loutil/glo_x+lotasks_loutil;
 		double dtm2=(hitasks_hiutil-hitasks_loutil)/(1-glo_x);
+//		SLog.prn(1, glo_x+","+dtm+","+dtm2);
 		return Math.max(dtm, dtm2);
 	}
 	
@@ -47,7 +61,8 @@ public class AnalEDF_BV extends Anal {
 
 	@Override
 	public double computeX() {
-		return hitasks_loutil/(1-lotasks_loutil);
+		double x=hitasks_loutil/(1-lotasks_loutil);
+		return Math.min(x, 1);
 	}
 	
 

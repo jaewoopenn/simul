@@ -13,11 +13,11 @@ public class AnalSel_MC {
 		if(sort==0) { 
 			return new AnalEDF_VD_ADM();
 		} else if(sort==1) {
-			return new AnalEDF_VD_IMC();
-		} else if(sort==2) {
-			return new AnalEDF_IMC();
-		} else if(sort==3) {
 			return new AnalEDF_BV();
+		} else if(sort==2) {
+			return new AnalEDF_VD_IMC();
+		} else if(sort==3) {
+			return new AnalEDF_IMC();
 		} 
 		return null;
 	}
