@@ -67,10 +67,10 @@ public class SysInfo {
 		return hi_util_hm;
 	}
 	
-	public double getUtil_LC() {
+	public double getUtil_LC_AC() {
 		return lo_util;
 	}
-	public double getUtil_DeLC() {
+	public double getUtil_LC_DE() {
 		return lo_de_util;
 	}
 	
@@ -99,12 +99,12 @@ public class SysInfo {
 	
 	public void prn() {
 		double hl=getUtil_HC_LO();
-		double ll=getUtil_LC();
+		double ll=getUtil_LC_AC();
 		SLog.prnc(2, "lo_mode_util:"+MCal.getStr(hl+ll));
 		SLog.prnc(2, " hc_l_util:"+MCal.getStr(hl));
 		SLog.prn(2, " lc_l_util:"+MCal.getStr(ll));
 		double hh=getUtil_HC_HI();
-		double lh=getUtil_DeLC();
+		double lh=getUtil_LC_DE();
 		SLog.prnc(2, "hi_mode_util:"+MCal.getStr(hh+lh));
 		SLog.prnc(2, " hc_h_util:"+MCal.getStr(hh));
 		SLog.prn(2, " lc_h_util:"+MCal.getStr(lh));
@@ -112,7 +112,7 @@ public class SysInfo {
 		SLog.prn(2, "x:"+MCal.getStr(getX()));
 	}
 	public void prnUtil() {
-		SLog.prn(2, " ll_util:"+MCal.getStr(getUtil_LC()));
+		SLog.prn(2, " ll_util:"+MCal.getStr(getUtil_LC_AC()));
 		
 	}
 	

@@ -69,7 +69,7 @@ public class TaskMng {
 			if(!t.isHC())  
 				continue;
 			if(t.isHM()) {
-				double temp=t.getLoUtil()/g_info.getUtil_HC_LO()*(1-g_info.getUtil_LC());
+				double temp=t.getLoUtil()/g_info.getUtil_HC_LO()*(1-g_info.getUtil_LC_AC());
 				util+=(temp-t.getHiUtil())/(1-g_info.getX());
 			}
 		}
@@ -81,7 +81,7 @@ public class TaskMng {
 			if(!t.isDrop())
 				cur+=t.getLoUtil();
 		}
-		return cur-g_info.getUtil_LC()-util;
+		return cur-g_info.getUtil_LC_AC()-util;
 	}
 
 	

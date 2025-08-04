@@ -43,7 +43,7 @@ public class z_tasksimul {
 		x=a.computeX();
 		sii.setX(x);
 		SLog.prn(2, "x:"+x);
-		SLog.prn(2, "lo sch:"+(sii.getUtil_HC_LO()/x+sii.getUtil_LC()));
+		SLog.prn(2, "lo sch:"+(sii.getUtil_HC_LO()/x+sii.getUtil_LC_AC()));
 
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(p);

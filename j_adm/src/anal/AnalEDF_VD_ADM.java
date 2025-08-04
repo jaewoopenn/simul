@@ -24,8 +24,8 @@ public class AnalEDF_VD_ADM extends Anal {
 	@Override
 	public void prepare() {
 		g_info=g_tm.getInfo();
-		lc_ac=g_info.getUtil_LC();
-		lc_de=g_info.getUtil_DeLC();
+		lc_ac=g_info.getUtil_LC_AC();
+		lc_de=g_info.getUtil_LC_DE();
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
 		g_x=computeX();

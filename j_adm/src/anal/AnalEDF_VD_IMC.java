@@ -19,8 +19,8 @@ public class AnalEDF_VD_IMC extends Anal {
 	@Override
 	public void prepare() {
 		g_info=g_tm.getInfo();
-		lctasks_acUtil=g_info.getUtil_LC();
-		lctasks_deUtil=g_info.getUtil_DeLC();
+		lctasks_acUtil=g_info.getUtil_LC_AC();
+		lctasks_deUtil=g_info.getUtil_LC_DE();
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
 		if(glo_x==-1)
