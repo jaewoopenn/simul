@@ -10,11 +10,11 @@ import util.SLog;
 
 
 public class AnalEDF_VD_ADM extends Anal {
-	private double lctasks_acUtil;
-	private double lctasks_deUtil;
-	private double hctasks_loutil;
-	private double hctasks_hiutil;
-	private double glo_x;
+	private double lc_ac;
+	private double lc_de;
+	private double hc_lo;
+	private double hc_hi;
+	private double g_x;
 	SysInfo g_info;
 	public AnalEDF_VD_ADM() {
 		super();
@@ -24,44 +24,27 @@ public class AnalEDF_VD_ADM extends Anal {
 	@Override
 	public void prepare() {
 		g_info=g_tm.getInfo();
-		lctasks_acUtil=g_info.getUtil_LC();
-		lctasks_deUtil=g_info.getUtil_DeLC();
-		hctasks_loutil=g_info.getUtil_HC_LO();
-		hctasks_hiutil=g_info.getUtil_HC_HI();
-		glo_x=computeX();
-//		comp_hi_prefer();
+		lc_ac=g_info.getUtil_LC();
+		lc_de=g_info.getUtil_DeLC();
+		hc_lo=g_info.getUtil_HC_LO();
+		hc_hi=g_info.getUtil_HC_HI();
+		g_x=computeX();
 	}
 
-//	private void comp_hi_prefer() {
-//		for(Task t:g_tm.get_HC_Tasks()){
-//			double v_util=t.getLoUtil()/glo_x;
-//			double h_util=t.getHiUtil();
-////			Log.prn(1, v_util+","+h_util);
-//			if(v_util>=h_util){
-//				t.setHI_only();
-//			}
-//		}
-//	}
 		
 	@Override
 	public double getDtm() {
-		double dtm=hctasks_hiutil+lctasks_acUtil;
+		double dtm=hc_hi+lc_ac;
+		double dtm2;
 		if (dtm<=1)
 			return dtm;
 		
-		double util_max=Math.max(hctasks_hiutil, lctasks_acUtil);
+		double util_max=Math.max(hc_hi, lc_ac);
 		if (util_max>1) 
 			return util_max;
 		
-		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
-//		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil;
-//		for(Task t:g_tm.get_HC_Tasks()){
-//			double v_util=t.getLoUtil()/glo_x;
-//			double h_util=t.getHiUtil();
-//			dtm+=Math.min(v_util,h_util);
-//			SLog.prn(2, t.getLoUtil()+","+v_util+", "+h_util);
-//		}
-		double dtm2=hctasks_loutil/glo_x+lctasks_acUtil;
+		dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
+		dtm2=hc_lo/g_x+lc_ac;
 		return Math.max(dtm, dtm2);
 	}
 	
@@ -70,7 +53,7 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double computeX() {
-		double x=hctasks_loutil/(1-lctasks_acUtil);
+		double x=hc_lo/(1-lc_ac);
 		if(x==0)
 			x=1;
 		return x;
@@ -81,9 +64,9 @@ public class AnalEDF_VD_ADM extends Anal {
 	public void prn() {
 //		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
 //		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
-		SLog.prn(1, "x:"+glo_x);
-		double dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
-		double dtm2=hctasks_loutil/glo_x+lctasks_acUtil; // LO mode 
+		SLog.prn(1, "x:"+g_x);
+		double dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
+		double dtm2=hc_lo/g_x+lc_ac; // LO mode 
 		SLog.prn(1, "det:"+dtm2+","+dtm);
 		
 	}
@@ -96,7 +79,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	}
 	@Override
 	public void setX(double x) {
-		glo_x=x;
+		g_x=x;
 	}
 
 	
