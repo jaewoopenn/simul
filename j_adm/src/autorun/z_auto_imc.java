@@ -49,8 +49,9 @@ public class z_auto_imc {
 	}
 
 	public void init_anal() {
-		g_stage=1;
-//		g_stage=6;
+//		g_stage=1;
+//		g_stage=3;
+		g_stage=6;
 		g_st=56;
 		g_step=3;
 		g_end=100;
