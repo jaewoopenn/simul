@@ -39,9 +39,9 @@ public class z_auto_imc {
 	
 	public void init_g() {
 		g_path="adm/test1";
-//		g_num=5000;
-		g_num=500;
-//		g_num=10;
+		g_num=5000;
+//		g_num=500;
+//		g_num=50;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -49,7 +49,8 @@ public class z_auto_imc {
 	}
 
 	public void init_anal() {
-		g_stage=6;
+		g_stage=1;
+//		g_stage=6;
 		g_st=56;
 		g_step=3;
 		g_end=100;

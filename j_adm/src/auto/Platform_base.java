@@ -12,6 +12,7 @@ import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
 import util.CProg;
+import util.MCal;
 import util.MList;
 import util.SLog;
 import util.SLogF;
@@ -125,7 +126,7 @@ public abstract class Platform_base {
 				a.init(tm);
 				dtm=Math.max(dtm, a.getDtm());
 			}
-			if(dtm<=1) {
+			if(dtm<=1+MCal.err) {
 				fu.add("1");
 			} else {
 				fu.add("0");

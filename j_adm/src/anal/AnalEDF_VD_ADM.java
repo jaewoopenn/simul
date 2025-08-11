@@ -29,6 +29,21 @@ public class AnalEDF_VD_ADM extends Anal {
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
 		g_x=computeX();
+		comp_hi_prefer();
+	}
+	
+	private void comp_hi_prefer() {
+		int n=0;
+		for(Task t:g_tm.get_HC_Tasks()){
+			double v_util=t.getLoUtil()/g_x;
+			double h_util=t.getHiUtil();
+//			Log.prn(1, v_util+","+h_util);
+			if(v_util>=h_util){
+				t.setHI_only();
+				n++;
+			}
+		}
+//		SLog.prn(2, "no:"+n);
 	}
 
 		
@@ -43,8 +58,16 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (util_max>1) 
 			return util_max;
 		
-		dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
-		dtm2=hc_lo/g_x+lc_ac;
+//		dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
+		dtm=(hc_hi-hc_lo)/(1-g_x)+lc_de;
+		dtm2=lc_ac;
+		for(Task t:g_tm.get_HC_Tasks()){
+			double v_util=t.getLoUtil()/g_x;
+			double h_util=t.getHiUtil();
+			dtm2+=Math.min(v_util,h_util);
+		}
+//		SLog.prn(2, "dtm:"+dtm+","+dtm2+","+(lc_ac+hc_lo/g_x));
+		
 		return Math.max(dtm, dtm2);
 	}
 	
@@ -53,9 +76,13 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double computeX() {
-		double x=hc_lo/(1-lc_ac);
-		if(x==0)
-			x=1;
+		double x;
+		double temp=(hc_hi-hc_lo)/(1-lc_de);
+		x=1-temp;
+
+//		x=hc_lo/(1-lc_ac);
+//		if(x==0)
+//			x=1;
 		return x;
 	}
 	
