@@ -58,7 +58,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (util_max>1) 
 			return util_max;
 		
-//		dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
 		dtm=(hc_hi-hc_lo)/(1-g_x)+lc_de;
 		dtm2=lc_ac;
 		for(Task t:g_tm.get_HC_Tasks()){
@@ -80,9 +79,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		double temp=(hc_hi-hc_lo)/(1-lc_de);
 		x=1-temp;
 
-//		x=hc_lo/(1-lc_ac);
-//		if(x==0)
-//			x=1;
 		return x;
 	}
 	
