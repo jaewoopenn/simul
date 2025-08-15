@@ -4,7 +4,6 @@ import anal.Anal;
 import anal.AnalEDF_IMC;
 import gen.ConfigGen;
 import gen.SysLoad;
-import scn.TaskSimul_EDF_IMC_gen;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
@@ -15,7 +14,6 @@ import util.CProg;
 import util.MCal;
 import util.MList;
 import util.SLog;
-import util.SLogF;
 
 public abstract class Platform_base {
 	protected String g_path;
@@ -26,7 +24,7 @@ public abstract class Platform_base {
 	protected double g_p_hc=0.5;
 	protected double g_ratio=-1;
 	protected double g_ratio_hi=-1;
-	protected boolean g_isCheck=false;
+	protected boolean g_isSch=false;
 	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
 	protected boolean g_verbose=false;
 	
@@ -50,14 +48,15 @@ public abstract class Platform_base {
 		g_ratio_hi=d;
 		
 	}
-	public void setCheck(){
-		g_isCheck=true;
+	public void setSch(){
+		g_isSch=true;
 	}
 	
 	public void setVerbose(){
 		g_verbose=true;
 	}
 
+	
 	public void genXA(String cfg_list, String xaxis) {
 		MList fu=new MList(g_path+"/"+cfg_list);
 		
@@ -72,13 +71,6 @@ public abstract class Platform_base {
 		fu_xa.saveTo(g_rs_path+"/"+xaxis);
 	}
 	
-	public void genXA_dur(String xaxis) {
-		MList fu_xa=new MList();
-		for(int i=0;i<g_dur_set.length;i++) {
-			fu_xa.add((g_dur_set[i]/1000)+"");
-		}
-		fu_xa.saveTo(g_rs_path+"/"+xaxis);
-	}	
 	
 	// anal
 	public void anal_loop(String rs_list,String ts_list, int end) {
@@ -149,16 +141,6 @@ public abstract class Platform_base {
 	}
 
 	
-	//simulation
-	public void sim_loop_dur(String rs_list,String ts_list, int end) {
-		MList fu=new MList();
-		for(int i=0;i<end;i++){
-			String rs=simul_dur(ts_list,i);
-			fu.add(rs);
-		}
-		fu.saveTo(g_rs_path+"/"+rs_list);
-	}
-	
 
 
 	// simulate task set list with algorithm choice
@@ -180,44 +162,8 @@ public abstract class Platform_base {
 		return rs_fn;		
 	}
 	
-//	public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {
-//		MList fu=new MList(g_path+"/"+ts_list);
-//		
-//		String fn=fu.get(ts_list_n);
-//		for(int i=0;i<scn_n;i++) {
-//			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
-//			SLog.prn(2,out);
-//			gen_scn_one(g_path+"/"+fn,out,ts_n);
-//		}
-//	}
-//
-//	public String run_scn(int sort,String ts_list,int ts_list_n,int ts_n,int scn_from, int scn_to) {
-//		MList fu=new MList(g_path+"/"+ts_list);
-//		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-//		Anal a=getAnalSim(sort);
-//		SLog.prn(2, "Anal:"+a.getName());
-//		TaskSimul_base s=getSim(sort);
-//		s.setRecoverIdle(g_recoverIdle);
-//		
-//		String fn=fu.get(ts_list_n);
-//		for(int i=scn_from;i<scn_to;i++) {
-//			String out=g_rs_path+"/"+fn+".sim."+i+".txt";
-//			SLog.prn(2,out);
-//			run_scn_one(g_path+"/"+fn,out,a,s,ts_n,i);
-//		}
-//		return rs_fn;		
-//	}
 
-	
-	
-	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
-		SLog.prn(2, "ts:"+ts);
-		SLog.prn(2, "out:"+out);
-		SLog.prn(2, g_dur);
-		SLog.prn(2, s.getName());
-		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		int num=Integer.valueOf(ret).intValue();
+	private CProg getProg(int num) {
 		CProg prog=new CProg(num);
 		prog.setLog(2);
 		
@@ -227,30 +173,45 @@ public abstract class Platform_base {
 		} else { 
 			prog.setPercent();
 		}
+		return prog;
+	}
+	
+	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
+		SLog.prn(2, "ts:"+ts);
+		SLog.prn(2, "out:"+out);
+		SLog.prn(2, g_dur);
+		SLog.prn(2, s.getName());
+		
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
+		
 		Anal base;
 		MList fu=new MList();
+		CProg prog=getProg(num);
+		
+		//////////
+		/// 이게 뭐지. 고쳐야 함   
+		
 		for(int i=0;i<num;i++) {
 //			SLog.prn(2, "no:"+i);
 			DTaskVec dt=sy.loadOne2();
 
 			if(dt==null) break;
 			
-			a.init(dt.getTM(0));
 			prog.inc();
-			if(!a.is_sch()) {
-//				SLog.prn(2, "no sch "+i);
-				fu.add("1.0");
-				continue;
-			}
-			base=new AnalEDF_IMC();
-			base.init(dt.getTM(0));
-			if(base.is_sch()) {
-				fu.add("0.0");
-				continue;
-			}
-
-			double x=a.computeX();
 			
+//			base=new AnalEDF_IMC(); // EDF로 스케줄 가능하면 시뮬할필요없음. 
+//			base.init(dt.getTM(0));
+//			if(base.is_sch()) {
+//				fu.add("0.0");
+//				continue;
+//			}
+
+
+			a.init(dt.getTM(0));
+			double x=a.computeX();
+//			SLog.prn(2, x);
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);
@@ -258,64 +219,34 @@ public abstract class Platform_base {
 			s.init_sm_dt(sm,dt);
 			s.simul(g_dur);
 			SimulInfo si=s.getSI();
-			fu.add(si.getDMR()+"");
+			fu.add(si.getDegraded()+"");
 		}
 		fu.saveTo(out);
 	}
 
-	public void gen_scn_one(String ts,String out,int ts_n) {
-//		SLog.prn(2, ts);
-		SysLoad sy=new SysLoad(ts);
-		sy.open();
-		SLogF.init(out);
-		SLogF.setGen();
-		sy.moveto(ts_n);
-		DTaskVec dt=sy.loadOne2();
-		SysMng sm=new SysMng();
-		TaskSimul_base s=new TaskSimul_EDF_IMC_gen();
-		sm.setMS_Prob(g_p_ms);
-		sm.setX(1);
-		s.init_sm_dt(sm,dt);
-		s.simul(g_dur);
-		SLogF.save();
-		
-	}
+	//////////
+	//// DUr
 
-	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int ts_n, int scn) {
-		SysLoad sy=new SysLoad(ts);
-		sy.open();
-		Anal base;
+	
+	public void genXA_dur(String xaxis) {
+		MList fu_xa=new MList();
+		for(int i=0;i<g_dur_set.length;i++) {
+			fu_xa.add((g_dur_set[i]/1000)+"");
+		}
+		fu_xa.saveTo(g_rs_path+"/"+xaxis);
+	}	
+	
+
+	//simulation
+	public void sim_loop_dur(String rs_list,String ts_list, int end) {
 		MList fu=new MList();
-		DTaskVec dt=null;
-		for(int i=0;i<=ts_n;i++) {
-			dt=sy.loadOne2();
-			if(i<ts_n)
-				continue;
+		for(int i=0;i<end;i++){
+			String rs=simul_dur(ts_list,i);
+			fu.add(rs);
 		}
-		a.init(dt.getTM(0));
-		if(!a.is_sch()) {
-			SLog.prn(2, "no sch "+ts_n);
-			fu.add("1.0");
-			return;
-		}
-		base=new AnalEDF_IMC();
-		base.init(dt.getTM(0));
-		if(base.is_sch()) {
-			SLog.prn(2, "EDF sch "+ts_n);
-			fu.add("0.0");
-			return;
-		}
-
-		double x=a.computeX();
-		
-		SysMng sm=new SysMng();
-		sm.setMS_Prob(g_p_ms);
-		sm.setX(x);
-		s.init_sm_dt(sm,dt);
-		s.simul(g_dur);
+		fu.saveTo(g_rs_path+"/"+rs_list);
 	}
-
-
+	
 	
 	// simulate task set list with algorithm choice (duration)
 	public String simul_dur(String ts_list,int sort) {
@@ -339,6 +270,86 @@ public abstract class Platform_base {
 		return rs_fn;		
 	}
 
-	
+
+//	public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {
+//	MList fu=new MList(g_path+"/"+ts_list);
+//	
+//	String fn=fu.get(ts_list_n);
+//	for(int i=0;i<scn_n;i++) {
+//		String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+//		SLog.prn(2,out);
+//		gen_scn_one(g_path+"/"+fn,out,ts_n);
+//	}
+//}
+//
+//public String run_scn(int sort,String ts_list,int ts_list_n,int ts_n,int scn_from, int scn_to) {
+//	MList fu=new MList(g_path+"/"+ts_list);
+//	String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
+//	Anal a=getAnalSim(sort);
+//	SLog.prn(2, "Anal:"+a.getName());
+//	TaskSimul_base s=getSim(sort);
+//	s.setRecoverIdle(g_recoverIdle);
+//	
+//	String fn=fu.get(ts_list_n);
+//	for(int i=scn_from;i<scn_to;i++) {
+//		String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+//		SLog.prn(2,out);
+//		run_scn_one(g_path+"/"+fn,out,a,s,ts_n,i);
+//	}
+//	return rs_fn;		
+//}
+
+//	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int ts_n, int scn) {
+//		SysLoad sy=new SysLoad(ts);
+//		sy.open();
+//		Anal base;
+//		MList fu=new MList();
+//		DTaskVec dt=null;
+//		for(int i=0;i<=ts_n;i++) {
+//			dt=sy.loadOne2();
+//			if(i<ts_n)
+//				continue;
+//		}
+//		a.init(dt.getTM(0));
+//		if(!a.is_sch()) {
+//			SLog.prn(2, "no sch "+ts_n);
+//			fu.add("1.0");
+//			return;
+//		}
+//		base=new AnalEDF_IMC();
+//		base.init(dt.getTM(0));
+//		if(base.is_sch()) {
+//			SLog.prn(2, "EDF sch "+ts_n);
+//			fu.add("0.0");
+//			return;
+//		}
+//
+//		double x=a.computeX();
+//		
+//		SysMng sm=new SysMng();
+//		sm.setMS_Prob(g_p_ms);
+//		sm.setX(x);
+//		s.init_sm_dt(sm,dt);
+//		s.simul(g_dur);
+//	}
+
+
+//	public void gen_scn_one(String ts,String out,int ts_n) {
+////		SLog.prn(2, ts);
+//		SysLoad sy=new SysLoad(ts);
+//		sy.open();
+//		SLogF.init(out);
+//		SLogF.setGen();
+//		sy.moveto(ts_n);
+//		DTaskVec dt=sy.loadOne2();
+//		SysMng sm=new SysMng();
+//		TaskSimul_base s=new TaskSimul_EDF_IMC_gen();
+//		sm.setMS_Prob(g_p_ms);
+//		sm.setX(1);
+//		s.init_sm_dt(sm,dt);
+//		s.simul(g_dur);
+//		SLogF.save();
+//		
+//	}
 
 }

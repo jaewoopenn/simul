@@ -2,7 +2,6 @@ package anal;
 
 import task.SysInfo;
 import task.Task;
-import task.TaskMng;
 import util.MCal;
 import util.SLog;
 
@@ -16,6 +15,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	private double hc_lo;
 	private double hc_hi;
 	private double g_x;
+	private boolean isWCR=false;
 	SysInfo g_info;
 	public AnalEDF_VD_ADM() {
 		super();
@@ -29,10 +29,21 @@ public class AnalEDF_VD_ADM extends Anal {
 		lc_de=g_info.getUtil_LC_DE();
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
-		g_x=computeX();
-		comp_hi_prefer();
+		if(g_info.getUtil()<=1) {
+			setWCR();
+		} else {
+			g_x=computeX();
+			comp_hi_prefer();
+		}
 	}
-	
+	private void setWCR() {
+		g_x=1;
+		for(Task t:g_tm.get_HC_Tasks()){
+			t.setHI_only();
+		}
+		isWCR=true;
+		
+	}
 	private void comp_hi_prefer() {
 		int n=0;
 		for(Task t:g_tm.get_HC_Tasks()){
@@ -50,7 +61,10 @@ public class AnalEDF_VD_ADM extends Anal {
 		
 	@Override
 	public double getDtm() {
-		double dtm=getDtm2();
+		double dtm=g_info.getUtil();
+		if (dtm<=1)
+			return dtm;
+		dtm=getDtm2();
 		int n=0;
 		while(dtm>1+MCal.err) {
 			double old_dtm=dtm;
@@ -65,10 +79,8 @@ public class AnalEDF_VD_ADM extends Anal {
 		return dtm;
 	}
 	public double getDtm2() {
-		double dtm=hc_hi+lc_ac;
+		double dtm;
 		double dtm2;
-		if (dtm<=1)
-			return dtm;
 		
 		double util_max=Math.max(hc_hi, lc_ac);
 		if (util_max>1) 
@@ -90,7 +102,8 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double computeX() {
-//		double nr_hi=0;
+		if(isWCR)
+			return 1;
 		double nr_lo=0;
 		double r_hi=0;
 		for(Task t:g_tm.get_HC_Tasks()){
@@ -102,9 +115,7 @@ public class AnalEDF_VD_ADM extends Anal {
 			}
 		}	
 		double x=(nr_lo)/(1-lc_ac-r_hi);
-//		double temp=(hc_hi-hc_lo)/(1-lc_de);
-//		x=1-temp;
-
+//		SLog.prn(2, nr_lo+","+r_hi+","+x);
 		return x;
 	}
 	

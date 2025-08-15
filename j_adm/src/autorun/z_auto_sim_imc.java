@@ -6,8 +6,8 @@ import auto.Platform_IMC;
 import util.SEngineT;
 import util.SLog;
 
-// MC-RUN
-// a_imc/dmr_imc.py
+// ADM
+// a_adm/dmr_imc.py
 
 public class z_auto_sim_imc {
 	private static int s_idx;
@@ -30,10 +30,10 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 //		int s=1;
-		int s=2; //p
-//		int s=3; //life
-//		int s=4; //ratio
-//		int s=5; //all in one.
+		int s=2; //
+//		int s=3; //
+//		int s=4; //
+//		int s=5; //
 		
 		s_idx=s;
 		
@@ -46,8 +46,8 @@ public class z_auto_sim_imc {
 //		g_num=500;
 //		g_num=5000;
 		
-//		g_dur=10000;
-		g_dur=32000;
+		g_dur=10000;
+//		g_dur=32000;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
@@ -56,7 +56,7 @@ public class z_auto_sim_imc {
 
 
 	public void init_sim() {
-		g_p_ms=0.1;
+		g_p_ms=0.5;
 //		g_life=0;
 		g_p_hc=0.5;
 		g_ratio=-1;
@@ -66,19 +66,20 @@ public class z_auto_sim_imc {
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
 	}
-	public void gen() {
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
+	public void gen()  {
+		Platform_IMC p=new Platform_IMC(g_path);
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
-		p.setCheck();
+		p.setSch();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
 		
 	}
 	public void loop_util(String rs_path) {
-		Platform_IMC p=new Platform_IMC(g_path,rs_path);
+		Platform_IMC p=new Platform_IMC(g_path);
+		p.setRS(rs_path);
 
 		p.genXA(g_cf,g_xl);
 		
@@ -92,15 +93,25 @@ public class z_auto_sim_imc {
 		ds.load_rs(g_rs);
 		ds.saveSim(g_graph);
 	}
-	public int test1() 
+	public int test1() //gen
 	{
-//		init_g();
-//		init_sim();
-//		g_path="sch/t2";
-//		loop_util();
+		init_g();
+		init_sim();
+		g_path="adm/test1";
+		gen();
 		return 0;
 	}
-	public int test2() // p
+	public int test2() // run
+	{
+		init_g();
+		init_sim();
+		g_path="adm/test1";
+		String rs_path="adm/pi0";
+		gen();
+		loop_util(rs_path);
+		return 0;
+	}
+	public int test3() // ms length
 	{
 		int st=0,et=3;
 //		int st=1,et=2;
@@ -116,10 +127,6 @@ public class z_auto_sim_imc {
 			g_p_ms=a[i];
 			loop_util(rs_path);
 		}
-		return 0;
-	}
-	public int test3() // ms length
-	{
 		return 0;
 	}
 	public  int test4() // ratio

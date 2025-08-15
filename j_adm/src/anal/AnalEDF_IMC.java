@@ -20,7 +20,7 @@ public class AnalEDF_IMC extends Anal {
 
 	@Override
 	public double computeX() {
-		return 0;
+		return 1;
 	}
 	@Override
 	public void prn() {

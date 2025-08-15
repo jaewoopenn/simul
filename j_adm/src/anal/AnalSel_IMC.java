@@ -1,5 +1,7 @@
 package anal;
 
+import imc.TaskSimul_EDF_VD_IMC;
+
 public class AnalSel_IMC {
 
 	/*
@@ -23,7 +25,7 @@ public class AnalSel_IMC {
 
 	public static Anal getAnalSim(int sort) {
 		if(sort==0) { 
-			return new AnalEDF_IMC();
+			return new AnalEDF_VD_ADM();
 		} else if(sort==1) {
 			return new AnalEDF_VD_IMC();
 		} else if(sort==2) {

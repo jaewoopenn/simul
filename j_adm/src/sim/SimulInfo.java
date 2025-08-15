@@ -32,13 +32,19 @@ public class SimulInfo {
 	public void prn2() {
 		SLog.prn(2, "ms:"+ms);
 		SLog.prn(2, "degraded:"+degraded);
-		SLog.prn(2, "delayed:"+delayed);
 		SLog.prn(2, "total:"+total);
 		double per=(double)degraded/total;
 		SLog.prn(2, "degraded pecentage:"+MCal.getStr(per));
-		double avg=(double)delayed/add_task;
-		SLog.prn(2, "average delay:"+MCal.getStr(avg));
+		if(add_task!=0) {
+			SLog.prn(2, "delayed:"+delayed);
+			double avg=(double)delayed/add_task;
+			SLog.prn(2, "average delay:"+MCal.getStr(avg));
+		}
 		
+	}
+	public double getDegraded(){
+		double per=(double)degraded/total;
+		return per;
 	}
 	
 }

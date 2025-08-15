@@ -1,6 +1,7 @@
 package anal;
 
 import task.SysInfo;
+import task.Task;
 import task.TaskMng;
 import util.SLog;
 
@@ -9,7 +10,8 @@ public class AnalEDF_VD_IMC extends Anal {
 	private double lctasks_deUtil;
 	private double hctasks_loutil;
 	private double hctasks_hiutil;
-	private double glo_x=-1;
+	private double g_x=-1;
+	private boolean isWCR=false;
 	SysInfo g_info;
 	public AnalEDF_VD_IMC() {
 		super();
@@ -23,33 +25,45 @@ public class AnalEDF_VD_IMC extends Anal {
 		lctasks_deUtil=g_info.getUtil_LC_DE();
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
-		if(glo_x==-1)
-			glo_x=hctasks_loutil/(1-lctasks_acUtil);
-//		SLog.prn(1, glo_x);
+		if(g_info.getUtil()<=1) {
+			setWCR();
+		} else {
+			if(g_x==-1)
+				g_x=computeX();
+		}
+		isWCR=true;
+	}
+	private void setWCR() {
+		g_x=1;
+		for(Task t:g_tm.get_HC_Tasks()){
+			t.setHI_only();
+		}
 		
 	}
 
 	@Override
 	public void reset() {
-		glo_x=-1;
+		g_x=-1;
 	}
 	
 	@Override
 	public double getDtm() {
+		double dtm=g_info.getUtil();
+		if (dtm<=1)
+			return dtm;
+		double util_max=Math.max(hctasks_hiutil, lctasks_acUtil);
+		if (util_max>1) 
+			return util_max;
+
 		return getScore();
 	}
 
 	public double getScore() {
-		double dtm=hctasks_hiutil+lctasks_acUtil;
-		if (dtm<=1)
-			return dtm;
+		double dtm;
 		
-		double util_max=Math.max(hctasks_hiutil, lctasks_acUtil);
-		if (util_max>1) 
-			return util_max;
 		
-		dtm=glo_x*lctasks_acUtil+(1-glo_x)*lctasks_deUtil+hctasks_hiutil;
-		double dtm2=hctasks_loutil/glo_x+lctasks_acUtil;
+		dtm=g_x*lctasks_acUtil+(1-g_x)*lctasks_deUtil+hctasks_hiutil;
+		double dtm2=hctasks_loutil/g_x+lctasks_acUtil;
 		return Math.max(dtm, dtm2);
 	}
 	
@@ -58,7 +72,10 @@ public class AnalEDF_VD_IMC extends Anal {
 
 	@Override
 	public double computeX() {
-		return glo_x;
+		if(isWCR)
+			return 1;
+		double x=hctasks_loutil/(1-lctasks_acUtil);
+		return x;
 	}
 	
 
@@ -66,7 +83,7 @@ public class AnalEDF_VD_IMC extends Anal {
 	public void prn() {
 //		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
 //		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
-		SLog.prn(1, "x:"+glo_x);
+		SLog.prn(1, "x:"+g_x);
 //		SLog.prn(1, "det:"+getDtm());
 		
 	}
@@ -81,7 +98,7 @@ public class AnalEDF_VD_IMC extends Anal {
 
 	@Override
 	public void setX(double x) {
-		glo_x=x;
+		g_x=x;
 	}
 
 	
