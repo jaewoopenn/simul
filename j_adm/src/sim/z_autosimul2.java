@@ -43,20 +43,22 @@ public class z_autosimul2 {
 
 
 
-
-	
-	public int test1()	{
-		init_g();
-		String rs_path="adm/pi0";
-		
+	public void simul(String rs_path) {
 		MList fu=new MList();
 		for(int i=0;i<2;i++) {
-			AutoSimul as=new AutoSimul(g_path,i);
+			DoSimul ds=new DoSimul(i);
+			AutoSimul as=new AutoSimul(g_path,ds);
 			as.setRS(rs_path);
 			String rs=as.simulList(g_ts);
 			fu.add(rs);
 		}
 		fu.saveTo(rs_path+"/"+g_rs);
+	}
+	
+	public int test1()	{
+		init_g();
+		String rs_path="adm/pi0";
+		simul(rs_path);
 		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);

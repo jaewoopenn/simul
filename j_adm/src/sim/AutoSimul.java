@@ -14,11 +14,18 @@ import util.SLog;
 public class AutoSimul {
 	protected String g_path;
 	protected String g_rs_path;
+	protected DoSimul g_ds;
 	protected int g_sort;
 	
 	public AutoSimul(String path,int sort) {
 		g_path=path;
+		g_ds=new DoSimul(sort);
 		g_sort=sort;
+	}	
+	public AutoSimul(String path,DoSimul ds) {
+		g_path=path;
+		g_ds=ds;
+		g_sort=ds.getSort();
 	}	
 	public void setRS(String rs_path) {
 		g_rs_path=rs_path;
@@ -54,8 +61,8 @@ public class AutoSimul {
 		for(int i=0;i<num;i++) {
 			DTaskVec dt=sy.loadOne2();
 //			SLog.prnc(2, i+": ");
-			DoSimul ds=new DoSimul(dt,g_sort);
-			ds.run(fu);
+			DoSimul ds=new DoSimul(g_sort);
+			ds.run(dt,fu);
 		}
 		fu.saveTo(out);
 		

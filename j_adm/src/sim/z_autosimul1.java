@@ -32,28 +32,31 @@ public class z_autosimul1 {
 //		SLog.prn(1, ret);
 		sy.moveto(n);
 		DTaskVec dt=sy.loadOne2();
-		DoSimul ds=new DoSimul(dt,0);
-		ds.run(null);
+		DoSimul ds=new DoSimul(0);
+		ds.run(dt,null);
 		return 0;
 	}
 	public int test2() {
 		String tsn="adm/test1/taskset_75.txt";
 		String out="adm/pi0/taskset_75.sim.0.txt";
-		AutoSimul as=new AutoSimul("adm/test1",0);
+		DoSimul ds=new DoSimul(0);
+		AutoSimul as=new AutoSimul("adm/test1",ds);
 		as.simulTS(tsn,out);
 		return 0;
 	}
 	
 
 	public int test3() {
-		AutoSimul as=new AutoSimul("adm/test1",0);
+		DoSimul ds=new DoSimul(0);
+		AutoSimul as=new AutoSimul("adm/test1",ds);
 		as.setRS("adm/pi0");
 		as.simulList("a_ts_list.txt");
 		return 0;
 	}
 	public  int test4() {
 		for(int i=0;i<2;i++) {
-			AutoSimul as=new AutoSimul("adm/test1",i);
+			DoSimul ds=new DoSimul(i);
+			AutoSimul as=new AutoSimul("adm/test1",ds);
 			as.setRS("adm/pi0");
 			as.simulList("a_ts_list.txt");
 		}

@@ -4,6 +4,7 @@ package autorun;
 import auto.DataSim_IMC;
 import auto.Platform_IMC;
 import sim.AutoSimul;
+import sim.DoSimul;
 import util.MList;
 import util.SEngineT;
 import util.SLog;
@@ -80,26 +81,32 @@ public class z_auto_sim_imc4 {
 		p.genTS(g_cf,g_ts);
 		
 	}
+	public void simul(String rs_dir) {
+		MList fu=new MList();
+		for(int i=0;i<2;i++) {
+			DoSimul ds=new DoSimul(i);
+			AutoSimul as=new AutoSimul(g_path,ds);
+			as.setRS(rs_dir);
+			String rs=as.simulList(g_ts);
+			fu.add(rs);
+		}
+		fu.saveTo(rs_dir+"/"+g_rs);
+	}
+	
 	public void loop_util(String rs_path) {
+		String rs_dir=rs_path+"0";
 		Platform_IMC p=new Platform_IMC(g_path);
-		p.setRS(rs_path);
+		p.setRS(rs_dir);
 
 		p.genXA(g_cf,g_xl);
 		
 		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
-		MList fu=new MList();
-		for(int i=0;i<2;i++) {
-			AutoSimul as=new AutoSimul(g_path,i);
-			as.setRS(rs_path);
-			String rs=as.simulList(g_ts);
-			fu.add(rs);
-		}
-		fu.saveTo(rs_path+"/"+g_rs);
+		simul(rs_dir);
 		
 		
-		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
+		DataSim_IMC ds=new DataSim_IMC(rs_dir,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
 		ds.saveSim(g_graph);
@@ -109,7 +116,7 @@ public class z_auto_sim_imc4 {
 		init_g();
 		init_sim();
 		gen();
-		String rs_path="adm/pi0";
+		String rs_path="adm/pi";
 		loop_util(rs_path);
 		return 0;
 	}
