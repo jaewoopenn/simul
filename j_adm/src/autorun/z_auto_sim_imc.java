@@ -7,7 +7,7 @@ import util.SEngineT;
 import util.SLog;
 
 // MC-RUN
-// a_imc/dmr_imc.py
+// ADM
 
 public class z_auto_sim_imc {
 	private static int s_idx;
@@ -29,11 +29,11 @@ public class z_auto_sim_imc {
 	
 	
 	public static void init_s() {
-//		int s=1;
-		int s=2; //p
-//		int s=3; //life
-//		int s=4; //ratio
-//		int s=5; //all in one.
+//		int s=1; // ADM simul 
+		int s=2; //
+//		int s=3; //
+//		int s=4; //
+//		int s=5; //
 		
 		s_idx=s;
 		
@@ -94,14 +94,6 @@ public class z_auto_sim_imc {
 	}
 	public int test1() 
 	{
-//		init_g();
-//		init_sim();
-//		g_path="sch/t2";
-//		loop_util();
-		return 0;
-	}
-	public int test2() // p
-	{
 		int st=0,et=3;
 //		int st=1,et=2;
 //		int st=2,et=3;
@@ -116,6 +108,10 @@ public class z_auto_sim_imc {
 			g_p_ms=a[i];
 			loop_util(rs_path);
 		}
+		return 0;
+	}
+	public int test2() // p
+	{
 		return 0;
 	}
 	public int test3() // ms length
@@ -144,6 +140,10 @@ public class z_auto_sim_imc {
 	}
 	public  int test6() 
 	{
+//		init_g();
+//		init_sim();
+//		g_path="sch/t2";
+//		loop_util();
 		return 0;
 	}
 	public  int test7()
