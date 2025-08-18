@@ -1,13 +1,8 @@
 package sim;
 
-import anal.Anal;
-import anal.AnalEDF_VD_ADM;
-import anal.AnalSel_IMC;
 import gen.SysLoad;
-import imc.SimulSel_IMC;
-import imc.TaskSimul_EDF_VD_ADM;
-import imc.TaskSimul_IMC;
 import task.DTaskVec;
+import util.CProg;
 import util.MList;
 import util.SLog;
 
@@ -16,12 +11,13 @@ public class AutoSimul {
 	protected String g_rs_path;
 	protected DoSimul g_ds;
 	protected int g_sort;
+	protected boolean g_verbose=false;
 	
-	public AutoSimul(String path,int sort) {
-		g_path=path;
-		g_ds=new DoSimul(sort);
-		g_sort=sort;
-	}	
+//	public AutoSimul(String path,int sort) {
+//		g_path=path;
+//		g_ds=new DoSimul(sort);
+//		g_sort=sort;
+//	}	
 	public AutoSimul(String path,DoSimul ds) {
 		g_path=path;
 		g_ds=ds;
@@ -33,7 +29,18 @@ public class AutoSimul {
 	}
 
 
-
+	private CProg getProg(int num) {
+		CProg prog=new CProg(num);
+		prog.setLog(2);
+		
+		if(g_verbose) {
+			prog.setSort(1);
+			prog.setStep(1);
+		} else { 
+			prog.setPercent();
+		}
+		return prog;
+	}
 	
 	// simulate task set list with algorithm choice
 	public String simulList(String ts_list) {
@@ -53,16 +60,23 @@ public class AutoSimul {
 	}
 	
 	public void simulTS(String tsn, String out) {
+		SLog.prn(2, "ts:"+tsn);
+		SLog.prn(2, "out:"+out);
+//		SLog.prn(2, g_dur);
+//		SLog.prn(2, s.getName());
+		
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
 		MList fu=new MList();
+		CProg prog=getProg(num);
 
 		for(int i=0;i<num;i++) {
+			prog.inc();
 			DTaskVec dt=sy.loadOne2();
 //			SLog.prnc(2, i+": ");
-			DoSimul ds=new DoSimul(g_sort);
-			ds.run(dt,fu);
+			g_ds.run(dt);
+			fu.add(g_ds.getRS());
 		}
 		fu.saveTo(out);
 		

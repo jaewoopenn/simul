@@ -126,40 +126,13 @@ public abstract class Platform_base {
 		fu.saveTo(out);
 	}
 	
-	public abstract Anal getAnalSim(int sort) ;
-	public abstract TaskSimul_base getSim(int sort) ;
-	
-	//simulation
-	public void sim_loop(String rs_list,String ts_list, int start, int end) {
-		MList fu=new MList();
-		for(int i=start;i<end;i++){
-			String rs=simul(ts_list,i);
-			fu.add(rs);
-		}
-		fu.saveTo(g_rs_path+"/"+rs_list);
-	}
+
+
 
 	
 
 
-	// simulate task set list with algorithm choice
-	public String simul(String ts_list,int sort) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-		MList fu_rs=new MList();
-		Anal a=getAnalSim(sort);
-		SLog.prn(2, "Anal:"+a.getName());
-		TaskSimul_base s=getSim(sort);
-		
-		for(int i=0;i<fu.size();i++) {
-			String fn=fu.get(i);
-			String out=g_rs_path+"/"+fn+".sim."+sort;
-			simul_one(g_path+"/"+fn,out,a,s);
-			fu_rs.add(out);
-		}		
-		fu_rs.saveTo(rs_fn);
-		return rs_fn;		
-	}
+
 	
 
 	private CProg getProg(int num) {
@@ -175,101 +148,7 @@ public abstract class Platform_base {
 		return prog;
 	}
 	
-	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
-		SLog.prn(2, "ts:"+ts);
-		SLog.prn(2, "out:"+out);
-		SLog.prn(2, g_dur);
-		SLog.prn(2, s.getName());
-		
-		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		int num=Integer.valueOf(ret).intValue();
-		
-//		Anal base;
-		MList fu=new MList();
-		CProg prog=getProg(num);
-		
-		
-		for(int i=0;i<num;i++) {
-//			SLog.prn(2, "no:"+i);
-			DTaskVec dt=sy.loadOne2();
 
-			if(dt==null) break;
-			
-			prog.inc();
-			
-//			base=new AnalEDF_IMC(); // EDF로 스케줄 가능하면 시뮬할필요없음. 
-//			base.init(dt.getTM(0));
-//			if(base.is_sch()) {
-//				fu.add("0.0");
-//				continue;
-//			}
-
-//			dt.prn();
-			a.init(dt.getTM(0));
-			double x=a.computeX();
-			if(x==0) {
-				fu.add("0.0");
-				continue;
-			}
-			SLog.prn(2, "x: "+x);
-			SysMng sm=new SysMng();
-			sm.setMS_Prob(g_p_ms);
-			sm.setX(x);
-//			sm.prn();
-			s.init_sm_dt(sm,dt);
-			s.simul(g_dur);
-			SimulInfo si=s.getSI();
-			fu.add(si.getDegraded()+"");
-		}
-		fu.saveTo(out);
-	}
-
-	//////////
-	//// DUr
-
-	
-	public void genXA_dur(String xaxis) {
-		MList fu_xa=new MList();
-		for(int i=0;i<g_dur_set.length;i++) {
-			fu_xa.add((g_dur_set[i]/1000)+"");
-		}
-		fu_xa.saveTo(g_rs_path+"/"+xaxis);
-	}	
-	
-
-	//simulation
-	public void sim_loop_dur(String rs_list,String ts_list, int end) {
-		MList fu=new MList();
-		for(int i=0;i<end;i++){
-			String rs=simul_dur(ts_list,i);
-			fu.add(rs);
-		}
-		fu.saveTo(g_rs_path+"/"+rs_list);
-	}
-	
-	
-	// simulate task set list with algorithm choice (duration)
-	public String simul_dur(String ts_list,int sort) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-		MList fu_rs=new MList();
-		
-		String fn=fu.get(0);
-		int anal_sort=Math.min(sort, 3);
-		
-		Anal a=getAnalSim(anal_sort);
-		TaskSimul_base s=getSim(sort);
-		
-		for(int i=0;i<g_dur_set.length;i++) {
-			String out=g_rs_path+"/"+fn+"_"+i+".sim."+sort;
-			g_dur=g_dur_set[i];
-			simul_one(g_path+"/"+fn,out,a,s);
-			fu_rs.add(out);
-		}		
-		fu_rs.saveTo(rs_fn);
-		return rs_fn;		
-	}
 
 
 //	public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {

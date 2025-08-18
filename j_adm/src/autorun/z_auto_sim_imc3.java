@@ -84,11 +84,11 @@ public class z_auto_sim_imc3 {
 		SLog.prn(2, "p:"+g_p_ms);
 		p.setDur(g_dur);
 		
-		p.sim_loop(g_rs, g_ts,0,2);
-		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
-		ds.load_x(g_xl);
-		ds.load_rs(g_rs);
-		ds.saveSim(g_graph);
+//		p.sim_loop(g_rs, g_ts,0,2);
+//		DataSim_IMC ds=new DataSim_IMC(rs_path,0);
+//		ds.load_x(g_xl);
+//		ds.load_rs(g_rs);
+//		ds.saveSim(g_graph);
 	}
 	public int test1() 
 	{

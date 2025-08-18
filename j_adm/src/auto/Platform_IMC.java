@@ -140,12 +140,7 @@ public class Platform_IMC extends Platform_base {
 		else
 			return AnalSel_IMC.getAnal(sort);
 	}
-	public Anal getAnalSim(int sort) {
-		return AnalSel_IMC.getAnalSim(sort);
-	}
-	public TaskSimul_base getSim(int sort) {
-		return SimulSel_IMC.getSim(sort);
-	}
+
 	public void setOnlyMC() {
 		g_onlyMC=true;		
 	}
