@@ -9,30 +9,61 @@ import util.SLog;
 
 public class z_Anal2 {
 //	public static int idx=1;
-//	public static int idx=2;
-	public static int idx=3;
+	public static int idx=2;
+//	public static int idx=3;
 	public static int log_level=1;
 
 
 	public int test1()	{
-		String ts="adm/test1/test_task.txt";
-		int n=1745;
+		String ts="adm/test1/taskset_68.txt";
+//		String ts="adm/test1/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
 		String ret=sy.open();
-		SLog.prn(1, ret);
-		sy.moveto(n);
-		TaskMng tm=sy.loadOne();
-		tm.prn();
-		Anal a=new AnalAMC_imc();
-		a.init(tm);
-		SLog.prn(1, a.getDtm());
-//		a.prn();
-
-		
+		int n=Integer.valueOf(ret).intValue();
+//		SLog.prn(1, ret);
+//		sy.moveto(n);
+		for(int i=0;i<n;i++) {
+			TaskMng tm=sy.loadOne();
+			SLog.prn(1, "task set "+i);
+			anal(tm);
+		}
 		return 0;
 	}
 	
-	public int test2() {
+	public int test2()	{
+		int idx=61;
+		String ts="adm/test1/taskset_68.txt";
+		SysLoad sy=new SysLoad(ts);
+		String ret=sy.open();
+		sy.moveto(idx);
+		
+		TaskMng tm=sy.loadOne();
+		SLog.prn(1, "task set "+idx);
+		anal(tm);
+		
+		return 0;
+	}
+
+	
+	private void anal(TaskMng tm) {
+//		tm.prn();
+		Anal a;
+//		a=new AnalAMC_imc();
+//		a=new AnalEDF_VD_ADM();
+		a=new AnalEDF_VD_IMC();
+		a.init(tm);
+		double x=a.computeX();
+		SLog.prn(1, "x: "+x);
+		SLog.prn(1, a.getDtm());
+//		a.prn();
+//		if(x==0) {
+//			SLog.err("STOP");
+//		}
+		
+	}
+
+
+	public int test3() {
 		String ts="adm/test2/taskset_98.txt";
 //		String ts="adm/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
@@ -80,7 +111,7 @@ public class z_Anal2 {
 //		a.prn();
 		return -1;
 	}
-	public int test3() {
+	public int test4() {
 		String ts="adm/test2/taskset_98.txt";
 //		String ts="adm/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
@@ -112,9 +143,6 @@ public class z_Anal2 {
 			}
 		}
 		return -1;
-	}
-	public  int test4() {
-		return 1;
 	}
 	public  int test5() {
 		return 1;

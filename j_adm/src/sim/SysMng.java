@@ -7,6 +7,7 @@ public class SysMng {
 	private double g_x=-1;
 	private int g_delay;
 	private int g_et;
+	
 	//--- Get
 	public double getMS_Prob() {
 		if(g_prob==-1) {

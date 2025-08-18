@@ -64,18 +64,19 @@ public class z_auto_sim_imc3 {
 		g_graph="a_sim_graph.txt";
 	}
 	public void gen() {
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		Platform_IMC p=new Platform_IMC(g_path);
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
-		p.setCheck();
+		p.setSch();
 		//p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
 		
 	}
 	public void loop_util(String rs_path) {
-		Platform_IMC p=new Platform_IMC(g_path,rs_path);
+		Platform_IMC p=new Platform_IMC(g_path);
+		p.setRS(rs_path);
 
 		p.genXA(g_cf,g_xl);
 		

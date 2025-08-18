@@ -61,7 +61,7 @@ public class z_auto_mc {
 	public int test1() { // MC
 		init_g();
 		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path,g_path);
+		Platform_IMC p=new Platform_IMC(g_path);
 		p.setStage(g_stage);
 		p.setMC();
 		p.setNum(g_num);

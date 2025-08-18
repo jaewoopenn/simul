@@ -16,10 +16,13 @@ public class Platform_IMC extends Platform_base {
 	private boolean g_isMC=false; // not IMC
 	private int g_stage=1;
 	
-	public Platform_IMC(String path, String rs_path) {
+	public Platform_IMC(String path) {
 		g_path=path;
-		g_rs_path=rs_path;
 	}	
+	public void setRS(String rs_path) {
+		g_rs_path=rs_path;
+		
+	}
 	
 	public void setMC() {
 		g_isMC=true;
@@ -120,7 +123,7 @@ public class Platform_IMC extends Platform_base {
 			SLog.prn(3, fn);
 			if(g_onlyMC)
 				sg.setOnlyMC();
-			if(g_isCheck)
+			if(g_isSch)
 				sg.setCheck();
 			int num=sg.prepare_IMC();
 			sg.gen2(g_path+"/"+fn, a,num);
@@ -150,6 +153,7 @@ public class Platform_IMC extends Platform_base {
 	public void setStage(int s) {
 		g_stage=s;
 	}
+
 
 
 

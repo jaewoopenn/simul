@@ -14,34 +14,40 @@ public class z_tasksimul2 {
 	public static int log_level=1;
 
 
+	
 	public int test1()	{
-		String tsn="adm/test1/taskset_96";
-		String scn="adm/test.txt";
-		int n=10;
-		int dur=350;
+		String tsn="adm/test1/taskset_88.txt";
+		String out="adm/test.txt";
+		int n=74;
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
 		SLog.prn(1, ret);
 		sy.moveto(n);
-		DTaskVec tm=sy.loadOne2();
+		DTaskVec dt=sy.loadOne2();
+		
+		simul(dt,out);
+		return 0;
+	}
+	
+	private void simul(DTaskVec dt, String out) {
+		int dur=1000;
 
 		SysMng sm=new SysMng();
-		sm.setMS_Prob(0);
+		sm.setMS_Prob(0.3);
 		sm.setX(0.9);
 		
 		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
-		ts.init_sm_dt(sm,tm);
-//		ts.setScn(scn);
+		ts.init_sm_dt(sm,dt);
 
 //		SLogF.init(out);
 		ts.simul(dur);
 		ts.simul_end();
 		SimulInfo si=ts.getSI();
-		si.prn();
+		si.prn2();
 //		SLogF.save();
-		return 0;
+		
 	}
-	
+
 	public int test2() {
 		return -1;
 	}

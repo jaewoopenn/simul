@@ -43,8 +43,8 @@ public class z_auto_sim_imc2 {
 	public int test1() 
 	{
 		init_sim();
-		Platform_IMC p=new Platform_IMC(g_path,g_rs_path);
-
+		Platform_IMC p=new Platform_IMC(g_path);
+		p.setRS(g_rs_path);
 		
 		p.setDur(g_dur);
 		p.setP_MS(g_p_ms);
@@ -56,7 +56,8 @@ public class z_auto_sim_imc2 {
 	public int test2() 
 	{
 		init_sim();
-		Platform_IMC p=new Platform_IMC(g_path,g_rs_path);
+		Platform_IMC p=new Platform_IMC(g_path);
+		p.setRS(g_rs_path);
 
 		
 		p.setP_MS(g_p_ms);
