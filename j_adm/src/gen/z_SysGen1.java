@@ -5,40 +5,51 @@ import util.SLog;
 import util.SEngineT;
 
 public class z_SysGen1 {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 	public static int log_level=1;
 
 	// gen
 	public int test1() 
 	{
+		for(int i=0;i<7;i++) {
+			gen(i);
+		}
+		return 1;
+	}
+	public void gen(int i) {
 		String path="adm/test1/";
-		ConfigGen cfg=new ConfigGen(path+"cfg_8.txt");
+		ConfigGen cfg=new ConfigGen(path+"cfg_"+i+".txt");
 		cfg.readFile();
 		SysGen sg=new SysGen(cfg);
 		String fn=cfg.get_fn();
 		Anal a=null;
-//		a=new AnalEDF_VD();
 		int num=sg.prepare_IMC();
 		sg.gen2(path+fn, a,num);
 		SLog.prn(1, "OK "+num);
-		return 1;
-
 	}
 
 	// gen with schedulable 
 	public int test2() 
 	{
-		ConfigGen cfg=new ConfigGen("sch/t1/cfg_8.txt");
+		for(int i=0;i<7;i++) {
+			gen2(i);
+		}
+		return 0;
+	}
+	public void gen2(int i) {
+		String path="adm/test1/";
+		ConfigGen cfg=new ConfigGen(path+"cfg_"+i+".txt");
 		cfg.readFile();
 		SysGen sg=new SysGen(cfg);
-		sg.setCheck();
+		sg.setSch();
+		sg.setOnlyMC();
 		String fn=cfg.get_fn();
 		SLog.prn(1, fn);
 		Anal a=new AnalEDF_VD_IMC();
 		int num=sg.prepare_IMC();
-		sg.gen(fn, a,num);
-		return 0;
+		sg.gen2(fn, a,num);
+		SLog.prn(1, "OK "+num);
 	}
 	
 	public int test3() 

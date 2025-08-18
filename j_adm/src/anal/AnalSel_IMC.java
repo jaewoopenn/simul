@@ -1,6 +1,5 @@
 package anal;
 
-import imc.TaskSimul_EDF_VD_IMC;
 
 public class AnalSel_IMC {
 

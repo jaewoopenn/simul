@@ -33,8 +33,7 @@ public class JobSimul {
 	public int simul_end(){
 		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
-			SLog.prn(9,"Deadline miss at time "+g_t);
-			System.exit(1);
+			SLog.err("Deadline miss at time "+g_t);
 		}
 		SLogF.prn("*** Left Jobs at time "+g_t+" ***");
 		g_jm.f_prn();
@@ -57,7 +56,8 @@ public class JobSimul {
 			if(j.isHI) {
 				if(cur_t<j.vd) 
 					break;
-//				SLogF.end();
+				if(SLogF.isON())
+					SLogF.save();
 				SLog.err("Job Simul: VD miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
 			}else {
 				if(cur_t<j.dl) 
@@ -94,10 +94,10 @@ public class JobSimul {
 		}
 		
 		// File Log
-		if(!SLogF.isON())
-			return;
-		s=g_jm.getJobArrow(j,out_type);
-		SLogF.prn(s);
+		if(SLogF.isON()) {
+			s=g_jm.getJobArrow(j,out_type);
+			SLogF.prn(s);
+		}
 	}
 	
 	

@@ -1,7 +1,6 @@
 package auto;
 
 import anal.Anal;
-import anal.AnalEDF_IMC;
 import gen.ConfigGen;
 import gen.SysLoad;
 import sim.SimulInfo;
@@ -186,12 +185,10 @@ public abstract class Platform_base {
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
 		
-		Anal base;
+//		Anal base;
 		MList fu=new MList();
 		CProg prog=getProg(num);
 		
-		//////////
-		/// 이게 뭐지. 고쳐야 함   
 		
 		for(int i=0;i<num;i++) {
 //			SLog.prn(2, "no:"+i);
@@ -208,10 +205,14 @@ public abstract class Platform_base {
 //				continue;
 //			}
 
-
+//			dt.prn();
 			a.init(dt.getTM(0));
 			double x=a.computeX();
-//			SLog.prn(2, x);
+			if(x==0) {
+				fu.add("0.0");
+				continue;
+			}
+			SLog.prn(2, "x: "+x);
 			SysMng sm=new SysMng();
 			sm.setMS_Prob(g_p_ms);
 			sm.setX(x);

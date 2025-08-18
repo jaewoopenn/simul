@@ -30,7 +30,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 		if(g_ms_happen)
 			return;
 		g_ms_happen=true;
-		SLog.prn(2, "de");
+//		SLog.prn(2, "de");
 		// test fail? all degrade 
 		for(Task t:g_tm.get_LC_Tasks()){
 				degrade_task(t);

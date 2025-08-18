@@ -10,7 +10,7 @@ public class AnalEDF_IMC extends Anal {
 	}
 	@Override
 	public void prepare() {
-		u=g_tm.getInfo().getUtil();
+		u=g_tm.getInfo().getMaxUtil();
 	}
 	
 	@Override

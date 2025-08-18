@@ -25,19 +25,19 @@ public class AnalEDF_VD_IMC extends Anal {
 		lctasks_deUtil=g_info.getUtil_LC_DE();
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
-		if(g_info.getUtil()<=1) {
+//		g_info.prn();
+		if(g_x==-1)
+			g_x=computeX();
+		if(g_info.getMaxUtil()<=1)
 			setWCR();
-		} else {
-			if(g_x==-1)
-				g_x=computeX();
-		}
-		isWCR=true;
 	}
 	private void setWCR() {
 		g_x=1;
 		for(Task t:g_tm.get_HC_Tasks()){
 			t.setHI_only();
 		}
+		isWCR=true;
+//		SLog.prn(1, "WCR: "+g_info.getMaxUtil());
 		
 	}
 
@@ -48,7 +48,7 @@ public class AnalEDF_VD_IMC extends Anal {
 	
 	@Override
 	public double getDtm() {
-		double dtm=g_info.getUtil();
+		double dtm=g_info.getMaxUtil();
 		if (dtm<=1)
 			return dtm;
 		double util_max=Math.max(hctasks_hiutil, lctasks_acUtil);
@@ -89,12 +89,6 @@ public class AnalEDF_VD_IMC extends Anal {
 	}
 
 	
-	public static double computeX(TaskMng tm) {
-		AnalEDF_VD_IMC a=new AnalEDF_VD_IMC();
-		a.init(tm);
-		a.prepare();
-		return a.computeX();
-	}
 
 	@Override
 	public void setX(double x) {

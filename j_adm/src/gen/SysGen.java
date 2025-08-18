@@ -12,17 +12,17 @@ import util.SLog;
 @SuppressWarnings("unused")
 public class SysGen {
 	private MRand g_rand=new MRand();
-	protected TaskGen g_tg;
+	private TaskGen g_tg;
 	private ConfigGen g_cfg;
-	protected boolean g_isCheck=false;
-	protected boolean g_isOnlyMC=false;
-	protected int g_stage;
+	private boolean g_isSch=false;
+	private boolean g_isOnlyMC=false;
+	private int g_stage;
 
 	public SysGen(ConfigGen cfg) {
 		g_cfg=cfg;
 	}
-	public void setCheck() {
-		g_isCheck=true;
+	public void setSch() {
+		g_isSch=true;
 	}
 	public void setOnlyMC() {
 		g_isOnlyMC=true;
@@ -72,6 +72,7 @@ public class SysGen {
 				continue;
 			if(!isSch(a)) 
 				continue;
+//			SLog.prnc(1, i+" ");
 			writeSys2(ml);
 //			SLog.prn(2,i+"");
 			i++;
@@ -93,6 +94,10 @@ public class SysGen {
 	{
 		
 		TaskSet ts=g_tg.getTS();
+
+//		TaskMng tm=ts.getTM();
+//		tm.prnInfo();
+
 		TaskSetUtil.initStage(ml, g_stage);
 		Task[] tss=ts.getArr();
 		for(Task t:tss) {
@@ -126,7 +131,7 @@ public class SysGen {
 	}
 
 	protected boolean isSch(Anal a) {
-		if(!g_isCheck)
+		if(!g_isSch)
 			return true;
 		TaskSet tsf=g_tg.getTS();
 		TaskMng tm=tsf.getTM();

@@ -98,25 +98,7 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
 		} else { // LO-mode
 			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-//			if(gscn!=null) {
-//				int nxt=gscn.getNxt();
-//				if(nxt<t) {
-//					gscn.fetchNxt();
-//					nxt=gscn.getNxt();
-//				}
-//				if(nxt!=-1) {
-//					String s=t+":"+nxt+":"+tsk.tid+":";
-//					for(int tid:gscn.getNxtA()) {
-//						s+= tid+" ";
-//						if(tsk.tid==tid) {
-//							j.setTobeMS();
-//							SLog.prn(1, t+": "+tsk.tid+" MS ");
-//						}
-//					}
-//					
-//				}
-//				
-//			}
+//			j.prn();
 		}
 		return j;
 	}
@@ -180,15 +162,12 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 			}
 			
 		} else { // add_exec=0 : recover check
-			
 			g_jsm.getJM().removeCur();
 		}
 	}
 
 	
 	private boolean isMS(Job j) {
-//		if(gscn!=null) 
-//			return j.tobeMS();
 		if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
 			return true;
 		else

@@ -44,6 +44,7 @@ public class Job implements Comparable<Job>{
 	}
 	public void ms() {
 		exec+=add_exec;
+		add_exec=0;
 		
 	}
 	public void degrade() {
@@ -95,6 +96,10 @@ public class Job implements Comparable<Job>{
 	}
 	public void setTobeMS() {
 		b_tobeMS=true;
+		
+	}
+	public void prn() {
+		SLog.prn(1, info());
 		
 	}
 

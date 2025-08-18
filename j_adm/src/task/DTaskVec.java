@@ -80,6 +80,10 @@ public class DTaskVec {
 	public int getNum() {
 		return g_num;
 	}
+	public void prn() {
+		TaskMng tm=getTM(0);
+		tm.prn();
+	}
 	
 
 }

@@ -15,10 +15,10 @@ public class JobMngMC extends JobMng {
 		Vector<Job> v=new Vector<Job>();
 		for(Job j:g_jobs){
 			if(j.tid==tid) {
+//				j.prn();
 				j.ms();
 				j.setVD(j.dl);
-				j.exec+=j.add_exec;
-				j.add_exec=0;
+//				j.prn();
 				v.add(j);
 			}
 		}

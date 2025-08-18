@@ -11,7 +11,7 @@ import util.MPlot as mp;
 class gl_input:
     savename="adm/pmsi"
     path="adm/pi"
-    ylim=0.20
+    ylim=0.60
 
       
       
@@ -21,7 +21,7 @@ class gl_input:
 
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
-    ylab= "Percentage of Fully-serviced Job"
+    ylab= "Percentage of Degraded Execution"
 
 class gl:
     lab=[]
@@ -54,7 +54,7 @@ def load(i):
 #         z=itemlen-i
         v=[]
         for j in range(1,len(raw)):
-            val=1-float(raw[j][i]);
+            val=float(raw[j][i]);
             v.append(val)
 #         print(v)
         gl.vv.append(v)
@@ -75,11 +75,12 @@ def loop(i):
 #         mp.legendBR()
 #     else:
 #         mp.legendUL()
-    mp.legendBL()
+    # mp.legendBL()
+    mp.legendUL()
     
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(gl_input.ylim,1.01)
+    mp.ylim(-0.05,gl_input.ylim)
     mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
     
 def main():

@@ -31,6 +31,7 @@ public abstract class TaskSimul_base {
 	public void simul(int et){
 		int t=0;
 		g_si.total=et;
+//		g_dt.prn();
 		SLogF.prn("rel  / exec / t");
 		while(t<et){
 			simul_one();

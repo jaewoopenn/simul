@@ -2,13 +2,12 @@ package anal;
 
 import task.SysInfo;
 import task.Task;
-import task.TaskMng;
-import util.MCal;
 import util.SLog;
 
 // todo EDF로 스케줄 가능할때, 전부 HI-only로 맞추기
 
 
+@SuppressWarnings("unused")
 
 public class AnalEDF_ADAPT extends Anal {
 	private double lc_ac;

@@ -33,7 +33,7 @@ public class TaskMng {
 	public void setX(double x){
 		g_info.setX(x);
 		g_hc_tasks.setX(x);
-//		g_hi_tasks.set_HI_only();
+		g_hc_tasks.set_HI_only();
 	}
 
 	
@@ -162,12 +162,12 @@ public class TaskMng {
 
 
 	public boolean check() {
-		if(g_info.get_lm_util()>1){
-			SLog.prn(2, "lm "+g_info.get_lm_util()+" error");
+		if(g_info.get_LO_util()>1){
+			SLog.prn(2, "lm "+g_info.get_LO_util()+" error");
 			return false;
 		}
-		if(g_info.get_hm_util()>1){
-			SLog.prn(2, "hm "+g_info.get_hm_util()+" error");
+		if(g_info.get_HI_util()>1){
+			SLog.prn(2, "hm "+g_info.get_HI_util()+" error");
 			return false;
 		}
 		return true;
@@ -194,8 +194,7 @@ public class TaskMng {
 		g_lc_tasks.prnRuntime();
 	}
 	public void prnInfo() {
-		g_info.prn();
-//		Log.prn(2, "prob:"+g_info.getProb_ms());
+		g_info.prnUtil();
 	}
 
 	public void prnRuntime() {

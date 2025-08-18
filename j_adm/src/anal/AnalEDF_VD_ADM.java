@@ -29,12 +29,15 @@ public class AnalEDF_VD_ADM extends Anal {
 		lc_de=g_info.getUtil_LC_DE();
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
-		if(g_info.getUtil()<=1) {
+		if(g_info.getMaxUtil()<=1) {
 			setWCR();
-		} else {
-			g_x=computeX();
-			comp_hi_prefer();
+			return;
 		}
+			
+		g_x=computeX();
+//		g_info.prn();
+//		SLog.prn(1,g_x);
+		comp_hi_prefer();
 	}
 	private void setWCR() {
 		g_x=1;
@@ -49,7 +52,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/g_x;
 			double h_util=t.getHiUtil();
-//			Log.prn(1, v_util+","+h_util);
+//			SLog.prn(1, v_util+","+h_util);
 			if(v_util>=h_util){
 				t.setHI_only();
 				n++;
@@ -61,7 +64,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		
 	@Override
 	public double getDtm() {
-		double dtm=g_info.getUtil();
+		double dtm=g_info.getMaxUtil();
 		if (dtm<=1)
 			return dtm;
 		dtm=getDtm2();
@@ -115,7 +118,7 @@ public class AnalEDF_VD_ADM extends Anal {
 			}
 		}	
 		double x=(nr_lo)/(1-lc_ac-r_hi);
-//		SLog.prn(2, nr_lo+","+r_hi+","+x);
+//		SLog.prn(2, nr_lo+","+lc_ac+","+r_hi);
 		return x;
 	}
 	
