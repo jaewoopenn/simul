@@ -1,7 +1,7 @@
-package anal;
+package auto;
 
+import anal.DoAnal;
 import gen.SysLoad;
-import sim.AutoSimul;
 import sim.DoSimul;
 import task.DTaskVec;
 import task.TaskMng;

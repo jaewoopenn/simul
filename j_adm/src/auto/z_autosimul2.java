@@ -1,4 +1,4 @@
-package sim;
+package auto;
 
 import anal.Anal;
 
@@ -7,9 +7,7 @@ import anal.Anal;
 
 import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
-import anal.AutoAnal;
 import anal.DoAnal;
-import auto.DataSim_IMC;
 import gen.SysLoad;
 import imc.*;
 import task.DTaskVec;

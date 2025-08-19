@@ -1,5 +1,6 @@
-package anal;
+package auto;
 
+import anal.DoAnal;
 import gen.SysLoad;
 import task.DTaskVec;
 import util.CProg;

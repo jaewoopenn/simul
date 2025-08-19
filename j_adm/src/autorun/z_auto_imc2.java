@@ -1,7 +1,7 @@
 package autorun;
 
-import anal.AutoAnal;
 import anal.DoAnal;
+import auto.AutoAnal;
 import auto.AutoConfig;
 import auto.DataAnal_IMC;
 import auto.AutoTaskGen;

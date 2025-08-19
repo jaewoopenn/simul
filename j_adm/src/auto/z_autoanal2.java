@@ -1,9 +1,7 @@
-package anal;
+package auto;
 
-import auto.DataAnal_IMC;
-import auto.DataSim_IMC;
+import anal.DoAnal;
 import gen.SysLoad;
-import sim.AutoSimul;
 import sim.DoSimul;
 import task.DTaskVec;
 import task.TaskMng;

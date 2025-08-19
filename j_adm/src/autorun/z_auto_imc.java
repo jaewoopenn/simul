@@ -29,9 +29,9 @@ public class z_auto_imc {
 	
 	public static void init_s() {
 		int s;
-		s=1;
+//		s=1;
 //		s=2;
-//		s=3;
+		s=3;
 //		s=4;
 		s_idx=s;
 		
