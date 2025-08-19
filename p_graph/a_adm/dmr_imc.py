@@ -9,8 +9,8 @@ Created on 2015. 12. 11.
 import util.MFile as mf
 import util.MPlot as mp;
 class gl_input:
-    savename="adm/pmsi"
-    path="adm/pi"
+    savename="adm/graph_"
+    path="adm/"
     ylim=0.60
 
       
@@ -30,12 +30,12 @@ class gl:
     line=['r--','k-','b-.','g--','m:']
     marker=['o','v','D','^','s']
 
-def load(i):
+def load(s):
     gl.lab=[]
     gl.x=[]
     gl.vv=[]
     
-    i_f = mf.load(gl_input.path+str(i)+"/"+gl_input.fn)
+    i_f = mf.load(gl_input.path+s+"/"+gl_input.fn)
     raw=[]
     for line in i_f:
         val=line.strip().split(" ")
@@ -60,8 +60,8 @@ def load(i):
         gl.vv.append(v)
         
 
-def loop(i):
-    load(i)
+def loop(s):
+    load(s)
     no=0
 #     mp.prepare()
     mp.prepare2()
@@ -81,10 +81,10 @@ def loop(i):
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
     mp.ylim(-0.05,gl_input.ylim)
-    mp.savefig(mf.filepath(gl_input.savename+str(i)+".pdf"))
+    mp.savefig(mf.filepath(gl_input.savename+s+".pdf"))
     
 def main():
-    loop(0)
+    loop("sim_rs")
     # loop(1)
     # loop(2)
     print("end")

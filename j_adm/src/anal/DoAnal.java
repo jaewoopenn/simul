@@ -28,6 +28,7 @@ public class DoAnal {
 			return "0";
 	}
 	public void prn() {
+		SLog.prn(1, "anal: "+g_anal.getName());
 		double d=g_anal.getDtm();
 		SLog.prn(1, "dtm: "+d);
 		

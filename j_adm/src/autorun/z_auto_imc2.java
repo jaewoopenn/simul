@@ -42,7 +42,7 @@ public class z_auto_imc2 {
 	}
 	
 	public void init_g() {
-		g_path="adm/test1";
+		g_path="adm/anal";
 		g_num=5000;
 //		g_num=500;
 //		g_num=20;
@@ -62,13 +62,13 @@ public class z_auto_imc2 {
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}
-	public void simul() {
+	public void anal() {
 		MList fu=new MList();
 		for(int i=0;i<g_sort;i++) {
 			DoAnal da=new DoAnal(i);
-			AutoAnal as=new AutoAnal("adm/test1",da);
+			AutoAnal as=new AutoAnal(g_path,da);
 			as.setRS(g_path);
-			String rs=as.analList("a_ts_list.txt");	
+			String rs=as.analList(g_ts);	
 			fu.add(rs);
 		}
 		fu.saveTo(g_path+"/"+g_rs);
@@ -86,7 +86,7 @@ public class z_auto_imc2 {
 		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
-		simul();
+		anal();
 
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
 		da.load_x(g_xl);

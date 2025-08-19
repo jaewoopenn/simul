@@ -45,8 +45,13 @@ public class AnalAMC_imc extends Anal {
 			SLog.prn(1, "assigning "+p);
 			Task[] ts=getUnprio();
 			b=false;
+//			g_tm.prn();
+//			prn();
 			for(int i=0;i<sz;i++){
 				Task t=g_tm.getTask(i);
+				if(t==null) {
+					prn();
+				}
 				if(prio[i]!=0) 
 					continue;
 				SLog.prn(1, "checking "+i+" "+ts.length);

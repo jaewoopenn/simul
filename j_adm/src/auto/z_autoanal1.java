@@ -10,22 +10,22 @@ import util.SEngineT;
 import util.SLog;
 
 public class z_autoanal1 {
-//	public static int idx=1;
+	public static int idx=1;
 //	public static int idx=2;
-	public static int idx=3;
+//	public static int idx=3;
 	public static int log_level=1;
 
 
 	public int test1()	{
-		int idx=29;
-		String ts="adm/test1/taskset_76.txt";
+		int idx=0;
+		String ts="adm/test2/taskset_59.txt";
 		SysLoad sy=new SysLoad(ts);
 		sy.open();
 		sy.moveto(idx);
 		
 		DTaskVec tm=sy.loadOne2();
 		SLog.prn(1, "task set "+idx);
-		DoAnal da=new DoAnal(0);
+		DoAnal da=new DoAnal(3);
 		da.run(tm);
 		da.prn();
 		

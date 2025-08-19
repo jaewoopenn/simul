@@ -1,8 +1,11 @@
 package autorun;
 
+import anal.DoAnal;
+import auto.AutoAnal;
 import auto.AutoConfig;
 import auto.DataAnal_IMC;
 import auto.AutoTaskGen;
+import util.MList;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)
 //\a_new\sch.py
@@ -50,15 +53,27 @@ public class z_auto_mc {
 	}
 
 	public void init_anal() {
-//		g_stage=1;
+		g_stage=1;
 //		g_stage=3;
-		g_stage=6;
+//		g_stage=6;
 		g_st=56;
 		g_step=3;
 		g_end=100;
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}
+	public void anal() {
+		MList fu=new MList();
+		for(int i=0;i<g_sort;i++) {
+			DoAnal da=new DoAnal(i);
+			AutoAnal as=new AutoAnal(g_path,da);
+			as.setRS(g_path);
+			String rs=as.analList(g_ts);	
+			fu.add(rs);
+		}
+		fu.saveTo(g_path+"/"+g_rs);
+	}	
+	
 	public int test1() { // MC
 		init_g();
 		init_anal();
@@ -72,12 +87,14 @@ public class z_auto_mc {
 		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
-//		p.anal_loop(g_rs,g_ts,g_sort);
-//		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
-//		da.setMC();
-//		da.load_x(g_xl);
-//		da.load_rs(g_rs);
-//		da.save(g_graph);
+		anal();
+
+		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
+		da.setMC();
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
+		
 		return 0;
 	}
 	public int test2() 	{  // without gen

@@ -1,4 +1,4 @@
-package autorun;
+package old;
 
 
 import auto.AutoConfig;

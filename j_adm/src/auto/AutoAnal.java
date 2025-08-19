@@ -24,20 +24,6 @@ public class AutoAnal {
 		
 	}
 
-
-	private CProg getProg(int num) {
-		CProg prog=new CProg(num);
-		prog.setLog(2);
-		
-		if(g_verbose) {
-			prog.setSort(1);
-			prog.setStep(1);
-		} else { 
-			prog.setPercent();
-		}
-		return prog;
-	}
-	
 	// simulate task set list with algorithm choice
 	public String analList(String ts_list) {
 		MList fu=new MList(g_path+"/"+ts_list);
@@ -65,10 +51,8 @@ public class AutoAnal {
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
 		MList fu=new MList();
-		CProg prog=getProg(num);
 
 		for(int i=0;i<num;i++) {
-			prog.inc();
 			DTaskVec dt=sy.loadOne2();
 //			SLog.prnc(2, i+": ");
 			g_da.run(dt);

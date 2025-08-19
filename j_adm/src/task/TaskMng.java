@@ -56,7 +56,7 @@ public class TaskMng {
 
 
 	public Task getTask(int tid) {
-		for(Task t:g_hc_tasks.getArr()) {
+		for(Task t:g_tasks.getArr()) {
 			if(t.tid==tid)
 				return t;
 		}

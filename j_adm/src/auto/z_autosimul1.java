@@ -5,6 +5,7 @@ import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
 import gen.SysLoad;
 import imc.*;
+import sim.DoSimul;
 import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;

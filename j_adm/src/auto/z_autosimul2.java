@@ -10,6 +10,7 @@ import anal.AnalEDF_VD_IMC;
 import anal.DoAnal;
 import gen.SysLoad;
 import imc.*;
+import sim.DoSimul;
 import task.DTaskVec;
 import util.MList;
 import util.SEngineT;

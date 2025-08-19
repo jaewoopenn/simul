@@ -46,7 +46,7 @@ public class z_auto_sim_imc4 {
 	}
 	
 	public void init_g() {
-		g_path="adm/test1";
+		g_path="adm/sim";
 		g_num=100;
 //		g_num=500;
 //		g_num=5000;
@@ -98,9 +98,9 @@ public class z_auto_sim_imc4 {
 	}
 	
 	public void loop_util(String rs_path) {
-		String rs_dir=rs_path+"0";
+		String rs_dir=rs_path;
 		AutoTaskGen p=new AutoTaskGen(g_path);
-		p.setRS(rs_dir);
+		p.setRS(rs_path);
 
 		p.genXA(g_cf,g_xl);
 		
@@ -118,7 +118,7 @@ public class z_auto_sim_imc4 {
 		init_g();
 		init_sim();
 		gen();
-		String rs_path="adm/pi";
+		String rs_path="adm/sim_rs";
 		loop_util(rs_path);
 		return 0;
 	}
