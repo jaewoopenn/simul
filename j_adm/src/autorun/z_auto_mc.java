@@ -3,6 +3,7 @@ package autorun;
 import anal.DoAnal;
 import auto.AutoAnal;
 import auto.AutoConfig;
+import auto.AutoParConfig;
 import auto.DataAnal_IMC;
 import auto.AutoTaskGen;
 import util.MList;
@@ -77,9 +78,10 @@ public class z_auto_mc {
 	public int test1() { // MC
 		init_g();
 		init_anal();
-		AutoConfig a=new AutoConfig(g_path);
-		a.setMC();
-		a.setNum(g_num);
+		AutoParConfig apg=new AutoParConfig();
+		apg.num=g_num;
+		apg.setMC();
+		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 
 		AutoTaskGen p=new AutoTaskGen(g_path);

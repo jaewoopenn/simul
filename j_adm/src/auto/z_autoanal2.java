@@ -1,14 +1,8 @@
 package auto;
 
 import anal.DoAnal;
-import gen.SysLoad;
-import sim.DoSimul;
-import task.DTaskVec;
-import task.TaskMng;
-import task.TaskSet;
 import util.MList;
 import util.SEngineT;
-import util.SLog;
 
 public class z_autoanal2 {
 	public static int idx=1;
@@ -17,15 +11,11 @@ public class z_autoanal2 {
 	public static int log_level=1;
 
 	private String g_path;
-	private String g_cf;
-	private String g_ts;
 	private String g_xl;
 	private String g_rs;
 	private String g_graph;
 	public void init_g() {
 		g_path="adm/test1";
-		g_cf="a_cfg_list.txt";
-		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";

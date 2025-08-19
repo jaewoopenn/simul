@@ -3,6 +3,7 @@ package autorun;
 import anal.DoAnal;
 import auto.AutoAnal;
 import auto.AutoConfig;
+import auto.AutoParConfig;
 import auto.DataAnal_IMC;
 import auto.AutoTaskGen;
 import util.MList;
@@ -78,8 +79,9 @@ public class z_auto_imc2 {
 	public int test1() {
 		init_g();
 		init_anal();
-		AutoConfig a=new AutoConfig(g_path);
-		a.setNum(g_num);
+		AutoParConfig apg=new AutoParConfig();
+		apg.num=g_num;
+		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_path);
@@ -97,19 +99,20 @@ public class z_auto_imc2 {
 	public int test2() 	{  // without gen
 		init_g();
 		init_anal();
-		AutoTaskGen p=new AutoTaskGen(g_path);
-//		p.anal_loop(g_rs,g_ts,g_sort);
-//		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
-//		da.load_x(g_xl);
-//		da.load_rs(g_rs);
-//		da.save(g_graph);
+		anal();
+
+		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
 		return 0;
 	}
 	public int test3()  { // gen only
 		init_g();
 		init_anal();
-		AutoConfig a=new AutoConfig(g_path);
-		a.setNum(g_num);
+		AutoParConfig apg=new AutoParConfig();
+		apg.num=g_num;
+		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_path);

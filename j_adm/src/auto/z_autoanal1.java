@@ -2,10 +2,7 @@ package auto;
 
 import anal.DoAnal;
 import gen.SysLoad;
-import sim.DoSimul;
 import task.DTaskVec;
-import task.TaskMng;
-import task.TaskSet;
 import util.SEngineT;
 import util.SLog;
 

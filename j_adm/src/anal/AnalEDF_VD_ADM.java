@@ -48,14 +48,14 @@ public class AnalEDF_VD_ADM extends Anal {
 		
 	}
 	private void comp_hi_prefer() {
-		int n=0;
+//		int n=0;
 		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/g_x;
 			double h_util=t.getHiUtil();
 //			SLog.prn(1, v_util+","+h_util);
 			if(v_util>=h_util){
 				t.setHI_only();
-				n++;
+//				n++;
 			}
 		}
 //		SLog.prn(2, "no:"+n);
@@ -68,7 +68,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (dtm<=1)
 			return dtm;
 		dtm=getDtm2();
-		int n=0;
+//		int n=0;
 		while(dtm>1+MCal.err) {
 			double old_dtm=dtm;
 //			SLog.prn(2, "RE:"+n+", "+g_x);
@@ -77,7 +77,7 @@ public class AnalEDF_VD_ADM extends Anal {
 			dtm=getDtm2();
 			if(old_dtm==dtm)
 				break;
-			n++;
+//			n++;
 		}
 		return dtm;
 	}

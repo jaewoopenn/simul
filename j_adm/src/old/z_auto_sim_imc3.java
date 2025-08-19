@@ -2,6 +2,7 @@ package old;
 
 
 import auto.AutoConfig;
+import auto.AutoParConfig;
 import auto.DataSim_IMC;
 import auto.AutoTaskGen;
 import util.SEngineT;
@@ -10,6 +11,7 @@ import util.SLog;
 // MC-RUN
 // a_imc/dmr_imc.py
 
+@SuppressWarnings("unused")
 public class z_auto_sim_imc3 {
 	private static int s_idx;
 	private static int s_log_level;
@@ -65,11 +67,11 @@ public class z_auto_sim_imc3 {
 		g_graph="a_sim_graph.txt";
 	}
 	public void gen() {
-		AutoConfig a=new AutoConfig(g_path);
-		
-		a.setNum(g_num);
-		a.setP_HC(g_p_hc);
-		a.setRatio(g_ratio);
+		AutoParConfig apg=new AutoParConfig();
+		apg.num=g_num;
+		apg.p_hc=g_p_hc;
+		apg.ratio=g_ratio;
+		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 //		p.setSch();
 //		//p.setOnlyMC();

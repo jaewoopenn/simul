@@ -1,7 +1,7 @@
 package old;
 
 import auto.AutoConfig;
-import auto.DataAnal_IMC;
+import auto.AutoParConfig;
 import auto.AutoTaskGen;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)
@@ -11,6 +11,7 @@ import auto.AutoTaskGen;
 import util.SEngineT;
 
 
+@SuppressWarnings("unused")
 public class z_auto_imc {
 	private static int s_idx;
 	private static int s_log_level;
@@ -62,8 +63,9 @@ public class z_auto_imc {
 	public int test1() {
 		init_g();
 		init_anal();
-		AutoConfig a=new AutoConfig(g_path);
-		a.setNum(g_num);
+		AutoParConfig apg=new AutoParConfig();
+		apg.num=g_num;
+		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setStage(g_stage);
@@ -91,8 +93,9 @@ public class z_auto_imc {
 	public int test3()  { // gen only
 		init_g();
 		init_anal();
-		AutoConfig a=new AutoConfig(g_path);
-		a.setNum(g_num);
+		AutoParConfig apg=new AutoParConfig();
+		apg.num=g_num;
+		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_path);

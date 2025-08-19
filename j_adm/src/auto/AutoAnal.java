@@ -3,7 +3,6 @@ package auto;
 import anal.DoAnal;
 import gen.SysLoad;
 import task.DTaskVec;
-import util.CProg;
 import util.MList;
 import util.SLog;
 
