@@ -1,8 +1,10 @@
 package autorun;
 
+import anal.AutoAnal;
+import anal.DoAnal;
 import auto.DataAnal_IMC;
 import auto.Platform_IMC;
-import auto.Platform_base;
+import util.MList;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)
 //\a_new\sch.py
@@ -11,7 +13,7 @@ import auto.Platform_base;
 import util.SEngineT;
 
 
-public class z_auto_imc {
+public class z_auto_imc2 {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
@@ -59,21 +61,31 @@ public class z_auto_imc {
 		g_rs="a_rs_list.txt";
 		g_graph="a_graph.txt";
 	}
+	public void simul() {
+		MList fu=new MList();
+		for(int i=0;i<g_sort;i++) {
+			DoAnal da=new DoAnal(i);
+			AutoAnal as=new AutoAnal("adm/test1",da);
+			as.setRS(g_path);
+			String rs=as.analList("a_ts_list.txt");	
+			fu.add(rs);
+		}
+		fu.saveTo(g_path+"/"+g_rs);
+	}	
+
+	
 	public int test1() {
 		init_g();
 		init_anal();
-<<<<<<< HEAD
-		Platform_base p=new Platform_base(g_path);
-=======
 		Platform_IMC p=new Platform_IMC(g_path);
 		p.setRS(g_path);
->>>>>>> branch 'master' of https://github.com/jaewoopenn/simul.git
 		p.setStage(g_stage);
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
-		p.anal_loop(g_rs,g_ts,g_sort);
+		simul();
+
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);
@@ -83,7 +95,7 @@ public class z_auto_imc {
 	public int test2() 	{  // without gen
 		init_g();
 		init_anal();
-		Platform_base p=new Platform_base(g_path);
+		Platform_IMC p=new Platform_IMC(g_path);
 		p.setNum(g_num);
 		p.anal_loop(g_rs,g_ts,g_sort);
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
@@ -95,7 +107,7 @@ public class z_auto_imc {
 	public int test3()  { // gen only
 		init_g();
 		init_anal();
-		Platform_base p=new Platform_base(g_path);
+		Platform_IMC p=new Platform_IMC(g_path);
 		p.setNum(g_num);
 		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
@@ -126,10 +138,10 @@ public class z_auto_imc {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto_imc.init_s();
-		Class c = z_auto_imc.class;
-		z_auto_imc m=new z_auto_imc();
-		int[] aret=z_auto_imc.gret;
+		z_auto_imc2.init_s();
+		Class c = z_auto_imc2.class;
+		z_auto_imc2 m=new z_auto_imc2();
+		int[] aret=z_auto_imc2.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

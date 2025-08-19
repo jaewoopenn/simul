@@ -267,10 +267,36 @@ public  class Platform_base {
 		fu.saveTo(out);
 	}
 	
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> branch 'master' of https://github.com/jaewoopenn/simul.git
 	
 
 
+<<<<<<< HEAD
 }
+=======
+
+	
+
+	private CProg getProg(int num) {
+		CProg prog=new CProg(num);
+		prog.setLog(2);
+		
+		if(g_verbose) {
+			prog.setSort(1);
+			prog.setStep(1);
+		} else { 
+			prog.setPercent();
+		}
+		return prog;
+	}
+	
+
+>>>>>>> branch 'master' of https://github.com/jaewoopenn/simul.git
 
 
 
