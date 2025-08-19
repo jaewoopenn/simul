@@ -1,8 +1,7 @@
 package autorun;
 
 
-import auto.Platform_IMC;
-import auto.Platform_base;
+import auto.AutoTaskGen;
 import util.SEngineT;
 import util.SLog;
 
@@ -44,11 +43,9 @@ public class z_auto_sim_imc2 {
 	public int test1() 
 	{
 		init_sim();
-		Platform_base p=new Platform_base(g_path);
+		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_rs_path);
 		
-		p.setDur(g_dur);
-		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
 		
 //		p.gen_scn(g_ts,g_ts_list_n,g_ts_n,5);
@@ -57,13 +54,11 @@ public class z_auto_sim_imc2 {
 	public int test2() 
 	{
 		init_sim();
-		Platform_base p=new Platform_base(g_path);
+		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_rs_path);
 
 		
-		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
-		p.setDur(g_dur);
 		
 //		p.run_scn(1,g_ts,g_ts_list_n,g_ts_n,0,5);
 		return 0;

@@ -1,9 +1,5 @@
 package anal;
 
-import imc.SimulSel_IMC;
-import imc.TaskSimul_IMC;
-import sim.SimulInfo;
-import sim.SysMng;
 import task.DTaskVec;
 import util.MCal;
 import util.SLog;

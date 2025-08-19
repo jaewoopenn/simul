@@ -1,8 +1,9 @@
 package autorun;
 
 
+import auto.AutoConfig;
 import auto.DataSim_IMC;
-import auto.Platform_IMC;
+import auto.AutoTaskGen;
 import sim.AutoSimul;
 import sim.DoSimul;
 import util.MList;
@@ -70,11 +71,13 @@ public class z_auto_sim_imc4 {
 		g_graph="a_sim_graph.txt";
 	}
 	public void gen() {
-		Platform_base p=new Platform_base(g_path);
-		p.setNum(g_num);
-		p.setP_HC(g_p_hc);
-		p.setRatio(g_ratio);
-		p.genCfg_util(g_cf,g_st,g_step,g_end);
+		AutoConfig a=new AutoConfig(g_path);
+		a.setNum(g_num);
+		a.setP_HC(g_p_hc);
+		a.setRatio(g_ratio);
+		a.genCfg_util(g_cf,g_st,g_step,g_end);
+		AutoTaskGen p=new AutoTaskGen(g_path);
+		p.setRS(g_path);
 		p.setSch();
 		p.setOnlyMC();
 		p.genTS(g_cf,g_ts);
@@ -96,7 +99,7 @@ public class z_auto_sim_imc4 {
 	
 	public void loop_util(String rs_path) {
 		String rs_dir=rs_path+"0";
-		Platform_IMC p=new Platform_IMC(g_path);
+		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(rs_dir);
 
 		p.genXA(g_cf,g_xl);

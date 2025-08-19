@@ -2,8 +2,9 @@ package autorun;
 
 import anal.AutoAnal;
 import anal.DoAnal;
+import auto.AutoConfig;
 import auto.DataAnal_IMC;
-import auto.Platform_IMC;
+import auto.AutoTaskGen;
 import util.MList;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)
@@ -77,11 +78,12 @@ public class z_auto_imc2 {
 	public int test1() {
 		init_g();
 		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path);
+		AutoConfig a=new AutoConfig(g_path);
+		a.setNum(g_num);
+		a.genCfg_util(g_cf,g_st,g_step,g_end);
+		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_path);
 		p.setStage(g_stage);
-		p.setNum(g_num);
-		p.genCfg_util(g_cf,g_st,g_step,g_end);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		simul();
@@ -95,21 +97,22 @@ public class z_auto_imc2 {
 	public int test2() 	{  // without gen
 		init_g();
 		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path);
-		p.setNum(g_num);
-		p.anal_loop(g_rs,g_ts,g_sort);
-		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
-		da.load_x(g_xl);
-		da.load_rs(g_rs);
-		da.save(g_graph);
+		AutoTaskGen p=new AutoTaskGen(g_path);
+//		p.anal_loop(g_rs,g_ts,g_sort);
+//		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
+//		da.load_x(g_xl);
+//		da.load_rs(g_rs);
+//		da.save(g_graph);
 		return 0;
 	}
 	public int test3()  { // gen only
 		init_g();
 		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path);
-		p.setNum(g_num);
-		p.genCfg_util(g_cf,g_st,g_step,g_end);
+		AutoConfig a=new AutoConfig(g_path);
+		a.setNum(g_num);
+		a.genCfg_util(g_cf,g_st,g_step,g_end);
+		AutoTaskGen p=new AutoTaskGen(g_path);
+		p.setRS(g_path);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		return 0;

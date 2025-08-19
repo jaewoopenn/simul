@@ -1,9 +1,9 @@
 package autorun;
 
 
+import auto.AutoConfig;
 import auto.DataSim_IMC;
-import auto.Platform_IMC;
-import auto.Platform_base;
+import auto.AutoTaskGen;
 import util.SEngineT;
 import util.SLog;
 
@@ -65,25 +65,24 @@ public class z_auto_sim_imc3 {
 		g_graph="a_sim_graph.txt";
 	}
 	public void gen() {
-		Platform_base p=new Platform_base(g_path);
-		p.setNum(g_num);
-		p.setP_HC(g_p_hc);
-		p.setRatio(g_ratio);
-		p.genCfg_util(g_cf,g_st,g_step,g_end);
-		p.setSch();
-		//p.setOnlyMC();
-		p.genTS(g_cf,g_ts);
+		AutoConfig a=new AutoConfig(g_path);
+		
+		a.setNum(g_num);
+		a.setP_HC(g_p_hc);
+		a.setRatio(g_ratio);
+		a.genCfg_util(g_cf,g_st,g_step,g_end);
+//		p.setSch();
+//		//p.setOnlyMC();
+//		p.genTS(g_cf,g_ts);
 		
 	}
 	public void loop_util(String rs_path) {
-		Platform_base p=new Platform_base(g_path);
+		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(rs_path);
 
 		p.genXA(g_cf,g_xl);
 		
-		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
-		p.setDur(g_dur);
 		
 //		p.sim_loop(g_rs, g_ts,0,2);
 //		DataSim_IMC ds=new DataSim_IMC(rs_path,0);

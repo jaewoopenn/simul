@@ -2,7 +2,6 @@ package anal;
 
 import task.SysInfo;
 import task.Task;
-import task.TaskMng;
 import util.SLog;
 
 public class AnalEDF_VD_IMC extends Anal {

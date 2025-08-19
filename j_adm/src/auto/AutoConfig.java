@@ -1,29 +1,21 @@
 package auto;
 
-import anal.Anal;
-import anal.AnalEDF_VD_IMC;
-import anal.AnalSel_IMC;
-import anal.AnalSel_MC;
 import gen.ConfigGen;
-import gen.SysGen;
-import imc.SimulSel_IMC;
-import sim.TaskSimul_base;
 import util.MList;
 import util.SLog;
 
-public class Platform_IMC extends Platform_base {
-	private boolean g_onlyMC=false;
+public  class AutoConfig {
 	private boolean g_isMC=false; // not IMC
-	private int g_stage=1;
-	
-	public Platform_IMC(String path) {
+	private String g_path;
+	private int g_num=100;
+	private double g_p_hc=0.5;
+	private double g_ratio=-1;
+	private double g_ratio_hi=-1;
+
+	public AutoConfig(String path) {
 		g_path=path;
 	}	
-	public void setRS(String rs_path) {
-		g_rs_path=rs_path;
-		
-	}
-	
+
 	public void setMC() {
 		g_isMC=true;
 	}
@@ -105,52 +97,28 @@ public class Platform_IMC extends Platform_base {
 
 	
 	
-	public void genTS(String cfg_list,String ts) {
-		SLog.prn(3, g_path+"/"+cfg_list);
-		MList fu=new MList(g_path+"/"+cfg_list);
+	
+
+	
+
+
+
+	
+	public void setNum(int n) {
+		g_num=n;
+	}
+	public void setP_HC(double d) {
+		g_p_hc=d;
+	}
+	public void setRatio(double d) {
+		g_ratio=d;
+	}
+	public void setRatio_hi(double d) {
+		g_ratio_hi=d;
 		
-		MList fu_ts=new MList();
-//		int n=fu.load();
-//		Log.prn(1, n+" ");
-		int max=fu.size();
-		Anal a=new AnalEDF_VD_IMC();
-		for(int i=0;i<max;i++) {
-			ConfigGen cfg=new ConfigGen(fu.get(i));
-			cfg.readFile();
-			SysGen sg=new SysGen(cfg);
-			sg.setStage(g_stage);
-			String fn=cfg.get_fn();
-			SLog.prn(3, fn);
-			if(g_onlyMC)
-				sg.setOnlyMC();
-			if(g_isSch)
-				sg.setSch();
-			int num=sg.prepare_IMC();
-			sg.gen2(g_path+"/"+fn, a,num);
-			fu_ts.add(fn);
-		}
-		fu_ts.saveTo(g_path+"/"+ts);
 	}
-	
 
 	
-	public Anal getAnal(int sort) {
-		if(g_isMC)
-			return AnalSel_MC.getAnal(sort);
-		else
-			return AnalSel_IMC.getAnal(sort);
-	}
-
-	public void setOnlyMC() {
-		g_onlyMC=true;		
-	}
-
-	public void setStage(int s) {
-		g_stage=s;
-	}
-
-
-
-
+	
 	
 }
