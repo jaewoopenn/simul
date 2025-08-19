@@ -26,9 +26,9 @@ public  class AutoTaskGen {
 	
 	public void genTS(String cfg_list,String ts) {
 		SLog.prn(3, g_path+"/"+cfg_list);
-		MList fu=new MList(g_path+"/"+cfg_list);
+		MList fu=MList.load(g_path+"/"+cfg_list);
 		
-		MList fu_ts=new MList();
+		MList fu_ts=MList.new_list();
 //		int n=fu.load();
 //		Log.prn(1, n+" ");
 		int max=fu.size();
@@ -71,9 +71,9 @@ public  class AutoTaskGen {
 
 	
 	public void genXA(String cfg_list, String xaxis) {
-		MList fu=new MList(g_path+"/"+cfg_list);
+		MList fu=MList.load(g_path+"/"+cfg_list);
 		
-		MList fu_xa=new MList();
+		MList fu_xa=MList.new_list();
 		int max=fu.size();
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=new ConfigGen(fu.get(i));

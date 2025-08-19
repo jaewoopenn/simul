@@ -11,7 +11,7 @@ public class z_TaskSetFile1 {
 	public static int log_level=1;
 	public int test1()
 	{
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		TaskSetUtil.initStage(fu, 5);
 		TaskSetUtil.writeTask(fu, new TaskMC(3,1));
 		TaskSetUtil.writeTask(fu, new TaskMC(4,1));
@@ -27,7 +27,7 @@ public class z_TaskSetFile1 {
 	}
 	public int test2()
 	{
-		DTaskVec dt=TaskSetUtil.loadFile2(new MList("test/test.txt"));
+		DTaskVec dt=TaskSetUtil.loadFile2(MList.load("test/test.txt"));
 		int num=dt.getNum();
 		for(int i=0;i<num;i++) {
 			TaskSet tmp=new TaskSet(dt.getVec(i));
@@ -48,7 +48,7 @@ public class z_TaskSetFile1 {
 		return 1;
 	}
 	public  int test4() {
-		TaskSet tmp=TaskSetUtil.loadFile(new MList("test/test.txt"));
+		TaskSet tmp=TaskSetUtil.loadFile(MList.load("test/test.txt"));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return 0;

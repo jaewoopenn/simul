@@ -31,7 +31,7 @@ public class z_TaskGen1 {
 		return 1;
 	}
 	public int test2() {
-		TaskSet tmp=TaskSetUtil.loadFile(new MList("test/test.txt"));
+		TaskSet tmp=TaskSetUtil.loadFile(MList.load("test/test.txt"));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
 		return -1;

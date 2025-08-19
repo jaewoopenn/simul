@@ -5,11 +5,10 @@ import java.util.Vector;
 public class MList {
 	private Vector<String> g_list;
 	private int cur=0;
-	public MList() {
+	public MList(int i) {
 		g_list=new Vector<String>();
 	}
-	public MList(String fn) {
-		g_list=new Vector<String>();
+	public void load_in(String fn) {
 		MFile fu=new MFile(fn);
 	    fu.load();
 	    for(int i:MLoop.run(fu.bufferSize())){
@@ -57,4 +56,15 @@ public class MList {
 		}
 		
 	}
+	
+	public static MList load(String fn) {
+		MList ml=new MList(0);
+		ml.load_in(fn);
+		return ml;
+	}
+	public static MList new_list() {
+		MList ml=new MList(0);
+		return ml;
+	}
+	
 }

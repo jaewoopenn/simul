@@ -26,7 +26,7 @@ public class z_autoanal2 {
 
 
 	public void anal() {
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		for(int i=0;i<2;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal("adm/test1",da);

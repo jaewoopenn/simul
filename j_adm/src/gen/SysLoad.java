@@ -23,7 +23,7 @@ public class SysLoad {
 		boolean b=g_fu.readUntil("------");
 		if(!b) 
 			return null;
-		MList ml=new MList();
+		MList ml=MList.new_list();
 		ml.copyFrom(g_fu);
 		TaskSet tsf=TaskSetUtil.loadFile(ml);
 		return tsf.getTM();
@@ -32,7 +32,7 @@ public class SysLoad {
 		boolean b=g_fu.readUntil("------");
 		if(!b) 
 			return null;
-		MList ml=new MList();
+		MList ml=MList.new_list();
 		ml.copyFrom(g_fu);
 		return TaskSetUtil.loadFile2(ml);
 	}

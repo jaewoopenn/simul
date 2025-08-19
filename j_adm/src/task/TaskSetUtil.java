@@ -15,7 +15,7 @@ public class TaskSetUtil {
 
 	// static 
 	public static void writeFile(String fn,Task[] tasks){
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		writeTS_in(fu,tasks);		
 		fu.saveTo(fn);
 	}

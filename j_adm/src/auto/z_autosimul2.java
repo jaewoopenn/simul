@@ -45,7 +45,7 @@ public class z_autosimul2 {
 
 
 	public void simul(String rs_path) {
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		for(int i=0;i<2;i++) {
 			DoSimul ds=new DoSimul(i);
 			ds.setProb(0.3);

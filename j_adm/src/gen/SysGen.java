@@ -48,7 +48,7 @@ public class SysGen {
 	}	
 	public void gen(String fn,Anal a,int num) {
 		int i=0;
-		MList ml=new MList();
+		MList ml=MList.new_list();
 		ml.add(num+"");
 		while(i<num){
 			g_tg.genTS();
@@ -64,7 +64,7 @@ public class SysGen {
 	}
 	public void gen2(String fn,Anal a,int num) {
 		int i=0;
-		MList ml=new MList();
+		MList ml=MList.new_list();
 		ml.add(num+"");
 		while(i<num){
 			g_tg.genTS();

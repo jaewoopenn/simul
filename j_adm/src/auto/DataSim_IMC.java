@@ -17,7 +17,7 @@ public class DataSim_IMC {
 		g_max=x;
 	}
 	public void load_x(String fn) {
-		MList fu=new MList(g_path+"/"+fn);
+		MList fu=MList.load(g_path+"/"+fn);
 		g_xlen=fu.size();
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
@@ -26,7 +26,7 @@ public class DataSim_IMC {
 		g_rs=new double[11][g_xlen];
 	}
 	public void load_rs(String fn){
-		MList fu=new MList(g_path+"/"+fn);
+		MList fu=MList.load(g_path+"/"+fn);
 		int size=fu.size();
 		g_max=size;
 		for(int i=0;i<size;i++) {
@@ -36,7 +36,7 @@ public class DataSim_IMC {
 	}
 	
 	public void load(String fn,int idx) {
-		MList fu=new MList(fn);
+		MList fu=MList.load(fn);
 		for(int i=0;i<fu.size();i++) {
 			String s=fu.get(i);
 			double r=process_rs(s);
@@ -46,7 +46,7 @@ public class DataSim_IMC {
 	}
 
 	private double process_rs(String rs) {
-		MList fu=new MList(rs);
+		MList fu=MList.load(rs);
 		int n=fu.size();
 		double r=0;
 		for(int i=0;i<n;i++) {
@@ -59,7 +59,7 @@ public class DataSim_IMC {
 		return rst;
 	}
 	public void saveSim(String fn) {
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {

@@ -86,7 +86,7 @@ public class z_auto_sim_imc4 {
 		
 	}
 	public void simul(String rs_dir) {
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		for(int i=0;i<2;i++) {
 			DoSimul ds=new DoSimul(i);
 			ds.setProb(g_p_ms);

@@ -8,11 +8,11 @@ import util.MList;
 import util.SLog;
 
 public class AutoSimul {
-	protected String g_path;
-	protected String g_rs_path;
-	protected DoSimul g_ds;
-	protected int g_sort;
-	protected boolean g_verbose=false;
+	private String g_path;
+	private String g_rs_path;
+	private DoSimul g_ds;
+	private int g_sort;
+	private boolean g_verbose=false;
 	
 	public AutoSimul(String path,DoSimul ds) {
 		g_path=path;
@@ -25,33 +25,23 @@ public class AutoSimul {
 	}
 
 
-	private CProg getProg(int num) {
-		CProg prog=new CProg(num);
-		prog.setLog(2);
-		
-		if(g_verbose) {
-			prog.setSort(1);
-			prog.setStep(1);
-		} else { 
-			prog.setPercent();
-		}
-		return prog;
-	}
 	
 	// simulate task set list with algorithm choice
 	public String simulList(String ts_list) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_sim_list."+g_sort+".txt";
-		MList fu_rs=new MList();
 		SLog.prn(2, "Anal:"+g_sort);
+
+		MList load_ts=MList.load(g_path+"/"+ts_list);
 		
-		for(int i=0;i<fu.size();i++) {
-			String fn=fu.get(i);
+		
+		MList rs_list=MList.new_list();
+		for(int i=0;i<load_ts.size();i++) {
+			String fn=load_ts.get(i);
 			String out=g_rs_path+"/"+fn+".sim."+g_sort;
 			simulTS(g_path+"/"+fn,out);
-			fu_rs.add(out);
+			rs_list.add(out);
 		}		
-		fu_rs.saveTo(rs_fn);
+		String rs_fn=g_rs_path+"/a_sim_list."+g_sort+".txt";
+		rs_list.saveTo(rs_fn);
 		return rs_fn;		
 	}
 	
@@ -64,7 +54,8 @@ public class AutoSimul {
 		SysLoad sy=new SysLoad(tsn);
 		String ret=sy.open();
 		int num=Integer.valueOf(ret).intValue();
-		MList fu=new MList();
+		
+		MList rs_list=MList.new_list();
 		CProg prog=getProg(num);
 
 		for(int i=0;i<num;i++) {
@@ -72,14 +63,31 @@ public class AutoSimul {
 			DTaskVec dt=sy.loadOne2();
 //			SLog.prnc(2, i+": ");
 			g_ds.run(dt);
-			fu.add(g_ds.getRS());
+			rs_list.add(g_ds.getRS());
 		}
-		fu.saveTo(out);
+		rs_list.saveTo(out);
 		
 	}
 
 
 
+
 	
+	
+	
+	
+	
+	private CProg getProg(int num) {
+		CProg prog=new CProg(num);
+		prog.setLog(2);
+		
+		if(g_verbose) {
+			prog.setSort(1);
+			prog.setStep(1);
+		} else { 
+			prog.setPercent();
+		}
+		return prog;
+	}
 
 }

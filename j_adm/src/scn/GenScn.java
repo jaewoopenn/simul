@@ -22,7 +22,7 @@ public class GenScn {
 	public void gen(TaskMng tm,int dur,String fn) {
 		tm.prn();
 		boolean b=false;
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		fu.add(dur+"");
 		for(int t=0;t<dur;t++) {
 			Vector<Integer> v=new Vector<Integer>();
@@ -80,7 +80,7 @@ public class GenScn {
 		
 	}
 	public int initGet(String fn) {
-		scn=new MList(fn);
+		scn=MList.load(fn);
 		String next=scn.getNext();
 		return Integer.valueOf(next).intValue();
 		

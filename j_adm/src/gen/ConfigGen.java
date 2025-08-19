@@ -19,7 +19,7 @@ public class ConfigGen {
 		g_fn=f;
 	}
 	public void readFile() {
-		MList fu=new MList(g_fn);
+		MList fu=MList.load(g_fn);
 	    for(int i:MCal.loop(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
@@ -88,7 +88,7 @@ public class ConfigGen {
 		if(g_fn==null) {
 			SLog.err("configGen: filename is not set");
 		}
-		MList fu=new MList();
+		MList fu=MList.new_list();
 		for (String s:g_predefined){
 			String v=readPar(s);
 			if(v==null){
