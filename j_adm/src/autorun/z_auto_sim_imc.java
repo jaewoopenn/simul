@@ -3,6 +3,7 @@ package autorun;
 
 import auto.DataSim_IMC;
 import auto.Platform_IMC;
+import auto.Platform_base;
 import util.SEngineT;
 import util.SLog;
 
@@ -68,7 +69,7 @@ public class z_auto_sim_imc {
 		g_graph="a_sim_graph.txt";
 	}
 	public void gen() {
-		Platform_IMC p=new Platform_IMC(g_path);
+		Platform_base p=new Platform_base(g_path);
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
@@ -79,7 +80,7 @@ public class z_auto_sim_imc {
 		
 	}
 	public void loop_util(String rs_path) {
-		Platform_IMC p=new Platform_IMC(g_path);
+		Platform_base p=new Platform_base(g_path);
 		p.setRS(rs_path);
 
 		p.genXA(g_cf,g_xl);

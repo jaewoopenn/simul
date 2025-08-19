@@ -2,6 +2,7 @@ package autorun;
 
 
 import auto.Platform_IMC;
+import auto.Platform_base;
 import util.SEngineT;
 import util.SLog;
 
@@ -43,7 +44,7 @@ public class z_auto_sim_imc2 {
 	public int test1() 
 	{
 		init_sim();
-		Platform_IMC p=new Platform_IMC(g_path);
+		Platform_base p=new Platform_base(g_path);
 		p.setRS(g_rs_path);
 		
 		p.setDur(g_dur);
@@ -56,7 +57,7 @@ public class z_auto_sim_imc2 {
 	public int test2() 
 	{
 		init_sim();
-		Platform_IMC p=new Platform_IMC(g_path);
+		Platform_base p=new Platform_base(g_path);
 		p.setRS(g_rs_path);
 
 		

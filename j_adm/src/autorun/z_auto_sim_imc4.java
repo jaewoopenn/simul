@@ -60,8 +60,7 @@ public class z_auto_sim_imc4 {
 
 
 	public void init_sim() {
-		g_p_ms=0.5;
-//		g_life=0;
+		g_p_ms=0.3;
 		g_p_hc=0.5;
 		g_ratio=-1;
 		g_st=72;
@@ -71,7 +70,7 @@ public class z_auto_sim_imc4 {
 		g_graph="a_sim_graph.txt";
 	}
 	public void gen() {
-		Platform_IMC p=new Platform_IMC(g_path);
+		Platform_base p=new Platform_base(g_path);
 		p.setNum(g_num);
 		p.setP_HC(g_p_hc);
 		p.setRatio(g_ratio);
@@ -85,6 +84,8 @@ public class z_auto_sim_imc4 {
 		MList fu=new MList();
 		for(int i=0;i<2;i++) {
 			DoSimul ds=new DoSimul(i);
+			ds.setProb(g_p_ms);
+			ds.setDur(g_dur);
 			AutoSimul as=new AutoSimul(g_path,ds);
 			as.setRS(rs_dir);
 			String rs=as.simulList(g_ts);
@@ -100,9 +101,7 @@ public class z_auto_sim_imc4 {
 
 		p.genXA(g_cf,g_xl);
 		
-		p.setP_MS(g_p_ms);
 		SLog.prn(2, "p:"+g_p_ms);
-		p.setDur(g_dur);
 		simul(rs_dir);
 		
 		

@@ -2,6 +2,7 @@ package autorun;
 
 import auto.DataAnal_IMC;
 import auto.Platform_IMC;
+import auto.Platform_base;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)
 //\a_new\sch.py
@@ -61,7 +62,7 @@ public class z_auto_mc {
 	public int test1() { // MC
 		init_g();
 		init_anal();
-		Platform_IMC p=new Platform_IMC(g_path);
+		Platform_base p=new Platform_base(g_path);
 		p.setStage(g_stage);
 		p.setMC();
 		p.setNum(g_num);

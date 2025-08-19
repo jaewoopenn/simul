@@ -1,8 +1,13 @@
 package auto;
 
 import anal.Anal;
+import anal.AnalEDF_VD_IMC;
+import anal.AnalSel_IMC;
+import anal.AnalSel_MC;
 import gen.ConfigGen;
+import gen.SysGen;
 import gen.SysLoad;
+import imc.SimulSel_IMC;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.TaskSimul_base;
@@ -14,19 +19,156 @@ import util.MCal;
 import util.MList;
 import util.SLog;
 
-public abstract class Platform_base {
-	protected String g_path;
-	protected String g_rs_path;
-	protected int g_num=100;
-	protected int g_dur=2000;
-	protected double g_p_ms=0.3;
-	protected double g_p_hc=0.5;
-	protected double g_ratio=-1;
-	protected double g_ratio_hi=-1;
-	protected boolean g_isSch=false;
-	protected int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
-	protected boolean g_verbose=false;
+public  class Platform_base {
+	private boolean g_onlyMC=false;
+	private boolean g_isMC=false; // not IMC
+	private int g_stage=1;
+	private String g_path;
+	private String g_rs_path;
+	private int g_num=100;
+	private int g_dur=2000;
+	private double g_p_ms=0.3;
+	private double g_p_hc=0.5;
+	private double g_ratio=-1;
+	private double g_ratio_hi=-1;
+	private boolean g_isSch=false;
+	private int g_dur_set[]= {4000,8000,16000,32000,64000,128000};
+	private boolean g_verbose=false;
+
+	public Platform_base(String path) {
+		g_path=path;
+	}	
+	public void setRS(String rs_path) {
+		g_rs_path=rs_path;
+		
+	}
+
+	public void setMC() {
+		g_isMC=true;
+	}
+	// gen CFG, TS
+	public void genCfg_util(String cf,int base,int step, int end) {
+		double end_i=(end-base)/step;
+		ConfigGen cg;
+		if(g_isMC)
+			cg=ConfigGen.getPredefinedMC();
+		else
+			cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		for(int i=0;i<end_i;i++){
+			int lb=i*step+base;
+			cg.setParam("u_lb", (lb)*1.0/100+"");
+			cg.setParam("u_ub", (lb+step)*1.0/100+"");
+			cg.setParam("mod", (lb+step)+"");
+			cg.setParam("prob_hi",g_p_hc+"");
+			if(g_ratio!=-1) {
+				cg.setParam("r_lb",(g_ratio)+"");
+				cg.setParam("r_ub",(g_ratio_hi)+"");
+			}
+			String fn=g_path+"/cfg_"+i+".txt";
+			cg.setFile(fn);
+			cg.write();
+			fu.add(fn);
+		}
+		fu.saveTo(g_path+"/"+cf);
+	}
+
 	
+	// gen 
+	public void genCfg(String cf) {
+		ConfigGen cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		cg.setParam("u_lb", 0.85+"");
+		cg.setParam("u_ub", 0.90+"");
+		cg.setParam("mod", 0+"");
+		cg.setParam("prob_hi",g_p_hc+"");
+		String fn=g_path+"/cfg_0.txt";
+		cg.setFile(fn);
+		cg.write();
+		fu.add(fn);
+		fu.saveTo(g_path+"/"+cf);		
+	}
+	
+	// gen mo
+	public void genCfg_mo(String cf,int base,int step, int end) {
+		double end_i=(end-base)/step;
+		ConfigGen cg=ConfigGen.getPredefined();
+		MList fu=new MList();
+		cg.setParam("subfix", g_path);
+		cg.setParam("num",g_num+"");
+		for(int i=0;i<=end_i;i++){
+			int lb=i*step+base;
+			SLog.prn(2, lb+"");
+//			cg.setParam("u_lb", 0.90+"");
+//			cg.setParam("u_ub", 0.95+"");
+			cg.setParam("u_lb", 0.85+"");
+			cg.setParam("u_ub", 0.90+"");
+//			cg.setParam("u_lb", 0.80+"");
+//			cg.setParam("u_ub", 0.85+"");
+			cg.setParam("mo_lb", (lb)*1.0/100+"");
+			cg.setParam("mo_ub", (lb+step)*1.0/100+"");
+			cg.setParam("mod", (lb)+"");
+			cg.setParam("prob_hi",g_p_hc+"");
+			String fn=g_path+"/cfg_"+i+".txt";
+			cg.setFile(fn);
+			cg.write();
+			fu.add(fn);
+		}
+		fu.saveTo(g_path+"/"+cf);
+	}
+	
+
+	
+	
+	public void genTS(String cfg_list,String ts) {
+		SLog.prn(3, g_path+"/"+cfg_list);
+		MList fu=new MList(g_path+"/"+cfg_list);
+		
+		MList fu_ts=new MList();
+//		int n=fu.load();
+//		Log.prn(1, n+" ");
+		int max=fu.size();
+		Anal a=new AnalEDF_VD_IMC();
+		for(int i=0;i<max;i++) {
+			ConfigGen cfg=new ConfigGen(fu.get(i));
+			cfg.readFile();
+			SysGen sg=new SysGen(cfg);
+			sg.setStage(g_stage);
+			String fn=cfg.get_fn();
+			SLog.prn(3, fn);
+			if(g_onlyMC)
+				sg.setOnlyMC();
+			if(g_isSch)
+				sg.setSch();
+			int num=sg.prepare_IMC();
+			sg.gen2(g_path+"/"+fn, a,num);
+			fu_ts.add(fn);
+		}
+		fu_ts.saveTo(g_path+"/"+ts);
+	}
+	
+
+	
+	public Anal getAnal(int sort) {
+		if(g_isMC)
+			return AnalSel_MC.getAnal(sort);
+		else
+			return AnalSel_IMC.getAnal(sort);
+	}
+	public void setOnlyMC() {
+		g_onlyMC=true;		
+	}
+
+	public void setStage(int s) {
+		g_stage=s;
+	}
+
+
+
 	
 	public void setNum(int n) {
 		g_num=n;
@@ -98,7 +240,6 @@ public abstract class Platform_base {
 		fu_rs.saveTo(rs_fn);
 		return rs_fn;
 	}
-	public abstract Anal getAnal(int sort) ;
 	
 	public void anal_one(String ts,String out,Anal a) {
 		SysLoad sy=new SysLoad(g_path+"/"+ts);
@@ -126,231 +267,91 @@ public abstract class Platform_base {
 		fu.saveTo(out);
 	}
 	
-	public abstract Anal getAnalSim(int sort) ;
-	public abstract TaskSimul_base getSim(int sort) ;
-	
-	//simulation
-	public void sim_loop(String rs_list,String ts_list, int start, int end) {
-		MList fu=new MList();
-		for(int i=start;i<end;i++){
-			String rs=simul(ts_list,i);
-			fu.add(rs);
-		}
-		fu.saveTo(g_rs_path+"/"+rs_list);
-	}
-
 	
 
 
-	// simulate task set list with algorithm choice
-	public String simul(String ts_list,int sort) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-		MList fu_rs=new MList();
-		Anal a=getAnalSim(sort);
-		SLog.prn(2, "Anal:"+a.getName());
-		TaskSimul_base s=getSim(sort);
-		
-		for(int i=0;i<fu.size();i++) {
-			String fn=fu.get(i);
-			String out=g_rs_path+"/"+fn+".sim."+sort;
-			simul_one(g_path+"/"+fn,out,a,s);
-			fu_rs.add(out);
-		}		
-		fu_rs.saveTo(rs_fn);
-		return rs_fn;		
-	}
-	
-
-	private CProg getProg(int num) {
-		CProg prog=new CProg(num);
-		prog.setLog(2);
-		
-		if(g_verbose) {
-			prog.setSort(1);
-			prog.setStep(1);
-		} else { 
-			prog.setPercent();
-		}
-		return prog;
-	}
-	
-	public void simul_one(String ts,String out,Anal a,TaskSimul_base s) {
-		SLog.prn(2, "ts:"+ts);
-		SLog.prn(2, "out:"+out);
-		SLog.prn(2, g_dur);
-		SLog.prn(2, s.getName());
-		
-		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		int num=Integer.valueOf(ret).intValue();
-		
-//		Anal base;
-		MList fu=new MList();
-		CProg prog=getProg(num);
-		
-		
-		for(int i=0;i<num;i++) {
-//			SLog.prn(2, "no:"+i);
-			DTaskVec dt=sy.loadOne2();
-
-			if(dt==null) break;
-			
-			prog.inc();
-			
-//			base=new AnalEDF_IMC(); // EDF로 스케줄 가능하면 시뮬할필요없음. 
-//			base.init(dt.getTM(0));
-//			if(base.is_sch()) {
-//				fu.add("0.0");
-//				continue;
-//			}
-
-//			dt.prn();
-			a.init(dt.getTM(0));
-			double x=a.computeX();
-			if(x==0) {
-				fu.add("0.0");
-				continue;
-			}
-			SLog.prn(2, "x: "+x);
-			SysMng sm=new SysMng();
-			sm.setMS_Prob(g_p_ms);
-			sm.setX(x);
-//			sm.prn();
-			s.init_sm_dt(sm,dt);
-			s.simul(g_dur);
-			SimulInfo si=s.getSI();
-			fu.add(si.getDegraded()+"");
-		}
-		fu.saveTo(out);
-	}
-
-	//////////
-	//// DUr
-
-	
-	public void genXA_dur(String xaxis) {
-		MList fu_xa=new MList();
-		for(int i=0;i<g_dur_set.length;i++) {
-			fu_xa.add((g_dur_set[i]/1000)+"");
-		}
-		fu_xa.saveTo(g_rs_path+"/"+xaxis);
-	}	
-	
-
-	//simulation
-	public void sim_loop_dur(String rs_list,String ts_list, int end) {
-		MList fu=new MList();
-		for(int i=0;i<end;i++){
-			String rs=simul_dur(ts_list,i);
-			fu.add(rs);
-		}
-		fu.saveTo(g_rs_path+"/"+rs_list);
-	}
-	
-	
-	// simulate task set list with algorithm choice (duration)
-	public String simul_dur(String ts_list,int sort) {
-		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-		MList fu_rs=new MList();
-		
-		String fn=fu.get(0);
-		int anal_sort=Math.min(sort, 3);
-		
-		Anal a=getAnalSim(anal_sort);
-		TaskSimul_base s=getSim(sort);
-		
-		for(int i=0;i<g_dur_set.length;i++) {
-			String out=g_rs_path+"/"+fn+"_"+i+".sim."+sort;
-			g_dur=g_dur_set[i];
-			simul_one(g_path+"/"+fn,out,a,s);
-			fu_rs.add(out);
-		}		
-		fu_rs.saveTo(rs_fn);
-		return rs_fn;		
-	}
+}
 
 
-//	public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {
-//	MList fu=new MList(g_path+"/"+ts_list);
-//	
-//	String fn=fu.get(ts_list_n);
-//	for(int i=0;i<scn_n;i++) {
-//		String out=g_rs_path+"/"+fn+".sim."+i+".txt";
-//		SLog.prn(2,out);
-//		gen_scn_one(g_path+"/"+fn,out,ts_n);
-//	}
+
+
+//public void gen_scn(String ts_list,int ts_list_n, int ts_n, int scn_n) {
+//MList fu=new MList(g_path+"/"+ts_list);
+//
+//String fn=fu.get(ts_list_n);
+//for(int i=0;i<scn_n;i++) {
+//	String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+//	SLog.prn(2,out);
+//	gen_scn_one(g_path+"/"+fn,out,ts_n);
+//}
 //}
 //
 //public String run_scn(int sort,String ts_list,int ts_list_n,int ts_n,int scn_from, int scn_to) {
-//	MList fu=new MList(g_path+"/"+ts_list);
-//	String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
-//	Anal a=getAnalSim(sort);
-//	SLog.prn(2, "Anal:"+a.getName());
-//	TaskSimul_base s=getSim(sort);
-//	s.setRecoverIdle(g_recoverIdle);
-//	
-//	String fn=fu.get(ts_list_n);
-//	for(int i=scn_from;i<scn_to;i++) {
-//		String out=g_rs_path+"/"+fn+".sim."+i+".txt";
-//		SLog.prn(2,out);
-//		run_scn_one(g_path+"/"+fn,out,a,s,ts_n,i);
-//	}
-//	return rs_fn;		
+//MList fu=new MList(g_path+"/"+ts_list);
+//String rs_fn=g_rs_path+"/a_sim_list."+sort+".txt";
+//Anal a=getAnalSim(sort);
+//SLog.prn(2, "Anal:"+a.getName());
+//TaskSimul_base s=getSim(sort);
+//s.setRecoverIdle(g_recoverIdle);
+//
+//String fn=fu.get(ts_list_n);
+//for(int i=scn_from;i<scn_to;i++) {
+//	String out=g_rs_path+"/"+fn+".sim."+i+".txt";
+//	SLog.prn(2,out);
+//	run_scn_one(g_path+"/"+fn,out,a,s,ts_n,i);
+//}
+//return rs_fn;		
 //}
 
-//	public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int ts_n, int scn) {
-//		SysLoad sy=new SysLoad(ts);
-//		sy.open();
-//		Anal base;
-//		MList fu=new MList();
-//		DTaskVec dt=null;
-//		for(int i=0;i<=ts_n;i++) {
-//			dt=sy.loadOne2();
-//			if(i<ts_n)
-//				continue;
-//		}
-//		a.init(dt.getTM(0));
-//		if(!a.is_sch()) {
-//			SLog.prn(2, "no sch "+ts_n);
-//			fu.add("1.0");
-//			return;
-//		}
-//		base=new AnalEDF_IMC();
-//		base.init(dt.getTM(0));
-//		if(base.is_sch()) {
-//			SLog.prn(2, "EDF sch "+ts_n);
-//			fu.add("0.0");
-//			return;
-//		}
+//public void run_scn_one(String ts,String out,Anal a,TaskSimul_base s,int ts_n, int scn) {
+//	SysLoad sy=new SysLoad(ts);
+//	sy.open();
+//	Anal base;
+//	MList fu=new MList();
+//	DTaskVec dt=null;
+//	for(int i=0;i<=ts_n;i++) {
+//		dt=sy.loadOne2();
+//		if(i<ts_n)
+//			continue;
+//	}
+//	a.init(dt.getTM(0));
+//	if(!a.is_sch()) {
+//		SLog.prn(2, "no sch "+ts_n);
+//		fu.add("1.0");
+//		return;
+//	}
+//	base=new AnalEDF_IMC();
+//	base.init(dt.getTM(0));
+//	if(base.is_sch()) {
+//		SLog.prn(2, "EDF sch "+ts_n);
+//		fu.add("0.0");
+//		return;
+//	}
 //
-//		double x=a.computeX();
-//		
-//		SysMng sm=new SysMng();
-//		sm.setMS_Prob(g_p_ms);
-//		sm.setX(x);
-//		s.init_sm_dt(sm,dt);
-//		s.simul(g_dur);
-//	}
+//	double x=a.computeX();
+//	
+//	SysMng sm=new SysMng();
+//	sm.setMS_Prob(g_p_ms);
+//	sm.setX(x);
+//	s.init_sm_dt(sm,dt);
+//	s.simul(g_dur);
+//}
 
 
-//	public void gen_scn_one(String ts,String out,int ts_n) {
-////		SLog.prn(2, ts);
-//		SysLoad sy=new SysLoad(ts);
-//		sy.open();
-//		SLogF.init(out);
-//		SLogF.setGen();
-//		sy.moveto(ts_n);
-//		DTaskVec dt=sy.loadOne2();
-//		SysMng sm=new SysMng();
-//		TaskSimul_base s=new TaskSimul_EDF_IMC_gen();
-//		sm.setMS_Prob(g_p_ms);
-//		sm.setX(1);
-//		s.init_sm_dt(sm,dt);
-//		s.simul(g_dur);
-//		SLogF.save();
-//		
-//	}
-
-}
+//public void gen_scn_one(String ts,String out,int ts_n) {
+////	SLog.prn(2, ts);
+//	SysLoad sy=new SysLoad(ts);
+//	sy.open();
+//	SLogF.init(out);
+//	SLogF.setGen();
+//	sy.moveto(ts_n);
+//	DTaskVec dt=sy.loadOne2();
+//	SysMng sm=new SysMng();
+//	TaskSimul_base s=new TaskSimul_EDF_IMC_gen();
+//	sm.setMS_Prob(g_p_ms);
+//	sm.setX(1);
+//	s.init_sm_dt(sm,dt);
+//	s.simul(g_dur);
+//	SLogF.save();
+//	
+//}
