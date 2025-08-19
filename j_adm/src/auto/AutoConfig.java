@@ -42,7 +42,7 @@ public  class AutoConfig {
 	
 	// gen 
 	public void genCfg(String cf) {
-		ConfigGen cg=ConfigPre.getPredefined(false);
+		ConfigGen cg=ConfigPre.getPredefined();
 		MList fu=new MList();
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_apc.num+"");
@@ -60,7 +60,7 @@ public  class AutoConfig {
 	// gen mo
 	public void genCfg_mo(String cf,int base,int step, int end) {
 		double end_i=(end-base)/step;
-		ConfigGen cg=ConfigPre.getPredefined(false);
+		ConfigGen cg=ConfigPre.getPredefined();
 		MList fu=new MList();
 		cg.setParam("subfix", g_path);
 		cg.setParam("num",g_apc.num+"");

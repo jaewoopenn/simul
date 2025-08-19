@@ -68,7 +68,6 @@ public class z_auto_imc2 {
 		for(int i=0;i<g_sort;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal(g_path,da);
-			as.setRS(g_path);
 			String rs=as.analList(g_ts);	
 			fu.add(rs);
 		}

@@ -25,22 +25,20 @@ public class z_autoanal2 {
 
 
 
-	public void simul(String rs_path) {
+	public void anal() {
 		MList fu=new MList();
 		for(int i=0;i<2;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal("adm/test1",da);
-			as.setRS(rs_path);
 			String rs=as.analList("a_ts_list.txt");	
 			fu.add(rs);
 		}
-		fu.saveTo(rs_path+"/"+g_rs);
+		fu.saveTo(g_path+"/"+g_rs);
 	}	
 
 	public int test1()	{
 		init_g();
-		String rs_path="adm/anal";
-		simul(rs_path);
+		anal();
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
 		da.load_x(g_xl);
 		da.load_rs(g_rs);

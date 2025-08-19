@@ -18,21 +18,17 @@ public class AutoAnal {
 		g_da=da;
 		g_sort=da.getSort();
 	}	
-	public void setRS(String rs_path) {
-		g_rs_path=rs_path;
-		
-	}
 
 	// simulate task set list with algorithm choice
 	public String analList(String ts_list) {
 		MList fu=new MList(g_path+"/"+ts_list);
-		String rs_fn=g_rs_path+"/a_rs_list."+g_sort+".txt";
+		String rs_fn=g_path+"/a_rs_list."+g_sort+".txt";
 		MList fu_rs=new MList();
 		SLog.prn(2, "Anal:"+g_sort);
 		
 		for(int i=0;i<fu.size();i++) {
 			String fn=fu.get(i);
-			String out=g_rs_path+"/"+fn+".rs."+g_sort;
+			String out=g_path+"/"+fn+".rs."+g_sort;
 			analTS(g_path+"/"+fn,out);
 			fu_rs.add(out);
 		}		

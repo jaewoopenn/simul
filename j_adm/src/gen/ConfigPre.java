@@ -2,6 +2,10 @@ package gen;
 
 
 public class ConfigPre {
+	public static ConfigGen getPredefined()	{
+		return getPredefinedMC();
+		
+	}
 	public static ConfigGen getPredefined(boolean isMC)	{
 		if(isMC) {
 			return getPredefinedMC();

@@ -45,7 +45,6 @@ public class z_autoanal1 {
 	public int test3() {
 		DoAnal da=new DoAnal(0);
 		AutoAnal as=new AutoAnal("adm/test1",da);
-		as.setRS("adm/pi0");
 		as.analList("a_ts_list.txt");		
 		return -1;
 	}
