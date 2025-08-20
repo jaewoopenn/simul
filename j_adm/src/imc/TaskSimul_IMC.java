@@ -3,20 +3,57 @@ package imc;
 
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.TaskSimul_base;
 import sim.job.Job;
 import sim.mc.JobSimul_MC;
 import task.DTaskVec;
 import task.Task;
+import task.TaskMng;
 import util.SLogF;
+import util.MRand;
 import util.SLog;
 
-public abstract class TaskSimul_IMC extends TaskSimul_base {
-
+public abstract class TaskSimul_IMC  {
+	protected String g_name="";
+	protected SysMng g_sm;
+	protected DTaskVec g_dt;
+	protected TaskMng g_tm;
+	private MRand g_rutil=new MRand();
+	protected SimulInfo g_si;
 	protected JobSimul_MC g_jsm;
 	protected boolean g_ms_happen=false;
 	protected int g_delayed_t=-1;
-	@Override
+
+	public String getName() {
+		return g_name;
+	}
+	 
+	// simul interval
+	public void simul(int et){
+		int t=0;
+		g_si.total=et;
+//			g_dt.prn();
+		SLogF.prn("rel  / exec / t");
+		while(t<et){
+			simul_one();
+			t++;
+		}
+		simul_end();
+	}
+	
+	
+	// aaaa
+	// get param
+	public SimulInfo getSI(){
+		return g_si;
+	}
+	public void prnSI() {
+		g_si.prn2();
+	}
+	public TaskMng getTM(){
+		return g_tm;
+	}
+	
+
 	public void init_sm_dt(SysMng sm, DTaskVec dt ){
 		g_sm=sm;
 		g_dt=dt;
@@ -27,13 +64,11 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	public abstract void initSimul();
 
 
-	@Override
 	protected void simul_end() {
 		g_si.drop+=g_jsm.simul_end();
 	}
 	
 
-	@Override
 	protected void init() {
 		g_jsm=new JobSimul_MC(g_tm.size());
 		g_si=new SimulInfo();
@@ -42,7 +77,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 		initModeAll();
 	}
 
-	@Override
 	protected void simul_one(){
 		int t=g_jsm.get_time();
 		
@@ -83,7 +117,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	protected abstract void setDelay();
 	protected abstract void setVD();
 	
-	@Override
 	protected Job rel_one_job(Task tsk, int t) {
 //		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
 		int dl=t+tsk.period;
@@ -104,7 +137,6 @@ public abstract class TaskSimul_IMC extends TaskSimul_base {
 	}
 	
 	
-	@Override
 	protected void release_jobs(){
 		int t=g_jsm.get_time();
 		String s="";
