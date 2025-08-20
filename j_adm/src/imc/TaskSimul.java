@@ -4,7 +4,7 @@ package imc;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.job.Job;
-import sim.mc.JobSimul_MC;
+import sim.mc.JobSimul;
 import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
@@ -19,7 +19,7 @@ public abstract class TaskSimul  {
 	protected TaskMng g_tm;
 	private MRand g_rutil=new MRand();
 	protected SimulInfo g_si;
-	protected JobSimul_MC g_jsm;
+	protected JobSimul g_jsm;
 	protected boolean g_ms_happen=false;
 	protected int g_delayed_t=-1;
 
@@ -32,7 +32,7 @@ public abstract class TaskSimul  {
 	
 	
 	private void init() {
-		g_jsm=new JobSimul_MC(g_tm.size());
+		g_jsm=new JobSimul(g_tm.size());
 		g_si=new SimulInfo();
 //		Log.prn(1, "num:"+g_tm.size());
 		initSimul();

@@ -1,7 +1,7 @@
 package sim;
 
 import anal.Anal;
-import anal.AnalSel_IMC;
+import anal.AnalSel;
 import imc.SimulSel_IMC;
 import imc.TaskSimul;
 import task.DTaskVec;
@@ -43,7 +43,7 @@ public class DoSimul {
 	}
 
 	public Anal getAnalSim(int sort) {
-		return AnalSel_IMC.getAnalSim(sort);
+		return AnalSel.getAnalSim(sort);
 	}
 	public TaskSimul getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
