@@ -6,7 +6,7 @@ import task.Task;
 import util.MCal;
 import util.SLog;
 
-public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
+public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 
 	public TaskSimul_EDF_VD_ADM() {
 		super();

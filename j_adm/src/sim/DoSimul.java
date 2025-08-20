@@ -3,12 +3,12 @@ package sim;
 import anal.Anal;
 import anal.AnalSel_IMC;
 import imc.SimulSel_IMC;
-import imc.TaskSimul_IMC;
+import imc.TaskSimul;
 import task.DTaskVec;
 import util.SLog;
 
 public class DoSimul {
-	private TaskSimul_IMC g_ts;
+	private TaskSimul g_ts;
 	private int g_sort;
 	private double g_prob=-1;
 	private int g_dur=-1;
@@ -45,7 +45,7 @@ public class DoSimul {
 	public Anal getAnalSim(int sort) {
 		return AnalSel_IMC.getAnalSim(sort);
 	}
-	public TaskSimul_IMC getSim(int sort) {
+	public TaskSimul getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
 	public int getSort() {

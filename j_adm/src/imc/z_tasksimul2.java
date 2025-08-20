@@ -58,7 +58,7 @@ public class z_tasksimul2 {
 		sm.setX(x);
 		
 //		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
-		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
+		TaskSimul ts=new TaskSimul_EDF_VD_ADM();
 		ts.init_sm_dt(sm,dt);
 
 //		SLogF.init(out);

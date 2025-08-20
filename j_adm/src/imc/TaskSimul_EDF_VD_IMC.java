@@ -3,7 +3,7 @@ package imc;
 
 import task.Task;
 
-public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
+public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
 	public TaskSimul_EDF_VD_IMC() {
 		super();

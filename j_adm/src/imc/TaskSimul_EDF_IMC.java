@@ -4,7 +4,7 @@ package imc;
 import sim.job.Job;
 import task.Task;
 
-public class TaskSimul_EDF_IMC extends TaskSimul_IMC{
+public class TaskSimul_EDF_IMC extends TaskSimul{
 
 	public TaskSimul_EDF_IMC() {
 		super();

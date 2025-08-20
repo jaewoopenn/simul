@@ -12,7 +12,7 @@ import util.SLogF;
 import util.MRand;
 import util.SLog;
 
-public abstract class TaskSimul_IMC  {
+public abstract class TaskSimul  {
 	protected String g_name="";
 	protected SysMng g_sm;
 	protected DTaskVec g_dt;
@@ -26,8 +26,71 @@ public abstract class TaskSimul_IMC  {
 	public String getName() {
 		return g_name;
 	}
-	 
-	// simul interval
+
+	/////////////
+	// init 
+	
+	
+	private void init() {
+		g_jsm=new JobSimul_MC(g_tm.size());
+		g_si=new SimulInfo();
+//		Log.prn(1, "num:"+g_tm.size());
+		initSimul();
+		initModeAll();
+	}
+	
+
+	public void init_sm_dt(SysMng sm, DTaskVec dt ){
+		g_sm=sm;
+		g_dt=dt;
+		g_tm=dt.getTM(0);
+		g_tm.setX(sm.getX());
+		init();
+	}
+
+	// Overide in child class
+	public abstract void initSimul();
+	protected abstract void setDelay();
+	protected abstract void setVD();
+	
+	protected Job rel_one_job(Task tsk, int t) {
+//		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
+		int dl=t+tsk.period;
+		if(!tsk.isHC()) { // LC task
+			return new Job(tsk.tid,dl,tsk.c_l,tsk.c_l-tsk.c_h);
+		}
+
+		// HC task 
+		Job j;
+//		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
+		if(tsk.isHM()){ // HI-mode
+			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
+		} else { // LO-mode
+			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+//			j.prn();
+		}
+		return j;
+	}
+
+	// abstract method
+	protected abstract void modeswitch_in(Task tsk);
+	
+	
+	
+	// MC specific 
+	protected void mode_switch(int tid){ // connect to each algo's MS
+		Task tsk=g_tm.getTask(tid);
+		if(tsk==null) 
+			return;
+		SLogF.prn(g_jsm.get_time()+" "+tid);
+		SLogF.prng("MS,"+g_jsm.get_time()+","+tid);
+		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
+		g_si.ms++;
+		modeswitch_in(tsk);
+	}
+	
+	/////////////
+	// simul 
 	public void simul(int et){
 		int t=0;
 		g_si.total=et;
@@ -39,45 +102,14 @@ public abstract class TaskSimul_IMC  {
 		}
 		simul_end();
 	}
-	
-	
-	// aaaa
-	// get param
-	public SimulInfo getSI(){
-		return g_si;
-	}
-	public void prnSI() {
-		g_si.prn2();
-	}
-	public TaskMng getTM(){
-		return g_tm;
-	}
-	
 
-	public void init_sm_dt(SysMng sm, DTaskVec dt ){
-		g_sm=sm;
-		g_dt=dt;
-		g_tm=dt.getTM(0);
-		g_tm.setX(sm.getX());
-		init();
-	}
-	public abstract void initSimul();
-
-
-	protected void simul_end() {
+	private void simul_end() {
 		g_si.drop+=g_jsm.simul_end();
 	}
 	
 
-	protected void init() {
-		g_jsm=new JobSimul_MC(g_tm.size());
-		g_si=new SimulInfo();
-//		Log.prn(1, "num:"+g_tm.size());
-		initSimul();
-		initModeAll();
-	}
 
-	protected void simul_one(){
+	private void simul_one(){
 		int t=g_jsm.get_time();
 		
 		if(t==g_dt.getNext()) {
@@ -114,30 +146,9 @@ public abstract class TaskSimul_IMC  {
 		ms_check();
 	}
 	
-	protected abstract void setDelay();
-	protected abstract void setVD();
-	
-	protected Job rel_one_job(Task tsk, int t) {
-//		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
-		int dl=t+tsk.period;
-		if(!tsk.isHC()) { // LC task
-			return new Job(tsk.tid,dl,tsk.c_l,tsk.c_l-tsk.c_h);
-		}
-
-		// HC task 
-		Job j;
-//		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
-		if(tsk.isHM()){ // HI-mode
-			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
-		} else { // LO-mode
-			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-//			j.prn();
-		}
-		return j;
-	}
 	
 	
-	protected void release_jobs(){
+	private void release_jobs(){
 		int t=g_jsm.get_time();
 		String s="";
 		for(Task tsk:g_tm.getTasks()){
@@ -218,22 +229,6 @@ public abstract class TaskSimul_IMC  {
 
 	
 	
-	// abstract method
-	protected abstract void modeswitch_in(Task tsk);
-	
-	
-	
-	// MC specific 
-	protected void mode_switch(int tid){ // connect to each algo's MS
-		Task tsk=g_tm.getTask(tid);
-		if(tsk==null) 
-			return;
-		SLogF.prn(g_jsm.get_time()+" "+tid);
-		SLogF.prng("MS,"+g_jsm.get_time()+","+tid);
-		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
-		g_si.ms++;
-		modeswitch_in(tsk);
-	}
 
 	protected void modeswitch_after(Task tsk){ // function
 		SLog.err_if(!tsk.isHC(),"task "+tsk.tid+" is not HI-task, cannot mode switch");
@@ -255,6 +250,16 @@ public abstract class TaskSimul_IMC  {
 		tsk.drop();
 	}
 	
+	// get param
+	public SimulInfo getSI(){
+		return g_si;
+	}
+	public void prnSI() {
+		g_si.prn2();
+	}
+	public TaskMng getTM(){
+		return g_tm;
+	}
 
 	
 }
