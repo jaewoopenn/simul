@@ -33,7 +33,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 //		SLog.prn(2, "de");
 		// test fail? all degrade 
 		for(Task t:g_tm.get_LC_Tasks()){
-				degrade_task(t);
+			g_ts.degrade_task(t);
 		}
 	}
 

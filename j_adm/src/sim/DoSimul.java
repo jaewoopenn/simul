@@ -32,11 +32,11 @@ public class DoSimul {
 		
 	}
 	public String getRS() {
-		SimulInfo si=g_ts.getSI();
+		SimulInfo si=g_ts.getStat();
 		return si.getDegraded()+"";
 	}
 	public void prn() {
-		SimulInfo si=g_ts.getSI();
+		SimulInfo si=g_ts.getStat();
 		si.prn2();
 		SLog.prn(2, si.getDegraded()+"");
 		

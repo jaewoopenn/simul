@@ -20,7 +20,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 		}
 		g_ms_happen=true;
 		for(Task t:g_tm.get_LC_Tasks()){
-			degrade_task(t);
+			g_ts.degrade_task(t);
 		}
 	}
 

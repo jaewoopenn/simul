@@ -59,7 +59,7 @@ public class z_tasksimul {
 		
 		ts.simul(dur);
 		SLog.prn(1, "-------");
-		ts.getSI().prn();
+		ts.getStat().prn();
 		
 		if(bSave)	
 			SLogF.save();

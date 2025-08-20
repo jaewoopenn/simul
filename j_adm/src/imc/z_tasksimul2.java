@@ -63,7 +63,7 @@ public class z_tasksimul2 {
 
 //		SLogF.init(out);
 		ts.simul(dur);
-		SimulInfo si=ts.getSI();
+		SimulInfo si=ts.getStat();
 //		si.prn2();
 		SLog.prn(2, si.getDegraded()+"");
 //		SLogF.save();

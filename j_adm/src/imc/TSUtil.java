@@ -1,7 +1,9 @@
 package imc;
 
+import sim.SimulInfo;
 import sim.SysMng;
 import sim.job.Job;
+import sim.job.JobSimul;
 import task.Task;
 import task.TaskMng;
 import util.MRand;
@@ -9,13 +11,18 @@ import util.SLog;
 import util.SLogF;
 
 public class TSUtil {
-	protected TaskMng g_tm;
-	protected SysMng g_sm;
+	private TaskMng g_tm;
+	private SysMng g_sm;
+	private JobSimul g_jsm;
+	private SimulInfo g_si;
 	private MRand g_rutil=new MRand();
 	public TSUtil(SysMng s) {
 		g_sm=s;
 	}
 	
+	public void simul_end() {
+		g_si.drop+=g_jsm.simul_end();
+	}
 	public boolean isMS(Job j) {
 		if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
 			return true;
@@ -29,12 +36,9 @@ public class TSUtil {
 
 	}
 
-	public void setTM(TaskMng t) {
-		g_tm=t;
-	}	
-	public void recover_idle(int t){
+	public void recover_idle(){
 		SLogF.prnc( "R ");
-		SLog.prn(1, "idle "+t);
+		SLog.prn(1, "idle "+g_jsm.get_time());
 		initModeAll();
 	}
 
@@ -55,6 +59,37 @@ public class TSUtil {
 //			j.prn();
 		}
 		return j;
+	}
+
+	public void modeswitch_after(Task tsk){ // function
+		SLog.err_if(!tsk.isHC(),"task "+tsk.tid+" is not HI-task, cannot mode switch");
+
+		tsk.ms();
+		
+		g_jsm.getJM().modeswitch(tsk.tid);
+	}
+
+
+	
+	public void degrade_task(Task tsk) { // for IMC
+		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot drop");
+		
+		if(tsk.isDrop())
+			return;
+		
+		g_si.drop+=g_jsm.getJM().degrade(tsk.tid);
+		tsk.drop();
+	}
+
+	public void setTM(TaskMng t) {
+		g_tm=t;
+	}	
+	public void setJSM(JobSimul j) {
+		g_jsm=j;
+		
+	}
+	public void setSI(SimulInfo s) {
+		g_si=s;
 	}
 	
 }

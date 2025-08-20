@@ -26,7 +26,7 @@ public class TaskSimul_EDF_IMC_gen extends TaskSimul{
 				g_jsm.getJM().modeswitch(tsk.tid);
 				t.ms();
 			} else {
-				degrade_task(t);
+				g_ts.degrade_task(t);
 			}
 		}
 	}

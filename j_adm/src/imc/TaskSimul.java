@@ -20,7 +20,7 @@ public abstract class TaskSimul  {
 	protected JobSimul g_jsm;
 	protected boolean g_ms_happen=false;
 	protected int g_delayed_t=-1;
-	private TSUtil g_ts;
+	protected TSUtil g_ts;
 	public String getName() {
 		return g_name;
 	}
@@ -33,6 +33,8 @@ public abstract class TaskSimul  {
 		g_jsm=new JobSimul(g_tm.size());
 		g_si=new SimulInfo();
 //		Log.prn(1, "num:"+g_tm.size());
+		g_ts.setSI(g_si);
+		g_ts.setJSM(g_jsm);
 		initSimul();
 		g_ts.initModeAll();
 	}
@@ -76,28 +78,43 @@ public abstract class TaskSimul  {
 	}
 	
 	/////////////
-	// simul 
+	// simul .. stating point 
 	public void simul(int et){
 		int t=0;
 		g_si.total=et;
-//			g_dt.prn();
 		SLogF.prn("rel  / exec / t");
 		while(t<et){
 			simul_one();
 			t++;
 		}
-		simul_end();
+		g_ts.simul_end();
 	}
 
-	private void simul_end() {
-		g_si.drop+=g_jsm.simul_end();
-	}
 	
 
 
 	private void simul_one(){
 		int t=g_jsm.get_time();
-		
+		dynamicTask(t);
+		release_jobs();
+		variousAfterWork();
+		g_jsm.simul_one();
+		ms_check();
+	}
+	
+	
+	
+	private void variousAfterWork() {
+		if(g_jsm.is_idle()&&g_ms_happen) {
+			g_ts.recover_idle();
+			g_ms_happen=false;
+		}
+		if(g_ms_happen) {
+			g_si.degraded++;
+		}
+	}
+
+	private void dynamicTask(int t) {
 		if(t==g_dt.getNext()) {
 			SLog.prn(2,t+": stage change "+(g_dt.getStage()+1));
 			g_dt.nextStage();
@@ -107,7 +124,7 @@ public abstract class TaskSimul  {
 				setDelay();
 			} else { // remove
 				SLog.prn(2, t+": task change.");
-				setTM(g_dt.getTM(g_dt.getStage()));
+				setTM();
 			}
 //			g_tm.prn();
 		}
@@ -115,26 +132,15 @@ public abstract class TaskSimul  {
 			if(t==g_delayed_t||g_jsm.is_idle()) {
 				g_si.delayed+=t-g_si.start_delay;
 				SLog.prn(2, t+": delayed task change.");
-				setTM(g_dt.getTM(g_dt.getStage()));
+				setTM();
 				setVD();
 				g_delayed_t=-1;
 			}
 		}
-		release_jobs();
-		if(g_jsm.is_idle()&&g_ms_happen) {
-			g_ts.recover_idle(g_jsm.get_time());
-			g_ms_happen=false;
-		}
-		if(g_ms_happen) {
-			g_si.degraded++;
-		}
-		g_jsm.simul_one();
-		ms_check();
+		
 	}
-	
-	
-	
-	private void setTM(TaskMng tm) {
+
+	private void setTM() {
 		g_tm=g_dt.getTM(g_dt.getStage());
 		g_ts.setTM(g_tm);
 	}
@@ -172,10 +178,6 @@ public abstract class TaskSimul  {
 	
 
 
-	///////////////////////
-	// private
-
-
 
 	
 
@@ -204,32 +206,10 @@ public abstract class TaskSimul  {
 	
 	
 
-	protected void modeswitch_after(Task tsk){ // function
-		SLog.err_if(!tsk.isHC(),"task "+tsk.tid+" is not HI-task, cannot mode switch");
-
-		tsk.ms();
-		
-		g_jsm.getJM().modeswitch(tsk.tid);
-	}
-
-
 	
-	protected void degrade_task(Task tsk) { // for IMC
-		SLog.err_if(tsk.isHC(),"task "+tsk.tid+" is not LO-task, cannot drop");
-		
-		if(tsk.isDrop())
-			return;
-		
-		g_si.drop+=g_jsm.getJM().degrade(tsk.tid);
-		tsk.drop();
-	}
-	
-	// get param
-	public SimulInfo getSI(){
+	// get statics after simulation
+	public SimulInfo getStat(){
 		return g_si;
-	}
-	public TaskMng getTM(){
-		return g_tm;
 	}
 
 	
