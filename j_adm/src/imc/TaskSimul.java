@@ -4,12 +4,11 @@ package imc;
 import sim.SimulInfo;
 import sim.SysMng;
 import sim.job.Job;
-import sim.mc.JobSimul;
+import sim.job.JobSimul;
 import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
 import util.SLogF;
-import util.MRand;
 import util.SLog;
 
 public abstract class TaskSimul  {
@@ -17,12 +16,11 @@ public abstract class TaskSimul  {
 	protected SysMng g_sm;
 	protected DTaskVec g_dt;
 	protected TaskMng g_tm;
-	private MRand g_rutil=new MRand();
 	protected SimulInfo g_si;
 	protected JobSimul g_jsm;
 	protected boolean g_ms_happen=false;
 	protected int g_delayed_t=-1;
-
+	private TSUtil g_ts;
 	public String getName() {
 		return g_name;
 	}
@@ -36,7 +34,7 @@ public abstract class TaskSimul  {
 		g_si=new SimulInfo();
 //		Log.prn(1, "num:"+g_tm.size());
 		initSimul();
-		initModeAll();
+		g_ts.initModeAll();
 	}
 	
 
@@ -45,31 +43,19 @@ public abstract class TaskSimul  {
 		g_dt=dt;
 		g_tm=dt.getTM(0);
 		g_tm.setX(sm.getX());
+		g_ts=new TSUtil(g_sm);
+		g_ts.setTM(g_tm);
 		init();
 	}
 
+	/////////////
 	// Overide in child class
 	public abstract void initSimul();
 	protected abstract void setDelay();
 	protected abstract void setVD();
 	
-	protected Job rel_one_job(Task tsk, int t) {
-//		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
-		int dl=t+tsk.period;
-		if(!tsk.isHC()) { // LC task
-			return new Job(tsk.tid,dl,tsk.c_l,tsk.c_l-tsk.c_h);
-		}
-
-		// HC task 
-		Job j;
-//		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
-		if(tsk.isHM()){ // HI-mode
-			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
-		} else { // LO-mode
-			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
-//			j.prn();
-		}
-		return j;
+	protected  Job rel_one_job(Task tsk, int t) {
+		return TSUtil.rel_job(tsk,t);
 	}
 
 	// abstract method
@@ -121,7 +107,7 @@ public abstract class TaskSimul  {
 				setDelay();
 			} else { // remove
 				SLog.prn(2, t+": task change.");
-				g_tm=g_dt.getTM(g_dt.getStage());
+				setTM(g_dt.getTM(g_dt.getStage()));
 			}
 //			g_tm.prn();
 		}
@@ -129,14 +115,14 @@ public abstract class TaskSimul  {
 			if(t==g_delayed_t||g_jsm.is_idle()) {
 				g_si.delayed+=t-g_si.start_delay;
 				SLog.prn(2, t+": delayed task change.");
-				g_tm=g_dt.getTM(g_dt.getStage());
+				setTM(g_dt.getTM(g_dt.getStage()));
 				setVD();
 				g_delayed_t=-1;
 			}
 		}
 		release_jobs();
 		if(g_jsm.is_idle()&&g_ms_happen) {
-			recover_idle();
+			g_ts.recover_idle(g_jsm.get_time());
 			g_ms_happen=false;
 		}
 		if(g_ms_happen) {
@@ -148,6 +134,11 @@ public abstract class TaskSimul  {
 	
 	
 	
+	private void setTM(TaskMng tm) {
+		g_tm=g_dt.getTM(g_dt.getStage());
+		g_ts.setTM(g_tm);
+	}
+
 	private void release_jobs(){
 		int t=g_jsm.get_time();
 		String s="";
@@ -186,11 +177,6 @@ public abstract class TaskSimul  {
 
 
 
-	private void recover_idle(){
-		SLogF.prnc( "R ");
-		SLog.prn(1, "idle "+g_jsm.get_time());
-		initModeAll();
-	}
 	
 
 	private void ms_check(){
@@ -198,7 +184,7 @@ public abstract class TaskSimul  {
 		if(j==null) 
 			return;
 		if(j.add_exec>0) {
-			if(isMS(j)) { 
+			if(g_ts.isMS(j)) { 
 				mode_switch(j.tid);
 			} else {
 				g_jsm.getJM().removeCur();
@@ -210,18 +196,6 @@ public abstract class TaskSimul  {
 	}
 
 	
-	private boolean isMS(Job j) {
-		if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
-			return true;
-		else
-			return false;
-	}
-	private void initModeAll() {
-		for(Task t:g_tm.getTasks()){
-			t.initMode();
-		}
-
-	}	
 
 	
 	
@@ -253,9 +227,6 @@ public abstract class TaskSimul  {
 	// get param
 	public SimulInfo getSI(){
 		return g_si;
-	}
-	public void prnSI() {
-		g_si.prn2();
 	}
 	public TaskMng getTM(){
 		return g_tm;

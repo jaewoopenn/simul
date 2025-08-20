@@ -1,8 +1,6 @@
-package sim.mc;
+package sim.job;
 
 
-import sim.job.Job;
-import sim.job.JobMng;
 import util.SLog;
 import util.SLogF;
 
