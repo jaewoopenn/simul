@@ -1,5 +1,7 @@
 package imc;
 
+//Use auto simul
+
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
@@ -9,6 +11,9 @@ import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
 import util.SLogF;
+
+
+
 
 @SuppressWarnings("unused")
 public class z_tasksimul2 {

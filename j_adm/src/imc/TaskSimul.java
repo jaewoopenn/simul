@@ -50,31 +50,20 @@ public abstract class TaskSimul  {
 	}
 
 	/////////////
-	// Overide in child class
-	public abstract void initSimul();
+	/// Overide in child class
+	protected abstract void initSimul();
 	protected abstract void setDelay();
 	protected abstract void changeVD_nextSt();
+	protected abstract void modeswitch_in(Task tsk);
 	
+	// could overide
 	protected  Job rel_one_job(Task tsk, int t) {
 		return TS_ext.rel_job(tsk,t);
 	}
 
-	// abstract method
-	protected abstract void modeswitch_in(Task tsk);
 	
 	
 	
-	// MC specific 
-	protected void mode_switch(int tid){ // connect to each algo's MS
-		Task tsk=g_tm.getTask(tid);
-		if(tsk==null) 
-			return;
-		SLogF.prn(g_jsm.get_time()+" "+tid);
-		SLogF.prng("MS,"+g_jsm.get_time()+","+tid);
-		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
-		g_si.ms++;
-		modeswitch_in(tsk);
-	}
 	
 	/////////////
 	/// simul... starting point 
@@ -103,8 +92,7 @@ public abstract class TaskSimul  {
 	}
 	
 	
-	
-
+	// changeVD --> algo 
 	private void dynamicTask(int t) {
 		if(t==g_dt.getNext()) {
 			SLog.prn(2,t+": stage change "+(g_dt.getStage()+1));
@@ -136,6 +124,7 @@ public abstract class TaskSimul  {
 		g_ts.setTM(g_tm);
 	}
 
+	// rel_one_job --> algo 
 	private void release_jobs(){
 		int t=g_jsm.get_time();
 		String s="";
@@ -145,9 +134,8 @@ public abstract class TaskSimul  {
 				continue;
 			}
 			if(tsk.isHC()) {
-				s+="+";
+				s+="*";
 				g_jsm.add(rel_one_job(tsk,t));
-				
 				continue;
 			}
 			g_si.rel++;
@@ -172,6 +160,7 @@ public abstract class TaskSimul  {
 
 	
 
+	// MC specific 
 	private void ms_check(){
 		Job j=g_jsm.get_ms_job(); 
 		if(j==null) 
@@ -179,7 +168,7 @@ public abstract class TaskSimul  {
 		if(j.add_exec>0) {
 			if(g_ts.happen_MS(j)) { 
 				mode_switch(j.tid);
-			} else {
+			} else { // LO complete 
 				g_jsm.getJM().removeCur();
 			}
 			
@@ -188,6 +177,16 @@ public abstract class TaskSimul  {
 		}
 	}
 
+	protected void mode_switch(int tid){ // connect to each algo's MS
+		Task tsk=g_tm.getTask(tid);
+		if(tsk==null) 
+			return;
+		SLogF.prn(g_jsm.get_time()+" "+tid);
+		SLogF.prng("MS,"+g_jsm.get_time()+","+tid);
+		SLog.prn(1,g_jsm.get_time()+": TID "+tid+"--> MS");
+		g_si.ms++;
+		modeswitch_in(tsk);
+	}
 	
 
 	

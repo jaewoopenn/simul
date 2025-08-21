@@ -10,16 +10,16 @@ public class TaskSimul_EDF_IMC extends TaskSimul{
 		super();
 		g_name="EDF-IMC";
 	}
+	@Override
+	protected void initSimul() {
+		
+	}
 	
 	@Override
 	protected void modeswitch_in(Task tsk) {
 	}
 
 
-	@Override
-	public void initSimul() {
-		
-	}
 
 	@Override
 	protected Job rel_one_job(Task tsk, int t) {
@@ -30,7 +30,6 @@ public class TaskSimul_EDF_IMC extends TaskSimul{
 
 	@Override
 	protected void changeVD_nextSt() {
-		g_tm.setX(g_sm.getX());
 		
 	}
 

@@ -14,6 +14,11 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 	}
 	
 	@Override
+	protected void initSimul() {
+		
+	}
+	
+	@Override
 	protected void modeswitch_in(Task tsk) {
 		// individual ms. 
 		double ru;
@@ -38,10 +43,6 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 	}
 
 
-	@Override
-	public void initSimul() {
-		
-	}
 
 	@Override
 	protected void changeVD_nextSt() {

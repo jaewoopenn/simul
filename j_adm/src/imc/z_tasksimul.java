@@ -1,5 +1,7 @@
 package imc;
 
+
+// Use auto simul
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
 import gen.SysLoad;
