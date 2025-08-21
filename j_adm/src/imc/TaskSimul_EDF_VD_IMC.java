@@ -18,7 +18,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 			g_jsm.getJM().modeswitch(t.tid);
 			t.ms();
 		}
-		g_ms_happen=true;
+		g_ts.setMS();
 		for(Task t:g_tm.get_LC_Tasks()){
 			g_ts.degrade_task(t);
 		}
@@ -32,7 +32,7 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
 
 	@Override
-	protected void setVD() {
+	protected void changeVD_nextSt() {
 		g_tm.setX(g_sm.getX());
 		
 	}

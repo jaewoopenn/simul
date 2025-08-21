@@ -10,30 +10,48 @@ import util.MRand;
 import util.SLog;
 import util.SLogF;
 
-public class TSUtil {
+public class TS_ext {
 	private TaskMng g_tm;
 	private SysMng g_sm;
 	private JobSimul g_jsm;
 	private SimulInfo g_si;
+	private boolean g_ms_happen=false;
 	private MRand g_rutil=new MRand();
-	public TSUtil(SysMng s) {
+	public TS_ext(SysMng s) {
 		g_sm=s;
 	}
 	
 	public void simul_end() {
 		g_si.drop+=g_jsm.simul_end();
 	}
-	public boolean isMS(Job j) {
+	
+	/////////////
+	/// util
+	
+	public boolean happen_MS(Job j) {
 		if(g_rutil.getDbl()<g_sm.getMS_Prob()) // generated prob < ms_prob
 			return true;
 		else
 			return false;
 	}
+	
+	//////////////////
+	/// action
+	
 	public void initModeAll() {
 		for(Task t:g_tm.getTasks()){
 			t.initMode();
 		}
+	}
 
+	public void variousAfterWork() {
+		if(g_jsm.is_idle()&&g_ms_happen) {
+			recover_idle();
+			g_ms_happen=false;
+		}
+		if(g_ms_happen) {
+			g_si.degraded++;
+		}
 	}
 
 	public void recover_idle(){
@@ -80,6 +98,9 @@ public class TSUtil {
 		g_si.drop+=g_jsm.getJM().degrade(tsk.tid);
 		tsk.drop();
 	}
+	
+	//////////
+	/// set
 
 	public void setTM(TaskMng t) {
 		g_tm=t;
@@ -91,5 +112,14 @@ public class TSUtil {
 	public void setSI(SimulInfo s) {
 		g_si=s;
 	}
+
+	public boolean isMS() {
+		return g_ms_happen;
+	}
+
+	public void setMS() {
+		g_ms_happen=true;
+	}
+
 	
 }

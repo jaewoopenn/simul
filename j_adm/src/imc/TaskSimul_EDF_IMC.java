@@ -29,7 +29,7 @@ public class TaskSimul_EDF_IMC extends TaskSimul{
 	}
 
 	@Override
-	protected void setVD() {
+	protected void changeVD_nextSt() {
 		g_tm.setX(g_sm.getX());
 		
 	}
