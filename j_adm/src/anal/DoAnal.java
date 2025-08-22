@@ -7,12 +7,16 @@ import util.SLog;
 public class DoAnal {
 	private int g_sort;
 	private Anal g_anal;
+	private boolean isMC=false;
 	public DoAnal(int sort) {
 		g_sort=sort;
 
 	}
+	public void setMC() {
+		isMC=true;
+	}
 	public void run(DTaskVec dt) {
-		g_anal=AnalSel_IMC.getAnal(g_sort);
+		g_anal=AnalSel.getAnalAuto(g_sort,isMC);
 		g_anal.init(dt.getTM(0));
 		double x=g_anal.computeX();
 		g_anal.setX(x);

@@ -1,11 +1,11 @@
 package scn;
 
 
-import imc.TaskSimul_IMC;
+import imc.TaskSimul;
 import sim.job.Job;
 import task.Task;
 
-public class TaskSimul_EDF_IMC_gen extends TaskSimul_IMC{
+public class TaskSimul_EDF_IMC_gen extends TaskSimul{
 
 	public TaskSimul_EDF_IMC_gen() {
 		super();
@@ -26,7 +26,7 @@ public class TaskSimul_EDF_IMC_gen extends TaskSimul_IMC{
 				g_jsm.getJM().modeswitch(tsk.tid);
 				t.ms();
 			} else {
-				degrade_task(t);
+				g_ts.degrade_task(t);
 			}
 		}
 	}
@@ -50,7 +50,7 @@ public class TaskSimul_EDF_IMC_gen extends TaskSimul_IMC{
 	}
 
 	@Override
-	protected void setVD() {
+	protected void changeVD_nextSt() {
 		g_tm.setX(g_sm.getX());
 		
 	}

@@ -15,22 +15,6 @@ import util.SLog;
 // ADM
 
 public class z_auto_sim_imc4 {
-	private static int s_idx;
-	private static int s_log_level;
-	private String g_path;
-	private double g_p_ms;
-	private double g_p_hc;
-	private double g_ratio;
-	private int g_st;
-	private int g_step;
-	private int g_end;
-	private int g_num;
-	private int g_dur;
-	private String g_cf;
-	private String g_ts;
-	private String g_xl;
-	private String g_rs;
-	private String g_graph;
 	
 	
 	public static void init_s() {
@@ -171,5 +155,21 @@ public class z_auto_sim_imc4 {
 	}
 	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
+	private String g_path;
+	private double g_p_ms;
+	private double g_p_hc;
+	private double g_ratio;
+	private int g_st;
+	private int g_step;
+	private int g_end;
+	private int g_num;
+	private int g_dur;
+	private String g_cf;
+	private String g_ts;
+	private String g_xl;
+	private String g_rs;
+	private String g_graph;
 
 }

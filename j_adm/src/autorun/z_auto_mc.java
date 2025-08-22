@@ -67,6 +67,7 @@ public class z_auto_mc {
 		MList fu=MList.new_list();
 		for(int i=0;i<g_sort;i++) {
 			DoAnal da=new DoAnal(i);
+			da.setMC();
 			AutoAnal as=new AutoAnal(g_path,da);
 			String rs=as.analList(g_ts);	
 			fu.add(rs);

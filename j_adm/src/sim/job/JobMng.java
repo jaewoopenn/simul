@@ -1,9 +1,8 @@
 package sim.job;
 
 import java.util.PriorityQueue;
+import java.util.Vector;
 
-import util.SLogF;
-import util.SLog;
 
 public class JobMng {
 	protected PriorityQueue<Job> g_jobs;
@@ -12,28 +11,7 @@ public class JobMng {
 		g_jobs=new PriorityQueue<Job>();
 		g_task_num=n;
 	}
-	public void add(Job job) {
-		g_jobs.add(job);
-	}
 
-	public String getJobArrow(Job j,int out_type)
-	{
-		String s="";
-		for (int i=0;i<g_task_num;i++)
-		{
-			if(j==null) {
-				s+="-";
-			} else if(i==j.tid){
-				if(out_type==1)
-					s+="*"; // end
-				else
-					s+= "|"; // continue
-			} else {
-				s+= "-"; // empty
-			}
-		}
-		return s;
-	}
 	public boolean isIdle(int t) {  // idle except dropped job
 		Job j=getCur();
 		if(j==null)
@@ -46,27 +24,11 @@ public class JobMng {
 		}
 		return false;
 	}
+	
 	public boolean isIdle2() {  // Real Idle
 		return getCur()==null;
 	}
-	public Job getCur(){
-		return g_jobs.peek();
-	}
-	public Job removeCur(){
-		return g_jobs.poll();
-	}
-	public int size(){
-		return g_jobs.size();
-	}
-	public void prn(){
-		if(g_jobs.size()==0){
-			SLog.prn(1, "none");
-			return;
-		}
-		for(Job j:g_jobs){
-			SLog.prn(1, j.info());
-		}
-	}
+	
 	public int endDL(int et) {
 		int dm=0;
 		for(Job j:g_jobs){
@@ -89,15 +51,89 @@ public class JobMng {
 		}
 		return 1; // OK 
 	}
-	public void f_prn() {
-		if(g_jobs.size()==0){
-			SLogF.prn("none");
-			return;
-		}
+	
+	// MC related
+	public void modeswitch(int tid) {
+		Vector<Job> v=new Vector<Job>();
 		for(Job j:g_jobs){
-			SLogF.prn(j.info());
+			if(j.tid==tid) {
+//				j.prn();
+				j.ms();
+				j.setVD(j.dl);
+//				j.prn();
+				v.add(j);
+			}
 		}
-				
+		
+		// because java.util.ConcurrentModificationException
+		for(Job j:v){
+			g_jobs.remove(j);
+		}
+		for(Job j:v){
+			g_jobs.add(j);
+		}
+		
 	}
+	
+	public void drop(int tid) {
+		while(true) {
+			Job t_j=null;
+			for(Job j:g_jobs){
+				if(j.isDrop())
+					continue;
+				if(j.tid==tid&&j.exec>0) {
+					t_j=j;
+					
+				}
+			}
+			if(t_j==null)
+				break;
+			t_j.drop();
+			g_jobs.remove(t_j);
+			g_jobs.add(t_j);
+		}
+		
+	}
+	public int degrade(int tid) { // for IMC
+		int d=0;
+		while(true) {
+			Job t_j=null;
+			for(Job j:g_jobs){
+				if(j.isDrop())
+					continue;
+				if(j.tid==tid&&j.exec>0) {
+					t_j=j;
+					
+				}
+			}
+			if(t_j==null)
+				break;
+			t_j.degrade();
+			d++;
+			if(t_j.exec==0) {
+				g_jobs.remove(t_j);
+				g_jobs.add(t_j);
+			}
+		}
+		return d;
+	}
+
+	public void prn() {
+		JobMisc.prn(g_jobs);
+	}
+	public String getJobArrow(Job j, int out_type) {
+		return JobMisc.getJobArrow(j, out_type, g_task_num);
+	}
+	
+	public void add(Job job) {
+		g_jobs.add(job);
+	}
+	public Job getCur(){
+		return g_jobs.peek();
+	}
+	public Job removeCur(){
+		return g_jobs.poll();
+	}
+	
 
 }

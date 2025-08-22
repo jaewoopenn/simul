@@ -3,7 +3,7 @@ package auto;
 import java.util.Vector;
 
 import imc.SimulSel_IMC;
-import sim.TaskSimul_base;
+import imc.TaskSimul;
 import util.MList;
 
 public class DataSim_IMC {
@@ -63,7 +63,7 @@ public class DataSim_IMC {
 		String str="xx";
 
 		for(int idx=0;idx<g_max;idx++) {
-			TaskSimul_base a=SimulSel_IMC.getSim(idx);
+			TaskSimul a=SimulSel_IMC.getSim(idx);
 			str+=" "+a.getName();
 		}
 		fu.add(str);

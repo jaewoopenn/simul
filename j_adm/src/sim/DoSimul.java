@@ -1,14 +1,14 @@
 package sim;
 
 import anal.Anal;
-import anal.AnalSel_IMC;
+import anal.AnalSel;
 import imc.SimulSel_IMC;
-import imc.TaskSimul_IMC;
+import imc.TaskSimul;
 import task.DTaskVec;
 import util.SLog;
 
 public class DoSimul {
-	private TaskSimul_IMC g_ts;
+	private TaskSimul g_ts;
 	private int g_sort;
 	private double g_prob=-1;
 	private int g_dur=-1;
@@ -32,20 +32,20 @@ public class DoSimul {
 		
 	}
 	public String getRS() {
-		SimulInfo si=g_ts.getSI();
+		SimulInfo si=g_ts.getStat();
 		return si.getDegraded()+"";
 	}
 	public void prn() {
-		SimulInfo si=g_ts.getSI();
+		SimulInfo si=g_ts.getStat();
 		si.prn2();
 		SLog.prn(2, si.getDegraded()+"");
 		
 	}
 
 	public Anal getAnalSim(int sort) {
-		return AnalSel_IMC.getAnalSim(sort);
+		return AnalSel.getAnalSim(sort);
 	}
-	public TaskSimul_IMC getSim(int sort) {
+	public TaskSimul getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
 	public int getSort() {

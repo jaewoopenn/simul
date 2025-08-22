@@ -4,8 +4,7 @@ package auto;
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel_IMC;
-import anal.AnalSel_MC;
+import anal.AnalSel;
 import util.MList;
 
 public class DataAnal_IMC  {
@@ -87,10 +86,7 @@ public class DataAnal_IMC  {
 	
 
 	public Anal getAnal(int sort) {
-		if(g_isMC)
-			return AnalSel_MC.getAnal(sort);
-		else
-			return AnalSel_IMC.getAnal(sort);
+		return AnalSel.getAnalAuto(sort,g_isMC);
 	}
 
 	

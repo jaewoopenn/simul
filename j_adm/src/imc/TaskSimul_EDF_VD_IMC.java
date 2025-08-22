@@ -3,11 +3,15 @@ package imc;
 
 import task.Task;
 
-public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
+public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
 	public TaskSimul_EDF_VD_IMC() {
 		super();
 		g_name="EDF-VD-IMC";
+	}
+	@Override
+	protected void initSimul() {
+		
 	}
 	
 	@Override
@@ -18,22 +22,17 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul_IMC{
 			g_jsm.getJM().modeswitch(t.tid);
 			t.ms();
 		}
-		g_ms_happen=true;
+		g_ts.setMS();
 		for(Task t:g_tm.get_LC_Tasks()){
-			degrade_task(t);
+			g_ts.degrade_task(t);
 		}
 	}
 
 
-	@Override
-	public void initSimul() {
-		
-	}
 
 
 	@Override
-	protected void setVD() {
-		g_tm.setX(g_sm.getX());
+	protected void changeVD_nextSt() {
 		
 	}
 

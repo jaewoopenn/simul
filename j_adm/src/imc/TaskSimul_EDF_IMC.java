@@ -4,11 +4,15 @@ package imc;
 import sim.job.Job;
 import task.Task;
 
-public class TaskSimul_EDF_IMC extends TaskSimul_IMC{
+public class TaskSimul_EDF_IMC extends TaskSimul{
 
 	public TaskSimul_EDF_IMC() {
 		super();
 		g_name="EDF-IMC";
+	}
+	@Override
+	protected void initSimul() {
+		
 	}
 	
 	@Override
@@ -16,10 +20,6 @@ public class TaskSimul_EDF_IMC extends TaskSimul_IMC{
 	}
 
 
-	@Override
-	public void initSimul() {
-		
-	}
 
 	@Override
 	protected Job rel_one_job(Task tsk, int t) {
@@ -29,8 +29,7 @@ public class TaskSimul_EDF_IMC extends TaskSimul_IMC{
 	}
 
 	@Override
-	protected void setVD() {
-		g_tm.setX(g_sm.getX());
+	protected void changeVD_nextSt() {
 		
 	}
 

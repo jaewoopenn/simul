@@ -6,11 +6,16 @@ import task.Task;
 import util.MCal;
 import util.SLog;
 
-public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
+public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 
 	public TaskSimul_EDF_VD_ADM() {
 		super();
 		g_name="EDF-VD-ADM";
+	}
+	
+	@Override
+	protected void initSimul() {
+		
 	}
 	
 	@Override
@@ -27,24 +32,20 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul_IMC{
 //		SLog.prn(2, "vu:"+ru);
 		if(ru<1+MCal.err)
 			return;
-		if(g_ms_happen)
+		if(g_ts.isMS())
 			return;
-		g_ms_happen=true;
+		g_ts.setMS();
 //		SLog.prn(2, "de");
 		// test fail? all degrade 
 		for(Task t:g_tm.get_LC_Tasks()){
-				degrade_task(t);
+			g_ts.degrade_task(t);
 		}
 	}
 
 
-	@Override
-	public void initSimul() {
-		
-	}
 
 	@Override
-	protected void setVD() {
+	protected void changeVD_nextSt() {
 		Anal a=new AnalEDF_VD_ADM();
 		a.init(g_tm);
 		double x=g_sm.getX();

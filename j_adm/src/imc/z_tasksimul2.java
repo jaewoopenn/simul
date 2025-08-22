@@ -1,5 +1,7 @@
 package imc;
 
+//Use auto simul
+
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
@@ -9,6 +11,9 @@ import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
 import util.SLogF;
+
+
+
 
 @SuppressWarnings("unused")
 public class z_tasksimul2 {
@@ -58,12 +63,12 @@ public class z_tasksimul2 {
 		sm.setX(x);
 		
 //		TaskSimul_IMC ts=new TaskSimul_EDF_VD_IMC();
-		TaskSimul_IMC ts=new TaskSimul_EDF_VD_ADM();
+		TaskSimul ts=new TaskSimul_EDF_VD_ADM();
 		ts.init_sm_dt(sm,dt);
 
 //		SLogF.init(out);
 		ts.simul(dur);
-		SimulInfo si=ts.getSI();
+		SimulInfo si=ts.getStat();
 //		si.prn2();
 		SLog.prn(2, si.getDegraded()+"");
 //		SLogF.save();
