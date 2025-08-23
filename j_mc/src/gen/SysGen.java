@@ -16,7 +16,7 @@ public class SysGen {
 	private ConfigGen g_cfg;
 	private boolean g_isSch=false;
 	private boolean g_isOnlyMC=false;
-	private int g_stage;
+	private int g_stage=1;
 
 	public SysGen(ConfigGen cfg) {
 		g_cfg=cfg;
@@ -43,7 +43,7 @@ public class SysGen {
 	}
 	public int prepare_IMC(){
 		TaskGenParam tgp=getTgp();
-		g_tg=new TaskGenIMC(tgp);
+		g_tg=new TaskGen(tgp);
 		return g_cfg.readInt("num");
 	}	
 	public void gen(String fn,Anal a,int num) {

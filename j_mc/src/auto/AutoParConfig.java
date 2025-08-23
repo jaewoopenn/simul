@@ -10,11 +10,4 @@ public  class AutoParConfig {
 	public void setMC() {
 		isMC=true;
 	}
-
-
-	
-	
-	
-	
-	
 }

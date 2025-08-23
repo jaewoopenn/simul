@@ -1,6 +1,7 @@
 package anal;
 
 import task.DTaskVec;
+import task.TaskMng;
 import util.MCal;
 import util.SLog;
 
@@ -15,9 +16,9 @@ public class DoAnal {
 	public void setMC() {
 		isMC=true;
 	}
-	public void run(DTaskVec dt) {
+	public void run(TaskMng tm) {
 		g_anal=AnalSel.getAnalAuto(g_sort,isMC);
-		g_anal.init(dt.getTM(0));
+		g_anal.init(tm);
 		double x=g_anal.computeX();
 		g_anal.setX(x);
 

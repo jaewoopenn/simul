@@ -28,14 +28,6 @@ public class SysLoad {
 		TaskSet tsf=TaskSetUtil.loadFile(ml);
 		return tsf.getTM();
 	}
-	public DTaskVec loadOne2() {
-		boolean b=g_fu.readUntil("------");
-		if(!b) 
-			return null;
-		MList ml=MList.new_list();
-		ml.copyFrom(g_fu);
-		return TaskSetUtil.loadFile2(ml);
-	}
 
 
 	public void moveto(int n) {

@@ -19,7 +19,7 @@ public class z_TaskGen1 {
 		tgp.setRatioLH(0.2,0.9);
 		tgp.setUtil(0.90,0.99);
 		tgp.setProbHI(0.5);
-		return new TaskGenIMC(tgp);
+		return new TaskGen(tgp);
 	}
 
 	public int test1()

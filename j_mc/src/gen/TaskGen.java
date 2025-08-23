@@ -5,8 +5,9 @@ import java.util.Vector;
 import task.Task;
 import task.TaskSet;
 import task.TaskVec;
+import util.SLog;
 
-public abstract class TaskGen {
+public  class TaskGen {
 	protected TaskGenParam g_param;
 	protected Vector<Task> g_tasks;
 	private int g_tid=0;
@@ -46,17 +47,14 @@ public abstract class TaskGen {
 		return t;
 	}
 
-	public abstract Task genTask(int tid);
 
 
 	public boolean chkUtil() {
 		return g_param.chkUtil(getUtil());
 	}
 	
-	public abstract void prn(int lv) ;
 
 
-	protected abstract double getUtil(); 
 
 
 	public TaskSet getTS() {
@@ -69,5 +67,43 @@ public abstract class TaskGen {
 	
 	
 	
+
+	public Task genTask(int tid){
+		Task tsk=g_param.genTaskIMC(tid);
+		if(!g_param.chkTask(tsk))
+			return null;
+//		if(!g_param.chkMCTask(tsk))
+//			return null;
+		return tsk;
+	}
+
+
+
+	
+	public void prn(int lv) {
+		for(Task t:g_tasks) {
+			SLog.prn(1, "tid:"+t.tid+
+					", p:"+t.period+
+					", l:"+t.c_l+
+					", h:"+t.c_h+
+					", Xi:"+t.isHC());
+		}
+		SLog.prn(lv, "MC util:"+getUtil());
+			
+	}
+
+
+	protected double getUtil(){
+		double loutil=0;
+		double hiutil=0;
+		for(Task t:g_tasks){
+			loutil+=t.getLoUtil();
+			hiutil+=t.getHiUtil();
+		}
+		return Math.max(loutil, hiutil);
+	}
+
+
+
 	
 }

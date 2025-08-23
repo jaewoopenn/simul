@@ -21,7 +21,6 @@ public class z_auto_imc2 {
 	private String g_path;
 	private int g_st;
 	private int g_step;
-	private int g_stage;
 	private int g_end;
 	private int g_num;
 	private int g_sort;
@@ -43,7 +42,7 @@ public class z_auto_imc2 {
 	}
 	
 	public void init_g() {
-		g_path="adm/anal";
+		g_path="cmc/test1";
 		g_num=5000;
 //		g_num=500;
 //		g_num=20;
@@ -54,9 +53,6 @@ public class z_auto_imc2 {
 	}
 
 	public void init_anal() {
-		g_stage=1;
-//		g_stage=3;
-//		g_stage=6;
 		g_st=56;
 		g_step=3;
 		g_end=100;
@@ -84,7 +80,6 @@ public class z_auto_imc2 {
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoTaskGen p=new AutoTaskGen(g_path);
 		p.setRS(g_path);
-		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		anal();
