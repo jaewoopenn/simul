@@ -2,7 +2,7 @@ package scn;
 
 
 import imc.TaskSimul;
-import sim.job.Job;
+import job.Job;
 import task.Task;
 
 public class TaskSimul_EDF_IMC_gen extends TaskSimul{

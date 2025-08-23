@@ -1,10 +1,10 @@
 package imc;
 
 
+import job.Job;
+import job.JobSimul;
 import sim.SimulInfo;
 import sim.SysMng;
-import sim.job.Job;
-import sim.job.JobSimul;
 import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
