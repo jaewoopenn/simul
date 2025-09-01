@@ -22,4 +22,7 @@ public class MRand {
 	public int getInt(int max) {
 		return g_rand.nextInt(max);
 	}
+	public boolean getBool() {
+		return g_rand.nextBoolean();
+	}
 }
