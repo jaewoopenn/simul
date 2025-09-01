@@ -12,7 +12,7 @@ public class MDir {
 	public static void makeDir(String str) {
 		 File theDir = new File(MDir.path+str);
 		if (theDir.exists()) {
-//			System.out.println("dir exist");
+			System.out.println("dir exist");
 			return;
 		}
 		try{
