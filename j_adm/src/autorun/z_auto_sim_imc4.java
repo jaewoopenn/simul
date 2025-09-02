@@ -3,9 +3,9 @@ package autorun;
 
 import auto.AutoConfig;
 import auto.AutoParConfig;
-import auto.AutoSimul;
 import auto.DataSim_IMC;
 import auto.AutoTaskGen;
+import sim.AutoSimul;
 import sim.DoSimul;
 import util.MList;
 import util.SEngineT;

@@ -1,11 +1,10 @@
-package auto;
+package sim;
 
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
 import gen.SysLoad;
 import imc.*;
-import sim.DoSimul;
 import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
@@ -15,27 +14,27 @@ import util.SLogF;
 
 @SuppressWarnings("unused")
 public class z_autosimul1 {
-//	public static int idx=1;
+	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-	public static int idx=4;
-//	public static int log_level=1;
-	public static int log_level=2;
+//	public static int idx=4;
+	public static int log_level=1;
+//	public static int log_level=2;
 
 
 	
 	public int test1()	{
-		String tsn="adm/test1/taskset_75.txt";
+		String tsn="adm/sim/taskset_75.txt";
+		int n=10;
+
 		String out="adm/test.txt";
-		int n=3;
 		SysLoad sy=new SysLoad(tsn);
-		String ret=sy.open();
-//		SLog.prn(1, ret);
+		sy.open();
 		sy.moveto(n);
 		DTaskVec dt=sy.loadOne2();
 		DoSimul ds=new DoSimul(0);
 		ds.setProb(0.3);
-		ds.setDur(1000);
+		ds.setDur(2000);
 		ds.run(dt);
 		ds.prn();
 		return 0;

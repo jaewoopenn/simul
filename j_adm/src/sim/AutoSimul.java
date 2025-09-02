@@ -1,7 +1,6 @@
-package auto;
+package sim;
 
 import gen.SysLoad;
-import sim.DoSimul;
 import task.DTaskVec;
 import util.CProg;
 import util.MList;
