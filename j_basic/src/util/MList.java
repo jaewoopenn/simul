@@ -11,7 +11,7 @@ public class MList {
 	public void load_in(String fn) {
 		MFile fu=new MFile(fn);
 	    fu.load();
-	    for(int i:MLoop.run(fu.bufferSize())){
+	    for(int i:MLoop.on(fu.bufferSize())){
 	    	g_list.add(fu.getBuf(i));
 		}		
 	}

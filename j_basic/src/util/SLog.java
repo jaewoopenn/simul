@@ -39,4 +39,8 @@ public class SLog {
 		if(g_lv<=lv)
 			System.out.printf("%.3f", f);		
 	}
+
+	public static void prn(String s) {
+		prn(1,s);
+	}
 }

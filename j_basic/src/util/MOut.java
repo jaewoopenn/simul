@@ -11,7 +11,7 @@ public class MOut {
 	
 	public MOut(String file) {
 		try {
-			g_writer = new PrintWriter(MDir.path+file);
+			g_writer = new PrintWriter(MFile.path+file);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
