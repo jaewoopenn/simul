@@ -4,7 +4,6 @@ import util.MFile;
 import util.MList;
 import util.SEngineT;
 
-@SuppressWarnings("unused")
 public class z_file {
 //	public static int idx=1;
 //	public static int idx=2;

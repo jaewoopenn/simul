@@ -1,25 +1,26 @@
 package util;
 
-public class CProg {
+public class MProg {
 	private int max=0;
 	private int step=1;
 	private int cur=0;
 	private int log=1;
-	private int sort=0;
-	public CProg(int n) {
+	private boolean is_verbose=false;
+	public MProg(int n) {
 		max=n;
 	}
 	public void setLog(int n) {
 		log=n;
 	}
-	public void setSort(int n) {
-		sort=n;
+	public void setVerbose(int s) {
+		is_verbose=true;
+		setStep(s);
 	}
 	public void setPercent() {
 		int d=max/100;
 		setStep(d);
 	}
-	public void setStep(int n) {
+	private void setStep(int n) {
 		step=n;
 	}
 	public void inc() {
@@ -39,10 +40,14 @@ public class CProg {
 		cur=0;
 	}
 	public void prn() {
-		if(sort==0)
+		if(is_verbose) {
+			SLog.prnc(log,cur+"/"+max+" ");
+		} else {
 			SLog.prnc(log,(int)(((double)cur)/max*100)+" ");
-		else
-			SLog.prnc(log,cur+" ");
+		}
+	}
+	public static MProg init(int i) {
+		return new MProg(i);
 	}
 
 }

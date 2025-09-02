@@ -2,7 +2,7 @@ package sim;
 
 import gen.SysLoad;
 import task.DTaskVec;
-import util.CProg;
+import util.MProg;
 import util.MList;
 import util.SLog;
 
@@ -55,7 +55,7 @@ public class AutoSimul {
 		int num=Integer.valueOf(ret).intValue();
 		
 		MList rs_list=MList.new_list();
-		CProg prog=getProg(num);
+		MProg prog=getProg(num);
 
 		for(int i=0;i<num;i++) {
 			prog.inc();
@@ -76,13 +76,12 @@ public class AutoSimul {
 	
 	
 	
-	private CProg getProg(int num) {
-		CProg prog=new CProg(num);
+	private MProg getProg(int num) {
+		MProg prog=new MProg(num);
 		prog.setLog(2);
 		
 		if(g_verbose) {
-			prog.setSort(1);
-			prog.setStep(1);
+			prog.setVerbose(1);
 		} else { 
 			prog.setPercent();
 		}

@@ -25,4 +25,7 @@ public class MRand {
 	public boolean getBool() {
 		return g_rand.nextBoolean();
 	}
+	public static MRand init() {
+		return new MRand();
+	}
 }
