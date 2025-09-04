@@ -18,13 +18,10 @@ public class z_auto_sim_imc4 {
 	
 	
 	public static void init_s() {
-		int s=1; // ADM simul 
-//		int s=2; //
-//		int s=3; //
-//		int s=4; //
-//		int s=5; //
 		
-		s_idx=s;
+//		s_idx=1;
+		s_idx=2;
+//		s_idx=3;
 		
 //		s_log_level=1;
 		s_log_level=2;
@@ -32,28 +29,39 @@ public class z_auto_sim_imc4 {
 	
 	public void init_g() {
 		g_path="adm/sim";
-		g_num=100;
+		g_num=10;
 //		g_num=500;
 //		g_num=5000;
 		
-		g_dur=10000;
+		g_dur=1000;
+//		g_dur=10000;
 //		g_dur=32000;
-		g_cf="a_cfg_list.txt";
-		g_ts="a_ts_list.txt";
-		g_xl="a_x_list.txt";
+
+		// gen related;
+		g_stage=2;
+		g_st=72;
+		g_step=3;
+		g_end=96;
+		g_p_hc=0.5;
+		g_ratio=-1;
 		
 	}
 
 
+	
 	public void init_sim() {
+		
+		//sim related;
 		g_p_ms=0.3;
-		g_p_hc=0.5;
-		g_ratio=-1;
-		g_st=72;
-		g_step=3;
-		g_end=96;
 		g_rs="a_sim_list.txt";
 		g_graph="a_sim_graph.txt";
+		g_rs_path="adm/sim_rs";
+		
+		//misc
+		g_cf="a_cfg_list.txt";
+		g_ts="a_ts_list.txt";
+		g_xl="a_x_list.txt";
+		
 	}
 	public void gen() {
 		AutoParConfig apg=new AutoParConfig();
@@ -66,6 +74,7 @@ public class z_auto_sim_imc4 {
 		p.setRS(g_path);
 		p.setSch();
 		p.setOnlyMC();
+		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
 		
 	}
@@ -83,37 +92,41 @@ public class z_auto_sim_imc4 {
 		fu.saveTo(rs_dir+"/"+g_rs);
 	}
 	
-	public void loop_util(String rs_path) {
-		String rs_dir=rs_path;
+	public void loop_util() {
 		AutoTaskGen p=new AutoTaskGen(g_path);
-		p.setRS(rs_path);
+		p.setRS(g_rs_path);
 
 		p.genXA(g_cf,g_xl);
 		
 		SLog.prn(2, "p:"+g_p_ms);
-		simul(rs_dir);
+		simul(g_rs_path);
 		
 		
-		DataSim_IMC ds=new DataSim_IMC(rs_dir,0);
+		DataSim_IMC ds=new DataSim_IMC(g_rs_path,0);
 		ds.load_x(g_xl);
 		ds.load_rs(g_rs);
 		ds.saveSim(g_graph);
 	}
-	public int test1() 
+	public int test1()  // gen
 	{
 		init_g();
 		init_sim();
 		gen();
-		String rs_path="adm/sim_rs";
-		loop_util(rs_path);
 		return 0;
 	}
-	public int test2() // p
+	public int test2() // sim
 	{
+		init_g();
+		init_sim();
+		loop_util();
 		return 0;
 	}
-	public int test3() // ms length
+	public int test3() // all together
 	{
+		init_g();
+		init_sim();
+		gen();
+		loop_util();
 		return 0;
 	}
 	public  int test4() // ratio
@@ -163,6 +176,7 @@ public class z_auto_sim_imc4 {
 	private double g_ratio;
 	private int g_st;
 	private int g_step;
+	private int g_stage;
 	private int g_end;
 	private int g_num;
 	private int g_dur;
@@ -170,6 +184,7 @@ public class z_auto_sim_imc4 {
 	private String g_ts;
 	private String g_xl;
 	private String g_rs;
+	private String g_rs_path;
 	private String g_graph;
 
 }
