@@ -32,8 +32,8 @@ public class z_loop {
 	
 
 	public int test3() {
-		MLoop.reset();
-		while(MLoop.until(4)) {
+		MLoop lp=MLoop.init();
+		while(lp.until(4)) {
 			SLog.prn("hihi");
 		}
 		return 0;

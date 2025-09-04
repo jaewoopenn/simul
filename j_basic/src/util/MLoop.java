@@ -1,7 +1,7 @@
 package util;
 
 public class MLoop {
-	public static int idx=0;
+	public int idx=0;
 	public static int[] on(int size){
 		return on(0,size);
 	}
@@ -12,12 +12,12 @@ public class MLoop {
 		}
 		return loop;
 	}
-	public static void reset() {
-		idx=0;
-	}
-	public static boolean until(int i) {
+	public boolean until(int d) {
 		idx++;
-		return idx<=i;
+		return idx<=d;
+	}
+	public static MLoop init() {
+		return new MLoop();
 	}
 
 }

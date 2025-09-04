@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import util.MList;
+import util.MLoop;
 import util.SLog;
 import util.MCal;
 
@@ -20,7 +21,7 @@ public class ConfigGen {
 	}
 	public void readFile() {
 		MList fu=MList.load(g_fn);
-	    for(int i:MCal.loop(fu.size())){
+	    for(int i:MLoop.on(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
             if(words.length<2) 
