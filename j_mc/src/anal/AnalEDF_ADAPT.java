@@ -106,6 +106,12 @@ public class AnalEDF_ADAPT extends Anal {
 		g_x=x;
 	}
 
+	@Override
+	public double getModX() {
+		return -1;
+		
+	}
+
 	
 	
 

@@ -94,6 +94,11 @@ public class AnalEDF_VD_IMC extends Anal {
 		g_x=x;
 	}
 
+	@Override
+	public double getModX() {
+		return -1;
+	}
+
 	
 	
 

@@ -75,7 +75,7 @@ public class z_Anal2 {
 		for(int i=0;i<n;i++) {
 			a.reset();
 			DTaskVec dt=sy.loadOne2();
-			int num=dt.getNum();
+			int num=dt.getStageNum();
 			double dtm=0;
 			double x=-1;
 			for(int j=0;j<num;j++) {
@@ -116,7 +116,7 @@ public class z_Anal2 {
 //		Anal a=new AnalEDF_VD_ADM();
 		Anal a=new AnalEDF_BV();
 		DTaskVec dt=sy.loadOne2();
-		int num=dt.getNum();
+		int num=dt.getStageNum();
 		double x=-1;
 		for(int j=0;j<num;j++) {
 			TaskSet tmp=new TaskSet(dt.getVec(j));

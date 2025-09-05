@@ -1,76 +1,55 @@
-package sim;
+package auto;
 
-import anal.Anal;
-import anal.AnalEDF_VD_ADM;
-import anal.AnalEDF_VD_IMC;
 import anal.DoAnal;
 import gen.SysLoad;
-import imc.*;
 import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
-import util.SLogF;
 
-// 테스트는 여기에서.
-
-@SuppressWarnings("unused")
-public class z_autosimul3 {
+public class z_autoanal3 {
 	public static int idx=1;
 //	public static int idx=2;
 //	public static int idx=3;
-//	public static int idx=4;
-	
 	public static int log_level=1;
 //	public static int log_level=2;
 
-	public DTaskVec getDT() {
+
+
+
+
+	public int test1()	{
 //		String tsn="adm/test1/task.txt";
 		String tsn="adm/anal/taskset_95.txt";
-		int n=4;
 		
-		String out="adm/test.txt";
 		SysLoad sy=new SysLoad(tsn);
 		sy.open();
-		sy.moveto(n);
-		DTaskVec dt= sy.loadOne2();
-		if(dt==null) {
-			SLog.prn("out of range ");
-		}
-		return dt;
-	}
-		
-
-	
-	public int test1()	{
-		DTaskVec dt=getDT();
-		
 		DoAnal da=new DoAnal(0);
-		da.run(dt);
-		da.prn();
-
-		return 0;
-	}
-	public int test2() {
-		int dur=300;
-		double prob=0.3;
-		DTaskVec dt=getDT();
-		
-
-		DoSimul ds=new DoSimul(0);
-//		ds.setTrace(out);
-		ds.setProb(prob);
-		ds.setDur(dur);
-		ds.run(dt);
-		ds.prn();
-		return 0;
+		int sum=0;
+		while(true) {
+			DTaskVec dt= sy.loadOne2();
+			if(dt==null) break;
+			da.run(dt);
+			String s=da.getRS();
+			if(s=="1")
+				sum++;
+		}
+		SLog.prn(2, "sum:"+sum);
+		return 0;		
 	}
 	
+	public int test2()	{
+		return 0;
+	}
+
+	
+
+
 
 	public int test3() {
-		return 0;
+		return -1;
 	}
-	public  int test4() {
-		return 1;
+	public int test4() {
+		return -1;
 	}
 	public  int test5() {
 		return 1;
@@ -93,9 +72,9 @@ public class z_autosimul3 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_autosimul3.class;
-		z_autosimul3 m=new z_autosimul3();
-		int[] aret=z_autosimul3.gret;
+		Class c = z_autoanal3.class;
+		z_autoanal3 m=new z_autoanal3();
+		int[] aret=z_autoanal3.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

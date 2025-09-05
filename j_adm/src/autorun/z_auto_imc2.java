@@ -32,20 +32,19 @@ public class z_auto_imc2 {
 	private String g_graph;
 	
 	public static void init_s() {
-		int s;
-		s=1;
-//		s=2;
-//		s=3;
-//		s=4;
-		s_idx=s;
+		s_idx=1;
+//		s_idx=2;
+//		s_idx=3;
+//		s_idx=4;
+		
 		
 		s_log_level=2;
 	}
 	
 	public void init_g() {
 		g_path="adm/anal";
-		g_num=5000;
-//		g_num=500;
+//		g_num=5000;
+		g_num=500;
 //		g_num=20;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
@@ -54,8 +53,8 @@ public class z_auto_imc2 {
 	}
 
 	public void init_anal() {
-		g_stage=1;
-//		g_stage=3;
+//		g_stage=1;
+		g_stage=3;
 //		g_stage=6;
 		g_st=56;
 		g_step=3;

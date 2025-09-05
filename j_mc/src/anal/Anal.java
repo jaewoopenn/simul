@@ -36,6 +36,7 @@ public abstract class Anal {
 	// abs method
 	public abstract void prn();
 	public abstract void reset();
+	public abstract double getModX();
 	protected abstract void prepare();
 	public abstract double getDtm();
 	public abstract double computeX();

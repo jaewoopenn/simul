@@ -29,7 +29,7 @@ public class z_Anal3 {
 			a.reset();
 			a2.reset();
 			DTaskVec dt=sy.loadOne2();
-			int num=dt.getNum();
+			int num=dt.getStageNum();
 			double dtm=0;
 			double x1=-1;
 			double x2=-1;

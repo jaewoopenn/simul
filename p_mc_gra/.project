@@ -3,6 +3,7 @@
 	<name>p_mc_gra</name>
 	<comment></comment>
 	<projects>
+		<project>p_common</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

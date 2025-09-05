@@ -6,6 +6,7 @@ import imc.SimulSel_IMC;
 import imc.TaskSimul;
 import task.DTaskVec;
 import util.SLog;
+import util.SLogF;
 
 public class DoSimul {
 	private TaskSimul g_ts;
@@ -21,7 +22,7 @@ public class DoSimul {
 		g_ts=getSim(g_sort);
 		anal.init(dt.getTM(0));
 		double x=anal.computeX();
-
+		SLog.prn("x:"+x);
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
 		sm.setX(x);
@@ -29,6 +30,8 @@ public class DoSimul {
 		g_ts.init_sm_dt(sm,dt);
 
 		g_ts.simul(g_dur);
+		if(SLogF.isON())
+			SLogF.save();
 		
 	}
 	public String getRS() {
@@ -56,6 +59,9 @@ public class DoSimul {
 	}
 	public void setDur(int i) {
 		g_dur=i;
+	}
+	public void setTrace(String out) {
+		SLogF.init(out);
 	}
 	
 }

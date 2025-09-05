@@ -36,6 +36,10 @@ public class AnalEDF_IMC extends Anal {
 	@Override
 	public void setX(double x) {
 	}
+	@Override
+	public double getModX() {
+		return -1;
+	}
 
 
 

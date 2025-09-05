@@ -22,7 +22,7 @@ public class z_SysLoad1 {
 		SLog.prn(0, ret);
 		sy.moveto(n);
 		DTaskVec dt=sy.loadOne2();
-		for(int i=0;i<dt.getNum();i++) {
+		for(int i=0;i<dt.getStageNum();i++) {
 			SLog.prn(1, "time: "+dt.getTime(i));
 			TaskSet its=new TaskSet(dt.getVec(i));
 			TaskMng tm=its.getTM();

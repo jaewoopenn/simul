@@ -77,7 +77,7 @@ public class DTaskVec {
 		return ts.getTM();
 	}
 
-	public int getNum() {
+	public int getStageNum() {
 		return g_num;
 	}
 	public void prn() {

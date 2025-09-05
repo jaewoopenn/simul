@@ -32,13 +32,6 @@ public class AnalEDF_BV extends Anal {
 	public double getDtm() {
 		double d=getScore();
 		
-		if(d>1) {
-			double old_x=glo_x;
-			glo_x=Math.min(0.999,glo_x*bv_rato);
-			d=getScore();
-			glo_x=old_x;
-			return d;
-		}
 		return d;
 	}
 	public double getScore() {
@@ -83,6 +76,11 @@ public class AnalEDF_BV extends Anal {
 	@Override
 	public void setX(double x) {
 		glo_x=x;
+	}
+
+	@Override
+	public double getModX() {
+		return Math.min(0.999,glo_x*bv_rato);
 	}
 
 }

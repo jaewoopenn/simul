@@ -15,7 +15,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	private double hc_lo;
 	private double hc_hi;
 	private double g_x;
-	private boolean isWCR=false;
+	private boolean isWCR;
 	SysInfo g_info;
 	public AnalEDF_VD_ADM() {
 		super();
@@ -24,6 +24,7 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public void prepare() {
+		isWCR=false;
 		g_info=g_tm.getInfo();
 		lc_ac=g_info.getUtil_LC_AC();
 		lc_de=g_info.getUtil_LC_DE();
@@ -33,13 +34,16 @@ public class AnalEDF_VD_ADM extends Anal {
 			setWCR();
 			return;
 		}
-			
+		for(Task t:g_tm.get_HC_Tasks()) {
+			t.setNormal();
+		}
 		g_x=computeX();
 //		g_info.prn();
 //		SLog.prn(1,g_x);
 		comp_hi_prefer();
 	}
 	private void setWCR() {
+//		SLog.prn("WCR");
 		g_x=1;
 		for(Task t:g_tm.get_HC_Tasks()){
 			t.setHI_only();
@@ -68,17 +72,17 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (dtm<=1)
 			return dtm;
 		dtm=getDtm2();
-//		int n=0;
-		while(dtm>1+MCal.err) {
-			double old_dtm=dtm;
-//			SLog.prn(2, "RE:"+n+", "+g_x);
-			g_x=computeX();
-			comp_hi_prefer();
-			dtm=getDtm2();
-			if(old_dtm==dtm)
-				break;
-//			n++;
-		}
+////		int n=0;
+//		while(dtm>1+MCal.err) {
+//			double old_dtm=dtm;
+////			SLog.prn(2, "RE:"+n+", "+g_x);
+//			g_x=computeX();
+//			comp_hi_prefer();
+//			dtm=getDtm2();
+//			if(old_dtm==dtm)
+//				break;
+////			n++;
+//		}
 		return dtm;
 	}
 	public double getDtm2() {
@@ -97,7 +101,11 @@ public class AnalEDF_VD_ADM extends Anal {
 			dtm+=Math.min(v_util,h_util);
 		}
 //		SLog.prn(2, "dtm:"+MCal.getStr(dtm)+", "+MCal.getStr(dtm2));
-		return Math.max(dtm, dtm2);
+		double max=Math.max(dtm, dtm2);
+		if(max>1+MCal.err)
+			return max;
+		
+		return Math.min(dtm, dtm2);
 	}
 	
 
@@ -125,12 +133,12 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public void prn() {
-//		SLog.prn(1, "lotask util:"+lotasks_loutil+","+lotasks_hiutil);
-//		SLog.prn(1, "hitask util:"+hitasks_loutil+","+hitasks_hiutil);
+		SLog.prn(1, "LC task util:"+hc_lo+","+hc_hi);
+		SLog.prn(1, "HC task util:"+lc_de+","+lc_ac);
 		SLog.prn(1, "x:"+g_x);
-		double dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
-		double dtm2=hc_lo/g_x+lc_ac; // LO mode 
-		SLog.prn(1, "det:"+dtm2+","+dtm);
+//		double dtm=g_x*lc_ac+(1-g_x)*lc_de+hc_hi;
+//		double dtm2=hc_lo/g_x+lc_ac; // LO mode 
+//		SLog.prn(1, "det:"+dtm2+","+dtm);
 		
 	}
 
@@ -143,6 +151,12 @@ public class AnalEDF_VD_ADM extends Anal {
 	@Override
 	public void setX(double x) {
 		g_x=x;
+		comp_hi_prefer();
+	}
+
+	@Override
+	public double getModX() {
+		return computeX();
 	}
 
 	
