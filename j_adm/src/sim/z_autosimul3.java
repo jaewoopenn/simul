@@ -46,7 +46,6 @@ public class z_autosimul3 {
 		
 		DoAnal da=new DoAnal(0);
 		da.run(dt);
-		da.prn();
 
 		return 0;
 	}

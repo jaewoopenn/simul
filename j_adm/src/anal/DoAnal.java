@@ -6,7 +6,7 @@ import util.SLog;
 
 public class DoAnal {
 	private int g_sort;
-	private double g_dtm=0;
+	private String g_rs;
 	private Anal g_anal;
 	private boolean isMC=false;
 	public DoAnal(int sort) {
@@ -17,7 +17,7 @@ public class DoAnal {
 		isMC=true;
 	}
 	public void run(DTaskVec dt) {
-		g_dtm=0;
+		double dtm=0;
 		g_anal=AnalSel.getAnalAuto(g_sort,isMC);
 		double x=-1;
 		
@@ -43,22 +43,18 @@ public class DoAnal {
 //					SLog.prn(1, "re dtm: "+x+","+d);
 				}
 			}
-			g_dtm= Math.max(g_dtm, d);
+			dtm= Math.max(dtm, d);
 		}
 
-		SLog.prn(1, "dtm: "+x+","+g_dtm);
-
-	}
-	public String getRS() {
-		if(g_dtm<=1+MCal.err)
-			return "1";
+		SLog.prn(1, "dtm: "+x+","+dtm);
+		if(dtm<=1+MCal.err)
+			g_rs="1";
 		else
-			return "0";
+			g_rs="0";
 	}
-	public void prn() {
-		SLog.prn(1, "anal: "+g_anal.getName());
-		SLog.prn(1, "dtm: "+g_dtm);
-		
+
+	public String getRS() {
+		return g_rs;
 	}
 
 	public int getSort() {

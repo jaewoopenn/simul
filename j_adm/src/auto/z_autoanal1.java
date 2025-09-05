@@ -24,7 +24,6 @@ public class z_autoanal1 {
 		SLog.prn(1, "task set "+idx);
 		DoAnal da=new DoAnal(3);
 		da.run(tm);
-		da.prn();
 		
 		return 0;		
 	}
