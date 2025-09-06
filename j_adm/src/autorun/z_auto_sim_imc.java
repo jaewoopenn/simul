@@ -14,7 +14,7 @@ import util.SLog;
 // MC-RUN
 // ADM
 
-public class z_auto_sim_imc4 {
+public class z_auto_sim_imc {
 	
 	
 	public static void init_s() {
@@ -157,10 +157,10 @@ public class z_auto_sim_imc4 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto_sim_imc4.init_s();
-		Class c = z_auto_sim_imc4.class;
-		z_auto_sim_imc4 m=new z_auto_sim_imc4();
-		int[] aret=z_auto_sim_imc4.gret;
+		z_auto_sim_imc.init_s();
+		Class c = z_auto_sim_imc.class;
+		z_auto_sim_imc m=new z_auto_sim_imc();
+		int[] aret=z_auto_sim_imc.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

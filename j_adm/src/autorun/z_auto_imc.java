@@ -15,7 +15,7 @@ import util.MList;
 import util.SEngineT;
 
 
-public class z_auto_imc2 {
+public class z_auto_imc {
 	private static int s_idx;
 	private static int s_log_level;
 	private String g_path;
@@ -142,10 +142,10 @@ public class z_auto_imc2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_auto_imc2.init_s();
-		Class c = z_auto_imc2.class;
-		z_auto_imc2 m=new z_auto_imc2();
-		int[] aret=z_auto_imc2.gret;
+		z_auto_imc.init_s();
+		Class c = z_auto_imc.class;
+		z_auto_imc m=new z_auto_imc();
+		int[] aret=z_auto_imc.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
