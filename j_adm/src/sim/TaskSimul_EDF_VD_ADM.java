@@ -1,7 +1,8 @@
-package imc;
+package sim;
 
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
+import imc.TaskSimul;
 import task.Task;
 import util.MCal;
 import util.SLog;

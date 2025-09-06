@@ -1,5 +1,7 @@
-package imc;
+package sim;
 
+import imc.TaskSimul;
+import imc.TaskSimul_EDF_VD_IMC;
 
 public class SimulSel_IMC {
 	/*

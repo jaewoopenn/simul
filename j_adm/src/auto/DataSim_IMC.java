@@ -2,8 +2,8 @@ package auto;
 
 import java.util.Vector;
 
-import imc.SimulSel_IMC;
 import imc.TaskSimul;
+import sim.SimulSel_IMC;
 import util.MList;
 
 public class DataSim_IMC {
