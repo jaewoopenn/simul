@@ -12,6 +12,7 @@ print(f"MPS 사용 가능 여부: {torch.backends.mps.is_available()}")
 
 # MPS가 가능하면 Mac GPU, 아니면 CPU 사용
 device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+
 print(f"선택된 device: {device}")
 
 # 텐서 또는 모델을 해당 디바이스로 이동
