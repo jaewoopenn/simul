@@ -1,17 +1,21 @@
 package auto;
 
 import anal.DoAnal;
+import anal.z_Anal3;
 import gen.SysLoad;
 import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
 
 public class z_autoanal3 {
-	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-	public static int log_level=1;
-//	public static int log_level=2;
+	public static void init_s() {
+		s_idx=1;
+//		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+	}
 
 
 
@@ -72,13 +76,16 @@ public class z_autoanal3 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_autoanal3.init_s();
 		Class c = z_autoanal3.class;
 		z_autoanal3 m=new z_autoanal3();
 		int[] aret=z_autoanal3.gret;
-		if(idx==-1)
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 }

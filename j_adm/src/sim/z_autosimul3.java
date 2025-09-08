@@ -4,6 +4,7 @@ import anal.Anal;
 import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
 import anal.DoAnal;
+import autorun.z_auto_imc;
 import gen.SysLoad;
 import imc.*;
 import task.DTaskVec;
@@ -15,13 +16,15 @@ import util.SLogF;
 
 @SuppressWarnings("unused")
 public class z_autosimul3 {
-	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-//	public static int idx=4;
-	
-	public static int log_level=1;
-//	public static int log_level=2;
+	public static void init_s() {
+//		s_idx=1;
+		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+//		s_log_level=2;
+	}
 
 	public DTaskVec getDT() {
 //		String tsn="adm/test1/task.txt";
@@ -49,9 +52,10 @@ public class z_autosimul3 {
 
 		return 0;
 	}
+	
 	public int test2() {
-		int dur=300;
-		double prob=0.3;
+		int dur=400;
+		double prob=0.5;
 		DTaskVec dt=getDT();
 		
 
@@ -92,13 +96,16 @@ public class z_autosimul3 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_autosimul3.init_s();
 		Class c = z_autosimul3.class;
 		z_autosimul3 m=new z_autosimul3();
 		int[] aret=z_autosimul3.gret;
-		if(idx==-1)
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 }

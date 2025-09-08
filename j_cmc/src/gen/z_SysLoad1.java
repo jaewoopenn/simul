@@ -1,15 +1,17 @@
 package gen;
-import task.DTaskVec;
 import task.TaskMng;
-import task.TaskSet;
 import util.SLog;
 import util.SEngineT;
 
 public class z_SysLoad1 {
-	public static int idx=1;
-//	public static int idx=2;
-	public static int log_level=1;
-
+	public static void init_s() {
+		s_idx=1;
+//		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+	}
 	// load
 	public int test1() 
 	{
@@ -61,15 +63,17 @@ public class z_SysLoad1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_SysLoad1.init_s();
 		Class c = z_SysLoad1.class;
 		z_SysLoad1 m=new z_SysLoad1();
 		int[] aret=z_SysLoad1.gret;
-		if(idx==-1)
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
-	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 
 }
