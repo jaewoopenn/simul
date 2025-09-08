@@ -86,7 +86,7 @@ public class DataAnal_IMC  {
 	
 
 	public Anal getAnal(int sort) {
-		return AnalSel.getAnalAuto(sort,g_isMC);
+		return AnalSel.getAuto(sort,g_isMC);
 	}
 
 	

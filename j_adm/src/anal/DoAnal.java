@@ -18,13 +18,9 @@ public class DoAnal {
 	}
 	public void run(DTaskVec dt) {
 		double dtm=0;
-		g_anal=AnalSel.getAnalAuto(g_sort,isMC);
+		g_anal=AnalSel.getAuto(g_sort,isMC);
 		double x=-1;
 		
-//		g_anal.init(dt.getTM(0));
-//		x=g_anal.computeX();
-//		g_anal.setX(x);
-//		g_dtm=g_anal.getDtm();
 		
 		for(int i=0;i<dt.getStageNum();i++) {
 			g_anal.init(dt.getTM(i));
@@ -53,8 +49,11 @@ public class DoAnal {
 			g_rs="0";
 	}
 
+	
 	public String getRS() {
-		return g_rs;
+		String s=g_rs;
+		g_rs="";
+		return s;
 	}
 
 	public int getSort() {

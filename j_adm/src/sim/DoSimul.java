@@ -45,7 +45,7 @@ public class DoSimul {
 	}
 
 	public Anal getAnalSim(int sort) {
-		return AnalSel.getAnalSim(sort);
+		return AnalSel.getSim(sort);
 	}
 	public TaskSimul getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);

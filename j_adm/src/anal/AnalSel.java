@@ -8,14 +8,14 @@ public class AnalSel {
 	 * 1: MC-ADAPT
 	 * 2: EDF-VD
 	 */
-	public static Anal getAnalAuto(int sort, boolean isMC) {
+	public static Anal getAuto(int sort, boolean isMC) {
 		if(isMC)
 			return getAnalMC(sort);
 		else
-			return getAnal(sort);
+			return get(sort);
 	}
 
-	public static Anal getAnal(int sort) {
+	public static Anal get(int sort) {
 		if(sort==0) { 
 			return new AnalEDF_VD_ADM();
 		} else if(sort==1) {
@@ -28,7 +28,7 @@ public class AnalSel {
 		return null;
 	}
 
-	public static Anal getAnalSim(int sort) {
+	public static Anal getSim(int sort) {
 		if(sort==0) { 
 			return new AnalEDF_VD_ADM();
 		} else if(sort==1) {
