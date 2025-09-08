@@ -47,7 +47,7 @@ public class AutoAnal {
 
 		MList rs_list=MList.new_list();
 		for(int i=0;i<num;i++) {
-			DTaskVec dt=sy.loadOne2();
+			DTaskVec dt=sy.loadOne();
 //			SLog.prnc(2, i+": ");
 			g_da.run(dt);
 			rs_list.add(g_da.getRS());

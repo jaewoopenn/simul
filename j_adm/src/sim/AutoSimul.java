@@ -59,7 +59,7 @@ public class AutoSimul {
 
 		for(int i=0;i<num;i++) {
 			prog.inc();
-			DTaskVec dt=sy.loadOne2();
+			DTaskVec dt=sy.loadOne();
 //			SLog.prnc(2, i+": ");
 			g_ds.run(dt);
 			rs_list.add(g_ds.getRS());

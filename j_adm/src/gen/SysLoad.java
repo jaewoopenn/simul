@@ -17,7 +17,7 @@ public class SysLoad {
 		return g_fu.read();
 	}
 	
-	public DTaskVec loadOne2() {
+	public DTaskVec loadOne() {
 		boolean b=g_fu.readUntil("------");
 		if(!b) 
 			return null;
@@ -29,7 +29,7 @@ public class SysLoad {
 
 	public void moveto(int n) {
 		for (int i=0;i<n;i++) {
-			loadOne2();
+			loadOne();
 		}
 	}
 	

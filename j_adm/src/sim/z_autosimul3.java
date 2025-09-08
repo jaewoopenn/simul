@@ -32,7 +32,7 @@ public class z_autosimul3 {
 		SysLoad sy=new SysLoad(tsn);
 		sy.open();
 		sy.moveto(n);
-		DTaskVec dt= sy.loadOne2();
+		DTaskVec dt= sy.loadOne();
 		if(dt==null) {
 			SLog.prn("out of range ");
 		}

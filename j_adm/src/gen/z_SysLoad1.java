@@ -21,7 +21,7 @@ public class z_SysLoad1 {
 		String ret=sy.open();
 		SLog.prn(0, ret);
 		sy.moveto(n);
-		DTaskVec dt=sy.loadOne2();
+		DTaskVec dt=sy.loadOne();
 		for(int i=0;i<dt.getStageNum();i++) {
 			SLog.prn(1, "time: "+dt.getTime(i));
 			TaskSet its=new TaskSet(dt.getVec(i));

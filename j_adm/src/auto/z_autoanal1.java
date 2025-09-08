@@ -20,7 +20,7 @@ public class z_autoanal1 {
 		sy.open();
 		sy.moveto(idx);
 		
-		DTaskVec tm=sy.loadOne2();
+		DTaskVec tm=sy.loadOne();
 		SLog.prn(1, "task set "+idx);
 		DoAnal da=new DoAnal(3);
 		da.run(tm);

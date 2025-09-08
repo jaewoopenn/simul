@@ -26,7 +26,7 @@ public class z_autoanal3 {
 		DoAnal da=new DoAnal(0);
 		int sum=0;
 		while(true) {
-			DTaskVec dt= sy.loadOne2();
+			DTaskVec dt= sy.loadOne();
 			if(dt==null) break;
 			da.run(dt);
 			String s=da.getRS();

@@ -31,7 +31,7 @@ public class z_autosimul1 {
 		SysLoad sy=new SysLoad(tsn);
 		sy.open();
 		sy.moveto(n);
-		DTaskVec dt=sy.loadOne2();
+		DTaskVec dt=sy.loadOne();
 		DoSimul ds=new DoSimul(0);
 		ds.setProb(0.3);
 		ds.setDur(2000);

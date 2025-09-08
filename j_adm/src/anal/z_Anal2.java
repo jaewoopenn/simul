@@ -21,7 +21,7 @@ public class z_Anal2 {
 		String ret=sy.open();
 		int n=Integer.valueOf(ret).intValue();
 		for(int i=0;i<n;i++) {
-			DTaskVec tm=sy.loadOne2();
+			DTaskVec tm=sy.loadOne();
 			SLog.prn(1, "task set "+i);
 			anal(tm);
 		}
@@ -35,7 +35,7 @@ public class z_Anal2 {
 		sy.open();
 		sy.moveto(idx);
 		
-		DTaskVec tm=sy.loadOne2();
+		DTaskVec tm=sy.loadOne();
 		SLog.prn(1, "task set "+idx);
 		anal(tm);
 		
@@ -74,7 +74,7 @@ public class z_Anal2 {
 //		Anal a=new AnalEDF_BV();
 		for(int i=0;i<n;i++) {
 			a.reset();
-			DTaskVec dt=sy.loadOne2();
+			DTaskVec dt=sy.loadOne();
 			int num=dt.getStageNum();
 			double dtm=0;
 			double x=-1;
@@ -115,7 +115,7 @@ public class z_Anal2 {
 		sy.open();
 //		Anal a=new AnalEDF_VD_ADM();
 		Anal a=new AnalEDF_BV();
-		DTaskVec dt=sy.loadOne2();
+		DTaskVec dt=sy.loadOne();
 		int num=dt.getStageNum();
 		double x=-1;
 		for(int j=0;j<num;j++) {
