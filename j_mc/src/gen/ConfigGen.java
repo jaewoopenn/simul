@@ -6,7 +6,6 @@ import java.util.HashMap;
 import util.MList;
 import util.MLoop;
 import util.SLog;
-import util.MCal;
 
 public class ConfigGen {
 	private final String[] g_predefined={"u_lb","u_ub","p_lb","p_ub",
