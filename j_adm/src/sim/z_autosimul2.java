@@ -5,33 +5,28 @@ import anal.Anal;
 // Platform 으로 가기 위해서.. 
 // auto run 4
 
-import anal.AnalEDF_VD_ADM;
-import anal.AnalEDF_VD_IMC;
-import anal.DoAnal;
 import auto.DataSim_IMC;
-import gen.SysLoad;
-import imc.*;
-import task.DTaskVec;
 import util.MList;
 import util.SEngineT;
-import util.SLog;
-import util.SLogF;
 
 @SuppressWarnings("unused")
 public class z_autosimul2 {
-	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-//	public static int idx=4;
-//	public static int log_level=1;
-	public static int log_level=2;
-
 	private String g_path;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;
 	private String g_rs;
 	private String g_graph;
+	public static void init_s() {
+//		s_idx=1;
+		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+//		s_log_level=2;
+	}
+
 	public void init_g() {
 		g_path="adm/test1";
 		g_cf="a_cfg_list.txt";
@@ -100,13 +95,16 @@ public class z_autosimul2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_autosimul2.init_s();
 		Class c = z_autosimul2.class;
 		z_autosimul2 m=new z_autosimul2();
-		int[] aret=z_autosimul2.gret;
-		if(idx==-1)
+		int[] aret=	z_autosimul2.gret;
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 }

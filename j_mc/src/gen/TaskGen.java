@@ -29,20 +29,24 @@ public  class TaskGen {
 		Task t;
 		while(getUtil()<=g_param.u_ub){
 			t=genTask(g_tid);
-			if(t==null) 
-				continue;
 			if (!t.check())
 				continue;
-			g_tasks.add(t);
-			g_tid++;
+			add(t);
 		}
-		g_tasks.remove(g_tasks.size()-1);
+		remove(g_tasks.size()-1);
 	}
+	private void remove(int idx) {
+		g_tasks.remove(idx);
+		g_tid--;
+	}
+
+	private void add(Task t) {
+		g_tasks.add(t);
+		g_tid++;
+	}
+
 	public Task genTaskOne() {
-		Task t=null;
-		while(t==null) {
-			t=genTask(g_tid);
-		}
+		Task t=genTask(g_tid);
 		g_tid++;
 		return t;
 	}
@@ -69,11 +73,14 @@ public  class TaskGen {
 	
 
 	public Task genTask(int tid){
-		Task tsk=g_param.genTaskIMC(tid);
-		if(!g_param.chkTask(tsk))
-			return null;
-//		if(!g_param.chkMCTask(tsk))
-//			return null;
+		Task tsk=null;
+		while(tsk==null) {
+			tsk=g_param.genTaskIMC(tid);
+			if(!g_param.chkTask(tsk))
+				tsk=null;
+//			if(!g_param.chkMCTask(tsk))
+//				return null;
+		}
 		return tsk;
 	}
 

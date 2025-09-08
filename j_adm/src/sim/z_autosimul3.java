@@ -1,16 +1,10 @@
 package sim;
 
-import anal.Anal;
-import anal.AnalEDF_VD_ADM;
-import anal.AnalEDF_VD_IMC;
 import anal.DoAnal;
-import autorun.z_auto_imc;
 import gen.SysLoad;
-import imc.*;
 import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
-import util.SLogF;
 
 // 테스트는 여기에서.
 

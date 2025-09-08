@@ -1,27 +1,22 @@
 package sim;
 
-import anal.Anal;
-import anal.AnalEDF_VD_ADM;
-import anal.AnalEDF_VD_IMC;
 import gen.SysLoad;
-import imc.*;
 import task.DTaskVec;
 import util.SEngineT;
-import util.SLog;
-import util.SLogF;
 
 // 테스트는 여기에서. 아직 많이 구현 부
 
 @SuppressWarnings("unused")
 public class z_autosimul1 {
-	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-//	public static int idx=4;
-	public static int log_level=1;
-//	public static int log_level=2;
-
-
+	public static void init_s() {
+//		s_idx=1;
+		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+//		s_log_level=2;
+	}
 	
 	public int test1()	{
 		String tsn="adm/sim/taskset_75.txt";
@@ -89,16 +84,18 @@ public class z_autosimul1 {
 	public  int test10() {
 		return 0;
 	}
-	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_autosimul1.init_s();
 		Class c = z_autosimul1.class;
 		z_autosimul1 m=new z_autosimul1();
 		int[] aret=z_autosimul1.gret;
-		if(idx==-1)
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 }

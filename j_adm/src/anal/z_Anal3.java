@@ -1,6 +1,5 @@
 package anal;
 
-import auto.z_autoanal1;
 import gen.SysLoad;
 import task.DTaskVec;
 import task.TaskMng;
@@ -8,9 +7,9 @@ import task.TaskSet;
 import util.SEngineT;
 import util.SLog;
 import util.MCal;
+
+
 @SuppressWarnings("unused")
-
-
 public class z_Anal3 {
 	public static void init_s() {
 		s_idx=1;

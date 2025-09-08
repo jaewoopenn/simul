@@ -8,12 +8,14 @@ import util.SEngineT;
 import util.SLog;
 
 public class z_Anal2 {
-	public static int idx=1;
-//	public static int idx=2;
-//	public static int idx=3;
-	public static int log_level=1;
-
-
+	public static void init_s() {
+		s_idx=1;
+//		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+	}
 	public int test1()	{
 		String ts="adm/test1/taskset_68.txt";
 //		String ts="adm/test1/test_task.txt";
@@ -162,13 +164,16 @@ public class z_Anal2 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_Anal2.init_s();
 		Class c = z_Anal2.class;
 		z_Anal2 m=new z_Anal2();
 		int[] aret=z_Anal2.gret;
-		if(idx==-1)
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 }
