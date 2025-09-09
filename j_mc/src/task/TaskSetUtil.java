@@ -1,6 +1,7 @@
 package task;
 
 import util.MList;
+import util.MLoop;
 import util.SLog;
 
 /*
@@ -11,7 +12,7 @@ import util.SLog;
 
 
 public class TaskSetUtil {
-
+	private static int space=500;
 
 	// static 
 	public static void writeFile(String fn,Task[] tasks){
@@ -45,7 +46,7 @@ public class TaskSetUtil {
 		
 	}
 	public static void nextStage(MList ml, int i) {
-		String txt="next,"+(i*500);
+		String txt="next,"+(i*space);
 //		SLog.prn(2, txt);
 		ml.add(txt);
 		
@@ -61,7 +62,7 @@ public class TaskSetUtil {
 		ml.add(txt);
 	}
 	public static void loadView(MList ml) {
-		for(int i=0;i<ml.size();i++) {
+		for(int i:MLoop.on(ml.size())) {
 	    	String line=ml.get(i);
 	    	SLog.prn(1,line);
 		}

@@ -4,7 +4,7 @@ import anal.AnalEDF_VD_IMC;
 import util.SLog;
 import util.SEngineT;
 
-public class z_SysGen1 {
+public class z_SysGen2 {
 //	public static int idx=1;
 	public static int idx=2;
 	public static int log_level=1;
@@ -12,42 +12,37 @@ public class z_SysGen1 {
 	// gen
 	public int test1() 
 	{
-		for(int i=0;i<7;i++) {
-			gen(i);
-		}
-		return 1;
-	}
-	public void gen(int i) {
-		String path="adm/test1/";
-		ConfigGen cfg=ConfigGen.load(path+"cfg_"+i+".txt");
-		SysGen sg=SysGen.load(cfg);
+		String path="adm/sim/";
+		int stage=3;
+		ConfigGen cfg=ConfigGen.load(path+"cfg_0.txt");
 		String fn=cfg.get_fn();
 		Anal a=null;
+
+		SysGen sg=SysGen.load(cfg);
 		int num=sg.getNum();
+		sg.setStage(stage);
 		sg.gen(path+fn, a,num);
-		SLog.prn(1, "OK "+num);
+		SLog.prn( "OK "+num);
+		return 0;
 	}
 
 	// gen with schedulable 
 	public int test2() 
 	{
-		for(int i=0;i<7;i++) {
-			gen2(i);
-		}
-		return 0;
-	}
-	public void gen2(int i) {
-		String path="adm/test1/";
-		ConfigGen cfg=ConfigGen.load(path+"cfg_"+i+".txt");
+		String path="adm/sim/";
+		int stage=3;
+		ConfigGen cfg=ConfigGen.load(path+"cfg_0.txt");
+		String fn=cfg.get_fn();
+		Anal a=new AnalEDF_VD_IMC();
+
 		SysGen sg=SysGen.load(cfg);
 		sg.setSch();
+		sg.setStage(stage);
 		sg.setOnlyMC();
-		String fn=cfg.get_fn();
-		SLog.prn(1, fn);
-		Anal a=new AnalEDF_VD_IMC();
 		int num=sg.getNum();
-		sg.gen(fn, a,num);
-		SLog.prn(1, "OK "+num);
+		sg.gen(path+fn, a,num);
+		SLog.prn( "OK "+num);
+		return 0;
 	}
 	
 	public int test3() 
@@ -79,9 +74,9 @@ public class z_SysGen1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class c = z_SysGen1.class;
-		z_SysGen1 m=new z_SysGen1();
-		int[] aret=z_SysGen1.gret;
+		Class c = z_SysGen2.class;
+		z_SysGen2 m=new z_SysGen2();
+		int[] aret=z_SysGen2.gret;
 		if(idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

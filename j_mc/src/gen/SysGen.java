@@ -17,9 +17,16 @@ public class SysGen {
 	private boolean g_isSch=false;
 	private boolean g_isOnlyMC=false;
 	private int g_stage=1;
-
-	public SysGen(ConfigGen cfg) {
+	private int g_num=0;
+	public void load_in(ConfigGen cfg) {
 		g_cfg=cfg;
+		TaskGenParam tgp=getTgp();
+		g_tg=new TaskGen(tgp);
+		g_num=g_cfg.readInt("num");
+		
+	}
+	public int getNum() {
+		return g_num;
 	}
 	public void setSch() {
 		g_isSch=true;
@@ -41,11 +48,6 @@ public class SysGen {
 		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
 		return tgp;
 	}
-	public int prepare_IMC(){
-		TaskGenParam tgp=getTgp();
-		g_tg=new TaskGen(tgp);
-		return g_cfg.readInt("num");
-	}	
 	public void gen(String fn,Anal a,int num) {
 		int i=0;
 		MList ml=MList.new_list();
@@ -56,24 +58,8 @@ public class SysGen {
 				continue;
 			if(!isSch(a)) 
 				continue;
-			writeSys(ml);
-//			SLog.prn(2,i+"");
-			i++;
-		}
-		ml.saveTo(fn);
-	}
-	public void gen2(String fn,Anal a,int num) {
-		int i=0;
-		MList ml=MList.new_list();
-		ml.add(num+"");
-		while(i<num){
-			g_tg.genTS();
-			if(!checkOnlyMC())
-				continue;
-			if(!isSch(a)) 
-				continue;
 //			SLog.prnc(1, i+" ");
-			writeSys2(ml);
+			writeSys(ml);
 //			SLog.prn(2,i+"");
 			i++;
 		}
@@ -83,14 +69,6 @@ public class SysGen {
 
 	
 	public int writeSys(MList ml)
-	{
-		
-		TaskSet ts=g_tg.getTS();
-		TaskSetUtil.writeTS(ml, ts.getArr());
-		
-		return 1;
-	}
-	public int writeSys2(MList ml)
 	{
 		
 		TaskSet ts=g_tg.getTS();
@@ -138,6 +116,12 @@ public class SysGen {
 		TaskMng tm=tsf.getTM();
 		a.init(tm);
 		return a.is_sch(); 
+	}
+
+	public static SysGen load(ConfigGen cfg) {
+		SysGen s=new SysGen();
+		s.load_in(cfg);
+		return s;
 	}
 
 	

@@ -26,8 +26,8 @@ public class z_auto_sim_imc {
 	
 	public void init_g() {
 		g_path="adm/sim";
-//		g_num=10;
-		g_num=30;
+		g_num=10;
+//		g_num=30;
 //		g_num=500;
 //		g_num=5000;
 		
@@ -36,7 +36,7 @@ public class z_auto_sim_imc {
 //		g_dur=32000;
 
 		// gen related;
-		g_stage=1;
+//		g_stage=1;
 		g_stage=3;
 		g_st=72;
 		g_step=3;
@@ -69,7 +69,7 @@ public class z_auto_sim_imc {
 		apg.ratio=g_ratio;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
-		AutoTaskGen p=new AutoTaskGen(g_path);
+		AutoSysGen p=new AutoSysGen(g_path);
 		p.setRS(g_path);
 		p.setSch();
 		p.setOnlyMC();
@@ -92,7 +92,7 @@ public class z_auto_sim_imc {
 	}
 	
 	public void loop_util() {
-		AutoTaskGen p=new AutoTaskGen(g_path);
+		AutoSysGen p=new AutoSysGen(g_path);
 		p.setRS(g_rs_path);
 
 		p.genXA(g_cf,g_xl);

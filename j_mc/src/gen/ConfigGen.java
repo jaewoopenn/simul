@@ -13,20 +13,18 @@ public class ConfigGen {
 	//"c_lb","c_ub",
 	//"a_lb","a_ub",
 	private HashMap<String,String> param;
-	private String g_fn;
-	public ConfigGen(String f) {
+	public ConfigGen() {
 		param=new HashMap<String,String>();
-		g_fn=f;
 	}
-	public void readFile() {
-		MList fu=MList.load(g_fn);
+	public void load_in(String f) {
+		MList fu=MList.load(f);
 	    for(int i:MLoop.on(fu.size())){
 	    	String line=fu.get(i);
             String[] words=line.split(":");
             if(words.length<2) 
             	continue;
             
-            if(!setParam(words[0],words[1])) {
+            if(!setPar(words[0],words[1])) {
             	System.out.println("ERROR: loading field ("+words[0]+") is not defined");
             	System.exit(1);
             }
@@ -50,16 +48,9 @@ public class ConfigGen {
 		
 	}
 
-//	public String get_dir(){
-//		String subfix=readPar("subfix").trim();
-//		String mod=readPar("mod").trim();
-//		String fn=subfix+"/"+mod;
-//		return fn;
-//		
-//	}
 	
 	
-	public boolean setParam(String field, String val){
+	public boolean setPar(String field, String val){
 		if(Arrays.asList(g_predefined).contains(field)){
 			param.put(field, val);
 			return true;
@@ -84,8 +75,8 @@ public class ConfigGen {
 			return -1;
 		return Double.valueOf(s.trim()).doubleValue();
 	}
-	public void write() {
-		if(g_fn==null) {
+	public void write(String fn) {
+		if(fn==null) {
 			SLog.err("configGen: filename is not set");
 		}
 		MList fu=MList.new_list();
@@ -98,15 +89,16 @@ public class ConfigGen {
 			String txt=s+":"+v;
 			fu.add(txt);
 		}
-		fu.saveTo(g_fn);
+		fu.saveTo(fn);
 		
 	}
 	public void prn(int lv) {
 		SLog.prn(lv,readPar("u_ub")+"--");
 	}
-	public void setFile(String fn) {
-		g_fn=fn;
-		
+	public static ConfigGen load(String f) {
+		ConfigGen c=new ConfigGen();
+		c.load_in(f);
+		return c;
 	}
 
 }

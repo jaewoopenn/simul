@@ -78,7 +78,7 @@ public class z_auto_imc {
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
-		AutoTaskGen p=new AutoTaskGen(g_path);
+		AutoSysGen p=new AutoSysGen(g_path);
 		p.setRS(g_path);
 		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
@@ -109,7 +109,7 @@ public class z_auto_imc {
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
-		AutoTaskGen p=new AutoTaskGen(g_path);
+		AutoSysGen p=new AutoSysGen(g_path);
 		p.setRS(g_path);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);

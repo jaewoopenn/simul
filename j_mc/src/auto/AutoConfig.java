@@ -19,21 +19,20 @@ public  class AutoConfig {
 		ConfigGen cg;
 		cg=ConfigPre.getPredefined(g_apc.isMC);
 		MList fu=MList.new_list();
-		cg.setParam("subfix", g_path);
-		cg.setParam("num",g_apc.num+"");
-		cg.setParam("prob_hi",g_apc.p_hc+"");
+		cg.setPar("subfix", g_path);
+		cg.setPar("num",g_apc.num+"");
+		cg.setPar("prob_hi",g_apc.p_hc+"");
 		if(g_apc.ratio!=-1) {
-			cg.setParam("r_lb",(g_apc.ratio)+"");
-			cg.setParam("r_ub",(g_apc.ratio_hi)+"");
+			cg.setPar("r_lb",(g_apc.ratio)+"");
+			cg.setPar("r_ub",(g_apc.ratio_hi)+"");
 		}
 		for(int i=0;i<end_i;i++){
 			int lb=i*step+base;
-			cg.setParam("u_lb", (lb)*1.0/100+"");
-			cg.setParam("u_ub", (lb+step)*1.0/100+"");
-			cg.setParam("mod", (lb+step)+"");
+			cg.setPar("u_lb", (lb)*1.0/100+"");
+			cg.setPar("u_ub", (lb+step)*1.0/100+"");
+			cg.setPar("mod", (lb+step)+"");
 			String fn=g_path+"/cfg_"+i+".txt";
-			cg.setFile(fn);
-			cg.write();
+			cg.write(fn);
 			fu.add(fn);
 		}
 		fu.saveTo(g_path+"/"+cf);
@@ -44,15 +43,14 @@ public  class AutoConfig {
 	public void genCfg(String cf) {
 		ConfigGen cg=ConfigPre.getPredefined();
 		MList fu=MList.new_list();
-		cg.setParam("subfix", g_path);
-		cg.setParam("num",g_apc.num+"");
-		cg.setParam("u_lb", 0.85+"");
-		cg.setParam("u_ub", 0.90+"");
-		cg.setParam("mod", 0+"");
-		cg.setParam("prob_hi",g_apc.p_hc+"");
+		cg.setPar("subfix", g_path);
+		cg.setPar("num",g_apc.num+"");
+		cg.setPar("u_lb", 0.85+"");
+		cg.setPar("u_ub", 0.90+"");
+		cg.setPar("mod", 0+"");
+		cg.setPar("prob_hi",g_apc.p_hc+"");
 		String fn=g_path+"/cfg_0.txt";
-		cg.setFile(fn);
-		cg.write();
+		cg.write(fn);
 		fu.add(fn);
 		fu.saveTo(g_path+"/"+cf);		
 	}
@@ -62,20 +60,19 @@ public  class AutoConfig {
 		double end_i=(end-base)/step;
 		ConfigGen cg=ConfigPre.getPredefined();
 		MList fu=MList.new_list();
-		cg.setParam("subfix", g_path);
-		cg.setParam("num",g_apc.num+"");
-		cg.setParam("u_lb", 0.85+"");
-		cg.setParam("u_ub", 0.90+"");
-		cg.setParam("prob_hi",g_apc.p_hc+"");
+		cg.setPar("subfix", g_path);
+		cg.setPar("num",g_apc.num+"");
+		cg.setPar("u_lb", 0.85+"");
+		cg.setPar("u_ub", 0.90+"");
+		cg.setPar("prob_hi",g_apc.p_hc+"");
 		for(int i=0;i<=end_i;i++){
 			int lb=i*step+base;
 			SLog.prn(2, lb+"");
-			cg.setParam("mo_lb", (lb)*1.0/100+"");
-			cg.setParam("mo_ub", (lb+step)*1.0/100+"");
-			cg.setParam("mod", (lb)+"");
+			cg.setPar("mo_lb", (lb)*1.0/100+"");
+			cg.setPar("mo_ub", (lb+step)*1.0/100+"");
+			cg.setPar("mod", (lb)+"");
 			String fn=g_path+"/cfg_"+i+".txt";
-			cg.setFile(fn);
-			cg.write();
+			cg.write(fn);
 			fu.add(fn);
 		}
 		fu.saveTo(g_path+"/"+cf);
