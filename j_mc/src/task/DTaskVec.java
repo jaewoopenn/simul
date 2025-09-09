@@ -2,6 +2,8 @@ package task;
 
 import java.util.Vector;
 
+import util.MLoop;
+
 
 /*
  * Dynamic TaskVec
@@ -20,10 +22,11 @@ public class DTaskVec {
 		g_taskV=new TaskVec[num];
 		g_stageTime=new Integer[num];
 		g_stageClass=new Integer[num];
-		for(int i=0;i<num;i++) {
+		for(int i:MLoop.on(num)) {
 			g_taskV[i]=new TaskVec();
 		}
 	}
+	
 	// Make 
 	public void add(int stage, Task t){
 		g_taskV[stage].add(t);
@@ -36,12 +39,6 @@ public class DTaskVec {
 	}
 	
 
-	public void copy(int src, int dst) {
-		Vector<Task> srcV=g_taskV[src].getVec();
-		for(Task t:srcV) {
-			g_taskV[dst].add(t);
-		}
-	}
 
 	public void addTime(int stage, int value) {
 		g_stageTime[stage]=value;
@@ -51,6 +48,19 @@ public class DTaskVec {
 		g_stage++;
 	}
 	
+	
+	public int getNextTime() {
+		if(g_stage==g_num-1) 
+			return -1;
+		return g_stageTime[g_stage+1];
+	}
+
+	
+
+	public int getStage() {
+		return g_stage;
+	}
+
 	// get
 	
 	public int getTime(int stage) {
@@ -59,34 +69,16 @@ public class DTaskVec {
 	public int getClass(int stage) {
 		return g_stageClass[stage];
 	}
-	
-	public int getNextTime() {
-		if(g_stage==g_num-1) 
-			return -1;
-		return g_stageTime[g_stage+1];
-	}
 
-	public Vector<Task> getVec(int stage){
-		return g_taskV[stage].getVec();
-	}
-	public TaskMng getTM(int stage){
-		TaskSet ts=new TaskSet(g_taskV[stage].getVec());
-		return ts.getTM();
-	}
-	public TaskMng getCurTM() {
-		return getTM(g_stage);
-	}
-
-	public int getStage() {
-		return g_stage;
-	}
 	public int getStageNum() {
 		return g_num;
 	}
-	public void prn() {
-		TaskMng tm=getTM(0);
-		tm.prn();
-	}
 	
+	public Vector<Task> getVec(int stage){
+		return g_taskV[stage].getVec();
+	}
+	public void setVec(int stage,TaskVec tv){
+		g_taskV[stage]=tv;
+	}
 
 }

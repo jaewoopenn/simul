@@ -69,24 +69,8 @@ public class TaskSetUtil {
 
 	// import 
 	
-	public static TaskSet  loadFile(MList ml) {
-		TaskSeq.reset();
-		DTaskVec tasks=new DTaskVec(3);
-		Task t;
-		int stage=0;
-		for(int i=1;i<ml.size();i++) {
-	    	String line=ml.get(i);
-//	    	SLog.prn(1, line);
-	        String[] words=line.split(",");
-	        if(words[0].equals("add")) {
-	        	t=loadTask(words);
-	        	tasks.add(stage,t);
-	        }
-	    }
-	    return new TaskSet(tasks.getVec(0));
-	}
 
-	public static DTaskVec  loadFile2(MList ml) {
+	public static DTaskVec  loadFile(MList ml) {
 		TaskSeq.reset();
     	String line=ml.get(0);
 //    	SLog.prn(2, line);
@@ -111,7 +95,7 @@ public class TaskSetUtil {
 //	        	SLog.prn(1, words[1]);
 	        	int time=Integer.valueOf(words[1]).intValue();
 	        	tasks.addTime(stage, time);
-	        	tasks.copy(stage-1,stage);
+	        	DTUtil.copy(tasks, stage-1,stage);
 	        }
 	    }
 	    return tasks;

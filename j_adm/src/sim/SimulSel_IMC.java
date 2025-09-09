@@ -3,8 +3,6 @@ package sim;
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
 import anal.AnalEDF_VD_IMC;
-import imc.TaskSimul;
-import imc.TaskSimul_EDF_VD_IMC;
 
 public class SimulSel_IMC {
 	/*

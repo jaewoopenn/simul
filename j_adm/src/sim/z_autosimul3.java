@@ -48,9 +48,9 @@ public class z_autosimul3 {
 	}
 	
 	public DTaskVec getDT() {
-//		String tsn="adm/test1/task.txt";
-		String tsn="adm/sim/taskset_93.txt";
-		int n=4;
+		String tsn="adm/test1/task.txt";
+//		String tsn="adm/sim/taskset_93.txt";
+		int n=0;
 		
 		SysLoad sy=new SysLoad(tsn);
 		sy.open();

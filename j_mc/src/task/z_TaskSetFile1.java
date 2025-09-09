@@ -27,7 +27,7 @@ public class z_TaskSetFile1 {
 	}
 	public int test2()
 	{
-		DTaskVec dt=TaskSetUtil.loadFile2(MList.load("test/test.txt"));
+		DTaskVec dt=TaskSetUtil.loadFile(MList.load("test/test.txt"));
 		int num=dt.getStageNum();
 		for(int i=0;i<num;i++) {
 			TaskSet tmp=new TaskSet(dt.getVec(i));
@@ -48,9 +48,9 @@ public class z_TaskSetFile1 {
 		return 1;
 	}
 	public  int test4() {
-		TaskSet tmp=TaskSetUtil.loadFile(MList.load("test/test.txt"));
-		TaskMng tm=tmp.getTM();
-		tm.prn();
+//		TaskSet tmp=TaskSetUtil.loadFile(MList.load("test/test.txt"));
+//		TaskMng tm=tmp.getTM();
+//		tm.prn();
 		return 0;
 	}
 	public  int test5() {

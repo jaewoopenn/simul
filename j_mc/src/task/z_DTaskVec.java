@@ -1,0 +1,64 @@
+package task;
+import util.SEngineT;
+
+public class z_DTaskVec {
+	public static int idx=1;
+//	public static int idx=2;
+//	public static int idx=3;
+//	public static int idx=4;
+	public static int log_level=1;
+	public int test1()
+	{
+		DTaskVec tasks=new DTaskVec(3);
+		tasks.add(0, new Task(5,1,2,false));
+		tasks.add(0, new Task(3,1,2,false));
+		DTUtil.copy(tasks,0,1);
+		tasks.remove(1,1);
+		DTUtil.prn(tasks);
+		
+		
+		return 1;
+	}
+	public int test2()
+	{
+		
+		return 0;
+	}
+	
+	public int test3() {
+		return 1;
+	}
+	public  int test4() {
+		return 0;
+	}
+	public  int test5() {
+		return 1;
+	}
+	public  int test6() {
+		return 1;
+	}
+	public  int test7() {
+		return 1;
+	}
+	public  int test8() {
+		return 0;
+	}
+	public  int test9() {
+		return 0;
+	}
+	public  int test10() {
+		return 0;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static void main(String[] args) throws Exception {
+		Class c = z_DTaskVec.class;
+		z_DTaskVec m=new z_DTaskVec();
+		int[] aret=z_DTaskVec.gret;
+		if(idx==-1)
+			SEngineT.run(m,c,aret,10);
+		else
+			SEngineT.runOnce(m,c,aret,idx,log_level);
+	}
+	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+}

@@ -23,7 +23,7 @@ public class SysLoad {
 			return null;
 		MList ml=MList.new_list();
 		ml.copyFrom(g_fu);
-		return TaskSetUtil.loadFile2(ml);
+		return TaskSetUtil.loadFile(ml);
 	}
 
 

@@ -1,8 +1,6 @@
 package gen;
-import task.TaskMng;
 import task.TaskSet;
 import task.TaskSetUtil;
-import util.MList;
 import util.SEngineT;
 
 // Simulation
@@ -31,9 +29,9 @@ public class z_TaskGen1 {
 		return 1;
 	}
 	public int test2() {
-		TaskSet tmp=TaskSetUtil.loadFile(MList.load("test/test.txt"));
-		TaskMng tm=tmp.getTM();
-		tm.prn();
+//		TaskSet tmp=TaskSetUtil.loadFile(MList.load("test/test.txt"));
+//		TaskMng tm=tmp.getTM();
+//		tm.prn();
 		return -1;
 	}
 	public int test3() {

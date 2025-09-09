@@ -1,9 +1,7 @@
-package imc;
+package sim;
 
 import job.Job;
 import job.JobSimul;
-import sim.SimulInfo;
-import sim.SysMng;
 import task.Task;
 import task.TaskMng;
 import util.MRand;

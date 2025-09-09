@@ -1,4 +1,4 @@
-package imc;
+package sim;
 
 
 import task.Task;
@@ -38,7 +38,9 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
 	@Override
 	protected void setDelay() {
-		
+		int t=g_jsm.get_time();
+		int add=0;
+		g_delayed_t=t+add;				
 	}
 
 

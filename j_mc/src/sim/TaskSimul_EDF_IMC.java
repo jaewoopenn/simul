@@ -1,4 +1,4 @@
-package imc;
+package sim;
 
 
 import job.Job;

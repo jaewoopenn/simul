@@ -1,8 +1,7 @@
 package sim;
 
 import anal.Anal;
-import anal.AnalSel;
-import imc.TaskSimul;
+import task.DTUtil;
 import task.DTaskVec;
 import util.SLog;
 import util.SLogF;
@@ -19,7 +18,7 @@ public class DoSimul {
 	public void run(DTaskVec dt) {
 		Anal anal=getAnalSim(g_sort);
 		g_ts=getSim(g_sort);
-		anal.init(dt.getTM(0));
+		anal.init(DTUtil.getTM(dt,0));
 		double x=anal.computeX();
 		SLog.prn("x:"+x);
 		SysMng sm=new SysMng();

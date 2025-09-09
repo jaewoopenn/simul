@@ -1,6 +1,7 @@
 package anal;
 
 import gen.SysLoad;
+import task.DTUtil;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
@@ -50,7 +51,7 @@ public class z_Anal2 {
 //		a=new AnalAMC_imc();
 		a=new AnalEDF_VD_ADM();
 //		a=new AnalEDF_VD_IMC();
-		a.init(tm.getTM(0));
+		a.init(DTUtil.getTM(tm,0));
 		double x=a.computeX();
 		SLog.prn(1, "x: "+x);
 //		SLog.prn(1, a.getDtm());

@@ -1,10 +1,9 @@
-package imc;
+package sim;
 
 
 import job.Job;
 import job.JobSimul;
-import sim.SimulInfo;
-import sim.SysMng;
+import task.DTUtil;
 import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
@@ -42,7 +41,7 @@ public abstract class TaskSimul  {
 	public void init_sm_dt(SysMng sm, DTaskVec dt ){
 		g_sm=sm;
 		g_dt=dt;
-		g_tm=dt.getTM(0);
+		g_tm=DTUtil.getTM(dt,0);
 		g_tm.setX(sm.getX());
 		g_ext=new TS_ext(g_sm);
 		g_ext.setTM(g_tm);
@@ -103,16 +102,16 @@ public abstract class TaskSimul  {
 				g_si.add_task++;
 				setDelay();
 			} else { // remove
-				SLog.prn(2, t+": task change.");
-				setTM_nextSt(g_dt.getCurTM());
+				SLog.prn(2, t+": remove.");
+				setTM_nextSt();
 			}
 //			g_tm.prn();
 		}
 		if(g_delayed_t!=-1) {
 			if(t==g_delayed_t||g_jsm.is_idle()) {
 				g_si.delayed+=t-g_si.start_delay;
-				SLog.prn(2, t+": delayed task change.");
-				setTM_nextSt(g_dt.getCurTM());
+				SLog.prn(2, t+": add.");
+				setTM_nextSt();
 				changeVD_nextSt();
 				g_delayed_t=-1;
 			}
@@ -120,8 +119,10 @@ public abstract class TaskSimul  {
 		
 	}
 
-	private void setTM_nextSt(TaskMng tm) {
+	private void setTM_nextSt() {
+		TaskMng tm=DTUtil.getCurTM(g_dt);
 		g_tm=tm;
+		tm.prn();
 		g_ext.setTM(tm);
 	}
 

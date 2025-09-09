@@ -2,7 +2,6 @@ package sim;
 
 import anal.Anal;
 import anal.AnalEDF_VD_ADM;
-import imc.TaskSimul;
 import task.Task;
 import util.MCal;
 import util.SLog;
@@ -52,13 +51,15 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 		double x=g_sm.getX();
 		a.setX(x);
 		double d=a.getDtm();
-		SLog.prn(2, "dtm:"+d);
-		a.prn();
+		SLog.prn(2, "x,dtm: "+x+","+d);
+//		a.prn();
 		if(d>1) {
 			SLog.prn(2, "x need to be changed");
 			x=a.computeX();
+			a.setX(x);
 			d=a.getDtm();
-			a.prn();
+			SLog.prn(2, "x,dtm: "+x+","+d);
+//			a.prn();
 			if(d<=1) {
 				g_tm.setX(x);
 				g_sm.setX(x);
@@ -71,10 +72,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 	@Override
 	protected void setDelay() {
 		int t=g_jsm.get_time();
-		int add=50;
-		// VD는 먼저 바꾸자 
-		// max Delay
-//		int add=g_tm.getMaxPeriod();
+		int add=0;
 		g_delayed_t=t+add;				
 		
 	}
