@@ -16,14 +16,14 @@ public class SysGen {
 	private ConfigGen g_cfg;
 	private boolean g_isSch=false;
 	private boolean g_isOnlyMC=false;
-	private int g_stage=1;
+	private int g_stage=-1;
 	private int g_num=0;
-	public void load_in(ConfigGen cfg) {
+	public void load_in(ConfigGen cfg,int stage) {
 		g_cfg=cfg;
 		TaskGenParam tgp=getTgp();
 		g_tg=new TaskGen(tgp);
 		g_num=g_cfg.readInt("num");
-		
+		g_stage=stage;
 	}
 	public int getNum() {
 		return g_num;
@@ -33,9 +33,6 @@ public class SysGen {
 	}
 	public void setOnlyMC() {
 		g_isOnlyMC=true;
-	}
-	public void setStage(int n) {
-		g_stage=n;
 	}
 	
 	private TaskGenParam getTgp() {
@@ -118,10 +115,10 @@ public class SysGen {
 		return a.is_sch(); 
 	}
 
-	public static SysGen load(ConfigGen cfg) {
-		SysGen s=new SysGen();
-		s.load_in(cfg);
-		return s;
+	public static SysGen load(ConfigGen cfg,int stage) {
+		SysGen sg=new SysGen();
+		sg.load_in(cfg,stage);
+		return sg;
 	}
 
 	

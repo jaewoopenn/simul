@@ -20,7 +20,7 @@ public class z_SysGen1 {
 	public void gen(int i) {
 		String path="adm/test1/";
 		ConfigGen cfg=ConfigGen.load(path+"cfg_"+i+".txt");
-		SysGen sg=SysGen.load(cfg);
+		SysGen sg=SysGen.load(cfg,1);
 		String fn=cfg.get_fn();
 		Anal a=null;
 		int num=sg.getNum();
@@ -39,7 +39,7 @@ public class z_SysGen1 {
 	public void gen2(int i) {
 		String path="adm/test1/";
 		ConfigGen cfg=ConfigGen.load(path+"cfg_"+i+".txt");
-		SysGen sg=SysGen.load(cfg);
+		SysGen sg=SysGen.load(cfg,1);
 		sg.setSch();
 		sg.setOnlyMC();
 		String fn=cfg.get_fn();

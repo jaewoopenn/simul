@@ -9,7 +9,7 @@ import util.SLog;
 
 public  class AutoSysGen {
 	private boolean g_onlyMC=false;
-	private int g_stage=1;
+	private int g_stage=-1;
 	private String g_path;
 	private boolean g_isSch=false;
 
@@ -20,6 +20,9 @@ public  class AutoSysGen {
 	
 	
 	public void genTS(String cfg_list,String ts) {
+		if(g_stage==-1) {
+			SLog.err("AutoSysGen: stage is not set");
+		}
 		SLog.prn(3, g_path+"/"+cfg_list);
 		MList fu=MList.load(g_path+"/"+cfg_list);
 		
@@ -30,8 +33,7 @@ public  class AutoSysGen {
 		Anal a=new AnalEDF_VD_IMC();
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=ConfigGen.load(fu.get(i));
-			SysGen sg=SysGen.load(cfg);
-			sg.setStage(g_stage);
+			SysGen sg=SysGen.load(cfg,g_stage);
 			String fn=cfg.get_fn();
 			SLog.prn(3, fn);
 			if(g_onlyMC)

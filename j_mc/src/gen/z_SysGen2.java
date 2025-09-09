@@ -18,9 +18,8 @@ public class z_SysGen2 {
 		String fn=cfg.get_fn();
 		Anal a=null;
 
-		SysGen sg=SysGen.load(cfg);
+		SysGen sg=SysGen.load(cfg,stage);
 		int num=sg.getNum();
-		sg.setStage(stage);
 		sg.gen(path+fn, a,num);
 		SLog.prn( "OK "+num);
 		return 0;
@@ -35,9 +34,8 @@ public class z_SysGen2 {
 		String fn=cfg.get_fn();
 		Anal a=new AnalEDF_VD_IMC();
 
-		SysGen sg=SysGen.load(cfg);
+		SysGen sg=SysGen.load(cfg,stage);
 		sg.setSch();
-		sg.setStage(stage);
 		sg.setOnlyMC();
 		int num=sg.getNum();
 		sg.gen(path+fn, a,num);
