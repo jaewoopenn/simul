@@ -3,7 +3,6 @@ package anal;
 
 import java.util.Vector;
 
-import anal.Anal;
 import util.MList;
 
 public class DataAnal_IMC  {

@@ -2,7 +2,6 @@ package sim;
 
 import java.util.Vector;
 
-import sim.TaskSimul;
 import util.MList;
 
 public class DataSim_IMC {

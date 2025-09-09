@@ -3,9 +3,6 @@ package auto;
 import anal.AutoAnal;
 import anal.DataAnal_IMC;
 import anal.DoAnal;
-import auto.AutoConfig;
-import auto.AutoParConfig;
-import auto.AutoTaskGen;
 import util.MList;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)

@@ -1,9 +1,6 @@
 package auto;
 
 
-import auto.AutoConfig;
-import auto.AutoParConfig;
-import auto.AutoTaskGen;
 import sim.AutoSimul;
 import sim.DataSim_IMC;
 import sim.DoSimul;
