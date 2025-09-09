@@ -23,8 +23,6 @@ public class z_SysLoad1 {
 		String tsn="adm/test1/taskset_83.txt";
 		
 		SysLoad sy=new SysLoad(tsn);
-		String ret=sy.open();
-		SLog.prn(0, ret);
 		sy.moveto(n);
 		DTaskVec dt=sy.loadOne();
 		for(int i=0;i<dt.getStageNum();i++) {

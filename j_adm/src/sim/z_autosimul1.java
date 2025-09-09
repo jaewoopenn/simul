@@ -24,7 +24,6 @@ public class z_autosimul1 {
 
 		String out="adm/test.txt";
 		SysLoad sy=new SysLoad(tsn);
-		sy.open();
 		sy.moveto(n);
 		DTaskVec dt=sy.loadOne();
 		DoSimul ds=new DoSimul(0);

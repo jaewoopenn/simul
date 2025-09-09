@@ -5,6 +5,7 @@ import task.DTUtil;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
+import util.MLoop;
 import util.SEngineT;
 import util.SLog;
 
@@ -21,9 +22,8 @@ public class z_Anal2 {
 		String ts="adm/test1/taskset_68.txt";
 //		String ts="adm/test1/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		int n=Integer.valueOf(ret).intValue();
-		for(int i=0;i<n;i++) {
+		int num=sy.getNum();
+		for(int i:MLoop.on(num)) {
 			DTaskVec tm=sy.loadOne();
 			SLog.prn(1, "task set "+i);
 			anal(tm);
@@ -35,7 +35,6 @@ public class z_Anal2 {
 		int idx=29;
 		String ts="adm/test1/taskset_76.txt";
 		SysLoad sy=new SysLoad(ts);
-		sy.open();
 		sy.moveto(idx);
 		
 		DTaskVec tm=sy.loadOne();
@@ -67,9 +66,7 @@ public class z_Anal2 {
 		String ts="adm/test2/taskset_98.txt";
 //		String ts="adm/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		SLog.prn(1, ret);
-		int n=Integer.valueOf(ret).intValue();
+		int n=sy.getNum();
 		int s=0;
 //		Anal a=new AnalAMC_imc();
 //		Anal a=new AnalEDF_VD_IMC();
@@ -115,7 +112,6 @@ public class z_Anal2 {
 		String ts="adm/test2/taskset_98.txt";
 //		String ts="adm/test_task.txt";
 		SysLoad sy=new SysLoad(ts);
-		sy.open();
 //		Anal a=new AnalEDF_VD_ADM();
 		Anal a=new AnalEDF_BV();
 		DTaskVec dt=sy.loadOne();

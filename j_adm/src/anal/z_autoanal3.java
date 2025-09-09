@@ -21,19 +21,22 @@ public class z_autoanal3 {
 
 	public int test1()	{
 //		String tsn="adm/test1/task.txt";
-		String tsn="adm/anal/taskset_95.txt";
+		String tsn="adm/sim/taskset_75.txt";
 		
 		SysLoad sy=new SysLoad(tsn);
-		sy.open();
-		DoAnal da=new DoAnal(0);
+//		DoAnal da=new DoAnal(0);
+		DoAnal da=new DoAnal(1);
 		int sum=0;
+		int i=0;
 		while(true) {
 			DTaskVec dt= sy.loadOne();
 			if(dt==null) break;
+			SLog.prn("no: "+i);
 			da.run(dt);
 			String s=da.getRS();
 			if(s=="1")
 				sum++;
+			i++;
 		}
 		SLog.prn(2, "sum:"+sum);
 		return 0;		

@@ -7,6 +7,7 @@ import task.TaskSet;
 import util.SEngineT;
 import util.SLog;
 import util.MCal;
+import util.MLoop;
 
 
 @SuppressWarnings("unused")
@@ -24,8 +25,7 @@ public class z_Anal3 {
 	public int test1()	{
 		String ts="adm/test1/taskset_77.txt";
 		SysLoad sy=new SysLoad(ts);
-		String ret=sy.open();
-		int n=Integer.valueOf(ret).intValue();
+		int n=sy.getNum();
 		Anal a=new AnalEDF_VD_ADM();
 		Anal a2=new AnalEDF_VD_IMC();
 

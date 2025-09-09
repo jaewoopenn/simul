@@ -56,7 +56,6 @@ public class z_autosimul3 {
 		int n=0;
 		
 		SysLoad sy=new SysLoad(tsn);
-		sy.open();
 		sy.moveto(n);
 		DTaskVec dt= sy.loadOne();
 		if(dt==null) {

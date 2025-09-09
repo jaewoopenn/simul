@@ -20,7 +20,6 @@ public class z_autoanal1 {
 		int idx=0;
 		String ts="adm/test2/taskset_59.txt";
 		SysLoad sy=new SysLoad(ts);
-		sy.open();
 		sy.moveto(idx);
 		
 		DTaskVec tm=sy.loadOne();

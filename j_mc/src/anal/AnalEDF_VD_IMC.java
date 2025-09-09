@@ -63,7 +63,10 @@ public class AnalEDF_VD_IMC extends Anal {
 		
 		dtm=g_x*lctasks_acUtil+(1-g_x)*lctasks_deUtil+hctasks_hiutil;
 		double dtm2=hctasks_loutil/g_x+lctasks_acUtil;
-		return Math.max(dtm, dtm2);
+		if(dtm2<=1)
+			return dtm;
+		else 
+			return dtm2;
 	}
 	
 

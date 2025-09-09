@@ -41,8 +41,7 @@ public class AutoAnal {
 //		SLog.prn(2, s.getName());
 		
 		SysLoad sy=new SysLoad(tsn);
-		String ret=sy.open();
-		int num=Integer.valueOf(ret).intValue();
+		int num=sy.getNum();
 
 		MList rs_list=MList.new_list();
 		for(int i=0;i<num;i++) {
