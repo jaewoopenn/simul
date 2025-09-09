@@ -11,16 +11,11 @@ public  class AutoSysGen {
 	private boolean g_onlyMC=false;
 	private int g_stage=1;
 	private String g_path;
-	private String g_rs_path;
 	private boolean g_isSch=false;
 
 	public AutoSysGen(String path) {
 		g_path=path;
 	}	
-	public void setRS(String rs_path) {
-		g_rs_path=rs_path;
-		
-	}
 
 	
 	
@@ -79,7 +74,7 @@ public  class AutoSysGen {
 			String mod=cfg.get_mod();
 			fu_xa.add(mod);
 		}
-		fu_xa.saveTo(g_rs_path+"/"+xaxis);
+		fu_xa.saveTo(xaxis);
 	}
 	
 	

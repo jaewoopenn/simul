@@ -82,10 +82,9 @@ public class z_auto_mc {
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 
 		AutoSysGen p=new AutoSysGen(g_path);
-		p.setRS(g_path);
 		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
-		p.genXA(g_cf,g_xl);
+		p.genXA(g_cf,g_path+"/"+g_xl);
 		anal();
 
 		DataAnal_IMC da=new DataAnal_IMC(g_path,0);

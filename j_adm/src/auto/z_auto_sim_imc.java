@@ -70,35 +70,33 @@ public class z_auto_sim_imc {
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoSysGen p=new AutoSysGen(g_path);
-		p.setRS(g_path);
 		p.setSch();
 		p.setOnlyMC();
 		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
 		
 	}
-	public void simul(String rs_dir) {
+	public void simul() {
 		MList fu=MList.new_list();
 		for(int i=0;i<2;i++) {
 			DoSimul ds=new DoSimul(i);
 			ds.setProb(g_p_ms);
 			ds.setDur(g_dur);
 			AutoSimul as=new AutoSimul(g_path,ds);
-			as.setRS(rs_dir);
+			as.setRS(g_rs_path);
 			String rs=as.simulList(g_ts);
 			fu.add(rs);
 		}
-		fu.saveTo(rs_dir+"/"+g_rs);
+		fu.saveTo(g_rs_path+"/"+g_rs);
 	}
 	
 	public void loop_util() {
 		AutoSysGen p=new AutoSysGen(g_path);
-		p.setRS(g_rs_path);
 
-		p.genXA(g_cf,g_xl);
+		p.genXA(g_cf,g_rs_path+"/"+g_xl);
 		
 		SLog.prn(2, "p:"+g_p_ms);
-		simul(g_rs_path);
+		simul();
 		
 		
 		DataSim_IMC ds=new DataSim_IMC(g_rs_path,0);
