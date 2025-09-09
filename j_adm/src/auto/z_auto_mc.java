@@ -1,10 +1,10 @@
-package autorun;
+package auto;
 
+import anal.AutoAnal;
+import anal.DataAnal_IMC;
 import anal.DoAnal;
-import auto.AutoAnal;
 import auto.AutoConfig;
 import auto.AutoParConfig;
-import auto.DataAnal_IMC;
 import auto.AutoTaskGen;
 import util.MList;
 

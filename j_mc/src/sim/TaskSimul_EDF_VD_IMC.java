@@ -2,6 +2,7 @@ package sim;
 
 
 import task.Task;
+import task.TaskMng;
 
 public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
@@ -31,16 +32,16 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
 
 
-	@Override
-	protected void changeVD_nextSt() {
-		
-	}
 
 	@Override
 	protected void setDelay() {
 		int t=g_jsm.get_time();
 		int add=0;
 		g_delayed_t=t+add;				
+	}
+	@Override
+	protected boolean changeVD_nextSt(TaskMng tm) {
+		return false;
 	}
 
 

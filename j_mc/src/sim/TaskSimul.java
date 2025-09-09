@@ -19,6 +19,7 @@ public abstract class TaskSimul  {
 	protected JobSimul g_jsm;
 	protected int g_delayed_t=-1;
 	protected TS_ext g_ext;
+	private boolean g_change_tm=false;
 	public String getName() {
 		return g_name;
 	}
@@ -52,7 +53,7 @@ public abstract class TaskSimul  {
 	/// Overide in child class
 	protected abstract void initSimul();
 	protected abstract void setDelay();
-	protected abstract void changeVD_nextSt();
+	protected abstract boolean changeVD_nextSt(TaskMng tm);
 	protected abstract void modeswitch_in(Task tsk);
 	
 	// could overide
@@ -85,6 +86,15 @@ public abstract class TaskSimul  {
 		dynamicTask();
 		release_jobs();
 		g_ext.variousAfterWork();
+		if(g_jsm.is_idle()&&g_change_tm) {
+			int t=g_jsm.get_time();
+			SLog.prn("idle and change: "+t);
+			g_si.delayed+=t-g_si.start_delay;
+			TaskMng tm=DTUtil.getCurTM(g_dt);
+			changeVD_nextSt(tm);
+			setTM(tm);
+			g_change_tm=false;
+		}
 		g_jsm.simul_one();
 		ms_check();
 	}
@@ -94,35 +104,39 @@ public abstract class TaskSimul  {
 	private void dynamicTask() {
 		int t=g_jsm.get_time();
 		if(t==g_dt.getNextTime()) {
-			int st=g_dt.getStage();
-			SLog.prn(2,t+": stage change "+(st+1));
 			g_dt.nextStage();
+			int st=g_dt.getStage();
+			SLog.prn(2,t+": stage change "+st);
 			if(g_dt.getClass(st)==0) { // add
 				g_si.start_delay=t;
 				g_si.add_task++;
 				setDelay();
 			} else { // remove
 				SLog.prn(2, t+": remove.");
-				setTM_nextSt();
+				TaskMng tm=DTUtil.getCurTM(g_dt);
+				setTM(tm);
 			}
 //			g_tm.prn();
 		}
 		if(g_delayed_t!=-1) {
 			if(t==g_delayed_t||g_jsm.is_idle()) {
-				g_si.delayed+=t-g_si.start_delay;
 				SLog.prn(2, t+": add.");
-				setTM_nextSt();
-				changeVD_nextSt();
+				TaskMng tm=DTUtil.getCurTM(g_dt);
+				boolean b=changeVD_nextSt(tm);
+				if(b) {
+					setTM(tm);
+				} else {
+					g_change_tm=true;
+				}
 				g_delayed_t=-1;
 			}
 		}
 		
 	}
 
-	private void setTM_nextSt() {
-		TaskMng tm=DTUtil.getCurTM(g_dt);
+	private void setTM(TaskMng tm) {
 		g_tm=tm;
-		tm.prn();
+//		tm.prn();
 		g_ext.setTM(tm);
 	}
 
@@ -202,6 +216,11 @@ public abstract class TaskSimul  {
 	// get statics after simulation
 	public SimulInfo getStat(){
 		return g_si;
+	}
+
+	protected boolean changeVD_nextSt() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

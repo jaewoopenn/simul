@@ -1,10 +1,9 @@
-package auto;
+package anal;
 
 
 import java.util.Vector;
 
 import anal.Anal;
-import anal.AnalSel;
 import util.MList;
 
 public class DataAnal_IMC  {

@@ -1,6 +1,5 @@
-package auto;
+package anal;
 
-import anal.DoAnal;
 import util.MList;
 import util.SEngineT;
 

@@ -3,6 +3,7 @@ package sim;
 
 import job.Job;
 import task.Task;
+import task.TaskMng;
 
 public class TaskSimul_EDF_IMC extends TaskSimul{
 
@@ -28,14 +29,14 @@ public class TaskSimul_EDF_IMC extends TaskSimul{
 		return new Job(tsk.tid,dl,Math.max(tsk.c_h,tsk.c_l),0);
 	}
 
-	@Override
-	protected void changeVD_nextSt() {
-		
-	}
 
 	@Override
 	protected void setDelay() {
 		
+	}
+	@Override
+	protected boolean changeVD_nextSt(TaskMng tm) {
+		return false;
 	}
 
 

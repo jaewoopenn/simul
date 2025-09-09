@@ -1,11 +1,11 @@
-package autorun;
+package auto;
 
 
 import auto.AutoConfig;
 import auto.AutoParConfig;
-import auto.DataSim_IMC;
 import auto.AutoTaskGen;
 import sim.AutoSimul;
+import sim.DataSim_IMC;
 import sim.DoSimul;
 import util.MList;
 import util.SEngineT;
@@ -19,9 +19,9 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 		
-		s_idx=1;
+//		s_idx=1;
 //		s_idx=2;
-//		s_idx=3;
+		s_idx=3;
 		
 //		s_log_level=1;
 		s_log_level=2;

@@ -2,6 +2,7 @@ package sim;
 
 import anal.DoAnal;
 import gen.SysLoad;
+import task.DTUtil;
 import task.DTaskVec;
 import util.SEngineT;
 import util.SLog;
@@ -11,8 +12,8 @@ import util.SLog;
 @SuppressWarnings("unused")
 public class z_autosimul3 {
 	public static void init_s() {
-//		s_idx=1;
-		s_idx=2;
+		s_idx=1;
+//		s_idx=2;
 //		s_idx=3;
 		
 		
@@ -36,6 +37,7 @@ public class z_autosimul3 {
 		int dur=1500;
 		double prob=0.4;
 		DTaskVec dt=getDT();
+//		DTUtil.prn(dt);
 		String out="adm/test.txt";
 
 		DoSimul ds=new DoSimul(0);
@@ -48,7 +50,8 @@ public class z_autosimul3 {
 	}
 	
 	public DTaskVec getDT() {
-		String tsn="adm/test1/task.txt";
+//		String tsn="adm/test1/task.txt";
+		String tsn="adm/sim/taskset_75.txt";
 //		String tsn="adm/sim/taskset_93.txt";
 		int n=0;
 		

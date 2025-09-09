@@ -10,6 +10,7 @@ public class DTUtil {
 		int n=t.getStageNum();
 		for(int i:MLoop.on(n)) {
 			SLog.prn("stage: "+i);
+			SLog.prn("class: "+t.getClass(i));
 			TaskMng tm=getTM(t,i);
 			tm.prn();
 			

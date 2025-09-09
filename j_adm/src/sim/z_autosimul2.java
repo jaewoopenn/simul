@@ -1,11 +1,6 @@
 package sim;
 
 import anal.Anal;
-
-// Platform 으로 가기 위해서.. 
-// auto run 4
-
-import auto.DataSim_IMC;
 import util.MList;
 import util.SEngineT;
 

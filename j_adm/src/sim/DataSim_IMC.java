@@ -1,8 +1,7 @@
-package auto;
+package sim;
 
 import java.util.Vector;
 
-import sim.SimulSel_IMC;
 import sim.TaskSimul;
 import util.MList;
 

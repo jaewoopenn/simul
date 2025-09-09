@@ -1,6 +1,5 @@
-package auto;
+package anal;
 
-import anal.DoAnal;
 import gen.SysLoad;
 import task.DTaskVec;
 import util.MList;
