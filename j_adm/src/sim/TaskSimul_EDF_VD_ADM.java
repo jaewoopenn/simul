@@ -33,13 +33,13 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 //		SLog.prn(2, "vu:"+ru);
 		if(ru<1+MCal.err)
 			return;
-		if(g_ts.isMS())
+		if(g_ext.isMS())
 			return;
-		g_ts.setMS();
+		g_ext.setMS();
 //		SLog.prn(2, "de");
 		// test fail? all degrade 
 		for(Task t:g_tm.get_LC_Tasks()){
-			g_ts.degrade_task(t);
+			g_ext.degrade_task(t);
 		}
 	}
 
@@ -67,6 +67,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 		
 	}
 
+	// get dynamic;
 	@Override
 	protected void setDelay() {
 		int t=g_jsm.get_time();

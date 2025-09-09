@@ -20,21 +20,6 @@ public class z_autosimul3 {
 //		s_log_level=2;
 	}
 
-	public DTaskVec getDT() {
-//		String tsn="adm/test1/task.txt";
-		String tsn="adm/anal/taskset_95.txt";
-		int n=4;
-		
-		String out="adm/test.txt";
-		SysLoad sy=new SysLoad(tsn);
-		sy.open();
-		sy.moveto(n);
-		DTaskVec dt= sy.loadOne();
-		if(dt==null) {
-			SLog.prn("out of range ");
-		}
-		return dt;
-	}
 		
 
 	
@@ -48,10 +33,10 @@ public class z_autosimul3 {
 	}
 	
 	public int test2() {
-		int dur=400;
-		double prob=0.5;
+		int dur=1500;
+		double prob=0.4;
 		DTaskVec dt=getDT();
-		
+		String out="adm/test.txt";
 
 		DoSimul ds=new DoSimul(0);
 //		ds.setTrace(out);
@@ -62,6 +47,20 @@ public class z_autosimul3 {
 		return 0;
 	}
 	
+	public DTaskVec getDT() {
+//		String tsn="adm/test1/task.txt";
+		String tsn="adm/sim/taskset_93.txt";
+		int n=4;
+		
+		SysLoad sy=new SysLoad(tsn);
+		sy.open();
+		sy.moveto(n);
+		DTaskVec dt= sy.loadOne();
+		if(dt==null) {
+			SLog.prn("out of range ");
+		}
+		return dt;
+	}
 
 	public int test3() {
 		return 0;

@@ -10,7 +10,7 @@ public class AnalSel {
 	 */
 	public static Anal getAuto(int sort, boolean isMC) {
 		if(isMC)
-			return getAnalMC(sort);
+			return getMC(sort);
 		else
 			return get(sort);
 	}
@@ -28,16 +28,6 @@ public class AnalSel {
 		return null;
 	}
 
-	public static Anal getSim(int sort) {
-		if(sort==0) { 
-			return new AnalEDF_VD_ADM();
-		} else if(sort==1) {
-			return new AnalEDF_VD_IMC();
-		} else if(sort==2) {
-			return null;
-		} 
-		return null;
-	}
 	
 	/*
 	 * 0: EDF-VD-ADM
@@ -46,7 +36,7 @@ public class AnalSel {
 	 * 3: EDF-BV
 	 */
 
-	public static Anal getAnalMC(int sort) {
+	public static Anal getMC(int sort) {
 		if(sort==0) { 
 			return new AnalEDF_VD_ADM();
 		} else if(sort==1) {

@@ -153,6 +153,8 @@ public class AnalEDF_VD_ADM extends Anal {
 		g_x=x;
 		comp_hi_prefer();
 	}
+	
+	// dynamic 
 
 	@Override
 	public double getModX() {

@@ -19,7 +19,7 @@ public abstract class TaskSimul  {
 	protected SimulInfo g_si;
 	protected JobSimul g_jsm;
 	protected int g_delayed_t=-1;
-	protected TS_ext g_ts;
+	protected TS_ext g_ext;
 	public String getName() {
 		return g_name;
 	}
@@ -32,10 +32,10 @@ public abstract class TaskSimul  {
 		g_jsm=new JobSimul(g_tm.size());
 		g_si=new SimulInfo();
 //		Log.prn(1, "num:"+g_tm.size());
-		g_ts.setSI(g_si);
-		g_ts.setJSM(g_jsm);
+		g_ext.setSI(g_si);
+		g_ext.setJSM(g_jsm);
 		initSimul();
-		g_ts.initModeAll();
+		g_ext.initModeAll();
 	}
 	
 
@@ -44,8 +44,8 @@ public abstract class TaskSimul  {
 		g_dt=dt;
 		g_tm=dt.getTM(0);
 		g_tm.setX(sm.getX());
-		g_ts=new TS_ext(g_sm);
-		g_ts.setTM(g_tm);
+		g_ext=new TS_ext(g_sm);
+		g_ext.setTM(g_tm);
 		init();
 	}
 
@@ -76,34 +76,35 @@ public abstract class TaskSimul  {
 			simul_one();
 			t++;
 		}
-		g_ts.simul_end();
+		g_ext.simul_end();
 	}
 
 	
 
 
 	private void simul_one(){
-		int t=g_jsm.get_time();
-		dynamicTask(t);
+		dynamicTask();
 		release_jobs();
-		g_ts.variousAfterWork();
+		g_ext.variousAfterWork();
 		g_jsm.simul_one();
 		ms_check();
 	}
 	
 	
 	// changeVD --> algo 
-	private void dynamicTask(int t) {
-		if(t==g_dt.getNext()) {
-			SLog.prn(2,t+": stage change "+(g_dt.getStage()+1));
+	private void dynamicTask() {
+		int t=g_jsm.get_time();
+		if(t==g_dt.getNextTime()) {
+			int st=g_dt.getStage();
+			SLog.prn(2,t+": stage change "+(st+1));
 			g_dt.nextStage();
-			if(g_dt.getClass(g_dt.getStage())==0) { // add
+			if(g_dt.getClass(st)==0) { // add
 				g_si.start_delay=t;
 				g_si.add_task++;
 				setDelay();
 			} else { // remove
 				SLog.prn(2, t+": task change.");
-				setTM_nextSt();
+				setTM_nextSt(g_dt.getCurTM());
 			}
 //			g_tm.prn();
 		}
@@ -111,7 +112,7 @@ public abstract class TaskSimul  {
 			if(t==g_delayed_t||g_jsm.is_idle()) {
 				g_si.delayed+=t-g_si.start_delay;
 				SLog.prn(2, t+": delayed task change.");
-				setTM_nextSt();
+				setTM_nextSt(g_dt.getCurTM());
 				changeVD_nextSt();
 				g_delayed_t=-1;
 			}
@@ -119,9 +120,9 @@ public abstract class TaskSimul  {
 		
 	}
 
-	private void setTM_nextSt() {
-		g_tm=g_dt.getTM(g_dt.getStage());
-		g_ts.setTM(g_tm);
+	private void setTM_nextSt(TaskMng tm) {
+		g_tm=tm;
+		g_ext.setTM(tm);
 	}
 
 	// rel_one_job --> algo 
@@ -166,7 +167,7 @@ public abstract class TaskSimul  {
 		if(j==null) 
 			return;
 		if(j.add_exec>0) {
-			if(g_ts.happen_MS(j)) { 
+			if(g_ext.happen_MS(j)) { 
 				mode_switch(j.tid);
 			} else { // LO complete 
 				g_jsm.getJM().removeCur();

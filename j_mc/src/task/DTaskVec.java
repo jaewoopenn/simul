@@ -60,13 +60,10 @@ public class DTaskVec {
 		return g_stageClass[stage];
 	}
 	
-	public int getNext() {
+	public int getNextTime() {
 		if(g_stage==g_num-1) 
 			return -1;
 		return g_stageTime[g_stage+1];
-	}
-	public int getStage() {
-		return g_stage;
 	}
 
 	public Vector<Task> getVec(int stage){
@@ -76,7 +73,13 @@ public class DTaskVec {
 		TaskSet ts=new TaskSet(g_taskV[stage].getVec());
 		return ts.getTM();
 	}
+	public TaskMng getCurTM() {
+		return getTM(g_stage);
+	}
 
+	public int getStage() {
+		return g_stage;
+	}
 	public int getStageNum() {
 		return g_num;
 	}

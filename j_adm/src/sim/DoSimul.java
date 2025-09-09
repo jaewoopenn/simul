@@ -45,11 +45,13 @@ public class DoSimul {
 	}
 
 	public Anal getAnalSim(int sort) {
-		return AnalSel.getSim(sort);
+		return SimulSel_IMC.getAnal(sort);
 	}
+	
 	public TaskSimul getSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
+	
 	public int getSort() {
 		return g_sort;
 	}

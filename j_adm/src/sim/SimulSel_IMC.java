@@ -1,5 +1,8 @@
 package sim;
 
+import anal.Anal;
+import anal.AnalEDF_VD_ADM;
+import anal.AnalEDF_VD_IMC;
 import imc.TaskSimul;
 import imc.TaskSimul_EDF_VD_IMC;
 
@@ -20,4 +23,16 @@ public class SimulSel_IMC {
 		}
 		return null;
 	}
+	
+	public static Anal getAnal(int sort) {
+		if(sort==0) { 
+			return new AnalEDF_VD_ADM();
+		} else if(sort==1) {
+			return new AnalEDF_VD_IMC();
+		} else if(sort==2) {
+			return null;
+		} 
+		return null;
+	}
+	
 }
