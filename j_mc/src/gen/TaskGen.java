@@ -8,10 +8,10 @@ import task.TaskVec;
 import util.SLog;
 
 public  class TaskGen {
-	protected TaskGenInd g_param;
+	protected TaskGenInd_IMC g_param;
 	protected Vector<Task> g_tasks;
 	private int g_tid=0;
-	public TaskGen(TaskGenInd tgp) {
+	public TaskGen(TaskGenInd_IMC tgp) {
 		g_param=tgp;
 	}
 
@@ -75,7 +75,7 @@ public  class TaskGen {
 	public Task genTask(int tid){
 		Task tsk=null;
 		while(tsk==null) {
-			tsk=g_param.genTaskIMC(tid);
+			tsk=g_param.genTask(tid);
 			if(!g_param.chkTask(tsk))
 				tsk=null;
 //			if(!g_param.chkMCTask(tsk))

@@ -21,7 +21,7 @@ public class TGUtil {
 	public static void setRatioLH(TaskGenInd t,ConfigGen cfg) {
 		t.setRatioLH(cfg.readDbl("r_lb"),cfg.readDbl("r_ub"));
 	}
-	public static void setMoLH(TaskGenInd t,ConfigGen cfg) {
+	public static void setMoLH(TaskGenInd_IMC t,ConfigGen cfg) {
 		t.setMoLH(cfg.readDbl("mo_lb"),cfg.readDbl("mo_ub"));
 	}
 	public static void setPeriod(TaskGenInd t,ConfigGen cfg) {

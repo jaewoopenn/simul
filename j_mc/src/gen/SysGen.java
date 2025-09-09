@@ -20,7 +20,7 @@ public class SysGen {
 	private int g_num=0;
 	public void load_in(ConfigGen cfg,int stage) {
 		g_cfg=cfg;
-		TaskGenInd tgp=getTgp();
+		TaskGenInd_IMC tgp=getTgp();
 		g_tg=new TaskGen(tgp);
 		g_num=g_cfg.readInt("num");
 		g_stage=stage;
@@ -35,8 +35,8 @@ public class SysGen {
 		g_isOnlyMC=true;
 	}
 	
-	private TaskGenInd getTgp() {
-		TaskGenInd tgp=new TaskGenInd();
+	private TaskGenInd_IMC getTgp() {
+		TaskGenInd_IMC tgp=new TaskGenInd_IMC();
 		TGUtil.setMC(tgp,g_cfg);
 		TGUtil.setMoLH(tgp,g_cfg);
 		return tgp;

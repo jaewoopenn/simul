@@ -10,28 +10,23 @@ import util.SLog;
 
 @SuppressWarnings("unused")
 public class TaskGenInd {
-	private MRand g_rand=new MRand();
+	protected MRand g_rand=new MRand();
 	
-	public double u_ub;
-	public double u_lb;
+	protected double u_ub;
+	protected double u_lb;
 	
-	public double tu_ub;
-	public double tu_lb;
+	protected double tu_ub;
+	protected double tu_lb;
 	
-	public double ratio_lb;
-	public double ratio_ub;
+	protected double ratio_lb;
+	protected double ratio_ub;
 	
-	public double mo_lb;
-	public double mo_ub;
 	
-	public int p_ub;
-	public int p_lb;
+	protected int p_ub;
+	protected int p_lb;
 	
-	public double prob_HI;
+	protected double prob_HI;
 	
-	public TaskGenInd(){
-		
-	}
 
 	
 	public void setUtil(double l, double u ) {
@@ -60,14 +55,6 @@ public class TaskGenInd {
 		ratio_ub=u;
 	}
 	
-	public void setMoLH(double l, double u) {
-		if(l>u){
-			System.out.println("Error setMoLH");
-		}
-		mo_lb=l;
-		mo_ub=u;
-//		SLog.prn(2, mo_lb+" "+mo_ub);
-	}
 	
 
 	public void setPeriod(int l, int u) {
@@ -77,13 +64,14 @@ public class TaskGenInd {
 		p_lb=l;
 		p_ub=u;
 	}
-
+	public void setProbHI(double d) {
+		prob_HI=d;
+	}
+	
 	public Task genTask(int tid){
-//		Log.prn(2, p_lb+" "+p_ub);
 		int p=g_rand.getInt(p_lb,p_ub);
 		double tu=g_rand.getDbl(tu_lb,tu_ub);
 		double prob=g_rand.getDbl();
-//		SLog.prn(2, prob+" "+prob_HI);
 		if(prob<=prob_HI){
 			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
 			int h=(int)(tu*p);
@@ -94,25 +82,9 @@ public class TaskGenInd {
 			return new TaskMC(p,e);
 		}
 	}
-	public Task genTaskIMC(int tid){
-		int p=g_rand.getInt(p_lb,p_ub);
-		double tu=g_rand.getDbl(tu_lb,tu_ub);
-		double prob=g_rand.getDbl();
-//		SLog.prn(2, prob+" "+prob_HI);
-		if(prob<=prob_HI){
-			double ratio=g_rand.getDbl(ratio_lb,ratio_ub);
-			int h=(int)(tu*p);
-			int l=(int)(h*ratio);
-			return new Task(tid, p,l,h,true);
-		} else{
-			double m_ratio=g_rand.getDbl(mo_lb,mo_ub);
-			int l=(int)(tu*p);
-			int h=(int)(l*m_ratio);
-			return new Task(tid,p,l,h,false);
-		}
-	}
-
 	
+	
+	// check 
 	
 	public boolean chkTask(Task t) {
 		int p=t.period;
@@ -141,9 +113,6 @@ public class TaskGenInd {
 	}
 
 
-	public void setProbHI(double d) {
-		prob_HI=d;
-	}
 
 
 

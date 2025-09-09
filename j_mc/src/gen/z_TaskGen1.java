@@ -11,7 +11,7 @@ public class z_TaskGen1 {
 //	public static int idx=2;
 	
 	public TaskGen getTG1(){
-		TaskGenInd tgp=new TaskGenInd();
+		TaskGenInd_IMC tgp=new TaskGenInd_IMC();
 		tgp.setPeriod(50,300);
 		tgp.setTUtil(0.02,0.3);
 		tgp.setRatioLH(0.2,0.9);
