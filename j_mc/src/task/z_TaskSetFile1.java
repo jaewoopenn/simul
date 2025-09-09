@@ -12,22 +12,22 @@ public class z_TaskSetFile1 {
 	public int test1()
 	{
 		MList fu=MList.new_list();
-		TaskSetUtil.initStage(fu, 5);
-		TaskSetUtil.writeTask(fu, new TaskMC(3,1));
-		TaskSetUtil.writeTask(fu, new TaskMC(4,1));
-		TaskSetUtil.writeTask(fu, new TaskMC(5,1));
-		TaskSetUtil.nextStage(fu,100);
-		TaskSetUtil.writeTask(fu, new TaskMC(5,1,4));
-		TaskSetUtil.nextStage(fu,200);
-		TaskSetUtil.remove(fu, 3);
-		TaskSetUtil.remove(fu, 2);
-		TaskSetUtil.writeTask(fu, new TaskMC(5,1,3));
+		TSFile.initStage(fu, 5);
+		TSFile.writeTask(fu, new TaskMC(3,1));
+		TSFile.writeTask(fu, new TaskMC(4,1));
+		TSFile.writeTask(fu, new TaskMC(5,1));
+		TSFile.nextStage(fu,100);
+		TSFile.writeTask(fu, new TaskMC(5,1,4));
+		TSFile.nextStage(fu,200);
+		TSFile.remove(fu, 3);
+		TSFile.remove(fu, 2);
+		TSFile.writeTask(fu, new TaskMC(5,1,3));
 		fu.saveTo("test/test.txt");
 		return 1;
 	}
 	public int test2()
 	{
-		DTaskVec dt=TaskSetUtil.loadFile(MList.load("test/test.txt"));
+		DTaskVec dt=TSFile.loadFile(MList.load("test/test.txt"));
 		int num=dt.getStageNum();
 		for(int i=0;i<num;i++) {
 			TaskSet tmp=new TaskSet(dt.getVec(i));
@@ -44,7 +44,7 @@ public class z_TaskSetFile1 {
 		tmp.add(new TaskMC(4,1));
 		TaskMng tm=tmp.getTM();
 		tm.prn();
-		TaskSetUtil.writeFile("test/test.txt",tm.getTasks());
+		TSFile.writeFile("test/test.txt",tm.getTasks());
 		return 1;
 	}
 	public  int test4() {

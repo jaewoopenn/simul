@@ -1,7 +1,7 @@
 package gen;
 
 import task.DTaskVec;
-import task.TaskSetUtil;
+import task.TSFile;
 import util.MFile;
 import util.MList;
 
@@ -21,7 +21,7 @@ public class SysLoad {
 			return null;
 		MList ml=MList.new_list();
 		ml.copyFrom(g_fu);
-		return TaskSetUtil.loadFile(ml);
+		return TSFile.loadFile(ml);
 	}
 
 

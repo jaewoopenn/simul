@@ -1,6 +1,6 @@
 package gen;
 import task.TaskSet;
-import task.TaskSetUtil;
+import task.TSFile;
 import util.SEngineT;
 
 // Simulation
@@ -11,7 +11,7 @@ public class z_TaskGen1 {
 //	public static int idx=2;
 	
 	public TaskGen getTG1(){
-		TaskGenParam tgp=new TaskGenParam();
+		TaskGenInd tgp=new TaskGenInd();
 		tgp.setPeriod(50,300);
 		tgp.setTUtil(0.02,0.3);
 		tgp.setRatioLH(0.2,0.9);
@@ -25,7 +25,7 @@ public class z_TaskGen1 {
 		TaskGen tg=getTG1();
 		tg.genTS();
 		TaskSet ts=tg.getTS();
-		TaskSetUtil.writeFile("test/test.txt", ts.getArr());
+		TSFile.writeFile("test/test.txt", ts.getArr());
 		return 1;
 	}
 	public int test2() {

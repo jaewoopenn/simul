@@ -9,30 +9,30 @@ import util.SLog;
 
 
 @SuppressWarnings("unused")
-public class TaskGenParam {
+public class TaskGenInd {
 	private MRand g_rand=new MRand();
 	
 	public double u_ub;
 	public double u_lb;
+	
 	public double tu_ub;
 	public double tu_lb;
+	
 	public double ratio_lb;
 	public double ratio_ub;
+	
 	public double mo_lb;
 	public double mo_ub;
+	
 	public int p_ub;
 	public int p_lb;
+	
 	public double prob_HI;
 	
-	public TaskGenParam(){
+	public TaskGenInd(){
 		
 	}
 
-	public void setUtil(ConfigGen g_cfg) {
-		double l=g_cfg.readDbl("u_lb");
-		double u=g_cfg.readDbl("u_ub");
-		setUtil(l,u);
-	}
 	
 	public void setUtil(double l, double u ) {
 		if(l>u){
@@ -43,11 +43,6 @@ public class TaskGenParam {
 //		Log.prn(2, u_lb+" "+u_ub);
 	}
 
-	public void setTUtil(ConfigGen g_cfg) {
-		double l=g_cfg.readDbl("tu_lb");
-		double u=g_cfg.readDbl("tu_ub");
-		setTUtil(l,u);
-	}
 
 	public void setTUtil(double l, double u) {
 		if(l>u){
@@ -55,9 +50,6 @@ public class TaskGenParam {
 		}
 		tu_lb=l;
 		tu_ub=u;
-	}
-	public void setRatioLH(ConfigGen g_cfg) {
-		setRatioLH(g_cfg.readDbl("r_lb"),g_cfg.readDbl("r_ub"));
 	}
 	
 	public void setRatioLH(double l, double u) {
@@ -68,9 +60,6 @@ public class TaskGenParam {
 		ratio_ub=u;
 	}
 	
-	public void setMoLH(ConfigGen g_cfg) {
-		setMoLH(g_cfg.readDbl("mo_lb"),g_cfg.readDbl("mo_ub"));
-	}
 	public void setMoLH(double l, double u) {
 		if(l>u){
 			System.out.println("Error setMoLH");
@@ -80,10 +69,7 @@ public class TaskGenParam {
 //		SLog.prn(2, mo_lb+" "+mo_ub);
 	}
 	
-	public void setPeriod(ConfigGen g_cfg) {
-		setPeriod(g_cfg.readInt("p_lb"),g_cfg.readInt("p_ub"));
-	}
-	
+
 	public void setPeriod(int l, int u) {
 		if(l>u){
 			System.out.println("Error setPeriod");
@@ -160,16 +146,7 @@ public class TaskGenParam {
 	}
 
 
-	public static TaskGenParam getDefault(){
-		TaskGenParam tgp=new TaskGenParam();
-		tgp.setRatioLH(0.25, 1);
-		tgp.setUtil(0.45,0.5);
-		tgp.setPeriod(300,500);
-		tgp.setTUtil(0.01,0.1);
-		tgp.setProbHI(0.5);
-		return tgp;
-		
-	}
+
 
 	
 

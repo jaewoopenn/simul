@@ -11,38 +11,49 @@ import util.SLog;
  */
 
 
-public class TaskSetUtil {
+public class TSFile {
 	private static int space=500;
 
 	// static 
-	public static void writeFile(String fn,Task[] tasks){
-		MList fu=MList.new_list();
-		writeTS_in(fu,tasks);		
-		fu.saveTo(fn);
+	public static void writeFile(String fn,Task[] tasks) {
+		MList ml=MList.new_list();
+		writeTS_in(ml, tasks);
+		ml.saveTo(fn);
 	}
-	
 	public static void writeTS(MList ml,Task[] tasks){
 		writeTS_in(ml,tasks);		
 		ml.add("------");
 	}
+	public static void writeTask(MList ml, Task t) {
+		String txt=getTaskMsg(t);
+		ml.add(txt);
+	}
 	private static void writeTS_in(MList ml,Task[] tasks){
 		ml.add("stage,1");
-		for(Task t:tasks)
-			writeTask(ml,t);
+		for(Task t:tasks) {
+			String txt=getTaskMsg(t);
+			ml.add(txt);
+		}
 	}	
+	private static String getTaskMsg(Task t) {
+		int isHI=t.isHC()?1:0;
+		String txt="add,";
+		txt+=t.tid+",";
+		txt+=t.period+",";
+		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
+		return txt;
+	}
 	
 	public static void remove(MList ml, int i) {
 		String txt="remove,";
 		txt+=(int)i;
-//		SLog.prn(2, txt);
 		ml.add(txt);
 		
 	}
-	public static void initStage(MList fu, int n) {
+	public static void initStage(MList ml, int n) {
 		String txt="stage,";
 		txt+=(int)n;
-//		SLog.prn(2, txt);
-		fu.add(txt);
+		ml.add(txt);
 		
 	}
 	public static void nextStage(MList ml, int i) {
@@ -50,16 +61,6 @@ public class TaskSetUtil {
 //		SLog.prn(2, txt);
 		ml.add(txt);
 		
-	}
-
-	public static void writeTask(MList ml, Task t) {
-		int isHI=t.isHC()?1:0;
-		String txt="add,";
-		txt+=t.tid+",";
-		txt+=t.period+",";
-		txt+=(int)t.c_l+","+(int)t.c_h+","+isHI;
-//		SLog.prn(2, txt);
-		ml.add(txt);
 	}
 	public static void loadView(MList ml) {
 		for(int i:MLoop.on(ml.size())) {

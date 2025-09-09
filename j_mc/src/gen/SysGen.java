@@ -4,7 +4,7 @@ import anal.Anal;
 import task.Task;
 import task.TaskMng;
 import task.TaskSet;
-import task.TaskSetUtil;
+import task.TSFile;
 import util.MList;
 import util.MRand;
 import util.SLog;
@@ -20,7 +20,7 @@ public class SysGen {
 	private int g_num=0;
 	public void load_in(ConfigGen cfg,int stage) {
 		g_cfg=cfg;
-		TaskGenParam tgp=getTgp();
+		TaskGenInd tgp=getTgp();
 		g_tg=new TaskGen(tgp);
 		g_num=g_cfg.readInt("num");
 		g_stage=stage;
@@ -35,14 +35,10 @@ public class SysGen {
 		g_isOnlyMC=true;
 	}
 	
-	private TaskGenParam getTgp() {
-		TaskGenParam tgp=new TaskGenParam();
-		tgp.setUtil(g_cfg);
-		tgp.setPeriod(g_cfg);
-		tgp.setTUtil(g_cfg);
-		tgp.setRatioLH(g_cfg);
-		tgp.setMoLH(g_cfg);
-		tgp.setProbHI(g_cfg.readDbl("prob_hi"));
+	private TaskGenInd getTgp() {
+		TaskGenInd tgp=new TaskGenInd();
+		TGUtil.setMC(tgp,g_cfg);
+		TGUtil.setMoLH(tgp,g_cfg);
 		return tgp;
 	}
 	public void gen(String fn,Anal a,int num) {
@@ -55,13 +51,10 @@ public class SysGen {
 				continue;
 			if(!isSch(a)) 
 				continue;
-//			SLog.prnc(1, i+" ");
 			writeSys(ml);
-//			SLog.prn(2,i+"");
 			i++;
 		}
 		ml.saveTo(fn);
-//		SLog.prn(2,fn+"");
 	}
 
 	
@@ -70,25 +63,23 @@ public class SysGen {
 		
 		TaskSet ts=g_tg.getTS();
 
-//		TaskMng tm=ts.getTM();
-//		tm.prnInfo();
 
-		TaskSetUtil.initStage(ml, g_stage);
+		TSFile.initStage(ml, g_stage);
 		Task[] tss=ts.getArr();
 		for(Task t:tss) {
-			TaskSetUtil.writeTask(ml, t);
+			TSFile.writeTask(ml, t);
 		}
 		int num=tss.length;
 		for(int i=1;i<g_stage;i++) {
-			TaskSetUtil.nextStage(ml,i);
+			TSFile.nextStage(ml,i);
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
-				TaskSetUtil.writeTask(ml, t);
+				TSFile.writeTask(ml, t);
 				num++;
-			} else {
+			} else { // remove
 				int remove_n=g_rand.getInt(num);
-				TaskSetUtil.remove(ml,remove_n);
+				TSFile.remove(ml,remove_n);
 				num--;
 			}
 		}

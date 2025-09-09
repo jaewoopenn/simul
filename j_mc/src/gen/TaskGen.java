@@ -8,10 +8,10 @@ import task.TaskVec;
 import util.SLog;
 
 public  class TaskGen {
-	protected TaskGenParam g_param;
+	protected TaskGenInd g_param;
 	protected Vector<Task> g_tasks;
 	private int g_tid=0;
-	public TaskGen(TaskGenParam tgp) {
+	public TaskGen(TaskGenInd tgp) {
 		g_param=tgp;
 	}
 
