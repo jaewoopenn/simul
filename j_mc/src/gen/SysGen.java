@@ -106,7 +106,8 @@ public class SysGen {
 		int num=tss.length;
 		for(int i=1;i<g_stage;i++) {
 			TaskSetUtil.nextStage(ml,i);
-			if(g_rand.getBool()||num==0) { //add
+			boolean isAdd=g_rand.getBool();
+			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
 				TaskSetUtil.writeTask(ml, t);
 				num++;

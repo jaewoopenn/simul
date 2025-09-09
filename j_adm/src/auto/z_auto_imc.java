@@ -29,9 +29,9 @@ public class z_auto_imc {
 	private String g_graph;
 	
 	public static void init_s() {
-		s_idx=1;
+//		s_idx=1;
 //		s_idx=2;
-//		s_idx=3;
+		s_idx=3;
 //		s_idx=4;
 		
 		
