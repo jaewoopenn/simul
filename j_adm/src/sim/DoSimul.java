@@ -38,7 +38,7 @@ public class DoSimul {
 	}
 	public void prn() {
 		SimulInfo si=g_ts.getStat();
-		si.prn2();
+		si.prn_imc();
 		SLog.prn(2, si.getDegraded()+"");
 		
 	}

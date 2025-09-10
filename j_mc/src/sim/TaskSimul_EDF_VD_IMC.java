@@ -40,8 +40,8 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 		g_delayed_t=t+add;				
 	}
 	@Override
-	protected boolean changeVD_nextSt(TaskMng tm) {
-		return false;
+	protected int changeVD_nextSt(TaskMng tm) {
+		return 0;
 	}
 
 

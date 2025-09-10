@@ -34,13 +34,13 @@ public  class TaskGen {
 			add(t);
 		}
 		remove(g_tasks.size()-1);
-	}
-	private void remove(int idx) {
-		g_tasks.remove(idx);
 		g_tid--;
 	}
+	public void remove(int idx) {
+		g_tasks.remove(idx);
+	}
 
-	private void add(Task t) {
+	public void add(Task t) {
 		g_tasks.add(t);
 		g_tid++;
 	}

@@ -15,13 +15,15 @@ public class SimulInfo {
 	public int total;
 	public int start_delay;
 	public int add_task=0;
+	public int reject=0;
+	public int stage=0;
 	public double getDMR(){
 		if(rel==0)
 			return 0;
 		else
 			return (double)(nrel+drop)/rel;
 	}
-	public void prn() {
+	public void prn_mc() {
 		SLog.prn(2, "rel:"+rel);
 		SLog.prn(2, "no rel:"+nrel);
 		SLog.prn(2, "drop:"+drop);
@@ -29,12 +31,14 @@ public class SimulInfo {
 		SLog.prn(2, "ms:"+ms);
 		SLog.prn(2, "dmr:"+getDMR());
 	}
-	public void prn2() {
+	public void prn_imc() {
 		SLog.prn(2, "ms:"+ms);
 		SLog.prn(2, "degraded:"+degraded);
 		SLog.prn(2, "total:"+total);
 		double per=(double)degraded/total;
 		SLog.prn(2, "degraded pecentage:"+MCal.getStr(per));
+		SLog.prn(2, "reject:"+reject);
+		SLog.prn(2, "reject ratio:"+MCal.getStr((double)reject/stage));
 		if(add_task!=0) {
 			SLog.prn(2, "delayed:"+delayed);
 			double avg=(double)delayed/add_task;

@@ -34,9 +34,10 @@ public class TaskSimul_EDF_IMC extends TaskSimul{
 	protected void setDelay() {
 		
 	}
+	
 	@Override
-	protected boolean changeVD_nextSt(TaskMng tm) {
-		return false;
+	protected int changeVD_nextSt(TaskMng tm) {
+		return 0;
 	}
 
 

@@ -1,6 +1,7 @@
 package gen;
 
 import anal.Anal;
+import anal.AnalEDF_VD_IMC;
 import task.Task;
 import task.TaskMng;
 import task.TaskSet;
@@ -70,23 +71,42 @@ public class SysGen {
 			TSFile.writeTask(ml, t);
 		}
 		int num=tss.length;
-		for(int i=1;i<g_stage;i++) {
-			TSFile.nextStage(ml,i);
+		int i=1;
+		while(i<g_stage) {
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
+//				if(!isSch(t)) {
+//					g_tg.remove(num-1);
+//					continue;
+//				}
+				TSFile.nextStage(ml,i);
 				TSFile.writeTask(ml, t);
 				num++;
 			} else { // remove
+//				SLog.prn(num+"");
 				int remove_n=g_rand.getInt(num);
+				TSFile.nextStage(ml,i);
 				TSFile.remove(ml,remove_n);
+//				g_tg.remove(remove_n);
 				num--;
 			}
+			i++;
 		}
 		ml.add("------");
 		return 1;
 	}
 	
+	private boolean isSch(Task t) {
+		if(!g_isSch)
+			return true;
+		TaskSet ts=g_tg.getTS();
+		g_tg.add(t);
+		TaskMng tm=ts.getTM();
+		Anal a=new AnalEDF_VD_IMC();
+		a.init(tm);
+		return a.is_sch(); 
+	}
 	protected boolean checkOnlyMC() {
 		if(!g_isOnlyMC)
 			return true;
@@ -100,8 +120,8 @@ public class SysGen {
 	protected boolean isSch(Anal a) {
 		if(!g_isSch)
 			return true;
-		TaskSet tsf=g_tg.getTS();
-		TaskMng tm=tsf.getTM();
+		TaskSet ts=g_tg.getTS();
+		TaskMng tm=ts.getTM();
 		a.init(tm);
 		return a.is_sch(); 
 	}

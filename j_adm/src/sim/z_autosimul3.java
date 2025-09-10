@@ -12,8 +12,8 @@ import util.SLog;
 @SuppressWarnings("unused")
 public class z_autosimul3 {
 	public static void init_s() {
-		s_idx=1;
-//		s_idx=2;
+//		s_idx=1;
+		s_idx=2;
 //		s_idx=3;
 		
 		
@@ -25,7 +25,7 @@ public class z_autosimul3 {
 
 	
 	public int test1()	{
-		DTaskVec dt=getDT();
+		DTaskVec dt=getDT(1);
 		
 		DoAnal da=new DoAnal(0);
 		da.run(dt);
@@ -34,9 +34,9 @@ public class z_autosimul3 {
 	}
 	
 	public int test2() {
-		int dur=1500;
+		int dur=10000;
 		double prob=0.4;
-		DTaskVec dt=getDT();
+		DTaskVec dt=getDT(5);
 //		DTUtil.prn(dt);
 		String out="adm/test.txt";
 
@@ -48,12 +48,35 @@ public class z_autosimul3 {
 		ds.prn();
 		return 0;
 	}
+	public int test3() {
+		int dur=10000;
+		double prob=0.4;
+//		String tsn="adm/sim/taskset_75.txt";
+//		String tsn="adm/sim/taskset_78.txt";
+		String tsn="adm/sim/taskset_90.txt";
+		SysLoad sy=new SysLoad(tsn);
+		DTaskVec dt= sy.loadOne();
+		int i=0;
+		while(dt!=null) {
+			SLog.prn(2,"#### no: "+i+" #####");
+			DoSimul ds=new DoSimul(0);
+			ds.setProb(prob);
+			ds.setDur(dur);
+			ds.run(dt);
+			ds.prn();
+			
+			dt= sy.loadOne();
+			i++;
+		}
+		return 0;
+	}
 	
-	public DTaskVec getDT() {
+	public DTaskVec getDT(int n) {
 //		String tsn="adm/test1/task.txt";
-		String tsn="adm/sim/taskset_75.txt";
+//		String tsn="adm/sim/taskset_75.txt";
+//		String tsn="adm/sim/taskset_78.txt";
+		String tsn="adm/sim/taskset_90.txt";
 //		String tsn="adm/sim/taskset_93.txt";
-		int n=0;
 		
 		SysLoad sy=new SysLoad(tsn);
 		sy.moveto(n);
@@ -64,9 +87,6 @@ public class z_autosimul3 {
 		return dt;
 	}
 
-	public int test3() {
-		return 0;
-	}
 	public  int test4() {
 		return 1;
 	}

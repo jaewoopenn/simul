@@ -1,23 +1,22 @@
 package test;
 
-import java.util.Vector;
 
 import util.SEngineT;
 import util.SLog;
 
 public class z_array1 {
-	public static int idx=1;
-	public static int log_level=1;
+	public static void init_s() {
+		s_idx=1;
+//		s_idx=2;
+//		s_idx=3;
+		
+		
+		s_log_level=1;
+	}
 
 	public int test1() 
 	{
-		SLog.prn(1, "hihi");
-		int z[]= {1,2};
-		Vector v=new Vector();
-		v.add(z);
-		z[0]=3;
-		z[1]=4;
-		v.add(z);
+		SLog.prn("hihi");
 		return -1;
 	}
 
@@ -51,15 +50,17 @@ public class z_array1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
+		z_array1.init_s();
 		Class c = z_array1.class;
 		z_array1 m=new z_array1();
 		int[] aret=z_array1.gret;
-		if(idx==-1)
+		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
-			SEngineT.runOnce(m,c,aret,idx,log_level);
+			SEngineT.runOnce(m,c,aret,s_idx,s_log_level);
 	}
-	
 	public static int gret[]={-1,-1,-1,-1,-1, -1,-1,-1,-1,-1};
+	private static int s_idx;
+	private static int s_log_level;
 
 }

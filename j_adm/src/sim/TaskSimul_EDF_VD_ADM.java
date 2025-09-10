@@ -56,23 +56,26 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 	}
 
 	@Override
-	protected boolean changeVD_nextSt(TaskMng tm) {
+	protected int changeVD_nextSt(TaskMng tm) {
 		Anal a=new AnalEDF_VD_ADM();
 		a.init(tm);
 		double old_x=g_sm.getX();
 		a.setX(old_x);
 		double d=a.getDtm();
-		SLog.prn(2, "x,dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
+		SLog.prn(1, "x,dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
 //		a.prn();
 		if(d>1) {
-			SLog.prn(2, "x need to be changed");
+			SLog.prn(1, "x need to be changed");
 			double x=a.computeX();
+			if(x<=00||x>1) {
+				return 0;
+			}
 			a.setX(x);
 			d=a.getDtm();
-			SLog.prn(2, "x,dtm: "+MCal.getStr(x)+","+MCal.getStr(d));
+			SLog.prn(1, "x,dtm: "+MCal.getStr(x)+","+MCal.getStr(d));
 			if(!g_jsm.is_idle()&&x<old_x) {
-				SLog.prn(2, "not idle, x<old_x: "+MCal.getStr(x)+","+MCal.getStr(old_x));
-				return false;
+				SLog.prn(1, "not idle, x<old_x: "+MCal.getStr(x)+","+MCal.getStr(old_x));
+				return 1;
 			}
 //			a.prn();
 			if(d<=1) {
@@ -80,7 +83,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 				g_sm.setX(x);
 			}
 		}
-		return true;
+		return 2;
 	}
 
 

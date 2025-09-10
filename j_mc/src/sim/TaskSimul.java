@@ -53,7 +53,7 @@ public abstract class TaskSimul  {
 	/// Overide in child class
 	protected abstract void initSimul();
 	protected abstract void setDelay();
-	protected abstract boolean changeVD_nextSt(TaskMng tm);
+	protected abstract int changeVD_nextSt(TaskMng tm);
 	protected abstract void modeswitch_in(Task tsk);
 	
 	// could overide
@@ -105,14 +105,15 @@ public abstract class TaskSimul  {
 		int t=g_jsm.get_time();
 		if(t==g_dt.getNextTime()) {
 			g_dt.nextStage();
+			g_si.stage++;
 			int st=g_dt.getStage();
-			SLog.prn(2,t+": stage change "+st);
+			SLog.prn(1,t+": stage change "+st);
 			if(g_dt.getClass(st)==0) { // add
 				g_si.start_delay=t;
 				g_si.add_task++;
 				setDelay();
 			} else { // remove
-				SLog.prn(2, t+": remove.");
+				SLog.prn(1, t+": remove.");
 				TaskMng tm=DTUtil.getCurTM(g_dt);
 				setTM(tm);
 			}
@@ -120,13 +121,16 @@ public abstract class TaskSimul  {
 		}
 		if(g_delayed_t!=-1) {
 			if(t==g_delayed_t||g_jsm.is_idle()) {
-				SLog.prn(2, t+": add.");
+				SLog.prn(1, t+": add.");
 				TaskMng tm=DTUtil.getCurTM(g_dt);
-				boolean b=changeVD_nextSt(tm);
-				if(b) {
+				int rs=changeVD_nextSt(tm);
+				if(rs==0) {
+					g_si.reject++;
+				} else if(rs==1) {
 					setTM(tm);
 				} else {
 					g_change_tm=true;
+					
 				}
 				g_delayed_t=-1;
 			}
@@ -216,11 +220,6 @@ public abstract class TaskSimul  {
 	// get statics after simulation
 	public SimulInfo getStat(){
 		return g_si;
-	}
-
-	protected boolean changeVD_nextSt() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	
