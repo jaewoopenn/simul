@@ -16,13 +16,17 @@ public class JobSys {
 		g_js=new JobSimul();
 	}
 	public void add(int dl, int e) {
+		add(dl,e,1);
+		
+	}
+	public void add(int dl, int e, int v) {
 		int et=g_t+dl;
 		int rem=testDem(et);
 		if(e>rem) {
 			SLog.prn("No");
 			return;
 		}
-		Job j=new Job(g_id,et,e);
+		Job j=new Job(g_id,et,e,v);
 		g_id++;
 		g_js.add(j);
 		addDem(et,e);

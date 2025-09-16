@@ -4,11 +4,11 @@ package job;
 import util.SEngineT;
 import util.SLog;
 
-public class z_job1 {
+public class z_sys2 {
 	public static void init_s() {
-		s_idx=1;
+//		s_idx=1;
 //		s_idx=2;
-//		s_idx=3;
+		s_idx=3;
 		
 		
 		s_log_level=1;
@@ -16,24 +16,43 @@ public class z_job1 {
 
 	public int test1() 
 	{
-		JobSimul js=new JobSimul();
-		Job j=new Job(1,6,2,1);
-		js.add(j);
-		j=new Job(2,5,2,1);
-		js.add(j);
-		js.simul_one();
-		j=new Job(3,4,1,1);
-		js.add(j);
-		js.simul_one();
-		js.simul_one();
+		JobSys js=new JobSys();
+		js.add(5,2);
+		js.add(6,2);
+		js.exec(1);
+		js.add(3,1);
+		js.exec(2);
 		
 		return -1;
 	}
 
 	public int test2() {
+		JobSys js=new JobSys();
+		js.add(5,2);
+		js.add(16,2);
+		js.add(15,1);
+		js.add(5,2);
+		js.add(30,3);
+		js.dbf();
 		return -1;
 	}
 	public int test3() {
+		JobSys js=new JobSys();
+		js.add(4,3);
+		js.add(3,2);
+		js.dbf();
+		
+		SLog.prn("---");
+		js=new JobSys();
+		js.add(3,2);
+		js.add(4,3);
+		js.dbf();
+		
+		SLog.prn("---");
+		js=new JobSys();
+		js.add(4,3);
+		js.add(3,1);
+		js.dbf();
 		return -1;
 	}
 	public  int test4() {
@@ -60,10 +79,10 @@ public class z_job1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_job1.init_s();
-		Class c = z_job1.class;
-		z_job1 m=new z_job1();
-		int[] aret=z_job1.gret;
+		z_sys2.init_s();
+		Class c = z_sys2.class;
+		z_sys2 m=new z_sys2();
+		int[] aret=z_sys2.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
