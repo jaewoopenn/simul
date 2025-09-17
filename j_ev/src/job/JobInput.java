@@ -3,26 +3,19 @@ package job;
 import util.MCal;
 import util.SLog;
 
-// Drop is +2000 VD
-
-public class Job implements Comparable<Job>{
-	public int tid;
+public class JobInput implements Comparable<JobInput> {
 	public int dl;
 	public int exec;
 	public int val;
 	public double den;
-
-	public Job(int tid,int dl, int exec, int value) {
-		this.tid=tid;
+	public JobInput(int dl, int exec, int value) {
 		this.dl = dl;
 		this.exec = exec;
 		this.val=value;
 		den=(double)val/exec;
 	}
-
 	public String info() {
-		String s="tid:"+tid;
-		s+=" ,dl:"+dl;
+		String s="dl:"+dl;
 		s+=" ,exec:"+exec;
 		s+=" ,val:"+val;
 		s+=" ,den:"+MCal.getStr(den);
@@ -34,16 +27,16 @@ public class Job implements Comparable<Job>{
 		SLog.prn(1, info());
 		
 	}
+
 	@Override
-	public int compareTo(Job o) {
-		double o_d = o.dl;  
-		if (dl>o_d)
-			return 1;
-		else if (dl==o_d)
+	public int compareTo(JobInput o) {
+		double o_d = o.den;  
+		if (den>o_d)
+			return -1;
+		else if (den==o_d)
 			return 0;
 		else
-			return -1;
+			return 1;
 	}
-
 
 }

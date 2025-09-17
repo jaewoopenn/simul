@@ -1,5 +1,6 @@
 package job;
 
+import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -9,11 +10,23 @@ public class JobSys {
 	private JobSimul g_js;
 	private int g_id=0;
 	private int g_t=0;
+	private int g_val=0;
 	private TreeMap<Integer, Integer> g_dem;
+	private PriorityQueue<JobInput> g_set;
 	public JobSys(){
 		g_dem = new TreeMap<>();
 //		g_dem.put(0, 0);
 		g_js=new JobSimul();
+		reset();
+	}
+	public void reset() {
+		g_set=new PriorityQueue<JobInput>();
+		
+	}
+	public void addPre(int dl, int e, int v) {
+		int et=g_t+dl;
+		JobInput j=new JobInput(et,e,v);
+		g_set.add(j);
 	}
 	public void add(int dl, int e) {
 		add(dl,e,1);
@@ -23,10 +36,11 @@ public class JobSys {
 		int et=g_t+dl;
 		int rem=testDem(et);
 		if(e>rem) {
-			SLog.prn("No");
+			SLog.prn("No ("+dl+","+e+","+v+")");
 			return;
 		}
 		Job j=new Job(g_id,et,e,v);
+		g_val+=v;
 		g_id++;
 		g_js.add(j);
 		addDem(et,e);
@@ -47,14 +61,14 @@ public class JobSys {
 			dem=s;
 		}
 		int rem=et-dem;
-		SLog.prn("REM:"+rem);
+//		SLog.prn("REM:"+rem);
         for (Integer key : keys) {
         	if(key>et) {
         		dem=g_dem.get(key);
         		rem=Math.min(rem, key-dem);
         	}
         }
-		SLog.prn("REM_after:"+rem);
+//		SLog.prn("REM_after:"+rem);
 		return rem;
 	}
 	private void addDem(int et, int e) {
@@ -91,7 +105,22 @@ public class JobSys {
         for (Integer key : keys) {
         	SLog.prn(key+": "+g_dem.get(key));
         }
+        SLog.prn("---- val: "+g_val);
 		
+	}
+	public void prn() {
+		g_js.prn();
+		
+	}
+	public void prnPre() {
+		JobMisc.prnPre(g_set);
+		
+	}
+	public void addAll() {
+		for(JobInput j:g_set) {
+			add(j.dl,j.exec,j.val);
+		}
+		reset();
 	}
 	
 	

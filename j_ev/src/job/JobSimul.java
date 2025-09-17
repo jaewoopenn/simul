@@ -94,5 +94,11 @@ public class JobSimul {
 		return g_t;
 	}
 
+
+	public void prn() {
+		g_jm.prn();
+		
+	}
+
 	
 }

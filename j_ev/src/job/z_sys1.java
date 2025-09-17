@@ -6,9 +6,9 @@ import util.SLog;
 
 public class z_sys1 {
 	public static void init_s() {
-//		s_idx=1;
+		s_idx=1;
 //		s_idx=2;
-		s_idx=3;
+//		s_idx=3;
 		
 		
 		s_log_level=1;
@@ -17,42 +17,23 @@ public class z_sys1 {
 	public int test1() 
 	{
 		JobSys js=new JobSys();
-		js.add(5,2);
-		js.add(6,2);
-		js.exec(1);
-		js.add(3,1);
-		js.exec(2);
+		js.addPre(5,2,3);
+		js.addPre(16,2,2);
+		js.addPre(15,1,2);
+		js.addPre(5,2,2);
+		js.addPre(30,3,4);
+		js.addPre(4,2,1);
+		js.prnPre();
+		js.addAll();
+		js.dbf();
 		
 		return -1;
 	}
 
 	public int test2() {
-		JobSys js=new JobSys();
-		js.add(5,2);
-		js.add(16,2);
-		js.add(15,1);
-		js.add(5,2);
-		js.add(30,3);
-		js.dbf();
 		return -1;
 	}
 	public int test3() {
-		JobSys js=new JobSys();
-		js.add(4,3);
-		js.add(3,2);
-		js.dbf();
-		
-		SLog.prn("---");
-		js=new JobSys();
-		js.add(3,2);
-		js.add(4,3);
-		js.dbf();
-		
-		SLog.prn("---");
-		js=new JobSys();
-		js.add(4,3);
-		js.add(3,1);
-		js.dbf();
 		return -1;
 	}
 	public  int test4() {
