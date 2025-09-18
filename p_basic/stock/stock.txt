@@ -1,0 +1,5 @@
+nVIDIA, 37
+QQQM, 26.2
+Apple, 21.8
+ARM, 7.8
+VOO, 6.9

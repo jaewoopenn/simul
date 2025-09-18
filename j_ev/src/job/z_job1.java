@@ -2,7 +2,6 @@ package job;
 
 
 import util.SEngineT;
-import util.SLog;
 
 public class z_job1 {
 	public static void init_s() {
@@ -16,16 +15,21 @@ public class z_job1 {
 
 	public int test1() 
 	{
-		JobSimul js=new JobSimul();
+		int t=0;
+		JobMng jm=new JobMng();
+		JobSimul js=new JobSimul(jm);
 		Job j=new Job(1,6,2,1);
-		js.add(j);
+		jm.add(j);
 		j=new Job(2,5,2,1);
-		js.add(j);
-		js.simul_one();
+		jm.add(j);
+		js.simul_one(t);
+		t++;
 		j=new Job(3,4,1,1);
-		js.add(j);
-		js.simul_one();
-		js.simul_one();
+		jm.add(j);
+		js.simul_one(t);
+		t++;
+		js.simul_one(t);
+		t++;
 		
 		return -1;
 	}

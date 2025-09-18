@@ -6,18 +6,12 @@ import util.SLogF;
 
 public class JobSimul {
 	protected JobMng g_jm;
-	protected int g_t;
-	public JobSimul(){
-		g_t=0;
-		g_jm=new JobMng();
+	public JobSimul(JobMng jm){
+		g_jm=jm;
 	}
 	
 	
-	public JobMng getJM() {
-		return g_jm;
-	}
-		
-	protected void exec_one(){
+	protected void exec_one(int g_t){
 		Job j=g_jm.getCur();
 		String s="t:"+g_t+" ";
 		if(j==null)	{
@@ -39,21 +33,17 @@ public class JobSimul {
 	
 
 	
-	public void add(Job j){
-		g_jm.add(j);
-	}
 
-
-	public int simul_one() {
+	public int simul_one(int g_t) {
 		SLogF.prnc( String.format("%05d ", g_t));
 		int dl=dl_check(g_t);
-		exec_one();
+		exec_one(g_t);
 		g_t++;
 		return dl;
 	}
 	
 
-	public int simul_end(){
+	public int simul_end(int g_t){
 		if(g_jm.endCheck(g_t)==0){
 			g_jm.prn();
 			SLog.err("Deadline miss at time "+g_t);
@@ -90,15 +80,9 @@ public class JobSimul {
 			return true;
 		return false;
 	}
-	public int get_time() {
-		return g_t;
-	}
 
 
-	public void prn() {
-		g_jm.prn();
-		
-	}
+
 
 	
 }

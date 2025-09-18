@@ -2,12 +2,16 @@ package job;
 
 
 import util.SEngineT;
+import util.SLog;
 
-public class z_sys1 {
+public class z_sys3 {
 	public static void init_s() {
-		s_idx=1;
-//		s_idx=2;
+//		s_idx=1;
+		s_idx=2;
 //		s_idx=3;
+//		s_idx=4;
+//		s_idx=5;
+//		s_idx=6;
 		
 		
 		s_log_level=1;
@@ -16,20 +20,40 @@ public class z_sys1 {
 	public int test1() 
 	{
 		JobSys js=new JobSys();
-		js.add(5,2,3);
-		js.add(16,2,2);
-		js.add(15,1,2);
-		js.add(5,2,2);
-		js.add(30,3,4);
-		js.add(4,2,1);
-		js.prn();
-		js.addAll();
+		int d=0;
+		js.add_in(4,3,1);
+		d=js.getRem(3);
+		SLog.prn("rem:"+d);
+		if(d<2) {
+			js.removeDen(1);
+			d=js.getRem(3);
+			SLog.prn("rem:"+d);
+			
+		}
+		d=js.add_in(3,2);
 		js.dbf();
 		
 		return -1;
 	}
 
 	public int test2() {
+		JobSys js=new JobSys();
+		boolean b=js.add_repl(4,3,1);
+		if(b) {
+			SLog.prn("OK 1");
+		}
+		js.dbf();
+		b=js.add_repl(3,2,2);
+		if(b) {
+			SLog.prn("OK 2");
+		}
+		js.dbf();
+		b=js.add_repl(3,2,1);
+		if(b) {
+			SLog.prn("OK 3");
+		}
+		js.prn_in();
+		js.dbf();
 		return -1;
 	}
 	public int test3() {
@@ -59,10 +83,10 @@ public class z_sys1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_sys1.init_s();
-		Class c = z_sys1.class;
-		z_sys1 m=new z_sys1();
-		int[] aret=z_sys1.gret;
+		z_sys3.init_s();
+		Class c = z_sys3.class;
+		z_sys3 m=new z_sys3();
+		int[] aret=z_sys3.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

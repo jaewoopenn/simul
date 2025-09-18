@@ -47,6 +47,42 @@ public class JobMng {
 	public Job removeCur(){
 		return g_jobs.poll();
 	}
+
+
+
+
+	public boolean remove(int et, int e) {
+		Job o=null;
+		for(Job j:g_jobs) {
+			if(et==j.dl&&e==j.exec) {
+				o=j;
+				break;
+			}
+		}
+		if(o!=null) {
+			g_jobs.remove(o);
+			return true;
+		}
+		return false;
+		
+	}
+
+
+	public Job removeDen(double d) {
+		Job o=null;
+		for(Job j:g_jobs) {
+			if(j.den<d) {
+				o=j;
+				break;
+			}
+		}
+		if(o!=null) {
+			g_jobs.remove(o);
+			return o;
+		}
+		return null;
+		
+	}
 	
 
 }
