@@ -4,7 +4,7 @@ package test;
 import util.SEngineT;
 import util.SLog;
 
-public class z_array1 {
+public class z_array2 {
 	public static void init_s() {
 		s_idx=1;
 //		s_idx=2;
@@ -50,10 +50,10 @@ public class z_array1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_array1.init_s();
-		Class c = z_array1.class;
-		z_array1 m=new z_array1();
-		int[] aret=z_array1.gret;
+		z_array2.init_s();
+		Class c = z_array2.class;
+		z_array2 m=new z_array2();
+		int[] aret=z_array2.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
