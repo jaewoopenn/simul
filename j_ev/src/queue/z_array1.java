@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class z_array1 {
 
-    public static void main(String[] args) {
+    @SuppressWarnings("unused")
+	public static void main(String[] args) {
         double lambda = 2.0; // Arrival rate
         double mu = 3.0;     // Service rate
         int numCustomers = 10; // Number of customers to simulate

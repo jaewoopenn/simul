@@ -57,7 +57,7 @@ public class z_sys2 {
 		js.add_in(4,3);
 		d=js.add_in(3,1);
 		js.dbf();
-		return -1;
+		return d;
 	}
 	public  int test4() {
 		JobSys js=new JobSys();
@@ -106,7 +106,7 @@ public class z_sys2 {
 		int d=js.getRem(6);
 		SLog.prn("rem: "+d);
 		SLog.prn("------");
-		boolean b=js.removeDen(1.0);
+		js.removeDen(1.0);
 		js.prn_in();
 		d=js.getRem(6);
 		SLog.prn("rem: "+d);
