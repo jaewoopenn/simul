@@ -64,26 +64,26 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 		double d=a.getDtm();
 		SLog.prn(1, "x,dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
 //		a.prn();
-		if(d>1) {
+		if(d>1) { // need to change x
 			SLog.prn(1, "x need to be changed");
 			double x=a.computeX();
-			if(x<=00||x>1) {
-				return 0;
+			if(x<=0||x>1) {
+				return 0; // reject
 			}
 			a.setX(x);
 			d=a.getDtm();
 			SLog.prn(1, "x,dtm: "+MCal.getStr(x)+","+MCal.getStr(d));
+			if(d>1)
+				return 0; // reject
 			if(!g_jsm.is_idle()&&x<old_x) {
 				SLog.prn(1, "not idle, x<old_x: "+MCal.getStr(x)+","+MCal.getStr(old_x));
-				return 1;
+				return 2; // idle and change
 			}
 //			a.prn();
-			if(d<=1) {
-				g_tm.setX(x);
-				g_sm.setX(x);
-			}
+			g_tm.setX(x);
+			g_sm.setX(x);
 		}
-		return 2;
+		return 1; // OK
 	}
 
 

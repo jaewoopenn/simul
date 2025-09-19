@@ -28,15 +28,6 @@ public abstract class TaskSimul  {
 	/// init 
 	
 	
-	private void init() {
-		g_jsm=new JobSimul(g_tm.size());
-		g_si=new SimulInfo();
-//		Log.prn(1, "num:"+g_tm.size());
-		g_ext.setSI(g_si);
-		g_ext.setJSM(g_jsm);
-		initSimul();
-		g_ext.initModeAll();
-	}
 	
 
 	public void init_sm_dt(SysMng sm, DTaskVec dt ){
@@ -46,7 +37,17 @@ public abstract class TaskSimul  {
 		g_tm.setX(sm.getX());
 		g_ext=new TS_ext(g_sm);
 		g_ext.setTM(g_tm);
-		init();
+		init_after();
+	}
+	
+	private void init_after() {
+		g_jsm=new JobSimul(g_tm.size());
+		g_si=new SimulInfo();
+//		Log.prn(1, "num:"+g_tm.size());
+		g_ext.setSI(g_si);
+		g_ext.setJSM(g_jsm);
+		initSimul();
+		g_ext.initModeAll();
 	}
 
 	/////////////
@@ -125,10 +126,11 @@ public abstract class TaskSimul  {
 				TaskMng tm=DTUtil.getCurTM(g_dt);
 				int rs=changeVD_nextSt(tm);
 				if(rs==0) {
+					SLog.prn("rejected");
 					g_si.reject++;
 				} else if(rs==1) {
 					setTM(tm);
-				} else {
+				} else {  //go to idle and change
 					g_change_tm=true;
 					
 				}
