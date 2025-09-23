@@ -5,10 +5,10 @@ import java.util.PriorityQueue;
 
 public class JobMng {
 	private PriorityQueue<Job> g_jobs;
-	private PriorityQueue<DenItem> g_den;
+	private PriorityQueue<Density> g_den;
 	public JobMng() {
 		g_jobs=new PriorityQueue<Job>();
-		g_den=new PriorityQueue<DenItem>();
+		g_den=new PriorityQueue<Density>();
 	}
 
 	
@@ -42,15 +42,15 @@ public class JobMng {
 	
 	public void add(Job job) {
 		g_jobs.add(job);
-		g_den.add(new DenItem(job,job.den));
+		g_den.add(new Density(job,job.den));
 	}
 	public Job getCur(){
 		return g_jobs.peek();
 	}
 	public Job removeCur(){
 		Job j=g_jobs.poll();
-		DenItem dd=null;
-		for(DenItem d:g_den) {
+		Density dd=null;
+		for(Density d:g_den) {
 			if(d.j==j)
 				dd=d;
 		}
@@ -65,7 +65,7 @@ public class JobMng {
 
 	public Job pickDenBelow(double den) {
 		Job o=null;
-		for(DenItem d:g_den) {
+		for(Density d:g_den) {
 			if(d.j.opt!=0&&d.den<den) {
 				o=d.j;
 				break;
