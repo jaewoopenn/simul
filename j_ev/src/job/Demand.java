@@ -1,10 +1,10 @@
 package job;
 
-public class Dem implements Comparable<Dem>{
+public class Demand implements Comparable<Demand>{
 	public int t;
 	public int d;
 	@Override
-	public int compareTo(Dem o) {
+	public int compareTo(Demand o) {
 		double o_t = o.t;  
 		if (t>o_t)
 			return 1;

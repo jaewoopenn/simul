@@ -24,5 +24,16 @@ public class JobMisc {
 		}
 		
 	}
+	public static void prn_den(PriorityQueue<DenItem> g_den) {
+		if(g_den.size()==0){
+			SLog.prn("none");
+			return;
+		}
+		for(DenItem d:g_den){
+//			SLog.prn(d.den+" ");
+			SLog.prn(d.j.info());
+		}
+		
+	}
 
 }

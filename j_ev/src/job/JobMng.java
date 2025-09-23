@@ -4,9 +4,11 @@ import java.util.PriorityQueue;
 
 
 public class JobMng {
-	protected PriorityQueue<Job> g_jobs;
+	private PriorityQueue<Job> g_jobs;
+	private PriorityQueue<DenItem> g_den;
 	public JobMng() {
 		g_jobs=new PriorityQueue<Job>();
+		g_den=new PriorityQueue<DenItem>();
 	}
 
 	
@@ -40,47 +42,60 @@ public class JobMng {
 	
 	public void add(Job job) {
 		g_jobs.add(job);
+		g_den.add(new DenItem(job,job.den));
 	}
 	public Job getCur(){
 		return g_jobs.peek();
 	}
 	public Job removeCur(){
-		return g_jobs.poll();
+		Job j=g_jobs.poll();
+		DenItem dd=null;
+		for(DenItem d:g_den) {
+			if(d.j==j)
+				dd=d;
+		}
+		g_den.remove(dd);
+		return j;
 	}
 
 
 
 
-	public boolean remove(int et, int e) {
+
+
+	public Job pickDenBelow(double den) {
 		Job o=null;
-		for(Job j:g_jobs) {
-			if(et==j.dl&&e==j.exec) {
-				o=j;
+		for(DenItem d:g_den) {
+			if(d.j.opt!=0&&d.den<den) {
+				o=d.j;
 				break;
 			}
 		}
 		if(o!=null) {
-			g_jobs.remove(o);
-			return true;
-		}
-		return false;
-		
-	}
-
-
-	public Job removeDen(double d) {
-		Job o=null;
-		for(Job j:g_jobs) {
-			if(j.den<d) {
-				o=j;
-				break;
-			}
-		}
-		if(o!=null) {
-			g_jobs.remove(o);
 			return o;
 		}
 		return null;
+		
+	}
+//	public boolean remove(int et, int e) {
+//	Job o=null;
+//	for(Job j:g_jobs) {
+//		if(et==j.dl&&e==j.exec) {
+//			o=j;
+//			break;
+//		}
+//	}
+//	if(o!=null) {
+//		g_jobs.remove(o);
+//		return true;
+//	}
+//	return false;
+//	
+//}
+
+
+	public void prn_den() {
+		JobMisc.prn_den(g_den);
 		
 	}
 	

@@ -21,12 +21,12 @@ public class z_sys3 {
 	{
 		JobSys js=new JobSys();
 		int d=0;
-		js.add_in(4,3,1);
-		d=js.getRem(3);
+		js.add_in(4,3,0,1);
+		d=js.gemRem(3);
 		SLog.prn("rem:"+d);
 		if(d<2) {
-			js.removeDen(1);
-			d=js.getRem(3);
+			js.removeOpt(1,1);
+			d=js.gemRem(3);
 			SLog.prn("rem:"+d);
 			
 		}
@@ -38,21 +38,21 @@ public class z_sys3 {
 
 	public int test2() {
 		JobSys js=new JobSys();
-		boolean b=js.add_repl(4,3,1);
+		boolean b=js.add_repl(4,3,0,1);
 		if(b) {
 			SLog.prn("OK 1");
 		}
 		js.dbf();
-		b=js.add_repl(3,2,2);
+		b=js.add_repl(3,2,0,2);
 		if(b) {
 			SLog.prn("OK 2");
 		}
 		js.dbf();
-		b=js.add_repl(3,2,1);
+		b=js.add_repl(3,2,0,1);
 		if(b) {
 			SLog.prn("OK 3");
 		}
-		js.prn_in();
+		js.prn_ok();
 		js.dbf();
 		return -1;
 	}

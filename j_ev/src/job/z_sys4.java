@@ -2,12 +2,16 @@ package job;
 
 
 import util.SEngineT;
+import util.SLog;
 
-public class z_sys1 {
+public class z_sys4 {
 	public static void init_s() {
 		s_idx=1;
 //		s_idx=2;
 //		s_idx=3;
+//		s_idx=4;
+//		s_idx=5;
+//		s_idx=6;
 		
 		
 		s_log_level=1;
@@ -15,21 +19,26 @@ public class z_sys1 {
 
 	public int test1() 
 	{
-//		JobSys js=new JobSys();
-//		js.add(5,2,3);
-//		js.add(16,2,2);
-//		js.add(15,1,2);
-//		js.add(5,2,2);
-//		js.add(30,3,4);
-//		js.add(4,2,1);
-//		js.prn_input();
-//		js.addAll();
+		JobSys js=new JobSys();
+		js.add_repl(4,2,1,3);
+		js.add_repl(6,1,2,2);
 //		js.dbf();
+		js.add_repl(5,1,0,1);
+		js.prn_den();
+		js.dbf();
+//		js.prn_ok();
 		
 		return -1;
 	}
 
 	public int test2() {
+		JobSys js=new JobSys();
+		js.add_repl(4,2,1,3);
+		js.add_repl(6,2,1,2);
+//		js.dbf();
+		js.add_repl(5,1,0,2);
+//		js.dbf();
+		js.prn_ok();
 		return -1;
 	}
 	public int test3() {
@@ -59,10 +68,10 @@ public class z_sys1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_sys1.init_s();
-		Class c = z_sys1.class;
-		z_sys1 m=new z_sys1();
-		int[] aret=z_sys1.gret;
+		z_sys4.init_s();
+		Class c = z_sys4.class;
+		z_sys4 m=new z_sys4();
+		int[] aret=z_sys4.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
