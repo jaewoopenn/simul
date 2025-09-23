@@ -21,6 +21,7 @@ public class z_DTaskVec {
 		
 		return 1;
 	}
+	// 지금 추가한걸.... reject 시켜야 한다. 
 	public int test2()
 	{
 		DTaskVec tasks=new DTaskVec(3);
