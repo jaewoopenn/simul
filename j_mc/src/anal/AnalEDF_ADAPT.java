@@ -103,6 +103,9 @@ public class AnalEDF_ADAPT extends Anal {
 	}
 	@Override
 	public void setX(double x) {
+		if(x<=0||x>1) {
+			SLog.err("anal... x:"+x);
+		}
 		g_x=x;
 	}
 

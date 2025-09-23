@@ -67,6 +67,8 @@ public class TaskSet {
 
 	public void prn() {
 		for(Task t:g_tasks){
+			if(t.removed())
+				continue;
 			t.prnTxt();
 		}
 		

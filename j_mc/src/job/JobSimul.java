@@ -108,6 +108,9 @@ public class JobSimul {
 					SLogF.prn("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
 					g_jm.removeCur();
 				} else {
+					if(SLogF.isON())
+						SLogF.save();
+					g_jm.prn();
 					SLog.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+", vd:"+j.vd+", dl:"+j.dl);
 				}
 				

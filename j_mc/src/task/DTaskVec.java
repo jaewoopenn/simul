@@ -13,6 +13,7 @@ import util.MLoop;
 
 public class DTaskVec {
 	private TaskVec[] g_taskV;
+	private TaskVec g_addV;
 	private Integer[] g_stageTime;
 	private Integer[] g_stageClass; // 0: add , 1: remove
 	private int g_num;
@@ -25,16 +26,23 @@ public class DTaskVec {
 		for(int i:MLoop.on(num)) {
 			g_taskV[i]=new TaskVec();
 		}
+		g_addV=new TaskVec();
 	}
 	
 	// Make 
-	public void add(int stage, Task t){
-		g_taskV[stage].add(t);
+	public void add(Task t) {
+		g_addV.add(t);
+	}
+	public void addTasks(int stage){
+		for(Task t:g_addV.getVec()) {
+			g_taskV[stage].add(t);
+		}
 		g_stageClass[stage]=0;
+		g_addV=new TaskVec();
 	}
 	
 	public void remove(int stage,int i){
-		g_taskV[stage].remove(i);
+		g_taskV[stage].mark_removed(i);
 		g_stageClass[stage]=1;
 	}
 	
@@ -57,7 +65,7 @@ public class DTaskVec {
 
 	
 
-	public int getStage() {
+	public int getCurSt() {
 		return g_stage;
 	}
 

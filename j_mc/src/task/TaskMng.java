@@ -66,6 +66,8 @@ public class TaskMng {
 	public double getRUtilFMC() {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			if(!t.isHC())  
 				continue;
 			if(t.isHM()) {
@@ -76,6 +78,8 @@ public class TaskMng {
 //		return util;
 		double cur=0;
 		for(Task t:g_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			if(t.isHC())  
 				continue;
 			if(!t.isDrop())
@@ -88,6 +92,8 @@ public class TaskMng {
 	public double getRUtil() {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			util+=g_info.computeRU(t);
 //			SLogF.prn("ru:"+util);			
 		}
@@ -96,6 +102,8 @@ public class TaskMng {
 	public double getVUtil() {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			util+=g_info.computeVU(t);
 //			SLogF.prn("ru:"+util);			
 		}
@@ -108,9 +116,13 @@ public class TaskMng {
 	public double getWCUtil() {
 		double util=0;
 		for(Task t:g_hc_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			util+=t.getHiUtil();
 		}
 		for(Task t:g_lc_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			util+=getDroppedUtil(t);
 		}
 		return util;
@@ -118,6 +130,8 @@ public class TaskMng {
 	public double getLoUtil() {
 		double util=0;
 		for(Task t:g_lc_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			util+=t.getLoUtil();
 		}
 		return util;
@@ -126,6 +140,8 @@ public class TaskMng {
 	public double getDeLoUtil() {
 		double util=0;
 		for(Task t:g_lc_tasks.getArr())	{
+			if(t.removed())
+				continue;
 			util+=t.getHiUtil();
 		}
 		return util;
@@ -241,6 +257,13 @@ public class TaskMng {
 	public void prnPara() {
 		g_tasks.prnPara();
 		
+	}
+
+
+
+
+	public double getX() {
+		return g_info.getX();
 	}
 
 	

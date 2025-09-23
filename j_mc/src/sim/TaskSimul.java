@@ -30,11 +30,11 @@ public abstract class TaskSimul  {
 	
 	
 
-	public void init_sm_dt(SysMng sm, DTaskVec dt ){
+	public void init_sm_dt(SysMng sm,double x, DTaskVec dt ){
 		g_sm=sm;
 		g_dt=dt;
 		g_tm=DTUtil.getTM(dt,0);
-		g_tm.setX(sm.getX());
+		g_tm.setX(x);
 		g_ext=new TS_ext(g_sm);
 		g_ext.setTM(g_tm);
 		init_after();
@@ -107,7 +107,7 @@ public abstract class TaskSimul  {
 		if(t==g_dt.getNextTime()) {
 			g_dt.nextStage();
 			g_si.stage++;
-			int st=g_dt.getStage();
+			int st=g_dt.getCurSt();
 			SLog.prn(1,t+": stage change "+st);
 			if(g_dt.getClass(st)==0) { // add
 				g_si.start_delay=t;
@@ -127,6 +127,10 @@ public abstract class TaskSimul  {
 				int rs=changeVD_nextSt(tm);
 				if(rs==0) {
 					SLog.prn("rejected");
+//					Task t=tm.getT
+//					tm.getL
+					setTM(tm);
+					
 					g_si.reject++;
 				} else if(rs==1) {
 					setTM(tm);
@@ -141,7 +145,9 @@ public abstract class TaskSimul  {
 	}
 
 	private void setTM(TaskMng tm) {
+		g_tm.prnOffline();
 		g_tm=tm;
+		g_tm.prnOffline();
 //		tm.prn();
 		g_ext.setTM(tm);
 	}
@@ -151,6 +157,10 @@ public abstract class TaskSimul  {
 		int t=g_jsm.get_time();
 		String s="";
 		for(Task tsk:g_tm.getTasks()){
+			if(tsk.removed()) {
+				s+="-";
+				continue;
+			}
 			if (t%tsk.period!=0){
 				s+="-";
 				continue;

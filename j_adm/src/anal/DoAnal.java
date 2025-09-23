@@ -2,6 +2,7 @@ package anal;
 
 import task.DTUtil;
 import task.DTaskVec;
+import task.TaskMng;
 import util.MCal;
 import util.SLog;
 
@@ -24,9 +25,17 @@ public class DoAnal {
 		
 		
 		for(int i=0;i<dt.getStageNum();i++) {
-			g_anal.init(DTUtil.getTM(dt,i));
+			SLog.prn("Stage: "+i);
+			TaskMng tm=DTUtil.getTM(dt,i);
+			tm.prn();
+			g_anal.init(tm);
 			if(x==-1) 
 				x=g_anal.computeX();
+			if(x<=0||x>1) {
+				SLog.prn(1, "x: "+x);
+				dtm=2;
+				break;
+			}
 			g_anal.setX(x);
 //			g_anal.prn();
 			double d=g_anal.getDtm();
@@ -35,6 +44,11 @@ public class DoAnal {
 				double mod=g_anal.getModX();
 				if(mod!=-1) {
 					x=mod;
+					if(x<=0||x>1) {
+						SLog.prn(1, "re x: "+x);
+						dtm=2;
+						break;
+					}
 					g_anal.setX(x);
 					d=g_anal.getDtm();
 					SLog.prn(1, "re x, dtm: "+x+","+d);
@@ -43,7 +57,7 @@ public class DoAnal {
 			dtm= Math.max(dtm, d);
 		}
 
-//		SLog.prn(1, "dtm: "+x+","+dtm);
+//		SLog.prn("x, dtm: "+x+","+dtm);
 		if(dtm<=1+MCal.err)
 			g_rs="1";
 		else

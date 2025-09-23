@@ -79,9 +79,7 @@ public class z_auto_sim_imc {
 	public void simul() {
 		MList fu=MList.new_list();
 		for(int i=0;i<2;i++) {
-			DoSimul ds=new DoSimul(i);
-			ds.setProb(g_p_ms);
-			ds.setDur(g_dur);
+			DoSimul ds=new DoSimul(i,g_dur,g_p_ms);
 			AutoSimul as=new AutoSimul(g_path,ds);
 			as.setRS(g_rs_path);
 			String rs=as.simulList(g_ts);

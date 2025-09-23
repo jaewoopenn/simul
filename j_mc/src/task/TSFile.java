@@ -88,11 +88,12 @@ public class TSFile {
 	        words=line.split(",");
 	        if(words[0].equals("add")) {
 	        	t=loadTask(words);
-	        	tasks.add(stage,t);
+	        	tasks.add(t);
 	        } else if(words[0].equals("remove")) {
 	        	int idx=Integer.valueOf(words[1]).intValue();
 	        	tasks.remove(stage,idx);
 	        } else if(words[0].equals("next")) {
+	        	tasks.addTasks(stage);
 	        	stage++;
 //	        	SLog.prn(1, words[1]);
 	        	int time=Integer.valueOf(words[1]).intValue();
@@ -100,6 +101,7 @@ public class TSFile {
 	        	DTUtil.copy(tasks, stage-1,stage);
 	        }
 	    }
+		tasks.addTasks(stage);
 	    return tasks;
 	}
 	

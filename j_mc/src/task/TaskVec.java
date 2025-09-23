@@ -25,14 +25,12 @@ public class TaskVec {
 		return g_taskV.size();
 	}
 	
-	public void remove(Task t) {
-		g_taskV.remove(t);
-	}
-	public void removeLast(){
-		g_taskV.remove(g_taskV.size()-1);
-	}
-	public void remove(int i){
-		g_taskV.remove(i);
+//	public void remove(int i){
+//		g_taskV.remove(i);
+//	}
+	public void mark_removed(int i) {
+		Task t=g_taskV.elementAt(i);
+		t.markRemoved();
 	}
 	
 	public Vector<Task> getVec(){

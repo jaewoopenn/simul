@@ -1,17 +1,19 @@
 package task;
 import util.SEngineT;
+import util.SLog;
 
 public class z_DTaskVec {
-	public static int idx=1;
-//	public static int idx=2;
+//	public static int idx=1;
+	public static int idx=2;
 //	public static int idx=3;
 //	public static int idx=4;
 	public static int log_level=1;
 	public int test1()
 	{
-		DTaskVec tasks=new DTaskVec(3);
-		tasks.add(0, new Task(5,1,2,false));
-		tasks.add(0, new Task(3,1,2,false));
+		DTaskVec tasks=new DTaskVec(2);
+		tasks.add( new Task(5,1,2,false));
+		tasks.add( new Task(3,1,2,false));
+		tasks.addTasks(0);
 		DTUtil.copy(tasks,0,1);
 		tasks.remove(1,1);
 		DTUtil.prn(tasks);
@@ -21,7 +23,18 @@ public class z_DTaskVec {
 	}
 	public int test2()
 	{
-		
+		DTaskVec tasks=new DTaskVec(3);
+		tasks.add( new Task(5,1,2,false));
+		tasks.add( new Task(3,1,2,false));
+		tasks.addTasks(0);
+		DTUtil.copy(tasks,0,1);
+		tasks.add( new Task(12,2,3,false));
+		tasks.addTasks(1);
+		SLog.prn("rejected ");
+		tasks.remove(1,2);
+		DTUtil.copy(tasks,1,2);
+		tasks.remove(2,1);
+		DTUtil.prn(tasks);
 		return 0;
 	}
 	

@@ -21,7 +21,8 @@ public class DTUtil {
 		Vector<Task> srcV=tasks.getVec(src);
 		TaskVec tv=new TaskVec();
 		for(Task t:srcV) {
-			tv.add(t);
+			Task tsk=t.copy();
+			tv.add(tsk);
 		}
 		tasks.setVec(dst, tv);
 	}
@@ -31,7 +32,7 @@ public class DTUtil {
 	}
 	
 	public static TaskMng getCurTM(DTaskVec dt){
-		return getTM(dt,dt.getStage());
+		return getTM(dt,dt.getCurSt());
 	}
 	
 }

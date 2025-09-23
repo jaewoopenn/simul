@@ -50,5 +50,10 @@ public class SimulInfo {
 		double per=(double)degraded/total;
 		return per;
 	}
+	public void prn() {
+		prn_imc();
+		SLog.prn(2, getDegraded()+"");
+		
+	}
 	
 }

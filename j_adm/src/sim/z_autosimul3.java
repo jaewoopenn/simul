@@ -25,7 +25,7 @@ public class z_autosimul3 {
 
 	
 	public int test1()	{
-		DTaskVec dt=getDT(1);
+		DTaskVec dt=getDT(7);
 		
 		DoAnal da=new DoAnal(0);
 		da.run(dt);
@@ -34,18 +34,18 @@ public class z_autosimul3 {
 	}
 	
 	public int test2() {
-		int dur=10000;
+		int dur=1100;
 		double prob=0.4;
-		DTaskVec dt=getDT(5);
+		DTaskVec dt=getDT(7);
 //		DTUtil.prn(dt);
 		String out="adm/test.txt";
 
-		DoSimul ds=new DoSimul(0);
+		DoSimul ds=new DoSimul(0,dur,prob);
 //		ds.setTrace(out);
-		ds.setProb(prob);
-		ds.setDur(dur);
 		ds.run(dt);
-		ds.prn();
+		
+		SimulInfo si=ds.getSI();
+		si.prn();
 		return 0;
 	}
 	public int test3() {
@@ -59,11 +59,10 @@ public class z_autosimul3 {
 		int i=0;
 		while(dt!=null) {
 			SLog.prn(2,"#### no: "+i+" #####");
-			DoSimul ds=new DoSimul(0);
-			ds.setProb(prob);
-			ds.setDur(dur);
+			DoSimul ds=new DoSimul(0,dur,prob);
 			ds.run(dt);
-			ds.prn();
+			SimulInfo si=ds.getSI();
+			si.prn();
 			
 			dt= sy.loadOne();
 			i++;

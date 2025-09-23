@@ -16,6 +16,7 @@ public class Task {
 	public int c_l;
 	public int c_h;
 	public double vd;
+	private boolean is_removed=false;
 	protected boolean is_HC=false;
 	protected boolean is_HI_Mode=false;
 //	protected boolean is_MS_Mode=false;
@@ -136,9 +137,11 @@ public class Task {
 		SLog.prnc(2, "tid:"+tid);
 		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
 		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
+		if(is_removed) {
+			SLog.prnc(2, ", removed");
+		}
 		if (is_HC){
 			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
-			
 		}else{
 			SLog.prn(2,", LO-task ");
 		}
@@ -212,6 +215,24 @@ public class Task {
 	public void setNormal() {
 		 is_hi_preferred = false;
 		 is_HI_Mode=false;
+	}
+
+
+	public Task copy() {
+		Task t=new Task(tid, period, c_l, c_h, is_HC);
+		if(is_removed)
+			t.markRemoved();
+		return t;
+	}
+
+
+	public void markRemoved() {
+		is_removed=true;
+	}
+
+
+	public boolean removed() {
+		return is_removed;
 	}
 
 

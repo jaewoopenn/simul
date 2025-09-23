@@ -54,15 +54,16 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 		g_delayed_t=t+add;				
 		
 	}
+	
 
 	@Override
 	protected int changeVD_nextSt(TaskMng tm) {
 		Anal a=new AnalEDF_VD_ADM();
 		a.init(tm);
-		double old_x=g_sm.getX();
+		double old_x=g_tm.getX();
 		a.setX(old_x);
 		double d=a.getDtm();
-		SLog.prn(1, "x,dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
+		SLog.prn(1, "x, dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
 //		a.prn();
 		if(d>1) { // need to change x
 			SLog.prn(1, "x need to be changed");
@@ -80,8 +81,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 				return 2; // idle and change
 			}
 //			a.prn();
-			g_tm.setX(x);
-			g_sm.setX(x);
+			tm.setX(x);
 		}
 		return 1; // OK
 	}

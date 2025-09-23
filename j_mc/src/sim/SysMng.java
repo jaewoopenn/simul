@@ -4,7 +4,7 @@ import util.SLog;
 
 public class SysMng {
 	private double g_prob=-1;
-	private double g_x=-1;
+//	private double g_x=-1;
 	private int g_delay;
 	private int g_et;
 	
@@ -15,12 +15,12 @@ public class SysMng {
 		}
 		return g_prob;
 	}
-	public double getX() {
-		if(g_x==-1) {
-			SLog.err("SysMng:x is not set");
-		}
-		return g_x;
-	}
+//	public double getX() {
+//		if(g_x==-1) {
+//			SLog.err("SysMng:x is not set");
+//		}
+//		return g_x;
+//	}
 	public int getDelay() {
 		return g_delay;
 	}
@@ -37,15 +37,15 @@ public class SysMng {
 		g_prob=d;
 	}
 
-	public void setX(double d) {
-		if(d<=0 || d>1) {
-			SLog.err("x<0 or x>1: "+ d);
-		}
-		g_x=d;
-	}
+//	public void setX(double d) {
+//		if(d<=0 || d>1) {
+//			SLog.err("x<0 or x>1: "+ d);
+//		}
+//		g_x=d;
+//	}
 	public void prn() {
 		SLog.prn(2, "prob:"+g_prob);
-		SLog.prn(2, "x:"+g_x);
+//		SLog.prn(2, "x:"+g_x);
 		SLog.prn(2, "delay:"+g_delay);
 		
 	}
