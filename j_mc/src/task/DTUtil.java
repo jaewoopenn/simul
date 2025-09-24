@@ -12,7 +12,7 @@ public class DTUtil {
 			SLog.prn("stage: "+i);
 			SLog.prn("class: "+t.getClass(i));
 			TaskMng tm=getTM(t,i);
-			tm.prn();
+			TaskUtil.prn(tm);
 			
 		}
 	}
@@ -26,7 +26,7 @@ public class DTUtil {
 		}
 		tasks.setVec(dst, tv);
 	}
-	public static TaskMng getTM(DTaskVec dt, int stage){
+	private static TaskMng getTM(DTaskVec dt, int stage){
 		TaskSet ts=new TaskSet(dt.getVec(stage));
 		return ts.getTM();
 	}

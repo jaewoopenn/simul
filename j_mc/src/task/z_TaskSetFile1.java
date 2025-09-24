@@ -32,7 +32,7 @@ public class z_TaskSetFile1 {
 		for(int i=0;i<num;i++) {
 			TaskSet tmp=new TaskSet(dt.getVec(i));
 			TaskMng tm=tmp.getTM();
-			tm.prn();
+			TaskUtil.prn(tm);
 			SLog.prn(2, "---");
 		}
 		return 0;
@@ -43,7 +43,7 @@ public class z_TaskSetFile1 {
 		tmp.add(new TaskMC(3,1));
 		tmp.add(new TaskMC(4,1));
 		TaskMng tm=tmp.getTM();
-		tm.prn();
+		TaskUtil.prn(tm);
 		TSFile.writeFile("test/test.txt",tm.getTasks());
 		return 1;
 	}

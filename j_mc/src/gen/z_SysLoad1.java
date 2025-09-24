@@ -2,6 +2,7 @@ package gen;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
+import task.TaskUtil;
 import util.SLog;
 import util.SEngineT;
 
@@ -29,7 +30,7 @@ public class z_SysLoad1 {
 			SLog.prn(1, "time: "+dt.getTime(i));
 			TaskSet its=new TaskSet(dt.getVec(i));
 			TaskMng tm=its.getTM();
-			tm.prn();
+			TaskUtil.prn(tm);
 			SLog.prn(1, "----");
 		}
 		return 1;

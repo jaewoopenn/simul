@@ -17,8 +17,8 @@ public class z_auto_sim_imc {
 	public static void init_s() {
 		
 //		s_idx=1;
-//		s_idx=2;
-		s_idx=3;
+		s_idx=2;
+//		s_idx=3;
 		
 //		s_log_level=1;
 		s_log_level=2;
@@ -26,9 +26,9 @@ public class z_auto_sim_imc {
 	
 	public void init_g() {
 		g_path="adm/sim";
-		g_num=10;
+//		g_num=10;
 //		g_num=30;
-//		g_num=500;
+		g_num=500;
 //		g_num=5000;
 		
 //		g_dur=1000;

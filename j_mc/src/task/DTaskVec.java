@@ -32,12 +32,13 @@ public class DTaskVec {
 	// Make 
 	public void add(Task t) {
 		g_addV.add(t);
+		t.markNew();
 	}
 	public void addTasks(int stage){
 		for(Task t:g_addV.getVec()) {
 			g_taskV[stage].add(t);
+			g_stageClass[stage]=0;
 		}
-		g_stageClass[stage]=0;
 		g_addV=new TaskVec();
 	}
 	
@@ -52,6 +53,22 @@ public class DTaskVec {
 		g_stageTime[stage]=value;
 	}
 
+	public int getTime(int stage) {
+		return g_stageTime[stage];
+	}
+	public int getClass(int stage) {
+		return g_stageClass[stage];
+	}
+	public int getStageNum() {
+		return g_num;
+	}
+	
+	// Operation
+	public int getCurSt() {
+		return g_stage;
+	}
+
+
 	public void nextStage() {
 		g_stage++;
 	}
@@ -65,22 +82,9 @@ public class DTaskVec {
 
 	
 
-	public int getCurSt() {
-		return g_stage;
-	}
-
 	// get
 	
-	public int getTime(int stage) {
-		return g_stageTime[stage];
-	}
-	public int getClass(int stage) {
-		return g_stageClass[stage];
-	}
 
-	public int getStageNum() {
-		return g_num;
-	}
 	
 	public Vector<Task> getVec(int stage){
 		return g_taskV[stage].getVec();
@@ -88,5 +92,23 @@ public class DTaskVec {
 	public void setVec(int stage,TaskVec tv){
 		g_taskV[stage]=tv;
 	}
+
+	public void reject() {
+		for(Task t:g_taskV[g_stage].getVec()) {
+			if(!t.is_new())
+				continue;
+			t.markRemoved();
+			for(int i=g_stage+1;i<g_num;i++) {
+				for(Task t2:g_taskV[i].getVec()) {
+					if(t2.tid==t.tid)
+						t2.markRemoved();
+					
+				}
+				
+			}
+		}
+		
+	}
+
 
 }

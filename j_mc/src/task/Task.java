@@ -6,17 +6,17 @@ Individual Task
 */
 
 
-import util.SLog;
-import util.MCal;
+//import util.SLog;
+//import util.MCal;
 import util.SLogF;
 
 public class Task {
 	public int tid;
 	public int period;
-	public int c_l;
-	public int c_h;
-	public double vd;
-	private boolean is_removed=false;
+	public int c_l;   // ac
+	public int c_h;   // de
+	public int vd;
+	private int status=0; // 0: normal, 1: new, 2: removed
 	protected boolean is_HC=false;
 	protected boolean is_HI_Mode=false;
 //	protected boolean is_MS_Mode=false;
@@ -68,97 +68,8 @@ public class Task {
 	}
 
 	
-	public void prn() {
-		SLog.prnc(2, "tid:"+tid);
-		SLog.prnc(2, " p:"+period);
-		if (is_HC){
-			SLog.prnc(2," cl:"+c_l+" ch:"+c_h+" vd:"+vd);
-			SLog.prnc(2," mode:"+is_HI_Mode);
-			
-		}else{
-			SLog.prnc(2," cl:"+c_l);
-			SLog.prnc(2," isDrop:"+is_dropped);
-		}
-		SLog.prnc(2," hi-crit?"+is_HC);
-		SLog.prn(2," util:"+getLoUtil());
-	}
-	
-	public void prnShort() {
-		SLog.prnc(2, tid);
-		SLog.prnc(2, ", "+period);
-		SLog.prnc(2, ", "+c_l);
-		SLog.prnc(2, ", "+c_h);
-		if (is_HC)
-			SLog.prn(2,", H");
-		else
-			SLog.prn(2,", L");
-	}
-	
-	public void prnTxt() {
-		SLog.prnc(2, "tid: "+tid);
-		SLog.prnc(2, ", p: "+period);
-		SLog.prnc(2, ", cl: "+c_l);
-		SLog.prnc(2, ", ch: "+c_h);
-		if (is_HC)
-			SLog.prn(2,", HC");
-		else
-			SLog.prn(2,", LC");
-	}
 	
 	
-	public void prnRuntime() {
-		SLog.prnc(2, "tid:"+tid);
-		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
-		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
-		if (is_HC){
-			SLog.prn(2," isHM:"+is_HI_Mode);
-//			SLog.prn(2," isHI_Only:"+is_hi_preferred);
-			
-		}else{
-			SLog.prn(2," isDrop:"+is_dropped);
-		}
-		
-	}
-	public void prnStat() {
-		SLog.prnc(2, "tid:"+tid);
-		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
-		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
-		if (is_HC){
-			SLog.prnc(2," isHM:"+is_HI_Mode);
-			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
-			
-		}else{
-			SLog.prn(2," isDrop:"+is_dropped);
-		}
-		
-	}
-	
-	public void prnOffline() {
-		SLog.prnc(2, "tid:"+tid);
-		SLog.prnc(2, ", "+MCal.getStr(getLoUtil()));
-		SLog.prnc(2, ", "+MCal.getStr(getHiUtil()));
-		if(is_removed) {
-			SLog.prnc(2, ", removed");
-		}
-		if (is_HC){
-			SLog.prn(2,", is_hi_preferred:"+is_hi_preferred);
-		}else{
-			SLog.prn(2,", LO-task ");
-		}
-		
-	}
-	public void prnPara() {
-		SLog.prnc(2, "tmp.add(new Task(");
-		SLog.prnc(2, period);
-		if (is_HC){
-			SLog.prnc(2, ", "+c_l);
-			SLog.prnc(2, ", "+c_h);
-		} else {
-			SLog.prnc(2, ", "+c_l);
-		}
-		SLog.prn(2, "));");
-
-	}
 
 	// operation
 	public void initMode() {
@@ -205,8 +116,8 @@ public class Task {
 
 
 	//set Param
-	public void setX(double x){
-		this.vd=x*this.period;
+	public void setVD(double x){
+		this.vd=(int)Math.floor(x*this.period);
 	}
 	public void setHI_only() {
 		 is_hi_preferred = true;
@@ -220,19 +131,23 @@ public class Task {
 
 	public Task copy() {
 		Task t=new Task(tid, period, c_l, c_h, is_HC);
-		if(is_removed)
-			t.markRemoved();
 		return t;
 	}
 
 
 	public void markRemoved() {
-		is_removed=true;
+		status=2;
+	}
+	public void markNew() {
+		status=1;
 	}
 
 
 	public boolean removed() {
-		return is_removed;
+		return status==2;
+	}
+	public boolean is_new() {
+		return status==1;
 	}
 
 

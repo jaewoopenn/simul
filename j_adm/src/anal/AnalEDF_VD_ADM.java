@@ -72,17 +72,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (dtm<=1)
 			return dtm;
 		dtm=getDtm2();
-////		int n=0;
-//		while(dtm>1+MCal.err) {
-//			double old_dtm=dtm;
-////			SLog.prn(2, "RE:"+n+", "+g_x);
-//			g_x=computeX();
-//			comp_hi_prefer();
-//			dtm=getDtm2();
-//			if(old_dtm==dtm)
-//				break;
-////			n++;
-//		}
 		return dtm;
 	}
 	public double getDtm2() {
@@ -96,11 +85,13 @@ public class AnalEDF_VD_ADM extends Anal {
 		dtm2=lc_de+(hc_hi-hc_lo)/(1-g_x);
 		dtm=lc_ac;
 		for(Task t:g_tm.get_HC_Tasks()){
+			if(t.removed())
+				continue;
 			double v_util=t.getLoUtil()/g_x;
 			double h_util=t.getHiUtil();
 			dtm+=Math.min(v_util,h_util);
 		}
-//		SLog.prn(2, "dtm:"+MCal.getStr(dtm)+", "+MCal.getStr(dtm2));
+//		SLog.prn(2, "dtm:"+MCal.getStr(dtm)+", ÷"+MCal.getStr(dtm2));
 		double max=Math.max(dtm, dtm2);
 		if(max>1+MCal.err)
 			return max;
@@ -118,6 +109,8 @@ public class AnalEDF_VD_ADM extends Anal {
 		double nr_lo=0;
 		double r_hi=0;
 		for(Task t:g_tm.get_HC_Tasks()){
+			if(t.removed())
+				continue;
 			if(t.isHI_Preferred()) {
 				r_hi+=t.getHiUtil();
 			} else {

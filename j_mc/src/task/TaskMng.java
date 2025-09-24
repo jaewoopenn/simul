@@ -13,14 +13,37 @@ public class TaskMng {
 	private TaskSet g_lc_tasks;
 	private SysInfo g_info;
 
-	public TaskMng(Task[] ts,TaskSet hi_tasks,TaskSet lo_tasks,SysInfo info) {
+	public TaskMng(Task[] ts,TaskSet hi_tasks,TaskSet lo_tasks) {
 		this.g_tasks=new TaskSet(ts);
 		this.g_hc_tasks = hi_tasks;
 		this.g_lc_tasks = lo_tasks;
-		this.g_info = info;
+		g_info=new SysInfo();
+		updateInfo();
 		g_lc_tasks.sortLo();
 	}
-	
+	public void updateInfo() {
+		double loutil=0;
+		double loutil_de=0;
+		double hiutil_lm=0;
+		double hiutil_hm=0;
+		for(Task t:g_tasks.getArr())
+		{
+			if(t.removed())
+				continue;
+			if(t.isHC()){
+				hiutil_lm+=t.getLoUtil();
+				hiutil_hm+=t.getHiUtil();
+			} else {
+				loutil+=t.getLoUtil();
+				loutil_de+=t.getHiUtil();
+			}
+		}
+		g_info.setLo_util(loutil);
+		g_info.setLo_de_util(loutil_de);
+		g_info.setUtil_HC_HI(hiutil_hm);
+		g_info.setUtil_HC_LO(hiutil_lm);
+		
+	}
 
 
 	
@@ -32,7 +55,7 @@ public class TaskMng {
 
 	public void setX(double x){
 		g_info.setX(x);
-		g_hc_tasks.setX(x);
+		g_hc_tasks.setVD(x);
 		g_hc_tasks.set_HI_only();
 	}
 
@@ -89,16 +112,16 @@ public class TaskMng {
 	}
 
 	
-	public double getRUtil() {
-		double util=0;
-		for(Task t:g_tasks.getArr())	{
-			if(t.removed())
-				continue;
-			util+=g_info.computeRU(t);
-//			SLogF.prn("ru:"+util);			
-		}
-		return util;
-	}
+//	public double getRUtil() {
+//		double util=0;
+//		for(Task t:g_tasks.getArr())	{
+//			if(t.removed())
+//				continue;
+//			util+=g_info.computeRU(t);
+////			SLogF.prn("ru:"+util);			
+//		}
+//		return util;
+//	}
 	public double getVUtil() {
 		double util=0;
 		for(Task t:g_tasks.getArr())	{
@@ -189,29 +212,9 @@ public class TaskMng {
 		return true;
 	}
 
-	// prn 
 
-	public void prnShort() {
-		g_info.prnUtil();
-	}
 
-	public void prn() {
-		g_tasks.prn();
-//		g_info.prn();
-	}
 	
-	public void prnHI() {
-		g_hc_tasks.prn();
-		SLog.prn(2, "hi_mode_util:"+g_info.getUtil_HC_HI());
-		
-	}
-
-	public void prnLoTasks() {
-		g_lc_tasks.prnRuntime();
-	}
-	public void prnInfo() {
-		g_info.prnUtil();
-	}
 
 	public void prnRuntime() {
 		SLog.prn(2, "WC:"+getWCUtil());
@@ -264,6 +267,9 @@ public class TaskMng {
 
 	public double getX() {
 		return g_info.getX();
+	}
+	public int getTaskNum() {
+		return g_tasks.size();
 	}
 
 	

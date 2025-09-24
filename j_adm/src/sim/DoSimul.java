@@ -20,9 +20,11 @@ public class DoSimul {
 	
 	public void run(DTaskVec dt) {
 		Anal anal=getAnalSim(g_sort);
-		anal.init(DTUtil.getTM(dt,0));
+		anal.init(DTUtil.getCurTM(dt));
 		double x=anal.computeX();
+		double dtm=anal.getDtm();
 		SLog.prn("x:"+x);
+		SLog.prn("dtm:"+dtm);
 
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);

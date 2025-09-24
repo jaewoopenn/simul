@@ -7,7 +7,6 @@ package task;
 import util.SLog;
 import util.MCal;
 
-@SuppressWarnings("unused")
 
 public class SysInfo {
 	private double lc_ac_util;
@@ -21,20 +20,20 @@ public class SysInfo {
 	public void setX(double x_para) {
 		this.x_para = x_para;
 	}
-	public double computeRU(Task t) {
-		if(t.isHC()){
-			if(t.isHM())
-				return t.getHiUtil();
-			else
-				return t.getLoVdUtil();
-		} 
-		if(t.isDrop())
-			return x_para*t.getLoUtil();
-		else
-			return t.getLoUtil();
-		
-	}
-	public double computeVU(Task t) { // this point, change to IMC
+//	public double computeRU(Task t) {
+//		if(t.isHC()){
+//			if(t.isHM())
+//				return t.getHiUtil();
+//			else
+//				return t.getLoVdUtil();
+//		} 
+//		if(t.isDrop())
+//			return x_para*t.getLoUtil();
+//		else
+//			return t.getLoUtil();
+//		
+//	}
+	public double computeVU(Task t) { 
 		if(t.isHC()){
 			if(t.isHI_Preferred() ||t.isHM())
 				return t.getHiUtil();
@@ -43,7 +42,7 @@ public class SysInfo {
 		} 
 		// LC task
 		if(t.isDrop())
-			return x_para*t.getLoUtil(); // need to change
+			return x_para*t.getLoUtil()+(1-x_para)*t.getHiUtil(); 
 		else
 			return t.getLoUtil();
 		
@@ -112,7 +111,11 @@ public class SysInfo {
 		double ll=getUtil_LC_AC();
 		double hh=getUtil_HC_HI();
 		double lh=getUtil_LC_DE();
-		SLog.prn(2, "WCR:"+MCal.getStr(hh+ll));
+		SLog.prn(2, "HCH:"+MCal.getStr(hh));
+		SLog.prn(2, "HCL:"+MCal.getStr(hl));
+		SLog.prn(2, "LCA:"+MCal.getStr(ll));
+		SLog.prn(2, "LCD:"+MCal.getStr(lh));
+//		SLog.prn(2, "WCR:"+MCal.getStr(hh+ll));
 		
 	}
 	

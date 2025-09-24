@@ -15,17 +15,25 @@ public class z_autosimul3 {
 //		s_idx=1;
 		s_idx=2;
 //		s_idx=3;
+//		s_idx=4;
 		
 		
 		s_log_level=1;
 //		s_log_level=2;
 	}
-
+	public String g_tsn;
+	public int g_idx;
+	public int g_dur;
 		
 
-	
+	public void init() {
+		g_tsn="adm/sim/taskset_78.txt";
+		g_idx=3;
+		g_dur=5000;
+	}
 	public int test1()	{
-		DTaskVec dt=getDT(7);
+		init();
+		DTaskVec dt=getDT(g_idx);
 		
 		DoAnal da=new DoAnal(0);
 		da.run(dt);
@@ -34,14 +42,15 @@ public class z_autosimul3 {
 	}
 	
 	public int test2() {
-		int dur=1100;
+		init();
 		double prob=0.4;
-		DTaskVec dt=getDT(7);
+		DTaskVec dt=getDT(g_idx);
+		init();
 //		DTUtil.prn(dt);
 		String out="adm/test.txt";
 
-		DoSimul ds=new DoSimul(0,dur,prob);
-//		ds.setTrace(out);
+		DoSimul ds=new DoSimul(0,g_dur,prob);
+		ds.setTrace(out);
 		ds.run(dt);
 		
 		SimulInfo si=ds.getSI();
@@ -49,17 +58,14 @@ public class z_autosimul3 {
 		return 0;
 	}
 	public int test3() {
-		int dur=10000;
+		init();
 		double prob=0.4;
-//		String tsn="adm/sim/taskset_75.txt";
-//		String tsn="adm/sim/taskset_78.txt";
-		String tsn="adm/sim/taskset_90.txt";
-		SysLoad sy=new SysLoad(tsn);
+		SysLoad sy=new SysLoad(g_tsn);
 		DTaskVec dt= sy.loadOne();
 		int i=0;
 		while(dt!=null) {
 			SLog.prn(2,"#### no: "+i+" #####");
-			DoSimul ds=new DoSimul(0,dur,prob);
+			DoSimul ds=new DoSimul(0,g_dur,prob);
 			ds.run(dt);
 			SimulInfo si=ds.getSI();
 			si.prn();
@@ -71,13 +77,8 @@ public class z_autosimul3 {
 	}
 	
 	public DTaskVec getDT(int n) {
-//		String tsn="adm/test1/task.txt";
-//		String tsn="adm/sim/taskset_75.txt";
-//		String tsn="adm/sim/taskset_78.txt";
-		String tsn="adm/sim/taskset_90.txt";
-//		String tsn="adm/sim/taskset_93.txt";
 		
-		SysLoad sy=new SysLoad(tsn);
+		SysLoad sy=new SysLoad(g_tsn);
 		sy.moveto(n);
 		DTaskVec dt= sy.loadOne();
 		if(dt==null) {
@@ -87,6 +88,11 @@ public class z_autosimul3 {
 	}
 
 	public  int test4() {
+		init();
+		int dur=5000;
+		double prob=0.4;
+		DTaskVec dt=getDT(g_idx);
+		DTUtil.prn(dt);
 		return 1;
 	}
 	public  int test5() {

@@ -11,7 +11,9 @@ public class JobMng {
 		g_jobs=new PriorityQueue<Job>();
 		g_task_num=n;
 	}
-
+	public void changeNum(int n) {
+		g_task_num=n;
+	}
 	public boolean isIdle(int t) {  // idle except dropped job
 		Job j=getCur();
 		if(j==null)

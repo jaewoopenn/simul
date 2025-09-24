@@ -6,16 +6,18 @@ import util.SLog;
 
 public class Job implements Comparable<Job>{
 	public int tid;
+	public int rl;
 	public int dl;
 	public int exec;
 	public int add_exec;
 	public boolean isHI;
 	public boolean b_tobeMS=false;
-	public double vd;
+	public int vd;
 	private boolean isDrop;
 
-	public Job(int tid,int dl, int exec) {
+	public Job(int tid,int rl, int dl, int exec) {
 		this.tid=tid;
+		this.rl=rl;
 		this.dl = dl;
 		this.exec = exec;
 		this.add_exec=0;
@@ -23,8 +25,9 @@ public class Job implements Comparable<Job>{
 		this.isDrop=false;
 		this.vd = dl;
 	}
-	public Job(int tid,int dl, int exec,int add) {
+	public Job(int tid,int rl, int dl, int exec,int add) {
 		this.tid=tid;
+		this.rl=rl;
 		this.dl = dl;
 		this.exec = exec;
 		this.add_exec=add;
@@ -33,8 +36,9 @@ public class Job implements Comparable<Job>{
 		this.vd = dl;
 	}
 
-	public Job(int tid,int dl, int exec,double  vd,int add) {
+	public Job(int tid,int rl, int dl, int exec, int  vd,int add) {
 		this.tid=tid;
+		this.rl=rl;
 		this.dl = dl;
 		this.exec = exec;
 		this.add_exec=add;
@@ -78,8 +82,17 @@ public class Job implements Comparable<Job>{
 	}
 
 	public String info() {
-		String s="tid:"+tid+",isHI:"+isHI+",dl:"+dl+",exec:"+exec;
-		s+=",vd:"+vd+",add:"+add_exec;
+		String s="tid: "+tid;
+		s+=", rl:"+rl;			
+		if(isHI) {
+			s+=" HC";
+			s+=", vd:"+vd;			
+		} else {
+			s+=" LC";
+
+		}
+		s+=", dl:"+dl+",exec:"+exec;
+		s+=", add:"+add_exec;
 		return s;
 			
 	}

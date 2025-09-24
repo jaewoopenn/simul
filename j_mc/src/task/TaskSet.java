@@ -53,9 +53,9 @@ public class TaskSet {
 		
 	}
 
-	public void setX(double x) {
+	public void setVD(double x) {
 		for(Task t:g_tasks){
-			t.setX(x);
+			t.setVD(x);
 		}
 	}
 	public void set_HI_only() {
@@ -67,43 +67,42 @@ public class TaskSet {
 
 	public void prn() {
 		for(Task t:g_tasks){
-			if(t.removed())
-				continue;
-			t.prnTxt();
+//			if(t.removed())
+//				continue;
+			TaskUtil.prn(t);
 		}
-		
 	}
 	public void prnRuntime() {
 		for(Task t:g_tasks){
-			t.prnRuntime();
+			TaskUtil.prnRuntime(t);
 		}
 		
 	}
 	
 	public void prnStat() {
 		for(Task t:g_tasks){
-			t.prnStat();
+			TaskUtil.prnStat(t);
 		}
 		
 	}
 
 	public void prnOffline() {
 		for(Task t:g_tasks){
-			t.prnOffline();
+			TaskUtil.prnOffline(t);
 		}
 		
 	}
 
 	public void prnPara() {
 		for(Task t:g_tasks){
-			t.prnPara();
+			TaskUtil.prnPara(t);
 		}
 		
 	}
 
 	public void prnTxt() {
 		for(Task t:g_tasks){
-			t.prnTxt();
+			TaskUtil.prnTxt(t);
 		}
 		
 	}
@@ -125,26 +124,7 @@ public class TaskSet {
 		ts_hi_tasks=new TaskSet(hi_tasks);
 		ts_lo_tasks=new TaskSet(lo_tasks);
 				
-		double loutil=0;
-		double loutil_de=0;
-		double hiutil_lm=0;
-		double hiutil_hm=0;
-		for(Task t:g_tasks)
-		{
-			if(t.isHC()){
-				hiutil_lm+=t.getLoUtil();
-				hiutil_hm+=t.getHiUtil();
-			} else {
-				loutil+=t.getLoUtil();
-				loutil_de+=t.getHiUtil();
-			}
-		}
-		SysInfo info=new SysInfo();
-		info.setLo_util(loutil);
-		info.setLo_de_util(loutil_de);
-		info.setUtil_HC_HI(hiutil_hm);
-		info.setUtil_HC_LO(hiutil_lm);
-		return new TaskMng(g_tasks,ts_hi_tasks,ts_lo_tasks,info);
+		return new TaskMng(g_tasks,ts_hi_tasks,ts_lo_tasks);
 	}
 
 

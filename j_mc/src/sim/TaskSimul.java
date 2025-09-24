@@ -7,6 +7,7 @@ import task.DTUtil;
 import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
+import task.TaskUtil;
 import util.SLogF;
 import util.SLog;
 
@@ -33,7 +34,7 @@ public abstract class TaskSimul  {
 	public void init_sm_dt(SysMng sm,double x, DTaskVec dt ){
 		g_sm=sm;
 		g_dt=dt;
-		g_tm=DTUtil.getTM(dt,0);
+		g_tm=DTUtil.getCurTM(dt);
 		g_tm.setX(x);
 		g_ext=new TS_ext(g_sm);
 		g_ext.setTM(g_tm);
@@ -73,6 +74,7 @@ public abstract class TaskSimul  {
 		int t=0;
 		g_si.total=et;
 		SLogF.prn("rel  / exec / t");
+//		TaskUtil.prn(g_tm);
 		while(t<et){
 			simul_one();
 			t++;
@@ -127,12 +129,13 @@ public abstract class TaskSimul  {
 				int rs=changeVD_nextSt(tm);
 				if(rs==0) {
 					SLog.prn("rejected");
-//					Task t=tm.getT
-//					tm.getL
+					g_dt.reject();
+					tm.updateInfo();
 					setTM(tm);
 					
 					g_si.reject++;
 				} else if(rs==1) {
+					SLog.prn("accepted");
 					setTM(tm);
 				} else {  //go to idle and change
 					g_change_tm=true;
@@ -144,11 +147,13 @@ public abstract class TaskSimul  {
 		
 	}
 
+
 	private void setTM(TaskMng tm) {
-		g_tm.prnOffline();
+//		g_tm.prnOffline();
+		g_ext.copy(g_tm,tm);
 		g_tm=tm;
-		g_tm.prnOffline();
-//		tm.prn();
+		g_jsm.getJM().changeNum(tm.getTaskNum());
+//		TaskUtil.prn(g_tm);
 		g_ext.setTM(tm);
 	}
 
@@ -166,7 +171,12 @@ public abstract class TaskSimul  {
 				continue;
 			}
 			if(tsk.isHC()) {
-				s+="*";
+				if(tsk.isHI_Preferred()) 
+					s+="H";
+				else if(tsk.isHM())
+					s+="*";
+				else
+					s+="+";
 				g_jsm.add(rel_one_job(tsk,t));
 				continue;
 			}
@@ -180,7 +190,7 @@ public abstract class TaskSimul  {
 					g_jsm.add(j);
 				continue;
 			}
-			s+="+";
+			s+="Y";
 			g_jsm.add(rel_one_job(tsk,t));
 		}
 		s+=" ";

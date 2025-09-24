@@ -5,6 +5,7 @@ import task.DTUtil;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
+import task.TaskUtil;
 import util.MLoop;
 import util.SEngineT;
 import util.SLog;
@@ -50,7 +51,7 @@ public class z_Anal2 {
 //		a=new AnalAMC_imc();
 		a=new AnalEDF_VD_ADM();
 //		a=new AnalEDF_VD_IMC();
-		a.init(DTUtil.getTM(tm,0));
+		a.init(DTUtil.getCurTM(tm));
 		double x=a.computeX();
 		SLog.prn(1, "x: "+x);
 //		SLog.prn(1, a.getDtm());
@@ -120,8 +121,8 @@ public class z_Anal2 {
 		for(int j=0;j<num;j++) {
 			TaskSet tmp=new TaskSet(dt.getVec(j));
 			TaskMng tm=tmp.getTM();
-			tm.prn();
-			tm.prnInfo();
+			TaskUtil.prn(tm);
+			tm.getInfo().prnUtil();
 			a.init(tm);
 			if(x==-1) {
 				x=a.computeX();

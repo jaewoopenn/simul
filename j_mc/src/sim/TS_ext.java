@@ -4,6 +4,7 @@ import job.Job;
 import job.JobSimul;
 import task.Task;
 import task.TaskMng;
+import task.TaskUtil;
 import util.MRand;
 import util.SLog;
 import util.SLogF;
@@ -62,16 +63,17 @@ public class TS_ext {
 //		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
 		int dl=t+tsk.period;
 		if(!tsk.isHC()) { // LC task
-			return new Job(tsk.tid,dl,tsk.c_l,tsk.c_l-tsk.c_h);
+			return new Job(tsk.tid,t,dl,tsk.c_l,tsk.c_l-tsk.c_h);  // add exe = how much reduce exec when degrade
 		}
 
 		// HC task 
 		Job j;
 //		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
 		if(tsk.isHM()){ // HI-mode
-			j= new Job(tsk.tid, dl, tsk.c_h,dl,0);
+			j= new Job(tsk.tid, t,dl, tsk.c_h,dl,0);
 		} else { // LO-mode
-			j= new Job(tsk.tid, dl,tsk.c_l,t+(int)Math.ceil(tsk.vd),tsk.c_h-tsk.c_l);
+			int job_vd=t+tsk.vd;
+			j= new Job(tsk.tid, t,dl,tsk.c_l,job_vd,tsk.c_h-tsk.c_l);
 //			j.prn();
 		}
 		return j;
@@ -117,6 +119,47 @@ public class TS_ext {
 
 	public void setMS() {
 		g_ms_happen=true;
+	}
+
+	public void copy(TaskMng tm1, TaskMng tm2) {
+		double x=tm1.getX();
+		tm2.setX(x);
+//		SLog.prn("x:"+x);
+		x=tm2.getX();
+//		SLog.prn("x:"+x);
+//		SLog.prn("---");
+		boolean bMS=false;
+		for(Task t:tm1.getTasks()) {
+			Task t2=tm2.getTask(t.tid);
+			if(t.isHM()) {
+				t2.ms();
+				bMS=true;
+			}
+			if(t.removed())
+				t2.markRemoved();
+			if(t.isDrop())
+				t2.drop();
+//			TaskUtil.prn(t);
+//			TaskUtil.prn(t2);
+//			SLog.prn("---");
+		}
+//		if(bMS) {
+//			setMS();
+//			for(Task t:tm1.getTasks()) {
+//				Task t2=tm2.getTask(t.tid);
+//				if(t.isDrop())
+//					t2.drop();
+//			}
+//		}
+//		for(Task t:tm1.getTasks()) {
+//			Task t2=tm2.getTask(t.tid);
+//			TaskUtil.prn(t);
+//			TaskUtil.prn(t2);
+//			SLog.prn("---");
+//		}
+
+		//		tm2.prn();
+//		SLog.err("----");
 	}
 
 	

@@ -26,7 +26,7 @@ public class TaskSimul_EDF_IMC extends TaskSimul{
 	protected Job rel_one_job(Task tsk, int t) {
 //		SLog.prn(1, "t:"+t+" R:"+tsk.tid+" "+(t+tsk.vd)+" "+tsk.c_l+" "+tsk.isHC());
 		int dl=t+tsk.period;
-		return new Job(tsk.tid,dl,Math.max(tsk.c_h,tsk.c_l),0);
+		return new Job(tsk.tid,t,dl,Math.max(tsk.c_h,tsk.c_l),0);
 	}
 
 
