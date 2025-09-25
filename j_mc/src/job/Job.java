@@ -11,7 +11,7 @@ public class Job implements Comparable<Job>{
 	public int exec;
 	public int add_exec;
 	public boolean isHI;
-	public boolean b_tobeMS=false;
+	public boolean isMS=false;
 	public int vd;
 	private boolean isDrop;
 
@@ -49,6 +49,7 @@ public class Job implements Comparable<Job>{
 	public void ms() {
 		exec+=add_exec;
 		add_exec=0;
+		isMS=true;
 		
 	}
 	public void degrade() {
@@ -58,6 +59,7 @@ public class Job implements Comparable<Job>{
 			return;
 		isDrop=true;
 		exec-=add_exec;
+		add_exec=0;
 		if(exec<0)
 			exec=0;
 	}
@@ -85,14 +87,22 @@ public class Job implements Comparable<Job>{
 		String s="tid: "+tid;
 		s+=", rl:"+rl;			
 		if(isHI) {
-			s+=" HC";
+			s+=", HC";
 			s+=", vd:"+vd;			
 		} else {
-			s+=" LC";
+			s+=", LC";
 
 		}
-		s+=", dl:"+dl+",exec:"+exec;
-		s+=", add:"+add_exec;
+		s+=", dl:"+dl+", exec:"+exec;
+		if(add_exec!=0) {
+			s+=", add:"+add_exec;
+		}
+		if(isDrop) {
+			s+=", DROPPED";
+		}
+		if(isMS) {
+			s+=", MS";
+		}
 		return s;
 			
 	}
@@ -103,13 +113,6 @@ public class Job implements Comparable<Job>{
 
 	public void setVD(int d) {
 		this.vd=d;
-	}
-	public boolean tobeMS() {
-		return b_tobeMS;
-	}
-	public void setTobeMS() {
-		b_tobeMS=true;
-		
 	}
 	public void prn() {
 		SLog.prn(1, info());

@@ -3,6 +3,7 @@ package task;
 import java.util.Arrays;
 import java.util.Vector;
 
+//import util.MCal;
 import util.SLog;
 
 /*
@@ -58,10 +59,15 @@ public class TaskSet {
 			t.setVD(x);
 		}
 	}
-	public void set_HI_only() {
+	public void set_HI_only(double x) {
 		for(Task t:g_tasks){
+//			String s1=MCal.getStr(t.getHiUtil());
+//			String s2=MCal.getStr(t.getLoVdUtil());
+//			SLog.prn(t.tid+","+t.vd+","+s1+", "+s2);
 			if(t.getHiUtil()<=t.getLoVdUtil())
 				t.setHI_only();
+			else
+				t.setNormal(x);
 		}
 	}
 

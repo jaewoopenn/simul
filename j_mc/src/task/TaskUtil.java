@@ -84,13 +84,23 @@ public class TaskUtil {
 	public static void prnOffline(Task t)  {
 		if(t.removed())
 			SLog.prnc(2, "removed ");
-		SLog.prnc(2, "tid:"+t.tid);
-		SLog.prnc(2, ", "+MCal.getStr(t.getLoUtil()));
-		SLog.prnc(2, ", "+MCal.getStr(t.getHiUtil()));
+		SLog.prnc(2, "ID: "+t.tid);
+		SLog.prnc(2, ", p: "+t.period);
+		SLog.prnc(2, ", vd: "+MCal.getStr(t.vd));
+		SLog.prnc(2, ", cl: "+t.c_l);
+		SLog.prnc(2, ", ch: "+t.c_h);
+		
+//		SLog.prnc(2, ", "+MCal.getStr(t.getLoUtil()));
+//		SLog.prnc(2, ", "+MCal.getStr(t.getHiUtil()));
 		if (t.is_HC){
-			SLog.prn(2,", is_hi_preferred:"+t.is_hi_preferred);
+			if(t.is_hi_preferred) {
+				SLog.prn(2,", HI-preferred");
+			} else {
+				SLog.prn(2,", HC ");
+				
+			}
 		}else{
-			SLog.prn(2,", LO-task ");
+			SLog.prn(2,", LC ");
 		}
 		
 	}
@@ -111,6 +121,18 @@ public class TaskUtil {
 			prnTxt(t);
 		}
 		
+	}
+	public static void prnDetail(TaskMng tm) {
+		double x=tm.getX();
+		SLog.prn("tm x: "+x);
+		for(Task t:tm.getTasks()) {
+			prnOffline(t);
+		}
+		
+	}
+	public static void prnUtil(TaskMng tm) {
+		SysInfo info=tm.getInfo();
+		info.prnUtil();
 	}
 
 }

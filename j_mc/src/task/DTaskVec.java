@@ -18,6 +18,7 @@ public class DTaskVec {
 	private Integer[] g_stageClass; // 0: add , 1: remove
 	private int g_num;
 	private int g_stage=0;
+	private int reject=0;
 	public DTaskVec(int num){
 		g_num=num;
 		g_taskV=new TaskVec[num];
@@ -107,7 +108,12 @@ public class DTaskVec {
 				
 			}
 		}
+		reject++;
 		
+	}
+
+	public double getR() {
+		return (double)reject/(g_num-1);
 	}
 
 

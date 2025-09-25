@@ -8,6 +8,7 @@ import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
 import task.TaskUtil;
+//import task.TaskUtil;
 import util.SLogF;
 import util.SLog;
 
@@ -118,6 +119,7 @@ public abstract class TaskSimul  {
 			} else { // remove
 				SLog.prn(1, t+": remove.");
 				TaskMng tm=DTUtil.getCurTM(g_dt);
+//				changeVD_nextSt(tm);
 				setTM(tm);
 			}
 //			g_tm.prn();
@@ -149,11 +151,11 @@ public abstract class TaskSimul  {
 
 
 	private void setTM(TaskMng tm) {
-//		g_tm.prnOffline();
 		g_ext.copy(g_tm,tm);
 		g_tm=tm;
 		g_jsm.getJM().changeNum(tm.getTaskNum());
-//		TaskUtil.prn(g_tm);
+//		TaskUtil.prnUtil(tm);
+//		TaskUtil.prnDetail(g_tm);
 		g_ext.setTM(tm);
 	}
 
@@ -207,6 +209,10 @@ public abstract class TaskSimul  {
 		Job j=g_jsm.get_ms_job(); 
 		if(j==null) 
 			return;
+		if(g_ext.isMS()) {
+			g_jsm.getJM().removeCur();
+			return;
+		}
 		if(j.add_exec>0) {
 			if(g_ext.happen_MS(j)) { 
 				mode_switch(j.tid);
@@ -214,7 +220,7 @@ public abstract class TaskSimul  {
 				g_jsm.getJM().removeCur();
 			}
 			
-		} else { // add_exec=0 : recover check
+		} else { // add_exec=0 : 
 			g_jsm.getJM().removeCur();
 		}
 	}

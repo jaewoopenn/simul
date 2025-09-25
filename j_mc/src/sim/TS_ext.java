@@ -5,6 +5,7 @@ import job.JobSimul;
 import task.Task;
 import task.TaskMng;
 import task.TaskUtil;
+//import task.TaskUtil;
 import util.MRand;
 import util.SLog;
 import util.SLogF;
@@ -72,7 +73,7 @@ public class TS_ext {
 		if(tsk.isHM()){ // HI-mode
 			j= new Job(tsk.tid, t,dl, tsk.c_h,dl,0);
 		} else { // LO-mode
-			int job_vd=t+tsk.vd;
+			int job_vd=t+(int)Math.floor(tsk.vd);
 			j= new Job(tsk.tid, t,dl,tsk.c_l,job_vd,tsk.c_h-tsk.c_l);
 //			j.prn();
 		}
@@ -123,17 +124,15 @@ public class TS_ext {
 
 	public void copy(TaskMng tm1, TaskMng tm2) {
 		double x=tm1.getX();
-		tm2.setX(x);
-//		SLog.prn("x:"+x);
-		x=tm2.getX();
-//		SLog.prn("x:"+x);
-//		SLog.prn("---");
-		boolean bMS=false;
+		if(tm2.getX()==0) {
+			tm2.setX(x);
+		}
 		for(Task t:tm1.getTasks()) {
 			Task t2=tm2.getTask(t.tid);
 			if(t.isHM()) {
+//				SLog.prn("id:"+t.tid+" HI mode");
 				t2.ms();
-				bMS=true;
+//				bMS=true;
 			}
 			if(t.removed())
 				t2.markRemoved();
@@ -143,20 +142,6 @@ public class TS_ext {
 //			TaskUtil.prn(t2);
 //			SLog.prn("---");
 		}
-//		if(bMS) {
-//			setMS();
-//			for(Task t:tm1.getTasks()) {
-//				Task t2=tm2.getTask(t.tid);
-//				if(t.isDrop())
-//					t2.drop();
-//			}
-//		}
-//		for(Task t:tm1.getTasks()) {
-//			Task t2=tm2.getTask(t.tid);
-//			TaskUtil.prn(t);
-//			TaskUtil.prn(t2);
-//			SLog.prn("---");
-//		}
 
 		//		tm2.prn();
 //		SLog.err("----");

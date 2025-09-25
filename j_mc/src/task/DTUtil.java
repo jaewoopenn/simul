@@ -22,6 +22,8 @@ public class DTUtil {
 		TaskVec tv=new TaskVec();
 		for(Task t:srcV) {
 			Task tsk=t.copy();
+			if(t.removed())
+				tsk.markRemoved();
 			tv.add(tsk);
 		}
 		tasks.setVec(dst, tv);

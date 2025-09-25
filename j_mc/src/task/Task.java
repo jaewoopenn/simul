@@ -15,7 +15,7 @@ public class Task {
 	public int period;
 	public int c_l;   // ac
 	public int c_h;   // de
-	public int vd;
+	public double vd;
 	private int status=0; // 0: normal, 1: new, 2: removed
 	protected boolean is_HC=false;
 	protected boolean is_HI_Mode=false;
@@ -117,15 +117,15 @@ public class Task {
 
 	//set Param
 	public void setVD(double x){
-		this.vd=(int)Math.floor(x*this.period);
+		this.vd=x*this.period;
 	}
 	public void setHI_only() {
-		 is_hi_preferred = true;
-		 is_HI_Mode=true;
+		is_hi_preferred = true;
+		this.vd=this.period;
 	}
-	public void setNormal() {
-		 is_hi_preferred = false;
-		 is_HI_Mode=false;
+	public void setNormal(double x) {
+		is_hi_preferred = false;
+		this.vd=x*this.period;
 	}
 
 

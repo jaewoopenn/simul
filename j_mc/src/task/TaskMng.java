@@ -56,7 +56,7 @@ public class TaskMng {
 	public void setX(double x){
 		g_info.setX(x);
 		g_hc_tasks.setVD(x);
-		g_hc_tasks.set_HI_only();
+		g_hc_tasks.set_HI_only(x);
 	}
 
 	

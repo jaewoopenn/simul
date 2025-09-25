@@ -24,10 +24,10 @@ public class DoAnal {
 		g_anal=AnalSel.getAuto(g_sort,isMC);
 		double x=-1;
 		
-		
+		TaskMng tm=null;
 		for(int i=0;i<dt.getStageNum();i++) {
 			SLog.prn("Stage: "+i);
-			TaskMng tm=DTUtil.getCurTM(dt);
+			tm=DTUtil.getCurTM(dt);
 			TaskUtil.prn(tm);
 			g_anal.init(tm);
 			if(x==-1) 
@@ -41,12 +41,75 @@ public class DoAnal {
 //			g_anal.prn();
 			double d=g_anal.getDtm();
 			SLog.prn(1, "x, dtm: "+x+","+d);
-			if(i!=0&&d>1+MCal.err) {
+			if(i==0) {
+				if(d>1+MCal.err) {
+					SLog.prn("Not sch");
+					break;
+				} else {
+					dtm=d;
+					dt.nextStage();
+					continue;
+				}
+			} 
+			if(d>1+MCal.err) {
 				double mod=g_anal.getModX();
 				if(mod!=-1) {
 					x=mod;
 					if(x<=0||x>1) {
 						SLog.prn(1, "re x: "+x);
+						d=2;
+						break;
+					} 
+					g_anal.setX(x);
+					d=g_anal.getDtm();
+					SLog.prn(1, "re x, dtm: "+x+","+d);
+				}
+			}
+			dtm= Math.max(dtm, d);
+			dt.nextStage();
+		}
+//		SLog.prn("x, dtm: "+x+","+dtm);
+		if(dtm<=1+MCal.err)
+			g_rs="1";
+		else
+			g_rs="0";
+	}
+	public void run_simul(DTaskVec dt) {
+		g_anal=AnalSel.getAuto(g_sort,isMC);
+		double x=-1;
+		TaskMng tm=null;
+		for(int i=0;i<dt.getStageNum();i++) {
+			SLog.prn("Stage: "+i);
+			tm=DTUtil.getCurTM(dt);
+			TaskUtil.prn(tm);
+			g_anal.init(tm);
+			if(x==-1) 
+				x=g_anal.computeX();
+			if(x<=0||x>1) {
+				SLog.prn(1, "x: "+x);
+				dt.reject();
+				break;
+			}
+			g_anal.setX(x);
+			double d=g_anal.getDtm();
+			SLog.prn(1, "x, dtm: "+x+","+d);
+			if(i==0) {
+				if(d>1+MCal.err) {
+					SLog.prn("Not sch");
+					break;
+				} else {
+					dt.nextStage();
+					continue;
+				}
+			} 
+			if(d>1+MCal.err) {
+//				TaskUtil.prnUtil(tm);
+				double mod=g_anal.getModX();
+				if(mod!=-1) {
+					x=mod;
+					if(x<=0||x>1) {
+						SLog.prn(1, "re x: "+x);
+						dt.reject();
 						d=2;
 //						break;
 					} else {
@@ -54,19 +117,38 @@ public class DoAnal {
 						d=g_anal.getDtm();
 						SLog.prn(1, "re x, dtm: "+x+","+d);
 					}
+					
 				}
+				if(d>1)
+					dt.reject();
 			}
-			dtm= Math.max(dtm, d);
 			dt.nextStage();
 		}
-
+//		TaskUtil.prnUtil(tm);
+//		TaskUtil.prn(tm);
 //		SLog.prn("x, dtm: "+x+","+dtm);
-		if(dtm<=1+MCal.err)
-			g_rs="1";
-		else
-			g_rs="0";
+		g_rs=dt.getR()+"";
+		SLog.prn(g_rs);
 	}
 
+	public void run_one(DTaskVec dt) {
+		g_anal=AnalSel.getAuto(g_sort,isMC);
+		double x=-1;
+		TaskMng tm=null;
+		tm=DTUtil.getCurTM(dt);
+		TaskUtil.prn(tm);
+		g_anal.init(tm);
+		x=g_anal.computeX();
+		g_anal.setX(x);
+		SLog.prn("x: "+x);
+		x=g_anal.computeX();
+		g_anal.setX(x);
+		double d=g_anal.getDtm();
+		SLog.prn("x, dtm: "+x+","+d);
+		tm.setX(x);
+		TaskUtil.prnDetail(tm);
+	}
+	
 	
 	public String getRS() {
 		String s=g_rs;
@@ -76,6 +158,18 @@ public class DoAnal {
 
 	public int getSort() {
 		return g_sort;
+	}
+	public void run_one(DTaskVec dt, double x) {
+		g_anal=AnalSel.getAuto(g_sort,isMC);
+		TaskMng tm=DTUtil.getCurTM(dt);
+		TaskUtil.prn(tm);
+		g_anal.init(tm);
+		g_anal.setX(x);
+		double d=g_anal.getDtm();
+		SLog.prn("x, dtm: "+x+","+d);
+		tm.setX(x);
+		TaskUtil.prnDetail(tm);
+		
 	}
 
 }

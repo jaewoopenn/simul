@@ -3,6 +3,8 @@ package sim;
 import anal.Anal;
 import task.DTUtil;
 import task.DTaskVec;
+import task.TaskMng;
+import task.TaskUtil;
 import util.SLog;
 import util.SLogF;
 
@@ -20,17 +22,52 @@ public class DoSimul {
 	
 	public void run(DTaskVec dt) {
 		Anal anal=getAnalSim(g_sort);
-		anal.init(DTUtil.getCurTM(dt));
+		TaskMng tm=DTUtil.getCurTM(dt);
+		anal.init(tm);
 		double x=anal.computeX();
+		anal.setX(x);
+		x=anal.computeX();
+		anal.setX(x);
 		double dtm=anal.getDtm();
-		SLog.prn("x:"+x);
-		SLog.prn("dtm:"+dtm);
-
+		if(x<=0||x>1) {
+			TaskUtil.prn(tm);
+			SLog.prn("x: "+x);
+			SLog.err("not sch");
+		}
+		if(dtm>1) {
+			TaskUtil.prn(tm);
+//			TaskUtil.prnUtil(tm);
+			SLog.prn("x: "+x);
+			SLog.prn("dtm: "+dtm);
+			SLog.err("not sch");
+		}
+		SLog.prnc(1,"x: "+x);
+		SLog.prn(", dtm: "+dtm);
 		SysMng sm=new SysMng();
 		sm.setMS_Prob(g_prob);
 		
 		g_ts=getTaskSim(g_sort);
+		tm.setX(x);
 		g_ts.init_sm_dt(sm,x,dt);
+//		TaskUtil.prnUtil(tm);
+//		TaskUtil.prnDetail(tm);
+		g_ts.simul(g_dur);
+		
+		if(SLogF.isON())
+			SLogF.save();
+		
+	}
+	public void run(DTaskVec dt, double x) {
+		TaskMng tm=DTUtil.getCurTM(dt);
+		SLog.prn(1,"x: "+x);
+		SysMng sm=new SysMng();
+		sm.setMS_Prob(g_prob);
+		
+		g_ts=getTaskSim(g_sort);
+		tm.setX(x);
+		g_ts.init_sm_dt(sm,x,dt);
+//		TaskUtil.prnUtil(tm);
+		TaskUtil.prnDetail(tm);
 		g_ts.simul(g_dur);
 		
 		if(SLogF.isON())
@@ -71,5 +108,6 @@ public class DoSimul {
 	private TaskSimul getTaskSim(int sort) {
 		return SimulSel_IMC.getSim(sort);
 	}
+
 	
 }

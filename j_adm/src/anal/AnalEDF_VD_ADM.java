@@ -14,7 +14,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	private double lc_de;
 	private double hc_lo;
 	private double hc_hi;
-	private double g_x;
+	private double g_x=-1;
 	private boolean isWCR;
 	SysInfo g_info;
 	public AnalEDF_VD_ADM() {
@@ -25,6 +25,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	@Override
 	public void prepare() {
 		isWCR=false;
+		g_tm.updateInfo();
 		g_info=g_tm.getInfo();
 		lc_ac=g_info.getUtil_LC_AC();
 		lc_de=g_info.getUtil_LC_DE();
@@ -32,15 +33,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		hc_hi=g_info.getUtil_HC_HI();
 		if(g_info.getMaxUtil()<=1) {
 			setWCR();
-			return;
 		}
-		for(Task t:g_tm.get_HC_Tasks()) {
-			t.setNormal();
-		}
-		g_x=computeX();
-//		g_info.prn();
-//		SLog.prn(1,g_x);
-		comp_hi_prefer();
 	}
 	private void setWCR() {
 //		SLog.prn("WCR");
@@ -56,7 +49,7 @@ public class AnalEDF_VD_ADM extends Anal {
 		for(Task t:g_tm.get_HC_Tasks()){
 			double v_util=t.getLoUtil()/g_x;
 			double h_util=t.getHiUtil();
-//			SLog.prn(1, v_util+","+h_util);
+//			SLog.prn(1, MCal.getStr(h_util)+","+MCal.getStr(v_util));
 			if(v_util>=h_util){
 				t.setHI_only();
 //				n++;
@@ -82,16 +75,26 @@ public class AnalEDF_VD_ADM extends Anal {
 		if (util_max>1) 
 			return util_max;
 		
-		dtm2=lc_de+(hc_hi-hc_lo)/(1-g_x);
+		dtm2=lc_de;
 		dtm=lc_ac;
+		double dtm3=lc_ac;
 		for(Task t:g_tm.get_HC_Tasks()){
 			if(t.removed())
 				continue;
-			double v_util=t.getLoUtil()/g_x;
+			double l_util=t.getLoUtil();
+			double v_util=l_util/g_x;
 			double h_util=t.getHiUtil();
-			dtm+=Math.min(v_util,h_util);
+			if(v_util>=h_util) {// HI-only
+				dtm+=h_util;
+				dtm2+= h_util;
+			} else { // v_util < h_util
+				dtm+=v_util;
+				dtm2+=(h_util-l_util)/(1-g_x);
+			}
+			dtm3+=v_util;
 		}
-//		SLog.prn(2, "dtm:"+MCal.getStr(dtm)+", ÷"+MCal.getStr(dtm2));
+//		SLog.prn(2, "!! dtm:"+MCal.getStr(dtm)+", "+MCal.getStr(dtm2));
+//		SLog.prn(2, "!! dtm3:"+MCal.getStr(dtm3));
 		double max=Math.max(dtm, dtm2);
 		if(max>1+MCal.err)
 			return max;
@@ -155,6 +158,7 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double getModX() {
+		prepare();
 		return computeX();
 	}
 

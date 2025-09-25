@@ -17,8 +17,8 @@ public class z_auto_sim_imc {
 	public static void init_s() {
 		
 //		s_idx=1;
-		s_idx=2;
-//		s_idx=3;
+//		s_idx=2;
+		s_idx=3;
 		
 //		s_log_level=1;
 		s_log_level=2;
