@@ -7,7 +7,6 @@ public class AnalEDF_BV extends Anal {
 	private double lotasks_loutil;
 	private double hitasks_loutil;
 	private double hitasks_hiutil;
-	private double glo_x=-1;
 	private double bv_rato=1.2;
 	SysInfo g_info;
 	public AnalEDF_BV() {
@@ -21,20 +20,15 @@ public class AnalEDF_BV extends Anal {
 		lotasks_loutil=g_info.getUtil_LC_AC();
 		hitasks_loutil=g_info.getUtil_HC_LO();
 		hitasks_hiutil=g_info.getUtil_HC_HI();
-		if(glo_x==-1)
-			glo_x=computeX();
-		double lctasks_deUtil=g_info.getUtil_LC_DE();
-		if(lctasks_deUtil>0)
-			SLog.err("EDF-BV for MC, deUtil:"+lctasks_deUtil);
 	}
 	
 	@Override
-	public double getDtm() {
+	protected double getDtm_in() {
 		double d=getScore();
 		
 		return d;
 	}
-	public double getScore() {
+	private double getScore() {
 		if (hitasks_hiutil+lotasks_loutil<=1)
 			return hitasks_hiutil+lotasks_loutil;
 		
@@ -42,8 +36,8 @@ public class AnalEDF_BV extends Anal {
 		if (util_max>1) 
 			return util_max;
 		
-		double dtm=hitasks_loutil/glo_x+lotasks_loutil;
-		double dtm2=(hitasks_hiutil-hitasks_loutil)/(1-glo_x);
+		double dtm=hitasks_loutil/g_x+lotasks_loutil;
+		double dtm2=(hitasks_hiutil-hitasks_loutil)/(1-g_x);
 //		SLog.prn(1, glo_x+","+dtm+","+dtm2);
 		return Math.max(dtm, dtm2);
 	}
@@ -61,7 +55,7 @@ public class AnalEDF_BV extends Anal {
 	@Override
 	public void prn() {
 		SLog.prn(1, "util:"+lotasks_loutil+","+hitasks_loutil+","+hitasks_hiutil);
-		SLog.prn(1, "x:"+glo_x);
+		SLog.prn(1, "x:"+g_x);
 		SLog.prn(1, "det:"+getDtm());
 		
 	}
@@ -69,18 +63,29 @@ public class AnalEDF_BV extends Anal {
 
 	@Override
 	public void reset() {
-		glo_x=-1;
+		g_x=-1;
 	}
 
 
 	@Override
 	public void setX(double x) {
-		glo_x=x;
+		g_x=x;
 	}
 
 	@Override
 	public double getModX() {
-		return Math.min(0.999,glo_x*bv_rato);
+		return Math.min(0.999,g_x*bv_rato);
+	}
+
+	@Override
+	public void auto() {
+		isDone=true;
+		double x=computeX();
+		setX(x);
+		double lctasks_deUtil=g_info.getUtil_LC_DE();
+		if(lctasks_deUtil>0)
+			SLog.err("EDF-BV for MC, deUtil:"+lctasks_deUtil);
+		
 	}
 
 }

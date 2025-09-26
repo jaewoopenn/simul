@@ -28,7 +28,7 @@ public class DoAnal {
 		for(int i=0;i<dt.getStageNum();i++) {
 			SLog.prn("Stage: "+i);
 			tm=DTUtil.getCurTM(dt);
-			TaskUtil.prn(tm);
+//			TaskUtil.prn(tm);
 			g_anal.init(tm);
 			if(x==-1) 
 				x=g_anal.computeX();
@@ -74,6 +74,7 @@ public class DoAnal {
 		else
 			g_rs="0";
 	}
+	
 	public void run_simul(DTaskVec dt) {
 		g_anal=AnalSel.getAuto(g_sort,isMC);
 		double x=-1;
@@ -131,22 +132,23 @@ public class DoAnal {
 		SLog.prn(g_rs);
 	}
 
-	public void run_one(DTaskVec dt) {
+	public String run_one(DTaskVec dt) {
 		g_anal=AnalSel.getAuto(g_sort,isMC);
-		double x=-1;
 		TaskMng tm=null;
 		tm=DTUtil.getCurTM(dt);
 		TaskUtil.prn(tm);
 		g_anal.init(tm);
-		x=g_anal.computeX();
-		g_anal.setX(x);
-		SLog.prn("x: "+x);
-		x=g_anal.computeX();
-		g_anal.setX(x);
+		g_anal.auto();
+		
 		double d=g_anal.getDtm();
-		SLog.prn("x, dtm: "+x+","+d);
-		tm.setX(x);
-		TaskUtil.prnDetail(tm);
+		SLog.prn("dtm: "+d);
+//		tm.setX(x);
+//		TaskUtil.prnDetail(tm);
+		if(d<=1+MCal.err)
+			return "1";
+		else
+			return "0";
+		
 	}
 	
 	

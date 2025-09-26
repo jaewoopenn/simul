@@ -14,7 +14,6 @@ public class AnalEDF_ADAPT extends Anal {
 	private double lc_de;
 	private double hc_lo;
 	private double hc_hi;
-	private double g_x;
 	SysInfo g_info;
 	public AnalEDF_ADAPT() {
 		super();
@@ -28,8 +27,6 @@ public class AnalEDF_ADAPT extends Anal {
 		lc_de=g_info.getUtil_LC_DE();
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
-		g_x=computeX();
-		comp_hi_prefer();
 	}
 	
 	private void comp_hi_prefer() {
@@ -48,11 +45,11 @@ public class AnalEDF_ADAPT extends Anal {
 
 		
 	@Override
-	public double getDtm() {
-		double dtm=getDtm2();
+	protected double getDtm_in() {
+		double dtm=getScore();
 		return dtm;
 	}
-	public double getDtm2() {
+	private double getScore() {
 		double dtm=hc_hi+lc_ac;
 		double dtm2;
 		if (dtm<=1)
@@ -99,6 +96,7 @@ public class AnalEDF_ADAPT extends Anal {
 
 	@Override
 	public void reset() {
+		g_x=-1;
 		
 	}
 	@Override
@@ -112,6 +110,15 @@ public class AnalEDF_ADAPT extends Anal {
 	@Override
 	public double getModX() {
 		return -1;
+		
+	}
+
+	@Override
+	public void auto() {
+		isDone=true;
+		double x=computeX();
+		setX(x);
+		comp_hi_prefer();
 		
 	}
 

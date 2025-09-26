@@ -14,7 +14,6 @@ public class AnalEDF_VD_ADM extends Anal {
 	private double lc_de;
 	private double hc_lo;
 	private double hc_hi;
-	private double g_x=-1;
 	private boolean isWCR;
 	SysInfo g_info;
 	public AnalEDF_VD_ADM() {
@@ -60,24 +59,24 @@ public class AnalEDF_VD_ADM extends Anal {
 
 		
 	@Override
-	public double getDtm() {
+	protected double getDtm_in(){
 		double dtm=g_info.getMaxUtil();
 		if (dtm<=1)
 			return dtm;
-		dtm=getDtm2();
+		dtm=getScore();
 		return dtm;
 	}
-	public double getDtm2() {
-		double dtm;
-		double dtm2;
+	private double getScore() {
+		double dtm_lo;
+		double dtm_hi;
 		
 		double util_max=Math.max(hc_hi, lc_ac);
 		if (util_max>1) 
 			return util_max;
 		
-		dtm2=lc_de;
-		dtm=lc_ac;
-		double dtm3=lc_ac;
+		dtm_hi=lc_de;
+		dtm_lo=lc_ac;
+//		double dtm_lo2=lc_ac;
 		for(Task t:g_tm.get_HC_Tasks()){
 			if(t.removed())
 				continue;
@@ -85,21 +84,21 @@ public class AnalEDF_VD_ADM extends Anal {
 			double v_util=l_util/g_x;
 			double h_util=t.getHiUtil();
 			if(v_util>=h_util) {// HI-only
-				dtm+=h_util;
-				dtm2+= h_util;
+				dtm_lo+=h_util;
+				dtm_hi+= h_util;
 			} else { // v_util < h_util
-				dtm+=v_util;
-				dtm2+=(h_util-l_util)/(1-g_x);
+				dtm_lo+=v_util;
+				dtm_hi+=(h_util-l_util)/(1-g_x);
 			}
-			dtm3+=v_util;
+//			dtm_lo2+=v_util;
 		}
-//		SLog.prn(2, "!! dtm:"+MCal.getStr(dtm)+", "+MCal.getStr(dtm2));
-//		SLog.prn(2, "!! dtm3:"+MCal.getStr(dtm3));
-		double max=Math.max(dtm, dtm2);
+//		SLog.prn(2, "!! dtm:"+MCal.getStr(dtm_lo)+", "+MCal.getStr(dtm_hi));
+//		SLog.prn(2, "!! dtm3:"+MCal.getStr(dtm_lo2));
+		double max=Math.max(dtm_lo, dtm_hi);
 		if(max>1+MCal.err)
 			return max;
 		
-		return Math.min(dtm, dtm2);
+		return Math.min(dtm_lo, dtm_hi);
 	}
 	
 
@@ -142,10 +141,11 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public void reset() {
-		
+		g_x=-1;
 	}
 	@Override
 	public void setX(double x) {
+		isDone=true;
 		if(x<=0||x>1) {
 			SLog.err("anal... x:"+x);
 		}
@@ -160,6 +160,19 @@ public class AnalEDF_VD_ADM extends Anal {
 	public double getModX() {
 		prepare();
 		return computeX();
+	}
+
+	@Override
+	public void auto() {
+		double x=-1;
+		double old_x=-2;
+		while(old_x!=x) {
+			old_x=x;
+			x=computeX();
+			setX(x);
+			SLog.prn("x: "+x);
+		}
+		
 	}
 
 	

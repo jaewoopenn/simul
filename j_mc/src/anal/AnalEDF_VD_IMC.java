@@ -2,6 +2,7 @@ package anal;
 
 import task.SysInfo;
 import task.Task;
+import util.MCal;
 import util.SLog;
 
 public class AnalEDF_VD_IMC extends Anal {
@@ -9,7 +10,6 @@ public class AnalEDF_VD_IMC extends Anal {
 	private double lctasks_deUtil;
 	private double hctasks_loutil;
 	private double hctasks_hiutil;
-	private double g_x=-1;
 	private boolean isWCR=false;
 	SysInfo g_info;
 	public AnalEDF_VD_IMC() {
@@ -25,8 +25,6 @@ public class AnalEDF_VD_IMC extends Anal {
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
 //		g_info.prn();
-		if(g_x==-1)
-			g_x=computeX();
 		if(g_info.getMaxUtil()<=1)
 			setWCR();
 	}
@@ -46,7 +44,7 @@ public class AnalEDF_VD_IMC extends Anal {
 	}
 	
 	@Override
-	public double getDtm() {
+	protected double getDtm_in() {
 		double dtm=g_info.getMaxUtil();
 		if (dtm<=1)
 			return dtm;
@@ -58,15 +56,16 @@ public class AnalEDF_VD_IMC extends Anal {
 	}
 
 	public double getScore() {
-		double dtm;
+		double dtm_hi;
 		
 		
-		dtm=g_x*lctasks_acUtil+(1-g_x)*lctasks_deUtil+hctasks_hiutil;
-		double dtm2=hctasks_loutil/g_x+lctasks_acUtil;
-		if(dtm2<=1)
-			return dtm;
+		dtm_hi=g_x*lctasks_acUtil+(1-g_x)*lctasks_deUtil+hctasks_hiutil;
+		double dtm_lo=hctasks_loutil/g_x+lctasks_acUtil;
+//		SLog.prn(2, "!! dtm:"+MCal.getStr(dtm_lo)+", "+MCal.getStr(dtm_hi));
+		if(dtm_lo<=1+MCal.err)
+			return dtm_hi;
 		else 
-			return dtm2;
+			return dtm_lo;
 	}
 	
 
@@ -105,6 +104,15 @@ public class AnalEDF_VD_IMC extends Anal {
 	public double getModX() {
 		return -1;
 	}
+
+	@Override
+	public void auto() {
+		isDone=true;
+		double x=computeX();
+		setX(x);
+	}
+
+
 
 	
 	

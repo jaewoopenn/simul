@@ -9,7 +9,6 @@ import util.SLog;
 
 // 테스트는 여기에서.
 
-@SuppressWarnings("unused")
 public class z_autosimul3 {
 	public static void init_s() {
 //		s_idx=1;
@@ -25,12 +24,16 @@ public class z_autosimul3 {
 	}
 	public String g_tsn;
 	public int g_idx;
+	public int g_sort;
 	public int g_dur;
 	public double g_prob;
 		
 
 	public void init() {
-		g_tsn="adm/sim/taskset_84.txt";
+//		g_sort=0;
+		g_sort=1;
+
+		g_tsn="adm/sim/taskset_96.txt";
 		g_idx=0;
 
 //		g_tsn="adm/test2.txt";

@@ -105,6 +105,7 @@ public class SysGen {
 		TaskMng tm=ts.getTM();
 		Anal a=new AnalEDF_VD_IMC();
 		a.init(tm);
+		a.auto();
 		return a.is_sch(); 
 	}
 	protected boolean checkOnlyMC() {
@@ -123,6 +124,10 @@ public class SysGen {
 		TaskSet ts=g_tg.getTS();
 		TaskMng tm=ts.getTM();
 		a.init(tm);
+		double x=a.computeX();
+		a.setX(x);
+		x=a.computeX();
+		a.setX(x);
 		return a.is_sch(); 
 	}
 

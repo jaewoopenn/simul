@@ -5,6 +5,7 @@ import task.DTUtil;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskUtil;
+import util.MCal;
 import util.SLog;
 import util.SLogF;
 
@@ -24,22 +25,21 @@ public class DoSimul {
 		Anal anal=getAnalSim(g_sort);
 		TaskMng tm=DTUtil.getCurTM(dt);
 		anal.init(tm);
-		double x=anal.computeX();
-		anal.setX(x);
-		x=anal.computeX();
-		anal.setX(x);
+		anal.auto();
 		double dtm=anal.getDtm();
+		double x=anal.getX();
+
 		if(x<=0||x>1) {
 			TaskUtil.prn(tm);
 			SLog.prn("x: "+x);
-			SLog.err("not sch");
+			SLog.err("not sch X");
 		}
-		if(dtm>1) {
+		if(dtm>1+MCal.err) {
 			TaskUtil.prn(tm);
 //			TaskUtil.prnUtil(tm);
-			SLog.prn("x: "+x);
-			SLog.prn("dtm: "+dtm);
-			SLog.err("not sch");
+			SLog.prn(2,"x: "+x);
+			SLog.prn(2,"dtm: "+dtm);
+			SLog.err("not sch DTM");
 		}
 		SLog.prnc(1,"x: "+x);
 		SLog.prn(", dtm: "+dtm);

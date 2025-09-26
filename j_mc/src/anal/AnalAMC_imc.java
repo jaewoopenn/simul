@@ -20,7 +20,7 @@ public class AnalAMC_imc extends Anal {
 	}
 	
 	@Override
-	public double getDtm() {
+	protected double getDtm_in() {
 		SLog.prn(1, "OPA");
 		if (findOPA())
 			return 0.5;
@@ -220,6 +220,12 @@ public class AnalAMC_imc extends Anal {
 	@Override
 	public double getModX() {
 		return -1;
+	}
+
+	@Override
+	public void auto() {
+		isDone=true;
+		
 	}
 
 }

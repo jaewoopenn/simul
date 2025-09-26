@@ -7,25 +7,34 @@ import util.SLog;
 
 public class z_autoanal3 {
 	public static void init_s() {
-		s_idx=1;
-//		s_idx=2;
+//		s_idx=1;
+		s_idx=2;
 //		s_idx=3;
 		
 		
 		s_log_level=1;
+//		s_log_level=2;
 	}
 
+	private int g_sort;
+	private int g_idx;
+	private String g_TSN;
 
-
-
+	public void init() {
+		g_sort=0;
+//		g_sort=1;
+		
+//		g_TSN="adm/test1/task.txt";
+		g_TSN="adm/sim/taskset_93.txt";
+		
+		g_idx=109;
+		
+	}
 
 	public int test1()	{
-//		String tsn="adm/test1/task.txt";
-		String tsn="adm/sim/taskset_75.txt";
-		
-		SysLoad sy=new SysLoad(tsn);
-//		DoAnal da=new DoAnal(0);
-		DoAnal da=new DoAnal(1);
+		init();
+		SysLoad sy=new SysLoad(g_TSN);
+		DoAnal da=new DoAnal(g_sort);
 		int sum=0;
 		int i=0;
 		while(true) {
@@ -38,12 +47,31 @@ public class z_autoanal3 {
 				sum++;
 			i++;
 		}
-		SLog.prn(2, "sum:"+sum);
+		SLog.prn(2, "total:"+i);
+		SLog.prn(2, "accept:"+sum);
 		return 0;		
 	}
 	
 	public int test2()	{
-		return 0;
+		init();
+		SysLoad sy=new SysLoad(g_TSN);
+		DoAnal da=new DoAnal(g_sort);
+		int sum=0;
+		int i=0;
+		while(true) {
+			DTaskVec dt= sy.loadOne();
+			if(dt==null) break;
+			SLog.prn("no: "+i);
+			String s=da.run_one(dt);
+			if(s=="1")
+				sum++;
+			else
+				SLog.err("ee");
+			i++;
+		}
+		SLog.prn(2, "total:"+i);
+		SLog.prn(2, "accept:"+sum);
+		return 0;		
 	}
 
 	
@@ -51,7 +79,14 @@ public class z_autoanal3 {
 
 
 	public int test3() {
-		return -1;
+		init();
+		SysLoad sy=new SysLoad(g_TSN);
+		DoAnal da=new DoAnal(g_sort);
+		sy.moveto(g_idx);
+		DTaskVec dt= sy.loadOne();
+		String rs=da.run_one(dt);
+		SLog.prn(rs);
+		return 0;		
 	}
 	public int test4() {
 		return -1;

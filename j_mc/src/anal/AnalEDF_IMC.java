@@ -14,7 +14,7 @@ public class AnalEDF_IMC extends Anal {
 	}
 	
 	@Override
-	public double getDtm() {
+	protected double getDtm_in() {
 		return u;
 	}
 
@@ -39,6 +39,11 @@ public class AnalEDF_IMC extends Anal {
 	@Override
 	public double getModX() {
 		return -1;
+	}
+	@Override
+	public void auto() {
+		isDone=true;
+		
 	}
 
 

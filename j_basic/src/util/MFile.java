@@ -15,6 +15,10 @@ public class MFile {
 	protected BufferedReader g_br;
 	protected Vector<String> g_v;
 	public MFile(String file) {
+		if(file==null) {
+			SLog.err("MFile: filename is null");
+		}
+
 		g_fn=file;
 		g_v=new Vector<String>();
 	}
