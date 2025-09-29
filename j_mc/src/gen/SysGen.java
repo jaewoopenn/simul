@@ -76,6 +76,8 @@ public class SysGen {
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
+				if(!t.check())
+					continue;
 //				if(!isSch(t)) {
 //					g_tg.remove(num-1);
 //					continue;

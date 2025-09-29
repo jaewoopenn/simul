@@ -116,5 +116,10 @@ public class DTaskVec {
 		return (double)reject/(g_num-1);
 	}
 
+	public void reset() {
+		g_stage=0;
+		
+	}
+
 
 }

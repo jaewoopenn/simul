@@ -87,7 +87,9 @@ public class DoSimul {
 	}
 	public String getRS() {
 		SimulInfo si=g_ts.getStat();
-		return si.getDegraded()+"";
+//		String rs=si.getDegraded()+"";
+		String rs=si.getRejected()+"";
+		return rs;
 	}
 	
 	//////////

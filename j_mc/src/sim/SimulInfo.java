@@ -46,6 +46,11 @@ public class SimulInfo {
 		}
 		
 	}
+	public double getRejected(){
+		double per=(double)reject/stage;
+//		SLog.prn(2,reject+","+stage+","+per);
+		return per;
+	}
 	public double getDegraded(){
 		double per=(double)degraded/total;
 		return per;

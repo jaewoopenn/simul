@@ -100,7 +100,7 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 		a.init(tm);
 		a.setX(old_x);
 		d=a.getDtm();
-//		SLog.prn(1, "x, dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
+		SLog.prn(1, "x, dtm: "+MCal.getStr(old_x)+","+MCal.getStr(d));
 //		a.prn();
 		if(d<=1) {
 			tm.setX(old_x);

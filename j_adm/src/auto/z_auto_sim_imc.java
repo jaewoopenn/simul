@@ -37,7 +37,8 @@ public class z_auto_sim_imc {
 
 		// gen related;
 //		g_stage=1;
-		g_stage=3;
+//		g_stage=3;
+		g_stage=4;
 		g_st=72;
 		g_step=3;
 		g_end=96;

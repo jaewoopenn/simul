@@ -93,6 +93,7 @@ public class AnalEDF_VD_IMC extends Anal {
 
 	@Override
 	public void setX(double x) {
+		isDone=true;
 		if(x<=0||x>1) {
 			SLog.err("anal... x:"+x);
 		}
@@ -107,7 +108,6 @@ public class AnalEDF_VD_IMC extends Anal {
 
 	@Override
 	public void auto() {
-		isDone=true;
 		double x=computeX();
 		setX(x);
 	}

@@ -159,6 +159,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	@Override
 	public double getModX() {
 		prepare();
+		auto();
 		return computeX();
 	}
 
@@ -169,6 +170,8 @@ public class AnalEDF_VD_ADM extends Anal {
 		while(old_x!=x) {
 			old_x=x;
 			x=computeX();
+			if(x<=0||x>1)
+				return;
 			setX(x);
 			SLog.prn("x: "+x);
 		}

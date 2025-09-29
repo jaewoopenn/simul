@@ -22,16 +22,32 @@ public class MFile {
 		g_fn=file;
 		g_v=new Vector<String>();
 	}
+	public int load(){
+		br_open();
+		g_v=new Vector<String>();
+		try {
+		    String line;
+		    while((line = g_br.readLine()) != null){
+		    	g_v.add(line);
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		br_close();
+		return g_v.size();
+	}
+	public void prn() {
+		for(int i=0;i<bufferSize();i++) {
+			SLog.prn(getBuf(i));
+		}
+		
+	}	
 	public int bufferSize(){
 		return g_v.size();
 	}
 	public String getBuf(int idx){
 		return g_v.elementAt(idx);
-	}
-	public void view() {
-		for(int i=0;i<bufferSize();i++) {
-			SLog.prn(1, getBuf(i));
-		}
 	}
 	public void br_open() {
 		if(g_fn==null)
@@ -82,21 +98,6 @@ public class MFile {
 		return false;
 		
 	}
-	public int load(){
-		br_open();
-		g_v=new Vector<String>();
-		try {
-		    String line;
-		    while((line = g_br.readLine()) != null){
-		    	g_v.add(line);
-		    }
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-		br_close();
-		return g_v.size();
-	}
 	public static void makeDir(String str) {
 		 File theDir = new File(MFile.path+str);
 		if (theDir.exists()) {
@@ -109,6 +110,6 @@ public class MFile {
 	    catch(SecurityException se){
 	        se.printStackTrace();
 	    }        
-	}	
+	}
 
 }
