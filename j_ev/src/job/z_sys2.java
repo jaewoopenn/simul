@@ -36,7 +36,7 @@ public class z_sys2 {
 		js.add_in(15,1);
 		js.add_in(5,2);
 		js.add_in(30,3);
-		js.dbf();
+		js.prn_dbf();
 		return -1;
 	}
 	public int test3() {
@@ -44,19 +44,19 @@ public class z_sys2 {
 		int d=0;
 		js.add_in(4,3);
 		d=js.add_in(3,2);
-		js.dbf();
+		js.prn_dbf();
 		
 		SLog.prn("---");
 		js=new JobSys();
 		js.add_in(3,2);
 		d=js.add_in(4,3);
-		js.dbf();
+		js.prn_dbf();
 		
 		SLog.prn("---");
 		js=new JobSys();
 		js.add_in(4,3);
 		d=js.add_in(3,1);
-		js.dbf();
+		js.prn_dbf();
 		return d;
 	}
 	public  int test4() {
@@ -66,7 +66,7 @@ public class z_sys2 {
 		js.add_in(15,1);
 		js.add_in(5,2);
 		js.add_in(30,3);
-		js.dbf();
+		js.prn_dbf();
 		js.prn_ok();
 //		js.remove(1);
 		SLog.prn("------");
@@ -90,7 +90,7 @@ public class z_sys2 {
 			d=js.add_in(6,2);
 		}
 		SLog.prn("rem: "+d);
-		js.dbf();
+		js.prn_dbf();
 		return 1;
 	}
 	public  int test6() {
@@ -100,7 +100,7 @@ public class z_sys2 {
 		js.add_in(15,1);
 		js.add_in(5,2,0,1);
 		js.add_in(30,3);
-		js.dbf();
+		js.prn_dbf();
 		js.prn_ok();
 //		js.remove(1);
 		int d=js.gemRem(6);
@@ -115,7 +115,7 @@ public class z_sys2 {
 		js.prn_ok();
 		d=js.gemRem(6);
 		SLog.prn("rem: "+d);
-		js.dbf();
+		js.prn_dbf();
 		return 1;
 	}
 	public  int test7() {

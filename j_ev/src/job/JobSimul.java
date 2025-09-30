@@ -1,6 +1,8 @@
 package job;
 
 
+import java.util.TreeMap;
+
 import util.SLog;
 import util.SLogF;
 
@@ -11,23 +13,31 @@ public class JobSimul {
 	}
 	
 	
-	protected void exec_one(int g_t){
+	protected int  exec_one(int g_t){
 		Job j=g_jm.getCur();
 		String s="t:"+g_t+" ";
 		if(j==null)	{
 			s+="idle";
+			SLog.prn(s);
+			return 0;
 		}
-		else if(j.exec<=1) {
-			j.exec=0;
-			// removing is processing in ms_check 
-			s+="complete "+ j.tid;
-			g_jm.removeCur();
-		} else {  // j.exec>1
-			j.exec-=1;
+		if(j.exec>0) {
+			j.exec--;
 			s+="exec "+j.tid;
+		} else {
+			j.exec=0;
+			if(j.opt>0) {
+				s+="exec (opt) "+j.tid;
+				j.opt--;
+			} 
+		}
+		if(j.exec==0&&j.opt==0) {
+			s+=" complete";
+			g_jm.removeCur();
 		}
 		SLog.prn(s);
 //		SLogF.prn(s);
+		return 1;
 	}	
 	
 	

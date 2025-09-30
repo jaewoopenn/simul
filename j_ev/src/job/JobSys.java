@@ -13,6 +13,7 @@ public class JobSys {
 	private int g_t=0;
 	private int g_val=0;
 	private TreeMap<Integer, Integer> g_dem;
+	private int g_dem_base=-1;
 //	private PriorityQueue<JobInput> g_set;
 	public JobSys(){
 		g_dem = new TreeMap<>();
@@ -20,6 +21,23 @@ public class JobSys {
 		g_js=new JobSimul(g_jm);
 //		reset();
 	}
+	//////////////////
+	/// Simul related 
+	public void exec(int len) {
+		int et=g_t+len;
+		while(g_t<et) {
+			int rs=g_js.simul_one(g_t);
+			if(rs==0) {
+				g_dem = new TreeMap<>();
+				g_dem_base=-1;
+			}
+			g_t++;
+		}
+	}
+
+	
+	//////////////////
+	/// job related 
 	public int add_in(int dl, int e) {
 		return add_in(dl,e,0, e);
 		
@@ -40,16 +58,25 @@ public class JobSys {
 
 	}
 	public boolean add_repl(int dl, int e, int o, int v) {
+        if(g_dem_base==-1) {
+        	g_dem_base=g_t;
+        }
 		double d=(double)v/e;
+		int et=g_t+dl;
 //		SLog.prn("d:"+d);
 		int r=-1;
 		int old_r=0;
 		while(r!=old_r) {
 			old_r=r;
-			r=gemRem(dl);
-//			SLog.prn("r:"+r);
-			if(r>=e) {
+			r=gemRem(et);
+			SLog.prn("r:"+r);
+			if(e+o<=r) {
 				add_in(dl,e,o,v);
+				return true;
+			} else if(e<=r) {
+				int new_o=r-e;
+				SLog.prn("opt mod:"+o+"-->"+new_o);
+				add_in(dl,e,new_o,v);
 				return true;
 			}
 			removeOpt(d,e-r);
@@ -59,10 +86,14 @@ public class JobSys {
 		return false;
 		
 	}
+	
+	//////////////////
+	/// DBF related 
+	
 	public int gemRem(int et) {
         Set<Integer> keys = g_dem.keySet();
         if(keys.size()==0)
-        	return et;
+        	return et-g_dem_base;
 		int dem=0;
 		Integer s=g_dem.get(et);
 		if(s==null) {
@@ -81,8 +112,8 @@ public class JobSys {
         		rem=Math.min(rem, key-dem);
         	}
         }
-//		SLog.prn("REM_after:"+rem);
-		return rem;
+//		SLog.prn("REM_after:"+rem+","+g_dem_base);
+		return rem-g_dem_base;
 	}
 	private void addDem(int et, int e) {
         Set<Integer> keys = g_dem.keySet();
@@ -103,29 +134,6 @@ public class JobSys {
         		g_dem.put(key, dem+e);
         	}
         }
-		
-	}
-	public void exec(int len) {
-		int et=g_t+len;
-		while(g_t<et) {
-			g_js.simul_one(g_t);
-			g_t++;
-		}
-	}
-	public void dbf() {
-        Set<Integer> keys = g_dem.keySet();
-        SLog.prn("t\t: d");
-        SLog.prn("---------------");
-
-        for (Integer key : keys) {
-        	SLog.prn(key+"\t: "+g_dem.get(key));
-        }
-        SLog.prn("---------------");
-        SLog.prn("val: "+g_val);
-		
-	}
-	public void prn_ok() {
-		g_jm.prn();
 		
 	}
 	private void modifyDBF(Job j,int need) {
@@ -162,11 +170,33 @@ public class JobSys {
 		return false;
 		
 	}
+	
+	//////////////////
+	/// print related 
+
+	public void prn_dbf() {
+        Set<Integer> keys = g_dem.keySet();
+        SLog.prn("dem_base: "+g_dem_base);
+        SLog.prn("t\t: d");
+        SLog.prn("---------------");
+
+        for (Integer key : keys) {
+        	SLog.prn(key+"\t: "+g_dem.get(key));
+        }
+        SLog.prn("---------------");
+        SLog.prn("val: "+g_val);
+		
+	}
 	public void prn_den() {
 		g_jm.prn_den();
 		
 	}
-	
+
+	public void prn_ok() {
+		g_jm.prn();
+		
+	}
+
 //	public void reset() {
 //		g_set=new PriorityQueue<JobInput>();
 //		

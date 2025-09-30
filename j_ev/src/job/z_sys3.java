@@ -31,7 +31,7 @@ public class z_sys3 {
 			
 		}
 		d=js.add_in(3,2);
-		js.dbf();
+		js.prn_dbf();
 		
 		return -1;
 	}
@@ -42,18 +42,18 @@ public class z_sys3 {
 		if(b) {
 			SLog.prn("OK 1");
 		}
-		js.dbf();
+		js.prn_dbf();
 		b=js.add_repl(3,2,0,2);
 		if(b) {
 			SLog.prn("OK 2");
 		}
-		js.dbf();
+		js.prn_dbf();
 		b=js.add_repl(3,2,0,1);
 		if(b) {
 			SLog.prn("OK 3");
 		}
 		js.prn_ok();
-		js.dbf();
+		js.prn_dbf();
 		return -1;
 	}
 	public int test3() {
