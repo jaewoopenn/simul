@@ -12,7 +12,7 @@ public class MRand {
 	}
 	
 	public int getInt(int l, int u){
-		return g_rand.nextInt(u-l)+l;
+		return g_rand.nextInt(u-l+1)+l;
 	}
 
 	public double getDbl() {
@@ -20,12 +20,18 @@ public class MRand {
 	}
 
 	public int getInt(int max) {
-		return g_rand.nextInt(max);
+		return g_rand.nextInt(max+1);
 	}
 	public boolean getBool() {
 		return g_rand.nextBoolean();
 	}
 	public static MRand init() {
 		return new MRand();
+	}
+	public static void example() {
+		MRand mr=MRand.init();
+		int i=mr.getInt(10);
+		SLog.prn("n:"+i);
+		
 	}
 }
