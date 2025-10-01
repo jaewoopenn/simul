@@ -16,8 +16,8 @@ public class z_file1 {
 //		s_idx=1;
 //		s_idx=2;
 //		s_idx=3;
-//		s_idx=4;
-		s_idx=5;
+		s_idx=4;
+//		s_idx=5;
 		
 		
 		s_log_level=1;
@@ -87,14 +87,10 @@ public class z_file1 {
 		return -1;
 	}
 	public  int test4() {
-		JGen jg=JGen.init();
-		jg.run();
-		jg.save("ev/test2.txt");
+		MFile.example();
 		return 1;
 	}
 	public  int test5() {
-		JRun jr=JRun.init("ev/test2.txt");
-		jr.start();
 		return -1;
 	}
 	public  int test6() {

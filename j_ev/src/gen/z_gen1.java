@@ -2,12 +2,13 @@ package gen;
 
 
 
+import util.MFile;
 import util.SEngineT;
 
 public class z_gen1 {
 	public static void init_s() {
-//		s_idx=1;
-		s_idx=2;
+		s_idx=1;
+//		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
@@ -19,8 +20,9 @@ public class z_gen1 {
 	public int test1() 
 	{
 		JGen jg=JGen.init();
-		jg.run();
+		jg.run(5);
 		jg.save("ev/test2.txt");
+		MFile.prn("ev/test2.txt");
 		return -1;
 	}
 

@@ -9,6 +9,7 @@ import util.MStr;
 public class JGen {
 	MRand mr;
 	MList ml;
+//	int num;
 	public JGen() {
 		mr=MRand.init();
 		ml=MList.new_list();
@@ -18,11 +19,11 @@ public class JGen {
 		return jg;
 	}
 
-	public void run() {
+	public void run(int n) {
 		int[] para;
 		int t=0;
 		String rs;
-		for(int i=0;i<10;i++) {
+		for(int i=0;i<n;i++) {
 			int dl=mr.getInt(4, 6);
 			int m=mr.getInt(1, 2);
 			int o=mr.getInt(0, 1);

@@ -111,5 +111,25 @@ public class MFile {
 	        se.printStackTrace();
 	    }        
 	}
+	public static void prn(String fn) {
+		MFile mf=MFile.load_init(fn);
+	    String line;
+	    while((line = mf.read()) != null){
+	    	SLog.prn(line);
+	    }
+	}
+	private static MFile load_init(String fn) {
+		MFile mf=new MFile(fn);
+		mf.br_open();
+		return mf;
+	}
+	public static void example() {
+		MFile mf=MFile.load_init("test.txt");
+	    String line;
+	    while((line = mf.read()) != null){
+	    	SLog.prn(line);
+	    }
+		
+	}
 
 }
