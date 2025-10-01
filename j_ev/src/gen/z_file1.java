@@ -11,11 +11,13 @@ import util.MStr;
 import util.SEngineT;
 import util.SLog;
 
-public class file1 {
+public class z_file1 {
 	public static void init_s() {
-		s_idx=1;
+//		s_idx=1;
 //		s_idx=2;
 //		s_idx=3;
+//		s_idx=4;
+		s_idx=5;
 		
 		
 		s_log_level=1;
@@ -74,8 +76,10 @@ public class file1 {
 			int o=mr.getInt(0, 1);
 			int v=mr.getInt(m+o);
 			para= IntStream.of(t, dl, m, o, v).toArray();
-			int go=mr.getInt(2);
-			t+=go;
+			if(mr.getBool()) {
+				int go=mr.getInt(1,3);
+				t+=go;
+			}
 			rs=MStr.getMerge(para);
 			ml.add(rs);
 		}
@@ -83,10 +87,15 @@ public class file1 {
 		return -1;
 	}
 	public  int test4() {
+		JGen jg=JGen.init();
+		jg.run();
+		jg.save("ev/test2.txt");
 		return 1;
 	}
 	public  int test5() {
-		return 1;
+		JRun jr=JRun.init("ev/test2.txt");
+		jr.start();
+		return -1;
 	}
 	public  int test6() {
 		return 1;
@@ -106,10 +115,10 @@ public class file1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		file1.init_s();
-		Class c = file1.class;
-		file1 m=new file1();
-		int[] aret=file1.gret;
+		z_file1.init_s();
+		Class c = z_file1.class;
+		z_file1 m=new z_file1();
+		int[] aret=z_file1.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else
