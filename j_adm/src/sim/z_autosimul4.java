@@ -12,8 +12,8 @@ import util.SLog;
 
 public class z_autosimul4 {
 	public static void init_s() {
-//		s_idx=1;
-		s_idx=2;
+		s_idx=1;
+//		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
@@ -35,8 +35,8 @@ public class z_autosimul4 {
 //		g_sort=0;
 		g_sort=1;
 
-		g_tsn="adm/sim/taskset_96.txt";
-		g_idx=0;
+		g_tsn="adm/sim/taskset_75.txt";
+		g_idx=3;
 
 //		g_tsn="adm/test2.txt";
 //		g_idx=0;
@@ -58,14 +58,15 @@ public class z_autosimul4 {
 		int i=0;
 		while(dt!=null) {
 //			SLog.prn(2,"#### no: "+i+" #####");
-			DoSimul ds=new DoSimul(0,g_dur,g_prob);
+			DoSimul ds=new DoSimul(g_sort,g_dur,g_prob);
 			ds.run(dt);
 			SimulInfo si=ds.getSI();
 			double rs1=si.getRejected();
 			dt.reset();
-			DoAnal da=new DoAnal(0);
-			double rs2=da.run_simul(dt);
-			SLog.prn(1,"#### no: "+i+","+rs1+","+rs2);
+			DoAnal da=new DoAnal(g_sort);
+			da.run_simul(dt);
+			double rs2=Double.valueOf(da.getRS());
+			SLog.prn(2,"#### no: "+i+","+rs1+","+rs2);
 			if(rs1!=rs2) {
 				SLog.err("not matched");
 			}
@@ -95,6 +96,18 @@ public class z_autosimul4 {
 		return 0;
 	}
 	public int test3() {
+		init();
+		SysLoad sy=new SysLoad(g_tsn);
+		DTaskVec dt= sy.loadOne();
+		int i=0;
+		while(dt!=null) {
+			SLog.prn(2,"#### no: "+i+" #####");
+			DoAnal da=new DoAnal(g_sort);
+			da.run_simul(dt);
+			
+			dt= sy.loadOne();
+			i++;
+		}
 		return 0;
 	}
 	
@@ -110,21 +123,9 @@ public class z_autosimul4 {
 	}
 
 	public  int test4() {
-		init();
-		DTaskVec dt=getDT(g_idx);
-		DTUtil.prn(dt);
 		return 1;
 	}
 	public  int test5() {
-		init();
-		DTaskVec dt=getDT(g_idx);
-		
-		DoAnal da=new DoAnal(0);
-//		da.run(dt);
-//		da.run_simul(dt);
-		da.run_one(dt);
-//		double x=0.2891;
-//		da.run_one(dt,x);
 
 		return 0;
 	}

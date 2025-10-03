@@ -1,6 +1,8 @@
 package auto;
 
 
+import anal.AutoAnal;
+import anal.DoAnal;
 import sim.AutoSimul;
 import sim.DataSim_IMC;
 import sim.DoSimul;
@@ -16,9 +18,10 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 		
-//		s_idx=1;
-//		s_idx=2;
-		s_idx=3;
+//		s_idx=1; // all together
+//		s_idx=2;  // gen
+//		s_idx=3;
+		s_idx=4; 
 		
 //		s_log_level=1;
 		s_log_level=2;
@@ -26,6 +29,8 @@ public class z_auto_sim_imc {
 	
 	public void init_g() {
 		g_path="adm/sim";
+		g_sort = 2;
+		
 //		g_num=10;
 //		g_num=30;
 		g_num=500;
@@ -79,7 +84,7 @@ public class z_auto_sim_imc {
 	}
 	public void simul() {
 		MList fu=MList.new_list();
-		for(int i=0;i<2;i++) {
+		for(int i=0;i<g_sort;i++) {
 			DoSimul ds=new DoSimul(i,g_dur,g_p_ms);
 			AutoSimul as=new AutoSimul(g_path,ds);
 			as.setRS(g_rs_path);
@@ -88,14 +93,28 @@ public class z_auto_sim_imc {
 		}
 		fu.saveTo(g_rs_path+"/"+g_rs);
 	}
+	public void anal() {
+		MList fu=MList.new_list();
+		for(int i=0;i<g_sort;i++) {
+			DoAnal da=new DoAnal(i);
+			AutoAnal as=new AutoAnal(g_path,da);
+			as.setSimul();
+			String rs=as.analList(g_ts);	
+			fu.add(rs);
+		}
+		fu.saveTo(g_path+"/"+g_rs);
+	}	
 	
-	public void loop_util() {
+	public void loop_util(int i) {
 		AutoSysGen p=new AutoSysGen(g_path);
 
 		p.genXA(g_cf,g_rs_path+"/"+g_xl);
 		
 		SLog.prn(2, "p:"+g_p_ms);
-		simul();
+		if(i==0)
+			simul();
+		else
+			anal();
 		
 		
 		DataSim_IMC ds=new DataSim_IMC(g_rs_path,0);
@@ -103,30 +122,33 @@ public class z_auto_sim_imc {
 		ds.load_rs(g_rs);
 		ds.saveSim(g_graph);
 	}
-	public int test1()  // gen
+	public int test1()  
+	{
+		init_g();
+		init_sim();
+		gen();
+		loop_util(0);
+		return 0;
+	}
+	public int test2() 
 	{
 		init_g();
 		init_sim();
 		gen();
 		return 0;
 	}
-	public int test2() // sim
+	public int test3() 
 	{
 		init_g();
 		init_sim();
-		loop_util();
-		return 0;
-	}
-	public int test3() // all together
-	{
-		init_g();
-		init_sim();
-		gen();
-		loop_util();
+		loop_util(0);
 		return 0;
 	}
 	public  int test4() // ratio
 	{
+		init_g();
+		init_sim();
+		loop_util(1);
 		return 0;		
 	}
 	public  int test5() 
@@ -176,6 +198,7 @@ public class z_auto_sim_imc {
 	private int g_end;
 	private int g_num;
 	private int g_dur;
+	private int g_sort;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;

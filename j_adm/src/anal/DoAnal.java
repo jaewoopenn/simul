@@ -76,7 +76,7 @@ public class DoAnal {
 			g_rs="0";
 	}
 	
-	public double run_simul(DTaskVec dt) {
+	public void run_simul(DTaskVec dt) {
 		g_anal=AnalSel.getAuto(g_sort,isMC);
 		double x=-1;
 		TaskMng tm=null;
@@ -129,7 +129,7 @@ public class DoAnal {
 //		TaskUtil.prnUtil(tm);
 //		TaskUtil.prn(tm);
 //		SLog.prn("x, dtm: "+x+","+dtm);
-		return dt.getR();
+		g_rs= dt.getR()+"";
 	}
 
 	public String run_one(DTaskVec dt) {

@@ -64,6 +64,7 @@ public class z_auto_imc {
 		for(int i=0;i<g_sort;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal(g_path,da);
+			as.setSimul();
 			String rs=as.analList(g_ts);	
 			fu.add(rs);
 		}

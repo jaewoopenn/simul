@@ -9,7 +9,7 @@ public class AutoAnal {
 	private String g_path;
 	private DoAnal g_da;
 	private int g_sort;
-	
+	private boolean isSimul=false;
 	public AutoAnal(String path,DoAnal da) {
 		g_path=path;
 		g_da=da;
@@ -47,10 +47,18 @@ public class AutoAnal {
 		for(int i=0;i<num;i++) {
 			DTaskVec dt=sy.loadOne();
 //			SLog.prnc(2, i+": ");
-			g_da.run(dt);
+			if(isSimul)
+				g_da.run_simul(dt);
+			else
+				g_da.run(dt);
 			rs_list.add(g_da.getRS());
 		}
 		rs_list.saveTo(out);
+		
+	}
+
+	public void setSimul() {
+		isSimul=true;
 		
 	}
 

@@ -12,7 +12,7 @@ public class MRand {
 	}
 	
 	public int getInt(int l, int u){
-		return g_rand.nextInt(u-l+1)+l;
+		return g_rand.nextInt(u-l)+l;
 	}
 
 	public double getDbl() {
@@ -20,7 +20,7 @@ public class MRand {
 	}
 
 	public int getInt(int max) {
-		return g_rand.nextInt(max+1);
+		return g_rand.nextInt(max);
 	}
 	public boolean getBool() {
 		return g_rand.nextBoolean();
