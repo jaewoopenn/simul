@@ -75,7 +75,7 @@ public class z_auto_imc {
 	public int test1() {
 		init_g();
 		init_anal();
-		AutoParConfig apg=new AutoParConfig();
+		AutoParConfig apg=AutoParConfig.init();
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
@@ -105,7 +105,7 @@ public class z_auto_imc {
 	public int test3()  { // gen only
 		init_g();
 		init_anal();
-		AutoParConfig apg=new AutoParConfig();
+		AutoParConfig apg=AutoParConfig.init();
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);

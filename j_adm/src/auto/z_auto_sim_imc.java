@@ -43,10 +43,11 @@ public class z_auto_sim_imc {
 		// gen related;
 //		g_stage=1;
 //		g_stage=3;
-		g_stage=4;
-		g_st=72;
+//		g_stage=4;
+		g_stage=6;
+		g_st=70;
 		g_step=3;
-		g_end=96;
+		g_end=94;
 		g_p_hc=0.5;
 		g_ratio=-1;
 		
@@ -69,7 +70,7 @@ public class z_auto_sim_imc {
 		
 	}
 	public void gen() {
-		AutoParConfig apg=new AutoParConfig();
+		AutoParConfig apg=AutoParConfig.init();
 		apg.num=g_num;
 		apg.p_hc=g_p_hc;
 		apg.ratio=g_ratio;
@@ -79,8 +80,10 @@ public class z_auto_sim_imc {
 		p.setSch();
 		p.setOnlyMC();
 		p.setStage(g_stage);
+//		p.setUpper(g_upper);
 		p.genTS(g_cf,g_ts);
 		
+		p.genXA(g_cf,g_rs_path+"/"+g_xl);
 	}
 	public void simul() {
 		MList fu=MList.new_list();
@@ -98,17 +101,16 @@ public class z_auto_sim_imc {
 		for(int i=0;i<g_sort;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal(g_path,da);
+			as.setRS(g_rs_path);
 			as.setSimul();
 			String rs=as.analList(g_ts);	
 			fu.add(rs);
 		}
-		fu.saveTo(g_path+"/"+g_rs);
+		fu.saveTo(g_rs_path+"/"+g_rs);
 	}	
 	
 	public void loop_util(int i) {
-		AutoSysGen p=new AutoSysGen(g_path);
 
-		p.genXA(g_cf,g_rs_path+"/"+g_xl);
 		
 		SLog.prn(2, "p:"+g_p_ms);
 		if(i==0)
@@ -148,6 +150,7 @@ public class z_auto_sim_imc {
 	{
 		init_g();
 		init_sim();
+		gen();
 		loop_util(1);
 		return 0;		
 	}

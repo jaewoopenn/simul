@@ -11,7 +11,8 @@ import util.MPlot as mp;
 class gl_input:
     savename="adm/graph_"
     path="adm/"
-    ylim=0.60
+    ylim=0.30
+    # ylim=0.60
 
       
       
@@ -80,7 +81,7 @@ def loop(s):
     
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(-0.05,gl_input.ylim)
+    mp.ylim(-0.04,gl_input.ylim)
     mp.savefig(mf.filepath(gl_input.savename+s+".pdf"))
     
 def main():

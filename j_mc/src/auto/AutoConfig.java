@@ -17,7 +17,7 @@ public  class AutoConfig {
 	public void genCfg_util(String cf,int base,int step, int end) {
 		double end_i=(end-base)/step;
 		ConfigGen cg;
-		cg=ConfigPre.getPredefined(g_apc.isMC);
+		cg=ConfigPre.getPredefined(g_apc.getMC());
 		MList fu=MList.new_list();
 		cg.setPar("subfix", g_path);
 		cg.setPar("num",g_apc.num+"");

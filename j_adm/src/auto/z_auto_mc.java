@@ -75,7 +75,7 @@ public class z_auto_mc {
 	public int test1() { // MC
 		init_g();
 		init_anal();
-		AutoParConfig apg=new AutoParConfig();
+		AutoParConfig apg=AutoParConfig.init();
 		apg.num=g_num;
 		apg.setMC();
 		AutoConfig a=new AutoConfig(g_path,apg);

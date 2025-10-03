@@ -2,7 +2,6 @@ package sim;
 
 import anal.DoAnal;
 import gen.SysLoad;
-import task.DTUtil;
 import task.DTaskVec;
 import util.MFile;
 import util.SEngineT;

@@ -12,6 +12,8 @@ import util.SLog;
 
 @SuppressWarnings("unused")
 public class SysGen {
+	private double g_upper=0.1; //스테이지가 변하면서, 최대 추가할수 있는 util은? 
+	
 	private MRand g_rand=new MRand();
 	private TaskGen g_tg;
 	private ConfigGen g_cfg;
@@ -72,22 +74,28 @@ public class SysGen {
 		}
 		int num=tss.length;
 		int i=1;
+		double u=0;
 		while(i<g_stage) {
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
 				if(!t.check())
 					continue;
-//				if(!isSch(t)) {
-//					g_tg.remove(num-1);
-//					continue;
-//				}
+				if(u+t.getMaxUtil()>g_upper) {
+					continue;
+				}
+				u+=t.getMaxUtil();
 				TSFile.nextStage(ml,i);
 				TSFile.writeTask(ml, t);
 				num++;
 			} else { // remove
 //				SLog.prn(num+"");
 				int remove_n=g_rand.getInt(num);
+				Task t=ts.get(i);
+				if(t.removed())
+					continue;
+				t.markRemoved();
+				u-=t.getMaxUtil();
 				TSFile.nextStage(ml,i);
 				TSFile.remove(ml,remove_n);
 //				g_tg.remove(remove_n);

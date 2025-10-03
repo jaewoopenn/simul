@@ -10,21 +10,29 @@ public class AutoAnal {
 	private DoAnal g_da;
 	private int g_sort;
 	private boolean isSimul=false;
+	private String g_rs_path=null;
 	public AutoAnal(String path,DoAnal da) {
 		g_path=path;
 		g_da=da;
 		g_sort=da.getSort();
 	}	
+	public void setRS(String rs_path) {
+		g_rs_path=rs_path;
+		
+	}
 
 	// anal task set list with algorithm choice
 	public String analList(String ts_list) {
+		if(g_rs_path==null) {
+			SLog.err("set RS path in autoanal");
+		}
 		SLog.prn(2, "Anal:"+g_sort);
 		MList load_ts=MList.load(g_path+"/"+ts_list);
 		
 		MList rs_list=MList.new_list();
 		for(int i=0;i<load_ts.size();i++) {
 			String fn=load_ts.get(i);
-			String out=g_path+"/"+fn+".rs."+g_sort;
+			String out=g_rs_path+"/"+fn+".rs."+g_sort;
 			analTS(g_path+"/"+fn,out);
 			rs_list.add(out);
 		}
