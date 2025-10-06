@@ -66,5 +66,8 @@ public class MList {
 		MList ml=new MList(0);
 		return ml;
 	}
+	public Vector<String> getVec() {
+		return g_list;
+	}
 	
 }

@@ -151,6 +151,12 @@ public class Task {
 	}
 
 
+	public void reset() {
+		status=0;
+		
+	}
+
+
 
 
 }

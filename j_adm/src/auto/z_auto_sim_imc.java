@@ -45,6 +45,7 @@ public class z_auto_sim_imc {
 //		g_stage=3;
 //		g_stage=4;
 		g_stage=6;
+		g_upper=0.15;
 		g_st=70;
 		g_step=3;
 		g_end=94;
@@ -80,7 +81,7 @@ public class z_auto_sim_imc {
 		p.setSch();
 		p.setOnlyMC();
 		p.setStage(g_stage);
-//		p.setUpper(g_upper);
+		p.setUpper(g_upper);
 		p.genTS(g_cf,g_ts);
 		
 		p.genXA(g_cf,g_rs_path+"/"+g_xl);
@@ -195,6 +196,7 @@ public class z_auto_sim_imc {
 	private double g_p_ms;
 	private double g_p_hc;
 	private double g_ratio;
+	private double g_upper;
 	private int g_st;
 	private int g_step;
 	private int g_stage;

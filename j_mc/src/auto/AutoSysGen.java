@@ -12,6 +12,7 @@ public  class AutoSysGen {
 	private int g_stage=-1;
 	private String g_path;
 	private boolean g_isSch=false;
+	private double g_upper;
 
 	public AutoSysGen(String path) {
 		g_path=path;
@@ -34,6 +35,7 @@ public  class AutoSysGen {
 		for(int i=0;i<max;i++) {
 			ConfigGen cfg=ConfigGen.load(fu.get(i));
 			SysGen sg=SysGen.load(cfg,g_stage);
+			sg.setUpper(g_upper);
 			String fn=cfg.get_fn();
 			SLog.prn(3, fn);
 			if(g_onlyMC)
@@ -77,6 +79,12 @@ public  class AutoSysGen {
 			fu_xa.add(mod);
 		}
 		fu_xa.saveTo(xaxis);
+	}
+
+
+
+	public void setUpper(double upper) {
+		g_upper=upper;
 	}
 	
 	

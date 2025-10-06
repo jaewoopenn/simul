@@ -55,13 +55,19 @@ public class SysGen {
 			if(!isSch(a)) 
 				continue;
 			writeSys(ml);
+			while(true) {
+				int rs=writeAdd(ml);
+				if(rs==1) break;
+			}
+//			SLog.err("ee "+i);
+
 			i++;
 		}
 		ml.saveTo(fn);
 	}
 
 	
-	public int writeSys(MList ml)
+	public void writeSys(MList ml)
 	{
 		
 		TaskSet ts=g_tg.getTS();
@@ -72,37 +78,60 @@ public class SysGen {
 		for(Task t:tss) {
 			TSFile.writeTask(ml, t);
 		}
+	}
+	public int writeAdd(MList ml)
+	{
+		TaskSet ts=g_tg.getTS();
+		Task[] tss=ts.getArr();
 		int num=tss.length;
 		int i=1;
 		double u=0;
+		boolean bAdd=false;
+		MList add_ml=MList.new_list();
+//		SLog.prn(2, "start ");
 		while(i<g_stage) {
+//			SLog.prn(2, u+" ");
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
 				if(!t.check())
 					continue;
 				if(u+t.getMaxUtil()>g_upper) {
+//					SLog.prn(2, (u+t.getMaxUtil())+","+g_upper);
 					continue;
 				}
 				u+=t.getMaxUtil();
-				TSFile.nextStage(ml,i);
-				TSFile.writeTask(ml, t);
+				TSFile.nextStage(add_ml,i);
+				TSFile.writeTask(add_ml, t);
 				num++;
+//				SLog.prn(2,"add");
+				bAdd=true;
 			} else { // remove
-//				SLog.prn(num+"");
+//				SLog.prn(2,"del");
 				int remove_n=g_rand.getInt(num);
+//				SLog.prn(2,remove_n+"");
 				Task t=ts.get(i);
 				if(t.removed())
 					continue;
 				t.markRemoved();
 				u-=t.getMaxUtil();
-				TSFile.nextStage(ml,i);
-				TSFile.remove(ml,remove_n);
+				TSFile.nextStage(add_ml,i);
+				TSFile.remove(add_ml,remove_n);
 //				g_tg.remove(remove_n);
 				num--;
 			}
 			i++;
 		}
+		if(!bAdd) {
+			for(Task t:ts.getArr()) {
+				t.reset();
+			}
+			return 0;
+		}
+		for(String s:add_ml.getVec()) {
+			ml.add(s);
+		}
+		
 		ml.add("------");
 		return 1;
 	}
@@ -145,6 +174,9 @@ public class SysGen {
 		SysGen sg=new SysGen();
 		sg.load_in(cfg,stage);
 		return sg;
+	}
+	public void setUpper(double d) {
+		g_upper=d;
 	}
 
 	
