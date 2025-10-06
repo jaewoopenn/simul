@@ -11,11 +11,11 @@ import util.SLog;
 
 public class z_autosimul3 {
 	public static void init_s() {
-		s_idx=1;
-//		s_idx=2;
+//		s_idx=1;
+		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
-//		s_idx=5;
+		s_idx=5;
 //		s_idx=6;
 		
 		
@@ -33,8 +33,8 @@ public class z_autosimul3 {
 		g_sort=0;
 //		g_sort=1;
 
-		g_tsn="adm/sim/taskset_75.txt";
-		g_idx=480;
+		g_tsn="adm/sim/taskset_91.txt";
+		g_idx=24;
 
 //		g_tsn="adm/test2.txt";
 //		g_idx=0;
@@ -68,7 +68,7 @@ public class z_autosimul3 {
 		String out="adm/test.txt";
 
 		DoSimul ds=new DoSimul(0,g_dur,g_prob);
-		ds.setTrace(out);
+//		ds.setTrace(out);
 		ds.run(dt);
 		
 		SimulInfo si=ds.getSI();
@@ -114,10 +114,10 @@ public class z_autosimul3 {
 		init();
 		DTaskVec dt=getDT(g_idx);
 		
-		DoAnal da=new DoAnal(0);
+		DoAnal da=new DoAnal(g_sort);
 //		da.run(dt);
-//		da.run_simul(dt);
-		da.run_one(dt);
+		da.run_simul(dt);
+//		da.run_one(dt);
 //		double x=0.2891;
 //		da.run_one(dt,x);
 

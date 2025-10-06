@@ -47,7 +47,7 @@ public class SimulInfo {
 		
 	}
 	public double getRejected(){
-		double per=(double)reject/stage;
+		double per=(double)reject/add_task;
 //		SLog.prn(2,reject+","+stage+","+per);
 		return per;
 	}

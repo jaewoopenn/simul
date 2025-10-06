@@ -1,5 +1,7 @@
 package sim;
 
+import java.util.Vector;
+
 import anal.DoAnal;
 import gen.SysLoad;
 import task.DTaskVec;
@@ -31,10 +33,10 @@ public class z_autosimul4 {
 
 	
 	public void init() {
-//		g_sort=0;
-		g_sort=1;
+		g_sort=0;
+//		g_sort=1;
 
-		g_tsn="adm/sim/taskset_75.txt";
+		g_tsn="adm/sim/taskset_91.txt";
 		g_idx=3;
 
 //		g_tsn="adm/test2.txt";
@@ -46,33 +48,54 @@ public class z_autosimul4 {
 //		g_idx=5;
 //		g_idx=6;
 		
-//		g_dur=2000;
-		g_dur=5000;
+		g_dur=3100;
+//		g_dur=5000;
 		
 		g_prob=0.4;
 	}
 	public void run(String fn) {
+		int tot=0;
+		int i=0;
+		int upper=1000;
+//		int upper=0;
+		Vector<Double> rs1=new Vector<Double>();
+		Vector<Double> rs2=new Vector<Double>();
 		SysLoad sy=new SysLoad(fn);
 		DTaskVec dt= sy.loadOne();
-		int i=0;
 		while(dt!=null) {
 //			SLog.prn(2,"#### no: "+i+" #####");
 			DoSimul ds=new DoSimul(g_sort,g_dur,g_prob);
 			ds.run(dt);
 			SimulInfo si=ds.getSI();
-			double rs1=si.getRejected();
-			dt.reset();
+			rs1.add(si.getRejected());
+			tot++;
+			if(i==upper)
+				break;
+			i++;
+			dt= sy.loadOne();
+		}
+		sy=new SysLoad(fn);
+		dt= sy.loadOne();
+		i=0;
+		while(dt!=null) {
 			DoAnal da=new DoAnal(g_sort);
 			da.run_simul(dt);
-			double rs2=Double.valueOf(da.getRS());
-			SLog.prn(2,"#### no: "+i+","+rs1+","+rs2);
-			if(rs1!=rs2) {
+			double rs=Double.valueOf(da.getRS());
+			rs2.add(rs);
+			if(i==upper)
+				break;
+			i++;
+			dt= sy.loadOne();
+		}
+		for(i=0;i<tot;i++) {
+			double r1=rs1.elementAt(i);
+			double r2=rs2.elementAt(i);
+			SLog.prn(2,"#### no: "+i+","+r1+","+r2);
+			if(r1!=r2) {
 				SLog.err("not matched");
 			}
-			dt= sy.loadOne();
-			i++;
 		}
-		
+
 	}
 	public int test1()	{
 		init();
@@ -98,14 +121,33 @@ public class z_autosimul4 {
 		init();
 		SysLoad sy=new SysLoad(g_tsn);
 		DTaskVec dt= sy.loadOne();
-		int i=0;
+		int tot=0;
+		Vector<Double> rs1=new Vector<Double>();
+		Vector<Double> rs2=new Vector<Double>();
 		while(dt!=null) {
-			SLog.prn(2,"#### no: "+i+" #####");
-			DoAnal da=new DoAnal(g_sort);
+			DoAnal da=new DoAnal(0);
 			da.run_simul(dt);
-			
+			double r=Double.valueOf(da.getRS());
+			rs1.add(r);
 			dt= sy.loadOne();
-			i++;
+			tot++;
+		}
+		sy=new SysLoad(g_tsn);
+		dt= sy.loadOne();
+		while(dt!=null) {
+			DoAnal da=new DoAnal(0);
+			da.run_simul(dt);
+			double r=Double.valueOf(da.getRS());
+			rs2.add(r);
+			dt= sy.loadOne();
+		}
+		for(int i=0;i<tot;i++) {
+			double r1=rs1.elementAt(i);
+			double r2=rs2.elementAt(i);
+			SLog.prn(2,"#### no: "+i+","+r1+","+r2);
+			if(r1>r2) {
+				SLog.err("???");
+			}
 		}
 		return 0;
 	}

@@ -94,10 +94,13 @@ public class SysGen {
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
-				if(!t.check())
+				if(!t.check()) {
+					g_tg.cancel();
 					continue;
+				}
 				if(u+t.getMaxUtil()>g_upper) {
 //					SLog.prn(2, (u+t.getMaxUtil())+","+g_upper);
+					g_tg.cancel();
 					continue;
 				}
 				u+=t.getMaxUtil();

@@ -110,6 +110,10 @@ public  class TaskGen {
 		return Math.max(loutil, hiutil);
 	}
 
+	public void cancel() {
+		g_tid--;
+	}
+
 
 
 	

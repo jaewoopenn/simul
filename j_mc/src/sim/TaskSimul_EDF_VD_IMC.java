@@ -1,8 +1,11 @@
 package sim;
 
 
+import anal.Anal;
+import anal.AnalEDF_VD_IMC;
 import task.Task;
 import task.TaskMng;
+import util.SLog;
 
 public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 
@@ -41,6 +44,15 @@ public class TaskSimul_EDF_VD_IMC extends TaskSimul{
 	}
 	@Override
 	protected int changeVD_nextSt(TaskMng tm) {
+		Anal a=new AnalEDF_VD_IMC();
+//		g_tm.prnInfo();
+		a.init(tm);
+		a.setX(g_tm.getX());
+		double d=a.getDtm();
+		SLog.prn("d:"+d);
+		if(d<=1) {
+			return 1;
+		}
 		return 0;
 	}
 

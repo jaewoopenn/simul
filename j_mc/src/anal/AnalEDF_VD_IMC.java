@@ -11,6 +11,7 @@ public class AnalEDF_VD_IMC extends Anal {
 	private double hctasks_loutil;
 	private double hctasks_hiutil;
 	private boolean isWCR=false;
+	private boolean isUnsch=false;
 	SysInfo g_info;
 	public AnalEDF_VD_IMC() {
 		super();
@@ -25,6 +26,7 @@ public class AnalEDF_VD_IMC extends Anal {
 		hctasks_loutil=g_info.getUtil_HC_LO();
 		hctasks_hiutil=g_info.getUtil_HC_HI();
 //		g_info.prn();
+		isUnsch=false;
 		if(g_info.getMaxUtil()<=1)
 			setWCR();
 	}
@@ -45,6 +47,8 @@ public class AnalEDF_VD_IMC extends Anal {
 	
 	@Override
 	protected double getDtm_in() {
+		if(isUnsch)
+			return 2;
 		double dtm=g_info.getMaxUtil();
 		if (dtm<=1)
 			return dtm;
@@ -108,6 +112,10 @@ public class AnalEDF_VD_IMC extends Anal {
 
 	@Override
 	public void auto() {
+		if(g_info.get_LO_util()>1||g_info.get_HI_util()>1) {
+			isUnsch=true;
+			return;
+		}
 		double x=computeX();
 		setX(x);
 	}

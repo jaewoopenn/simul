@@ -11,8 +11,9 @@ import util.MPlot as mp;
 class gl_input:
     savename="adm/graph_"
     path="adm/"
-    ylim=0.30
+    # ylim=0.30
     # ylim=0.60
+    ylim=0.80
 
       
       

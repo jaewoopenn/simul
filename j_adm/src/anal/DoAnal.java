@@ -79,16 +79,21 @@ public class DoAnal {
 	public void run_simul(DTaskVec dt) {
 		g_anal=AnalSel.getAuto(g_sort,isMC);
 		double x=-1;
+		int tot=0;
 		TaskMng tm=null;
 		for(int i=0;i<dt.getStageNum();i++) {
-			SLog.prn("Stage: "+i);
+			SLog.prn("Stage: "+i+","+tot);
 			tm=DTUtil.getCurTM(dt);
+			if(dt.getCurSt()!=0&&dt.getClass(dt.getCurSt())==0) {
+				tot++;
+			}
 //			TaskUtil.prn(tm);
 			g_anal.init(tm);
+			g_anal.auto();
 			if(x==-1) 
 				x=g_anal.computeX();
 			if(x<=0||x>1) {
-				SLog.prn(1, "x: "+x);
+				SLog.prn(1, "x11: "+x);
 				dt.reject();
 				break;
 			}
@@ -108,18 +113,16 @@ public class DoAnal {
 //				TaskUtil.prnUtil(tm);
 				double mod=g_anal.getModX();
 				if(mod!=-1) {
-					x=mod;
-					if(x<=0||x>1) {
-						SLog.prn(1, "re x: "+x);
-						dt.reject();
+					if(mod<=0||mod>1) {
+						SLog.prn(1, "re x: "+mod);
 						d=2;
 //						break;
 					} else {
+						x=mod;
 						g_anal.setX(x);
 						d=g_anal.getDtm();
 						SLog.prn(1, "re x, dtm: "+x+","+d);
 					}
-					
 				}
 				if(d>1)
 					dt.reject();
@@ -128,8 +131,10 @@ public class DoAnal {
 		}
 //		TaskUtil.prnUtil(tm);
 //		TaskUtil.prn(tm);
+		Double per=(double)dt.getR()/tot;
+		SLog.prn("r, tot, per: "+dt.getR()+","+tot+","+per);
 //		SLog.prn("x, dtm: "+x+","+dtm);
-		g_rs= dt.getR()+"";
+		g_rs= per+"";
 	}
 
 	public String run_one(DTaskVec dt) {

@@ -108,11 +108,12 @@ public class TaskSimul_EDF_VD_ADM extends TaskSimul{
 		}
 		if(d>1) { // need to change x
 			SLog.prn(1, "x need to be changed");
-			double x=a.getModX();
-			if(x<=0||x>1) {
-				SLog.prn(1, "re x: "+MCal.getStr(x));
+			double mod=a.getModX();
+			if(mod<=0||mod>1) {
+				SLog.prn(1, "re x: "+MCal.getStr(mod));
 				return 0; // reject
 			}
+			double x=mod;
 			a.setX(x);
 			d=a.getDtm();
 			SLog.prn(1, "re x, dtm: "+MCal.getStr(x)+","+MCal.getStr(d));
