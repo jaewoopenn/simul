@@ -62,7 +62,7 @@ public class z_sys2 {
 	public  int test4() {
 		JobSys js=new JobSys();
 		js.add_in(5,2);
-		js.add_in(16,2,0,1);
+		js.add(16,2,0,1);
 		js.add_in(15,1);
 		js.add_in(5,2);
 		js.add_in(30,3);
@@ -80,7 +80,7 @@ public class z_sys2 {
 		int d=0;
 		js=new JobSys();
 		js.add_in(5,3);
-		js.add_in(16,2,0,1);
+		js.add(16,2,0,1);
 		js.add_in(15,10);
 		js.add_in(30,3);
 		d=js.add_in(6,2);
@@ -96,9 +96,9 @@ public class z_sys2 {
 	public  int test6() {
 		JobSys js=new JobSys();
 		js.add_in(5,2);
-		js.add_in(16,2,0,1);
+		js.add(16,2,0,1);
 		js.add_in(15,1);
-		js.add_in(5,2,0,1);
+		js.add(5,2,0,1);
 		js.add_in(30,3);
 		js.prn_dbf();
 		js.prn_ok();

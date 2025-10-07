@@ -65,7 +65,7 @@ public class z_autosimul3 {
 		DTaskVec dt=getDT(g_idx);
 		init();
 		DTUtil.prn(dt);
-		String out="adm/test.txt";
+//		String out="adm/test.txt";
 
 		DoSimul ds=new DoSimul(0,g_dur,g_prob);
 //		ds.setTrace(out);

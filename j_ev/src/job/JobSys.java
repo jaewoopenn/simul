@@ -42,7 +42,7 @@ public class JobSys {
 		return add_in(dl,e,0, e);
 		
 	}
-	public int add_in(int dl, int e, int o, int v) {
+	private int add_in(int dl, int e, int o, int v) {
 		int et=g_t+dl;
 		int rem=gemRem(et);
 		if(e>rem) {
@@ -57,7 +57,7 @@ public class JobSys {
 		return 0;
 
 	}
-	public boolean add_repl(int dl, int e, int o, int v) {
+	public boolean add(int dl, int e, int o, int v) {
         if(g_dem_base==-1) {
         	g_dem_base=g_t;
         }

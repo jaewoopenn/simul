@@ -2,18 +2,16 @@ package job;
 
 
 import util.SEngineT;
-//import util.SLog;
 
 
-// 필수/optional 구현
-
-public class z_sys4 {
+// 예약 충전 구현.. 실패 
+public class z_sys5 {
 	public static void init_s() {
-//		s_idx=1;
+		s_idx=1;
 //		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
-		s_idx=5;
+//		s_idx=5;
 //		s_idx=6;
 		
 		
@@ -23,14 +21,10 @@ public class z_sys4 {
 	public int test1() 
 	{
 		JobSys js=new JobSys();
-		js.add(4,2,1,3);
-		js.add(6,1,2,2);
-//		js.dbf();
-		js.add(5,1,0,1);
-		js.prn_den();
+		js.add(4,3,0,3);
+		js.add(14,2,1,3);
+		js.add(16,1,2,2);
 		js.prn_dbf();
-//		js.prn_ok();
-		
 		return -1;
 	}
 
@@ -95,10 +89,10 @@ public class z_sys4 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_sys4.init_s();
-		Class c = z_sys4.class;
-		z_sys4 m=new z_sys4();
-		int[] aret=z_sys4.gret;
+		z_sys5.init_s();
+		Class c = z_sys5.class;
+		z_sys5 m=new z_sys5();
+		int[] aret=z_sys5.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

@@ -35,7 +35,7 @@ public class JRun {
 
 	private void simul(int[] para) {
 		if(g_t==para[0]) {
-			js.add_repl(para[1],para[2],para[3],para[4]);
+			js.add(para[1],para[2],para[3],para[4]);
 			return;
 		} 
 		
@@ -43,7 +43,7 @@ public class JRun {
 		int go=para[0]-g_t;
 		js.exec(go);
 		g_t=para[0];
-		js.add_repl(para[1],para[2],para[3],para[4]);
+		js.add(para[1],para[2],para[3],para[4]);
 		
 	}
 

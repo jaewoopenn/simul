@@ -34,13 +34,13 @@ public class z_file1 {
 			SLog.prn(rs);
 			int[] para=MStr.getSplit(rs);
 			if(t==para[0]) {
-				js.add_repl(para[1],para[2],para[3],para[4]);
+				js.add(para[1],para[2],para[3],para[4]);
 			} else {
 				js.prn_dbf();
 				int go=para[0]-t;
 				js.exec(go);
 				t=para[0];
-				js.add_repl(para[1],para[2],para[3],para[4]);
+				js.add(para[1],para[2],para[3],para[4]);
 			}
 		}
 //		js.prn_dbf();
