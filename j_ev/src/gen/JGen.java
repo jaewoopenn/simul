@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 import util.MList;
 import util.MRand;
 import util.MStr;
+import util.SLog;
 
 public class JGen {
 	MRand mr;
@@ -24,10 +25,11 @@ public class JGen {
 		int t=0;
 		String rs;
 		for(int i=0;i<n;i++) {
-			int dl=mr.getInt(4, 6);
-			int m=mr.getInt(1, 2);
-			int o=mr.getInt(0, 1);
-			int v=mr.getInt(m+o);
+			int dl=mr.getInt(4, 7);
+			int m=mr.getInt(3)+1;
+			int o=mr.getInt(2);
+			SLog.prn(dl+","+m+","+o);
+			int v=mr.getInt(m+o)+1;
 			para= IntStream.of(t, dl, m, o, v).toArray();
 			if(mr.getBool()) {
 				int go=mr.getInt(1,3);
