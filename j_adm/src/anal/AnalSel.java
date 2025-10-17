@@ -24,6 +24,8 @@ public class AnalSel {
 			return new AnalEDF_IMC();
 		} else if(sort==3) {
 			return new AnalAMC_imc();
+		} else if(sort==99) {
+			return new AnalUtil();
 		} 
 		return null;
 	}
@@ -47,6 +49,8 @@ public class AnalSel {
 			return new AnalEDF_VD_IMC();
 		} else if(sort==4) {
 			return new AnalEDF_IMC();
+		} else if(sort==99) {
+			return new AnalUtil();
 		} 
 		return null;
 	}

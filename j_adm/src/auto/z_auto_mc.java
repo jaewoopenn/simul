@@ -21,7 +21,7 @@ public class z_auto_mc {
 	private int g_stage;
 	private int g_end;
 	private int g_num;
-	private int g_sort;
+	private int g_sort_max;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;
@@ -41,7 +41,7 @@ public class z_auto_mc {
 	
 	public void init_g() {
 		g_path="adm/test2";
-		g_sort=4;
+		g_sort_max=4;  // adm, edf-vd, edf, amc
 		g_num=5000;
 //		g_num=500;
 //		g_num=20;
@@ -62,10 +62,11 @@ public class z_auto_mc {
 	}
 	public void anal() {
 		MList fu=MList.new_list();
-		for(int i=0;i<g_sort;i++) {
+		for(int i=0;i<g_sort_max;i++) {
 			DoAnal da=new DoAnal(i);
 			da.setMC();
 			AutoAnal as=new AutoAnal(g_path,da);
+			as.setRS(g_path);
 			String rs=as.analList(g_ts);	
 			fu.add(rs);
 		}

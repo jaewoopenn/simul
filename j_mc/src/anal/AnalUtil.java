@@ -2,29 +2,26 @@ package anal;
 
 import util.SLog;
 
-public class AnalEDF_IMC extends Anal {
-	private double u;
-	public AnalEDF_IMC() {
+public class AnalUtil extends Anal {
+	public AnalUtil() {
 		super();
 		g_name="EDF(WCR)";
 	}
 	@Override
 	public void prepare_in() {
-		u=g_tm.getInfo().getMaxUtil();
 	}
 	
 	@Override
 	protected double getDtm_in() {
-		return u;
+		return 0;
 	}
 
 	@Override
 	public double computeX() {
-		return 1;
+		return 0;
 	}
 	@Override
 	public void prn() {
-		SLog.prn(1, "det:"+u);
 		
 	}
 	
@@ -43,7 +40,12 @@ public class AnalEDF_IMC extends Anal {
 	@Override
 	public void auto() {
 		isDone=true;
-		
+		double u=g_tm.getInfo().get_LO_util();
+		SLog.prn(2,"util:"+u);
+		double u=g_tm.getInfo().get_HI_util();
+		SLog.prn(2,"util:"+u);
+		double u=g_tm.getInfo().getMaxUtil();
+		SLog.prn(2,"util:"+u);
 	}
 
 

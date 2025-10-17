@@ -21,7 +21,7 @@ public class z_auto_imc {
 	private int g_stage;
 	private int g_end;
 	private int g_num;
-	private int g_sort;
+	private int g_sort_max;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;
@@ -31,8 +31,9 @@ public class z_auto_imc {
 	public static void init_s() {
 //		s_idx=1;
 //		s_idx=2;
-		s_idx=3;
-//		s_idx=4;
+//		s_idx=3;
+		s_idx=4;
+//		s_idx=5;
 		
 		
 		s_log_level=2;
@@ -41,17 +42,17 @@ public class z_auto_imc {
 	public void init_g() {
 		g_path="adm/anal";
 //		g_num=5000;
-		g_num=500;
-//		g_num=20;
+//		g_num=500;
+		g_num=30;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";
-		g_sort=3;
+		g_sort_max=4; // adm, edf-vd, edf, amc
 	}
 
 	public void init_anal() {
-//		g_stage=1;
-		g_stage=3;
+		g_stage=1;
+//		g_stage=3;
 //		g_stage=6;
 		g_st=56;
 		g_step=3;
@@ -61,20 +62,26 @@ public class z_auto_imc {
 	}
 	public void anal() {
 		MList fu=MList.new_list();
-		for(int i=0;i<g_sort;i++) {
+		for(int i=0;i<g_sort_max;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal(g_path,da);
-			as.setSimul();
+			as.setRS(g_path);
 			String rs=as.analList(g_ts);	
 			fu.add(rs);
 		}
 		fu.saveTo(g_path+"/"+g_rs);
+		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
+		da.load_x(g_xl);
+		da.load_rs(g_rs);
+		da.save(g_graph);
 	}	
-
-	
-	public int test1() {
-		init_g();
-		init_anal();
+	public void anal_util() {
+		DoAnal da=new DoAnal(99);
+		AutoAnal as=new AutoAnal(g_path,da);
+		as.setRS(g_path);
+		as.analList(g_ts);	
+	}	
+	public void gen() {
 		AutoParConfig apg=AutoParConfig.init();
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
@@ -83,12 +90,15 @@ public class z_auto_imc {
 		p.setStage(g_stage);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_path+"/"+g_xl);
+		
+	}
+	
+	public int test1() {
+		init_g();
+		init_anal();
+		gen();
 		anal();
 
-		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
-		da.load_x(g_xl);
-		da.load_rs(g_rs);
-		da.save(g_graph);
 		return 0;
 	}
 	public int test2() 	{  // without gen
@@ -96,25 +106,18 @@ public class z_auto_imc {
 		init_anal();
 		anal();
 
-		DataAnal_IMC da=new DataAnal_IMC(g_path,0);
-		da.load_x(g_xl);
-		da.load_rs(g_rs);
-		da.save(g_graph);
 		return 0;
 	}
 	public int test3()  { // gen only
 		init_g();
 		init_anal();
-		AutoParConfig apg=AutoParConfig.init();
-		apg.num=g_num;
-		AutoConfig a=new AutoConfig(g_path,apg);
-		a.genCfg_util(g_cf,g_st,g_step,g_end);
-		AutoSysGen p=new AutoSysGen(g_path);
-		p.genTS(g_cf,g_ts);
-		p.genXA(g_cf,g_path+"/"+g_xl);
+		gen();
 		return 0;
 	}
 	public  int test4() {
+		init_g();
+		init_anal();
+		anal_util();
 		return 0;
 	}
 	public  int test5() {

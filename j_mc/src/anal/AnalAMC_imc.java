@@ -14,7 +14,7 @@ public class AnalAMC_imc extends Anal {
 	}
 	
 	@Override
-	protected void prepare() {
+	protected void prepare_in() {
 		sz=g_tm.getTasks().length;
 		prio=new int[sz];
 	}
@@ -214,7 +214,7 @@ public class AnalAMC_imc extends Anal {
 	}
 
 	@Override
-	public void setX(double x) {
+	public void setX_in(double x) {
 	}
 
 	@Override

@@ -49,16 +49,20 @@ public class SysGen {
 		MList ml=MList.new_list();
 		ml.add(num+"");
 		while(i<num){
+//			SLog.prn(2,"hh "+i);
 			g_tg.genTS();
 			if(!checkOnlyMC())
 				continue;
 			if(!isSch(a)) 
 				continue;
 			writeSys(ml);
-			while(true) {
-				int rs=writeAdd(ml);
-				if(rs==1) break;
+			if(g_stage>1) {
+				while(true) {
+					int rs=writeAdd(ml);
+					if(rs==1) break;
+				}
 			}
+			ml.add("------");
 //			SLog.err("ee "+i);
 
 			i++;
@@ -90,7 +94,7 @@ public class SysGen {
 		MList add_ml=MList.new_list();
 //		SLog.prn(2, "start ");
 		while(i<g_stage) {
-//			SLog.prn(2, u+" ");
+			SLog.prn(2, u+" ");
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
@@ -99,7 +103,7 @@ public class SysGen {
 					continue;
 				}
 				if(u+t.getMaxUtil()>g_upper) {
-//					SLog.prn(2, (u+t.getMaxUtil())+","+g_upper);
+					SLog.prn(2, (u+t.getMaxUtil())+","+g_upper);
 					g_tg.cancel();
 					continue;
 				}
@@ -135,7 +139,6 @@ public class SysGen {
 			ml.add(s);
 		}
 		
-		ml.add("------");
 		return 1;
 	}
 	

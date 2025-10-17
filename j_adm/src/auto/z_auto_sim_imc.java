@@ -29,7 +29,7 @@ public class z_auto_sim_imc {
 	
 	public void init_g() {
 		g_path="adm/sim";
-		g_sort = 2;
+		g_sort_max = 2; // 1: EDF-ADM, 2: EDF-VD-IMC
 		
 //		g_num=10;
 //		g_num=30;
@@ -46,6 +46,7 @@ public class z_auto_sim_imc {
 //		g_stage=4;
 		g_stage=6;
 		g_upper=0.15;
+
 		g_st=70;
 		g_step=3;
 		g_end=94;
@@ -88,7 +89,7 @@ public class z_auto_sim_imc {
 	}
 	public void simul() {
 		MList fu=MList.new_list();
-		for(int i=0;i<g_sort;i++) {
+		for(int i=0;i<g_sort_max;i++) {
 			DoSimul ds=new DoSimul(i,g_dur,g_p_ms);
 			AutoSimul as=new AutoSimul(g_path,ds);
 			as.setRS(g_rs_path);
@@ -99,7 +100,7 @@ public class z_auto_sim_imc {
 	}
 	public void anal() {
 		MList fu=MList.new_list();
-		for(int i=0;i<g_sort;i++) {
+		for(int i=0;i<g_sort_max;i++) {
 			DoAnal da=new DoAnal(i);
 			AutoAnal as=new AutoAnal(g_path,da);
 			as.setRS(g_rs_path);
@@ -110,11 +111,11 @@ public class z_auto_sim_imc {
 		fu.saveTo(g_rs_path+"/"+g_rs);
 	}	
 	
-	public void loop_util(int i) {
+	public void loop_util(int bQuick) {
 
 		
 		SLog.prn(2, "p:"+g_p_ms);
-		if(i==0)
+		if(bQuick==0)
 			simul();
 		else
 			anal();
@@ -203,7 +204,7 @@ public class z_auto_sim_imc {
 	private int g_end;
 	private int g_num;
 	private int g_dur;
-	private int g_sort;
+	private int g_sort_max;
 	private String g_cf;
 	private String g_ts;
 	private String g_xl;

@@ -15,7 +15,6 @@ public class AnalEDF_VD_ADM extends Anal {
 	private double hc_lo;
 	private double hc_hi;
 	private boolean isWCR;
-	private boolean isUnsch=false;
 	SysInfo g_info;
 	public AnalEDF_VD_ADM() {
 		super();
@@ -23,7 +22,7 @@ public class AnalEDF_VD_ADM extends Anal {
 	}
 
 	@Override
-	public void prepare() {
+	public void prepare_in() {
 		isWCR=false;
 		g_tm.updateInfo();
 		g_info=g_tm.getInfo();
@@ -31,7 +30,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		lc_de=g_info.getUtil_LC_DE();
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
-		isUnsch=false;
 		for(Task t:g_tm.get_HC_Tasks()){
 			t.setNormal(1);
 		}
@@ -65,8 +63,6 @@ public class AnalEDF_VD_ADM extends Anal {
 		
 	@Override
 	protected double getDtm_in(){
-		if(isUnsch)
-			return 2;
 		double dtm=g_info.getMaxUtil();
 		if (dtm<=1)
 			return dtm;
@@ -152,14 +148,8 @@ public class AnalEDF_VD_ADM extends Anal {
 		g_x=-1;
 	}
 	@Override
-	public void setX(double x) {
-		if(isUnsch)
-			return;
+	public void setX_in(double x) {
 		isDone=true;
-		if(x<=0||x>1) {
-			SLog.err("anal... x:"+x);
-		}
-
 		g_x=x;
 		comp_hi_prefer();
 	}
@@ -168,7 +158,7 @@ public class AnalEDF_VD_ADM extends Anal {
 
 	@Override
 	public double getModX() {
-		prepare();
+		prepare_in();
 		auto();
 		return computeX();
 	}
@@ -184,8 +174,10 @@ public class AnalEDF_VD_ADM extends Anal {
 		while(old_x!=x) {
 			old_x=x;
 			x=computeX();
-			if(x<=0||x>1)
+			if(x<=0||x>1) {
+				isUnsch=true;
 				return;
+			}
 			setX(x);
 			SLog.prn("auto x: "+x);
 		}

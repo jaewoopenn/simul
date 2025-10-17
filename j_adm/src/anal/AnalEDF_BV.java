@@ -15,7 +15,7 @@ public class AnalEDF_BV extends Anal {
 	}
 
 	@Override
-	protected void prepare() {
+	protected void prepare_in() {
 		g_info=g_tm.getInfo();
 		lotasks_loutil=g_info.getUtil_LC_AC();
 		hitasks_loutil=g_info.getUtil_HC_LO();
@@ -68,7 +68,7 @@ public class AnalEDF_BV extends Anal {
 
 
 	@Override
-	public void setX(double x) {
+	public void setX_in(double x) {
 		g_x=x;
 	}
 

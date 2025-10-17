@@ -21,7 +21,7 @@ public class AnalEDF_ADAPT extends Anal {
 	}
 
 	@Override
-	public void prepare() {
+	public void prepare_in() {
 		g_info=g_tm.getInfo();
 		lc_ac=g_info.getUtil_LC_AC();
 		lc_de=g_info.getUtil_LC_DE();
@@ -100,10 +100,7 @@ public class AnalEDF_ADAPT extends Anal {
 		
 	}
 	@Override
-	public void setX(double x) {
-		if(x<=0||x>1) {
-			SLog.err("anal... x:"+x);
-		}
+	public void setX_in(double x) {
 		g_x=x;
 	}
 

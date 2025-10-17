@@ -54,6 +54,9 @@ public  class AutoSysGen {
 	public void setOnlyMC() {
 		g_onlyMC=true;		
 	}
+	public void setSch(){
+		g_isSch=true;
+	}
 
 	public void setStage(int s) {
 		g_stage=s;
@@ -62,9 +65,6 @@ public  class AutoSysGen {
 
 
 	
-	public void setSch(){
-		g_isSch=true;
-	}
 	
 
 	
