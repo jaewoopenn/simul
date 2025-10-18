@@ -11,6 +11,8 @@ import util.MList;
 
 import util.SEngineT;
 
+//TODO: MC ADAPT확인  
+
 
 public class z_auto_mc {
 	private static int s_idx;

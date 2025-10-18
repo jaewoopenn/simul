@@ -41,9 +41,10 @@ public class DoAnal {
 			g_anal.setX(x);
 //			g_anal.prn();
 			double d=g_anal.getDtm();
-			SLog.prn(1, "x, dtm: "+x+","+d);
+//			SLog.prn(1, "x, dtm: "+x+","+d);
 			if(i==0) {
 				if(d>1+MCal.err) {
+					dtm=d;
 					SLog.prn("Not sch");
 					break;
 				} else {
@@ -58,7 +59,7 @@ public class DoAnal {
 					x=mod;
 					if(x<=0||x>1) {
 						SLog.prn(1, "re x: "+x);
-						d=2;
+						dtm=2;
 						break;
 					} 
 					g_anal.setX(x);
@@ -69,7 +70,7 @@ public class DoAnal {
 			dtm= Math.max(dtm, d);
 			dt.nextStage();
 		}
-//		SLog.prn("x, dtm: "+x+","+dtm);
+		SLog.prn("x, dtm: "+x+","+dtm);
 		if(dtm<=1+MCal.err)
 			g_rs="1";
 		else

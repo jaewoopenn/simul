@@ -7,8 +7,8 @@ import util.SLog;
 
 public class z_autoanal3 {
 	public static void init_s() {
-//		s_idx=1;
-		s_idx=2;
+		s_idx=1;
+//		s_idx=2;
 //		s_idx=3;
 		
 		
@@ -25,7 +25,7 @@ public class z_autoanal3 {
 //		g_sort=1;
 		
 //		g_TSN="adm/test1/task.txt";
-		g_TSN="adm/sim/taskset_93.txt";
+		g_TSN="adm/anal/taskset_92.txt";
 		
 		g_idx=109;
 		

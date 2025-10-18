@@ -11,6 +11,7 @@ import util.MList;
 
 import util.SEngineT;
 
+// TODO: AMC-imc 확인  
 
 public class z_auto_imc {
 	private static int s_idx;
@@ -31,8 +32,8 @@ public class z_auto_imc {
 	public static void init_s() {
 //		s_idx=1;
 //		s_idx=2;
-//		s_idx=3;
-		s_idx=4;
+		s_idx=3;
+//		s_idx=4;
 //		s_idx=5;
 		
 		
@@ -51,8 +52,8 @@ public class z_auto_imc {
 	}
 
 	public void init_anal() {
-		g_stage=1;
-//		g_stage=3;
+//		g_stage=1;
+		g_stage=3;
 //		g_stage=6;
 		g_st=56;
 		g_step=3;

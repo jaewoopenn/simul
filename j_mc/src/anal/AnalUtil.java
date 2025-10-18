@@ -41,10 +41,10 @@ public class AnalUtil extends Anal {
 	public void auto() {
 		isDone=true;
 		double u=g_tm.getInfo().get_LO_util();
-		SLog.prn(2,"util:"+u);
-		double u=g_tm.getInfo().get_HI_util();
-		SLog.prn(2,"util:"+u);
-		double u=g_tm.getInfo().getMaxUtil();
+		SLog.prn(2,"LO util:"+u);
+		u=g_tm.getInfo().get_HI_util();
+		SLog.prn(2,"HI util:"+u);
+		u=g_tm.getInfo().getMaxUtil();
 		SLog.prn(2,"util:"+u);
 	}
 

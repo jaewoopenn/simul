@@ -94,7 +94,7 @@ public class SysGen {
 		MList add_ml=MList.new_list();
 //		SLog.prn(2, "start ");
 		while(i<g_stage) {
-			SLog.prn(2, u+" ");
+//			SLog.prn(2, u+" ");
 			boolean isAdd=g_rand.getBool();
 			if(isAdd) { //add
 				Task t=g_tg.genTaskOne();
@@ -103,7 +103,6 @@ public class SysGen {
 					continue;
 				}
 				if(u+t.getMaxUtil()>g_upper) {
-					SLog.prn(2, (u+t.getMaxUtil())+","+g_upper);
 					g_tg.cancel();
 					continue;
 				}
