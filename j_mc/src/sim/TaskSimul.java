@@ -7,6 +7,7 @@ import task.DTUtil;
 import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
+import task.TaskUtil;
 //import task.TaskUtil;
 import util.SLogF;
 import util.SLog;
@@ -154,7 +155,7 @@ public abstract class TaskSimul  {
 		g_tm=tm;
 		g_jsm.getJM().changeNum(tm.getTaskNum());
 //		TaskUtil.prnUtil(tm);
-//		TaskUtil.prnDetail(g_tm);
+//		TaskUtil.prn(g_tm);
 		g_ext.setTM(tm);
 	}
 
@@ -164,7 +165,7 @@ public abstract class TaskSimul  {
 		String s="";
 		for(Task tsk:g_tm.getTasks()){
 			if(tsk.removed()) {
-				s+="-";
+				s+="R";
 				continue;
 			}
 			if (t%tsk.period!=0){

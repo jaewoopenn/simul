@@ -11,7 +11,6 @@ public class AnalEDF_VD_IMC extends Anal {
 	private double hctasks_loutil;
 	private double hctasks_hiutil;
 	private boolean isWCR=false;
-	private boolean isUnsch=false;
 	SysInfo g_info;
 	public AnalEDF_VD_IMC() {
 		super();

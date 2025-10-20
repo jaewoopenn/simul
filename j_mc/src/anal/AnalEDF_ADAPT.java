@@ -15,6 +15,7 @@ public class AnalEDF_ADAPT extends Anal {
 	private double hc_lo;
 	private double hc_hi;
 	SysInfo g_info;
+	private boolean isWCR=false;
 	public AnalEDF_ADAPT() {
 		super();
 		g_name="MC-ADAPT";
@@ -27,6 +28,17 @@ public class AnalEDF_ADAPT extends Anal {
 		lc_de=g_info.getUtil_LC_DE();
 		hc_lo=g_info.getUtil_HC_LO();
 		hc_hi=g_info.getUtil_HC_HI();
+		if(g_info.getMaxUtil()<=1)
+			setWCR();
+	}
+	private void setWCR() {
+		g_x=1;
+		for(Task t:g_tm.get_HC_Tasks()){
+			t.setHI_only();
+		}
+		isWCR=true;
+//		SLog.prn(1, "WCR: "+g_info.getMaxUtil());
+		
 	}
 	
 	private void comp_hi_prefer() {
@@ -75,6 +87,9 @@ public class AnalEDF_ADAPT extends Anal {
 
 	@Override
 	public double computeX() {
+		if(isWCR)
+			return 1;
+//		SLog.prn(2,hc_hi+","+lc_ac);
 		double x=(1-hc_hi)/lc_ac;
 
 		return x;

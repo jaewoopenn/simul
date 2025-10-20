@@ -5,13 +5,12 @@ import anal.DataAnal_IMC;
 import anal.DoAnal;
 import util.MList;
 
-// generate task set skip if HC util = 0 or LC util=0 (not yet implement)
+// generate task set skip if HC util = 0 or LC util=0  --> fixed (maybe)
 //\a_new\sch.py
 // mc run
 
 import util.SEngineT;
 
-// TODO: AMC-imc 확인  
 
 public class z_auto_imc {
 	private static int s_idx;
@@ -30,9 +29,9 @@ public class z_auto_imc {
 	private String g_graph;
 	
 	public static void init_s() {
-//		s_idx=1;
+		s_idx=1;
 //		s_idx=2;
-		s_idx=3;
+//		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
 		
@@ -43,8 +42,8 @@ public class z_auto_imc {
 	public void init_g() {
 		g_path="adm/anal";
 //		g_num=5000;
-//		g_num=500;
-		g_num=30;
+		g_num=500;
+//		g_num=30;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
 		g_xl="a_x_list.txt";

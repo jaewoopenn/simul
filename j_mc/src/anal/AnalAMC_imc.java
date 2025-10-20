@@ -33,7 +33,7 @@ public class AnalAMC_imc extends Anal {
 
 	@Override
 	public double computeX() {
-		return 0;
+		return 0.01;
 	}
 	
 

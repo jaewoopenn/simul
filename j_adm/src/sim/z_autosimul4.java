@@ -36,7 +36,7 @@ public class z_autosimul4 {
 		g_sort=0;
 //		g_sort=1;
 
-		g_tsn="adm/sim/taskset_91.txt";
+		g_tsn="adm/sim/taskset_88.txt";
 		g_idx=3;
 
 //		g_tsn="adm/test2.txt";

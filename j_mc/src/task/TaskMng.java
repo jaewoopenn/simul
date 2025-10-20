@@ -253,16 +253,6 @@ public class TaskMng {
 			t.initMode();
 		}
 	}
-	public void prnTxt() {
-		g_tasks.prnTxt();
-		
-	}
-	public void prnPara() {
-		g_tasks.prnPara();
-		
-	}
-
-
 
 
 	public double getX() {

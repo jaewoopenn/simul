@@ -118,7 +118,7 @@ public class TaskUtil {
 	}
 	public static void prn(TaskMng tm) {
 		for(Task t:tm.getTasks()) {
-			prnTxt(t);
+			prn(t);
 		}
 		
 	}

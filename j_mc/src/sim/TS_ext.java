@@ -69,7 +69,7 @@ public class TS_ext {
 		// HC task 
 		Job j;
 //		SLog.prn(1,"tsk "+tsk.tid+" HM:"+tsk.isHM());
-		if(tsk.isHM()){ // HI-mode
+		if(tsk.isHM()||tsk.isHI_Preferred()){ // HI-mode or HI-mode preferred 
 			j= new Job(tsk.tid, t,dl, tsk.c_h,dl,0);
 		} else { // LO-mode
 			int job_vd=t+(int)Math.floor(tsk.vd);

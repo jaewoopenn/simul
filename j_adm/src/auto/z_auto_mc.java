@@ -5,13 +5,11 @@ import anal.DataAnal_IMC;
 import anal.DoAnal;
 import util.MList;
 
-// generate task set skip if HC util = 0 or LC util=0 (not yet implement)
 //\a_new\sch.py
 // mc run
 
 import util.SEngineT;
 
-//TODO: MC ADAPT확인  
 
 
 public class z_auto_mc {
@@ -44,8 +42,8 @@ public class z_auto_mc {
 	public void init_g() {
 		g_path="adm/test2";
 		g_sort_max=4;  // adm, edf-vd, edf, amc
-		g_num=5000;
-//		g_num=500;
+//		g_num=5000;
+		g_num=500;
 //		g_num=20;
 		g_cf="a_cfg_list.txt";
 		g_ts="a_ts_list.txt";
@@ -67,6 +65,7 @@ public class z_auto_mc {
 		for(int i=0;i<g_sort_max;i++) {
 			DoAnal da=new DoAnal(i);
 			da.setMC();
+			da.prn();
 			AutoAnal as=new AutoAnal(g_path,da);
 			as.setRS(g_path);
 			String rs=as.analList(g_ts);	

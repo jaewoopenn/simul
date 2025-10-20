@@ -4,6 +4,7 @@ package anal;
 import java.util.Vector;
 
 import util.MList;
+import util.SLog;
 
 public class DataAnal_IMC  {
 	protected String g_path;
@@ -56,6 +57,7 @@ public class DataAnal_IMC  {
 		for(int idx=0;idx<g_max;idx++) {
 			Anal a=getAnal(idx);
 			str+=" "+a.getName();
+			SLog.prn(2,idx+","+a.getName());
 		}
 		fu.add(str);
 		for(int i=0;i<g_xlen;i++) {

@@ -179,5 +179,10 @@ public class DoAnal {
 		TaskUtil.prnDetail(tm);
 		
 	}
+	public void prn() {
+		Anal a=AnalSel.getAuto(g_sort,isMC);
+		SLog.prn(2,a.getName());
+		
+	}
 
 }

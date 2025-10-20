@@ -21,11 +21,13 @@ public class z_autoanal3 {
 	private String g_TSN;
 
 	public void init() {
-		g_sort=0;
+//		g_sort=0;
 //		g_sort=1;
+		g_sort=3;
 		
 //		g_TSN="adm/test1/task.txt";
-		g_TSN="adm/anal/taskset_92.txt";
+		g_TSN="adm/anal/taskset_59.txt";
+//		g_TSN="adm/test2/taskset_59.txt";
 		
 		g_idx=109;
 		
@@ -35,6 +37,8 @@ public class z_autoanal3 {
 		init();
 		SysLoad sy=new SysLoad(g_TSN);
 		DoAnal da=new DoAnal(g_sort);
+//		da.setMC();
+		da.prn();
 		int sum=0;
 		int i=0;
 		while(true) {

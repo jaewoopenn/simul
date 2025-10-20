@@ -15,7 +15,7 @@ public class z_autosimul3 {
 		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
-		s_idx=5;
+//		s_idx=5;
 //		s_idx=6;
 		
 		
@@ -33,13 +33,13 @@ public class z_autosimul3 {
 		g_sort=0;
 //		g_sort=1;
 
-		g_tsn="adm/sim/taskset_91.txt";
-		g_idx=24;
+//		g_tsn="adm/sim/taskset_82.txt";
+//		g_idx=42;
 
-//		g_tsn="adm/test2.txt";
+		g_tsn="adm/test1.txt";
 //		g_idx=0;
 //		g_idx=1;
-//		g_idx=2;
+		g_idx=2;
 //		g_idx=3;
 //		g_idx=4;
 //		g_idx=5;
@@ -65,10 +65,10 @@ public class z_autosimul3 {
 		DTaskVec dt=getDT(g_idx);
 		init();
 		DTUtil.prn(dt);
-//		String out="adm/test.txt";
+		String out="adm/test.txt";
 
 		DoSimul ds=new DoSimul(0,g_dur,g_prob);
-//		ds.setTrace(out);
+		ds.setTrace(out);
 		ds.run(dt);
 		
 		SimulInfo si=ds.getSI();

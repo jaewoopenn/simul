@@ -74,10 +74,7 @@ public class Task {
 	// operation
 	public void initMode() {
 		is_dropped=false;
-		if(is_hi_preferred)
-			is_HI_Mode=true;
-		else
-			is_HI_Mode=false;
+		is_HI_Mode=false;
 	}
 
 	public void ms(){

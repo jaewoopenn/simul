@@ -35,7 +35,7 @@ public class z_auto_sim_imc {
 		g_sort_max = 2; // 1: EDF-ADM, 2: EDF-VD-IMC
 		
 //		g_num=10;
-//		g_num=30;
+//		g_num=50;
 		g_num=500;
 //		g_num=5000;
 		
@@ -47,7 +47,7 @@ public class z_auto_sim_imc {
 //		g_stage=1;
 //		g_stage=3;
 //		g_stage=4;
-		g_stage=6;
+		g_stage=5;
 		g_upper=0.15;
 
 		g_st=70;
