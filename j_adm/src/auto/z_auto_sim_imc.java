@@ -12,7 +12,6 @@ import util.SLog;
 
 // MC-RUN
 // ADM
-// TODO: dl miss 있음  ... 
 
 
 
@@ -21,10 +20,10 @@ public class z_auto_sim_imc {
 	
 	public static void init_s() {
 		
-		s_idx=1; // all together
+//		s_idx=1; // all together
 //		s_idx=2;  // gen
 //		s_idx=3;
-//		s_idx=4; 
+		s_idx=4; 
 		
 //		s_log_level=1;
 		s_log_level=2;
