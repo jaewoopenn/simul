@@ -14,8 +14,8 @@ public class z_test1 {
 	public static void init_s() {
 //		s_idx=1;
 //		s_idx=2;
-		s_idx=3;
-//		s_idx=4;
+//		s_idx=3;
+		s_idx=4;
 //		s_idx=5;
 		
 		
@@ -86,7 +86,7 @@ public class z_test1 {
         System.out.printf("평균 서비스 시간: %.4f 시간 (이론값: %.4f)%n", averageServiceTime, 1 / mu);
 		return 1;
 	}
-	public int test3() {
+	public int test3() { // M/M/1
 		int p=10;
 		int occur=3; //p 시간당 occur 발
 		double l = (double)occur/p;
@@ -105,8 +105,22 @@ public class z_test1 {
 		}
 		return 1;
 	}
-	public  int test4() {
-		return -1;
+	public  int test4() {  //MG1
+		int p=10;
+		int occur=3; //p 시간당 occur 발
+		double l = (double)occur/p;
+		Poisson po=new Poisson(l);
+		Uniform uni=new Uniform(1,5);
+		Uniform uni2=new Uniform(5,10);
+		double next=0;
+		for(int i=0;i<10;i++) {
+			next+=po.next();
+			double exec=uni.next();
+			double dl=uni2.next();
+            SLog.prn(MCal.getStr(next)+"\t\t"+MCal.getStr(exec)+"\t\t"+MCal.getStr(next+dl));
+			
+		}
+		return 1;
 	}
 	public  int test5() {
 		return -1;
