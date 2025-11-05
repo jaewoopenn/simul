@@ -19,7 +19,7 @@ public class z_sys3 {
 
 	public int test1() 
 	{
-		JobSys js=new JobSys();
+		JobSys_DEM js=new JobSys_DEM();
 		int d=0;
 		js.add(4,3,0,1);
 		d=js.gemRem(3);
@@ -37,7 +37,7 @@ public class z_sys3 {
 	}
 
 	public int test2() {
-		JobSys js=new JobSys();
+		JobSys_DEM js=new JobSys_DEM();
 		boolean b=js.add(4,3,0,1);
 		if(b) {
 			SLog.prn("OK 1");

@@ -4,6 +4,7 @@ package gen;
 import java.util.stream.IntStream;
 
 import job.JobSys;
+import job.JobSys_DEM;
 import util.MFile;
 import util.MList;
 import util.MRand;
@@ -21,6 +22,7 @@ public class z_file1 {
 		
 		
 		s_log_level=1;
+//		s_log_level=2;
 	}
 
 	public int test1() 
@@ -28,7 +30,7 @@ public class z_file1 {
 		MFile mf=new MFile("ev/test2.txt");
 		mf.br_open();
 		String rs;
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		int t=0;
 		while((rs=mf.read())!=null) {
 			SLog.prn(rs);

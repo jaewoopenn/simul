@@ -11,6 +11,7 @@ public class JGen {
 	MRand mr;
 	MList ml;
 //	int num;
+	boolean prn=false;
 	public JGen() {
 		mr=MRand.init();
 		ml=MList.new_list();
@@ -28,10 +29,11 @@ public class JGen {
 			int dl=mr.getInt(4, 7);
 			int m=mr.getInt(3)+1;
 			int o=mr.getInt(2);
-			SLog.prn(dl+","+m+","+o);
 			int v=mr.getInt(m+o)+1;
 			para= IntStream.of(t, dl, m, o, v).toArray();
-			if(mr.getBool()) {
+			if(prn)
+				SLog.prn(2,t+","+dl+","+m+","+o);
+			if(mr.getDbl()<=0.7) {
 				int go=mr.getInt(1,3);
 				t+=go;
 			}

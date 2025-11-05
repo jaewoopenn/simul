@@ -7,12 +7,12 @@ import util.SEngineT;
 // 예약 충전 구현.. 실패 
 public class z_sys5 {
 	public static void init_s() {
-		s_idx=1;
+//		s_idx=1;
 //		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
-//		s_idx=6;
+		s_idx=6;
 		
 		
 		s_log_level=1;
@@ -20,7 +20,7 @@ public class z_sys5 {
 
 	public int test1() 
 	{
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,3,0,3);
 		js.add(14,2,1,3);
 		js.add(16,1,2,2);
@@ -29,7 +29,7 @@ public class z_sys5 {
 	}
 
 	public int test2() {
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,2,1,2);
 //		js.dbf();
@@ -39,7 +39,7 @@ public class z_sys5 {
 		return -1;
 	}
 	public int test3() {
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,2,1,2);
 		js.prn_dbf();
@@ -50,7 +50,7 @@ public class z_sys5 {
 		return -1;
 	}
 	public  int test4() {
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,1,0,2);
 		js.prn_dbf();
@@ -62,7 +62,7 @@ public class z_sys5 {
 		return 1;
 	}
 	public  int test5() {
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,2,0,3);
 		js.add(6,2,0,2);
 		js.add(3,2,2,2);
@@ -72,6 +72,17 @@ public class z_sys5 {
 		return 1;
 	}
 	public  int test6() {
+		JobSys js=new JobSys_DEM();
+		js.add(4,2,0,1);
+		js.add(5,3,0,3);
+//		js.prn_dbf();
+		js.exec(2);
+		js.add(5,2,1,2);
+//		js.prn_dbf();
+		js.exec(10);
+		js.add(5,2,1,2);
+		js.prn_dbf();
+		
 		return 1;
 	}
 	public  int test7() {

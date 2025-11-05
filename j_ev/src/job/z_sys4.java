@@ -22,7 +22,7 @@ public class z_sys4 {
 
 	public int test1() 
 	{
-		JobSys js=new JobSys();
+		JobSys_DEM js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,1,2,2);
 //		js.dbf();
@@ -35,7 +35,7 @@ public class z_sys4 {
 	}
 
 	public int test2() {
-		JobSys js=new JobSys();
+		JobSys_DEM js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,2,1,2);
 //		js.dbf();
@@ -45,7 +45,7 @@ public class z_sys4 {
 		return -1;
 	}
 	public int test3() {
-		JobSys js=new JobSys();
+		JobSys_DEM js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,2,1,2);
 		js.prn_dbf();
@@ -56,7 +56,7 @@ public class z_sys4 {
 		return -1;
 	}
 	public  int test4() {
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,1,0,2);
 		js.prn_dbf();
@@ -68,7 +68,7 @@ public class z_sys4 {
 		return 1;
 	}
 	public  int test5() {
-		JobSys js=new JobSys();
+		JobSys js=new JobSys_DEM();
 		js.add(4,2,0,3);
 		js.add(6,2,0,2);
 		js.add(3,2,2,2);

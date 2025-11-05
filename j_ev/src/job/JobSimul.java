@@ -20,9 +20,14 @@ public class JobSimul {
 			SLog.prn(s);
 			return 0;
 		}
+		if(j.exec==0&&j.opt==0) {  // removeOpt로 opt 없어진경우. 
+			s+="job "+j.tid+" complete/";
+			g_jm.removeCur();
+			j=g_jm.getCur();
+		}
 		if(j.exec>0) {
 			j.exec--;
-			s+="exec "+j.tid;
+			s+="exec "+j.tid+" opt:"+j.opt;
 		} else {
 			j.exec=0;
 			if(j.opt>0) {
@@ -52,13 +57,13 @@ public class JobSimul {
 	}
 	
 
-	public int simul_end(int g_t){
-		if(g_jm.endCheck(g_t)==0){
-			g_jm.prn();
-			SLog.err("Deadline miss at time "+g_t);
-		}
-		SLogF.prn("*** Left Jobs at time "+g_t+" ***");
-		return g_jm.endDL(g_t);
+	public void simul_end(int g_t){
+//		if(g_jm.endCheck(g_t)==0){
+//			g_jm.prn();
+//			SLog.err("Deadline miss at time "+g_t);
+//		}
+//		SLogF.prn("*** Left Jobs at time "+g_t+" ***");
+//		return g_jm.endDL(g_t);
 	}
 	
 
@@ -72,10 +77,12 @@ public class JobSimul {
 		int dm=0;
 		while(true) {
 			Job j=g_jm.getCur();
-			if(j==null)
+			if(j==null) // idle
 				break;
-			if(cur_t<j.dl) 
+			if(cur_t<j.dl) {
+				dm=j.dl;
 				break;
+			}
 			SLog.err("Job Simul: DL miss at time "+cur_t+": tid:"+j.tid+", left exec:"+(j.exec)+
 					", dl:"+j.dl);
 				

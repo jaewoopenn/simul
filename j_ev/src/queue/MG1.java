@@ -74,7 +74,7 @@ public class MG1 {
     // 초기 도착 이벤트 생성 및 이벤트 큐에 추가
     private void initialize() {
         double firstArrivalTime = getExponentialRandom(ARRIVAL_RATE);
-        double firstServiceTime = getUniformRandom(SERVICE_TIME_MIN, SERVICE_TIME_MAX);
+//        double firstServiceTime = getUniformRandom(SERVICE_TIME_MIN, SERVICE_TIME_MAX);
         
         eventQueue.add(new Event(firstArrivalTime, EventType.ARRIVAL));
         System.out.println("M/G/1 Queue Simulation Initialized.");

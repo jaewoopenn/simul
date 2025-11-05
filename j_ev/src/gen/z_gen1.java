@@ -4,34 +4,59 @@ package gen;
 
 import util.MFile;
 import util.SEngineT;
+import util.SLog;
 
 public class z_gen1 {
 	public static void init_s() {
-		s_idx=1;
+//		s_idx=1;
 //		s_idx=2;
-//		s_idx=3;
+		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
 		
 		
-		s_log_level=1;
+//		s_log_level=1;
+		s_log_level=2;
 	}
 
 	public int test1() 
 	{
 		JGen jg=JGen.init();
-		jg.run(5);
+		jg.run(6);
 		jg.save("ev/test2.txt");
+		SLog.prn("t,dl,m,o,v");
+		SLog.prn("------------");
 		MFile.prn("ev/test2.txt");
 		return -1;
 	}
 
 	public int test2() {
-		JRun jr=JRun.init("ev/test2.txt");
-		jr.start();
+		SLog.prn("t,dl,m,o,v");
+		SLog.prn("------------");
+		MFile.prn("ev/test2.txt");
+		SLog.prn("------------");
+		JRun jr=JRun.init("ev/test2.txt",0);
+		jr.start(20);
+		jr=JRun.init("ev/test2.txt",1);
+		jr.start(20);
 		return -1;
 	}
 	public int test3() {
+		JGen jg=JGen.init();
+//		jg.prn=true;
+		jg.run(30);
+		int end_t=50;
+		jg.save("ev/test2.txt");
+//		SLog.prn("t,dl,m,o,v");
+//		SLog.prn("------------");
+//		MFile.prn("ev/test2.txt");
+		SLog.prn("------------");
+		SLog.prn(2,"DEM");
+		JRun jr=JRun.init("ev/test2.txt",0);
+		jr.start(end_t);
+		SLog.prn(2,"FIFO");
+		jr=JRun.init("ev/test2.txt",1);
+		jr.start(end_t);
 		return -1;
 	}
 	public  int test4() {

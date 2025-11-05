@@ -16,7 +16,7 @@ public class z_job1 {
 	public int test1() 
 	{
 		int t=0;
-		JobMng jm=new JobMng();
+		JobMng jm=new JobMng_DEM();
 		JobSimul js=new JobSimul(jm);
 		Job j=new Job(1,6,2,1);
 		jm.add(j);
