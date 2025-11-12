@@ -6,10 +6,9 @@ import java.util.TreeMap;
 import util.SLog;
 
 public class JobSys_DEM extends JobSys {
-	private JobMng_DEM g_jm;
 	private TreeMap<Integer, Integer> g_dem;
+	private JobMng_DEM g_jm;
 	public JobSys_DEM(){
-		g_dem = new TreeMap<>();
 		g_jm=new JobMng_DEM();
 		g_js=new JobSimul(g_jm);
 //		reset();
