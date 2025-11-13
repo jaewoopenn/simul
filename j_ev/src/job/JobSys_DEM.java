@@ -9,6 +9,7 @@ public class JobSys_DEM extends JobSys {
 	private TreeMap<Integer, Integer> g_dem;
 	private JobMng_DEM g_jm;
 	public JobSys_DEM(){
+		g_dem=new TreeMap<>();
 		g_jm=new JobMng_DEM();
 		g_js=new JobSimul(g_jm);
 //		reset();
@@ -57,7 +58,7 @@ public class JobSys_DEM extends JobSys {
 		double d=(double)v/e;
 		int et=g_t+dl;
 //		SLog.prn("d:"+d);
-		int r=-1;
+		int r=-1; // et에서 받아들일수 있는공간... 
 		int old_r=0;
 		while(r!=old_r) {
 			old_r=r;
@@ -72,10 +73,11 @@ public class JobSys_DEM extends JobSys {
 				add_in(dl,e,new_o,v);
 				return true;
 			}
+			int opt=getOpt(et);
 			removeOpt(d,e-r);
 //			SLog.prn("old_r:"+old_r);
 		}
-		SLog.prn("rejected e:"+e+",dl:"+dl);
+		SLog.prn("rejected e:"+e+",dl:"+dl); // 원복해야 하는데.... 
 		return false;
 		
 	}
@@ -83,6 +85,9 @@ public class JobSys_DEM extends JobSys {
 	//////////////////
 	/// DBF related 
 	
+	private int getOpt(int et) {
+		return 0;
+	}
 	public int gemRem(int et) {
         Set<Integer> keys = g_dem.keySet();
         if(keys.size()==0)

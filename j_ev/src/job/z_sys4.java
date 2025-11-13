@@ -2,6 +2,7 @@ package job;
 
 
 import util.SEngineT;
+import util.SLog;
 //import util.SLog;
 
 
@@ -9,11 +10,11 @@ import util.SEngineT;
 
 public class z_sys4 {
 	public static void init_s() {
-//		s_idx=1;
+		s_idx=1;
 //		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
-		s_idx=5;
+//		s_idx=5;
 //		s_idx=6;
 		
 		
@@ -27,6 +28,7 @@ public class z_sys4 {
 		js.add(6,1,2,2);
 //		js.dbf();
 		js.add(5,1,0,1);
+		SLog.prn("----");
 		js.prn_den();
 		js.prn_dbf();
 //		js.prn_ok();
