@@ -99,6 +99,19 @@ public class JobMng_DEM extends JobMng {
 
 
 
+	public int getOpt(double den) {
+		int tot=0;
+		for(Density d:g_den) {
+			if(d.j.opt!=0&&d.den<den) {
+				tot+=d.j.opt;
+			}
+		}
+		
+		return tot;
+	}
+
+
+
 	
 
 }

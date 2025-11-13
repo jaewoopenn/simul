@@ -55,7 +55,7 @@ public class JobSys_DEM extends JobSys {
         if(g_dem_base==-1) {
         	g_dem_base=g_t;
         }
-		double d=(double)v/e;
+		double d=(double)v/(e+o);
 		int et=g_t+dl;
 //		SLog.prn("d:"+d);
 		int r=-1; // et에서 받아들일수 있는공간... 
@@ -73,7 +73,10 @@ public class JobSys_DEM extends JobSys {
 				add_in(dl,e,new_o,v);
 				return true;
 			}
-			int opt=getOpt(et);
+			int opt=g_jm.getOpt(d);
+			SLog.prn("opt:"+opt+","+(e-r));
+			if(e-r>opt)
+				break;
 			removeOpt(d,e-r);
 //			SLog.prn("old_r:"+old_r);
 		}

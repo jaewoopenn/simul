@@ -10,8 +10,8 @@ import util.SLog;
 
 public class z_sys4 {
 	public static void init_s() {
-		s_idx=1;
-//		s_idx=2;
+//		s_idx=1;
+		s_idx=2;
 //		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
@@ -39,9 +39,10 @@ public class z_sys4 {
 	public int test2() {
 		JobSys_DEM js=new JobSys_DEM();
 		js.add(4,2,1,3);
-		js.add(6,2,1,2);
+		js.add(6,1,2,2);
 //		js.dbf();
-		js.add(5,1,0,2);
+		js.add(5,2,1,3);
+		SLog.prn("----");
 		js.prn_dbf();
 		js.prn_ok();
 		return -1;
