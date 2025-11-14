@@ -10,14 +10,14 @@ public class Job implements Comparable<Job>{
 	public int dl;
 	public int exec;
 	public int opt;
-	public int val;
+	public double val;
 	public double den;
 
-	public Job(int tid,int dl, int exec,  int value) {
+	public Job(int tid,int dl, int exec,  double value) {
 		this(tid,dl,exec,0,value);
 	}
 	
-	public Job(int tid,int dl, int exec, int opt, int val) {
+	public Job(int tid,int dl, int exec, int opt, double val) {
 		this.tid=tid;
 		this.dl = dl;
 		this.exec = exec;

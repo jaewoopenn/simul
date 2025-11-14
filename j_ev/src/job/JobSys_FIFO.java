@@ -26,7 +26,7 @@ public class JobSys_FIFO extends JobSys {
 	}
 
 	
-	public boolean add(int dl, int e, int o, int v) {
+	public boolean add(int dl, int e, int o, double v) {
         if(g_dem_base==-1) {
         	g_dem_base=g_t;
         }

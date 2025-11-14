@@ -35,7 +35,7 @@ public class JobSys_DEM extends JobSys {
 		return add_in(dl,e,0, e);
 		
 	}
-	private int add_in(int dl, int e, int o, int v) {
+	private int add_in(int dl, int e, int o, double v) {
 		int et=g_t+dl;
 		int rem=gemRem(et);
 		if(e>rem) {
@@ -51,7 +51,7 @@ public class JobSys_DEM extends JobSys {
 		return 0;
 
 	}
-	public boolean add(int dl, int e, int o, int v) {
+	public boolean add(int dl, int e, int o, double v) {
         if(g_dem_base==-1) {
         	g_dem_base=g_t;
         }
@@ -60,16 +60,18 @@ public class JobSys_DEM extends JobSys {
 //		SLog.prn("d:"+d);
 		int r=-1; // et에서 받아들일수 있는공간... 
 		int old_r=0;
-		while(r!=old_r) {
+		while(true) {
 			old_r=r;
 			r=gemRem(et);
-//			SLog.prn("r:"+r);
+//			SLog.prn("r:"+r+","+old_r);
+			if(r==old_r) break;
 			if(e+o<=r) {
 				add_in(dl,e,o,v);
 				return true;
 			} else if(e<=r) {
 				int new_o=r-e;
 				SLog.prn("opt mod:"+o+"-->"+new_o);
+				v=(d*(e+new_o));
 				add_in(dl,e,new_o,v);
 				return true;
 			}
@@ -87,10 +89,7 @@ public class JobSys_DEM extends JobSys {
 	
 	//////////////////
 	/// DBF related 
-	
-	private int getOpt(int et) {
-		return 0;
-	}
+
 	public int gemRem(int et) {
         Set<Integer> keys = g_dem.keySet();
         if(keys.size()==0)
