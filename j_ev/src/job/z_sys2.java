@@ -20,10 +20,10 @@ public class z_sys2 {
 	public int test1() 
 	{
 		JobSys_DEM js=new JobSys_DEM();
-		js.add_in(5,2);
-		js.add_in(6,2);
+		js.add_in2(5,2);
+		js.add_in2(6,2);
 		js.exec(1);
-		js.add_in(3,1);
+		js.add_in2(3,1);
 		js.exec(2);
 		
 		return -1;
@@ -31,42 +31,42 @@ public class z_sys2 {
 
 	public int test2() {
 		JobSys_DEM js=new JobSys_DEM();
-		js.add_in(5,2);
-		js.add_in(16,2);
-		js.add_in(15,1);
-		js.add_in(5,2);
-		js.add_in(30,3);
-		js.prn_dbf();
+		js.add_in2(5,2);
+		js.add_in2(16,2);
+		js.add_in2(15,1);
+		js.add_in2(5,2);
+		js.add_in2(30,3);
+		js.prn_detail();
 		return -1;
 	}
 	public int test3() {
 		JobSys_DEM js=new JobSys_DEM();
 		int d=0;
-		js.add_in(4,3);
-		d=js.add_in(3,2);
-		js.prn_dbf();
+		js.add_in2(4,3);
+		d=js.add_in2(3,2);
+		js.prn_detail();
 		
 		SLog.prn("---");
 		js=new JobSys_DEM();
-		js.add_in(3,2);
-		d=js.add_in(4,3);
-		js.prn_dbf();
+		js.add_in2(3,2);
+		d=js.add_in2(4,3);
+		js.prn_detail();
 		
 		SLog.prn("---");
 		js=new JobSys_DEM();
-		js.add_in(4,3);
-		d=js.add_in(3,1);
-		js.prn_dbf();
+		js.add_in2(4,3);
+		d=js.add_in2(3,1);
+		js.prn_detail();
 		return d;
 	}
 	public  int test4() {
 		JobSys_DEM js=new JobSys_DEM();
-		js.add_in(5,2);
+		js.add_in2(5,2);
 		js.add(16,2,0,1);
-		js.add_in(15,1);
-		js.add_in(5,2);
-		js.add_in(30,3);
-		js.prn_dbf();
+		js.add_in2(15,1);
+		js.add_in2(5,2);
+		js.add_in2(30,3);
+		js.prn_detail();
 		js.prn_ok();
 //		js.remove(1);
 		SLog.prn("------");
@@ -79,28 +79,28 @@ public class z_sys2 {
 		JobSys_DEM js=new JobSys_DEM();
 		int d=0;
 		js=new JobSys_DEM();
-		js.add_in(5,3);
+		js.add_in2(5,3);
 		js.add(16,2,0,1);
-		js.add_in(15,10);
-		js.add_in(30,3);
-		d=js.add_in(6,2);
+		js.add_in2(15,10);
+		js.add_in2(30,3);
+		d=js.add_in2(6,2);
 		if(d>0) {
 			SLog.prn("rem: "+d);
 //			js.remove_in(16,2);
-			d=js.add_in(6,2);
+			d=js.add_in2(6,2);
 		}
 		SLog.prn("rem: "+d);
-		js.prn_dbf();
+		js.prn_detail();
 		return 1;
 	}
 	public  int test6() {
 		JobSys_DEM js=new JobSys_DEM();
-		js.add_in(5,2);
+		js.add_in2(5,2);
 		js.add(16,2,0,1);
-		js.add_in(15,1);
+		js.add_in2(15,1);
 		js.add(5,2,0,1);
-		js.add_in(30,3);
-		js.prn_dbf();
+		js.add_in2(30,3);
+		js.prn_detail();
 		js.prn_ok();
 //		js.remove(1);
 		int d=js.getRem(6);
@@ -115,7 +115,7 @@ public class z_sys2 {
 		js.prn_ok();
 		d=js.getRem(6);
 		SLog.prn("rem: "+d);
-		js.prn_dbf();
+		js.prn_detail();
 		return 1;
 	}
 	public  int test7() {

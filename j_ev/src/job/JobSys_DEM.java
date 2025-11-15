@@ -16,26 +16,20 @@ public class JobSys_DEM extends JobSys {
 	}
 	//////////////////
 	/// Simul related 
-	public void exec(int len) {
-		int et=g_t+len;
-		while(g_t<et) {
-			int rs=g_js.simul_one(g_t);
-			if(rs==0) {
-				g_dem = new TreeMap<>();
-				g_dem_base=-1;
-			}
-			g_t++;
-		}
-	}
 
-	
-	//////////////////
-	/// job related 
-	public int add_in(int dl, int e) {
-		return add_in(dl,e,0, e);
+	@Override
+	protected void reset() {
+		g_dem = new TreeMap<>();
+		g_dem_base=-1;
 		
 	}
-	private int add_in(int dl, int e, int o, double v) {
+	//////////////////
+	/// job related 
+	public int add_in2(int dl, int e) {
+		return add_in2(dl,e,0, e);
+		
+	}
+	private int add_in2(int dl, int e, int o, double v) {
 		int et=g_t+dl;
 		int rem=getRem(et);
 		if(e>rem) {
@@ -51,10 +45,8 @@ public class JobSys_DEM extends JobSys {
 		return 0;
 
 	}
-	public boolean add(int dl, int e, int o, double v) {
-        if(g_dem_base==-1) {
-        	g_dem_base=g_t;
-        }
+	@Override
+	protected boolean add_in(int dl, int e, int o, double v) {
 		double d=(double)v/(e+o);
 		int et=g_t+dl;
 //		SLog.prn("d:"+d);
@@ -66,13 +58,13 @@ public class JobSys_DEM extends JobSys {
 //			SLog.prn("r:"+r+","+old_r);
 			if(r==old_r) break;
 			if(e+o<=r) {
-				add_in(dl,e,o,v);
+				add_in2(dl,e,o,v);
 				return true;
 			} else if(e<=r) {
 				int new_o=r-e;
 				SLog.prn("opt mod:"+o+"-->"+new_o);
 				v=(d*(e+new_o));
-				add_in(dl,e,new_o,v);
+				add_in2(dl,e,new_o,v);
 				return true;
 			}
 			int rem2=getRem2(et);
@@ -195,7 +187,7 @@ public class JobSys_DEM extends JobSys {
 	//////////////////
 	/// print related 
 
-	public void prn_dbf() {
+	public void prn_detail() {
         Set<Integer> keys = g_dem.keySet();
         SLog.prn("dem_base: "+g_dem_base);
         SLog.prn("t\t: d");

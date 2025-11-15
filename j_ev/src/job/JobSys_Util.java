@@ -4,10 +4,10 @@ package job;
 
 import util.SLog;
 
-public class JobSys_FIFO extends JobSys {
-	private JobMng_FIFO g_jm;
-	public JobSys_FIFO(){
-		g_jm=new JobMng_FIFO();
+public class JobSys_Util extends JobSys {
+	private JobMng_Util g_jm;
+	public JobSys_Util(){
+		g_jm=new JobMng_Util();
 		g_js=new JobSimul(g_jm);
 	}
 	@Override

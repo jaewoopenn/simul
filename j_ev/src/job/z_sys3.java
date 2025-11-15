@@ -30,8 +30,8 @@ public class z_sys3 {
 			SLog.prn("rem:"+d);
 			
 		}
-		d=js.add_in(3,2);
-		js.prn_dbf();
+		d=js.add_in2(3,2);
+		js.prn_detail();
 		
 		return -1;
 	}
@@ -42,18 +42,18 @@ public class z_sys3 {
 		if(b) {
 			SLog.prn("OK 1");
 		}
-		js.prn_dbf();
+		js.prn_detail();
 		b=js.add(3,2,0,2);
 		if(b) {
 			SLog.prn("OK 2");
 		}
-		js.prn_dbf();
+		js.prn_detail();
 		b=js.add(3,2,0,1);
 		if(b) {
 			SLog.prn("OK 3");
 		}
 		js.prn_ok();
-		js.prn_dbf();
+		js.prn_detail();
 		return -1;
 	}
 	public int test3() {

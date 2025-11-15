@@ -45,7 +45,7 @@ public class file1 {
 			if(t==para[0]) {
 				js.add(para[1],para[2],para[3],para[4]);
 			} else {
-				js.prn_dbf();
+				js.prn_detail();
 				js.exec(2);
 			}
 		}

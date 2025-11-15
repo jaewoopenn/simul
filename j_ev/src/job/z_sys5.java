@@ -24,7 +24,7 @@ public class z_sys5 {
 		js.add(4,3,0,3);
 		js.add(14,2,1,3);
 		js.add(16,1,2,2);
-		js.prn_dbf();
+		js.prn_detail();
 		return -1;
 	}
 
@@ -34,7 +34,7 @@ public class z_sys5 {
 		js.add(6,2,1,2);
 //		js.dbf();
 		js.add(5,1,0,2);
-		js.prn_dbf();
+		js.prn_detail();
 		js.prn_ok();
 		return -1;
 	}
@@ -42,10 +42,10 @@ public class z_sys5 {
 		JobSys js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,2,1,2);
-		js.prn_dbf();
+		js.prn_detail();
 		js.exec(2);
 		js.add(5,1,0,2);
-		js.prn_dbf();
+		js.prn_detail();
 		js.prn_ok();
 		return -1;
 	}
@@ -53,11 +53,11 @@ public class z_sys5 {
 		JobSys js=new JobSys_DEM();
 		js.add(4,2,1,3);
 		js.add(6,1,0,2);
-		js.prn_dbf();
+		js.prn_detail();
 		js.exec(6);
 		js.add(4,2,1,3);
 		js.add(6,1,0,2);
-		js.prn_dbf();
+		js.prn_detail();
 		js.prn_ok();
 		return 1;
 	}
@@ -66,7 +66,7 @@ public class z_sys5 {
 		js.add(4,2,0,3);
 		js.add(6,2,0,2);
 		js.add(3,2,2,2);
-		js.prn_dbf();
+		js.prn_detail();
 		js.prn_ok();
 		
 		return 1;
@@ -81,7 +81,7 @@ public class z_sys5 {
 //		js.prn_dbf();
 		js.exec(10);
 		js.add(5,2,1,2);
-		js.prn_dbf();
+		js.prn_detail();
 		
 		return 1;
 	}

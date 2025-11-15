@@ -13,24 +13,6 @@ public class JobMng_DEM extends JobMng {
 
 	
 	
-//	public int endDL(int et) {
-//		int dm=0;
-//		for(Job j:g_jobs){
-//			if(j.dl<=et){
-//				dm++;
-//			}
-//		}
-//		return dm;
-//	}
-//	
-//	public int endCheck(int et) {
-//		for(Job j:g_jobs){
-//			if(j.dl<=et){
-//				return 0; // dl miss
-//			}
-//		}
-//		return 1; // OK 
-//	}
 	
 
 	public void prn() {
