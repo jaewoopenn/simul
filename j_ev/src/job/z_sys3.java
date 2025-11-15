@@ -22,11 +22,11 @@ public class z_sys3 {
 		JobSys_DEM js=new JobSys_DEM();
 		int d=0;
 		js.add(4,3,0,1);
-		d=js.gemRem(3);
+		d=js.getRem(3);
 		SLog.prn("rem:"+d);
 		if(d<2) {
 			js.removeOpt(1,1);
-			d=js.gemRem(3);
+			d=js.getRem(3);
 			SLog.prn("rem:"+d);
 			
 		}

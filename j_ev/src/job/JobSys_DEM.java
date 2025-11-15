@@ -37,7 +37,7 @@ public class JobSys_DEM extends JobSys {
 	}
 	private int add_in(int dl, int e, int o, double v) {
 		int et=g_t+dl;
-		int rem=gemRem(et);
+		int rem=getRem(et);
 		if(e>rem) {
 			SLog.prn("No ("+dl+","+e+","+v+")");
 			return rem;
@@ -62,7 +62,7 @@ public class JobSys_DEM extends JobSys {
 		int old_r=0;
 		while(true) {
 			old_r=r;
-			r=gemRem(et);
+			r=getRem(et);
 //			SLog.prn("r:"+r+","+old_r);
 			if(r==old_r) break;
 			if(e+o<=r) {
@@ -75,9 +75,11 @@ public class JobSys_DEM extends JobSys {
 				add_in(dl,e,new_o,v);
 				return true;
 			}
+			int rem2=getRem2(et);
 			int opt=g_jm.getOpt(d);
-			SLog.prn("opt:"+opt+","+(e-r));
-			if(e-r>opt)
+			int need=e-r;
+			SLog.prn("rem:"+rem2+", opt:"+opt+", need:"+need);
+			if(need>rem2||need>opt)
 				break;
 			removeOpt(d,e-r);
 //			SLog.prn("old_r:"+old_r);
@@ -90,7 +92,7 @@ public class JobSys_DEM extends JobSys {
 	//////////////////
 	/// DBF related 
 
-	public int gemRem(int et) {
+	public int getRem(int et) {
         Set<Integer> keys = g_dem.keySet();
         if(keys.size()==0)
         	return et-g_dem_base;
@@ -112,6 +114,25 @@ public class JobSys_DEM extends JobSys {
         		rem=Math.min(rem, key-dem);
         	}
         }
+//		SLog.prn("REM_after:"+rem+","+g_dem_base);
+		return rem-g_dem_base;
+	}
+	
+	public int getRem2(int et) {
+        Set<Integer> keys = g_dem.keySet();
+        if(keys.size()==0)
+        	return et-g_dem_base;
+		int dem=0;
+		Integer s=g_dem.get(et);
+		if(s==null) {
+	        for (Integer key : keys) {
+	        	if(key<et)
+	        		dem=g_dem.get(key);
+	        }
+		} else {
+			dem=s;
+		}
+		int rem=et-dem;
 //		SLog.prn("REM_after:"+rem+","+g_dem_base);
 		return rem-g_dem_base;
 	}
