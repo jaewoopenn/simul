@@ -28,6 +28,9 @@ public abstract class JobSys {
 		}
 	}
 	protected abstract void reset();
+	public int getVal() {
+		return g_val;
+	}
 
 	
 }

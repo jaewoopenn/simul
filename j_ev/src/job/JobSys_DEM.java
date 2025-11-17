@@ -76,7 +76,7 @@ public class JobSys_DEM extends JobSys {
 			removeOpt(d,e-r);
 //			SLog.prn("old_r:"+old_r);
 		}
-		SLog.prn("rejected e:"+e+",dl:"+dl); // 원복해야 하는데.... 
+		SLog.prn("rejected e:"+e+",dl:"+dl);  
 		return false;
 		
 	}

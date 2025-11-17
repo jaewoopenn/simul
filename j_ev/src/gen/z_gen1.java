@@ -10,13 +10,13 @@ public class z_gen1 {
 	public static void init_s() {
 //		s_idx=1;
 //		s_idx=2;
-		s_idx=3;
-//		s_idx=4;
+//		s_idx=3;
+		s_idx=4;
 //		s_idx=5;
 		
 		
-//		s_log_level=1;
-		s_log_level=2;
+		s_log_level=1;
+//		s_log_level=2;
 	}
 
 	public int test1() 
@@ -57,9 +57,15 @@ public class z_gen1 {
 		SLog.prn(2,"FIFO");
 		jr=JRun.init("ev/test2.txt",1);
 		jr.start(end_t);
+		SLog.prn(2,"Util");
+		jr=JRun.init("ev/test2.txt",2);
+		jr.start(end_t);
 		return -1;
 	}
 	public  int test4() {
+		int end_t=50;
+		JRun jr=JRun.init("ev/test2.txt",2);
+		jr.start(end_t);
 		return 1;
 	}
 	public  int test5() {

@@ -12,6 +12,8 @@ public class Job implements Comparable<Job>{
 	public int opt;
 	public double val;
 	public double den;
+	public int rel_dl;
+	public double util=0;
 
 	public Job(int tid,int dl, int exec,  double value) {
 		this(tid,dl,exec,0,value);

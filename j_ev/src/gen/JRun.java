@@ -3,6 +3,7 @@ package gen;
 import job.JobSys;
 import job.JobSys_DEM;
 import job.JobSys_FIFO;
+import job.JobSys_Util;
 import job.SysInfo;
 import util.MFile;
 import util.MStr;
@@ -19,8 +20,10 @@ public class JRun {
 		mf.br_open();
 		if(sort==0) {
 			js=new JobSys_DEM();
-		} else {
+		} else if(sort==1) {
 			js=new JobSys_FIFO();
+		} else {
+			js=new JobSys_Util();
 		}
 		g_si=new SysInfo();
 		g_t=0;
@@ -42,6 +45,7 @@ public class JRun {
 		if(g_t<end) {
 			js.exec(end-g_t);
 		}
+		g_si.val=js.getVal();
 		g_si.prn();
 //		js.prn_dbf();
 		
