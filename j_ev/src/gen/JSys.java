@@ -18,7 +18,10 @@ public class JSys {
 
 	public void run() {
 		MList ml=MList.new_list();
+		JPara para=new JPara();
 		for(int i:MLoop.on(1,iter)) {
+			para.gap=2+2*i;
+			jg.setPara(para);
 			jg.run(num);
 			String fn="ev/test/test"+i+".txt";
 			jg.save(fn);
@@ -41,7 +44,7 @@ public class JSys {
 	public void anal() {
 		MList ml=MList.load("ev/test/list.txt");
 		MList rs_ml=MList.new_list();
-		int i=0;
+		int i=1;
 		rs_ml.add("xx Demand FIFO");
 		while(true) {
 			String s=ml.getNext();

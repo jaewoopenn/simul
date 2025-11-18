@@ -22,7 +22,7 @@ public class z_sys1 {
 	public int test1() 
 	{
 		JSys js=JSys.init();
-		js.setNum(5);
+		js.setNum(20);
 		js.setIter(4);
 		js.run();
 		return -1;
@@ -34,30 +34,9 @@ public class z_sys1 {
 		return -1;
 	}
 	public int test3() {
-		JGen jg=JGen.init();
-//		jg.prn=true;
-		jg.run(30);
-		int end_t=50;
-		jg.save("ev/test2.txt");
-//		SLog.prn("t,dl,m,o,v");
-//		SLog.prn("------------");
-//		MFile.prn("ev/test2.txt");
-		SLog.prn("------------");
-		SLog.prn(2,"DEM");
-		JRun jr=JRun.init("ev/test2.txt",0);
-		jr.start(end_t);
-		SLog.prn(2,"FIFO");
-		jr=JRun.init("ev/test2.txt",1);
-		jr.start(end_t);
-		SLog.prn(2,"Util");
-		jr=JRun.init("ev/test2.txt",2);
-		jr.start(end_t);
 		return -1;
 	}
 	public  int test4() {
-		int end_t=50;
-		JRun jr=JRun.init("ev/test2.txt",2);
-		jr.start(end_t);
 		return 1;
 	}
 	public  int test5() {

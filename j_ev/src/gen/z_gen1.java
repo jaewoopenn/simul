@@ -8,9 +8,9 @@ import util.SLog;
 
 public class z_gen1 {
 	public static void init_s() {
-//		s_idx=1;
+		s_idx=1;
 //		s_idx=2;
-		s_idx=3;
+//		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
 		
@@ -22,6 +22,8 @@ public class z_gen1 {
 	public int test1() 
 	{
 		JGen jg=JGen.init();
+		JPara para=new JPara();
+		jg.setPara(para);
 		jg.run(6);
 		jg.save("ev/test2.txt");
 		SLog.prn("t,dl,m,o,v");
@@ -44,6 +46,8 @@ public class z_gen1 {
 	public int test3() {
 		JGen jg=JGen.init();
 //		jg.prn=true;
+		JPara para=new JPara();
+		jg.setPara(para);
 		jg.run(30);
 		int end_t=50;
 		jg.save("ev/test2.txt");

@@ -10,8 +10,8 @@ import util.SLog;
 public class JGen {
 	MRand mr;
 	MList ml;
-//	int num;
 	boolean prn=false;
+	JPara g_para;
 	public JGen() {
 		mr=MRand.init();
 		ml=MList.new_list();
@@ -34,7 +34,7 @@ public class JGen {
 			if(prn)
 				SLog.prn(2,t+","+dl+","+m+","+o);
 			if(mr.getDbl()<=0.7) {
-				int go=mr.getInt(1,3);
+				int go=mr.getInt(1,g_para.gap);
 				t+=go;
 			}
 			rs=MStr.getMerge(para);
@@ -46,6 +46,9 @@ public class JGen {
 		ml.saveTo(fn);
 		ml=MList.new_list();
 		
+	}
+	public void setPara(JPara para) {
+		g_para=para;
 	}
 
 }
