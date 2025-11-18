@@ -44,6 +44,7 @@ public class JGen {
 	}
 	public void save(String fn) {
 		ml.saveTo(fn);
+		ml=MList.new_list();
 		
 	}
 

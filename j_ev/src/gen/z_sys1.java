@@ -6,11 +6,11 @@ import util.MFile;
 import util.SEngineT;
 import util.SLog;
 
-public class z_gen1 {
+public class z_sys1 {
 	public static void init_s() {
 //		s_idx=1;
-//		s_idx=2;
-		s_idx=3;
+		s_idx=2;
+//		s_idx=3;
 //		s_idx=4;
 //		s_idx=5;
 		
@@ -21,24 +21,16 @@ public class z_gen1 {
 
 	public int test1() 
 	{
-		JGen jg=JGen.init();
-		jg.run(6);
-		jg.save("ev/test2.txt");
-		SLog.prn("t,dl,m,o,v");
-		SLog.prn("------------");
-		MFile.prn("ev/test2.txt");
+		JSys js=JSys.init();
+		js.setNum(5);
+		js.setIter(4);
+		js.run();
 		return -1;
 	}
 
 	public int test2() {
-		SLog.prn("t,dl,m,o,v");
-		SLog.prn("------------");
-		MFile.prn("ev/test2.txt");
-		SLog.prn("------------");
-		JRun jr=JRun.init("ev/test2.txt",0);
-		jr.start(20);
-		jr=JRun.init("ev/test2.txt",1);
-		jr.start(20);
+		JSys js=JSys.init();
+		js.anal();
 		return -1;
 	}
 	public int test3() {
@@ -89,10 +81,10 @@ public class z_gen1 {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		z_gen1.init_s();
-		Class c = z_gen1.class;
-		z_gen1 m=new z_gen1();
-		int[] aret=z_gen1.gret;
+		z_sys1.init_s();
+		Class c = z_sys1.class;
+		z_sys1 m=new z_sys1();
+		int[] aret=z_sys1.gret;
 		if(s_idx==-1)
 			SEngineT.run(m,c,aret,10);
 		else

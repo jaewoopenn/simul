@@ -22,6 +22,16 @@ public class JobSys_Util extends JobSys {
 	protected boolean add_in(int dl, int e, int o, double v) {
 		int et=g_t+dl;
 //		int real_dl=et-g_dem_base;
+		while(true) {
+			Job j=g_jm.getCur2();
+			if(j==null)
+				break;
+			if(j.dl<=g_t) {
+				g_jm.removeCur2();
+			} else {
+				break;
+			}
+		}
 		double util=g_jm.getUtil()+(double)(e+o)/dl;
 		SLog.prn("test "+MCal.getStr(util)+"<= 1?");
 		if(util<=1+MCal.err) {

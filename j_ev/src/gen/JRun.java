@@ -65,4 +65,8 @@ public class JRun {
 		}
 	}
 
+	public String getRS() {
+		return g_si.getSuc()+"";
+	}
+
 }
