@@ -8,13 +8,13 @@ public abstract class JobSys {
 	protected int g_t=0;
 	protected int g_val=0;
 	protected int g_dem_base=-1;
-	public boolean add(int dl, int e, int o, double v) {
+	public boolean add(int dl, int e) {
         if(g_dem_base==-1) {
         	g_dem_base=g_t;
         }
-        return add_in(dl,e,o,v);
+        return add_in(dl,e);
 	}
-	protected abstract boolean add_in(int dl, int e, int o, double v) ;
+	protected abstract boolean add_in(int dl, int e) ;
 	public abstract void prn_detail();
 	public abstract void prn_ok();
 	public void exec(int len) {

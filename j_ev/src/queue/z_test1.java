@@ -5,6 +5,7 @@ package queue;
 
 import java.util.Random;
 
+import gen.JPoisson;
 import util.MCal;
 import util.MRand;
 import util.SEngineT;
@@ -90,11 +91,11 @@ public class z_test1 {
 		int p=10;
 		int occur=3; //p 시간당 occur 발
 		double l = (double)occur/p;
-		Poisson po=new Poisson(l);
+		JPoisson po=new JPoisson(l);
 		p=10;
 		occur=2; //p 시간당 occur 처리
 		l = (double)occur/p;
-		Poisson po2=new Poisson(l);
+		JPoisson po2=new JPoisson(l);
 		double next=0;
 		for(int i=0;i<10;i++) {
 			next+=po.next();
@@ -109,14 +110,14 @@ public class z_test1 {
 		int p=10;
 		int occur=3; //p 시간당 occur 발
 		double l = (double)occur/p;
-		Poisson po=new Poisson(l);
+		JPoisson po=new JPoisson(l);
 		Uniform uni=new Uniform(1,5);
 		Uniform uni2=new Uniform(5,10);
 		double next=0;
 		for(int i=0;i<10;i++) {
-			next+=po.next();
-			double exec=uni.next();
-			double dl=uni2.next();
+			next+=Math.round(po.next());
+			double exec=Math.round(uni.next());
+			double dl=Math.round(uni2.next());
             SLog.prn(MCal.getStr(next)+"\t\t"+MCal.getStr(exec)+"\t\t"+MCal.getStr(next+dl));
 			
 		}

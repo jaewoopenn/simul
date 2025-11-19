@@ -22,15 +22,14 @@ public class JobSys_FIFO extends JobSys {
 	
 
 	@Override
-	protected boolean add_in(int dl, int e, int o, double v) {
+	protected boolean add_in(int dl, int e) {
 		int et=g_t+dl;
 		int real_dl=et-g_dem_base;
-		int dem=g_jm.getDemand()+e+o;
+		int dem=g_jm.getDemand()+e;
 		SLog.prn("test "+dem+"<= "+real_dl+"?");
 		if(dem<=real_dl) {
-			Job j=new Job(g_id,et,e,o,v);
+			Job j=new Job(g_id,et,e);
 			g_jm.add(j);
-			g_val+=v;
 			g_id++;
 			return true;
 		}

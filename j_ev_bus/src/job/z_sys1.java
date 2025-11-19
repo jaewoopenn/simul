@@ -1,34 +1,35 @@
-package gen;
-
+package job;
 
 
 import util.SEngineT;
 
 public class z_sys1 {
 	public static void init_s() {
-//		s_idx=1;
-		s_idx=2;
+		s_idx=1;
+//		s_idx=2;
 //		s_idx=3;
-//		s_idx=4;
-//		s_idx=5;
 		
 		
-//		s_log_level=1;
-		s_log_level=2;
+		s_log_level=1;
 	}
 
 	public int test1() 
 	{
-		JSys js=JSys.init();
-		js.setNum(20);
-		js.setIter(6);
-		js.run();
+//		JobSys js=new JobSys();
+//		js.add(5,2,3);
+//		js.add(16,2,2);
+//		js.add(15,1,2);
+//		js.add(5,2,2);
+//		js.add(30,3,4);
+//		js.add(4,2,1);
+//		js.prn_input();
+//		js.addAll();
+//		js.dbf();
+		
 		return -1;
 	}
 
 	public int test2() {
-		JSys js=JSys.init();
-		js.anal();
 		return -1;
 	}
 	public int test3() {
@@ -38,7 +39,7 @@ public class z_sys1 {
 		return 1;
 	}
 	public  int test5() {
-		return -1;
+		return 1;
 	}
 	public  int test6() {
 		return 1;

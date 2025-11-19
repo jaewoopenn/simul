@@ -3,7 +3,6 @@ package gen;
 import job.JobSys;
 import job.JobSys_DEM;
 import job.JobSys_FIFO;
-import job.JobSys_Util;
 import job.SysInfo;
 import util.MFile;
 import util.MStr;
@@ -23,8 +22,6 @@ public class JRun {
 			js=new JobSys_DEM();
 		} else if(sort==1) {
 			js=new JobSys_FIFO();
-		} else {
-			js=new JobSys_Util();
 		}
 		g_si=new SysInfo();
 		g_t=0;
@@ -77,7 +74,7 @@ public class JRun {
 		}
 		g_si.total++;
 		
-		boolean b=js.add(para[1],para[2],para[3],para[4]);
+		boolean b=js.add(para[1],para[2]);
 		if(b) {
 			g_si.suc++;
 		}

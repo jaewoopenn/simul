@@ -1,11 +1,11 @@
-package queue;
+package gen;
 
 import util.MRand;
 
-public class Poisson {
+public class JPoisson {
 	private double lambda;
 	private MRand mr;
-	public Poisson(double l) {
+	public JPoisson(double l) {
 		lambda=l;
 		mr=MRand.init();
 	}
