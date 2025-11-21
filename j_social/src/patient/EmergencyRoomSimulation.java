@@ -1,0 +1,328 @@
+package patient;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
+public class EmergencyRoomSimulation {
+
+    // ==========================================
+    // 1. 설정 (Configuration)
+    // ==========================================
+    final int SIMULATION_TIME = 1440; // 1일 (분 단위)
+    final int NUM_DOCTORS = 3;
+
+    final double HIGH_THRESHOLD = 0.8;
+    final double LOW_THRESHOLD = 0.4;
+
+    final int SWITCH_COST = 5;
+    final double ARRIVAL_RATE = 0.2; // 람다(lambda)
+    final double PENALTY_SCORE = 9999.0;
+
+    // 랜덤 객체 (전역 사용)
+    Random random = new Random();
+
+    // 유틸리티 함수
+    // ==========================================
+    
+    // 쁘아송 분포 생성 (Knuth's algorithm)
+    public  int getPoissonArrivalCount(double lambda) {
+        double L = Math.exp(-lambda);
+        int k = 0;
+        double p = 1.0;
+        while (p > L) {
+            k++;
+            p *= random.nextDouble();
+        }
+        return k - 1;
+    }
+
+    // 우선순위 계산
+    public  void calculatePriority(Patient p, boolean isEmergencyMode, double alpha) {
+        double di = p.absoluteDeadline;
+        double ri = p.arrivalTime;
+
+        if (isEmergencyMode) {
+            if (p.criticality.equals("HI")) {
+                p.priorityScore = di;
+            } else {
+                p.priorityScore = di + PENALTY_SCORE;
+            }
+        } else {
+            p.priorityScore = (alpha * di) + ((1.0 - alpha) * ri);
+        }
+    }
+
+    // ==========================================
+    // 2. 시뮬레이션 실행 메인 로직
+    // ==========================================
+
+	public void run() {
+        int currentTime = 0;
+        List<Patient> waitingQueue = new ArrayList<>();
+        Patient[] doctors = new Patient[NUM_DOCTORS]; // 의사 슬롯 (null이면 빈자리)
+
+        boolean isEmergencyMode = false;
+        int patientIdCounter = 1;
+
+        // 통계 변수
+        int hiLived = 0;
+        int hiDied = 0;
+        int loProcessed = 0;
+        int loDropped = 0;
+        int preemptionCount = 0;
+        int triageDropCount = 0;
+        int admissionDenyCount = 0;
+        int burstCount = 0;
+
+        List<Integer> loWaitTimes = new ArrayList<>();
+
+        System.out.println("Simulation Started...");
+
+        while (currentTime < SIMULATION_TIME) {
+
+            // ---------------------------------------
+            // 1. 환자 발생
+            // ---------------------------------------
+            int numArrivals = getPoissonArrivalCount(ARRIVAL_RATE);
+            if (numArrivals >= 2) {
+                burstCount++;
+            }
+
+            for (int i = 0; i < numArrivals; i++) {
+                Patient newPatient = new Patient(patientIdCounter++, currentTime);
+
+                // Admission Control (Emergency 모드일 때 LO 거부)
+                if (isEmergencyMode && newPatient.criticality.equals("LO")) {
+                    loDropped++;
+                    admissionDenyCount++;
+                } else {
+                    waitingQueue.add(newPatient);
+                }
+            }
+
+            // ---------------------------------------
+            // 2. Load 계산
+            // ---------------------------------------
+            double currentLoad = 0.0;
+            // 대기열 부하
+            for (Patient p : waitingQueue) {
+                currentLoad += (double) p.executionTime / p.goldenTime;
+            }
+            // 의사 슬롯 부하
+            for (Patient p : doctors) {
+                if (p != null) {
+                    currentLoad += (double) p.executionTime / p.goldenTime;
+                }
+            }
+
+            // ---------------------------------------
+            // 3. 모드 전환
+            // ---------------------------------------
+            double thresholdEnter = NUM_DOCTORS * HIGH_THRESHOLD;
+            double thresholdExit = NUM_DOCTORS * LOW_THRESHOLD;
+
+            if (!isEmergencyMode) {
+                if (currentLoad >= thresholdEnter) {
+                    isEmergencyMode = true;
+                }
+            } else {
+                if (currentLoad <= thresholdExit) {
+                    isEmergencyMode = false;
+                }
+            }
+
+            double currentAlpha;
+            if (isEmergencyMode) {
+                currentAlpha = 1.0;
+            } else {
+                currentAlpha = (NUM_DOCTORS > 0) ? Math.min(currentLoad / NUM_DOCTORS, 1.0) : 1.0;
+            }
+
+            // ---------------------------------------
+            // 4. 우선순위 갱신 및 정렬
+            // ---------------------------------------
+            for (Patient p : waitingQueue) {
+                calculatePriority(p, isEmergencyMode, currentAlpha);
+            }
+            // 점수가 낮은 순(deadline이 급한 순)으로 정렬
+            Collections.sort(waitingQueue, Comparator.comparingDouble(p -> p.priorityScore));
+
+            // ---------------------------------------
+            // 5. Preemption (선점)
+            // ---------------------------------------
+            if (isEmergencyMode && !waitingQueue.isEmpty()) {
+                Patient topPatient = waitingQueue.get(0);
+                boolean isHopeless = (currentTime + topPatient.remainingExecTime > topPatient.absoluteDeadline);
+
+                if (topPatient.criticality.equals("HI") && !isHopeless) {
+                    // 빈 의사가 있는지 확인
+                    boolean hasFreeDoctor = false;
+                    for (Patient d : doctors) {
+                        if (d == null) {
+                            hasFreeDoctor = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasFreeDoctor) {
+                        // LO 환자를 치료 중인 의사 찾기
+                        int targetDocIdx = -1;
+                        for (int i = 0; i < NUM_DOCTORS; i++) {
+                            if (doctors[i] != null && doctors[i].criticality.equals("LO")) {
+                                targetDocIdx = i;
+                                break;
+                            }
+                        }
+
+                        // 교체 수행
+                        if (targetDocIdx != -1) {
+                            Patient evictedLo = doctors[targetDocIdx];
+                            Patient incomingHi = waitingQueue.remove(0); // 큐에서 제거
+
+                            evictedLo.isPreempted = true;
+                            waitingQueue.add(evictedLo); // 쫓겨난 LO는 다시 큐로
+
+                            doctors[targetDocIdx] = incomingHi;
+                            doctors[targetDocIdx].remainingExecTime += SWITCH_COST;
+
+                            preemptionCount++;
+                        }
+                    }
+                }
+            }
+
+            // ---------------------------------------
+            // 6. 의사 배정 + Triage
+            // ---------------------------------------
+            for (int i = 0; i < NUM_DOCTORS; i++) {
+                if (doctors[i] == null) {
+                    while (!waitingQueue.isEmpty()) {
+                        Patient candidate = waitingQueue.get(0); // 확인만 하고
+                        
+                        // 가망 없는 환자 Triage
+                        int finishTime = currentTime + candidate.remainingExecTime;
+                        if (finishTime > candidate.absoluteDeadline) {
+                            waitingQueue.remove(0); // 실제 제거
+                            if (candidate.criticality.equals("HI")) {
+                                hiDied++;
+                                triageDropCount++;
+                            } else {
+                                loDropped++;
+                            }
+                            continue; // 다음 환자 확인
+                        }
+
+                        // 배정 가능
+                        doctors[i] = waitingQueue.remove(0); // 제거 및 배정
+                        break;
+                    }
+                }
+            }
+
+            // ---------------------------------------
+            // 7. 치료 진행
+            // ---------------------------------------
+            for (int i = 0; i < NUM_DOCTORS; i++) {
+                if (doctors[i] != null) {
+                    Patient p = doctors[i];
+                    p.remainingExecTime--;
+
+                    if (p.remainingExecTime <= 0) {
+                        doctors[i] = null; // 퇴원
+                        if (p.criticality.equals("HI")) {
+                            if (currentTime <= p.absoluteDeadline) {
+                                hiLived++;
+                            } else {
+                                hiDied++;
+                            }
+                        } else {
+                            // LO 완료
+                            loProcessed++;
+                            int turnaroundTime = currentTime - p.arrivalTime;
+                            int waitTime = turnaroundTime - p.originalExecTime;
+                            loWaitTimes.add(waitTime);
+                        }
+                    }
+                }
+            }
+
+            // ---------------------------------------
+            // 8. 대기열 정리 (Java 8 removeIf 사용)
+            // ---------------------------------------
+            final int now = currentTime;
+            waitingQueue.removeIf(p -> {
+                if (p.criticality.equals("HI") && now > p.absoluteDeadline) {
+                    // 람다 내부에서는 외부 지역 변수 수정이 까다로우므로 
+                    // 여기서 카운트를 직접 올리기보다 리턴값으로 처리해야 하나,
+                    // 간단한 시뮬레이션을 위해 카운팅 로직은 별도 루프나 atomic을 써야 함.
+                    // 여기서는 removeIf 대신 Iterator 방식을 사용해 정확히 카운팅함.
+                    return false; 
+                }
+                return false;
+            });
+            
+            // Iterator를 사용한 안전한 삭제 및 카운팅
+            Iterator<Patient> it = waitingQueue.iterator();
+            while (it.hasNext()) {
+                Patient p = it.next();
+                if (p.criticality.equals("HI") && currentTime > p.absoluteDeadline) {
+                    hiDied++;
+                    it.remove();
+                } else if (p.criticality.equals("LO")) {
+                    int dropTime = p.arrivalTime + (p.goldenTime * 2);
+                    if (currentTime > dropTime) {
+                        loDropped++;
+                        it.remove();
+                    }
+                }
+            }
+
+            currentTime++;
+        }
+
+        // ==========================================
+        // 결과 보고
+        // ==========================================
+        System.out.println("\n" + "=".repeat(45));
+        System.out.printf("   [Simulation Result: %d mins]\n", SIMULATION_TIME);
+        System.out.println("=".repeat(45));
+
+        // HI 통계
+        int hiTotal = hiLived + hiDied;
+        double hiSurvivalRate = (hiTotal > 0) ? ((double) hiLived / hiTotal * 100) : 0.0;
+
+        System.out.printf("🚨 [HI: Critical] (Total: %d명)\n", hiTotal);
+        System.out.printf("   - 생존율      : %.1f%%\n", hiSurvivalRate);
+        System.out.printf("   - 즉시폐기    : %d명 (가망없음)\n", triageDropCount);
+
+        System.out.println("-".repeat(45));
+
+        // LO 통계
+        int loTotal = loProcessed + loDropped;
+        double loRejectionRate = (loTotal > 0) ? ((double) loDropped / loTotal * 100) : 0.0;
+        
+        double avgLoWait = 0.0;
+        if (!loWaitTimes.isEmpty()) {
+            double sum = 0;
+            for (int w : loWaitTimes) sum += w;
+            avgLoWait = sum / loWaitTimes.size();
+        }
+
+        System.out.printf("🩹 [LO: Non-Critical] (Total: %d명)\n", loTotal);
+        System.out.printf("   - 처리 완료   : %d명\n", loProcessed);
+        System.out.printf("   - 거부/포기   : %d명\n", loDropped);
+        System.out.printf("   👉 거부율(Drop Rate) : %.1f%%\n", loRejectionRate);
+        System.out.printf("   👉 평균 대기시간     : %.1f분\n", avgLoWait);
+
+        System.out.println("-".repeat(45));
+        System.out.println("⚡ System Stats");
+        System.out.printf("   - Preemption(선점)   : %d회\n", preemptionCount);
+        System.out.printf("   - Burst(폭주)        : %d회\n", burstCount);
+        System.out.println("=".repeat(45));
+		
+	}
+}
