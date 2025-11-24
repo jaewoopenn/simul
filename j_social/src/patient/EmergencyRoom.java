@@ -5,9 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
-public class EmergencyRoomSimulation {
+public class EmergencyRoom {
 
     // ==========================================
     // 1. 설정 (Configuration)
@@ -20,41 +19,9 @@ public class EmergencyRoomSimulation {
 
     final int SWITCH_COST = 5;
     final double ARRIVAL_RATE = 0.2; // 람다(lambda)
-    final double PENALTY_SCORE = 9999.0;
 
-    // 랜덤 객체 (전역 사용)
-    Random random = new Random();
 
-    // 유틸리티 함수
-    // ==========================================
-    
-    // 쁘아송 분포 생성 (Knuth's algorithm)
-    public  int getPoissonArrivalCount(double lambda) {
-        double L = Math.exp(-lambda);
-        int k = 0;
-        double p = 1.0;
-        while (p > L) {
-            k++;
-            p *= random.nextDouble();
-        }
-        return k - 1;
-    }
 
-    // 우선순위 계산
-    public  void calculatePriority(Patient p, boolean isEmergencyMode, double alpha) {
-        double di = p.absoluteDeadline;
-        double ri = p.arrivalTime;
-
-        if (isEmergencyMode) {
-            if (p.criticality.equals("HI")) {
-                p.priorityScore = di;
-            } else {
-                p.priorityScore = di + PENALTY_SCORE;
-            }
-        } else {
-            p.priorityScore = (alpha * di) + ((1.0 - alpha) * ri);
-        }
-    }
 
     // ==========================================
     // 2. 시뮬레이션 실행 메인 로직
@@ -87,7 +54,7 @@ public class EmergencyRoomSimulation {
             // ---------------------------------------
             // 1. 환자 발생
             // ---------------------------------------
-            int numArrivals = getPoissonArrivalCount(ARRIVAL_RATE);
+            int numArrivals = PUtil.getPoissonArrivalCount(ARRIVAL_RATE);
             if (numArrivals >= 2) {
                 burstCount++;
             }
@@ -146,7 +113,7 @@ public class EmergencyRoomSimulation {
             // 4. 우선순위 갱신 및 정렬
             // ---------------------------------------
             for (Patient p : waitingQueue) {
-                calculatePriority(p, isEmergencyMode, currentAlpha);
+                PUtil.calculatePriority(p, isEmergencyMode, currentAlpha);
             }
             // 점수가 낮은 순(deadline이 급한 순)으로 정렬
             Collections.sort(waitingQueue, Comparator.comparingDouble(p -> p.priorityScore));
