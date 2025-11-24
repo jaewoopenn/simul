@@ -2,6 +2,8 @@ package patient;
 
 import java.util.Random;
 
+import util.SLog;
+
 public class Patient {
 
     static final double HI_RATIO = 0.3;
@@ -14,6 +16,7 @@ public class Patient {
     int absoluteDeadline;
     int remainingExecTime;
     int originalExecTime;
+    int preemptCount=0;
     double priorityScore;
     boolean isPreempted;
 
@@ -37,10 +40,46 @@ public class Patient {
         this.originalExecTime = this.executionTime;
     }
 
-    @Override
+    public Patient(String s) {
+        String[] sc=s.split(" ");
+        this.id = Integer.valueOf(sc[0]).intValue();
+        this.criticality = sc[1];
+        this.arrivalTime = Integer.valueOf(sc[2]).intValue();
+        this.goldenTime = Integer.valueOf(sc[3]).intValue();
+        this.executionTime = Integer.valueOf(sc[4]).intValue();
+        this.isPreempted = false;
+        this.absoluteDeadline = this.arrivalTime + this.goldenTime;
+        this.remainingExecTime = this.executionTime;
+        this.originalExecTime = this.executionTime;
+	}
+
+	@Override
     public String toString() {
         return String.format("[%d:%s]", id, criticality);
     }
+
+	public String getStr() {
+		String s="";
+		s+=this.id+" ";
+		s+=this.criticality+" ";
+		s+=this.arrivalTime+" ";
+		s+=this.goldenTime+" ";
+		s+=this.executionTime;
+		return s;
+	}
+
+	public void prn() {
+		SLog.prn(getStr());
+		
+	}
+
+	public String getRS(int i) {
+		String s=id+" ";
+		s+=criticality+" ";
+		s+=preemptCount+" ";
+		s+=i;
+		return s;
+	}
 }
 
 // ==========================================

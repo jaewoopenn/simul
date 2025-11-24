@@ -23,6 +23,8 @@ public class MList {
 		return s;
 	}
 	public String get(int i) {
+		if(i>=g_list.size())
+			return null;
 		return g_list.get(i);
 	}	
 	
