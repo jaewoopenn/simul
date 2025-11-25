@@ -122,7 +122,7 @@ public class EmergencyRoom {
 
 
 
-	private void mode_switch(double currentLoad) {
+	private void mode_switch(double cur_load) {
         // ---------------------------------------
         // 3. 모드 전환
         // ---------------------------------------
@@ -130,11 +130,11 @@ public class EmergencyRoom {
         double thresholdExit = NUM_DOCTORS * LOW_THRESHOLD;
 
         if (!isEmergencyMode) {
-            if (currentLoad >= thresholdEnter) {
+            if (cur_load >= thresholdEnter) {
                 isEmergencyMode = true;
             }
         } else {
-            if (currentLoad <= thresholdExit) {
+            if (cur_load <= thresholdExit) {
                 isEmergencyMode = false;
             }
         }
@@ -143,7 +143,7 @@ public class EmergencyRoom {
         if (isEmergencyMode) {
             currentAlpha = 1.0;
         } else {
-            currentAlpha =  Math.min(currentLoad / NUM_DOCTORS, 1.0);
+            currentAlpha =  Math.min(cur_load / NUM_DOCTORS, 1.0);
         }
 
         // ---------------------------------------

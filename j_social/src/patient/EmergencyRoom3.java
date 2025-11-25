@@ -36,7 +36,7 @@ public class EmergencyRoom3 {
     private int burstCount = 0;
     
     private List<Integer> loWaitTimes = new ArrayList<>();
-    private int currentTime = 0;
+    private int cur_time = 0;
     private List<Patient> waitingQueue = new ArrayList<>();
     private Patient[] doctors = new Patient[NUM_DOCTORS]; // 의사 슬롯 (null이면 빈자리)
     private boolean isEmergencyMode = false;
@@ -56,12 +56,11 @@ public class EmergencyRoom3 {
 //		ml.prn();
         System.out.println("Simulation Started...");
  
-        while (currentTime < SIMULATION_TIME) {
+        while (cur_time < SIMULATION_TIME) {
         	loadPatient(ml);
-            
-            double currentLoad = cal_load();
+            double cur_load = cal_load();
 
-            mode_switch(currentLoad);
+            mode_switch(cur_load);
             
             preemption();
             
@@ -71,7 +70,7 @@ public class EmergencyRoom3 {
 
             handle_WQ();
 
-            currentTime++;
+            cur_time++;
         }
         rs_ml.saveTo("patient/rs.txt");
         results();
@@ -86,7 +85,7 @@ public class EmergencyRoom3 {
         // ---------------------------------------
         if (isEmergencyMode && !waitingQueue.isEmpty()) {
             Patient topPatient = waitingQueue.get(0);
-            boolean isHopeless = (currentTime + topPatient.remainingExecTime > topPatient.absoluteDeadline);
+            boolean isHopeless = (cur_time + topPatient.remainingExecTime > topPatient.absoluteDeadline);
 
             if (topPatient.criticality.equals("HI") && !isHopeless) {
                 // 빈 의사가 있는지 확인
@@ -130,34 +129,37 @@ public class EmergencyRoom3 {
 
 
 
-	private void mode_switch(double currentLoad) {
+	private void mode_switch(double cur_load) {
         // ---------------------------------------
         // 3. 모드 전환
         // ---------------------------------------
-
         if (!isEmergencyMode) {
-            if (currentLoad >= thresholdEnter) {
+            if (cur_load >= thresholdEnter) {
                 isEmergencyMode = true;
             }
         } else {
-            if (currentLoad <= thresholdExit) {
+            if (cur_load <= thresholdExit) {
                 isEmergencyMode = false;
             }
         }
+//        cur_load=Math.round(cur_load*10)/10.0;
 
-        double currentAlpha;
-        currentAlpha =  Math.min(currentLoad / NUM_DOCTORS, 1.0);
+        double cur_alpha;
+        cur_alpha =  Math.min(cur_load / NUM_DOCTORS, 1.0);
+        cur_alpha=Math.round(cur_alpha*10)/10.0;
         if (isEmergencyMode) {
-            currentAlpha = 1.0;
+            cur_alpha = 1.0;
         }
-
+    	if(cur_time%10==0)
+    		SLog.prn(cur_time+": "+cur_load+" "+cur_alpha);
+//    	cur_alpha=1;
         // ---------------------------------------
         // 4. 우선순위 갱신 및 정렬
         // ---------------------------------------
         for (Patient p : waitingQueue) {
-            PUtil.calculatePriority(p, isEmergencyMode, currentAlpha);
+            PUtil.calculatePriority(p, isEmergencyMode, cur_alpha);
         }
-        // 점수가 낮은 순(deadline이 급한 순)으로 정렬
+        // 점수가 낮은 순으로 정렬
         Collections.sort(waitingQueue, Comparator.comparingDouble(p -> p.priorityScore));
 		
 	}
@@ -169,7 +171,7 @@ public class EmergencyRoom3 {
     		return null;
     	String[] sc=s.split(" ");
     	int ar=Integer.valueOf(sc[2]).intValue();
-    	if(currentTime<ar) {
+    	if(cur_time<ar) {
     		return null;
     	}
         g_id++;
@@ -221,7 +223,7 @@ public class EmergencyRoom3 {
                     Patient candidate = waitingQueue.get(0); // 확인만 하고
                     
                     // 가망 없는 환자 Triage
-                    int finishTime = currentTime + candidate.remainingExecTime;
+                    int finishTime = cur_time + candidate.remainingExecTime;
                     if (finishTime > candidate.absoluteDeadline) {
                         waitingQueue.remove(0); // 실제 제거
                         if (candidate.criticality.equals("HI")) {
@@ -259,7 +261,7 @@ public class EmergencyRoom3 {
                 if (p.remainingExecTime <= 0) {
                     doctors[i] = null; // 퇴원
                     if (p.criticality.equals("HI")) {
-                        if (currentTime <= p.absoluteDeadline) {
+                        if (cur_time <= p.absoluteDeadline) {
                             hiLived++;
                             rs_ml.add(p.getRS(0));
                         } else {
@@ -270,12 +272,12 @@ public class EmergencyRoom3 {
                         // LO 완료
                         loProcessed++;
 
-                        int turnaroundTime = currentTime+1 - p.arrivalTime;
+                        int turnaroundTime = cur_time+1 - p.arrivalTime;
                         int waitTime = turnaroundTime - p.originalExecTime;
                         loWaitTimes.add(waitTime);
                         rs_ml.add(p.getRS(0)+" "+waitTime);
                         if(waitTime==-1) {
-                        	SLog.prn(currentTime+" "+p.arrivalTime+" "+p.originalExecTime);
+                        	SLog.prn(cur_time+" "+p.arrivalTime+" "+p.originalExecTime);
                         }
                     }
                 }
@@ -312,7 +314,7 @@ public class EmergencyRoom3 {
         // ---------------------------------------
         // 8. 대기열 정리 (Java 8 removeIf 사용)
         // ---------------------------------------
-        final int now = currentTime;
+        final int now = cur_time;
         waitingQueue.removeIf(p -> {
             if (p.criticality.equals("HI") && now > p.absoluteDeadline) {
                 // 람다 내부에서는 외부 지역 변수 수정이 까다로우므로 
@@ -328,13 +330,13 @@ public class EmergencyRoom3 {
         Iterator<Patient> it = waitingQueue.iterator();
         while (it.hasNext()) {
             Patient p = it.next();
-            if (p.criticality.equals("HI") && currentTime > p.absoluteDeadline) {
+            if (p.criticality.equals("HI") && cur_time > p.absoluteDeadline) {
                 hiDied++;
                 rs_ml.add(p.getRS(1));
                 it.remove();
             } else if (p.criticality.equals("LO")) {
                 int dropTime = p.arrivalTime + (p.goldenTime * 2);
-                if (currentTime > dropTime) {
+                if (cur_time > dropTime) {
                     loDropped++;
                     rs_ml.add(p.getRS(1));
                     it.remove();
@@ -390,5 +392,13 @@ public class EmergencyRoom3 {
         System.out.println("=".repeat(45));
 		
 		
+	}
+
+	public static void main(String[] args) {
+		SLog.set_lv(0);
+    	EmergencyRoom3 er=new EmergencyRoom3();
+    	
+    	er.run();
+
 	}
 }
