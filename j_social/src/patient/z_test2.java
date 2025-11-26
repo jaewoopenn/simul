@@ -3,6 +3,8 @@ package patient;
 import util.MList;
 import util.SLog;
 
+// 파이썬으로 하는게 더 낫다. 
+
 public class z_test2 {
 
 	public static void main(String[] args) {

@@ -73,11 +73,12 @@ public class Patient {
 		
 	}
 
-	public String getRS(int i) {
+	public String getRS(int i, int wait) {
 		String s=id+" ";
 		s+=criticality+" ";
 		s+=preemptCount+" ";
-		s+=i;
+		s+=i+" ";
+		s+=wait;
 		return s;
 	}
 }

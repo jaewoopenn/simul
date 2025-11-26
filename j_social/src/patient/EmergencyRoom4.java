@@ -1,6 +1,6 @@
 package patient;
-// Removed Results ... save result in txt and process in python 
 
+// Original Process
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,16 +11,25 @@ import java.util.List;
 import util.MList;
 import util.SLog;
 
-public class EmergencyRoom3 {
+public class EmergencyRoom4 {
 
     // ==========================================
     // 1. 설정 (Configuration)
     // ==========================================
 //	final String g_fn="patient/test.txt";
-	final String g_fn="patient/trace_hic.txt";
-    final int SIMULATION_TIME = 1440; // 1일 (분 단위)
-    final int NUM_DOCTORS = 10;
+	
+//	final String g_fn="patient/trace_hic.txt";
+//    final int NUM_DOCTORS = 10;
+    
+	final String g_fn="patient/trace_mic.txt";
+    final int NUM_DOCTORS = 6;
 
+//	final String g_fn="patient/trace_lic.txt";
+//    final int NUM_DOCTORS = 4;
+    
+    
+    final int SIMULATION_TIME = 1440; // 1일 (분 단위)
+    
     final double HIGH_THRESHOLD = 0.8;
     final double LOW_THRESHOLD = 0.4;
 
@@ -30,6 +39,17 @@ public class EmergencyRoom3 {
     final double thresholdExit = NUM_DOCTORS * LOW_THRESHOLD;
 
 
+    // 통계 변수
+    private int hiLived = 0;
+    private int hiDied = 0;
+    private int loProcessed = 0;
+    private int loDropped = 0;
+    private int preemptionCount = 0;
+    private int triageDropCount = 0;
+    private int admissionDenyCount = 0;
+    private int burstCount = 0;
+    
+    private List<Integer> loWaitTimes = new ArrayList<>();
     private int cur_time = 0;
     private List<Patient> waitingQueue = new ArrayList<>();
     private Patient[] doctors = new Patient[NUM_DOCTORS]; // 의사 슬롯 (null이면 빈자리)
@@ -42,8 +62,6 @@ public class EmergencyRoom3 {
     // ==========================================
 
 	public void run() {
-
-
 
 		MList ml=MList.load(g_fn);
 		rs_ml=MList.new_list();
@@ -67,6 +85,7 @@ public class EmergencyRoom3 {
             cur_time++;
         }
         rs_ml.saveTo("patient/rs.txt");
+        results();
 	}
 
 
@@ -111,6 +130,7 @@ public class EmergencyRoom3 {
 
                         doctors[targetDocIdx] = incomingHi;
                         doctors[targetDocIdx].remainingExecTime += SWITCH_COST;
+                        preemptionCount++;
                     }
                 }
             }
@@ -172,20 +192,27 @@ public class EmergencyRoom3 {
 
 
 	private void loadPatient(MList ml) {
+        int numArrivals = 0;
 //        SLog.prn(currentTime+"");
         while(true) {
         	String s=getPatient(ml);
         	if(s==null) 
         		break;
+        	numArrivals++;
         	Patient newPatient = new Patient(s);
 //        	newPatient.prn();
         	// Admission Control (Emergency 모드일 때 LO 거부)
         	if (isEmergencyMode && newPatient.criticality.equals("LO")) {
         		rs_ml.add(newPatient.getRS(2,0));
+        		loDropped++;
+        		admissionDenyCount++;
         	} else {
         		waitingQueue.add(newPatient);
         	}
 
+        }
+        if (numArrivals >= 2) {
+            burstCount++;
         }
 		
 	}
@@ -212,6 +239,8 @@ public class EmergencyRoom3 {
                     if (finishTime > candidate.absoluteDeadline) {
                         if (candidate.criticality.equals("HI")) {
                             waitingQueue.remove(0); // 실제 제거
+                            hiDied++;
+                            triageDropCount++;
                             rs_ml.add(candidate.getRS(3,0));
                             continue; // 다음 환자 확인
                         } 
@@ -242,15 +271,19 @@ public class EmergencyRoom3 {
                     doctors[i] = null; // 퇴원
                     if (p.criticality.equals("HI")) {
                         if (cur_time <= p.absoluteDeadline) {
+                            hiLived++;
                             rs_ml.add(p.getRS(0,0));
                         } else {
+                            hiDied++;
                             rs_ml.add(p.getRS(1,0));
                         }
                     } else {
                         // LO 완료
+                        loProcessed++;
 
                         int turnaroundTime = cur_time+1 - p.arrivalTime;
                         int waitTime = turnaroundTime - p.originalExecTime;
+                        loWaitTimes.add(waitTime);
                         rs_ml.add(p.getRS(0,waitTime));
                         if(waitTime==-1) {
                         	SLog.prn(cur_time+" "+p.arrivalTime+" "+p.originalExecTime);
@@ -307,11 +340,13 @@ public class EmergencyRoom3 {
         while (it.hasNext()) {
             Patient p = it.next();
             if (p.criticality.equals("HI") && cur_time > p.absoluteDeadline) {
+                hiDied++;
                 rs_ml.add(p.getRS(1,0));
                 it.remove();
             } else if (p.criticality.equals("LO")) {
                 int dropTime = p.arrivalTime + (p.goldenTime * MULTIPLY_WAIT);
                 if (cur_time > dropTime) {
+                    loDropped++;
                     rs_ml.add(p.getRS(1,0));
                     it.remove();
                 }
@@ -323,9 +358,54 @@ public class EmergencyRoom3 {
 
 
 
+	private void results() {
+
+        // ==========================================
+        // 결과 보고
+        // ==========================================
+        System.out.println("\n" + "=".repeat(45));
+        System.out.printf("   [Simulation Result: %d mins]\n", SIMULATION_TIME);
+        System.out.println("=".repeat(45));
+
+        // HI 통계
+        int hiTotal = hiLived + hiDied;
+        double hiSurvivalRate = (hiTotal > 0) ? ((double) hiLived / hiTotal * 100) : 0.0;
+
+        System.out.printf("🚨 [HI: Critical] (Total: %d명)\n", hiTotal);
+        System.out.printf("   - 생존율      : %.1f%%\n", hiSurvivalRate);
+        System.out.printf("   - 즉시폐기    : %d명 (가망없음)\n", triageDropCount);
+
+        System.out.println("-".repeat(45));
+
+        // LO 통계
+        int loTotal = loProcessed + loDropped;
+        double loRejectionRate = (loTotal > 0) ? ((double) loDropped / loTotal * 100) : 0.0;
+        
+        double avgLoWait = 0.0;
+        if (!loWaitTimes.isEmpty()) {
+            double sum = 0;
+            for (int w : loWaitTimes) sum += w;
+            avgLoWait = sum / loWaitTimes.size();
+        }
+
+        System.out.printf("🩹 [LO: Non-Critical] (Total: %d명)\n", loTotal);
+        System.out.printf("   - 처리 완료   : %d명\n", loProcessed);
+        System.out.printf("   - 거부/포기   : %d명\n", loDropped);
+        System.out.printf("   👉 거부율(Drop Rate) : %.1f%%\n", loRejectionRate);
+        System.out.printf("   👉 평균 대기시간     : %.1f분\n", avgLoWait);
+
+        System.out.println("-".repeat(45));
+        System.out.println("⚡ System Stats");
+        System.out.printf("   - Preemption(선점)   : %d회\n", preemptionCount);
+        System.out.printf("   - Burst(폭주)        : %d회\n", burstCount);
+        System.out.println("=".repeat(45));
+		
+		
+	}
+
 	public static void main(String[] args) {
 		SLog.set_lv(0);
-    	EmergencyRoom3 er=new EmergencyRoom3();
+    	EmergencyRoom4 er=new EmergencyRoom4();
     	
     	er.run();
 

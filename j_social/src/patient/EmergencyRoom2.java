@@ -55,9 +55,12 @@ public class EmergencyRoom2 {
         }
 		
 	}
+
 	public static void main(String[] args) {
 		SLog.set_lv(0);
-		SLog.prn("hihi");
+    	EmergencyRoom2 er=new EmergencyRoom2();  
+    	
+    	er.run();
 
 	}
 
