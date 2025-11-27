@@ -17,9 +17,21 @@ public class EmergencyRoom3 {
     // 1. 설정 (Configuration)
     // ==========================================
 //	final String g_fn="patient/test.txt";
-	final String g_fn="patient/trace_hic.txt";
-    final int SIMULATION_TIME = 1440; // 1일 (분 단위)
-    final int NUM_DOCTORS = 10;
+	
+//	final String g_fn="patient/trace_hic.txt";
+//    final int NUM_DOCTORS = 10;
+    
+//	final String g_fn="patient/trace_mic.txt";
+//    final int NUM_DOCTORS = 6;
+
+//	final String g_fn="patient/trace_lic.txt";
+//    final int NUM_DOCTORS = 4;
+
+	final String g_fn="israel/test.txt";
+    final int NUM_DOCTORS = 70;
+
+//    final int SIMULATION_TIME = 1440; // 1일 (분 단위)
+    final int SIMULATION_TIME = 3*1440; // 30일 (분 단위)
 
     final double HIGH_THRESHOLD = 0.8;
     final double LOW_THRESHOLD = 0.4;
@@ -28,6 +40,8 @@ public class EmergencyRoom3 {
     final int MULTIPLY_WAIT = 3;
     final double thresholdEnter = NUM_DOCTORS * HIGH_THRESHOLD;
     final double thresholdExit = NUM_DOCTORS * LOW_THRESHOLD;
+    final double th_doc = NUM_DOCTORS * 1/10;
+    final double th_doc_exit = NUM_DOCTORS * 1.5/10;
 
 
     private int cur_time = 0;
@@ -77,6 +91,7 @@ public class EmergencyRoom3 {
         // 5. Preemption (선점)
         // ---------------------------------------
         if (isEmergencyMode && !waitingQueue.isEmpty()) {
+//        if ( !waitingQueue.isEmpty()) {
             Patient topPatient = waitingQueue.get(0);
             boolean isHopeless = (cur_time + topPatient.remainingExecTime > topPatient.absoluteDeadline);
 
@@ -125,12 +140,26 @@ public class EmergencyRoom3 {
         // ---------------------------------------
         // 3. 모드 전환
         // ---------------------------------------
+        int freedoc=0;
+        for(int i=0;i<NUM_DOCTORS;i++) {
+        	if(doctors[i]==null)
+        		freedoc++;
+        }
         if (!isEmergencyMode) {
             if (cur_load >= thresholdEnter) {
                 isEmergencyMode = true;
             }
+            if(freedoc<th_doc) {
+            	SLog.prn("emer:"+freedoc);
+                isEmergencyMode = true;
+            }
+
         } else {
             if (cur_load <= thresholdExit) {
+                isEmergencyMode = false;
+            }
+            if(freedoc>th_doc_exit) {
+            	SLog.prn("emer exit:"+freedoc);
                 isEmergencyMode = false;
             }
         }
@@ -179,13 +208,16 @@ public class EmergencyRoom3 {
         		break;
         	Patient newPatient = new Patient(s);
 //        	newPatient.prn();
-        	// Admission Control (Emergency 모드일 때 LO 거부)
-        	if (isEmergencyMode && newPatient.criticality.equals("LO")) {
-        		rs_ml.add(newPatient.getRS(2,0));
-        	} else {
-        		waitingQueue.add(newPatient);
-        	}
 
+       		waitingQueue.add(newPatient);
+        	
+        	// Admission Control (Emergency 모드일 때 LO 거부)
+//        	if (isEmergencyMode && newPatient.criticality.equals("LO")) {
+//        		rs_ml.add(newPatient.getRS(2,0));
+//        	} else {
+//        		waitingQueue.add(newPatient);
+//        	}
+       	 
         }
 		
 	}
@@ -211,6 +243,7 @@ public class EmergencyRoom3 {
                     int finishTime = cur_time + candidate.remainingExecTime;
                     if (finishTime > candidate.absoluteDeadline) {
                         if (candidate.criticality.equals("HI")) {
+                        	SLog.prn(cur_time+","+candidate.originalExecTime+","+candidate.remainingExecTime+", "+candidate.absoluteDeadline);
                             waitingQueue.remove(0); // 실제 제거
                             rs_ml.add(candidate.getRS(3,0));
                             continue; // 다음 환자 확인
@@ -312,6 +345,7 @@ public class EmergencyRoom3 {
             } else if (p.criticality.equals("LO")) {
                 int dropTime = p.arrivalTime + (p.goldenTime * MULTIPLY_WAIT);
                 if (cur_time > dropTime) {
+                	SLog.prn(cur_time+" <"+ dropTime);
                     rs_ml.add(p.getRS(1,0));
                     it.remove();
                 }
