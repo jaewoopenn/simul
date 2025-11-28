@@ -11,7 +11,7 @@ import java.util.List;
 import util.MList;
 import util.SLog;
 
-public class EmergencyRoom3 {
+public class EmergencyRoom5 {
 
     // ==========================================
     // 1. 설정 (Configuration)
@@ -27,11 +27,14 @@ public class EmergencyRoom3 {
 //	final String g_fn="patient/trace_lic.txt";
 //    final int NUM_DOCTORS = 4;
 
-	final String g_fn="israel/test.txt";
-    final int NUM_DOCTORS = 70;
+	final String g_fn="patient/trace_lmic.txt";
+    final int NUM_DOCTORS = 50;
+
+//	final String g_fn="israel/test.txt";
+//    final int NUM_DOCTORS = 70;
 
 //    final int SIMULATION_TIME = 1440; // 1일 (분 단위)
-    final int SIMULATION_TIME = 3*1440; // 30일 (분 단위)
+    final int SIMULATION_TIME = 10*1440; // 30일 (분 단위)
 
     final double HIGH_THRESHOLD = 0.8;
     final double LOW_THRESHOLD = 0.4;
@@ -40,8 +43,8 @@ public class EmergencyRoom3 {
     final int MULTIPLY_WAIT = 3;
     final double thresholdEnter = NUM_DOCTORS * HIGH_THRESHOLD;
     final double thresholdExit = NUM_DOCTORS * LOW_THRESHOLD;
-    final double th_doc = NUM_DOCTORS * 1/10;
-    final double th_doc_exit = NUM_DOCTORS * 1.5/10;
+    final double th_doc = NUM_DOCTORS * 0.8/10;
+    final double th_doc_exit = NUM_DOCTORS * 1.2/10;
 
 
     private int cur_time = 0;
@@ -345,7 +348,7 @@ public class EmergencyRoom3 {
             } else if (p.criticality.equals("LO")) {
                 int dropTime = p.arrivalTime + (p.goldenTime * MULTIPLY_WAIT);
                 if (cur_time > dropTime) {
-                	SLog.prn(cur_time+" <"+ dropTime);
+//                	SLog.prn(cur_time+" <"+ dropTime);
                     rs_ml.add(p.getRS(1,0));
                     it.remove();
                 }
@@ -359,7 +362,7 @@ public class EmergencyRoom3 {
 
 	public static void main(String[] args) {
 		SLog.set_lv(0);
-    	EmergencyRoom3 er=new EmergencyRoom3();
+    	EmergencyRoom5 er=new EmergencyRoom5();
     	
     	er.run();
 

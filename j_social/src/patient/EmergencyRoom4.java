@@ -20,7 +20,7 @@ public class EmergencyRoom4 {
 	
 
 	final String g_fn="patient/trace_lmic.txt";
-    final int NUM_DOCTORS = 40;
+    final int NUM_DOCTORS = 50;
 
 //	final String g_fn="israel/test.txt";
 //    final int NUM_DOCTORS = 60;
@@ -36,8 +36,8 @@ public class EmergencyRoom4 {
     final int MULTIPLY_WAIT = 3;
     final double thresholdEnter = NUM_DOCTORS * HIGH_THRESHOLD;
     final double thresholdExit = NUM_DOCTORS * LOW_THRESHOLD;
-    final double th_doc = NUM_DOCTORS * 1/10;
-    final double th_doc_exit = NUM_DOCTORS * 1.5/10;
+    final double th_doc = NUM_DOCTORS * 0.8/10;
+    final double th_doc_exit = NUM_DOCTORS * 1.2/10;
 
 
     // 통계 변수
@@ -208,11 +208,11 @@ public class EmergencyRoom4 {
 
 	private void loadPatient(MList ml) {
         int numArrivals = 0;
-//        SLog.prn(currentTime+"");
         while(true) {
         	String s=getPatient(ml);
         	if(s==null) 
         		break;
+//            SLog.prn(cur_time+" ");
         	numArrivals++;
         	Patient newPatient = new Patient(s);
 //        	newPatient.prn();
@@ -226,6 +226,7 @@ public class EmergencyRoom4 {
 //        	}
         }
         if (numArrivals >= 2) {
+//        	SLog.prn("burst "+burstCount);
             burstCount++;
         }
 		
