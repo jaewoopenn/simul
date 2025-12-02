@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
+
+
+SAVE_DIR = '/users/jaewoo/data/acn'
+
 # 1. 설정: 시간 축 (오전 6시 ~ 오후 8시)
 x = np.linspace(6, 20, 500)  # 6:00 to 20:00
 
@@ -62,5 +66,5 @@ plt.ylim(0, 140)
 
 # 저장 및 출력
 plt.tight_layout()
-plt.savefig('fig1_conceptual_diagram.png', dpi=300)
+plt.savefig(SAVE_DIR+'/fig1_conceptual_diagram.png', dpi=300)
 plt.show()
