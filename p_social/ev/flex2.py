@@ -9,33 +9,61 @@ import seaborn as sns
 import numpy as np
 
 SAVE_DIR = '/users/jaewoo/data/acn'
-OUTPUT_FIG=SAVE_DIR+'/flex.png'
-CSV_FILENAME = SAVE_DIR +'/acn_data.csv' # 사용자가 업로드한 파일명과 일치시킴 (필요시 경로 수정)
+FIGURE_FILENAME = SAVE_DIR + '/flexibility.png'
+# [수정] 새 데이터 파일명
+CSV_FILENAME =SAVE_DIR + '/202410DatasetEVOfficeParking_v0.csv'
 
 # ---------------------------------------------------------
 # 1. 설정 (Configuration)
 # ---------------------------------------------------------
-MAX_CHARGING_RATE = 6.6  # kW (Caltech ACN 표준 충전 속도)
+MAX_CHARGING_RATE = 6.6  # kW (일반적인 완속 충전 속도 가정, 필요시 수정)
+
+# [수정] 분석할 기간 설정
+TARGET_START_DATE = '2024-09-01'
+TARGET_END_DATE = '2024-09-30'
 
 # ---------------------------------------------------------
 # 2. 데이터 로드 및 가공
 # ---------------------------------------------------------
 def load_and_process_data(filename):
     try:
-        df = pd.read_csv(filename)
+        # [수정] 구분자 세미콜론(;) 지정
+        df = pd.read_csv(filename, sep=';')
+        
+        # [수정] 컬럼명 매핑
+        # start_datetime -> connectionTime
+        # end_datetime -> disconnectTime
+        # total_energy -> kWhDelivered (충전량)
+        df.rename(columns={
+            'start_datetime': 'connectionTime',
+            'end_datetime': 'disconnectTime',
+            'total_energy': 'kWhDelivered'
+        }, inplace=True)
         
         # 날짜 컬럼 변환
         time_cols = ['connectionTime', 'disconnectTime']
         for col in time_cols:
             if col in df.columns:
-                df[col] = pd.to_datetime(df[col], utc=True)
+                df[col] = pd.to_datetime(df[col])
+
+        # [수정] 특정 기간(한 달) 데이터만 필터링
+        mask = (df['connectionTime'] >= TARGET_START_DATE) & (df['connectionTime'] <= TARGET_END_DATE)
+        df = df.loc[mask].copy()
+        print(f"기간 필터링 완료 ({TARGET_START_DATE} ~ {TARGET_END_DATE}): 총 {len(df)}건")
+
+        if df.empty:
+            return pd.DataFrame()
 
         # 필요한 데이터 계산
-        # 1. 주차 시간 (Parking Duration) = 떠난 시간 - 도착 시간
+        # 1. 주차 시간 (Parking Duration) = 떠난 시간 - 도착 시간 (단위: 시간)
         df['parking_duration_hours'] = (df['disconnectTime'] - df['connectionTime']).dt.total_seconds() / 3600
         
         # 2. 충전 필요 시간 (Required Charging Duration) = 충전량 / 충전속도
         # (실제 충전 완료 시간이 아니라, 물리적으로 필요한 최소 시간을 계산하여 유연성의 최대치를 보여줌)
+        # kWhDelivered가 문자열이거나 콤마가 포함된 경우 처리 (유럽식 숫자 표기 대비)
+        if df['kWhDelivered'].dtype == object:
+             df['kWhDelivered'] = df['kWhDelivered'].astype(str).str.replace(',', '.').astype(float)
+             
         df['charging_duration_hours'] = df['kWhDelivered'] / MAX_CHARGING_RATE
         
         # 데이터 정제 (이상치 제거)
@@ -43,7 +71,7 @@ def load_and_process_data(filename):
         df = df[df['parking_duration_hours'] > 0]
         df = df[df['charging_duration_hours'] > 0]
         
-        # 주차 시간보다 충전 필요 시간이 더 긴 경우 (물리적으로 불가능한 데이터 or 급속충전) 제외
+        # 주차 시간보다 충전 필요 시간이 더 긴 경우 (물리적으로 불가능하거나 급속충전인 경우) 제외
         # 논리적으로 Laxity >= 0 이어야 함
         df = df[df['parking_duration_hours'] >= df['charging_duration_hours']]
         
@@ -71,18 +99,21 @@ def plot_scatter(df):
     # 2. 기준선 (y=x) 그리기
     # 이 선 위에 있는 점은 "주차 시간 = 충전 시간"인 경우로, 여유(Laxity)가 0인 급한 차량들
     max_val = max(df['parking_duration_hours'].max(), df['charging_duration_hours'].max())
-    plt.plot([0, max_val], [0, max_val], 'r--', label='Zero Laxity Line (No Flexibility)')
+    # 축 범위를 적절히 제한 (예: 24시간 또는 데이터 최대값)
+    display_limit = min(24, max_val + 1) 
+    
+    plt.plot([0, display_limit], [0, display_limit], 'r--', label='Zero Laxity Line (No Flexibility)')
 
     # 3. 영역 채우기 (Flexible Area)
     # y=x 선 아래 영역은 "주차 시간 > 충전 시간"인 경우로, 스케줄링이 가능한 영역
-    plt.fill_between([0, max_val], [0, max_val], 0, color='green', alpha=0.1, label='Flexible Region (Slack Time)')
+    plt.fill_between([0, display_limit], [0, display_limit], 0, color='green', alpha=0.1, label='Flexible Region (Slack Time)')
 
     # 4. 축 및 레이블 설정
-    plt.xlim(0, 12) # 대부분 12시간 이내 주차하므로 12로 제한 (데이터에 따라 조절 가능)
+    plt.xlim(0, 12) # 대부분 12시간 이내 주차하므로 12로 제한 (데이터 분포에 따라 조절 가능)
     plt.ylim(0, 12)
     plt.xlabel('Parking Duration (Hours)', fontsize=12)
     plt.ylabel('Required Charging Duration (Hours)', fontsize=12)
-    plt.title('Flexibility Analysis: Parking vs. Charging Duration', fontsize=14)
+    plt.title(f'Flexibility Analysis ({TARGET_START_DATE}~)', fontsize=14)
     
     # 5. 평균값 표시 (선택 사항)
     avg_park = df['parking_duration_hours'].mean()
@@ -93,8 +124,8 @@ def plot_scatter(df):
     plt.tight_layout()
     
     # 저장
-    plt.savefig(OUTPUT_FIG, dpi=300)
-    print(f"그래프가 '{OUTPUT_FIG}'로 저장되었습니다.")
+    plt.savefig(FIGURE_FILENAME, dpi=300)
+    print(f"그래프가 '{FIGURE_FILENAME}'로 저장되었습니다.")
     plt.show()
 
 # ---------------------------------------------------------

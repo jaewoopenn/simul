@@ -24,8 +24,8 @@ def fetch_and_save_acn_data():
     timezone = pytz.timezone('America/Los_Angeles')
     
     # 예: 2019년 9월 1일 ~ 9월 7일 (일주일치 데이터)
-    start_time = timezone.localize(datetime(2019, 9, 1))
-    end_time = timezone.localize(datetime(2019, 9, 7))
+    start_time = timezone.localize(datetime(2019, 10, 1))
+    end_time = timezone.localize(datetime(2019, 10, 8))
 
     print(f"🚀 데이터를 요청합니다... ({start_time.date()} ~ {end_time.date()})")
 
@@ -77,6 +77,7 @@ def fetch_and_save_acn_data():
         print("-" * 50)
 
         # (2) 파일 저장
+        filename = f"acn_data_{SITE}_{start_time.strftime('%Y%m%d')}_{end_time.strftime('%Y%m%d')}.csv"
         filename = f"acn_data_{SITE}_{start_time.strftime('%Y%m%d')}_{end_time.strftime('%Y%m%d')}.csv"
         file_path = os.path.join(SAVE_DIR, filename)
         
