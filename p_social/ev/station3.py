@@ -78,7 +78,7 @@ def plot_top_stations(df):
     station_y_map = {station: i for i, station in enumerate(top_stations)}
     
     # 색상 설정 (시각적 구분)
-    colors = plt.cm.tab10(range(TOP_N_STATIONS))
+    # colors = plt.cm.tab10(range(TOP_N_STATIONS))
 
     # 데이터 순회하며 그리기
     for station in top_stations:
