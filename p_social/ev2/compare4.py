@@ -25,7 +25,7 @@ TARGET_END_DATE = '2019-10-08'
 # On-peak (12:00 ~ 18:00): 비싸니까 빡빡하게 제한 (20kW)
 # Off-peak (나머지): 싸니까 널널하게 제한 (50kW)
 ON_PEAK_LIMIT = 20.0
-OFF_PEAK_LIMIT = 50.0
+OFF_PEAK_LIMIT = 40.0
 ON_PEAK_START_HOUR = 12
 ON_PEAK_END_HOUR = 18
 
