@@ -4,7 +4,7 @@ Created on 2013. 2. 12.
 @author: cpslab
 '''
 from _heapq import heappush,heappop
-import UtilLog as ulog
+import util.UtilLog as ulog
 '''
 deadline, id, exec.time
 '''
@@ -38,7 +38,7 @@ def next_t(t):
 def log_prog(t,cur_job):
     if not ulog.get_l():
         return
-    print "at time:",t,"job exec id:",cur_job[1],"rem.exec:",cur_job[2]
+    print("at time:",t,"job exec id:",cur_job[1],"rem.exec:",cur_job[2])
 
 def progress(t,dur):
     ulog.prnln("---t:"+str(t)+",dur:"+str(dur)+"---")

@@ -5,7 +5,7 @@ Created on 2014. 8. 13.
 '''
 
 def main():
-    print "hihi"
+    print("hihi")
 
 if __name__ == "__main__":
     main()

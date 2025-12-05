@@ -8,17 +8,17 @@ class gl:
 def prn(s,v):
     if gl.debug==0:
         return
-    print s,v
+    print(s,v)
 
 def prnc(s,v):
     if gl.debug==0:
         return
-    print s,v
+    print(s,v)
 
 def prnln(s):
     if gl.debug==0:
         return
-    print s
+    print(s)
 def set_l(lv):
     gl.debug=lv
 def get_l():
