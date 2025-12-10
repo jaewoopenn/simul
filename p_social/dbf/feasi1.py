@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 MAX_RATE = 6.6
-GRID_CAPACITY = 20
+GRID_CAPACITY = 23
 
 def simulate_and_plot(file_path):
     # Load data

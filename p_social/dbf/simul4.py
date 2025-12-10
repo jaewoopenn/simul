@@ -11,9 +11,9 @@ EV_MAX_POWER = 6.6
 TIME_STEP = 0.05  # 3분 단위
 
 SUPPLY_PROFILE = [
-    (10, 20),   
-    (20, 30),   
-    (None, 20)
+    # (10, 20),   
+    # (20, 30),   
+    (None, 21)
 ]
 
 class EV:
