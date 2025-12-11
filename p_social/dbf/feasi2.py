@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 MAX_RATE = 6.6
-GRID_CAPACITY = 18
+GRID_CAPACITY = 29
 CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 
 # MAX_RATE = 5
