@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
@@ -15,8 +14,8 @@ CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 # --- 1. sLLF Scheduler Classes (제공해주신 코드 활용) ---
 
 class EV:
-    def __init__(self, id, arrival_time, departure_time, energy_demand, max_rate):
-        self.id = id
+    def __init__(self, id1, arrival_time, departure_time, energy_demand, max_rate):
+        self.id = id1
         self.a = arrival_time        # a_i: 도착 시간
         self.d = departure_time      # d_i: 출발 시간
         self.e_target = energy_demand # e_i: 총 요구 전력량
@@ -91,7 +90,7 @@ class sLLF_Scheduler:
         high = max(laxities) + 5.0
         
         # 이진 탐색 수행 (오차 허용 범위 epsilon)
-        epsilon = 1e-7
+        epsilon = 1e-5
         for _ in range(100): # 최대 반복 횟수 제한
             mid_L = (low + high) / 2
             
@@ -170,7 +169,7 @@ def run_sllf_simulation(file_path):
     all_evs = []
     for _, row in df.iterrows():
         ev = EV(
-            id=int(row['ID']),
+            id1=int(row['ID']),
             arrival_time=int(row['Arrival']),
             departure_time=int(row['Departure']),
             energy_demand=row['Energy'],
@@ -190,10 +189,10 @@ def run_sllf_simulation(file_path):
         
         # 기록용 (활성 EV가 없어도 기록)
         if not rates:
-             # 활성 EV가 없으면 사용량 0, 낭비량 = 전체 용량
-             # 단, 시뮬레이션 끝난 후 빈 공간 채우기 용도
-             wasted = GRID_CAPACITY
-             used = 0
+            # 활성 EV가 없으면 사용량 0, 낭비량 = 전체 용량
+            # 단, 시뮬레이션 끝난 후 빈 공간 채우기 용도
+            wasted = GRID_CAPACITY
+            used = 0
              
         grid_usage_history.append((t, used, wasted))
         

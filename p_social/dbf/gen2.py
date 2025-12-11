@@ -5,8 +5,8 @@ import random
 FILENAME = '/users/jaewoo/data/ev/spc/ev_jobs.csv'
 NUM=10
 class EV:
-    def __init__(self, id, arrival, energy, departure):
-        self.id = id
+    def __init__(self, id1, arrival, energy, departure):
+        self.id = id1
         self.arrival = arrival
         self.energy = energy
         self.departure = departure
