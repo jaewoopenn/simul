@@ -3,7 +3,7 @@ import random
 
 # 파일 저장 이름
 FILENAME = '/users/jaewoo/data/ev/spc/ev_jobs.csv'
-NUM=20
+NUM=15
 class EV:
     def __init__(self, id, arrival, energy, departure):
         self.id = id
