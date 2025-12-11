@@ -2,10 +2,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# MAX_RATE = 6.6
-# GRID_CAPACITY = 24
-MAX_RATE = 5
-GRID_CAPACITY = 10
+MAX_RATE = 6.6
+GRID_CAPACITY = 18
+CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
+
+# MAX_RATE = 5
+# GRID_CAPACITY = 10
+# CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs4.csv'
 
 def simulate_and_plot(file_path):
     # Load data
@@ -28,6 +31,7 @@ def simulate_and_plot(file_path):
 
     print("=== Simulation Running ===")
     old_demand=0
+    running_demand_total = 0.0
     for current_time in range(max_time + 1):
         
         arriving_evs = df[df['Arrival'] == current_time]
@@ -99,4 +103,4 @@ def simulate_and_plot(file_path):
     print("\nFinal Cumulative Supply Vector (Points):")
     print(cumulative_supply_points)
 
-simulate_and_plot('/users/jaewoo/data/ev/spc/ev_jobs2.csv')
+simulate_and_plot(CSV_FILE_NAME)

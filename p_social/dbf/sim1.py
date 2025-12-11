@@ -2,7 +2,7 @@ import pandas as pd
 
 # 설정 상수 (이전 코드와 동일하게 유지) ss
 MAX_RATE = 6.6
-GRID_CAPACITY = 21
+GRID_CAPACITY = 20
 
 def simulate_llf_charging(file_path):
     # 1. 데이터 로드
