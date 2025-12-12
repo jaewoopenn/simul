@@ -5,7 +5,7 @@ import matplotlib.patches as mpatches
 # 설정 상수
 # --- 상수 설정 ---
 MAX_RATE_PER_EV = 6.6          # EV당 최대 충전 속도 (kW)
-GRID_CAPACITY = 29      # 전체 전력망 용량 (kW)
+GRID_CAPACITY = 25      # 전체 전력망 용량 (kW)
 CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 
 # MAX_RATE_PER_EV = 5          # EV당 최대 충전 속도 (kW)
@@ -203,7 +203,8 @@ def run_sllf_simulation(file_path):
     
     # EV Gantt Chart
     # ID 역순 정렬 (ID 1이 맨 위에 오도록 하려면 reverse=True 안 함. 여기선 큰 ID가 위로)
-    sorted_evs = sorted(all_evs, key=lambda x: x.id, reverse=True)
+    # sorted_evs = sorted(all_evs, key=lambda x: x.id, reverse=True)
+    sorted_evs = sorted(all_evs, key=lambda x: x.d, reverse=True)
     ids = [ev.id for ev in sorted_evs]
     y_positions = range(len(ids))
     
@@ -273,7 +274,8 @@ def run_sllf_simulation(file_path):
     ax2.grid(True, axis='y', linestyle='--', alpha=0.5)
 
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    plt.savefig('/users/jaewoo/data/ev/spc/results.png')
 
 # 실행
 run_sllf_simulation(CSV_FILE_NAME)
