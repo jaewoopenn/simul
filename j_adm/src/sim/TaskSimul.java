@@ -3,9 +3,9 @@ package sim;
 
 import job.Job;
 import job.JobSimul;
+import task.DTaskVec;
 import task.Task;
 import task.TaskMng;
-import task.TaskVec;
 //import task.TaskUtil;
 import util.SLogF;
 import util.SLog;
@@ -13,11 +13,13 @@ import util.SLog;
 public abstract class TaskSimul  {
 	protected String g_name="";
 	protected SysMng g_sm;
+	protected DTaskVec g_dt;
 	protected TaskMng g_tm;
 	protected SimulInfo g_si;
 	protected JobSimul g_jsm;
 	protected int g_delayed_t=-1;
 	protected TS_ext g_ext;
+	private boolean g_change_tm=false;
 	public String getName() {
 		return g_name;
 	}
@@ -28,9 +30,10 @@ public abstract class TaskSimul  {
 	
 	
 
-	public void init_sm_dt(SysMng sm,double x, TaskVec dt ){
+	public void init_sm_dt(SysMng sm,double x, DTaskVec dt ){
 		g_sm=sm;
-		g_tm=dt.getTM();
+		g_dt=dt;
+		g_tm=DTUtil.getCurTM(dt);
 		g_tm.setX(x);
 		g_ext=new TS_ext(g_sm);
 		g_ext.setTM(g_tm);
@@ -82,13 +85,68 @@ public abstract class TaskSimul  {
 
 
 	private void simul_one(){
+		dynamicTask();
 		release_jobs();
 		g_ext.variousAfterWork();
+		if(g_jsm.is_idle()&&g_change_tm) {
+			int t=g_jsm.get_time();
+			SLog.prn("idle and change: "+t);
+			g_si.delayed+=t-g_si.start_delay;
+			TaskMng tm=DTUtil.getCurTM(g_dt);
+			changeVD_nextSt(tm);
+			setTM(tm);
+			g_change_tm=false;
+		}
 		g_jsm.simul_one();
 		ms_check();
 	}
 	
 	
+	// changeVD --> algo 
+	private void dynamicTask() {
+		int t=g_jsm.get_time();
+		if(t==g_dt.getNextTime()) {
+			g_dt.nextStage();
+			g_si.stage++;
+			int st=g_dt.getCurSt();
+			SLog.prn(1,t+": stage change "+st);
+			if(g_dt.getClass(st)==0) { // add
+				g_si.start_delay=t;
+				g_si.add_task++;
+				setDelay();
+			} else { // remove
+				SLog.prn(1, t+": remove.");
+				TaskMng tm=DTUtil.getCurTM(g_dt);
+//				changeVD_nextSt(tm);
+				setTM(tm);
+			}
+//			g_tm.prn();
+		}
+		if(g_delayed_t!=-1) {
+			if(t==g_delayed_t||g_jsm.is_idle()) {
+				SLog.prn(1, t+": add.");
+				TaskMng tm=DTUtil.getCurTM(g_dt);
+				int rs=changeVD_nextSt(tm);
+				if(rs==0) {
+					SLog.prn("rejected");
+					g_dt.reject();
+					tm.updateInfo();
+					setTM(tm);
+					
+					g_si.reject++;
+				} else if(rs==1) {
+					SLog.prn("accepted");
+					setTM(tm);
+				} else {  //go to idle and change
+					g_change_tm=true;
+					
+				}
+				g_delayed_t=-1;
+			}
+		}
+		
+	}
+
 
 	private void setTM(TaskMng tm) {
 		g_ext.copy(g_tm,tm);

@@ -1,7 +1,7 @@
 package anal;
 
 import gen.SysLoad;
-import task.DTaskVec;
+import task.TaskVec;
 import util.MList;
 import util.SLog;
 
@@ -53,12 +53,9 @@ public class AutoAnal {
 
 		MList rs_list=MList.new_list();
 		for(int i=0;i<num;i++) {
-			DTaskVec dt=sy.loadOne();
+			TaskVec dt=sy.loadOne();
 //			SLog.prnc(2, i+": ");
-			if(isSimul)
-				g_da.run_simul(dt);
-			else
-				g_da.run(dt);
+			g_da.run(dt);
 			rs_list.add(g_da.getRS());
 		}
 		rs_list.saveTo(out);

@@ -1,7 +1,7 @@
 package anal;
 
 import gen.SysLoad;
-import task.DTaskVec;
+import task.TaskVec;
 import util.SEngineT;
 import util.SLog;
 
@@ -42,7 +42,7 @@ public class z_autoanal3 {
 		int sum=0;
 		int i=0;
 		while(true) {
-			DTaskVec dt= sy.loadOne();
+			TaskVec dt= sy.loadOne();
 			if(dt==null) break;
 			SLog.prn("no: "+i);
 			da.run(dt);
@@ -57,24 +57,6 @@ public class z_autoanal3 {
 	}
 	
 	public int test2()	{
-		init();
-		SysLoad sy=new SysLoad(g_TSN);
-		DoAnal da=new DoAnal(g_sort);
-		int sum=0;
-		int i=0;
-		while(true) {
-			DTaskVec dt= sy.loadOne();
-			if(dt==null) break;
-			SLog.prn("no: "+i);
-			String s=da.run_one(dt);
-			if(s=="1")
-				sum++;
-			else
-				SLog.err("ee");
-			i++;
-		}
-		SLog.prn(2, "total:"+i);
-		SLog.prn(2, "accept:"+sum);
 		return 0;		
 	}
 
@@ -83,13 +65,6 @@ public class z_autoanal3 {
 
 
 	public int test3() {
-		init();
-		SysLoad sy=new SysLoad(g_TSN);
-		DoAnal da=new DoAnal(g_sort);
-		sy.moveto(g_idx);
-		DTaskVec dt= sy.loadOne();
-		String rs=da.run_one(dt);
-		SLog.prn(rs);
 		return 0;		
 	}
 	public int test4() {

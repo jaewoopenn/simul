@@ -1,5 +1,6 @@
 package task;
 
+import sim.DTUtil;
 import util.MList;
 import util.MLoop;
 import util.SLog;
@@ -72,14 +73,16 @@ public class TSFile {
 	// import 
 	
 
-	public static TaskVec  loadFile(MList ml) {
+	public static DTaskVec  loadFile(MList ml) {
 		TaskSeq.reset();
     	String line=ml.get(0);
 //    	SLog.prn(2, line);
         String[] words=line.split(",");
         int num=Integer.valueOf(words[1]).intValue();
-		TaskVec tasks=new TaskVec();
+		DTaskVec tasks=new DTaskVec(num);
+    	tasks.addTime(0,0);
 		Task t;
+		int stage=0;
 		for(int i=1;i<ml.size();i++) {
 	    	line=ml.get(i);
 //	    	SLog.prn(2, line);
@@ -87,8 +90,19 @@ public class TSFile {
 	        if(words[0].equals("add")) {
 	        	t=loadTask(words);
 	        	tasks.add(t);
-	        } 
+	        } else if(words[0].equals("remove")) {
+	        	int idx=Integer.valueOf(words[1]).intValue();
+	        	tasks.remove(stage,idx);
+	        } else if(words[0].equals("next")) {
+	        	tasks.addTasks(stage);
+	        	stage++;
+//	        	SLog.prn(1, words[1]);
+	        	int time=Integer.valueOf(words[1]).intValue();
+	        	tasks.addTime(stage, time);
+	        	DTUtil.copy(tasks, stage-1,stage);
+	        }
 	    }
+		tasks.addTasks(stage);
 	    return tasks;
 	}
 	

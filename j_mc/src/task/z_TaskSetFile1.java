@@ -12,29 +12,20 @@ public class z_TaskSetFile1 {
 	public int test1()
 	{
 		MList fu=MList.new_list();
-		TSFile.initStage(fu, 5);
 		TSFile.writeTask(fu, new TaskMC(3,1));
 		TSFile.writeTask(fu, new TaskMC(4,1));
 		TSFile.writeTask(fu, new TaskMC(5,1));
-		TSFile.nextStage(fu,100);
 		TSFile.writeTask(fu, new TaskMC(5,1,4));
-		TSFile.nextStage(fu,200);
-		TSFile.remove(fu, 3);
-		TSFile.remove(fu, 2);
-		TSFile.writeTask(fu, new TaskMC(5,1,3));
 		fu.saveTo("test/test.txt");
 		return 1;
 	}
 	public int test2()
 	{
-		DTaskVec dt=TSFile.loadFile(MList.load("test/test.txt"));
-		int num=dt.getStageNum();
-		for(int i=0;i<num;i++) {
-			TaskSet tmp=new TaskSet(dt.getVec(i));
-			TaskMng tm=tmp.getTM();
-			TaskUtil.prn(tm);
-			SLog.prn(2, "---");
-		}
+		TaskVec dt=TSFile.loadFile(MList.load("test/test.txt"));
+		TaskSet tmp=new TaskSet(dt.getVec());
+		TaskMng tm=tmp.getTM();
+		TaskUtil.prn(tm);
+		SLog.prn(2, "---");
 		return 0;
 	}
 	

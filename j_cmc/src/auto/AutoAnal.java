@@ -2,7 +2,6 @@ package auto;
 
 import anal.DoAnal;
 import gen.SysLoad;
-import task.DTaskVec;
 import task.TaskMng;
 import util.MList;
 import util.SLog;

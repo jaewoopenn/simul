@@ -1,8 +1,8 @@
 package gen;
-import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;
 import task.TaskUtil;
+import task.TaskVec;
 import util.SLog;
 import util.SEngineT;
 
@@ -25,14 +25,11 @@ public class z_SysLoad1 {
 		
 		SysLoad sy=new SysLoad(tsn);
 		sy.moveto(n);
-		DTaskVec dt=sy.loadOne();
-		for(int i=0;i<dt.getStageNum();i++) {
-			SLog.prn(1, "time: "+dt.getTime(i));
-			TaskSet its=new TaskSet(dt.getVec(i));
-			TaskMng tm=its.getTM();
-			TaskUtil.prn(tm);
-			SLog.prn(1, "----");
-		}
+		TaskVec dt=sy.loadOne();
+		TaskSet its=new TaskSet(dt.getVec());
+		TaskMng tm=its.getTM();
+		TaskUtil.prn(tm);
+		SLog.prn(1, "----");
 		return 1;
 
 	}

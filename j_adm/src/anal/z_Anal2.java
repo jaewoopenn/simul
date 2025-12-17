@@ -1,7 +1,7 @@
 package anal;
 
 import gen.SysLoad;
-import task.DTUtil;
+import sim.DTUtil;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskSet;

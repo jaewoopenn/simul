@@ -1,7 +1,7 @@
 package anal;
 
 import gen.SysLoad;
-import task.DTaskVec;
+import task.TaskVec;
 import util.SEngineT;
 import util.SLog;
 
@@ -22,7 +22,7 @@ public class z_autoanal1 {
 		SysLoad sy=new SysLoad(ts);
 		sy.moveto(idx);
 		
-		DTaskVec tm=sy.loadOne();
+		TaskVec tm=sy.loadOne();
 		SLog.prn(1, "task set "+idx);
 		DoAnal da=new DoAnal(3);
 		da.run(tm);

@@ -26,11 +26,11 @@ public abstract class Anal {
 	}
 	
 	public double getDtm() {
-		if(!isDone) {
-			SLog.err("Anal: not ready");
-		}
 		if(isUnsch)
 			return 2;
+		if(!isDone) {
+			SLog.err("Anal: not ready "+g_name);
+		}
 		return getDtm_in();
 	}
 	public boolean is_sch()
@@ -68,6 +68,8 @@ public abstract class Anal {
 //		}
 		if(!isUnsch)
 			setX_in(x);
+//		if(isUnsch)
+//			SLog.prn(3,"x:"+x);
 
 	}
 	// abs method

@@ -1,7 +1,7 @@
 package gen;
 
-import task.DTaskVec;
 import task.TSFile;
+import task.TaskVec;
 import util.MFile;
 import util.MList;
 
@@ -15,7 +15,7 @@ public class SysLoad {
 	}
 
 	
-	public DTaskVec loadOne() {
+	public TaskVec loadOne() {
 		boolean b=g_fu.readUntil("------");
 		if(!b) 
 			return null;

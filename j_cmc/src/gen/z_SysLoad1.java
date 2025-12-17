@@ -24,7 +24,6 @@ public class z_SysLoad1 {
 		SLog.prn(0, ret);
 		sy.moveto(n);
 		TaskMng tm=sy.loadOne();
-		tm.prn();
 		return 1;
 
 	}

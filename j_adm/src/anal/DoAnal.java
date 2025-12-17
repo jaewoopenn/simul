@@ -1,6 +1,6 @@
 package anal;
 
-import task.DTUtil;
+import sim.DTUtil;
 import task.DTaskVec;
 import task.TaskMng;
 import task.TaskUtil;
