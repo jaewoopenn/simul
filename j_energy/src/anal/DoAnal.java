@@ -1,14 +1,11 @@
 package anal;
 
 import task.TaskMng;
-import task.TaskUtil;
-import task.TaskVec;
 import util.MCal;
 import util.SLog;
 
 public class DoAnal {
 	private int g_sort;
-	private String g_rs;
 	private Anal g_anal;
 	private boolean isMC=false;
 	public DoAnal(int sort) {
@@ -18,43 +15,31 @@ public class DoAnal {
 	public void setMC() {
 		isMC=true;
 	}
-	public void run(TaskVec dt) {
-		double dtm=0;
-		g_anal=AnalSel.get(g_sort);
-		
-		TaskMng tm=null;
-		tm=dt.getTM();
-//			TaskUtil.prn(tm);
+	public void run(TaskMng tm) {
+		g_anal=AnalSel.getAnalAuto(g_sort,isMC);
 		g_anal.init(tm);
-		g_anal.auto();
 		double x=g_anal.computeX();
-		if(x<=0||x>1) {
-			g_rs="0";
-			return;
-		} 
 		g_anal.setX(x);
-		dtm=g_anal.getDtm();
-		if(dtm<=1+MCal.err)
-			g_rs="1";
-		else
-			g_rs="0";
-	}
-	
 
-	
+		
+	}
 	public String getRS() {
-		String s=g_rs;
-		g_rs="";
-		return s;
+		double d=g_anal.getDtm();
+//		SLog.prn(1, "dtm: "+d);
+		if(d<=1+MCal.err)
+			return "1";
+		else
+			return "0";
+	}
+	public void prn() {
+		SLog.prn(1, "anal: "+g_anal.getName());
+		double d=g_anal.getDtm();
+		SLog.prn(1, "dtm: "+d);
+		
 	}
 
 	public int getSort() {
 		return g_sort;
-	}
-	public void prn() {
-		Anal a=AnalSel.get(g_sort);
-		SLog.prn(2,a.getName());
-		
 	}
 
 }

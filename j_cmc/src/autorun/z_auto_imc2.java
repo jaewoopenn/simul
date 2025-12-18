@@ -4,8 +4,8 @@ import anal.DoAnal;
 import auto.AutoAnal;
 import auto.AutoConfig;
 import auto.AutoParConfig;
+import auto.AutoSysGen;
 import auto.DataAnal_IMC;
-import auto.AutoTaskGen;
 import util.MList;
 
 // generate task set skip if HC util = 0 or LC util=0 (not yet implement)
@@ -78,8 +78,7 @@ public class z_auto_imc2 {
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
-		AutoTaskGen p=new AutoTaskGen(g_path);
-		p.setRS(g_path);
+		AutoSysGen p=new AutoSysGen(g_path);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		anal();
@@ -108,8 +107,7 @@ public class z_auto_imc2 {
 		apg.num=g_num;
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
-		AutoTaskGen p=new AutoTaskGen(g_path);
-		p.setRS(g_path);
+		AutoSysGen p=new AutoSysGen(g_path);
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		return 0;

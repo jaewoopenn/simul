@@ -1,7 +1,8 @@
-package anal;
+package auto;
 
+import anal.DoAnal;
 import gen.SysLoad;
-import task.TaskVec;
+import task.TaskMng;
 import util.MList;
 import util.SLog;
 
@@ -9,30 +10,22 @@ public class AutoAnal {
 	private String g_path;
 	private DoAnal g_da;
 	private int g_sort;
-	private boolean isSimul=false;
-	private String g_rs_path=null;
+	
 	public AutoAnal(String path,DoAnal da) {
 		g_path=path;
 		g_da=da;
 		g_sort=da.getSort();
 	}	
-	public void setRS(String rs_path) {
-		g_rs_path=rs_path;
-		
-	}
 
 	// anal task set list with algorithm choice
 	public String analList(String ts_list) {
-		if(g_rs_path==null) {
-			SLog.err("set RS path in autoanal");
-		}
 		SLog.prn(2, "Anal:"+g_sort);
 		MList load_ts=MList.load(g_path+"/"+ts_list);
 		
 		MList rs_list=MList.new_list();
 		for(int i=0;i<load_ts.size();i++) {
 			String fn=load_ts.get(i);
-			String out=g_rs_path+"/"+fn+".rs."+g_sort;
+			String out=g_path+"/"+fn+".rs."+g_sort;
 			analTS(g_path+"/"+fn,out);
 			rs_list.add(out);
 		}
@@ -49,21 +42,17 @@ public class AutoAnal {
 //		SLog.prn(2, s.getName());
 		
 		SysLoad sy=new SysLoad(tsn);
-		int num=sy.getNum();
+		String ret=sy.open();
+		int num=Integer.valueOf(ret).intValue();
 
 		MList rs_list=MList.new_list();
 		for(int i=0;i<num;i++) {
-			TaskVec dt=sy.loadOne();
+			TaskMng tm=sy.loadOne();
 //			SLog.prnc(2, i+": ");
-			g_da.run(dt);
+			g_da.run(tm);
 			rs_list.add(g_da.getRS());
 		}
 		rs_list.saveTo(out);
-		
-	}
-
-	public void setSimul() {
-		isSimul=true;
 		
 	}
 

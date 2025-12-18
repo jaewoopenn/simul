@@ -1,10 +1,11 @@
-package anal;
+package auto;
 
 
 import java.util.Vector;
 
+import anal.Anal;
+import anal.AnalSel;
 import util.MList;
-import util.SLog;
 
 public class DataAnal_IMC  {
 	protected String g_path;
@@ -12,10 +13,15 @@ public class DataAnal_IMC  {
 	protected double[][] g_rs;
 	protected int g_max=0;
 	protected int g_xlen=0;
+	private boolean g_isMC=false;
 	public DataAnal_IMC(String path, int x) {
 		g_path=path;
 		g_max=x;
 	}
+	public void setMC() {
+		g_isMC=true;
+	}
+	
 	public void load_x(String fn) {
 		MList fu=MList.load(g_path+"/"+fn);
 		g_xlen=fu.size();
@@ -52,7 +58,6 @@ public class DataAnal_IMC  {
 		for(int idx=0;idx<g_max;idx++) {
 			Anal a=getAnal(idx);
 			str+=" "+a.getName();
-			SLog.prn(2,idx+","+a.getName());
 		}
 		fu.add(str);
 		for(int i=0;i<g_xlen;i++) {
@@ -81,7 +86,7 @@ public class DataAnal_IMC  {
 	
 
 	public Anal getAnal(int sort) {
-		return AnalSel.get(sort);
+		return AnalSel.getAnalAuto(sort,g_isMC);
 	}
 
 	
