@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/demand_supply_plot.png'
+
 MAX_RATE = 6.6
-GRID_CAPACITY = 24
+GRID_CAPACITY = 29
 CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 
 # MAX_RATE = 5
@@ -94,7 +96,7 @@ def simulate_and_plot(file_path):
     plt.legend()
     
     # Save plot
-    plt.savefig('/users/jaewoo/data/ev/spc/demand_supply_plot.png')
+    plt.savefig(SAVE_FILE_NAME)
     
     # Print the final vectors as text as well (optional, but good for confirmation)
     print("\nFinal Cumulative Demand Vector:")

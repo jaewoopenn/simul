@@ -10,6 +10,79 @@ SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/results.png'
 # MAX_RATE = 5          # EV당 최대 충전 속도 (kW)
 # GRID_CAPACITY = 10      # 전체 전력망 용량 (kW)
 
+
+def calculate_scheduling_priorities(current_time, active_evs, grid_capacity, max_rate):
+    """
+    현재 시간에 활성화된 EV들의 충전 우선순위와 충전량을 결정하는 핵심 로직.
+    
+    Args:
+        current_time (int): 현재 시뮬레이션 시간
+        active_evs (list): 현재 충전 가능한 EV 객체들의 리스트
+        grid_capacity (float): 전력망 전체 용량 (GRID_CAPACITY)
+        max_rate (float): EV 한 대의 최대 충전 속도 (MAX_RATE)
+        
+    Returns:
+        tuple: (배정된 충전량 리스트, 사용된 총 전력량)
+               배정된 충전량 리스트 예시: [{'id': 1, 'charge': 6.6}, ...]
+    """
+    if not active_evs:
+        return [], 0
+
+    # (1) Laxity 계산 (정렬 기준용)
+    for ev in active_evs:
+        time_to_deadline = ev['departure'] - current_time
+        time_needed = ev['remaining_energy'] / max_rate
+        # Laxity 비율 계산 (여유 시간 대비 필요 시간)
+        ev['laxity_ratio'] = time_needed / time_to_deadline if time_to_deadline > 0 else 0
+    
+    # (2) 가장 빠른 Deadline 찾기
+    min_deadline = min(ev['departure'] for ev in active_evs)
+    
+    # (3) 그룹 분리
+    earliest_group = [ev for ev in active_evs if ev['departure'] == min_deadline]
+    other_group = [ev for ev in active_evs if ev['departure'] != min_deadline]
+    
+    # (4) 정렬: 다른 그룹은 Laxity가 높은 순서(긴급한 순서)로 정렬
+    other_group.sort(key=lambda x: -x['laxity_ratio'])
+    
+    # (5) 우선순위 통합 (가장 마감이 임박한 그룹 먼저)
+    prioritized_evs = earliest_group + other_group
+    
+    # (6) 충전 수행 결정
+    charging_decisions = []
+    current_grid_load = 0
+    
+    for ev in prioritized_evs:
+        if current_grid_load >= grid_capacity:
+            break
+        
+        available_grid = grid_capacity - current_grid_load
+        
+        # 충전 속도(Rate) 결정 로직
+        if ev['departure'] == min_deadline:
+            # 마감 임박 차량: 남은 에너지 / 남은 시간 (비례 배분)
+            time_remaining = ev['departure'] - current_time
+            if time_remaining < 1: time_remaining = 1 # 0으로 나누기 방지
+            
+            calculated_rate = ev['remaining_energy'] / time_remaining
+            target_rate = min(max_rate, calculated_rate)
+        else:
+            # 그 외 차량: 최대 속도로 충전 (기존 LLF 방식)
+            target_rate = max_rate
+        
+        # 최종 충전량 = min(목표속도, 남은에너지, 남은그리드용량)
+        charge_amount = min(target_rate, ev['remaining_energy'], available_grid)
+        
+        if charge_amount > 0:
+            charging_decisions.append({
+                'id': ev['id'],
+                'charge': charge_amount,
+                'ev_obj': ev # 원본 객체 수정을 위해 포함
+            })
+            current_grid_load += charge_amount
+            
+    return charging_decisions, current_grid_load
+
 def simulate_and_plot_modified(file_path):
     # 1. 데이터 로드
     try:
@@ -38,86 +111,27 @@ def simulate_and_plot_modified(file_path):
     print("=== Modified Scheduling 시뮬레이션 시작 ===")
 
     # 3. 시간별 시뮬레이션 루프
+
     while current_time <= max_time_horizon:
+        active_evs = [job for job in jobs if job['arrival'] <= current_time < job['departure'] and job['remaining_energy'] > 0.001]
         
-        # 활성 EV 식별 (도착함 & 미완료 & 마감 전)
-        active_evs = []
-        for job in jobs:
-            if job['remaining_energy'] <= 0.001:
-                job['status'] = 'finished'
-                continue
-            
-            if current_time >= job['departure'] and job['remaining_energy'] > 0.001:
-                job['status'] = 'missed'
-                continue
-            
-            if job['arrival'] <= current_time < job['departure']:
-                active_evs.append(job)
+        # 분리된 로직 함수 호출
+        decisions, total_load = calculate_scheduling_priorities(current_time, active_evs, GRID_CAPACITY, MAX_RATE)
         
-        # --- [수정된 로직 적용 부분] ---
-        if active_evs:
-            # (1) 기본 Laxity 계산 (정렬 기준용)
-            for ev in active_evs:
-                time_to_deadline = ev['departure'] - current_time
-                time_needed = ev['remaining_energy'] / MAX_RATE
-                ev['laxity'] = time_needed/time_to_deadline 
-                print(f"{ev['id']}: {ev['laxity']:.2f} {time_needed:.2f}/{time_to_deadline:d}")
-            # (2) 가장 빠른 Deadline 찾기
-            min_deadline = min(ev['departure'] for ev in active_evs)
+        # 결과 반영
+        for action in decisions:
+            ev = action['ev_obj']
+            amount = action['charge']
+            ev['remaining_energy'] -= amount
+            ev['charged_history'].append((current_time, amount))
             
-            # (3) 그룹 분리
-            earliest_group = [ev for ev in active_evs if ev['departure'] == min_deadline]
-            other_group = [ev for ev in active_evs if ev['departure'] != min_deadline]
-            
-            # (4) 정렬: Earliest 그룹 내부도 Laxity 순, 나머지 그룹도 Laxity 순(기존 LLF 유지)
-            # earliest_group.sort(key=lambda x: x['laxity'])
-            other_group.sort(key=lambda x: -x['laxity'])
-            
-            # (5) 우선순위 통합 (Earliest 그룹 먼저)
-            prioritized_evs = earliest_group + other_group
-            
-            # (6) 충전 수행
-            current_grid_load = 0
-            for ev in prioritized_evs:
-                if current_grid_load >= GRID_CAPACITY:
-                    break
-                
-                available_grid = GRID_CAPACITY - current_grid_load
-                
-                # 충전 속도(Rate) 결정 로직
-                if ev['departure'] == min_deadline:
-                    # 요청하신 로직: 남은 에너지 / 남은 시간
-                    time_remaining = ev['departure'] - current_time
-                    if time_remaining < 1: time_remaining = 1 # 0으로 나누기 방지
-                    
-                    calculated_rate = ev['remaining_energy'] / time_remaining
-                    
-                    # 물리적 한계(MAX_RATE) 적용
-                    target_rate = min(MAX_RATE, calculated_rate)
-                else:
-                    # 그 외 차량은 최대 속도로 충전 (기존 방식)
-                    target_rate = MAX_RATE
-                
-                # 최종 충전량 = min(목표속도, 남은에너지, 남은그리드용량)
-                charge_amount = min(target_rate, ev['remaining_energy'], available_grid)
-                
-                if charge_amount > 0:
-                    ev['remaining_energy'] -= charge_amount
-                    ev['charged_history'].append((current_time, charge_amount))
-                    current_grid_load += charge_amount
-            
-            # 낭비 전력 기록
-            wasted = GRID_CAPACITY - current_grid_load
-            grid_usage_history.append((current_time, current_grid_load, wasted))
-            
-        else:
-            # 활성 EV 없음
-            grid_usage_history.append((current_time, 0, GRID_CAPACITY))
-
+        # 낭비 전력 기록
+        wasted = GRID_CAPACITY - total_load
+        grid_usage_history.append((current_time, total_load, wasted))
+        
         current_time += 1
-        if current_time > max_time_horizon: break
-
     print("=== 시뮬레이션 완료 ===")
+    
     # 4. 그래프 그리기 (2개 서브플롯: 위=간트차트, 아래=전력사용량)
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 14), sharex=True, gridspec_kw={'height_ratios': [3, 1]})
     

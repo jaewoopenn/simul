@@ -13,7 +13,8 @@ class gl_input:
     path="adm/"
     # ylim=0.30
     # ylim=0.60
-    ylim=0.80
+    ylim=1.0
+    ylim_l=0.4
 
       
       
@@ -23,7 +24,7 @@ class gl_input:
 
     fn="a_sim_graph.txt"
     xlab= "Utilization Bound"
-    ylab= "Percentage of Degraded Execution"
+    ylab= "Percentage of Full Execution"
 
 class gl:
     lab=[]
@@ -56,7 +57,7 @@ def load(s):
 #         z=itemlen-i
         v=[]
         for j in range(1,len(raw)):
-            val=float(raw[j][i]);
+            val=1-float(raw[j][i]);
             v.append(val)
 #         print(v)
         gl.vv.append(v)
@@ -78,11 +79,12 @@ def loop(s):
 #     else:
 #         mp.legendUL()
     # mp.legendBL()
-    mp.legendUL()
+    # mp.legendUL()
+    mp.legendUR()
     
     mp.xlabel(gl_input.xlab)
     mp.ylabel(gl_input.ylab)
-    mp.ylim(-0.04,gl_input.ylim)
+    mp.ylim(gl_input.ylim_l,gl_input.ylim)
     mp.savefig(mf.filepath(gl_input.savename+s+".pdf"))
     
 def main():
