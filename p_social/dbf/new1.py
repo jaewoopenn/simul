@@ -4,7 +4,7 @@ import matplotlib.patches as mpatches
 
 # --- 상수 설정 ---
 MAX_RATE = 6.6          # EV당 최대 충전 속도 (kW)
-GRID_CAPACITY = 29      # 전체 전력망 용량 (kW)
+GRID_CAPACITY = 23      # 전체 전력망 용량 (kW)
 CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/results.png'
 # MAX_RATE = 5          # EV당 최대 충전 속도 (kW)
