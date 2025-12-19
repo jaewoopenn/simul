@@ -42,7 +42,7 @@ public class z_auto_imc2 {
 	}
 	
 	public void init_g() {
-		g_path="cmc/test1";
+		g_path="energy/anal";
 		g_num=5000;
 //		g_num=500;
 //		g_num=20;
@@ -79,6 +79,7 @@ public class z_auto_imc2 {
 		AutoConfig a=new AutoConfig(g_path,apg);
 		a.genCfg_util(g_cf,g_st,g_step,g_end);
 		AutoSysGen p=new AutoSysGen(g_path);
+		p.auto();
 		p.genTS(g_cf,g_ts);
 		p.genXA(g_cf,g_xl);
 		anal();

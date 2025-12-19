@@ -17,7 +17,9 @@ public  class AutoSysGen {
 	public AutoSysGen(String path) {
 		g_path=path;
 	}	
-
+	public void auto() {
+		g_stage=1;
+	}
 	
 	
 	public void genTS(String cfg_list,String ts) {

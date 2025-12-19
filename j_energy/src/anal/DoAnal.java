@@ -18,6 +18,7 @@ public class DoAnal {
 	public void run(TaskMng tm) {
 		g_anal=AnalSel.getAnalAuto(g_sort,isMC);
 		g_anal.init(tm);
+		g_anal.auto();
 		double x=g_anal.computeX();
 		g_anal.setX(x);
 
