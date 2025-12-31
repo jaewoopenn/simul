@@ -10,40 +10,85 @@ class EV:
         self.history = []
         self.e_history = []
 
+
+
 def minimax_plus_greedy(evs, m, current_time):
     """
-    1단계: 이분 탐색으로 비율 K를 맞춤 (Minimax)
-    2단계: 남는 전력이 있다면 e_i/(d_i-l) 비율이 높은 순으로 Greedy하게 추가 배분
+    1단계: 이분 탐색으로 비율 K를 맞춤 (Minimax) - 단, 데드라인 차량은 강제 할당
+    2단계: 남는 전력이 있다면 urgency(e_i/d_i)가 높은 순으로 Greedy하게 추가 배분
     """
     n = len(evs)
     if n == 0: return np.array([])
     
+    # 데이터 배열 생성
     remains = np.array([ev.e for ev in evs])
-    durations = np.array([max(1, ev.d - current_time) for ev in evs])
+    # 남은 시간이 1 이하라면 데드라인에 도달한 것임
+    time_left = np.array([ev.d - current_time for ev in evs])
+    durations = np.maximum(1, time_left)
+    
+    # --- [수정] Step 0: 데드라인 제약 조건 (Lower Bound) 설정 ---
+    # 남은 시간이 1 이하인 경우, 물리적 한계(1.0)와 남은 양 중 작은 값을 반드시 충전해야 함
+    lower_bounds = np.zeros(n)
+    mask_deadline = time_left <= 1.0
+    
+    # 데드라인인 차량은 min(1.0, 남은 양) 만큼은 무조건 확보
+    lower_bounds[mask_deadline] = np.minimum(1.0, remains[mask_deadline])
+    
+    # 만약 데드라인 차량들의 필수 합이 전체 전력 m보다 크다면, 
+    # 어쩔 수 없이 m을 넘기게 되거나(Overload), 여기서 비율대로 줄여야 함.
+    # 본 로직에서는 요청에 따라 '잔여 충전 필요량을 모두 충전'하는 것을 우선하여 lower_bounds를 유지합니다.
     
     # --- Step 1: Minimax (이분 탐색) ---
-    low, high = -10.0, 10.0
+    low, high = -100.0, 100.0 # 탐색 범위 약간 확장
+    
+    # 이분 탐색으로 최적의 mid 값을 찾음
+    # 목표: sum(x) <= m 이 되도록 하는 가장 작은 페널티(mid) 찾기
+    best_x = lower_bounds.copy() # 초기값
+    
     for _ in range(50):
         mid = (low + high) / 2
-        x = np.clip(remains - mid * durations, 0, 1)
-        if np.sum(x) > m: low = mid
-        else: high = mid
-    
-    x_minimax = np.clip(remains - high * durations, 0, 1)
+        
+        # 수식: remains - mid * durations
+        # 핵심 수정: 클리핑의 하한선을 0이 아닌 lower_bounds로 설정
+        raw_val = remains - mid * durations
+        x = np.clip(raw_val, lower_bounds, 1.0)
+        
+        if np.sum(x) > m:
+            # 전력을 너무 많이 씀 -> mid(페널티)를 높여서 줄여야 함
+            low = mid
+        else:
+            # 전력이 남거나 딱 맞음 -> mid를 낮춰서 더 줄 수 있는지 확인 (혹은 이 상태 저장)
+            high = mid
+            best_x = x # 가능한 해 저장
+
+    # 이분 탐색이 끝난 후, high 값을 기준으로 x_minimax 확정
+    # (안전하게 best_x 대신 high 기준 재계산하되, lower_bounds는 지킴)
+    x_minimax = np.clip(remains - high * durations, lower_bounds, 1.0)
     
     # --- Step 2: Greedy Allocation (잔여 전력 소진) ---
-    remaining_m = m - np.sum(x_minimax)
+    current_sum = np.sum(x_minimax)
+    remaining_m = m - current_sum
+    
+    # 부동소수점 오차 고려하여 0보다 크면 실행
     if remaining_m > 1e-6:
-        # 긴급도(필요 속도)가 높은 순서대로 정렬
+        # 긴급도(필요 속도 = 남은양 / 남은시간)가 높은 순서대로 정렬
         urgency = remains / durations
         idx_sorted = np.argsort(urgency)[::-1]
         
         for i in idx_sorted:
-            if remaining_m <= 0: break
+            if remaining_m <= 1e-6: break
+            
             current_x = x_minimax[i]
-            # 추가로 줄 수 있는 양: (1.0 또는 남은 에너지) 중 최소값 - 이미 준 값
-            can_give = min(1.0, remains[i]) - current_x
-            add_x = min(remaining_m, max(0, can_give))
+            # 이미 1.0이거나 남은 양을 다 채웠다면 패스
+            if current_x >= 1.0 or current_x >= remains[i]:
+                continue
+                
+            # 추가로 줄 수 있는 양: (1.0 혹은 잔여량 중 작은 것) - 현재 할당량
+            max_addable = min(1.0, remains[i]) - current_x
+            
+            # 실제로 주는 양: 남은 m과 줄 수 있는 양 중 작은 것
+            add_x = min(remaining_m, max(0, max_addable))
+            
             x_minimax[i] += add_x
             remaining_m -= add_x
             
@@ -91,8 +136,8 @@ def sllf_allocation(evs, m, current_time):
 
 # --- 시뮬레이션 환경 ---
 def run_sim(algo_func, m_limit):
-    evs = [EV(1, 8.0, 12), EV(2, 6.0, 15), EV(3, 10.0, 14)]
-    # evs = [EV(1, 8.0, 15), EV(2, 9.0, 18), EV(3, 8.0, 13)]
+    # evs = [EV(1, 8.0, 12), EV(2, 6.0, 15), EV(3, 10.0, 14)]
+    evs = [EV(1, 8.0, 15), EV(2, 9.0, 18), EV(3, 8.0, 13)]
     for t in range(20):
         active = [ev for ev in evs if ev.e > 0.01 and ev.d > t]
         if not active: 

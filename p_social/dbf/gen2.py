@@ -25,7 +25,7 @@ def generate_random_evs(num_evs=10):
         departure = a + duration
         
         # 물리적 한계: 6.6kW * 시간
-        max_feasible_energy = duration * 6.6
+        max_feasible_energy = duration * 5
         min_req = min(5, max_feasible_energy)
         energy = random.uniform(min_req, max_feasible_energy)
         

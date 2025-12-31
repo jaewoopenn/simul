@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/demand_supply_plot.png'
 
-MAX_RATE = 6.6
-GRID_CAPACITY = 23
+MAX_RATE = 5
+GRID_CAPACITY = 20
 CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 
 # MAX_RATE = 5
@@ -66,12 +66,14 @@ def simulate_and_plot(file_path):
         known_evs = known_evs[known_evs['Departure'] >= current_time]
         
         active_count = len(known_evs)
-        hourly_supply = active_count * MAX_RATE
+        hourly_supply = active_count * MAX_RATE 
+        # 문제가 있다. active count가 애매할때, MAX_RATE로 하면 안된다. 이거 조정 필요. 
         if hourly_supply > GRID_CAPACITY:
             hourly_supply = GRID_CAPACITY
         
         # Calculate accumulated supply since old_time
-        cur_sup = min(old_sup + hourly_supply,old_demand) 
+        # cur_sup = min(old_sup + hourly_supply,old_demand) 
+        cur_sup = old_sup + hourly_supply
         cumulative_supply_points.append((current_time, cur_sup))
         old_sup=cur_sup
         old_demand=running_demand_total

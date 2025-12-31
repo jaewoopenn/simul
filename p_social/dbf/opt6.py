@@ -1,118 +1,131 @@
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
 # --- 상수 설정 ---
-MAX_RATE = 6.6          # EV당 최대 충전 속도 (kW)
-GRID_CAPACITY = 29      # 전체 전력망 용량 (kW)
+MAX_RATE = 5          # EV당 최대 충전 속도 (kW)
+GRID_CAPACITY = 21      # 전체 전력망 용량 (kW)
 CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
 SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/results.png'
 # MAX_RATE = 5          # EV당 최대 충전 속도 (kW)
 # GRID_CAPACITY = 10      # 전체 전력망 용량 (kW)
 
-
 def calculate_scheduling_priorities(current_time, active_evs, grid_capacity, max_rate):
     """
-    수정된 로직: 
-    1. Deadline 순으로 정렬 (EDF).
-    2. [계획] 이전 차량 마감 이후~본인 마감 구간을 우선 활용하되, 부족 시 현재부터 충전(Smoothing).
-    3. [실행] 계획된 양 우선 배분 후, 잔여 용량은 마감 임박 차량에게 추가 배정.
+    Minimax + Greedy 알고리즘을 적용하여 EV 충전 스케줄링을 수행합니다.
+    
+    Args:
+        current_time (int): 현재 시뮬레이션 시간
+        active_evs (list): 현재 충전 가능한 EV 객체들의 리스트 (dict 형태 예상)
+        grid_capacity (float): 전력망 전체 용량 (m)
+        max_rate (float): EV 한 대의 최대 충전 속도 (물리적 한계)
+        
+    Returns:
+        tuple: (배정된 충전량 리스트, 사용된 총 전력량)
     """
     if not active_evs:
         return [], 0
 
-    # 1. 마감 시간(Departure) 순으로 정렬
-    sorted_evs = sorted(active_evs, key=lambda x: x['departure'])
+    n = len(active_evs)
     
-    planned_rates = {}
-    # 계획용 타임라인 추적 (이전 차량의 마감 시간을 저장)
-    prev_deadline = current_time
+    # 1. 데이터 추출 (List -> Numpy Array 변환)
+    # EV 객체가 dict라고 가정하고 키값 접근
+    ids = [ev['id'] for ev in active_evs]
+    remains = np.array([ev['remaining_energy'] for ev in active_evs], dtype=float)
+    departures = np.array([ev['departure'] for ev in active_evs], dtype=float)
     
-    # --- [Step 1: 계획 단계 (Planning)] ---
-    for ev in sorted_evs:
-        ev_id = ev['id']
-        deadline = ev['departure']
-        energy_needed = ev['remaining_energy']
+    # 남은 시간 계산 (최소 1로 설정하여 0 나누기 방지)
+    time_left = departures - current_time
+    durations = np.maximum(1.0, time_left)
+
+    # ---------------------------------------------------------
+    # Step 0: 데드라인 제약 조건 (Lower Bound) 설정
+    # ---------------------------------------------------------
+    # 남은 시간이 1 이하라면, 'max_rate'와 '남은 에너지' 중 작은 값만큼은 필수로 할당
+    lower_bounds = np.zeros(n)
+    mask_deadline = time_left <= 1.0
+    
+    # 데드라인 차량의 하한선 = min(물리적한계, 잔여에너지)
+    lower_bounds[mask_deadline] = np.minimum(max_rate, remains[mask_deadline])
+
+    # ---------------------------------------------------------
+    # Step 1: Minimax (이분 탐색)
+    # ---------------------------------------------------------
+    # 탐색 범위 설정 (전력 단위가 클 수 있으므로 범위를 넉넉하게 잡음)
+    low, high = -1000.0, 1000.0
+    
+    # 이분 탐색 수행
+    for _ in range(50):
+        mid = (low + high) / 2
         
-        # 전용 구간 설정: [max(현재, 이전 차량 마감), 본인 마감]
-        exclusive_start = max(current_time, prev_deadline)
-        exclusive_duration = deadline - exclusive_start
+        # 공식: remains - K * duration
+        raw_val = remains - mid * durations
         
-        if exclusive_duration > 0:
-            # 전용 구간에서 필요한 충전 속도 계산
-            req_rate_exclusive = energy_needed / exclusive_duration
-            
-            if req_rate_exclusive > max_rate:
-                # [중요] 전용 구간만으로 부족함 -> 현재 시점부터 미리 나누어 충전 (Peak 최소화)
-                # 전용 구간에서 최대로 채울 수 있는 양
-                energy_in_exclusive = max_rate * exclusive_duration
-                # 현재부터 미리 채워야 하는 나머지 에너지
-                energy_to_spread_from_now = energy_needed - energy_in_exclusive
-                
-                # 현재부터 전용 구간 시작점까지의 시간
-                time_until_exclusive = exclusive_start - current_time
-                if time_until_exclusive > 0:
-                    planned_rates[ev_id] = energy_to_spread_from_now / time_until_exclusive
-                else:
-                    # 이미 전용 구간에 있거나 이전 차량과 마감이 겹친 경우
-                    planned_rates[ev_id] = min(max_rate, energy_needed / (deadline - current_time))
-            else:
-                # 전용 구간 내에서 해결 가능
-                if current_time < exclusive_start:
-                    # 아직 내 전용 구간이 아니므로 현재(0-1 사이 등)는 0으로 계획
-                    planned_rates[ev_id] = 0
-                else:
-                    # 현재가 이미 내 전용 구간임
-                    planned_rates[ev_id] = req_rate_exclusive
+        # Clip 범위: [lower_bounds, max_rate]
+        # 하한선은 데드라인 보장을 위해, 상한선은 물리적 한계를 위해
+        x = np.clip(raw_val, lower_bounds, max_rate)
+        
+        if np.sum(x) > grid_capacity:
+            low = mid  # 할당량이 너무 많음 -> 페널티(mid)를 높여야 함
         else:
-            # 마감이 이전 차량과 같거나 이미 임박한 비정상 케이스 처리
-            planned_rates[ev_id] = min(max_rate, energy_needed / max(1, deadline - current_time))
+            high = mid # 할당 가능 -> 더 줄일 수 있는지(혹은 최적) 확인
             
-        # 다음 차량을 위해 기준 마감 시간 업데이트
-        prev_deadline = max(prev_deadline, deadline)
+    # 최적의 K(high)를 사용하여 1차 할당량 확정
+    x_minimax = np.clip(remains - high * durations, lower_bounds, max_rate)
 
-    # --- [Step 2: 실행 단계 (Execution)] ---
+    # ---------------------------------------------------------
+    # Step 2: Greedy Allocation (잔여 전력 소진)
+    # ---------------------------------------------------------
+    current_sum = np.sum(x_minimax)
+    remaining_m = grid_capacity - current_sum
+
+    # 부동소수점 오차 고려
+    if remaining_m > 1e-6:
+        # 긴급도(Urgency) = 남은 에너지 / 남은 시간
+        urgency = remains / durations
+        # 긴급도가 높은 순서대로 인덱스 정렬
+        idx_sorted = np.argsort(urgency)[::-1]
+        
+        for i in idx_sorted:
+            if remaining_m <= 1e-6: 
+                break
+            
+            current_x = x_minimax[i]
+            
+            # 이 차량이 더 받을 수 있는 최대 물리적 한계
+            # (max_rate를 넘을 수 없고, 남은 에너지보다 많이 받을 필요 없음)
+            real_limit = min(max_rate, remains[i])
+            
+            # 이미 한계까지 받았다면 패스
+            if current_x >= real_limit:
+                continue
+            
+            # 추가로 줄 수 있는 양
+            can_give = real_limit - current_x
+            add_x = min(remaining_m, can_give)
+            
+            x_minimax[i] += add_x
+            remaining_m -= add_x
+
+    # ---------------------------------------------------------
+    # Step 3: 결과 포맷팅 (Target Function 요구사항)
+    # ---------------------------------------------------------
     charging_decisions = []
-    current_grid_load = 0
+    current_grid_load = 0.0
     
-    # (A) 계획된 최소 충전량만큼 1차 배분
-    for ev in sorted_evs:
-        target_rate = planned_rates.get(ev['id'], 0)
-        # 물리적 한계, 남은 에너지, 그리드 용량을 고려하여 최종 결정
-        amt = min(target_rate, ev['remaining_energy'], max_rate, grid_capacity - current_grid_load)
-        amt = max(0, amt)
-        
-        if amt > 0:
-            charging_decisions.append({'id': ev['id'], 'charge': amt, 'ev_obj': ev})
-            current_grid_load += amt
-
-    # (B) 그리드 용량이 남는 경우, Earliest Deadline 차량부터 추가 배분
-    remaining_grid = grid_capacity - current_grid_load
-    if remaining_grid > 0:
-        # 이미 결정된 목록을 관리하기 위한 맵
-        decision_map = {d['id']: d for d in charging_decisions}
-        
-        for ev in sorted_evs:
-            if remaining_grid <= 0: break
+    for i, val in enumerate(x_minimax):
+        # 0보다 큰 충전량만 결정 목록에 포함
+        if val > 1e-6:
+            charging_decisions.append({
+                'id': ids[i],
+                'charge': float(val),  # numpy float -> python float 변환
+                'ev_obj': active_evs[i] # 원본 객체 참조 유지
+            })
+            current_grid_load += val
             
-            current_alloc = decision_map[ev['id']]['charge'] if ev['id'] in decision_map else 0
-            # 추가 가능한 최대치 = min(MAX_RATE, 남은에너지) - 이미 계획 배정된 양
-            limit = min(max_rate, ev['remaining_energy'])
-            possible_extra = limit - current_alloc
-            
-            if possible_extra > 0:
-                extra = min(possible_extra, remaining_grid)
-                if ev['id'] in decision_map:
-                    decision_map[ev['id']]['charge'] += extra
-                else:
-                    new_dec = {'id': ev['id'], 'charge': extra, 'ev_obj': ev}
-                    charging_decisions.append(new_dec)
-                    decision_map[ev['id']] = new_dec
-                
-                current_grid_load += extra
-                remaining_grid -= extra
-
     return charging_decisions, current_grid_load
+
 
 def simulate_and_plot_modified(file_path):
     # 1. 데이터 로드
