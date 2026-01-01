@@ -31,7 +31,6 @@ def simulate_and_plot(file_path):
     final_cumulative_demand = []
 
     print("=== Simulation Running ===")
-    old_demand=0
     running_demand_total = 0.0
     for current_time in range(max_time + 1):
         
@@ -60,23 +59,22 @@ def simulate_and_plot(file_path):
             
             final_cumulative_demand = cumulative_demand # Update the reference to the latest
 
-            
+        if current_time==0:
+            continue    
         # 2. Calculate Supply (User's Logic)
         known_evs = df[df['Arrival'] <= current_time]
         known_evs = known_evs[known_evs['Departure'] >= current_time]
-        
         active_count = len(known_evs)
         hourly_supply = active_count * MAX_RATE 
         # 문제가 있다. active count가 애매할때, MAX_RATE로 하면 안된다. 이거 조정 필요. 
+        # 나누어 떨어지면, 문제 없음. 
         if hourly_supply > GRID_CAPACITY:
             hourly_supply = GRID_CAPACITY
         
         # Calculate accumulated supply since old_time
-        # cur_sup = min(old_sup + hourly_supply,old_demand) 
         cur_sup = old_sup + hourly_supply
         cumulative_supply_points.append((current_time, cur_sup))
         old_sup=cur_sup
-        old_demand=running_demand_total
     print("=== Simulation End ===")
     
     # --- Plotting ---
