@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
-SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/slope.png'
-RESULTS_FN='/users/jaewoo/data/ev/spc/results.csv'
+PATH='/users/jaewoo/data/ev/peak/'
+CSV_FILE_NAME = PATH+'ev_jobs.csv'
+RESULTS_FN=PATH+'results.csv'
+SAVE_FILE_NAME=PATH+'slope.png'
 
 def plot_slope_changes(ev_jobs_file, results_file, output_file):
     """
@@ -26,7 +27,7 @@ def plot_slope_changes(ev_jobs_file, results_file, output_file):
 
     # 각 차량별로 순회
     for _, ev in ev_jobs.iterrows():
-        ev_id = ev['ID']
+        ev_id = int(ev['ID'])
         arrival = int(ev['Arrival'])
         departure = int(ev['Departure'])
         initial_energy = ev['Energy']

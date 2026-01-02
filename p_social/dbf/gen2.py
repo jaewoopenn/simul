@@ -2,7 +2,8 @@ import csv
 import random
 
 # 파일 저장 이름
-FILENAME = '/users/jaewoo/data/ev/spc/ev_jobs.csv'
+PATH='/users/jaewoo/data/ev/peak/'
+FILENAME = PATH+'ev_jobs.csv'
 NUM=10
 class EV:
     def __init__(self, id1, arrival, energy, departure):

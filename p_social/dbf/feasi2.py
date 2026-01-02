@@ -1,11 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/demand_supply_plot.png'
+PATH='/users/jaewoo/data/ev/peak/'
+CSV_FILE_NAME = PATH+'ev_jobs.csv'
+SAVE_FILE_NAME=PATH+'demand_supply_plot.png'
 
 MAX_RATE = 5
-GRID_CAPACITY = 20
-CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
+GRID_CAPACITY = 19
 
 # MAX_RATE = 5
 # GRID_CAPACITY = 10
