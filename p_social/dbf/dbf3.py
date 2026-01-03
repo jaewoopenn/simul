@@ -10,7 +10,7 @@ SAVE_FILE_NAME = PATH + 'demand_supply_plot.png'
 
 # 파일 이름과 MAX_RATE 설정
 MAX_RATE = 5.0
-GRID_CAPACITY = 19
+GRID_CAPACITY = 15
 
 def plot_dbf_sbf(file_path, max_rate, grid_capacity):
     # 1. 데이터 로드
@@ -37,13 +37,14 @@ def plot_dbf_sbf(file_path, max_rate, grid_capacity):
         task_demand = np.minimum(energy, np.maximum(0.0, max_rate * (t_values - start_ramp)))
         total_dbf += task_demand
 
-    # --- SBF 계산 ---
+    # --- SBF 계산 (로직 수정됨) ---
     # 각 시점별 활성 태스크(Active Task) 수 계산 (Broadcasting 활용)
     departures = df['Departure'].values[:, np.newaxis]  # (N, 1)
+    arrivals = df['Arrival'].values[:, np.newaxis]      # (N, 1) 추가
     t_grid = t_values[np.newaxis, :]                    # (1, M)
     
-    # 활성 상태: 현재 시간이 데드라인 이전인 경우 (t < Departure)
-    active_mask = departures > t_grid
+    # 수정된 활성 조건: 도착 시간 이후(>=) AND 데드라인 이전(<)
+    active_mask = (t_grid >= arrivals) & (t_grid < departures)
     active_counts = active_mask.sum(axis=0)  # 시점별 활성 태스크 개수
 
     # 순간 공급률 계산: min(활성 수 * 5, 19)
