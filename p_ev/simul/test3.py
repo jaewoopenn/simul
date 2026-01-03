@@ -5,9 +5,9 @@ Created on 2015. 12. 11.
 '''
 
 from log.MLog import CLog
-from anal.MQueue import CQueue
-from anal.MGap import TD,CGap
-import anal.MGap as mg
+from z_anal.MQueue import CQueue
+from z_anal.MGap import TD,CGap
+import z_anal.MGap as mg
 
 class gl:
 #     path=1

@@ -6,8 +6,8 @@ Created on 2015. 12. 11.
 
 '''
 
-from anal.MDemand import CJob
-from anal.MDemand import CDemand
+from z_anal.MDemand import CJob
+from z_anal.MDemand import CDemand
 
 
 class gl:

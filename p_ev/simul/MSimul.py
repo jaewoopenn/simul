@@ -6,8 +6,8 @@ Created on 2024. 5. 30.
 import sys
 import math
 from log.MLog import CLog
-from anal.MGap import TD,CGap
-import anal.MGap as mg
+from z_anal.MGap import TD,CGap
+import z_anal.MGap as mg
 import simul.MSimCom as msc
 class gl:
 

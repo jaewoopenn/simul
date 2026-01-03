@@ -5,8 +5,8 @@ Created on 2015. 12. 11.
 
 
 '''
-from anal.MGap import TD,CGap
-import anal.MGap as mg
+from z_anal.MGap import TD,CGap
+import z_anal.MGap as mg
 
 
 class gl:
