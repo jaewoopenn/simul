@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-CSV_FILE_NAME='/users/jaewoo/data/ev/spc/ev_jobs.csv'
-SAVE_FILE_NAME='/users/jaewoo/data/ev/spc/slope.png'
-RESULTS_FN='/users/jaewoo/data/ev/spc/results.csv'
+CSV_FILE_NAME='/users/jaewoo/data/ev/peak/ev_jobs.csv'
+SAVE_FILE_NAME='/users/jaewoo/data/ev/peak/slope.png'
+RESULTS_FN='/users/jaewoo/data/ev/peak/results.csv'
 
 def plot_slope_changes(ev_jobs_file, results_file, output_file):
     """

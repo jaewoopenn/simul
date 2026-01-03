@@ -10,7 +10,7 @@ SAVE_FILE_NAME = PATH + 'demand_supply_plot.png'
 
 # 파일 이름과 MAX_RATE 설정
 MAX_RATE = 5.0
-GRID_CAPACITY = 15
+GRID_CAPACITY = 25
 
 def cal_dbf(df,t_values):
     max_rate=MAX_RATE

@@ -14,115 +14,117 @@ RESULTS_FN=PATH+'results.csv'
 # GRID_CAPACITY = 10      # 전체 전력망 용량 (kW)
 
 
+# refactor 했음 
 def calculate_scheduling_priorities(current_time, active_evs, grid_capacity, max_rate):
     """
-    2-Phase Scheduling:
-    1. Zero Laxity 필수량 우선 배정 (Assign First)
-    2. Minimax + Greedy로 잔여 전력 배분
+    2-Phase Scheduling Algorithm:
+    1. Mandatory Allocation: Deadline 임박 차량에 필수 전력 우선 배정
+    2. Minimax Allocation: 남은 전력을 공평하게 배분 (부하 분산)
+    3. Greedy Allocation: 자투리 전력을 급한 차량부터 소진
     """
     if not active_evs:
-        return [], 0
+        return [], 0.0
 
-    n = len(active_evs)
-    
-    # 1. 데이터 추출 (Numpy Array 변환)
+    # Constants
+    TOLERANCE = 1e-6
+    MAX_ITER = 30
+
+    # ---------------------------------------------------------
+    # 0. Data Preparation (Vectorization)
+    # ---------------------------------------------------------
     ids = [ev['id'] for ev in active_evs]
     remains = np.array([ev['remaining_energy'] for ev in active_evs], dtype=float)
     departures = np.array([ev['departure'] for ev in active_evs], dtype=float)
     
-    # 남은 시간 계산
-    time_left = departures - current_time
-    durations = np.maximum(1.0, time_left)
+    # 남은 시간(Duration) 계산 (최소 1.0초 보장)
+    durations = np.maximum(1.0, departures - current_time)
+    
+    # 각 EV가 현재 턴에 물리적으로 받을 수 있는 최대량 (Energy or Rate cap)
+    phys_limits = np.minimum(remains, max_rate)
 
     # ---------------------------------------------------------
-    # Step 1: Zero Laxity 기반 필수량 우선 배정 (Pre-allocation)
+    # Step 1: Mandatory Allocation (Zero Laxity)
     # ---------------------------------------------------------
-    # "앞으로 남은 모든 턴을 풀로 충전해도 부족한 양"은 지금 무조건 받아야 함
-    future_max_chargeable = (durations - 1.0) * max_rate
-    mandatory_need = remains - future_max_chargeable
+    # 미래의 모든 턴을 풀로 충전해도 부족한 양은 '지금' 받아야 함
+    max_future_charge = (durations - 1.0) * max_rate
+    mandatory_needs = np.maximum(0.0, remains - max_future_charge)
     
-    # 하한선 설정: 0 이상, 현재 필요량(remains) 이하, 물리적 한계(max_rate) 이하
-    lower_bounds = np.clip(mandatory_need, 0, max_rate)
-    lower_bounds = np.minimum(lower_bounds, remains)
+    # 필수 할당량 확정 (물리적 한계 내에서)
+    allocation = np.minimum(mandatory_needs, phys_limits)
     
-    # 결과 배열 초기화 (필수량 먼저 할당)
-    final_allocation = lower_bounds.copy()
-    current_load = np.sum(final_allocation)
-    
-
-    # ---------------------------------------------------------
-    # Step 2: 남은 용량(Surplus)에 대한 Minimax 최적화
-    # ---------------------------------------------------------
+    current_load = np.sum(allocation)
     remaining_grid = grid_capacity - current_load
-    
-    # 이미 필수량을 받았으므로, 추가로 더 받을 수 있는 여력 계산
-    # 추가 필요량 = 원래 필요량 - 이미 받은 양
-    residual_remains = remains - final_allocation
-    # 추가 가능 속도 = 최대 속도 - 이미 받은 양
-    residual_max_rate = max_rate - final_allocation
-    
-    # 최적화할 잔여량이 있고, 전력망도 남았다면 수행
-    if remaining_grid > 1e-6 and np.sum(residual_remains) > 1e-6:
-        
-        low, high = -1000.0, 1000.0
-        best_extra = np.zeros(n)
-        
-        for _ in range(30): # 이분 탐색
-            mid = (low + high) / 2
-            
-            # Minimax 목표 함수 (잔여량 기준)
-            raw_val = residual_remains - mid * durations
-            
-            # 여기서의 clip 범위는 [0, 추가 가능 속도]
-            x_extra = np.clip(raw_val, 0, residual_max_rate)
-            
-            if np.sum(x_extra) > remaining_grid:
-                low = mid
-            else:
-                high = mid
-                best_extra = x_extra # 가능한 해 저장
 
-        # 최적화된 추가분을 최종 할당량에 더함
-        final_allocation += best_extra
+    # ---------------------------------------------------------
+    # Step 2: Minimax Optimization (Distribute Surplus)
+    # ---------------------------------------------------------
+    # 추가로 더 받을 수 있는 여력(Room)이 있고, 그리드도 남았을 때 수행
+    residual_needs = remains - allocation
+    residual_capacity = phys_limits - allocation # 현재 턴에 더 받을 수 있는 속도 여유
+    
+    if remaining_grid > TOLERANCE and np.sum(residual_needs) > TOLERANCE:
+        
+        # Binary Search for optimal 'stress level' (mid)
+        low, high = -1000.0, 1000.0
+        best_extra = np.zeros_like(remains)
+        
+        for _ in range(MAX_ITER):
+            stress_level = (low + high) / 2.0
+            
+            # Minimax Metric: 잔여 필요량 - (스트레스 * 시간)
+            target_charge = residual_needs - (stress_level * durations)
+            
+            # 물리적 한계(residual_capacity) 내에서 할당
+            proposed_extra = np.clip(target_charge, 0, residual_capacity)
+            
+            if np.sum(proposed_extra) > remaining_grid:
+                low = stress_level  # 너무 많이 줌 -> 스트레스를 높여서 배분량을 줄임
+            else:
+                high = stress_level
+                best_extra = proposed_extra # 가능한 해 저장
+
+        # 최적화 결과 반영
+        allocation += best_extra
         remaining_grid -= np.sum(best_extra)
 
-        # -----------------------------------------------------
-        # Step 3: Greedy (자투리 전력 소진)
-        # -----------------------------------------------------
-        if remaining_grid > 1e-6:
-            # 여전히 남았다면 가장 급한 차에게 몰아주기
-            urgency = remains / durations
-            idx_sorted = np.argsort(urgency)[::-1]
+    # ---------------------------------------------------------
+    # Step 3: Greedy Allocation (Fill the gaps)
+    # ---------------------------------------------------------
+    # 아주 미세한 자투리 전력이 남았을 경우, 가장 급한(Urgency) 차량부터 채움
+    if remaining_grid > TOLERANCE:
+        # Urgency = Energy Density (남은 에너지 / 남은 시간)
+        urgency_scores = remains / durations
+        sorted_indices = np.argsort(urgency_scores)[::-1] # 내림차순
+        
+        for idx in sorted_indices:
+            if remaining_grid <= TOLERANCE:
+                break
             
-            for i in idx_sorted:
-                if remaining_grid <= 1e-6: break
-                
-                current_val = final_allocation[i]
-                # 물리적 한계와 필요량 한계 체크
-                real_limit = min(max_rate, remains[i])
-                
-                if current_val < real_limit:
-                    can_take = real_limit - current_val
-                    give = min(remaining_grid, can_take)
-                    final_allocation[i] += give
-                    remaining_grid -= give
+            # 이 차량이 더 받을 수 있는 공간 확인
+            room_to_charge = phys_limits[idx] - allocation[idx]
+            
+            if room_to_charge > TOLERANCE:
+                top_up = min(remaining_grid, room_to_charge)
+                allocation[idx] += top_up
+                remaining_grid -= top_up
 
     # ---------------------------------------------------------
-    # Step 4: 결과 반환
+    # 4. Result Formatting
     # ---------------------------------------------------------
-    charging_decisions = []
-    total_load = 0.0
+    results = []
+    total_assigned = 0.0
     
-    for i, val in enumerate(final_allocation):
-        if val > 1e-6:
-            charging_decisions.append({
+    for i, charge_amount in enumerate(allocation):
+        if charge_amount > TOLERANCE:
+            results.append({
                 'id': ids[i],
-                'charge': float(val),
+                'charge': float(charge_amount),
                 'ev_obj': active_evs[i]
             })
-            total_load += val
+            total_assigned += charge_amount
             
-    return charging_decisions, total_load
+    return results, total_assigned
+
 def simulate_and_plot_modified_with_csv(file_path, output_csv_name="charge_history.csv"):
     # 1. 데이터 로드
     try:
