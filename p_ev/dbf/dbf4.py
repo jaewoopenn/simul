@@ -10,7 +10,7 @@ SAVE_FILE_NAME = PATH + 'demand_supply_plot.png'
 
 # 파일 이름과 MAX_RATE 설정
 MAX_RATE = 5.0
-GRID_CAPACITY = 25
+GRID_CAPACITY = 16
 
 def cal_dbf(df,t_values):
     max_rate=MAX_RATE
@@ -60,7 +60,8 @@ def cal_sbf(df,t_values):
         # 한계 적용: 잠재적 값과 에너지 한계 중 작은 값 선택
         # 여기서 제한된(Clamped) 값이 다음 루프의 current_sbf_val이 됨
         current_sbf_val = min(potential_next_val, energy_bound[i])
-        
+        if current_sbf_val==energy_bound[i]:
+            print(f'{i}:{current_sbf_val}')
         total_sbf[i] = current_sbf_val
 
     return total_sbf
@@ -82,7 +83,8 @@ def plot(t_values,total_dbf,total_sbf):
     plt.title(f'DBF vs SBF (Grid Cap={GRID_CAPACITY}, Max Rate={MAX_RATE})')
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend()
-    plt.show()    
+    plt.savefig(SAVE_FILE_NAME, dpi=300)
+    # plt.show()    
     
 # 실행
 def run():
