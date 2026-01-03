@@ -10,14 +10,10 @@ SAVE_FILE_NAME = PATH + 'demand_supply_plot.png'
 
 # 파일 이름과 MAX_RATE 설정
 MAX_RATE = 5.0
-GRID_CAPACITY = 17
+GRID_CAPACITY = 15
 
-def dbf_sbf(df, max_rate, grid_capacity):
-
-    max_deadline = df['Departure'].max()
-    t_values = np.linspace(0, max_deadline + 2, 1000)
-    dt = t_values[1] - t_values[0]  # 시간 간격(Delta t)
-
+def cal_dbf(df,t_values):
+    max_rate=MAX_RATE
     # --- DBF 계산 (기존 동일) ---
     total_dbf = np.zeros_like(t_values, dtype=float)
     for _, row in df.iterrows():
@@ -27,7 +23,11 @@ def dbf_sbf(df, max_rate, grid_capacity):
         start_ramp = deadline - duration
         task_demand = np.minimum(energy, np.maximum(0.0, max_rate * (t_values - start_ramp)))
         total_dbf += task_demand
+    return total_dbf
 
+def cal_sbf(df,t_values):
+    max_rate=MAX_RATE
+    dt = t_values[1] - t_values[0]  # 시간 간격(Delta t)
     # --- SBF 계산 (순차적 로직 적용) ---
     departures = df['Departure'].values[:, np.newaxis]
     arrivals = df['Arrival'].values[:, np.newaxis]
@@ -38,7 +38,7 @@ def dbf_sbf(df, max_rate, grid_capacity):
     # 활성 조건: 도착함(>=) AND 아직 안 떠남(<)
     active_mask = (t_grid >= arrivals) & (t_grid < departures)
     active_counts = active_mask.sum(axis=0)
-    supply_rates = np.minimum(active_counts * max_rate, grid_capacity)
+    supply_rates = np.minimum(active_counts * max_rate, GRID_CAPACITY)
     
     # 2. 에너지 총량 제한(Bound) 계산
     # 조건: 현재 시간 이전에 도착한 모든 태스크의 에너지 합
@@ -63,7 +63,7 @@ def dbf_sbf(df, max_rate, grid_capacity):
         
         total_sbf[i] = current_sbf_val
 
-    return t_values,total_dbf,total_sbf
+    return total_sbf
 
 def plot(t_values,total_dbf,total_sbf):
     # --- 그래프 그리기 ---
@@ -83,13 +83,21 @@ def plot(t_values,total_dbf,total_sbf):
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend()
     plt.show()    
+    
 # 실행
-if __name__ == "__main__":
+def run():
     # 1. 데이터 로드
     try:
         df = pd.read_csv(CSV_FILE_NAME)
     except FileNotFoundError:
         print("파일을 찾을 수 없습니다.")
-        exit    
-    t_values,total_dbf,total_sbf=dbf_sbf(df, MAX_RATE, GRID_CAPACITY)
-    plot(t_values,total_dbf,total_sbf)
+        return
+    max_deadline = df['Departure'].max()
+    t_values = np.linspace(0, max_deadline + 2, 1000)
+
+    total_dbf=cal_dbf(df,t_values)
+    total_sbf=cal_sbf(df,t_values)
+    plot(t_values,total_dbf,total_sbf)    
+
+if __name__ == "__main__":
+    run()
