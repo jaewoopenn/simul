@@ -13,7 +13,7 @@ RESULTS_FN=PATH+'results.csv'
 # MAX_RATE = 5          # EV당 최대 충전 속도 (kW)
 # GRID_CAPACITY = 10      # 전체 전력망 용량 (kW)
 
-
+# TODO: 매 time마다 하지 말고, rel/deadline마다 하는걸로 수정하자 (천천히) 
 # refactor 했음 
 def calculate_scheduling_priorities(current_time, active_evs, grid_capacity, max_rate):
     """
