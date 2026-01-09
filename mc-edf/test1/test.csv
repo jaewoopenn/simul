@@ -1,5 +1,0 @@
-task_id,T,C_D,C_L,C_H,criticality
-1,20,2,4,10,HI
-2,40,1,5,8,HI
-3,10,0,2,2,LO
-4,50,2,6,12,HI
