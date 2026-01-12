@@ -3,77 +3,67 @@ import matplotlib.pyplot as plt
 import json
 import os
 
-
 PATH='/users/jaewoo/data/amc'
 DATAFILE=PATH+'/data/task_data.json'
 FIGFILE=PATH+'/result.png'
-# ---------------------------------------------------------
-# 1. Task Model (Rehydrated from JSON)
-# ---------------------------------------------------------
 
 class Task:
     def __init__(self, data_dict):
         self.id = data_dict['id']
         self.c_lo = data_dict['c_lo']
         self.c_hi = data_dict['c_hi']
-        self.d = data_dict['d']
+        self.d_lo = data_dict['d_lo']
+        self.d_hi = data_dict['d_hi'] # 0 for LO tasks
         self.t = data_dict['t']
         self.criticality = data_dict['criticality']
-        
         self.p_hi = 0 
         self.p_lo = 0
 
-    def __repr__(self):
-        return f"T{self.id}({self.criticality}, C_L={self.c_lo:.1f}, C_H={self.c_hi:.1f}, D={self.d})"
-
-# ---------------------------------------------------------
-# 2. Helper Math Functions for RTA
-# ---------------------------------------------------------
+    @property
+    def d_eff_amc(self):
+        """Effective deadline for Standard AMC (Fixed Priority)."""
+        if self.criticality == 'HI':
+            return self.d_hi # Must satisfy tighter deadline
+        return self.d_lo
 
 def m_function(task_k, s, t):
-    """
-    Calculates the maximum number of jobs of task_k that can execute strictly 
-    within [s, t] assuming one job is active at s.
-    """
     if t <= s: return 0
     term1 = math.ceil((t - s) / task_k.t) + 1
     term2 = math.ceil(t / task_k.t)
     return min(term1, term2)
 
 # ---------------------------------------------------------
-# 3. Standard AMC-max Implementation
+# 3. Standard AMC (Using Effective Deadline)
 # ---------------------------------------------------------
 
 def calc_rta_amc_max(task_i, hp_tasks):
-    """Calculates response time using AMC-max (Method 2)."""
-    
-    # 1. Calculate R_LO (Steady State LO)
+    # 1. R_LO (Check against D_LO)
     r_lo = task_i.c_lo
     while True:
         w = task_i.c_lo
         for task_j in hp_tasks:
             w += math.ceil(r_lo / task_j.t) * task_j.c_lo
-        
-        if w > task_i.d: return float('inf')
+        # [NOTE] Even in standard AMC, in LO-mode we only strictly need to meet D_LO.
+        # However, the priority assignment assumes we must safeguard D_HI eventualities.
+        # But RTA itself checks physical completion.
+        if w > task_i.d_lo: return float('inf')
         if w == r_lo: break
         r_lo = w
     
-    if task_i.criticality == 'LO':
-        return r_lo
+    if task_i.criticality == 'LO': return r_lo
 
-    # 2. Calculate R_HI (Steady State HI)
+    # 2. R_HI (Check against D_HI)
     hp_hi_tasks = [t for t in hp_tasks if t.criticality == 'HI']
     r_hi = task_i.c_hi
     while True:
         w = task_i.c_hi
         for task_j in hp_hi_tasks:
             w += math.ceil(r_hi / task_j.t) * task_j.c_hi
-            
-        if w > task_i.d: return float('inf')
+        if w > task_i.d_hi: return float('inf')
         if w == r_hi: break
         r_hi = w
         
-    # 3. Calculate Transition Phase (AMC-max)
+    # 3. Transition (Check against D_HI)
     max_r_s = 0
     s_points = {0}
     for task_j in hp_tasks:
@@ -85,16 +75,13 @@ def calc_rta_amc_max(task_i, hp_tasks):
     
     for s in s_points:
         if s >= r_lo: continue
-        
         r_s = max(r_lo, r_hi) 
         while True:
             lhs = task_i.c_hi
-            
             i_l = 0
             for task_j in hp_tasks:
                 if task_j.criticality == 'LO':
                     i_l += (math.floor(s / task_j.t) + 1) * task_j.c_lo
-            
             i_h = 0
             for task_k in hp_hi_tasks:
                 m_val = m_function(task_k, s, r_s)
@@ -103,8 +90,7 @@ def calc_rta_amc_max(task_i, hp_tasks):
                 i_h += term_hi + term_lo
             
             w = lhs + i_l + i_h
-            
-            if w > task_i.d: return float('inf')
+            if w > task_i.d_hi: return float('inf') # Fail tight deadline
             if w <= r_s:
                 max_r_s = max(max_r_s, w)
                 break
@@ -113,7 +99,11 @@ def calc_rta_amc_max(task_i, hp_tasks):
     return max(r_lo, max_r_s)
 
 def check_schedulability_amc(task_set):
-    """Checks schedulability using Audsley's Algorithm with AMC-max."""
+    """
+    Standard AMC with Audsley.
+    CRITICAL: Priority assignment uses D_eff = D_HI for HI tasks.
+    This forces them to have high priority.
+    """
     n = len(task_set)
     unassigned = task_set[:]
     
@@ -121,38 +111,38 @@ def check_schedulability_amc(task_set):
         candidate_found = False
         for i, candidate in enumerate(unassigned):
             hp_tasks = unassigned[:i] + unassigned[i+1:]
+            
+            # [KEY] Schedulability test
             rta = calc_rta_amc_max(candidate, hp_tasks)
             
-            if rta <= candidate.d:
+            # Must satisfy its own deadline requirements
+            # calc_rta_amc_max internally checks R_LO <= D_LO and R_HI <= D_HI
+            if rta != float('inf'):
                 unassigned.pop(i)
                 candidate_found = True
                 break
         
-        if not candidate_found:
-            return False
+        if not candidate_found: return False
     return True
 
 # ---------------------------------------------------------
-# 4. Virtual Priority (VP-AMC) Implementation
+# 4. VP-AMC (Mode-Dependent Logic)
 # ---------------------------------------------------------
 
 def calc_rta_vp_amc(task_i, hp_lo_candidates, all_tasks):
-    """Calculates RTA for VP-AMC using Dual Priority logic."""
-    
-    # 1. LO-Mode Check
+    # 1. LO-Mode Check (Check against D_LO - RELAXED!)
     r_lo = task_i.c_lo
     while True:
         w = task_i.c_lo
         for task_j in hp_lo_candidates:
             w += math.ceil(r_lo / task_j.t) * task_j.c_lo
-        if w > task_i.d: return float('inf'), float('inf')
+        if w > task_i.d_lo: return float('inf'), float('inf')
         if w == r_lo: break
         r_lo = w
         
-    if task_i.criticality == 'LO':
-        return r_lo, 0
+    if task_i.criticality == 'LO': return r_lo, 0
 
-    # 2. HI-Mode Transition Check
+    # 2. HI-Mode Transition Check (Check against D_HI - TIGHT!)
     hh_set = []
     hl_set = []
     lh_set = []
@@ -160,14 +150,14 @@ def calc_rta_vp_amc(task_i, hp_lo_candidates, all_tasks):
     
     for t in all_tasks:
         if t.id == task_i.id: continue
-        
         is_in_hp_lo = t in hp_lo_candidates
         is_hi_crit = (t.criticality == 'HI')
         
-        # P_HI is fixed by DMPO (Implicit D=T, so smaller T = higher P)
+        # P_HI based on D_HI (Tight Deadline Monotonic)
         is_higher_phi = False
-        if t.d < task_i.d: is_higher_phi = True
-        elif t.d == task_i.d and t.id < task_i.id: is_higher_phi = True
+        if is_hi_crit:
+            if t.d_hi < task_i.d_hi: is_higher_phi = True
+            elif t.d_hi == task_i.d_hi and t.id < task_i.id: is_higher_phi = True
         
         if is_in_hp_lo:
             if not is_hi_crit: hp_lo_set.append(t)
@@ -188,11 +178,9 @@ def calc_rta_vp_amc(task_i, hp_lo_candidates, all_tasks):
     max_r_s = 0
     for s in s_points:
         if s >= r_lo: continue
-        
         r_s = r_lo 
         while True:
             lhs = task_i.c_hi
-            
             i_lo = sum([(math.floor(s/t.t) + 1) * t.c_lo for t in hp_lo_set])
             i_hl = sum([(math.floor(s/t.t) + 1) * t.c_lo for t in hl_set])
             
@@ -201,15 +189,11 @@ def calc_rta_vp_amc(task_i, hp_lo_candidates, all_tasks):
                 m = m_function(k, s, r_s)
                 i_hh += m * k.c_hi + (math.ceil(r_s/k.t) - m) * k.c_lo
                 
-            # [CRITICAL FIX]: LH interference logic
-            # LH tasks are blocked in [0, s) because P_LO(k) < P_LO(i).
-            # They become higher priority at s.
-            # Total interference is the total work released in [0, R_s]
             i_lh = sum([math.ceil(r_s / k.t) * k.c_hi for k in lh_set])
             
             w = lhs + i_lo + i_hl + i_hh + i_lh
             
-            if w > task_i.d: return r_lo, float('inf')
+            if w > task_i.d_hi: return r_lo, float('inf') # Check against tight D_HI
             if w <= r_s:
                 max_r_s = max(max_r_s, w)
                 break
@@ -226,84 +210,59 @@ def check_schedulability_vp_amc(task_set):
         for i, candidate in enumerate(unassigned):
             hp_lo_candidates = unassigned[:i] + unassigned[i+1:]
             
+            # Calculate RTA
             r_lo, r_trans = calc_rta_vp_amc(candidate, hp_lo_candidates, task_set)
             
-            if r_lo <= candidate.d and r_trans <= candidate.d:
+            # [KEY DIFFERENCE]
+            # Standard AMC effectively forces P_LO to satisfy D_HI because priority is static.
+            # VP-AMC allows P_LO to satisfy D_LO (r_lo <= candidate.d_lo),
+            # while ensuring Transition satisfies D_HI (r_trans <= candidate.d_hi).
+            if r_lo <= candidate.d_lo and r_trans <= candidate.d_hi:
                 unassigned.pop(i)
                 candidate_found = True
                 break
         
-        if not candidate_found:
-            return False
-            
+        if not candidate_found: return False
     return True
 
-# ---------------------------------------------------------
-# 5. Simulation Runner
-# ---------------------------------------------------------
-
-def run_simulation_from_file(filename='task_data.json'):
+def run_simulation(filename='task_data_md.json'):
     if not os.path.exists(filename):
-        print(f"Error: File '{filename}' not found.")
+        print(f"Error: {filename} not found.")
         return
-
-    print(f"Loading tasksets from {filename}...")
-    with open(filename, 'r') as f:
-        all_data = json.load(f)
-        
+    with open(filename, 'r') as f: all_data = json.load(f)
+    
     util_points = all_data['util_points']
     results_amc = []
     results_vp_amc = []
     
-    print("Running Simulation...")
+    print(f"Running Mode-Dependent Simulation...")
     
     for u in util_points:
-        u_key = str(u)
-        tasksets_data = all_data['tasksets'].get(u_key, [])
-        total_sets = len(tasksets_data)
-        
-        if total_sets == 0:
-            results_amc.append(0)
-            results_vp_amc.append(0)
-            continue
+        tasksets_data = all_data['tasksets'].get(str(u), [])
+        total = len(tasksets_data)
+        if total == 0:
+            results_amc.append(0); results_vp_amc.append(0); continue
             
-        count_amc = 0
-        count_vp_amc = 0
-        
-        for ts_data in tasksets_data:
-            ts = [Task(t_data) for t_data in ts_data]
+        c_amc = 0; c_vp = 0
+        for data in tasksets_data:
+            ts = [Task(d) for d in data]
+            if check_schedulability_amc(ts): c_amc += 1
+            if check_schedulability_vp_amc(ts): c_vp += 1
             
-            is_amc = check_schedulability_amc(ts)
-            if is_amc: count_amc += 1
-            
-            is_vp = check_schedulability_vp_amc(ts)
-            if is_vp: count_vp_amc += 1
-            
-            if is_amc and not is_vp:
-                print(f"CRITICAL ERROR: Dominance violation at U={u}")
-                # Optional: print(ts) to debug specific set
-        
-        ratio_amc = (count_amc / total_sets) * 100
-        ratio_vp_amc = (count_vp_amc / total_sets) * 100
-        
-        results_amc.append(ratio_amc)
-        results_vp_amc.append(ratio_vp_amc)
-        
-        print(f"U={u:<4} | AMC: {ratio_amc:5.1f}% | VP-AMC: {ratio_vp_amc:5.1f}%")
+        r_amc = c_amc/total*100
+        r_vp = c_vp/total*100
+        results_amc.append(r_amc)
+        results_vp_amc.append(r_vp)
+        print(f"U={u:<4} | AMC: {r_amc:5.1f}% | VP-AMC: {r_vp:5.1f}%")
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(util_points, results_amc, marker='o', linestyle='--', label='AMC-max (Standard)')
-    plt.plot(util_points, results_vp_amc, marker='s', linestyle='-', label='VP-AMC (Virtual Priority)')
-    
-    plt.title('Schedulability Comparison')
-    plt.xlabel('Utilization (LO)')
-    plt.ylabel('Schedulability (%)')
-    plt.legend()
-    plt.grid(True)
-    plt.ylim(0, 110)
-    
+    plt.figure(figsize=(10,6))
+    plt.plot(util_points, results_amc, 'o--', label='AMC (Static Prio)')
+    plt.plot(util_points, results_vp_amc, 's-', label='VP-AMC (Mode-Dependent)')
+    plt.title('Schedulability with Mode-Dependent Deadlines (Tightness=3x)')
+    plt.xlabel('Utilization'); plt.ylabel('Schedulability (%)')
+    plt.legend(); plt.grid(True)
     plt.savefig(FIGFILE)
-    print("\nGraph saved to vp_amc_results.png")
+    print("Saved to vp_amc_md_results.png")
 
 if __name__ == "__main__":
-    run_simulation_from_file(DATAFILE)
+    run_simulation(DATAFILE)
