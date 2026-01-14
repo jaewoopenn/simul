@@ -1,18 +1,14 @@
-'''
-Created on 2025. 11. 29.
-
-@author: jaewoo
-'''
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
+
 # ---------------------------------------------------------
 # 1. 설정 (Configuration)
 # ---------------------------------------------------------
 SAVE_DIR = '/users/jaewoo/data/acn'
-OUTPUT_FIG = os.path.join(SAVE_DIR, 'satisfaction_fcfs_vs_edf.png')
+OUTPUT_FIG = os.path.join(SAVE_DIR, 'satisfaction_comparison_3_algo.png')
 CSV_FILENAME = os.path.join(SAVE_DIR, 'acn_data_1week.csv')
 
 MAX_CHARGING_RATE = 6.6
@@ -66,11 +62,19 @@ def run_simulation(ev_data, time_index, capacity_limit, algorithm):
         
         if not active_evs: continue
             
-        # 정렬 기준
+        # [수정] 알고리즘별 정렬 기준 설정
         if algorithm == 'FCFS':
-            active_evs.sort(key=lambda x: x['arrival_idx']) # 먼저 온 순서
+            active_evs.sort(key=lambda x: x['arrival_idx'])
         elif algorithm == 'EDF':
-            active_evs.sort(key=lambda x: x['departure_idx']) # 급한 순서
+            active_evs.sort(key=lambda x: x['departure_idx'])
+        elif algorithm == 'LLF':
+            # Laxity 계산: (현재~출차까지 남은 시간) - (남은 에너지를 채우는 데 필요한 시간)
+            # Laxity가 작을수록 우선순위가 높음
+            for ev in active_evs:
+                remaining_time = (ev['departure_idx'] - t) * dt_hours
+                required_time = ev['energy_remaining'] / ev['max_rate']
+                ev['laxity'] = remaining_time - required_time
+            active_evs.sort(key=lambda x: x['laxity'])
             
         current_load = 0
         for ev in active_evs:
@@ -99,8 +103,9 @@ def run_simulation(ev_data, time_index, capacity_limit, algorithm):
     
     return satisfaction_list, fully_charged_count, total_evs
 
+
 # ---------------------------------------------------------
-# 4. 메인 실행 및 시각화
+# 4. 메인 실행 및 시각화 (평균 만족도 추가 버전)
 # ---------------------------------------------------------
 if __name__ == "__main__":
     ev_df = get_ev_data(CSV_FILENAME)
@@ -112,51 +117,55 @@ if __name__ == "__main__":
         
         print(f"Simulation with Grid Limit: {GRID_CAPACITY_LIMIT} kW")
         
-        # 시뮬레이션 실행 (Optimal 제거)
+        # 3가지 알고리즘 실행
         sat_fcfs, full_fcfs, total_fcfs = run_simulation(ev_df, time_index, GRID_CAPACITY_LIMIT, 'FCFS')
         sat_edf, full_edf, total_edf = run_simulation(ev_df, time_index, GRID_CAPACITY_LIMIT, 'EDF')
+        sat_llf, full_llf, total_llf = run_simulation(ev_df, time_index, GRID_CAPACITY_LIMIT, 'LLF')
         
-        print(f"[Result] Fully Charged Rate")
+        # 평균 만족도 계산
+        avg_sat = {
+            'FCFS': sum(sat_fcfs) / len(sat_fcfs) if sat_fcfs else 0,
+            'EDF': sum(sat_edf) / len(sat_edf) if sat_edf else 0,
+            'LLF': sum(sat_llf) / len(sat_llf) if sat_llf else 0
+        }
+
+        print(f"\n[Result 1] Fully Charged Rate (완충 성공률)")
         print(f"  FCFS: {full_fcfs}/{total_fcfs} ({(full_fcfs/total_fcfs)*100:.1f}%)")
         print(f"  EDF : {full_edf}/{total_edf} ({(full_edf/total_edf)*100:.1f}%)")
+        print(f"  LLF : {full_llf}/{total_llf} ({(full_llf/total_llf)*100:.1f}%)")
 
-        # 그래프 그리기
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
-        
-        # 1. Box Plot (만족도 분포)
-        data_to_plot = [sat_fcfs, sat_edf]
-        labels = ['Uncoordinated (FCFS)', 'Proposed (Online EDF)']
-        colors = ['orange', 'royalblue']
-        
-        sns.boxplot(data=data_to_plot, ax=ax1, palette=colors)
-        ax1.set_title('Distribution of User Satisfaction\n(Energy Delivered / Requested)', fontsize=13)
-        ax1.set_ylabel('Satisfaction (%)', fontsize=11)
+        print(f"\n[Result 2] Average Satisfaction (평균 만족도)")
+        print(f"  FCFS: {avg_sat['FCFS']:.1f}%")
+        print(f"  EDF : {avg_sat['EDF']:.1f}%")
+        print(f"  LLF : {avg_sat['LLF']:.1f}%")
+
+        # 그래프 그리기 (3개 차트로 확장)
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 6))
+        labels = ['FCFS', 'EDF', 'LLF']
+        colors = ['#ff9999', '#66b3ff', '#99ff99']
+
+        # 1. Box Plot (분포)
+        sns.boxplot(data=[sat_fcfs, sat_edf, sat_llf], ax=ax1, palette=colors)
+        ax1.set_xticklabels(labels)
+        ax1.set_title('Satisfaction Distribution', fontsize=13)
+        ax1.set_ylabel('Satisfaction (%)')
         ax1.set_ylim(-5, 105)
-        ax1.grid(True, axis='y', linestyle='--', alpha=0.5)
-        
-        # 2. Bar Chart (완충 비율)
-        full_rates = [(full_fcfs/total_fcfs)*100, (full_edf/total_edf)*100]
-        bars = ax2.bar(labels, full_rates, color=colors, alpha=0.8, width=0.5)
-        
-        ax2.set_title('Service Completion Rate\n(% of Fully Charged Vehicles)', fontsize=13)
-        ax2.set_ylabel('Fully Charged Rate (%)', fontsize=11)
+
+        # 2. Bar Chart (완충 성공률)
+        full_rates = [(full_fcfs/total_fcfs)*100, (full_edf/total_edf)*100, (full_llf/total_llf)*100]
+        bars2 = ax2.bar(labels, full_rates, color=colors, alpha=0.8)
+        ax2.set_title('Service Completion Rate (%)', fontsize=13)
         ax2.set_ylim(0, 110)
-        ax2.grid(True, axis='y', linestyle='--', alpha=0.5)
-        
-        # 값 표시
-        for bar in bars:
-            height = bar.get_height()
-            ax2.text(bar.get_x() + bar.get_width()/2., height,
-                     f'{height:.1f}%', ha='center', va='bottom', fontsize=12, fontweight='bold')
+        for bar in bars2:
+            ax2.text(bar.get_x() + bar.get_width()/2., bar.get_height() + 1, f'{bar.get_height():.1f}%', ha='center', fontweight='bold')
+
+        # 3. Bar Chart (평균 만족도) - NEW!
+        avg_rates = [avg_sat['FCFS'], avg_sat['EDF'], avg_sat['LLF']]
+        bars3 = ax3.bar(labels, avg_rates, color=colors, alpha=0.8)
+        ax3.set_title('Average Satisfaction (%)', fontsize=13)
+        ax3.set_ylim(0, 110)
+        for bar in bars3:
+            ax3.text(bar.get_x() + bar.get_width()/2., bar.get_height() + 1, f'{bar.get_height():.1f}%', ha='center', fontweight='bold')
 
         plt.tight_layout()
-        
-        if not os.path.exists(SAVE_DIR):
-            try: os.makedirs(SAVE_DIR)
-            except: pass
-            
-        plt.savefig(OUTPUT_FIG, dpi=300)
-        print(f"[SUCCESS] 그래프 저장 완료: {OUTPUT_FIG}")
         plt.show()
-    else:
-        print("[ERROR] 데이터가 없습니다.")

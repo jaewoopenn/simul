@@ -1,8 +1,3 @@
-'''
-Created on 2025. 11. 29.
-
-@author: jaewoo
-'''
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -12,16 +7,16 @@ import os
 # 1. 설정 (Configuration)
 # ---------------------------------------------------------
 SAVE_DIR = '/users/jaewoo/data/acn'
-OUTPUT_FIG = os.path.join(SAVE_DIR, 'satisfaction_fcfs_vs_edf.png')
-CSV_FILENAME = os.path.join(SAVE_DIR, 'acn_data_1week.csv')
+OUTPUT_FIG = os.path.join(SAVE_DIR, 'satisfaction_comparison_3_algo.png')
+CSV_FILENAME = os.path.join(SAVE_DIR, 'acn_data_caltech_20190901_20191001.csv')
 
 MAX_CHARGING_RATE = 6.6
-TIME_INTERVAL = 5
-TARGET_START_DATE = '2019-10-01'
-TARGET_END_DATE = '2019-10-08'
+TIME_INTERVAL = 2
+TARGET_START_DATE = '2019-09-01'
+TARGET_END_DATE = '2019-10-01'
 
-# [핵심] 총량 제한 (kW) - 아주 빡빡하게 설정하여 차이를 극대화
-GRID_CAPACITY_LIMIT = 20.0 
+# [핵심] 총량 제한 (kW) - 아주 빡빡하게 설정하여 알고리즘 간 차이를 유도
+GRID_CAPACITY_LIMIT = 22.0 
 
 # ---------------------------------------------------------
 # 2. 데이터 로드
@@ -66,11 +61,19 @@ def run_simulation(ev_data, time_index, capacity_limit, algorithm):
         
         if not active_evs: continue
             
-        # 정렬 기준
+        # [수정] 알고리즘별 정렬 기준 설정
         if algorithm == 'FCFS':
-            active_evs.sort(key=lambda x: x['arrival_idx']) # 먼저 온 순서
+            active_evs.sort(key=lambda x: x['arrival_idx'])
         elif algorithm == 'EDF':
-            active_evs.sort(key=lambda x: x['departure_idx']) # 급한 순서
+            active_evs.sort(key=lambda x: x['departure_idx'])
+        elif algorithm == 'LLF':
+            # Laxity 계산: (현재~출차까지 남은 시간) - (남은 에너지를 채우는 데 필요한 시간)
+            # Laxity가 작을수록 우선순위가 높음
+            for ev in active_evs:
+                remaining_time = (ev['departure_idx'] - t) * dt_hours
+                required_time = ev['energy_remaining'] / ev['max_rate']
+                ev['laxity'] = remaining_time - required_time
+            active_evs.sort(key=lambda x: x['laxity'])
             
         current_load = 0
         for ev in active_evs:
@@ -112,42 +115,49 @@ if __name__ == "__main__":
         
         print(f"Simulation with Grid Limit: {GRID_CAPACITY_LIMIT} kW")
         
-        # 시뮬레이션 실행 (Optimal 제거)
+        # 3가지 알고리즘 실행
         sat_fcfs, full_fcfs, total_fcfs = run_simulation(ev_df, time_index, GRID_CAPACITY_LIMIT, 'FCFS')
         sat_edf, full_edf, total_edf = run_simulation(ev_df, time_index, GRID_CAPACITY_LIMIT, 'EDF')
+        sat_llf, full_llf, total_llf = run_simulation(ev_df, time_index, GRID_CAPACITY_LIMIT, 'LLF')
         
         print(f"[Result] Fully Charged Rate")
         print(f"  FCFS: {full_fcfs}/{total_fcfs} ({(full_fcfs/total_fcfs)*100:.1f}%)")
         print(f"  EDF : {full_edf}/{total_edf} ({(full_edf/total_edf)*100:.1f}%)")
+        print(f"  LLF : {full_llf}/{total_llf} ({(full_llf/total_llf)*100:.1f}%)")
 
         # 그래프 그리기
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
         
         # 1. Box Plot (만족도 분포)
-        data_to_plot = [sat_fcfs, sat_edf]
-        labels = ['Uncoordinated (FCFS)', 'Proposed (Online EDF)']
-        colors = ['orange', 'royalblue']
+        data_to_plot = [sat_fcfs, sat_edf, sat_llf]
+        labels = ['FCFS', 'EDF', 'LLF']
+        colors = ['#ff9999', '#66b3ff', '#99ff99'] # 각각 연한 빨강, 파랑, 초록
         
         sns.boxplot(data=data_to_plot, ax=ax1, palette=colors)
+        ax1.set_xticklabels(labels)
         ax1.set_title('Distribution of User Satisfaction\n(Energy Delivered / Requested)', fontsize=13)
         ax1.set_ylabel('Satisfaction (%)', fontsize=11)
         ax1.set_ylim(-5, 105)
         ax1.grid(True, axis='y', linestyle='--', alpha=0.5)
         
         # 2. Bar Chart (완충 비율)
-        full_rates = [(full_fcfs/total_fcfs)*100, (full_edf/total_edf)*100]
-        bars = ax2.bar(labels, full_rates, color=colors, alpha=0.8, width=0.5)
+        full_rates = [
+            (full_fcfs/total_fcfs)*100, 
+            (full_edf/total_edf)*100, 
+            (full_llf/total_llf)*100
+        ]
+        bars = ax2.bar(labels, full_rates, color=colors, alpha=0.8, width=0.6)
         
         ax2.set_title('Service Completion Rate\n(% of Fully Charged Vehicles)', fontsize=13)
         ax2.set_ylabel('Fully Charged Rate (%)', fontsize=11)
         ax2.set_ylim(0, 110)
         ax2.grid(True, axis='y', linestyle='--', alpha=0.5)
         
-        # 값 표시
+        # 바 차트 위에 수치 표시
         for bar in bars:
             height = bar.get_height()
-            ax2.text(bar.get_x() + bar.get_width()/2., height,
-                     f'{height:.1f}%', ha='center', va='bottom', fontsize=12, fontweight='bold')
+            ax2.text(bar.get_x() + bar.get_width()/2., height + 1,
+                     f'{height:.1f}%', ha='center', va='bottom', fontsize=11, fontweight='bold')
 
         plt.tight_layout()
         

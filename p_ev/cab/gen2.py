@@ -2,7 +2,7 @@ import csv
 import random
 
 # 파일 저장 이름
-FILENAME = '/users/jaewoo/data/ev/peak/ev_jobs.csv'
+FILENAME = '/users/jaewoo/data/ev/fluid/ev_jobs.csv'
 NUM=10
 class EV:
     def __init__(self, id1, arrival, energy, departure):
@@ -17,8 +17,7 @@ def generate_random_evs(num_evs=10):
     print(f"--- 랜덤 EV {num_evs}대 생성 중 ---")
     for i in range(num_evs):
         # Arrival: 0 ~ 15 사이 랜덤
-        # a = random.randint(0, 15)
-        a=0
+        a = random.randint(0, 15)
         
         # 주차 시간 (Duration): 최소 1시간 ~ 최대 10시간
         duration = random.randint(1, 10)
