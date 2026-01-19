@@ -161,14 +161,18 @@ def solve_sLLF(T, P_limit, evs, verbose=False):
 
 def generate_random_scenario():
     """ 랜덤 시나리오 생성 """
-    num_evs = random.randint(3, 6) # 차량 수 약간 증가
-    T_horizon = random.randint(6, 12) # 시간 범위 확장
+    # num_evs = random.randint(3, 6) # 차량 수 약간 증가
+    # T_horizon = random.randint(6, 12) # 시간 범위 확장
+    num_evs = random.randint(3, 5) # 차량 수 약간 증가
+    T_horizon = random.randint(3, 8) # 시간 범위 확장
     evs = []
     
     for i in range(num_evs):
         # sLLF의 취약점은 Arrival Time이 다를 때 주로 발생하므로
         # 도착 시간(a)을 0으로 고정하지 않고 랜덤하게 부여하는 것이 좋습니다.
-        a = random.randint(0, T_horizon // 2)
+        # a = random.randint(0, T_horizon // 2)
+        a = random.randint(0, 2)
+        # a=0
         
         # 출발 시간은 도착 이후
         min_duration = 2
@@ -183,6 +187,7 @@ def generate_random_scenario():
         # 너무 널널하면 실패 케이스가 안 나오고, 너무 빡빡하면 Offline도 불가능하므로 적절히 설정
         min_demand = max_possible * 0.3 
         e = random.uniform(min_demand, max_possible * 0.9)
+        e= int(e)
         
         evs.append({'a': a, 'd': d, 'e': e, 'r_bar': r_bar})
         
@@ -211,7 +216,7 @@ while True:
         print(f"\n{'='*20} FOUND FAILURE CASE (Attempt {attempt}) {'='*20}")
         print(f"Scenario: T={T}, Optimal Capacity P={min_feasible_P:.5f}")
         for i, ev in enumerate(evs):
-            print(f"  EV {i}: Deadline={ev['d']}, Demand={ev['e']:.3f}")
+            print(f"  EV {i}: Arriv={ev['a']} Deadline={ev['d']}, Demand={ev['e']:.3f}")
 
         # [검증 1] sLLF 상세 로그 출력
         solve_sLLF(T, min_feasible_P, evs, verbose=True)
