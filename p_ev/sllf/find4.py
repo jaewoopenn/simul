@@ -163,8 +163,8 @@ def generate_random_scenario():
     """ 랜덤 시나리오 생성 """
     # num_evs = random.randint(3, 6) # 차량 수 약간 증가
     # T_horizon = random.randint(6, 12) # 시간 범위 확장
-    num_evs = random.randint(3, 5) # 차량 수 약간 증가
-    T_horizon = random.randint(3, 8) # 시간 범위 확장
+    num_evs = random.randint(3, 4) # 차량 수 약간 증가
+    T_horizon = random.randint(2, 6) # 시간 범위 확장
     evs = []
     
     for i in range(num_evs):
@@ -175,7 +175,7 @@ def generate_random_scenario():
         # a=0
         
         # 출발 시간은 도착 이후
-        min_duration = 2
+        min_duration = 1
         if a + min_duration >= T_horizon:
             d = T_horizon
         else:

@@ -9,12 +9,12 @@ from typing import List, Tuple
 # 1. 설정 및 상수
 # ---------------------------------------------------------
 DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"
-TARGET_LEVEL = 2
+TARGET_LEVEL = 4
 
 TIME_STEP = 1
 EPSILON = 1e-6
 
-TOTAL_STATION_POWER = 3
+TOTAL_STATION_POWER = 4
 MAX_EV_POWER = 1.0
 
 @dataclass

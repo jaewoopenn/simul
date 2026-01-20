@@ -2,145 +2,121 @@ import os
 import random
 import math
 import pickle
-import argparse
-from dataclasses import dataclass, field
-from typing import List, Dict
+from dataclasses import dataclass
+from typing import List
 
 # ---------------------------------------------------------
-# 1. 설정 및 Config 관리 (매직 넘버 제거)
+# 1. 설정 및 상수
 # ---------------------------------------------------------
-@dataclass
-class SimulationConfig:
-    # 경로 설정
-    base_path: str = "/Users/jaewoo/data/ev/cab/data"
-    
-    # 실험 규모
-    trial_num: int = 200
-    stress_start: int = 0
-    stress_num: int = 10
-    
-    # 시나리오 설정
-    max_time: int = 1440        # 24시간 (분 단위) 권장
-    random_seed: int = 42       # 재현성을 위한 시드
-    
-    # EV 생성 파라미터 (계수)
-    base_arrival_rate: float = 0.05   # 60분 기준보다 작게 조정 (1440분 기준)
-    arrival_inc_factor: float = 0.01  # 혼잡도별 증가량
-    
-    base_energy: float = 20.0   # kWh 단위 가정 (더 현실적인 수치로 변경 가능)
-    energy_inc_factor: float = 1.5
-    
-    # 충전 속도 다양성 (kW) - 차량별로 다를 수 있음
-    power_options: List[float] = field(default_factory=lambda: [3.0, 7.0, 11.0, 50.0])
+DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"
+
+TRIAL_NUM = 200         # 레벨당 실험 횟수
+STRESS_START = 0        # 시작 혼잡도
+STRESS_NUM = 10         # 혼잡도 단계 수 (0~9)
+MAX_EV_POWER = 1.0      # 고정 상수 (수정 금지)
 
 @dataclass
 class EVRequest:
     ev_id: int
-    arrival: int
-    required_energy: float
-    deadline: int
-    remaining: float
-    max_power: float  # [추가] 차량별 최대 충전 가능 속도
+    arrival: int        
+    required_energy: float 
+    deadline: int       
+    remaining: float    
 
     def __repr__(self):
-        return (f"EV{self.ev_id:03d} [Arr:{self.arrival:>4}, "
-                f"Req:{self.remaining:>5.2f}, Dead:{self.deadline:>4}, "
-                f"Pwr:{self.max_power:>4.1f}]")
+        return f"EV{self.ev_id}(A={self.arrival}, Rem={self.remaining:.2f}, D={self.deadline})"
 
 # ---------------------------------------------------------
-# 2. EV 데이터 생성기
+# 2. EV 데이터 생성기 (수정됨)
 # ---------------------------------------------------------
-def generate_ev_set(config: SimulationConfig, congestion_level: int, trial_seed: int) -> List[EVRequest]:
-    # Trial 별로 고유한 Seed 설정 (재현성 확보)
-    # random.seed(trial_seed)
+def generate_ev_set(congestion_level):
+    max_time = 60
     
-    # 혼잡도에 따른 파라미터 동적 계산
-    arrival_rate = config.base_arrival_rate + (congestion_level * config.arrival_inc_factor)
-    avg_energy = config.base_energy + (congestion_level * config.energy_inc_factor)
-    std_energy = avg_energy * 0.3  # 평균의 30%를 표준편차로 설정
-    
-    # 혼잡할수록 여유시간(Slack)이 줄어드는 로직 유지
-    slack_mean_factor = max(0.4, 1.9 - (congestion_level * 0.1))
+    # [수정 1] Arrival을 빽빽하게 (Not loose)
+    # 기존 0.55 -> 1.2로 상향 조정하여 단위 시간당 도착 차량 수를 늘림
+    # congestion_level이 오를수록 훨씬 더 자주 도착함
+    base_rate = 0.8
+    arrival_rate = base_rate + (congestion_level * 0.15)
 
     ev_requests = []
     current_time = 0.0
     ev_id = 0
     
     while True:
-        # 도착 시간 (Exponential Inter-arrival)
+        # 도착 시간 간격 생성
         inter_arrival = random.expovariate(arrival_rate)
         current_time += inter_arrival
-        
-        if current_time > config.max_time:
-            break
+        if current_time > max_time: break
             
         arrival_int = int(current_time)
         
-        # 요구 에너지 (Gaussian, 음수 방지)
-        req_energy = random.gauss(avg_energy, std_energy)
-        req_energy = max(1.0, req_energy) # 최소 1kWh
+        # [수정 2] 필요 에너지 다양화 (Bimodal Distribution)
+        # 50% 확률로 소형차(적은 에너지), 50% 확률로 대형차(많은 에너지) 생성
+        if random.random() < 0.5:
+            # 소형: 평균 2.0 ~ 4.0 사이
+            req_energy = random.gauss(2.0, 1.0)
+        else:
+            # 대형: 평균 6.0 ~ 10.0 사이
+            req_energy = random.gauss(5.0, 2.0)
+            
+        # 에너지 범위 클리핑 (0.5 ~ 15.0 정도로 범위를 넓혀 다양성 확보)
+        req_energy = max(0.5, min(15.0, req_energy))
         req_energy = round(req_energy, 2)
         
-        # [시나리오 확장] 차량별 충전 속도 랜덤 배정
-        vehicle_max_power = random.choice(config.power_options)
+        # 최소 충전 시간 계산 (MAX_EV_POWER = 1.0 이므로 에너지값과 동일)
+        min_required_time = math.ceil(req_energy / MAX_EV_POWER)
         
-        # 최소 필요 시간 계산
-        min_required_time = math.ceil(req_energy / vehicle_max_power)
+        # [수정 3] 데드라인 이원화 (Tight vs Loose)
+        # 랜덤하게 '급한 차량'과 '여유로운 차량'을 구분
+        is_urgent = random.random() < 0.4  # 40% 확률로 급한 차량
         
-        # Slack 및 Deadline 계산
-        raw_slack = random.expovariate(1.0) * (min_required_time * slack_mean_factor)
-        slack = int(raw_slack)
+        if is_urgent:
+            # 급한 경우: 여유 시간(Slack)을 최소 충전 시간의 10%~50% 정도로 아주 짧게 줌
+            slack_factor = random.uniform(0.1, 0.5)
+            # 최소 1틱의 여유는 보장
+            slack = max(1, int(min_required_time * slack_factor))
+        else:
+            # 여유로운 경우: 여유 시간을 최소 충전 시간의 2배~4배로 넉넉하게 줌
+            slack_factor = random.uniform(2.0, 5.0)
+            slack = int(min_required_time * slack_factor)
+            
         deadline = arrival_int + min_required_time + slack
         
-        # Deadline이 전체 시뮬레이션 시간을 너무 초과하지 않도록 조정 (옵션)
-        # deadline = min(deadline, config.max_time + 120) 
-        
-        ev_requests.append(EVRequest(
-            ev_id=ev_id, 
-            arrival=arrival_int, 
-            required_energy=req_energy, 
-            deadline=deadline, 
-            remaining=req_energy,
-            max_power=vehicle_max_power
-        ))
+        ev_requests.append(EVRequest(ev_id, arrival_int, req_energy, deadline, req_energy))
         ev_id += 1
         
     return ev_requests
 
 # ---------------------------------------------------------
-# 3. 메인 실행
+# 3. 메인 실행: 데이터 생성 및 저장
 # ---------------------------------------------------------
 if __name__ == '__main__':
-    # 설정 로드
-    conf = SimulationConfig()
+    if not os.path.exists(DATA_SAVE_PATH):
+        try:
+            os.makedirs(DATA_SAVE_PATH)
+            print(f"Directory created: {DATA_SAVE_PATH}")
+        except OSError as e:
+            print(f"Error creating directory: {e}")
+            exit(1)
     
-    # 저장 경로 생성 (상대 경로 권장)
-    save_dir = os.path.abspath(conf.base_path)
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir, exist_ok=True)
-        print(f"[Info] Directory created: {save_dir}")
+    congestion_levels = range(STRESS_START, STRESS_START + STRESS_NUM)
     
-    print(f"Start generating datasets...")
-    print(f"Config: Level {conf.stress_start}~{conf.stress_start + conf.stress_num - 1}, "
-          f"{conf.trial_num} Trials/Level, MaxTime={conf.max_time}")
+    print(f"Start generating datasets into '{DATA_SAVE_PATH}'...")
+    print(f"Configuration: {STRESS_NUM} Levels, {TRIAL_NUM} Trials per level.")
 
-    for level in range(conf.stress_start, conf.stress_start + conf.stress_num):
+    for level in congestion_levels:
         level_trials_data = []
         
-        for trial in range(conf.trial_num):
-            # Seed 설계: (Level * 10000) + Trial -> 겹칠 확률 0, 완벽한 재현 가능
-            current_seed = conf.random_seed + (level * 10000) + trial
-            ev_set = generate_ev_set(conf, level, current_seed)
+        for trial in range(TRIAL_NUM):
+            ev_set = generate_ev_set(level)
             level_trials_data.append(ev_set)
             
         filename = f"ev_level_{level}.pkl"
-        full_path = os.path.join(save_dir, filename)
+        full_path = os.path.join(DATA_SAVE_PATH, filename)
         
         with open(full_path, 'wb') as f:
             pickle.dump(level_trials_data, f)
             
-        # 통계 출력 (검증용)
-        avg_count = sum(len(x) for x in level_trials_data) / len(level_trials_data)
-        print(f"[Saved] Level {level}: {filename} (Avg EVs: {avg_count:.1f})")
+        print(f"[Saved] {filename} (Contains {len(level_trials_data)} trials)")
 
-    print(f"\n[Done] All data files are saved in {save_dir}")
+    print(f"\n[Done] All data files are saved in {DATA_SAVE_PATH}")
