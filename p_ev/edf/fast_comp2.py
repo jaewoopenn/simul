@@ -12,7 +12,7 @@ from multiprocessing import Pool, cpu_count
 # 1. 설정 및 상수
 # ---------------------------------------------------------
 TRIAL_NUM = 200
-TIME_STEP = 0.1         
+TIME_STEP = 1         
 EPSILON = 1e-6          
 
 TOTAL_STATION_POWER = 6

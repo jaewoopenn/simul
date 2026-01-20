@@ -14,10 +14,10 @@ TRIAL_NUM = 100         # 실험 횟수
 TIME_STEP = 0.1         # 시뮬레이션 시간 단위
 EPSILON = 1e-6          
 
-TOTAL_STATION_POWER = 6.0   
+TOTAL_STATION_POWER = 3.0   
 MAX_EV_POWER = 1.0          
 
-STRESS_START = 5
+STRESS_START = 1
 STRESS_NUM = 10
 
 @dataclass

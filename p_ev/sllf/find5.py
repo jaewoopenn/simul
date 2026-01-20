@@ -3,6 +3,9 @@ from scipy.optimize import linprog
 import random
 import json
 
+# IS_INTEGER_E=True
+IS_INTEGER_E=False
+
 def check_offline_feasibility(T, P_limit, evs):
     """ Offline Optimal (LP) 가능 여부 확인 """
     num_evs = len(evs)
@@ -157,6 +160,8 @@ def generate_random_scenario():
         # 너무 널널하면 실패 케이스가 안 나오고, 너무 빡빡하면 Offline도 불가능하므로 적절히 설정
         min_demand = max_possible * 0.3 
         e = random.uniform(min_demand, max_possible * 0.9)
+        if IS_INTEGER_E:
+            e=int(e)
         
         evs.append({'a': a, 'd': d, 'e': e, 'r_bar': r_bar})
         
