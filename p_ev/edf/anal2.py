@@ -9,12 +9,12 @@ from typing import List, Tuple
 # 1. 설정 및 상수
 # ---------------------------------------------------------
 DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"
-TARGET_LEVEL = 4
+TARGET_LEVEL = 2
 
 TIME_STEP = 1
 EPSILON = 1e-6
 
-TOTAL_STATION_POWER = 3.0
+TOTAL_STATION_POWER = 3
 MAX_EV_POWER = 1.0
 
 @dataclass
@@ -96,7 +96,6 @@ def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, 
 
 def calculate_new_algo_power(current_time, active_evs, grid_capacity, max_ev_power, time_step) -> Tuple[List[float], List[str]]:
     """
-    [Revised Logic with Universal Ratio Display]
     Status Codes: MAND(r), MINI(r), GRDY(r), WAIT(r)
     """
     count = len(active_evs)
@@ -128,7 +127,6 @@ def calculate_new_algo_power(current_time, active_evs, grid_capacity, max_ev_pow
         charge_time_needed = ev.remaining / max_ev_power
         laxity = time_to_deadline - charge_time_needed
         
-        # [NEW] Ratio Calculation (for display)
         # Ratio = (충전 필요 시간) / (남은 시간)
         if time_to_deadline > EPSILON:
             ratio = charge_time_needed / time_to_deadline

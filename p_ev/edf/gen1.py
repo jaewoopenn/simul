@@ -91,7 +91,6 @@ if __name__ == '__main__':
             ev_set = generate_ev_set(level)
             level_trials_data.append(ev_set)
             
-        # [수정] 레벨 단위로 1개의 파일 저장
         filename = f"ev_level_{level}.pkl"
         full_path = os.path.join(DATA_SAVE_PATH, filename)
         

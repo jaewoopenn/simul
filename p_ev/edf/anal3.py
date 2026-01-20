@@ -15,7 +15,7 @@ TARGET_LEVEL = 4
 TIME_STEP = 1
 EPSILON = 1e-6
 
-TOTAL_STATION_POWER = 3.0
+TOTAL_STATION_POWER = 2.9
 MAX_EV_POWER = 1.0
 
 @dataclass
@@ -364,7 +364,7 @@ if __name__ == '__main__':
         sllf_result = run_simulation(ev_set, 'sLLF', enable_log=False)
         new_result = run_simulation(ev_set, 'NEW_ALGO', enable_log=False)
         
-        if sllf_result and not new_result:
+        if not sllf_result and  new_result:
             target_case_index = i
             print(f"\n!!! Found Target Case at Index {i} !!!")
             break
