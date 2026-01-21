@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import linprog
 import random
-
+import sys
 def check_offline_feasibility(T, P_limit, evs):
     """
     Offline Optimal (LP) 가능 여부 확인
@@ -159,6 +159,16 @@ def solve_sLLF(T, P_limit, evs, verbose=False):
             
     return len(failures) == 0
 
+def gen2():
+    T_horizon=3
+    evs=[]
+    r_bar=1.0
+    a=0
+    evs.append({'a': a, 'd': 2, 'e': 1, 'r_bar': r_bar})
+    evs.append({'a': a, 'd': 2, 'e': 1, 'r_bar': r_bar})
+    evs.append({'a': a, 'd': 3, 'e': 1.5, 'r_bar': r_bar})
+    return T_horizon, evs
+    
 def generate_random_scenario():
     """ 랜덤 시나리오 생성 """
     # num_evs = random.randint(3, 6) # 차량 수 약간 증가
@@ -196,6 +206,11 @@ def generate_random_scenario():
 # --- 메인 루프 ---
 print("Searching for sLLF failure cases (checking Offline Feasibility)...")
 attempt = 0
+
+T, evs = gen2()
+min_feasible_P = find_minimal_feasible_capacity(T, evs)
+success = solve_sLLF(T, min_feasible_P, evs, verbose=True)
+sys.exit(1)
 
 while True:
     attempt += 1

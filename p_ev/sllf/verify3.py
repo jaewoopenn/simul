@@ -1,5 +1,4 @@
 import json
-import numpy as np
 
 def solve_sLLF(T, P_limit, evs, verbose=False):
     # 원본 데이터 보존을 위해 복사

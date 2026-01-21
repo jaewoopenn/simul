@@ -17,8 +17,8 @@ def generate_random_evs(num_evs=10):
     print(f"--- 랜덤 EV {num_evs}대 생성 중 ---")
     for i in range(num_evs):
         # Arrival: 0 ~ 15 사이 랜덤
-        a = random.randint(0, 15)
-        
+        # a = random.randint(0, 15)
+        a=0
         # 주차 시간 (Duration): 최소 1시간 ~ 최대 10시간
         duration = random.randint(1, 10)
         departure = a + duration
