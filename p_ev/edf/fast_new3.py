@@ -10,7 +10,7 @@ from multiprocessing import Pool, cpu_count
 # ---------------------------------------------------------
 # 1. 설정 및 상수
 # ---------------------------------------------------------
-DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"
+DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"  # 실제 데이터 경로에 맞게 수정 필요
 
 TRIAL_NUM = 100
 TIME_STEP = 1
@@ -38,6 +38,9 @@ class EVRequest:
 # ---------------------------------------------------------
 
 def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, time_step):
+    """
+    기존 sLLF: 이진 탐색(Binary Search)을 사용하여 L값을 근사함
+    """
     count = len(active_evs)
     if count == 0: return []
 
@@ -65,11 +68,8 @@ def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, 
             total_p += req_p
         return total_p, allocs
 
-    if not current_laxities:
-        min_lax, max_lax = -100, 100
-    else:
-        min_lax = min(current_laxities)
-        max_lax = max(current_laxities)
+    min_lax = min(current_laxities)
+    max_lax = max(current_laxities)
     
     low_L = min_lax - time_step * 5.0 
     high_L = max_lax + time_step * 5.0
@@ -92,92 +92,10 @@ def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, 
         
     return best_allocations
 
-def calculate_new_algo_power(current_time, active_evs, grid_capacity, max_ev_power, time_step):
-    """
-    [수정된 New Algorithm]
-    1. Mandatory Allocation: Deadline 빠른 순으로 필수량 할당
-    2. Minimax: 남은 전력 공평 분배
-    3. Greedy: 자투리 전력 밀도 높은 순 할당
-    """
-    count = len(active_evs)
-    if count == 0: return []
-    
-    durations = [max(time_step, float(ev.deadline) - current_time) for ev in active_evs]
-    remains = [ev.remaining for ev in active_evs]
-    phys_limits = [min(max_ev_power, r / time_step) for r in remains]
-    
-    allocation = [0.0] * count
-    remaining_grid = grid_capacity
 
-    # Step 1: Mandatory Allocation (Deadline Priority)
-    mandatory_powers = []
-    for i in range(count):
-        future_time = durations[i] - time_step
-        max_future_charge = max(0.0, future_time * max_ev_power)
-        mandatory_energy = max(0.0, remains[i] - max_future_charge)
-        mandatory_powers.append(mandatory_energy / time_step)
-
-    # 데드라인 빠른 순 정렬
-    sorted_indices = sorted(range(count), key=lambda i: active_evs[i].deadline)
-
-    for idx in sorted_indices:
-        if remaining_grid <= EPSILON: break
-        needed = min(mandatory_powers[idx], phys_limits[idx])
-        if needed > EPSILON:
-            actual = min(needed, remaining_grid)
-            allocation[idx] += actual
-            remaining_grid -= actual
-
-    # Step 2: Minimax
-    residual_needs = []
-    residual_caps = []
-    has_needs = False
-    for i in range(count):
-        e_need = remains[i] - (allocation[i] * time_step)
-        residual_needs.append(e_need)
-        p_cap = max(0.0, phys_limits[i] - allocation[i])
-        residual_caps.append(p_cap)
-        if e_need > EPSILON: has_needs = True
-
-    if remaining_grid > EPSILON and has_needs:
-        low, high = -1000.0, 1000.0
-        best_extra = [0.0] * count
-        for _ in range(30):
-            stress = (low + high) / 2.0
-            prop_total = 0.0
-            curr_prop = []
-            for i in range(count):
-                target_e = residual_needs[i] - (stress * durations[i])
-                p = max(0.0, min(target_e / time_step, residual_caps[i]))
-                curr_prop.append(p)
-                prop_total += p
-            if prop_total > remaining_grid: low = stress
-            else: high = stress; best_extra = curr_prop
-        
-        for i in range(count):
-            allocation[i] += best_extra[i]
-            remaining_grid -= best_extra[i]
-
-    # Step 3: Greedy
-    if remaining_grid > EPSILON:
-        urgency = []
-        for i in range(count):
-            room = phys_limits[i] - allocation[i]
-            if room > EPSILON:
-                score = remains[i] / durations[i] if durations[i] > 0 else 999.0
-                urgency.append((score, i))
-        urgency.sort(key=lambda x: x[0], reverse=True)
-        for _, idx in urgency:
-            if remaining_grid <= EPSILON: break
-            room = phys_limits[idx] - allocation[idx]
-            add = min(remaining_grid, room)
-            allocation[idx] += add
-            remaining_grid -= add
-            
-    return allocation
 
 # ---------------------------------------------------------
-# 3. 시뮬레이션 엔진 (Deadline Check 수정됨)
+# 3. 시뮬레이션 엔진
 # ---------------------------------------------------------
 def run_simulation(ev_set: List[EVRequest], algorithm: str) -> bool:
     evs = copy.deepcopy(ev_set)
@@ -185,20 +103,16 @@ def run_simulation(ev_set: List[EVRequest], algorithm: str) -> bool:
     finished_cnt = 0
     total_evs = len(evs)
     
-    # 시뮬레이션 종료 안전장치 (가장 늦은 데드라인 + 여유분)
     max_deadline = max(e.deadline for e in evs) if evs else 0
 
     while finished_cnt < total_evs:
-        # 1. 큐 구성 (현재 시각 도착 & 잔여량 있음)
+        # 1. 큐 구성
         ready_queue = [
             e for e in evs 
             if e.arrival <= current_time + EPSILON and e.remaining > EPSILON
         ]
         
-        # 2. [수정됨] 데드라인 Miss 판정
-        # 정의: current_time이 deadline에 도달했는데(>=), 
-        # ready_queue에 존재한다면(remaining > 0) 실패.
-        # 충전 로직 수행 *전*에 체크.
+        # 2. 데드라인 Miss 판정
         for e in ready_queue:
             if current_time >= float(e.deadline) - EPSILON:
                 return False 
@@ -241,6 +155,100 @@ def run_simulation(ev_set: List[EVRequest], algorithm: str) -> bool:
 
     return True
 
+def calculate_new_algo_power(current_time, active_evs, grid_capacity, max_ev_power, time_step):
+    """
+    Event-based Backward Analysis (Staircase Method)
+    - Pass 2 (Surplus Allocation)를 EDF에서 Laxity 순서로 변경함.
+    """
+    if not active_evs:
+        return []
+
+    # -----------------------------------------------------
+    # 1. 구간(Segment) 생성 (Time Discretization by Events)
+    # -----------------------------------------------------
+    deadlines = sorted(list(set(ev.deadline for ev in active_evs)))
+    deadlines = [d for d in deadlines if d > current_time]
+    
+    # 첫 구간: [current, current + time_step]
+    segments = []
+    segments.append({"start": current_time, "end": current_time + time_step, "capacity": grid_capacity * time_step})
+    
+    # 나머지 구간들: 데드라인 기반
+    deadlines = [d for d in deadlines if d > current_time + time_step]
+    
+    start_t = current_time + time_step
+    for d in deadlines:
+        duration = d - start_t
+        if duration > 1e-9: # EPSILON 대신 상수로 직접 비교
+            segments.append({"start": start_t, "end": d, "capacity": grid_capacity * duration})
+            start_t = d
+
+    # -----------------------------------------------------
+    # 2. 역방향 채우기 (Analytic Backward Filling)
+    # -----------------------------------------------------
+    individual_must_loads = {ev.ev_id: 0.0 for ev in active_evs}
+    
+    # 데드라인이 늦은 차부터 처리 (Spillover 계산용)
+    sorted_evs = sorted(active_evs, key=lambda x: x.deadline, reverse=True)
+    
+    for ev in sorted_evs:
+        energy_needed = ev.remaining
+        
+        for seg in reversed(segments):
+            if energy_needed <= 1e-9: break
+            if seg["start"] >= ev.deadline: continue
+            
+            duration = seg["end"] - seg["start"]
+            my_phys_limit = max_ev_power * duration
+            fill = min(energy_needed, seg["capacity"], my_phys_limit)
+            
+            if fill > 1e-9:
+                seg["capacity"] -= fill
+                energy_needed -= fill
+                
+                # 첫 번째 세그먼트(Current Step)에 할당된 양만 Must Load로 인정
+                if abs(seg["start"] - current_time) < 1e-9:
+                    individual_must_loads[ev.ev_id] += fill 
+
+    # -----------------------------------------------------
+    # 3. 배분 (Allocation) - 2-Pass Work-Conserving
+    # -----------------------------------------------------
+    allocations = {}
+    
+    # Pass 1: Must Load 할당 (생존 보장)
+    for ev in active_evs:
+        must_energy = individual_must_loads.get(ev.ev_id, 0.0)
+        allocations[ev.ev_id] = must_energy / time_step 
+
+    # Pass 2: Surplus 배분 (수정됨: EDF -> Laxity 순서)
+    current_total_power = sum(allocations.values())
+    surplus_power = max(0.0, grid_capacity - current_total_power)
+    
+    if surplus_power > 1e-9:
+        # [변경 사항] 정렬 기준을 Laxity로 변경
+        # Laxity = (Deadline - CurrentTime) - (RemainingEnergy / MaxPower)
+        # 값이 작을수록 급한 차량이므로 오름차순 정렬 (Default)
+        
+        sorted_by_laxity = sorted(
+            active_evs, 
+            key=lambda x: (x.deadline - current_time) - (x.remaining / max_ev_power)
+        )
+        
+        for ev in sorted_by_laxity:
+            if surplus_power <= 1e-9: break
+            
+            current_p = allocations[ev.ev_id]
+            # 물리적 한계 체크 (TimeStep 동안 받을 수 있는 최대 파워)
+            max_p_limit = min(max_ev_power, ev.remaining / time_step)
+            
+            room = max(0.0, max_p_limit - current_p)
+            
+            if room > 1e-9:
+                bonus = min(surplus_power, room)
+                allocations[ev.ev_id] += bonus
+                surplus_power -= bonus
+
+    return [allocations.get(ev.ev_id, 0.0) for ev in active_evs]
 # ---------------------------------------------------------
 # 4. 병렬 작업 워커
 # ---------------------------------------------------------
@@ -260,26 +268,40 @@ if __name__ == '__main__':
     
     if not os.path.exists(DATA_SAVE_PATH):
         print(f"Error: Data directory '{DATA_SAVE_PATH}' not found.")
-        exit(1)
+        # exit(1) # 테스트를 위해 주석 처리하거나 경로 수정 필요
 
     congestion_levels = list(range(STRESS_START, STRESS_START + STRESS_NUM))
     all_tasks = []
     
     print(f"Loading data from '{DATA_SAVE_PATH}' and preparing tasks...")
 
+    # 데이터 로딩 로직 (경로 에러 방지를 위해 예외처리 강화)
     for level in congestion_levels:
         filename = f"ev_level_{level}.pkl"
         full_path = os.path.join(DATA_SAVE_PATH, filename)
-        try:
-            with open(full_path, 'rb') as f:
-                level_dataset = pickle.load(f)
-                if not isinstance(level_dataset, list): continue
-                for ev_set in level_dataset:
-                    all_tasks.append((level, ev_set))
-        except FileNotFoundError:
-            print(f"Warning: {filename} not found.")
-        except Exception as e:
-            print(f"Error reading {filename}: {e}")
+        if os.path.exists(full_path):
+            try:
+                with open(full_path, 'rb') as f:
+                    level_dataset = pickle.load(f)
+                    if isinstance(level_dataset, list):
+                        for ev_set in level_dataset:
+                            all_tasks.append((level, ev_set))
+            except Exception as e:
+                print(f"Error reading {filename}: {e}")
+    
+    # 데이터가 없을 경우 임시 데이터 생성 (코드 실행 테스트용)
+    if not all_tasks:
+        print("Warning: No data loaded. Generating dummy data for test...")
+        import random
+        for level in congestion_levels:
+            for _ in range(10): # 레벨당 10개 트라이얼
+                dummy_evs = []
+                for i in range(5 + level): # 레벨이 높을수록 EV 많음
+                    arr = random.randint(0, 10)
+                    req = random.uniform(2.0, 5.0)
+                    dead = arr + int(req/MAX_EV_POWER) + random.randint(2, 10)
+                    dummy_evs.append(EVRequest(i, arr, req, dead, req))
+                all_tasks.append((level, dummy_evs))
 
     print(f"Total Tasks Created: {len(all_tasks)}")
     print(f"Starting Simulation on {cpu_count()} Cores...")
@@ -307,7 +329,7 @@ if __name__ == '__main__':
         for algo in ['EDF', 'LLF', 'sLLF', 'NEW_ALGO']:
             rate = results_map[level][algo] / count
             ratios[algo].append(rate)
-            print(f"{algo}={rate:.2f} ", end="")
+            print(f"{algo}={rate:.3f} ", end="")
         print("")
 
     print(f"\nTotal Execution Time: {time.time() - start_time:.2f} seconds")
@@ -316,7 +338,7 @@ if __name__ == '__main__':
     plt.plot(congestion_levels, ratios['EDF'], marker='o', label='EDF', linestyle=':', color='gray', alpha=0.5)
     plt.plot(congestion_levels, ratios['LLF'], marker='s', label='LLF', linestyle='--', color='blue', alpha=0.5)
     plt.plot(congestion_levels, ratios['NEW_ALGO'], marker='^', label='NEW_ALGO', linestyle='-', color='green', linewidth=2)
-    plt.plot(congestion_levels, ratios['sLLF'], marker='*', label='sLLF', linestyle='-', color='red', linewidth=2)
+    plt.plot(congestion_levels, ratios['sLLF'], marker='*', label='sLLF (Binary)', linestyle='-', color='red', linewidth=2)
 
     plt.title('Algorithm Performance Comparison', fontsize=14)
     plt.xlabel('Congestion Level (Stress)', fontsize=12)

@@ -10,7 +10,7 @@ from multiprocessing import Pool, cpu_count
 # ---------------------------------------------------------
 # 1. 설정 및 상수
 # ---------------------------------------------------------
-DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"
+DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"  # 실제 데이터 경로에 맞게 수정 필요
 
 TRIAL_NUM = 100
 TIME_STEP = 1
@@ -38,6 +38,9 @@ class EVRequest:
 # ---------------------------------------------------------
 
 def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, time_step):
+    """
+    기존 sLLF: 이진 탐색(Binary Search)을 사용하여 L값을 근사함
+    """
     count = len(active_evs)
     if count == 0: return []
 
@@ -65,11 +68,8 @@ def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, 
             total_p += req_p
         return total_p, allocs
 
-    if not current_laxities:
-        min_lax, max_lax = -100, 100
-    else:
-        min_lax = min(current_laxities)
-        max_lax = max(current_laxities)
+    min_lax = min(current_laxities)
+    max_lax = max(current_laxities)
     
     low_L = min_lax - time_step * 5.0 
     high_L = max_lax + time_step * 5.0
@@ -94,90 +94,99 @@ def calculate_sllf_power(current_time, active_evs, grid_capacity, max_ev_power, 
 
 def calculate_new_algo_power(current_time, active_evs, grid_capacity, max_ev_power, time_step):
     """
-    [수정된 New Algorithm]
-    1. Mandatory Allocation: Deadline 빠른 순으로 필수량 할당
-    2. Minimax: 남은 전력 공평 분배
-    3. Greedy: 자투리 전력 밀도 높은 순 할당
+    [수정된 NEW_ALGO: Optimized Sweeping sLLF]
+    이벤트 스위핑 방식을 통해 정확한 Laxity Threshold를 계산 (Binary Search 제거)
     """
     count = len(active_evs)
     if count == 0: return []
-    
-    durations = [max(time_step, float(ev.deadline) - current_time) for ev in active_evs]
-    remains = [ev.remaining for ev in active_evs]
-    phys_limits = [min(max_ev_power, r / time_step) for r in remains]
-    
-    allocation = [0.0] * count
-    remaining_grid = grid_capacity
 
-    # Step 1: Mandatory Allocation (Deadline Priority)
-    mandatory_powers = []
-    for i in range(count):
-        future_time = durations[i] - time_step
-        max_future_charge = max(0.0, future_time * max_ev_power)
-        mandatory_energy = max(0.0, remains[i] - max_future_charge)
-        mandatory_powers.append(mandatory_energy / time_step)
-
-    # 데드라인 빠른 순 정렬
-    sorted_indices = sorted(range(count), key=lambda i: active_evs[i].deadline)
-
-    for idx in sorted_indices:
-        if remaining_grid <= EPSILON: break
-        needed = min(mandatory_powers[idx], phys_limits[idx])
-        if needed > EPSILON:
-            actual = min(needed, remaining_grid)
-            allocation[idx] += actual
-            remaining_grid -= actual
-
-    # Step 2: Minimax
-    residual_needs = []
-    residual_caps = []
-    has_needs = False
-    for i in range(count):
-        e_need = remains[i] - (allocation[i] * time_step)
-        residual_needs.append(e_need)
-        p_cap = max(0.0, phys_limits[i] - allocation[i])
-        residual_caps.append(p_cap)
-        if e_need > EPSILON: has_needs = True
-
-    if remaining_grid > EPSILON and has_needs:
-        low, high = -1000.0, 1000.0
-        best_extra = [0.0] * count
-        for _ in range(30):
-            stress = (low + high) / 2.0
-            prop_total = 0.0
-            curr_prop = []
-            for i in range(count):
-                target_e = residual_needs[i] - (stress * durations[i])
-                p = max(0.0, min(target_e / time_step, residual_caps[i]))
-                curr_prop.append(p)
-                prop_total += p
-            if prop_total > remaining_grid: low = stress
-            else: high = stress; best_extra = curr_prop
+    # 1. EV별 데이터 전처리
+    ev_data = []
+    for i, ev in enumerate(active_evs):
+        # Laxity 계산: (남은시간 - 충전필요시간)
+        remaining_time = ev.deadline - current_time
+        time_to_charge = ev.remaining / max_ev_power
+        l_i = remaining_time - time_to_charge
         
-        for i in range(count):
-            allocation[i] += best_extra[i]
-            remaining_grid -= best_extra[i]
+        # 현재 타임슬롯에서 물리적으로 가능한 최대 충전량(Cap)
+        # Cap = Min(최대파워, 남은에너지를 이번 틱에 다 채우는데 필요한 파워)
+        p_cap = min(max_ev_power, ev.remaining / time_step)
+        
+        ev_data.append({
+            'original_idx': i,
+            'laxity': l_i,
+            'cap': p_cap
+        })
 
-    # Step 3: Greedy
-    if remaining_grid > EPSILON:
-        urgency = []
-        for i in range(count):
-            room = phys_limits[i] - allocation[i]
-            if room > EPSILON:
-                score = remains[i] / durations[i] if durations[i] > 0 else 999.0
-                urgency.append((score, i))
-        urgency.sort(key=lambda x: x[0], reverse=True)
-        for _, idx in urgency:
-            if remaining_grid <= EPSILON: break
-            room = phys_limits[idx] - allocation[idx]
-            add = min(remaining_grid, room)
-            allocation[idx] += add
-            remaining_grid -= add
-            
-    return allocation
+    # 2. 이벤트 포인트 생성 (O(N))
+    # 공식: rate = L - (l_i - 1) 
+    # -> rate > 0 이 시작되는 L = l_i - 1
+    # -> rate가 Cap에 도달하는 L = l_i - 1 + Cap
+    events = []
+    for item in ev_data:
+        start_point = item['laxity'] - 1.0
+        end_point = start_point + item['cap']
+        
+        # (L값, 기울기 변화량)
+        events.append((start_point, 1.0))   # 기울기 +1
+        events.append((end_point, -1.0))  # 기울기 -1
+
+    # 3. 이벤트 정렬 (O(N log N))
+    events.sort(key=lambda x: x[0])
+
+    # 4. 스위핑 (Sweeping) (O(N))
+    current_slope = 0.0
+    current_power_sum = 0.0
+    prev_L = events[0][0]
+    final_L = events[-1][0] + 1.0 # 초기값: 충분히 큰 값
+
+    found_solution = False
+
+    for L, slope_change in events:
+        delta_L = L - prev_L
+        added_power = current_slope * delta_L
+        
+        # 이번 구간을 이동했을 때 용량을 초과하는지 확인
+        if current_power_sum + added_power > grid_capacity + EPSILON:
+            # 초과한다면, 정확한 L 위치 역산
+            remaining_capacity = grid_capacity - current_power_sum
+            if current_slope > EPSILON:
+                final_L = prev_L + (remaining_capacity / current_slope)
+            else:
+                final_L = prev_L # 이론상 오차 범위 내
+            found_solution = True
+            break
+        
+        # 용량 내라면 상태 업데이트 후 다음 이벤트로 이동
+        current_power_sum += added_power
+        prev_L = L
+        current_slope += slope_change
+    
+    # 용량 제한에 걸리지 않고 모든 이벤트를 통과한 경우 (전력이 남는 경우)
+    if not found_solution:
+        # 마지막 지점 이후로는 기울기가 0이므로 전력합이 더 늘어나지 않음.
+        # 즉, 모든 EV가 Max Cap으로 충전해도 전력이 남는 상황.
+        # final_L을 마지막 이벤트 지점(혹은 그 이상)으로 설정하여 max cap이 선택되게 함.
+        final_L = events[-1][0] + 1.0
+
+    # 5. 최종 할당량 계산 (O(N))
+    allocations = [0.0] * count
+    for item in ev_data:
+        # r = [final_L - (l_i - 1)]_0^cap
+        raw_rate = final_L - (item['laxity'] - 1.0)
+        rate = max(0.0, min(item['cap'], raw_rate))
+        allocations[item['original_idx']] = rate
+
+    # 혹시 모를 부동소수점 오차로 인한 총합 초과 보정 (Scaling)
+    total_alloc = sum(allocations)
+    if total_alloc > grid_capacity + EPSILON:
+        scale = grid_capacity / total_alloc
+        allocations = [p * scale for p in allocations]
+
+    return allocations
 
 # ---------------------------------------------------------
-# 3. 시뮬레이션 엔진 (Deadline Check 수정됨)
+# 3. 시뮬레이션 엔진
 # ---------------------------------------------------------
 def run_simulation(ev_set: List[EVRequest], algorithm: str) -> bool:
     evs = copy.deepcopy(ev_set)
@@ -185,20 +194,16 @@ def run_simulation(ev_set: List[EVRequest], algorithm: str) -> bool:
     finished_cnt = 0
     total_evs = len(evs)
     
-    # 시뮬레이션 종료 안전장치 (가장 늦은 데드라인 + 여유분)
     max_deadline = max(e.deadline for e in evs) if evs else 0
 
     while finished_cnt < total_evs:
-        # 1. 큐 구성 (현재 시각 도착 & 잔여량 있음)
+        # 1. 큐 구성
         ready_queue = [
             e for e in evs 
             if e.arrival <= current_time + EPSILON and e.remaining > EPSILON
         ]
         
-        # 2. [수정됨] 데드라인 Miss 판정
-        # 정의: current_time이 deadline에 도달했는데(>=), 
-        # ready_queue에 존재한다면(remaining > 0) 실패.
-        # 충전 로직 수행 *전*에 체크.
+        # 2. 데드라인 Miss 판정
         for e in ready_queue:
             if current_time >= float(e.deadline) - EPSILON:
                 return False 
@@ -260,26 +265,40 @@ if __name__ == '__main__':
     
     if not os.path.exists(DATA_SAVE_PATH):
         print(f"Error: Data directory '{DATA_SAVE_PATH}' not found.")
-        exit(1)
+        # exit(1) # 테스트를 위해 주석 처리하거나 경로 수정 필요
 
     congestion_levels = list(range(STRESS_START, STRESS_START + STRESS_NUM))
     all_tasks = []
     
     print(f"Loading data from '{DATA_SAVE_PATH}' and preparing tasks...")
 
+    # 데이터 로딩 로직 (경로 에러 방지를 위해 예외처리 강화)
     for level in congestion_levels:
         filename = f"ev_level_{level}.pkl"
         full_path = os.path.join(DATA_SAVE_PATH, filename)
-        try:
-            with open(full_path, 'rb') as f:
-                level_dataset = pickle.load(f)
-                if not isinstance(level_dataset, list): continue
-                for ev_set in level_dataset:
-                    all_tasks.append((level, ev_set))
-        except FileNotFoundError:
-            print(f"Warning: {filename} not found.")
-        except Exception as e:
-            print(f"Error reading {filename}: {e}")
+        if os.path.exists(full_path):
+            try:
+                with open(full_path, 'rb') as f:
+                    level_dataset = pickle.load(f)
+                    if isinstance(level_dataset, list):
+                        for ev_set in level_dataset:
+                            all_tasks.append((level, ev_set))
+            except Exception as e:
+                print(f"Error reading {filename}: {e}")
+    
+    # 데이터가 없을 경우 임시 데이터 생성 (코드 실행 테스트용)
+    if not all_tasks:
+        print("Warning: No data loaded. Generating dummy data for test...")
+        import random
+        for level in congestion_levels:
+            for _ in range(10): # 레벨당 10개 트라이얼
+                dummy_evs = []
+                for i in range(5 + level): # 레벨이 높을수록 EV 많음
+                    arr = random.randint(0, 10)
+                    req = random.uniform(2.0, 5.0)
+                    dead = arr + int(req/MAX_EV_POWER) + random.randint(2, 10)
+                    dummy_evs.append(EVRequest(i, arr, req, dead, req))
+                all_tasks.append((level, dummy_evs))
 
     print(f"Total Tasks Created: {len(all_tasks)}")
     print(f"Starting Simulation on {cpu_count()} Cores...")
@@ -315,8 +334,8 @@ if __name__ == '__main__':
     plt.figure(figsize=(12, 6))
     plt.plot(congestion_levels, ratios['EDF'], marker='o', label='EDF', linestyle=':', color='gray', alpha=0.5)
     plt.plot(congestion_levels, ratios['LLF'], marker='s', label='LLF', linestyle='--', color='blue', alpha=0.5)
-    plt.plot(congestion_levels, ratios['NEW_ALGO'], marker='^', label='NEW_ALGO', linestyle='-', color='green', linewidth=2)
-    plt.plot(congestion_levels, ratios['sLLF'], marker='*', label='sLLF', linestyle='-', color='red', linewidth=2)
+    plt.plot(congestion_levels, ratios['NEW_ALGO'], marker='^', label='NEW_ALGO (Sweeping)', linestyle='-', color='green', linewidth=2)
+    plt.plot(congestion_levels, ratios['sLLF'], marker='*', label='sLLF (Binary)', linestyle='-', color='red', linewidth=2)
 
     plt.title('Algorithm Performance Comparison', fontsize=14)
     plt.xlabel('Congestion Level (Stress)', fontsize=12)
