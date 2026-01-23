@@ -131,7 +131,7 @@ def calculate_new_algo_power(current_time, active_evs, grid_capacity, max_ev_pow
         events.append((start_point, 1.0))   # 기울기 +1
         events.append((end_point, -1.0))  # 기울기 -1
 
-    # 3. 이벤트 정렬 (O(N log N))
+    # 3. 이벤트 정렬 (O(N z_log N))
     events.sort(key=lambda x: x[0])
 
     # 4. 스위핑 (Sweeping) (O(N))

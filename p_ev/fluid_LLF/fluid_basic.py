@@ -28,7 +28,7 @@ def generate_random_jobs(n, T, P, R_max, load_factor=1.1):
 # 2. 밀도 기반 충분 조건 테스트 (Density-based Test)
 # ---------------------------------------------------------
 def density_test(jobs, P, R_max):
-    """시뮬레이션 없이 다항 시간(O(N log N)) 내에 판단"""
+    """시뮬레이션 없이 다항 시간(O(N z_log N)) 내에 판단"""
     # 조건 1: 개별 차량이 R_max 내에서 충전 가능한지 확인 [cite: 8]
     for job in jobs:
         if job['e'] / (job['d'] - job['r']) > R_max:

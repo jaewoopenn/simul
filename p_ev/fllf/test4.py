@@ -40,7 +40,7 @@ def original_sllf_step(active_evs, total_capacity, max_rate=1.0):
         cap = min(max_rate, ev['energy_needed'])
         ev['rate'] = max(0.0, min(cap, raw))
 
-# 2. Optimized sLLF (Slope Sweeping, O(N log N))
+# 2. Optimized sLLF (Slope Sweeping, O(N z_log N))
 def optimized_sllf_step(active_evs, total_capacity, max_rate=1.0):
     if not active_evs: return
 

@@ -3,8 +3,8 @@ Created on 2015. 12. 11.
 
 @author: cpslab
 '''
-from simul.MSimul import CSimul
-import simul.MSimul as ms
+from z_simul.MSimul import CSimul
+import z_simul.MSimul as ms
 
 class gl:
 #     path=1

@@ -4,7 +4,7 @@ Created on 2015. 12. 11.
 @author: cpslab
 '''
 
-from log.MLog import CLog
+from z_log.MLog import CLog
 from z_anal.MQueue import CQueue
 from z_anal.MGap import TD,CGap
 import z_anal.MGap as mg

@@ -5,7 +5,8 @@ Created on 2015. 12. 11.
 '''
 
 from util.MFile import CFile
-from log.MLog import CLog
+from z_log.MLog import CLog
+from z_log.MConfig import CConfig
 import util.MRand as mr
 
 class gl:
@@ -15,13 +16,28 @@ class gl:
 #     path=4
 
 
-def run(fn):
-    print(fn)
+
+def test1():
+    for i in range(1,10):
+        c=CConfig()
+        c.init_w("ev/var/config"+str(i)+".txt")
+        c.addKV("num","10")
+        c.addKV("prob",format(i*0.1,".2f"))
+        c.addKV("k3","v3")
+        c.end()    
+
+
+def test2():
+#     run(1)
+    for i in range(1,10):
+        run(i)
+
+def gen(fn,c):
     cf=CFile()
-    cf.open_w("ev/data/"+fn+".txt")
+    cf.open_w(fn)
     t=0
     end_t=20
-    arr_p=0.7
+    arr_p=float(c.get('prob'))
     while t<=end_t:
         if mr.pick()>arr_p:
             t+=1
@@ -34,43 +50,17 @@ def run(fn):
         t+=1
     cf.end()
 
-def run2(fn):
-    print(fn)
-    cf=CFile()
-    cf.open_w("ev/data/"+fn+".txt")
-    t=0
-    end_t=20
-    min_n=-2
-    max_n=5
-    while t<=end_t:
-        n=mr.pickInt(min_n,max_n)
-        if n<=0:
-            t+=1
-            continue
-            
-        for i in range(n):
-            d=mr.pickInt(7, 30)
-            m=mr.pickInt(2,4)
-            o=mr.pickInt(1,4)
-            str="%d %d %d %d"%(t,d,m,o)
-            cf.write(str)
-        t+=1
-    cf.end()
-
-
-def test1():
-    for i in range(10):
-        run("test"+str(i))
-
-
-def test2():
-    for i in range(10):
-        run2("test"+str(i))
     
-
+def run(idx):
+    c=CConfig()
+    fn="ev/var/config"+str(idx)+".txt"
+    c.init_r(fn)
+    n=int(c.get('num'))
+    for i in range(n):
+        fn="ev/var/data"+str(idx)+"-"+str(i)+".txt"
+        gen(fn,c)
 def test3():
     pass
-    
 
 def test4():
     pass

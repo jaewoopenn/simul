@@ -70,7 +70,7 @@ def optimized_sllf(active_evs, total_capacity, max_rate=1.0):
         events.append((start_point, 1))  # 기울기 1 증가
         events.append((end_point, -1))   # 기울기 1 감소
 
-    # 2. 이벤트 정렬 (O(N log N)) - 여기가 전체 복잡도를 결정
+    # 2. 이벤트 정렬 (O(N z_log N)) - 여기가 전체 복잡도를 결정
     events.sort(key=lambda x: x[0])
 
     # 3. 스위핑 (O(N))

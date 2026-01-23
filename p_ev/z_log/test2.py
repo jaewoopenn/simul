@@ -5,7 +5,7 @@ Created on 2015. 12. 11.
 '''
 
 from util.MFile import CFile
-from log.MLog import CLog
+from z_log.MLog import CLog
 import util.MRand as mr
 
 class gl:

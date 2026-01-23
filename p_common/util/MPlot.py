@@ -55,10 +55,10 @@ def ylim(l,u):
 def show():
     plt.show()
 def log():
-    plt.yscale('log')
-    plt.xscale('log')
+    plt.yscale('z_log')
+    plt.xscale('z_log')
 def xlog():
-    plt.xscale('log')
+    plt.xscale('z_log')
 def ylabel(s):    
     plt.ylabel(s)
 def xlabel(s):    

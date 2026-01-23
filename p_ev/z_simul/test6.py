@@ -4,11 +4,11 @@ Created on 2015. 12. 11.
 @author: cpslab
 '''
 
-from log.MLog import CLog
-from simul.MSimulF import CSimulF
-import simul.MSimulF as msf
-from simul.MSimul import CSimul
-import simul.MSimul as ms
+from z_log.MLog import CLog
+from z_simul.MSimulF import CSimulF
+import z_simul.MSimulF as msf
+from z_simul.MSimul import CSimul
+import z_simul.MSimul as ms
 import math
 
 class gl:

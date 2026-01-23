@@ -26,7 +26,7 @@ def generate_random_jobs(n, T, P, R_max):
     return jobs
 
 def density_test(jobs, P, R_max):
-    """밀도 기반 충분 조건 테스트 (O(N log N))"""
+    """밀도 기반 충분 조건 테스트 (O(N z_log N))"""
     start_time = time.time()
     # 1. 개별 밀도 체크
     for job in jobs:
@@ -44,7 +44,7 @@ def density_test(jobs, P, R_max):
     return True, time.time() - start_time
 
 def fluid_llf_simulation(jobs, P, R_max, dt=0.1):
-    """Fluid-LLF 시계열 시뮬레이션 (O(T/dt * N log N))"""
+    """Fluid-LLF 시계열 시뮬레이션 (O(T/dt * N z_log N))"""
     start_time = time.time()
     sim_jobs = [{'r': j['r'], 'd': j['d'], 'e_rem': j['e'], 'id': j['id']} for j in jobs]
     max_d = max([j['d'] for j in jobs])
