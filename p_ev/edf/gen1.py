@@ -11,8 +11,8 @@ from typing import List
 # [요청사항] 데이터 저장 경로 글로벌 변수 선언
 DATA_SAVE_PATH = "/Users/jaewoo/data/ev/cab/data"
 
-TRIAL_NUM = 300         # 레벨당 실험 횟수
-STRESS_START = 0        # 시작 혼잡도
+TRIAL_NUM = 350         # 레벨당 실험 횟수
+STRESS_START = 1        # 시작 혼잡도
 STRESS_NUM = 10         # 혼잡도 단계 수 (0~9)
 MAX_EV_POWER = 1.0      # 데이터 생성 시 필요한 상수
 
@@ -33,7 +33,7 @@ class EVRequest:
 def generate_ev_set(congestion_level):
     max_time = 60
     
-    arrival_rate = 0.55 + (congestion_level * 0.075)
+    arrival_rate = 0.62 + (congestion_level * 0.075)
     base_avg_energy = 2.5
     avg_energy = base_avg_energy + (congestion_level * 0.09)
     std_energy = 1.3 
