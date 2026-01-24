@@ -82,7 +82,6 @@ def calculate_power(current_time, active_evs, grid_capacity, max_ev_power, time_
                 if seg["index"] == 0:
                     must_load_energy[ev.ev_id] += fill
 
-# ... (Step 1, Step 2 Must Load 계산은 그대로 유지) ...
 
     # -----------------------------------------------------
     # Step 3. 에너지 가중치 기반 공유 (Energy-Weighted Sharing)
