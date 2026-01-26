@@ -2,7 +2,7 @@ import os
 import pickle
 import copy
 import time
-import ras.fast_def3 as new_algo
+import ras_old.fast_def2 as new_algo
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from typing import List
