@@ -1,4 +1,5 @@
 import os
+import sys
 import pickle
 import copy
 import time
@@ -289,20 +290,8 @@ if __name__ == '__main__':
                             all_tasks.append((level, ev_set))
             except Exception as e:
                 print(f"Error reading {filename}: {e}")
+                sys.exit(1)
     
-    # 데이터가 없을 경우 임시 데이터 생성 (코드 실행 테스트용)
-    if not all_tasks:
-        print("Warning: No data loaded. Generating dummy data for test...")
-        import random
-        for level in congestion_levels:
-            for _ in range(10): # 레벨당 10개 트라이얼
-                dummy_evs = []
-                for i in range(5 + level): # 레벨이 높을수록 EV 많음
-                    arr = random.randint(0, 10)
-                    req = random.uniform(2.0, 5.0)
-                    dead = arr + int(req/MAX_EV_POWER) + random.randint(2, 10)
-                    dummy_evs.append(EVRequest(i, arr, req, dead, req))
-                all_tasks.append((level, dummy_evs))
 
     print(f"Total Tasks Created: {len(all_tasks)}")
     print(f"Starting Simulation on {cpu_count()} Cores...")
