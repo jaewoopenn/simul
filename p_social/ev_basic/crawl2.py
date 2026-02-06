@@ -25,7 +25,7 @@ def fetch_and_save_acn_data():
     
     # 예: 2019년 9월 1일 ~ 9월 7일 (일주일치 데이터)
     start_time = timezone.localize(datetime(2019, 10, 1))
-    end_time = timezone.localize(datetime(2019, 10, 8))
+    end_time = timezone.localize(datetime(2019, 10, 31))
 
     print(f"🚀 데이터를 요청합니다... ({start_time.date()} ~ {end_time.date()})")
 
